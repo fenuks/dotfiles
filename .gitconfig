@@ -1,0 +1,15 @@
+[include]
+        path = ~/.gitconfig.local
+[core]
+	excludesfile = ~/.gitignore
+
+[cola]
+	spellcheck = false
+[credential]
+	helper = cache
+[alias]
+	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+[color]
+	ui = auto
+[push]
+	default = current

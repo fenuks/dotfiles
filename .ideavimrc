@@ -1,0 +1,10 @@
+source ~/.config/nvim/init.vim
+nnoremap / /
+vnoremap / /
+set vim-surround
+nnoremap <Leader>d :action GotoDeclaration<CR>
+nnoremap <Leader>f :action GotoFile<CR>
+nnoremap <Leader>r :action RenameElement<CR>
+nnoremap <Leader>T :action FileStructurePopup<CR>
+nnoremap <Leader>t :action GotoSymbol<CR>
+nnoremap <Leader>u :action FindUsages<CR>

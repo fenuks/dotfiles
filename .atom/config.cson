@@ -1,0 +1,78 @@
+"*":
+  "atom-beautify": {}
+  "autocomplete-plus": {}
+  "autoupdate-packages":
+    handling: "Update automatically and silently"
+    lastUpdateTimestamp: 1484905938353
+  core:
+    automaticallyUpdate: false
+    disabledPackages: [
+      "autocomplete-plus-jedi"
+      "color-picker"
+      "minimap"
+      "nuclide"
+      "terminal-plus"
+      "tokamak"
+      "react"
+      "autocomplete-python"
+      "racer"
+      "autoclose-html"
+      "rustfmt"
+      "language-markdown"
+      "linter-cppcheck"
+      "linter-cpplint"
+      "vim-mode"
+      "atom-typescript"
+      "language-rust"
+      "linter-gcc"
+      "clang-format"
+      "linter-rust"
+      "linter-clang"
+      "linter-stylelint"
+      "linter-eslint"
+      "proton-mode"
+    ]
+    telemetryConsent: "no"
+    themes: [
+      "atom-dark-ui"
+      "atom-dark-fusion-syntax"
+    ]
+  "easy-motion-redux":
+    replaceCharacters: "abcdefghijklmnopqrstuvwxyz"
+  editor:
+    fontFamily: "Hack"
+    softWrap: true
+  "exception-reporting":
+    userId: "037b0b67-74ff-36ff-1575-0ff65271a777"
+  linter:
+    statusIconScope: "File"
+  "linter-flake8": {}
+  "linter-rust": {}
+  "markdown-preview": {}
+  metrics: {}
+  nuclide: {}
+  racer: {}
+  "spell-check": {}
+  "terminal-plus": {}
+  "theme-switch":
+    profiles: [
+      "nucleus-dark-ui atom-dark-fusion-syntax"
+      "atom-material-ui atom-material-syntax"
+      "atom-dark-ui atom-dark-syntax"
+      "atom-light-ui atom-light-syntax"
+      "one-dark-ui one-dark-syntax"
+      "one-light-ui one-light-syntax"
+    ]
+  tokamak: {}
+  "tool-bar": {}
+  "tree-view": {}
+  "vim-mode":
+    useSmartcaseForSearch: true
+  "vim-mode-plus":
+    incrementalSearch: true
+    useSmartcaseForSearch: true
+  welcome:
+    showOnStartup: false
+  zentabs:
+    maximumOpenedTabs: 10
+    neverCloseUnsaved: true

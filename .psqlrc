@@ -1,0 +1,17 @@
+\set QUIET 1
+
+\pset null '[NULL]'
+\pset linestyle unicode
+\pset border 2
+
+\set PROMPT1 '%M:%> %n@%/%R%#%x '
+\set PROMPT2 ''
+\set COMP_KEYWORD_CASE upper
+\timing
+\set HISTSIZE 4000
+\set HISTCONTROL ignoredups
+\x auto
+\set VERBOSITY verbose
+\encoding unicode
+
+\unset QUIET

@@ -1,0 +1,9 @@
+nnoremap J gt
+nnoremap K gT
+set hintchars='abcdefghijklmnopqrstuvwxyz'
+set nextpattern='\bnext\b,^>$,^(>>|»)$,^(>|»),(>|»)$,\bmore\b,\bnastępna\b'
+set prevpattern='\bprev\b|\bprevious\b,^<$,^(<<|«)$,^(<|«),(<|«)$,b\poprzednia\b'
+
+highlight Hint color: black;font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;font-size: inherit;font-style: normal;font-weight: normal;height: auto;letter-spacing: 0px;line-height: 100%;max-height: none;max-width: none;min-height: 0px;min-width: 0px;opacity: 1; text-align: left;text-decoration: none;text-indent: 0px;text-shadow: none;text-transform: none;vertical-align: baseline;white-space: normal;width: auto;z-index: 2140000000;background: none;border-width: initial;border-style: none;border-color: initial;border-image: initial;font-variant: normal normal;margin: 0px;padding: 0px;background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgb(255, 247, 133)), to(rgb(255, 197, 66)));border-width: 1px;border-style: solid;border-color: rgb(227, 190, 35);border-image: initial;white-space: nowrap;font-size: 11px;box-shadow: rgba(0, 0, 0, 0.298039) 0px 3px 7px 0px;overflow: hidden;padding: 1px 3px 0px;border-radius: 3px;color: black;font-weight: bold;font-size: 12px;text-transform: uppercase;
+
+highlight HintElem "";

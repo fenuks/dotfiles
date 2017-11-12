@@ -1,0 +1,7 @@
+*~
+*.bak
+*.class
+.directory
+.idea/
+*.swp
+tags

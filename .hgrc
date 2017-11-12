@@ -1,0 +1,7 @@
+[extensions]
+color =
+hgext.bookmarks =
+hggit =
+progress =
+purge =
+rebase =

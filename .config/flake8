@@ -1,0 +1,11 @@
+[flake8]
+ignore = E131,E231,E501
+exclude =
+    .git,
+    .hg,
+    __pycache__,
+    docs/
+    old,
+    build,
+    dist,
+    env

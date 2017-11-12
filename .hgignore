@@ -1,0 +1,6 @@
+tags
+
+syntax: glob
+*.class
+*.swp
+*~

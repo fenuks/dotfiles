@@ -1,0 +1,60 @@
+// Place your settings in this file to overwrite the default settings
+{
+    "editor.fontFamily": "'Fira Code', 'Hack', 'Source Code Pro', 'Droid Sans Mono', 'Courier New', monospace, 'Droid Sans Fallback'",
+    "telemetry.enableCrashReporter": false,
+    "telemetry.enableTelemetry": false,
+    "[cpp]": {
+        "editor.quickSuggestions": true
+    },
+    "[c]": {
+        "editor.quickSuggestions": true
+    },
+    "vim.easymotion": true,
+    "vim.hlsearch": true,
+    "vim.history": 500,
+    "vim.enableNeovim": true,
+    "vim.disableAnnoyingNeovimMessage": true,
+    "editor.wordWrap": "on",
+    "editor.fontLigatures": true,
+    "files.watcherExclude": {
+        "**/bower_components/**": true,
+        "**/env/**": true,
+        "**/.git/objects/**": true,
+        "**/.hg/**": true,
+        "**/node_modules/**": true,
+        "tags": true,
+        "**/volumes/**": true
+    },
+    "files.exclude": {
+        "**/*.a": true,
+        "**/*.bak": true,
+        "**/.cache": true,
+        "**/*.class": true,
+        "**/CVS": true,
+        "**/.DS_Store": true,
+        "env": true,
+        "**/.git": true,
+        "**/.hg": true,
+        ".idea": true,
+        "**/*.lib": true,
+        "**/*.obj": true,
+        "**/*.pyc": true,
+        "**/__pycache__": true,
+        "**/*.so": true,
+        "**/.svn": true,
+        "tags": true,
+        "**/volumes/**": true
+    },
+    "python.envFile": "${workspaceRoot}/env",
+    "tslint.jsEnable": true,
+    "files.eol": "\n",
+    "java.errors.incompleteClasspath.severity": "ignore",
+    "files.associations": {
+        "*.jsm": "javascript"
+    },
+    "C_Cpp.intelliSenseEngine": "Default",
+    "vim.leader": ","
+    // "editor.formatOnType": true,
+    // "editor.formatOnPaste": true,
+    // "editor.autoIndent": true
+}
