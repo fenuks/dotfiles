@@ -6,6 +6,10 @@
     lastUpdateTimestamp: 1484905938353
   core:
     automaticallyUpdate: false
+    customFileTypes:
+      "text.ignore": [
+        ".dockerignore"
+      ]
     disabledPackages: [
       "autocomplete-plus-jedi"
       "color-picker"
@@ -44,8 +48,7 @@
     softWrap: true
   "exception-reporting":
     userId: "037b0b67-74ff-36ff-1575-0ff65271a777"
-  linter:
-    statusIconScope: "File"
+  linter: {}
   "linter-flake8": {}
   "linter-rust": {}
   "markdown-preview": {}

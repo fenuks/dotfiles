@@ -5,3 +5,6 @@ hggit =
 progress =
 purge =
 rebase =
+
+[ui]
+ignore = ~/.hgignore

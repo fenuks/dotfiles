@@ -1,6 +1,10 @@
 tags
+.mypy_cache/
 
 syntax: glob
 *.class
 *.swp
 *~
+*.o
+*.a
+*.out
