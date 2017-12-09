@@ -8,3 +8,9 @@
 tags
 *.gen
 *.db
+.cproject
+.kdev4/
+.project
+.settings/
+CMakeLists.txt.user
+*.autosave

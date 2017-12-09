@@ -354,7 +354,7 @@ nnoremap <Leader>vc :Gcommit<CR>
 nnoremap <Leader>vd :Gvdiff<CR>
 nnoremap <Leader>vh :Glog<CR>
 nnoremap <Leader>vm :Gmove<CR>
-nnoremap <Leader>vl :GundoToggle<CR>
+nnoremap <Leader>U  :GundoToggle<CR>
 nnoremap <Leader>vp :Git! diff --staged<CR>
 nnoremap <Leader>vP :Git! diff<CR>
 nnoremap <Leader>vr :Gread<CR>
