@@ -13,4 +13,6 @@ tags
 .project
 .settings/
 CMakeLists.txt.user
+CMakeCache.txt
 *.autosave
+compile_commands.json

@@ -35,6 +35,7 @@
       "linter-stylelint"
       "linter-eslint"
       "proton-mode"
+      "linter"
     ]
     telemetryConsent: "no"
     themes: [
@@ -51,6 +52,8 @@
   linter: {}
   "linter-flake8": {}
   "linter-rust": {}
+  "linter-ui-default":
+    panelHeight: 81
   "markdown-preview": {}
   metrics: {}
   nuclide: {}

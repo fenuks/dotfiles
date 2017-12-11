@@ -30,6 +30,9 @@ set spelllang=en_gb,pl
 " set undofile " can use undo next time file is reopened
 " diff mode
 set diffopt+=iwhite " ignore whitespace character changes
+set exrc " read vimrc in current directory
+set secure " disallow dangerous commands in external vimrc files
+set includeexpr=substitute(v:fname,'\\.','/','g') " expression to change gf filename mapping
 
 if !isdirectory('/tmp/vim-undo-dir')
     call mkdir('/tmp/vim-undo-dir', '', 0700)
@@ -46,7 +49,7 @@ set noruler " show line and column numbers
 set showcmd " Display an incomplete command in the lower right corner of the Vim window"
 set noshowmode " show current mode
 set showmatch  " Show matching brackets
-set matchpairs+=<:> " make % match between < and >
+" set matchpairs+=<:> " make % match between < and >
 set cursorline " highlight current line
 set colorcolumn=80 " show vertical line at column
 set laststatus=2 " always show status line
@@ -70,6 +73,9 @@ digraph !? 8265 " ⁉
 " set very magic regex (perl compatitible)
 nnoremap / /\v
 vnoremap / /\v
+" better history scrolling, with context
+cnoremap <C-n> <down>
+cnoremap <C-p> <up>
 
 " shortcuts
 let mapleader = ","
@@ -86,12 +92,18 @@ inoremap OM <ESC>o
 " inoremap <C-@> <C-x><C-o>
 
 " moving lines up and down
-nnoremap <A-n> :m .+1<CR>==
-nnoremap <A-p> :m .-2<CR>==
+nnoremap <A-p> :<c-u>execute 'move -1-'. v:count1<CR>
+nnoremap <A-n> :<c-u>execute 'move +'. v:count1<CR>
 inoremap <A-n> <Esc>:m .+1<CR>==gi
 inoremap <A-p> <Esc>:m .-2<CR>==gi
 vnoremap <A-n> :m '>+1<CR>gv=gv
 vnoremap <A-p> :m '<-2<CR>gv=gv
+" insert spaces
+nnoremap [<space>  :<c-u>put! =repeat(nr2char(10), v:count1)<CR>'[
+nnoremap ]<space> :<c-u>put =repeat(nr2char(10), v:count1)<CR>
+
+" edit register
+nnoremap <Leader>@ :<c-u><c-r><c-r>='let @'. v:register .' = '. string(getreg(v:register))<cr><c-f><left><Paste>
 
 inoremap <A-h> <LEFT>
 inoremap <A-l> <RIGHT>
@@ -509,11 +521,9 @@ nmap <silent> <buffer> <Leader>aC <Plug>(JavaComplete-Generate-ClassInFile)
 " Plug 'parsonsmatt/intero-neovim', { 'for': 'haskell' }
 
 "##### C family
-" Plug 'lyuts/vim-rtags', { 'for': ['c', 'cpp', 'objc', 'objcpp'] }
-" let g:rtagsUseDefaultMappings = 1
-" let g:rtagsAutoLaunchRdm=1
-" setlocal omnifunc='RtagsCompleteFunc'
-" let g:deoplete#omni_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
+Plug 'lyuts/vim-rtags', { 'for': ['c', 'cpp', 'objc', 'objcpp'] }
+let g:rtagsUseDefaultMappings = 1
+let g:rtagsAutoLaunchRdm=1
 " let g:deoplete#omni#input_patterns.cpp = ['[^. *\t]\.\w*', '[^. *\t]\::\w*', '[^. *\t]\->\w*', '[<"].*/']
 Plug 'Rip-Rip/clang_complete', { 'for': ['c', 'cpp', 'objc', 'objcpp'] }
 " Plug 'zchee/deoplete-clang', { 'for': ['c', 'cpp', 'objc', 'objcpp'] }

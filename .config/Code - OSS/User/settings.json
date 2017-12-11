@@ -53,7 +53,17 @@
         "*.jsm": "javascript"
     },
     "C_Cpp.intelliSenseEngine": "Default",
-    "vim.leader": ","
+    "vim.leader": ",",
+    "gitlens.advanced.messages": {
+        "suppressCommitHasNoPreviousCommitWarning": false,
+        "suppressCommitNotFoundWarning": false,
+        "suppressFileNotUnderSourceControlWarning": false,
+        "suppressGitVersionWarning": false,
+        "suppressLineUncommittedWarning": false,
+        "suppressNoRepositoryWarning": false,
+        "suppressUpdateNotice": false,
+        "suppressWelcomeNotice": true
+    }
     // "editor.formatOnType": true,
     // "editor.formatOnPaste": true,
     // "editor.autoIndent": true

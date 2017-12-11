@@ -24,9 +24,7 @@ segments_4
 .metadata/.plugins/org.eclipse.epp.logging.aeri.ide/**/*.tii
 .metadata/.plugins/org.eclipse.epp.logging.aeri.ide/**/*.tis
 .metadata/.plugins/org.eclipse.epp.logging.aeri.ide/**/*.prx
-.metadata/.plugins/org.eclipse.jdt.core/assumedExternalFilesCache
-.metadata/.plugins/org.eclipse.jdt.core/externalFilesCache
-.metadata/.plugins/org.eclipse.jdt.core/nonChainingJarsCache
+*Cache
 .metadata/.plugins/org.springsource.ide.eclipse.dashboard.ui/feeds/
 http-cache.lucene60/
 .metadata/.plugins/org.python.pydev/pyunit_tests/test_run_pin_info.txt
@@ -39,3 +37,8 @@ http-cache.lucene60/
 dialog_settings.xml
 .metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.launchbar.core.prefs
 .metadata/.plugins/org.eclipse.wst.sse.core/task-tags.properties
+.sonarlint/
+.metadata/.plugins/org.springframework.ide.eclipse.boot/installs/
+.metadata/.plugins/org.springframework.ide.eclipse.aop.core/.state
+*History.xml
+.metadata/.plugins/org.eclipse.wst.jsdt.core/libraries/
