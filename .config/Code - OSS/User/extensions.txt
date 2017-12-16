@@ -3,7 +3,6 @@ auiworks.amvim
 dbaeumer.jshint
 dbaeumer.vscode-eslint
 donjayamanne.githistory
-donjayamanne.python
 DotJoshJohnson.xml
 dragos.scala-lsp
 eamodio.gitlens
@@ -15,9 +14,16 @@ kalitaalexey.vscode-rust
 lextudio.restructuredtext
 lukehoban.Go
 mrcrowl.hg
+ms-python.python
 ms-vscode.cpptools
+ms-vscode.node-debug2
 octref.vetur
 PeterJausovec.vscode-docker
+Pivotal.vscode-boot-dev-pack
+Pivotal.vscode-boot-java
+Pivotal.vscode-boot-properties
+Pivotal.vscode-concourse
+Pivotal.vscode-manifest-yaml
 platformio.platformio-ide
 redhat.java
 robinbentley.sass-indented
