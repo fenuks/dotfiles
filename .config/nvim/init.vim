@@ -23,23 +23,26 @@ set expandtab " Make tabs into spaces (set by tabstop)
 set smarttab " Smarter tab levels
 set scrolloff=3 " number of context lines visible near cursor
 set wildmenu " enhanced command-line mode
+set wildignore=*.swp,*.bak,*.pyc,*.class
 set lazyredraw " redraw only when we need to.
 set hidden " allow background buffers without saving
 set linebreak " breaklines *nicely*
 set spelllang=en_gb,pl
 " set breakat-=_ " don't break at _
-" set undofile " can use undo next time file is reopened
 " diff mode
 set diffopt+=iwhite " ignore whitespace character changes
 set exrc " read vimrc in current directory
 set secure " disallow dangerous commands in external vimrc files
 set includeexpr=substitute(v:fname,'\\.','/','g') " expression to change gf filename mapping
+set visualbell " don't beep
+set noerrorbells " don't beep
 
 if !isdirectory('/tmp/vim-undo-dir')
     call mkdir('/tmp/vim-undo-dir', '', 0700)
 endif
 set undodir=/tmp/vim-undo-dir
 set undofile
+set undolevels=1000
 
 " editor appearance
 syntax on " syntax highlight on
@@ -71,6 +74,8 @@ digraph !! 8252 " ‼
 digraph ?! 8264 " ⁈
 digraph !? 8265 " ⁉
 
+nmap <silent> <Leader>ev :e $MYVIMRC<CR>
+nmap <silent> <Leader>eb :e $HOME/.bashrc<CR>
 " set very magic regex (perl compatitible)
 nnoremap / /\v
 vnoremap / /\v
