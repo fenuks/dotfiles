@@ -2,7 +2,8 @@
 set t_Co=256
 set history=1000 " Number of things to remember in history."
 " set textwidth=80 " max line width
-set formatprg=par
+set formatprg=par " gq formatting program
+set formatoptions+=j " more intelligent j joining
 " formatting formatprg, formatexpr, formatoptions
 set whichwrap=h,l " specify keys that can wrap next line
 set ignorecase " Do case insensitive matching with
