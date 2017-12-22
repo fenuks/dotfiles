@@ -1,3 +1,4 @@
+%include ~/.hgrc.local
 [extensions]
 color =
 hgext.bookmarks =
