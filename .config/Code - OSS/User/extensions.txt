@@ -8,6 +8,7 @@ dragos.scala-lsp
 eamodio.gitlens
 eg2.tslint
 hackwaly.ocaml
+hbenl.vscode-firefox-debug
 jcanero.hoogle-vscode
 justusadam.language-haskell
 kalitaalexey.vscode-rust
