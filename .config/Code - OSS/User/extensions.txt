@@ -14,6 +14,7 @@ kalitaalexey.vscode-rust
 lextudio.restructuredtext
 lukehoban.Go
 mrcrowl.hg
+msjsdiag.debugger-for-chrome
 ms-python.python
 ms-vscode.cpptools
 ms-vscode.node-debug2
