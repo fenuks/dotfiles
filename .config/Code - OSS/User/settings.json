@@ -13,7 +13,14 @@
     "vim.hlsearch": true,
     "vim.history": 500,
     "vim.enableNeovim": true,
-    "vim.disableAnnoyingNeovimMessage": true,
+    "vim.visualstar": true,
+    "vim.leader": ",",
+    "vim.insertModeKeyBindings": [
+        {
+            "before": ["j", "k"],
+            "after": ["<Esc>"]
+        }
+    ],
     "editor.wordWrap": "on",
     "editor.fontLigatures": true,
     "files.watcherExclude": {
@@ -53,7 +60,6 @@
         "*.jsm": "javascript"
     },
     "C_Cpp.intelliSenseEngine": "Default",
-    "vim.leader": ",",
     "gitlens.advanced.messages": {
         "suppressCommitHasNoPreviousCommitWarning": false,
         "suppressCommitNotFoundWarning": false,
