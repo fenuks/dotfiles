@@ -24,7 +24,7 @@ set smarttab " Smarter tab levels
 set scrolloff=3 " number of context lines visible near cursor
 set wildmenu " enhanced command-line mode
 set wildignore=*.swp,*.bak,*.pyc,*.class
-set lazyredraw " redraw only when we need to.
+set lazyredraw " redraw only at the end of the macro
 set hidden " allow background buffers without saving
 set linebreak " breaklines *nicely*
 set spelllang=en_gb,pl
@@ -70,6 +70,7 @@ endif
 
 " language
 set dictionary+=/usr/share/dict/british,/usr/share/dict/polish
+set thesaurus+=/usr/share/thesaurus/moby-thesaurus.txt
 digraph !! 8252 " ‼
 digraph ?! 8264 " ⁈
 digraph !? 8265 " ⁉
@@ -545,6 +546,7 @@ let g:grammarous#use_vim_spelllang = 1
 augroup natural_language
     autocmd!
     autocmd FileType gitcommit set spell
+    autocmd FileType org set spell
 augroup END
 
 call plug#end()

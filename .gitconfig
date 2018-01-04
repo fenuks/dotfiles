@@ -2,7 +2,6 @@
         path = ~/.gitconfig.local
 [core]
 	excludesfile = ~/.gitignore
-
 [cola]
 	spellcheck = false
 [credential]
