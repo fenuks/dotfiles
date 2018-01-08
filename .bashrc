@@ -14,12 +14,13 @@ complete -cf kdesudo
 complete -cf man
 source /usr/share/git/completion/git-completion.bash
 
-alias chromium-cors='chromium --disable-web-security --user-data-dir'
+alias chromium-dev='chromium --disable-web-security --user-data-dir --remote-debugging-port=9222'
 alias cgit='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 alias clear="clear && printf '\e[3J'"
 alias dc='docker-compose'
 alias eclimd='/usr/lib/eclipse/eclimd'
 alias eclim='/usr/lib/eclipse/eclimd'
+alias firefox-debug='firefox -start-debugger-server -no-remote'
 alias grep="grep --color=auto"
 alias jad-decompile="jad -o -d src-jad -r -s java **/*.class"
 alias ll='ls -l'

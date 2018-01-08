@@ -290,7 +290,7 @@
     "no-whitespace-before-property": 1,
     "nonblock-statement-body-position": 1,
     "object-curly-newline": 0,  // no newline curly
-    "object-curly-spacing": 1,
+    "object-curly-spacing": 0,
     "object-property-newline": 0,
     "object-shorthand": 1,
     "one-var-declaration-per-line": 1,
