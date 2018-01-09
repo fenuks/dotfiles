@@ -321,6 +321,9 @@ map <Leader>gt :TagbarToggle<CR>
 " Plug 'devjoe/vim-codequery' " rich support for searching symbols support
 " gtags
 Plug 'easymotion/vim-easymotion'
+Plug 'fenuks/vim-uncommented'
+nmap <C-j> <Plug>(NextUncommented)
+nmap <C-k> <Plug>(PrevUncommented)
 
 "##### Formatting
 Plug 'sbdchd/neoformat', { 'on': 'Neoformat' }

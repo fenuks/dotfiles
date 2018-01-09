@@ -29,7 +29,7 @@ alias ls='ls --color=auto'
 alias run-ssh-agent='eval `ssh-agent -a /tmp/ssh-agent.sock`'
 alias sm='HOME=~/.spacemacs.d emacs'
 alias spacemacs='HOME=~/.spacemacs.d/ emacs'
-alias wine-steam='wine ${HOME}/.wine/drive_c/Program\ Files\ \(x86\)/Steam/Steam.exe -no-cef-sandbox'
+alias steam-wine='wine ${HOME}/.wine/drive_c/Program\ Files\ \(x86\)/Steam/Steam.exe -no-cef-sandbox -opengl -fullscreenopengl'
 alias vim='nvim'
 alias yaourt-vcs="yaourt -Su --devel"
 
