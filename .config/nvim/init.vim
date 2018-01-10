@@ -322,10 +322,10 @@ map <Leader>gt :TagbarToggle<CR>
 " gtags
 Plug 'easymotion/vim-easymotion'
 Plug 'fenuks/vim-uncommented'
-nmap <C-j>   <Plug>(NextUncommented)
-nmap <C-k>   <Plug>(PrevUncommented)
-nmap <C-S-j> <Plug>(NextCommented)
-nmap <C-S-k> <Plug>(PrevCommented)
+nmap <C-j> <Plug>(NextUncommented)
+nmap <C-k> <Plug>(PrevUncommented)
+" nmap <C-S-j> <Plug>(NextCommented)
+" nmap <C-S-k> <Plug>(PrevCommented)
 
 "##### Formatting
 Plug 'sbdchd/neoformat', { 'on': 'Neoformat' }
