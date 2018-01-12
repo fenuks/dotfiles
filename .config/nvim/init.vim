@@ -259,6 +259,7 @@ Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins', 'for': ['
 let g:LanguageClient_serverCommands = {
     \ 'cpp': ['clangd'],
     \ 'haskell': ['hie', '--lsp'],
+    \ 'java': ['jdtls'],
     \ 'javascript': ['javascript-typescript-stdio'],
     \ 'javascript.jsx': ['javascript-typescript-stdio'],
     \ 'python': ['pyls'],
