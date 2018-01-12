@@ -66,6 +66,8 @@ if has('nvim')
     set termguicolors " use trucolor
     set scrollback=-1 " NeoVim terminal unlimited scrolling
     tnoremap jk <C-\><C-n>
+else
+    set viminfofile=$HOME/.config/nvim/viminfo
 endif
 
 " language
@@ -255,13 +257,16 @@ let g:AutoPairsShortcutBackInsert=''
 "##### Code autocompletion
 Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins', 'for': ['haskell', 'javascript', 'rust', 'typescript', 'vue'] }
 let g:LanguageClient_serverCommands = {
-    \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
+    \ 'cpp': ['clangd'],
     \ 'haskell': ['hie', '--lsp'],
-    \ 'python': ['pyls'],
     \ 'javascript': ['javascript-typescript-stdio'],
+    \ 'javascript.jsx': ['javascript-typescript-stdio'],
+    \ 'python': ['pyls'],
+    \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
     \ 'typescript': ['javascript-typescript-stdio'],
     \ 'vue': ['vls'],
     \ }
+" \ 'cpp': ['cquery', '--language-server', '--log-file=/tmp/cq.log'],
 
 " let g:LanguageClient_autoStart = 1
 
@@ -277,14 +282,35 @@ nnoremap <silent> <Leader>lq :call LanguageClient_textDocument_formatting()<CR>
 " Plug 'Valloric/YouCompleteMe'
 " Plug 'lifepillar/vim-mucomplete'
 " Plug 'maralla/completor.vim'
-let g:deoplete#omni#input_patterns = {} " faster, called by deoplete
-let g:deoplete#omni_patterns = {}  " slower, called by vim, https://github.com/Shougo/deoplete.nvim/issues/190
-" let g:deoplete#omni#functions = {}
 if has('nvim')
-    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-    let g:deoplete#enable_at_startup = 1
+    " DEOPLETE
+    " Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+    " let g:deoplete#enable_at_startup = 1
+    let g:deoplete#omni#input_patterns = {} " faster, called by deoplete
     " let g:deoplete#omni#input_patterns._ = '.+'
+    let g:deoplete#omni#input_patterns.java = '[^. *\t]\.\w*'
+    let g:deoplete#omni#input_patterns.javascript = ''
+    " let g:deoplete#omni#input_patterns.cpp = ['[^. *\t]\.\w*', '[^. *\t]\::\w*', '[^. *\t]\->\w*', '[<"].*/']
+    " let g:deoplete#omni#input_patterns.python = '.+'
+    let g:deoplete#omni_patterns = {}  " slower, called by vim, https://github.com/Shougo/deoplete.nvim/issues/190
     " let g:deoplete#omni_patterns._ = '.+'
+    " let g:deoplete#omni#functions = {}
+    " let g:deoplete#omni#functions.javascript = tern#Complete
+    " let g:deoplete#omni#functions.python = 'jedi#completions'
+    " let g:deoplete#omni#functions.python = 'RopeCompleteFunc'
+    " DEOPLETE PLUGINS
+    " Plug 'tweekmonster/deoplete-clang2', { 'for': ['c', 'cpp', 'objc', 'objcpp'] }
+    " Plug 'zchee/deoplete-clang', { 'for': ['c', 'cpp', 'objc', 'objcpp'] }
+    " Plug 'carlitux/deoplete-ternjs', { 'for': 'javascript' }
+    let g:deoplete#sources#ternjs#types = 1
+    let g:deoplete#sources#ternjs#docs = 1
+    " Plug 'zchee/deoplete-jedi', { 'for': 'python' }
+    let g:deoplete#sources#jedi#show_docstring=1
+    " alternatively use jedi-vim
+    " Plug 'zchee/deoplete-go', { 'for': 'go' }
+
+    " NVIM COMPLETION MANAGER
+    Plug 'roxma/nvim-completion-manager'
 else
     Plug 'Shougo/neocomplete.vim'
     let g:neocomplete#enable_at_startup = 1
@@ -442,14 +468,6 @@ augroup filetype_js
     autocmd FileType javascript nnoremap <buffer> <Leader>u :TernRefs<CR>
     autocmd FileType javascript nnoremap <buffer> <Leader>r :TernRename<CR>
 augroup END
-if has('nvim')
-    Plug 'carlitux/deoplete-ternjs', { 'for': 'javascript' }
-    let g:deoplete#sources#ternjs#types = 1
-    let g:deoplete#sources#ternjs#docs = 1
-    let g:deoplete#omni#input_patterns.javascript = ''
-    " let g:deoplete#omni#functions.javascript = tern#Complete
-endif
-
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
 let g:javascript_plugin_jsdoc = 1
 let g:javascript_plugin_flow = 1
@@ -476,16 +494,9 @@ let g:jedi#rename_command = "<Leader>r"
 let g:jedi#show_call_signatures = "2"
 let g:jedi#usages_command = "<Leader>u"
 
-if has('nvim')
-    Plug 'zchee/deoplete-jedi', { 'for': 'python' }
-    let g:deoplete#sources#jedi#show_docstring=1
-    let g:jedi#completions_enabled = 0
-    let g:jedi#completions_command = ""
-    " alternatively use jedi-vim
-    " let g:deoplete#omni#functions.python = 'jedi#completions'
-    " let g:deoplete#omni#functions.python = 'RopeCompleteFunc'
-    " let g:deoplete#omni#input_patterns.python = '.+'
-endif
+let g:jedi#completions_enabled = 0
+let g:jedi#completions_command = ""
+
 
 Plug 'python-rope/ropevim', { 'for': 'python' }
 let ropevim_enable_shortcuts = 0
@@ -494,9 +505,6 @@ let ropevim_enable_shortcuts = 0
 Plug 'rust-lang/rust.vim', { 'for': 'rust' }
 
 "##### Go
-if has('nvim')
-    Plug 'zchee/deoplete-go', { 'for': 'go' }
-endif
 "Plug 'fatih/vim-go'
 
 "##### JVM
@@ -507,7 +515,6 @@ augroup filetype_java
     autocmd!
     " autocmd FileType java setlocal omnifunc=javacomplete#Complete
 augroup END
-let g:deoplete#omni#input_patterns.java = '[^. *\t]\.\w*'
 nmap <Leader>ii <Plug>(JavaComplete-Imports-AddSmart)
 nmap <Leader>iI <Plug>(JavaComplete-Imports-Add)
 nmap <Leader>ia <Plug>(JavaComplete-Imports-AddMissing)
@@ -536,10 +543,7 @@ nmap <silent> <buffer> <Leader>aC <Plug>(JavaComplete-Generate-ClassInFile)
 Plug 'lyuts/vim-rtags', { 'for': ['c', 'cpp', 'objc', 'objcpp'] }
 let g:rtagsUseDefaultMappings = 1
 let g:rtagsAutoLaunchRdm=1
-" let g:deoplete#omni#input_patterns.cpp = ['[^. *\t]\.\w*', '[^. *\t]\::\w*', '[^. *\t]\->\w*', '[<"].*/']
 Plug 'Rip-Rip/clang_complete', { 'for': ['c', 'cpp', 'objc', 'objcpp'] }
-" Plug 'zchee/deoplete-clang', { 'for': ['c', 'cpp', 'objc', 'objcpp'] }
-" Plug 'tweekmonster/deoplete-clang2', { 'for': ['c', 'cpp', 'objc', 'objcpp'] }
 
 
 "##### Natural language
