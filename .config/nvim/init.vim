@@ -555,8 +555,8 @@ let g:grammarous#languagetool_cmd = 'languagetool'
 let g:grammarous#use_vim_spelllang = 1
 augroup natural_language
     autocmd!
-    autocmd FileType gitcommit set spell
-    autocmd FileType org set spell
+    autocmd FileType gitcommit setlocal spell
+    autocmd FileType org setlocal spell
 augroup END
 
 call plug#end()
