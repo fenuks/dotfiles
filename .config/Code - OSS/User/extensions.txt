@@ -1,6 +1,5 @@
 74th.vimStyle
 auiworks.amvim
-dbaeumer.jshint
 dbaeumer.vscode-eslint
 donjayamanne.githistory
 DotJoshJohnson.xml
@@ -37,6 +36,8 @@ vadimcn.vscode-lldb
 Vans.haskero
 vsciot-vscode.vscode-arduino
 vscjava.vscode-java-debug
+vscjava.vscode-java-test
+vscjava.vscode-maven
 vscodevim.vim
 vsmobile.vscode-react-native
 webfreak.debug
