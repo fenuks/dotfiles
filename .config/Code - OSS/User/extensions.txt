@@ -31,6 +31,7 @@ robinbentley.sass-indented
 rust-lang.rust
 SonarSource.sonarlint-vscode
 timonwong.shellcheck
+tootone.org-mode
 UCL.haskelly
 vadimcn.vscode-lldb
 Vans.haskero
