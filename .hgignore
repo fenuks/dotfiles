@@ -8,3 +8,4 @@ syntax: glob
 *.o
 *.a
 *.out
+*.pyc

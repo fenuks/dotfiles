@@ -3,7 +3,6 @@
 *.class
 .directory
 .idea/
-*.log
 *.swp
 tags
 *.gen

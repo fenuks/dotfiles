@@ -6,6 +6,13 @@ hggit =
 progress =
 purge =
 rebase =
+extdiff =
+strip =
 
 [ui]
 ignore = ~/.hgignore
+merge = kdiff3
+editor = vim
+
+[tortoisehg]
+vdiff = kdiff3

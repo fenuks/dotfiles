@@ -67,6 +67,7 @@ source /usr/share/fzf/key-bindings.bash
 source /usr/share/fzf/completion.bash
 # export FZF_ALT_C_COMMAND="find /home/fenuks -type d ! -perm -g+r,u+r,o+r -prune -o -not -path '/home/fenuks/Documents/*' -not -path '*/\.*' -readable"
 # export FZF_DEFAULT_COMMAND='rg --files 2> /dev/null'
+export FZF_DEFAULT_COMMAND='fd --type f'
 export FZF_CTRL_T_COMMAND="${FZF_DEFAULT_COMMAND}"
 # export FZF_CTRL_T_COMMAND='ag -g "" 2> /dev/null'
 export SKIM_DEFAULT_COMMAND='git ls-tree -r --name-only HEAD || rg --files'
