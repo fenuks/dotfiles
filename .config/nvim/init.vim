@@ -124,11 +124,6 @@ vnoremap <A-k> gk
 nnoremap <A-j> gj
 nnoremap <A-k> gk
 
-nnoremap gb :<C-U>bn<CR>
-nnoremap gB :<C-U>bp<CR>
-nnoremap gs ]s
-nnoremap gS [s
-
 " unimpaired mappings
 nnoremap [a :<C-U>previous<CR>
 nnoremap ]a :<C-U>next<CR>
@@ -142,8 +137,6 @@ nnoremap [l :<C-U>lprevious<CR>
 nnoremap ]l :<C-U>lnext<CR>
 nnoremap [L :<C-U>lfirst<CR>
 nnoremap ]L :<C-U>llast<CR>
-nnoremap [<C-L> :<C-U>lpfile<CR>
-nnoremap ]<C-L> :<C-U>lnfile<CR>
 nnoremap [q :<C-U>cprevious<CR>
 nnoremap ]q :<C-U>cnext<CR>
 nnoremap [Q :<C-U>cfirst<CR>
@@ -152,9 +145,11 @@ nnoremap [t gT
 nnoremap ]t gt
 nnoremap [T :<C-U>tfirst<CR>
 nnoremap ]T :<C-U>tlast<CR>
+
 function! Conflict(reverse)
   call search('^\(@@ .* @@\|[<=>|]\{7}[<=>|]\@!\)', a:reverse ? 'bW' : 'W')
 endfunction
+
 nnoremap <silent> ]n :call Conflict(0)<CR>
 nnoremap <silent> [n :call Conflict(1)<CR>
 
