@@ -418,6 +418,7 @@ nnoremap <Leader>vG :GV<CR>
 Plug 'jreybert/vimagit'
 "HG
 Plug 'ludovicchabant/vim-lawrencium'
+" Plug 'jlfwong/vim-mercenary'
 
 "#### Filesystem
 " Plugin 'kien/ctrlp.vim'
@@ -557,6 +558,7 @@ augroup natural_language
     autocmd!
     autocmd FileType gitcommit setlocal spell
     autocmd FileType org setlocal spell
+    autocmd FileType text setlocal commentstring=#\ %s
 augroup END
 
 call plug#end()
