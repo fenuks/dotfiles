@@ -8,3 +8,4 @@ nnoremap <Leader>r :action RenameElement<CR>
 nnoremap <Leader>T :action FileStructurePopup<CR>
 nnoremap <Leader>t :action GotoSymbol<CR>
 nnoremap <Leader>u :action FindUsages<CR>
+nnoremap <Leader><Leader> :action AceAction<CR>
