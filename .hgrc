@@ -1,18 +1,30 @@
 %include ~/.hgrc.local
 [extensions]
+amend = 
+censor = 
 color =
+convert = 
+extdiff =
+gpg = 
 hgext.bookmarks =
 hggit =
+histedit = 
+largefiles = 
+mq = 
 progress =
 purge =
 rebase =
-extdiff =
+shelve =
+show = 
+sparse = 
 strip =
+uncommit = 
 
 [ui]
+editor = vim
 ignore = ~/.hgignore
 merge = kdiff3
-editor = vim
+ssh = ssh -C
 
 [tortoisehg]
 vdiff = kdiff3
