@@ -20,6 +20,10 @@ sparse =
 strip =
 uncommit = 
 
+[extdiff]
+cmd.vimdir = vim
+opts.vimdir = -f '+next' '+execute "DirDiff" argv(0) argv(1)'
+
 [ui]
 editor = vim
 ignore = ~/.hgignore

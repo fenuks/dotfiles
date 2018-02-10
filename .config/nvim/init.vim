@@ -85,6 +85,7 @@ vnoremap / /\v
 " better history scrolling, with context
 cnoremap <C-n> <down>
 cnoremap <C-p> <up>
+cnoremap g/ g/\v
 
 " shortcuts
 let mapleader = ","
@@ -101,18 +102,18 @@ inoremap OM <ESC>o
 " inoremap <C-@> <C-x><C-o>
 
 " moving lines up and down
-nnoremap <A-p> :<c-u>execute 'move -1-'. v:count1<CR>
-nnoremap <A-n> :<c-u>execute 'move +'. v:count1<CR>
-inoremap <A-n> <Esc>:m .+1<CR>==gi
-inoremap <A-p> <Esc>:m .-2<CR>==gi
-vnoremap <A-n> :m '>+1<CR>gv=gv
-vnoremap <A-p> :m '<-2<CR>gv=gv
+nnoremap <silent> <A-p> :<c-u>execute 'move -1-'. v:count1<CR>
+nnoremap <silent> <A-n> :<c-u>execute 'move +'. v:count1<CR>
+inoremap <silent> <A-n> <Esc>:m .+1<CR>==gi
+inoremap <silent> <A-p> <Esc>:m .-2<CR>==gi
+vnoremap <silent> <A-n> :m '>+1<CR>gv=gv
+vnoremap <silent> <A-p> :m '<-2<CR>gv=gv
 " insert spaces
-nnoremap [<space>  :<c-u>put! =repeat(nr2char(10), v:count1)<CR>'[
-nnoremap ]<space> :<c-u>put =repeat(nr2char(10), v:count1)<CR>
+nnoremap <silent> [<space>  :<c-u>put! =repeat(nr2char(10), v:count1)<CR>'[
+nnoremap <silent> ]<space> :<c-u>put =repeat(nr2char(10), v:count1)<CR>
 
 " edit register
-nnoremap <Leader>@ :<c-u><c-r><c-r>='let @'. v:register .' = '. string(getreg(v:register))<cr><c-f><left><Paste>
+nnoremap <silent> <Leader>@ :<c-u><c-r><c-r>='let @'. v:register .' = '. string(getreg(v:register))<cr><c-f><left><Paste>
 
 inoremap <A-h> <LEFT>
 inoremap <A-l> <RIGHT>
@@ -414,6 +415,7 @@ Plug 'jreybert/vimagit'
 "HG
 Plug 'ludovicchabant/vim-lawrencium'
 " Plug 'jlfwong/vim-mercenary'
+Plug 'will133/vim-dirdiff', { 'on': 'DirDiff' }
 
 "#### Filesystem
 " Plugin 'kien/ctrlp.vim'
