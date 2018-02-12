@@ -554,6 +554,7 @@ let g:grammarous#use_vim_spelllang = 1
 augroup natural_language
     autocmd!
     autocmd FileType gitcommit setlocal spell
+    autocmd FileType hgcommit setlocal spell
     autocmd FileType org setlocal spell
     autocmd FileType text setlocal commentstring=#\ %s
 augroup END
