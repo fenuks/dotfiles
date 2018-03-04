@@ -31,11 +31,11 @@ set spelllang=en_gb,pl
 " set breakat-=_ " don't break at _
 " diff mode
 set diffopt+=iwhite " ignore whitespace character changes
-set exrc " read vimrc in current directory
-set secure " disallow dangerous commands in external vimrc files
 set includeexpr=substitute(v:fname,'\\.','/','g') " expression to change gf filename mapping
 set visualbell " don't beep
 set noerrorbells " don't beep
+set confirm " Ask to save instead of complaining
+
 
 if !isdirectory('/tmp/vim-undo-dir')
     call mkdir('/tmp/vim-undo-dir', '', 0700)
