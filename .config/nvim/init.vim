@@ -82,10 +82,14 @@ nmap <silent> <Leader>eb :e $HOME/.bashrc<CR>
 " set very magic regex (perl compatitible)
 nnoremap / /\v
 vnoremap / /\v
+" stay in visual mode while changing indentation
+vnoremap < <gv
+vnoremap > >gv
 " better history scrolling, with context
 cnoremap <C-n> <down>
 cnoremap <C-p> <up>
 cnoremap g/ g/\v
+cnoremap v/ v/\v
 
 " shortcuts
 let mapleader = ","
