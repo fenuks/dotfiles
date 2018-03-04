@@ -320,8 +320,8 @@ endif
 
 Plug 'SirVer/ultisnips'
 let g:UltiSnipsExpandTrigger='<Tab>'
-let g:UltiSnipsJumpForwardTrigger='gn'
-let g:UltiSnipsJumpBackwardTrigger='gp'
+let g:UltiSnipsJumpForwardTrigger='<Tab>'
+let g:UltiSnipsJumpBackwardTrigger='<S-Tab>'
 Plug 'honza/vim-snippets'
 
 "##### Refactoring; edition
