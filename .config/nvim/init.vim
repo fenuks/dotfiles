@@ -9,6 +9,7 @@ set whichwrap=h,l " specify keys that can wrap next line
 set ignorecase " Do case insensitive matching with
 set infercase " Do *not* ignore case in autocompletion
 set smartcase " Do case sensitive if text contains upper letters
+" set gdefault " Automatically enable the 'g' flag for substitution
 set autoread " Automatically reload file changed outside vim if not changed in vim
 set completeopt=longest,menuone,preview " complete longest common text instead of first word
 " set incsearch " Search while typing
@@ -23,7 +24,7 @@ set expandtab " Make tabs into spaces (set by tabstop)
 set smarttab " Smarter tab levels
 set scrolloff=3 " number of context lines visible near cursor
 set wildmenu " enhanced command-line mode
-set wildignore=*.swp,*.bak,*.pyc,*.class
+set wildignore=*.swp,*.bak,*.pyc,*.class,*.git
 set lazyredraw " redraw only at the end of the macro
 set hidden " allow background buffers without saving
 set linebreak " breaklines *nicely*
@@ -35,6 +36,7 @@ set includeexpr=substitute(v:fname,'\\.','/','g') " expression to change gf file
 set visualbell " don't beep
 set noerrorbells " don't beep
 set confirm " Ask to save instead of complaining
+set splitright splitbelow " open splits in more natural position
 
 
 if !isdirectory('/tmp/vim-undo-dir')
@@ -61,6 +63,7 @@ set title " update terminal title
 set ruler " show line position on bottom ruler
 set cmdwinheight=20 " set commandline window height
 set listchars=tab:▸\ ,eol:¬,trail:·
+let mapleader = ","
 
 if has('nvim')
     set termguicolors " use trucolor
@@ -77,14 +80,15 @@ digraph !! 8252 " ‼
 digraph ?! 8264 " ⁈
 digraph !? 8265 " ⁉
 
-nmap <silent> <Leader>ev :e $MYVIMRC<CR>
-nmap <silent> <Leader>eb :e $HOME/.bashrc<CR>
+nnoremap  <Leader>ev :edit $MYVIMRC<CR>
+nnoremap  <Leader>eb :edit $HOME/.bashrc<CR>
 " set very magic regex (perl compatitible)
 nnoremap / /\v
 vnoremap / /\v
 " stay in visual mode while changing indentation
 vnoremap < <gv
 vnoremap > >gv
+nnoremap gV `[v`] " select last changed text, original gV mapping is obscure
 " better history scrolling, with context
 cnoremap <C-n> <down>
 cnoremap <C-p> <up>
@@ -92,7 +96,6 @@ cnoremap g/ g/\v
 cnoremap v/ v/\v
 
 " shortcuts
-let mapleader = ","
 inoremap jk <ESC>
 nnoremap <C-s> :w<Enter>
 inoremap <C-s> <ESC>:w<Enter>a
@@ -253,8 +256,6 @@ let g:AutoPairsShortcutToggle=''
 let g:AutoPairsShortcutFastWrap=''
 let g:AutoPairsShortcutJump=''
 let g:AutoPairsShortcutBackInsert=''
-" Plug 'ervandew/supertab'
-" let g:SuperTabDefaultCompletionType = '<c-n>'
 
 "##### Code autocompletion
 Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins', 'for': ['haskell', 'javascript', 'rust', 'typescript', 'vue'] }
@@ -322,8 +323,9 @@ endif
 
 Plug 'SirVer/ultisnips'
 let g:UltiSnipsExpandTrigger='<Tab>'
-let g:UltiSnipsJumpForwardTrigger='<Tab>'
-let g:UltiSnipsJumpBackwardTrigger='<S-Tab>'
+" let g:UltiSnipsJumpForwardTrigger='<Tab>'
+" let g:UltiSnipsJumpBackwardTrigger='<S-Tab>'
+" let g:UltiSnipsListSnippets='<C-\>'
 Plug 'honza/vim-snippets'
 
 "##### Refactoring; edition
@@ -447,6 +449,11 @@ nnoremap <Leader>s :Grepper -tool ag<CR>
 """ Language specific
 " Plug 'sheerun/vim-polyglot'
 " let g:polyglot_disabled = ['python']
+" ##### VIML
+augroup viml
+    autocmd!
+    autocmd FileType vim nnoremap K :help <C-r><C-w><CR>
+augroup END
 "##### HTML5
 Plug 'mattn/emmet-vim', { 'for': ['html', 'htmldjango'] }
 Plug 'othree/html5.vim', { 'for': ['html', 'htmldjango'] }
@@ -580,3 +587,4 @@ endif
 " transparent: CandyPaper,
 " gruvbox, badwolf
 " truecolor: onedark, OceanicNext
+
