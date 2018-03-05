@@ -205,22 +205,24 @@ nnoremap ]<CR> o<ESC>
 
 nnoremap Y y$
 
-vmap <Leader>y "+y
+vnoremap <Leader>y "+y
 
-vmap <Leader>d "+d
-vmap <Leader>p "+p
-vmap <Leader>P "+P
+vnoremap <Leader>d "+d
+vnoremap <Leader>p "+p
+vnoremap <Leader>P "+P
 
-nmap <Leader>y "+y
-nmap <Leader>Y "+y$
-nmap <Leader>d "+d
-nmap <Leader>D "+D
-nmap <Leader>p "+p
-nmap <Leader>P "+P
+nnoremap <Leader>y "+y
+nnoremap <Leader>Y "+y$
+nnoremap <Leader>d "+d
+nnoremap <Leader>D "+D
+nnoremap <Leader>p "+p
+nnoremap <Leader>P "+P
 
-vnoremap . :normal .<CR>
+vmap . :normal .<CR>
 
 cmap w!! %!sudo tee > /dev/null %
+
+nnoremap <Leader><Space>s :%s/\s\+$//<CR>
 
 let g:python_host_prog='/usr/bin/python2'
 let g:python3_host_prog='/usr/bin/python3'
@@ -351,8 +353,8 @@ Plug 'easymotion/vim-easymotion'
 Plug 'fenuks/vim-uncommented'
 nmap <C-j> <Plug>(NextUncommented)
 nmap <C-k> <Plug>(PrevUncommented)
-" nmap <C-S-j> <Plug>(NextCommented)
-" nmap <C-S-k> <Plug>(PrevCommented)
+" nnoremap <C-S-j> <Plug>(NextCommented)
+" nnoremap <C-S-k> <Plug>(PrevCommented)
 
 "##### Formatting
 Plug 'sbdchd/neoformat', { 'on': 'Neoformat' }
@@ -377,11 +379,11 @@ let g:neomake_open_list = 2
 let g:airline#extensions#neomake#enabled = 0
 Plug 'janko-m/vim-test', { 'on': ['TestNearest', 'TestFile', 'TestSuite', 'TestLast', 'TestVisit'] }
 let test#strategy = 'neomake'
-nmap <silent> <leader>xn :TestNearest<CR>
-nmap <silent> <leader>xf :TestFile<CR>
-nmap <silent> <leader>xa :TestSuite<CR>
-nmap <silent> <leader>xl :TestLast<CR>
-nmap <silent> <leader>xg :TestVisit<CR>
+nnoremap <silent> <leader>xn :TestNearest<CR>
+nnoremap <silent> <leader>xf :TestFile<CR>
+nnoremap <silent> <leader>xa :TestSuite<CR>
+nnoremap <silent> <leader>xl :TestLast<CR>
+nnoremap <silent> <leader>xg :TestVisit<CR>
 
 "##### Colorshemes
 " Plug 'Olical/vim-syntax-expand' " adds abbreviations that make editor pretty

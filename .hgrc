@@ -11,6 +11,7 @@ hggit =
 histedit = 
 largefiles = 
 mq = 
+pager =
 progress =
 purge =
 rebase =
@@ -21,14 +22,21 @@ strip =
 uncommit = 
 
 [extdiff]
-cmd.vimdir = vim
+cmd.vimdir = nvim
 opts.vimdir = -f '+next' '+execute "DirDiff" argv(0) argv(1)'
 
+cmd.icdiff = icdiff
+opts.icdiff = --recursive
+
 [ui]
-editor = vim
+editor = nvim
 ignore = ~/.hgignore
 merge = kdiff3
 ssh = ssh -C
+
+[pager]
+pager = LESS='FR' less
+attend = icdiff,diff,status,log
 
 [tortoisehg]
 vdiff = kdiff3
