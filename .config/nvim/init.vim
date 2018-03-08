@@ -372,7 +372,13 @@ nmap <Leader>ga <Plug>(EasyAlign)
 "##### Syntax analysis
 "Plug 'vim-syntastic/syntastic'
 Plug 'w0rp/ale'
+let g:ale_fixers = {
+\   'json': ['fixjson'],
+\}
 let g:airline#extensions#ale#enabled = 1
+nnoremap <Leader>cf :ALEFix<CR>
+nnoremap <silent> <Leader>cp <Plug>(ale_previous_wrap)
+nnoremap <silent> <Leader>cn <Plug>(ale_next_wrap)
 " let g:ale_open_list = 1 " conflicts with ultisnips jumping
 
 "##### Tasks
