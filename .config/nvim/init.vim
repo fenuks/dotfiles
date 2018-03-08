@@ -38,6 +38,9 @@ set noerrorbells " don't beep
 set confirm " Ask to save instead of complaining
 set splitright splitbelow " open splits in more natural position
 
+let g:python_host_prog='/usr/bin/python2'
+let g:python3_host_prog='/usr/bin/python3'
+
 
 if !isdirectory('/tmp/vim-undo-dir')
     call mkdir('/tmp/vim-undo-dir', '', 0700)
@@ -80,8 +83,8 @@ digraph !! 8252 " ‼
 digraph ?! 8264 " ⁈
 digraph !? 8265 " ⁉
 
-nnoremap  <Leader>ev :edit $MYVIMRC<CR>
-nnoremap  <Leader>eb :edit $HOME/.bashrc<CR>
+nnoremap <Leader>ev :edit $MYVIMRC<CR>
+nnoremap <Leader>eb :edit $HOME/.bashrc<CR>
 " set very magic regex (perl compatitible)
 nnoremap / /\v
 vnoremap / /\v
@@ -103,10 +106,6 @@ inoremap <C-s> <ESC>:w<Enter>a
 inoremap OM <ESC>o
 " inoremap  <ESC>o
 " inoremap <S-CR> <ESC>o
-
-" trigger autocomplete <c+space>
-" inoremap <C-Space> <C-x><C-o>
-" inoremap <C-@> <C-x><C-o>
 
 " moving lines up and down
 nnoremap <silent> <A-p> :<c-u>execute 'move -1-'. v:count1<CR>
@@ -227,8 +226,6 @@ cmap w!! %!sudo tee > /dev/null %
 
 nnoremap <Leader><Space>s :%s/\s\+$//<CR>
 
-let g:python_host_prog='/usr/bin/python2'
-let g:python3_host_prog='/usr/bin/python3'
 if has('nvim')
     call plug#begin('~/.config/nvim/plugged')
 else
@@ -265,14 +262,15 @@ let g:LanguageClient_serverCommands = {
     \ 'java': ['jdtls'],
     \ 'javascript': ['javascript-typescript-stdio'],
     \ 'javascript.jsx': ['javascript-typescript-stdio'],
-    \ 'python': ['pyls'],
     \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
     \ 'typescript': ['javascript-typescript-stdio'],
     \ 'vue': ['vls'],
     \ }
+    " \ 'python': ['pyls'],
+    \ }
 " \ 'cpp': ['cquery', '--language-server', '--log-file=/tmp/cq.log'],
 
-" let g:LanguageClient_autoStart = 1
+let g:LanguageClient_autoStart = 1
 
 nnoremap <silent> <Leader>lk :call LanguageClient_textDocument_hover()<CR>
 nnoremap <silent> <Leader>ld :call LanguageClient_textDocument_definition()<CR>
@@ -528,7 +526,7 @@ Plug 'rust-lang/rust.vim', { 'for': 'rust' }
 "##### JVM
 "##### Java
 " Plug 'artur-shaik/vim-javacomplete2', { 'for': 'java' }
-Plug '/usr/share/vim/vimfiles/plugin/eclim.vim', { 'dir': '/usr/share/vim/vimfiles/', 'for': 'java' }
+" Plug '/usr/share/vim/vimfiles/plugin/eclim.vim', { 'dir': '/usr/share/vim/vimfiles/', 'for': 'java' }
 augroup filetype_java
     autocmd!
     " autocmd FileType java setlocal omnifunc=javacomplete#Complete
