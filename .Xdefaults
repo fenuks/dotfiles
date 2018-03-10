@@ -1,0 +1,47 @@
+! #### urxvt behaviour
+! do not scroll with output
+URxvt*scrollTtyOutput: false
+! scroll in relation to buffer (with mouse scroll or Shift+Page Up)
+URxvt*scrollWithBuffer: true
+! scroll back to the bottom on keypress
+URxvt*scrollTtyKeypress: true
+! disable scrollback buffer in secondary screen (e.g. less)
+URxvt.secondaryScreen: 1
+URxvt.secondaryScroll: 0
+! Disables the insanely annoying Ctrl+Shift shortcut that enters ISO14755 mode
+URxvt.iso14755: false
+URxvt.iso14755_52: false
+! perl extensions
+URxvt.perl-ext:
+URxvt.perl-ext-common:
+
+! #### urxvt appearance
+URxvt*scrollBar:         false
+URxvt*scrollBar_right:   false
+URxvt*transparent:       false
+URxvt*depth: 32
+URxvt.font: xft:Source Code Pro:pixelsize=12
+URxvt.letterSpace: 0
+! reverse background colour
+! URxvt.reverseVideo:     True
+
+URxvt.foreground:       #0c0c0c
+URxvt.color0:           #3f3f3f
+URxvt.color1:           #705050
+URxvt.color2:           #00b45a
+URxvt.color3:           #dfcf8f
+URxvt.color4:           #506070
+URxvt.color5:           #dc8cc3
+URxvt.color6:           #8cd0d3
+URxvt.color7:           #dcdccc
+URxvt.color8:           #709080
+URxvt.color9:           #cc5454
+URxvt.color10:          #4d9f4d
+URxvt.color11:          #f0dfaf
+URxvt.color12:          #4186be
+URxvt.color13:          #ec93d3
+URxvt.color14:          #93e0e3
+URxvt.color15:          #ffffff
+
+! #### misc
+URxvt.termName:         rxvt-256color
