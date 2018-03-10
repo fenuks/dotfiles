@@ -457,7 +457,7 @@ nnoremap <Leader>s :Grepper -tool ag<CR>
 " ##### VIML
 augroup viml
     autocmd!
-    autocmd FileType vim nnoremap K :help <C-r><C-w><CR>
+    autocmd FileType vim nnoremap <buffer> <silent> K :help <C-r><C-w><CR>
 augroup END
 "##### HTML5
 Plug 'mattn/emmet-vim', { 'for': ['html', 'htmldjango'] }
@@ -481,9 +481,9 @@ let g:tern#command = ["tern"]
 let g:tern#arguments = ["--persistent"]
 augroup filetype_js
     autocmd!
-    autocmd FileType javascript nnoremap <buffer> gd :TernDef<CR>
-    autocmd FileType javascript nnoremap <buffer> <Leader>u :TernRefs<CR>
-    autocmd FileType javascript nnoremap <buffer> <Leader>r :TernRename<CR>
+    autocmd FileType javascript nnoremap <buffer> <silent> gd :TernDef<CR>
+    autocmd FileType javascript nnoremap <buffer> <silent> <Leader>u :TernRefs<CR>
+    autocmd FileType javascript nnoremap <buffer> <silent> <Leader>r :TernRename<CR>
 augroup END
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
 let g:javascript_plugin_jsdoc = 1
@@ -539,25 +539,25 @@ augroup END
 " Plug '/usr/share/vim/vimfiles/plugin/eclim.vim', { 'dir': '/usr/share/vim/vimfiles/', 'for': 'java' }
 augroup filetype_java
     autocmd!
+    nnoremap <buffer> <silent> <Leader>ii <Plug>(JavaComplete-Imports-AddSmart)
+    nnoremap <buffer> <silent> <Leader>iI <Plug>(JavaComplete-Imports-Add)
+    nnoremap <buffer> <silent> <Leader>ia <Plug>(JavaComplete-Imports-AddMissing)
+    nnoremap <buffer> <silent> <Leader>id <Plug>(JavaComplete-Imports-RemoveUnused)
+
+    nnoremap <buffer> <silent> <Leader>am <Plug>(JavaComplete-Generate-AbstractMethods)
+    nnoremap <buffer> <silent> <Leader>aA <Plug>(JavaComplete-Generate-Accessors)
+    nnoremap <buffer> <silent> <Leader>as <Plug>(JavaComplete-Generate-AccessorSetter)
+    nnoremap <buffer> <silent> <Leader>ag <Plug>(JavaComplete-Generate-AccessorGetter)
+    nnoremap <buffer> <silent> <Leader>aa <Plug>(JavaComplete-Generate-AccessorSetterGetter)
+    nnoremap <buffer> <silent> <Leader>ats <Plug>(JavaComplete-Generate-ToString)
+    nnoremap <buffer> <silent> <Leader>aeq <Plug>(JavaComplete-Generate-EqualsAndHashCode)
+    nnoremap <buffer> <silent> <Leader>aI <Plug>(JavaComplete-Generate-Constructor)
+    nnoremap <buffer> <silent> <Leader>ai <Plug>(JavaComplete-Generate-DefaultConstructor)
+
+    nnoremap <buffer> <silent> <Leader>ac <Plug>(JavaComplete-Generate-NewClass)
+    nnoremap <buffer> <silent> <Leader>aC <Plug>(JavaComplete-Generate-ClassInFile)
     " autocmd FileType java setlocal omnifunc=javacomplete#Complete
 augroup END
-nnoremap <Leader>ii <Plug>(JavaComplete-Imports-AddSmart)
-nnoremap <Leader>iI <Plug>(JavaComplete-Imports-Add)
-nnoremap <Leader>ia <Plug>(JavaComplete-Imports-AddMissing)
-nnoremap <Leader>id <Plug>(JavaComplete-Imports-RemoveUnused)
-
-nnoremap <Leader>am <Plug>(JavaComplete-Generate-AbstractMethods)
-nnoremap <Leader>aA <Plug>(JavaComplete-Generate-Accessors)
-nnoremap <Leader>as <Plug>(JavaComplete-Generate-AccessorSetter)
-nnoremap <Leader>ag <Plug>(JavaComplete-Generate-AccessorGetter)
-nnoremap <Leader>aa <Plug>(JavaComplete-Generate-AccessorSetterGetter)
-nnoremap <Leader>ats <Plug>(JavaComplete-Generate-ToString)
-nnoremap <Leader>aeq <Plug>(JavaComplete-Generate-EqualsAndHashCode)
-nnoremap <Leader>aI <Plug>(JavaComplete-Generate-Constructor)
-nnoremap <Leader>ai <Plug>(JavaComplete-Generate-DefaultConstructor)
-
-nnoremap <silent> <buffer> <Leader>ac <Plug>(JavaComplete-Generate-NewClass)
-nnoremap <silent> <buffer> <Leader>aC <Plug>(JavaComplete-Generate-ClassInFile)
 
 "##### Scala
 "Plug 'ensime/ensime-vim', { 'for': ['java', 'scala'] }
