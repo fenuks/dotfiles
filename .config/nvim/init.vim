@@ -372,6 +372,7 @@ nmap <Leader>ga <Plug>(EasyAlign)
 Plug 'w0rp/ale'
 let g:ale_fixers = {
 \   'json': ['fixjson'],
+\   'javascript': ['eslint'],
 \}
 let g:airline#extensions#ale#enabled = 1
 nnoremap <Leader>cf :ALEFix<CR>
@@ -519,6 +520,15 @@ let ropevim_enable_shortcuts = 0
 
 "##### Rust
 Plug 'rust-lang/rust.vim', { 'for': 'rust' }
+Plug 'racer-rust/vim-racer', { 'for': 'rust' }
+augroup filetype_rust
+    autocmd!
+    autocmd FileType rust nnoremap <buffer> <silent> gd <Plug>(rust-def)
+    autocmd FileType rust nnoremap <buffer> <silent> <C-]> <Plug>(rust-def)
+    autocmd FileType rust nnoremap <buffer> <silent> <C-w><C-]> <Plug>(rust-def-split)
+    autocmd FileType rust nnoremap <buffer> <silent> <C-w>} <Plug>(rust-def-vertical)
+    autocmd FileType rust nnoremap <buffer> <silent> K <Plug>(rust-doc)
+augroup END
 
 "##### Go
 "Plug 'fatih/vim-go'
@@ -531,23 +541,23 @@ augroup filetype_java
     autocmd!
     " autocmd FileType java setlocal omnifunc=javacomplete#Complete
 augroup END
-nmap <Leader>ii <Plug>(JavaComplete-Imports-AddSmart)
-nmap <Leader>iI <Plug>(JavaComplete-Imports-Add)
-nmap <Leader>ia <Plug>(JavaComplete-Imports-AddMissing)
-nmap <Leader>id <Plug>(JavaComplete-Imports-RemoveUnused)
+nnoremap <Leader>ii <Plug>(JavaComplete-Imports-AddSmart)
+nnoremap <Leader>iI <Plug>(JavaComplete-Imports-Add)
+nnoremap <Leader>ia <Plug>(JavaComplete-Imports-AddMissing)
+nnoremap <Leader>id <Plug>(JavaComplete-Imports-RemoveUnused)
 
-nmap <Leader>am <Plug>(JavaComplete-Generate-AbstractMethods)
-nmap <Leader>aA <Plug>(JavaComplete-Generate-Accessors)
-nmap <Leader>as <Plug>(JavaComplete-Generate-AccessorSetter)
-nmap <Leader>ag <Plug>(JavaComplete-Generate-AccessorGetter)
-nmap <Leader>aa <Plug>(JavaComplete-Generate-AccessorSetterGetter)
-nmap <Leader>ats <Plug>(JavaComplete-Generate-ToString)
-nmap <Leader>aeq <Plug>(JavaComplete-Generate-EqualsAndHashCode)
-nmap <Leader>aI <Plug>(JavaComplete-Generate-Constructor)
-nmap <Leader>ai <Plug>(JavaComplete-Generate-DefaultConstructor)
+nnoremap <Leader>am <Plug>(JavaComplete-Generate-AbstractMethods)
+nnoremap <Leader>aA <Plug>(JavaComplete-Generate-Accessors)
+nnoremap <Leader>as <Plug>(JavaComplete-Generate-AccessorSetter)
+nnoremap <Leader>ag <Plug>(JavaComplete-Generate-AccessorGetter)
+nnoremap <Leader>aa <Plug>(JavaComplete-Generate-AccessorSetterGetter)
+nnoremap <Leader>ats <Plug>(JavaComplete-Generate-ToString)
+nnoremap <Leader>aeq <Plug>(JavaComplete-Generate-EqualsAndHashCode)
+nnoremap <Leader>aI <Plug>(JavaComplete-Generate-Constructor)
+nnoremap <Leader>ai <Plug>(JavaComplete-Generate-DefaultConstructor)
 
-nmap <silent> <buffer> <Leader>ac <Plug>(JavaComplete-Generate-NewClass)
-nmap <silent> <buffer> <Leader>aC <Plug>(JavaComplete-Generate-ClassInFile)
+nnoremap <silent> <buffer> <Leader>ac <Plug>(JavaComplete-Generate-NewClass)
+nnoremap <silent> <buffer> <Leader>aC <Plug>(JavaComplete-Generate-ClassInFile)
 
 "##### Scala
 "Plug 'ensime/ensime-vim', { 'for': ['java', 'scala'] }
