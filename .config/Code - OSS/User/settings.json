@@ -3,6 +3,7 @@
     "editor.fontFamily": "'Fira Code', 'Hack', 'Source Code Pro', 'Droid Sans Mono', 'Courier New', monospace, 'Droid Sans Fallback'",
     "telemetry.enableCrashReporter": false,
     "telemetry.enableTelemetry": false,
+    "extensions.showRecommendationsOnlyOnDemand": true,
     "[cpp]": {
         "editor.quickSuggestions": true
     },
@@ -69,7 +70,8 @@
         "suppressNoRepositoryWarning": false,
         "suppressUpdateNotice": false,
         "suppressWelcomeNotice": true
-    }
+    },
+    "gitlens.keymap": "alternate"
     // "editor.formatOnType": true,
     // "editor.formatOnPaste": true,
     // "editor.autoIndent": true
