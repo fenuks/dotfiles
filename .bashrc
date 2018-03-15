@@ -57,7 +57,6 @@ export RUST_SRC_PATH="${HOME}/.rustup/toolchains/nightly-x86_64-unknown-linux-gn
 export SHELLCHECK_OPTS="-e SC2034 -e SC2164"
 export SSH_ASKPASS=/usr/bin/ksshaskpass
 export SSH_AUTH_SOCK=/tmp/ssh-agent.sock
-export TERM='konsole-256color'
 export UNCRUSTIFY_CONFIG="${HOME}/.config/uncrustify.cfg"
 
 set -o vi
