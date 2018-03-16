@@ -6,7 +6,6 @@ DotJoshJohnson.xml
 dragos.scala-lsp
 eamodio.gitlens
 eg2.tslint
-GabrielBB.vscode-lombok
 hackwaly.ocaml
 hbenl.vscode-firefox-debug
 jcanero.hoogle-vscode

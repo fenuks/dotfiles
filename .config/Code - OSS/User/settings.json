@@ -71,7 +71,8 @@
         "suppressUpdateNotice": false,
         "suppressWelcomeNotice": true
     },
-    "gitlens.keymap": "alternate"
+    "gitlens.keymap": "alternate",
+    "java.jdt.ls.vmargs": "-noverify -Xmx1G -XX:+UseG1GC -XX:+UseStringDeduplication -javaagent:\"/usr/share/java/lombok/lombok.jar\" -Xbootclasspath/a:\"/usr/share/java/lombok/lombok.jar\" -javaagent:\"/home/rkozicki/.vscode/extensions/GabrielBB.vscode-lombok-0.9.2/server/lombok.jar\" -Xbootclasspath/a:\"/home/rkozicki/.vscode/extensions/GabrielBB.vscode-lombok-0.9.2/server/lombok.jar\""
     // "editor.formatOnType": true,
     // "editor.formatOnPaste": true,
     // "editor.autoIndent": true
