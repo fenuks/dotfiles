@@ -6,6 +6,7 @@ DotJoshJohnson.xml
 dragos.scala-lsp
 eamodio.gitlens
 eg2.tslint
+GabrielBB.vscode-lombok
 hackwaly.ocaml
 hbenl.vscode-firefox-debug
 jcanero.hoogle-vscode
@@ -20,11 +21,9 @@ ms-vscode.cpptools
 ms-vscode.node-debug2
 octref.vetur
 PeterJausovec.vscode-docker
-Pivotal.vscode-boot-dev-pack
-Pivotal.vscode-boot-java
-Pivotal.vscode-boot-properties
 Pivotal.vscode-concourse
 Pivotal.vscode-manifest-yaml
+Pivotal.vscode-spring-boot
 platformio.platformio-ide
 redhat.java
 robinbentley.sass-indented
@@ -39,6 +38,7 @@ vsciot-vscode.vscode-arduino
 vscjava.vscode-java-debug
 vscjava.vscode-java-test
 vscjava.vscode-maven
+vscjava.vscode-spring-initializr
 vscodevim.vim
 vsmobile.vscode-react-native
 webfreak.debug
