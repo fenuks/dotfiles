@@ -102,10 +102,7 @@ cnoremap v/ v/\v
 inoremap jk <ESC>
 nnoremap <C-s> :w<Enter>
 inoremap <C-s> <ESC>:w<Enter>a
-" shitf + enter add new line
-inoremap OM <ESC>o
-" inoremap  <ESC>o
-" inoremap <S-CR> <ESC>o
+inoremap <A-m> <ESC>o
 
 " moving lines up and down
 nnoremap <silent> <A-p> :<c-u>execute 'move -1-'. v:count1<CR>
@@ -259,18 +256,18 @@ Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins', 'for': ['
 let g:LanguageClient_serverCommands = {
     \ 'cpp': ['clangd'],
     \ 'haskell': ['hie', '--lsp'],
-    \ 'java': ['jdtls'],
+    \ 'java': ['jdtls', '-javaagent:/usr/share/java/lombok/lombok.jar', '-Xbootclasspath/p:/usr/share/java/lombok/lombok.jar'],
     \ 'javascript': ['javascript-typescript-stdio'],
     \ 'javascript.jsx': ['javascript-typescript-stdio'],
+    \ 'python': ['pyls'],
     \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
     \ 'typescript': ['javascript-typescript-stdio'],
     \ 'vue': ['vls'],
     \ }
-    " \ 'python': ['pyls'],
-    \ }
 " \ 'cpp': ['cquery', '--language-server', '--log-file=/tmp/cq.log'],
 
 let g:LanguageClient_autoStart = 1
+" setlocal omnifunc=LanguageClient#complete
 
 nnoremap <silent> <Leader>lk :call LanguageClient_textDocument_hover()<CR>
 nnoremap <silent> <Leader>ld :call LanguageClient_textDocument_definition()<CR>
@@ -279,7 +276,6 @@ nnoremap <silent> <Leader>lt :call LanguageClient_workspace_symbol()<CR>
 nnoremap <silent> <Leader>lT :call LanguageClient_textDocument_documentSymbol()<CR>
 nnoremap <silent> <Leader>lu :call LanguageClient_textDocument_references()<CR>
 nnoremap <silent> <Leader>lq :call LanguageClient_textDocument_formatting()<CR>
-" setlocal omnifunc=LanguageClient#complete
 
 " Plug 'Valloric/YouCompleteMe'
 " Plug 'lifepillar/vim-mucomplete'
@@ -290,7 +286,7 @@ if has('nvim')
     " let g:deoplete#enable_at_startup = 1
     let g:deoplete#omni#input_patterns = {} " faster, called by deoplete
     " let g:deoplete#omni#input_patterns._ = '.+'
-    let g:deoplete#omni#input_patterns.java = '[^. *\t]\.\w*'
+    " let g:deoplete#omni#input_patterns.java = '[^. *\t]\.\w*'
     let g:deoplete#omni#input_patterns.javascript = ''
     " let g:deoplete#omni#input_patterns.cpp = ['[^. *\t]\.\w*', '[^. *\t]\::\w*', '[^. *\t]\->\w*', '[<"].*/']
     " let g:deoplete#omni#input_patterns.python = '.+'
@@ -346,7 +342,6 @@ Plug 'nelstrom/vim-visual-star-search'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
 let g:airline#extensions#tabline#enabled = 1
-map <Leader>gt :TagbarToggle<CR>
 " Plug 'devjoe/vim-codequery' " rich support for searching symbols support
 " gtags
 Plug 'easymotion/vim-easymotion'
@@ -507,7 +502,7 @@ Plug 'davidhalter/jedi-vim', { 'for': 'python' }
 let g:jedi#completions_command = "<C-space>"
 let g:jedi#goto_command = "gd"
 let g:jedi#goto_definitions_command = "gD"
-let g:jedi#rename_command = "<Leader>r"
+let g:jedi#rename_command = "<Leader>rn"
 let g:jedi#show_call_signatures = "2"
 let g:jedi#usages_command = "<Leader>u"
 
@@ -536,7 +531,7 @@ augroup END
 "##### JVM
 "##### Java
 " Plug 'artur-shaik/vim-javacomplete2', { 'for': 'java' }
-" Plug '/usr/share/vim/vimfiles/plugin/eclim.vim', { 'dir': '/usr/share/vim/vimfiles/', 'for': 'java' }
+Plug '/usr/share/vim/vimfiles/plugin/eclim.vim', { 'dir': '/usr/share/vim/vimfiles/', 'for': 'java' }
 augroup filetype_java
     autocmd!
     nnoremap <buffer> <silent> <Leader>ii <Plug>(JavaComplete-Imports-AddSmart)
@@ -556,7 +551,7 @@ augroup filetype_java
 
     nnoremap <buffer> <silent> <Leader>ac <Plug>(JavaComplete-Generate-NewClass)
     nnoremap <buffer> <silent> <Leader>aC <Plug>(JavaComplete-Generate-ClassInFile)
-    " autocmd FileType java setlocal omnifunc=javacomplete#Complete
+    setlocal formatexpr=LanguageClient_textDocument_rangeFormatting()
 augroup END
 
 "##### Scala

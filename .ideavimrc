@@ -3,9 +3,14 @@ nnoremap / /
 vnoremap / /
 set vim-surround
 nnoremap gd :action GotoTypeDeclaration<CR>
+nnoremap gD :action GotoImplementation<CR>
 nnoremap <Leader>f :action GotoFile<CR>
-nnoremap <Leader>r :action RenameElement<CR>
 nnoremap <Leader>T :action FileStructurePopup<CR>
 nnoremap <Leader>t :action GotoSymbol<CR>
 nnoremap <Leader>u :action FindUsages<CR>
 nnoremap <Leader><Leader> :action AceAction<CR>
+nnoremap <Leader>rn :action RenameElement<CR>
+nnoremap <Leader>rv :action IntroduceVariable<CR>
+nnoremap g; :action JumpToLastChange<CR>
+nnoremap g, :action JumpToNextChange<CR>
+inoremap <C-j> <CR>

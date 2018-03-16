@@ -9,3 +9,8 @@ syntax: glob
 *.a
 *.out
 *.pyc
+# eclipse files
+.project
+.settings/
+.classpath
+.sts4-cache/

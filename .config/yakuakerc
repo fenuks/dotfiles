@@ -16,6 +16,8 @@ Favorites=
 
 [FileDialogSize]
 Height 1200=480
+Height 1920=480
+Width 1080=640
 Width 1920=640
 
 [Shortcuts]
@@ -28,8 +30,10 @@ grow-terminal-bottom=Ctrl+Alt+Down
 grow-terminal-left=Ctrl+Alt+Left
 grow-terminal-right=Ctrl+Alt+Right
 grow-terminal-top=Ctrl+Alt+Up
+help_whats_this=none
 increase-window-height=Alt+Shift+Down
 increase-window-width=Alt+Shift+Right
+keep-open=Shift+F1
 move-session-left=Ctrl+Shift+Left;\s
 move-session-right=Ctrl+Shift+Right
 new-session=Ctrl+Shift+T
@@ -45,7 +49,7 @@ view-full-screen=Ctrl+Shift+F11
 
 [Window]
 DynamicTabTitles=true
-Height=60
+Height=100
 KeepAbove=false
 Screen=1
 Width=100
