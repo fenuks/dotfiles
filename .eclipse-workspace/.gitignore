@@ -35,6 +35,7 @@ http-cache.lucene60/
 .metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.launchbar.core.prefs
 .metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.ui.ide.prefs
 .metadata/.plugins/org.eclipse.core.runtime/.settings/org.jkiss.dbeaver.core.prefs
+.metadata/.plugins/org.eclipse.core.runtime/.settings/org.springsource.ide.eclipse.dashboard.ui.prefs
 .metadata/.plugins/org.eclipse.debug.core/.launches/
 .metadata/.plugins/org.eclipse.e4.workbench/workbench.xmi
 .metadata/.plugins/org.eclipse.epp.logging.aeri.ide/**/*.cfe
