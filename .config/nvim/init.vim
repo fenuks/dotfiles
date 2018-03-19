@@ -253,7 +253,7 @@ let g:AutoPairsShortcutFastWrap=''
 let g:AutoPairsShortcutJump=''
 let g:AutoPairsShortcutBackInsert=''
 
-"##### Code autocompletion
+" ##### Code autocompletion
 Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash make release', 'for': ['haskell', 'javascript', 'rust', 'typescript', 'vue'] }
 let g:LanguageClient_serverCommands = {
     \ 'cpp': ['clangd'],
@@ -467,6 +467,12 @@ Plug 'jceb/vim-orgmode', { 'for': 'org' }
 Plug 'suan/vim-instant-markdown', { 'for': 'markdown' }
 " Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 Plug 'gabrielelana/vim-markdown', { 'for': 'markdown' }
+
+augroup yaml
+    autocmd!
+    autocmd FileType yaml setlocal softtabstop=2 shiftwidth=2
+augroup END
+
 
 "##### CSS
 Plug 'ap/vim-css-color', { 'for': ['css', 'scss'] }

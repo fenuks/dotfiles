@@ -1,6 +1,15 @@
 source ~/.config/nvim/init.vim
+" redefine things that do not work in IdeaVim
 nnoremap / /
 vnoremap / /
+nnoremap <silent> <A-p> ddkP
+nnoremap <silent> <A-n> ddp
+inoremap <silent> <A-n> <Esc>ddkPi
+inoremap <silent> <A-p> <Esc>ddp
+vnoremap <silent> <A-n> dkPgv=gv
+vnoremap <silent> <A-p> dpgv=gv
+inoremap <C-j> <CR>
+" IdeaVim stuff
 set vim-surround
 nnoremap gd :action GotoTypeDeclaration<CR>
 nnoremap gD :action GotoImplementation<CR>
@@ -13,4 +22,3 @@ nnoremap <Leader>rn :action RenameElement<CR>
 nnoremap <Leader>rv :action IntroduceVariable<CR>
 nnoremap g; :action JumpToLastChange<CR>
 nnoremap g, :action JumpToNextChange<CR>
-inoremap <C-j> <CR>
