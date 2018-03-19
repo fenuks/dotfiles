@@ -1,1 +1,14 @@
 set editing-mode vi
+# cycle through list
+TAB: menu-complete
+# move backward
+"\e[Z": menu-complete-backward
+# first tab shows list, next cycles
+set menu-complete-display-prefix on
+set show-all-if-ambiguous on
+set colored-stats on
+# highligh common prefix
+set colored-completion-prefix on
+# set completion-ignore-case on
+# Treat hypens and underscores as equivalent when completing
+# set completion-map-case on

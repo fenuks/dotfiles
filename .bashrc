@@ -9,6 +9,16 @@ if [ $TERMINIX_ID  ] || [ $VTE_VERSION  ]; then
     source /etc/profile.d/vte.sh
 fi
 
+shopt -s globstar
+# Prevent file overwrite on stdout redirection
+# Use `>|` to force redirection to an existing file
+set -o noclobber
+# Enable history expansion with space
+# E.g. typing !!<space> will replace the !! with your last command
+bind Space:magic-space
+# Save multi-line commands as one command
+shopt -s cmdhist
+
 complete -cf sudo
 complete -cf kdesudo
 complete -cf man
@@ -16,6 +26,7 @@ source /usr/share/git/completion/git-completion.bash
 
 alias chromium-dev='chromium --disable-web-security --user-data-dir --remote-debugging-port=9222'
 alias cgit='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+complete -o default -o nospace -F _git cgit
 alias clear="clear && printf '\e[3J'"
 alias dc='docker-compose'
 alias eclimd='/usr/lib/eclipse/eclimd'
@@ -23,9 +34,11 @@ alias eclim='/usr/lib/eclipse/eclimd'
 alias firefox-debug='firefox -start-debugger-server -no-remote'
 alias grep="grep --color=auto"
 alias jad-decompile="jad -o -d src-jad -r -s java **/*.class"
+alias ls='ls --color --classify --human-readable'
 alias ll='ls -l'
-alias ll="ls -l"
-alias ls='ls --color=auto'
+alias ll.='ls -la'
+alias lls='ls -la --sort=size'
+alias llt='ls -la --sort=time'
 alias run-ssh-agent='eval `ssh-agent -a /tmp/ssh-agent.sock`'
 alias sm='HOME=~/.spacemacs.d emacs'
 alias spacemacs='HOME=~/.spacemacs.d/ emacs'
@@ -40,7 +53,7 @@ export EDITOR=nvim
 export GCC_COLORS=auto
 export GPODDER_HOME=/home/fenuks/Podcasts/
 export HISTCONTROL=ignoreboth
-export HISTIGNORE=' *'
+export HISTIGNORE="&:[ ]*:exit:ls:bg:fg:history:clear"
 export HISTSIZE=10000
 export HISTTIMEFORMAT="%d/%m/%y %T "
 export JAVA_HOME=$JDK_HOME
@@ -64,14 +77,15 @@ set -o vi
 # bind 'TAB:menu-complete'
 
 # fuzzy searchers
-source /usr/share/fzf/key-bindings.bash
-source /usr/share/fzf/completion.bash
-# export FZF_ALT_C_COMMAND="find /home/fenuks -type d ! -perm -g+r,u+r,o+r -prune -o -not -path '/home/fenuks/Documents/*' -not -path '*/\.*' -readable"
+[[ -r '/usr/share/fzf/key-bindings.bash' ]] && source /usr/share/fzf/key-bindings.bash
+[[ -r '/usr/share/fzf/completion.bash' ]] && source /usr/share/fzf/completion.bash
+# export FZF_ALT_C_COMMAND="find /home/fenuks -type d ! -perm -g+r,u+r,o+r -prune -o -not -path '!/Documents/*' -not -path '*/\.*' -readable"
 # export FZF_DEFAULT_COMMAND='rg --files 2> /dev/null'
 export FZF_DEFAULT_COMMAND='fd --type f'
 export FZF_CTRL_T_COMMAND="${FZF_DEFAULT_COMMAND}"
 # export FZF_CTRL_T_COMMAND='ag -g "" 2> /dev/null'
 export SKIM_DEFAULT_COMMAND='git ls-tree -r --name-only HEAD || rg --files'
+[[ -r '/usr/share/z/z.sh' ]] && source /usr/share/z/z.sh
 
 function _update_ps1() {
     PS1="$(powerline-go -error $?)"
