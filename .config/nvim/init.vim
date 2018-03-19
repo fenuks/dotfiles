@@ -95,6 +95,8 @@ nnoremap gV `[v`] " select last changed text, original gV mapping is obscure
 " better history scrolling, with context
 cnoremap <C-n> <down>
 cnoremap <C-p> <up>
+cnoremap <C-A> <Home>
+cnoremap <C-E> <End>
 cnoremap g/ g/\v
 cnoremap v/ v/\v
 
@@ -252,7 +254,7 @@ let g:AutoPairsShortcutJump=''
 let g:AutoPairsShortcutBackInsert=''
 
 "##### Code autocompletion
-Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins', 'for': ['haskell', 'javascript', 'rust', 'typescript', 'vue'] }
+Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash make release', 'for': ['haskell', 'javascript', 'rust', 'typescript', 'vue'] }
 let g:LanguageClient_serverCommands = {
     \ 'cpp': ['clangd'],
     \ 'haskell': ['hie', '--lsp'],
