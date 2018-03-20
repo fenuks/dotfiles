@@ -152,6 +152,10 @@ nnoremap ]t gt
 nnoremap [T :<C-U>tfirst<CR>
 nnoremap ]T :<C-U>tlast<CR>
 
+nnoremap <Leader>bd :bdelete<CR>
+nnoremap <Leader>bh :hide<CR>
+nnoremap <Leader>bc :close<CR>
+
 function! Conflict(reverse)
   call search('^\(@@ .* @@\|[<=>|]\{7}[<=>|]\@!\)', a:reverse ? 'bW' : 'W')
 endfunction
@@ -438,7 +442,7 @@ Plug 'junegunn/fzf.vim'
 noremap <Leader>f :Files<CR>
 noremap <Leader>t :Tags<CR>
 noremap <Leader>T :BTags<CR>
-noremap <Leader>b :Buffers<CR>
+noremap <Leader>bl :Buffers<CR>
 
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 map <Leader>F :NERDTreeToggle<CR>
