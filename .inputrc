@@ -9,6 +9,6 @@ set show-all-if-ambiguous on
 set colored-stats on
 # highligh common prefix
 set colored-completion-prefix on
-# set completion-ignore-case on
+set completion-ignore-case on
 # Treat hypens and underscores as equivalent when completing
 # set completion-map-case on

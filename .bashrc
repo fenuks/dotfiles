@@ -85,7 +85,9 @@ export FZF_DEFAULT_COMMAND='fd --type f'
 export FZF_CTRL_T_COMMAND="${FZF_DEFAULT_COMMAND}"
 # export FZF_CTRL_T_COMMAND='ag -g "" 2> /dev/null'
 export SKIM_DEFAULT_COMMAND='git ls-tree -r --name-only HEAD || rg --files'
-[[ -r "/usr/share/z/z.sh" ]] && source /usr/share/z/z.sh
+# [[ -r "/usr/share/z/z.sh" ]] && source /usr/share/z/z.sh
+[[ -r "${HOME}/.enhancd/init.sh" ]] && source "${HOME}/.enhancd/init.sh"
+export ENHANCD_COMMAND=fzf
 
 function _update_ps1() {
     PS1="$(powerline-go -error $?)"
