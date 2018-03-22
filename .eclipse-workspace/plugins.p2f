@@ -1,59 +1,60 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <?p2f version='1.0.0'?>
 <p2f version='1.0.0'>
-  <ius size='92'>
-    <iu id='org.eclipse.buildship.feature.group' name='Buildship: Eclipse Plug-ins for Gradle' version='2.1.2.v20170807-1324'>
+  <ius size='91'>
+    <iu id='org.eclipse.buildship.feature.group' name='Buildship: Eclipse Plug-ins for Gradle' version='2.2.1.v20180125-1441'>
       <repositories size='1'>
         <repository location='http://download.eclipse.org/releases/oxygen'/>
       </repositories>
     </iu>
-    <iu id='org.eclipse.cdt.autotools.feature.group' name='C/C++ Autotools support' version='9.4.0.201712051550'>
+    <iu id='org.eclipse.cdt.autotools.feature.group' name='C/C++ Autotools support' version='9.4.3.201802261533'>
       <repositories size='2'>
         <repository location='http://download.eclipse.org/releases/oxygen'/>
         <repository location='http://download.eclipse.org/tools/cdt/releases/9.4'/>
       </repositories>
     </iu>
-    <iu id='org.eclipse.cdt.feature.group' name='C/C++ Development Tools' version='9.4.0.201712051550'>
+    <iu id='org.eclipse.cdt.feature.group' name='C/C++ Development Tools' version='9.4.3.201802261533'>
       <repositories size='2'>
         <repository location='http://download.eclipse.org/releases/oxygen'/>
         <repository location='http://download.eclipse.org/tools/cdt/releases/9.4'/>
       </repositories>
     </iu>
-    <iu id='org.eclipse.cdt.build.crossgcc.feature.group' name='C/C++ GCC Cross Compiler Support' version='9.4.0.201712051550'>
+    <iu id='org.eclipse.cdt.build.crossgcc.feature.group' name='C/C++ GCC Cross Compiler Support' version='9.4.3.201802261533'>
       <repositories size='2'>
         <repository location='http://download.eclipse.org/releases/oxygen'/>
         <repository location='http://download.eclipse.org/tools/cdt/releases/9.4'/>
       </repositories>
     </iu>
-    <iu id='org.eclipse.cdt.debug.gdbjtag.feature.group' name='C/C++ GDB Hardware Debugging' version='9.4.2.201802122019'>
+    <iu id='org.eclipse.cdt.debug.gdbjtag.feature.group' name='C/C++ GDB Hardware Debugging' version='9.4.3.201802261533'>
+      <repositories size='2'>
+        <repository location='http://download.eclipse.org/releases/oxygen'/>
+        <repository location='http://download.eclipse.org/tools/cdt/releases/9.4'/>
+      </repositories>
+    </iu>
+    <iu id='org.eclipse.linuxtools.cdt.libhover.feature.feature.group' name='C/C++ Library API Documentation Hover Help' version='6.2.1.201803061555'>
       <repositories size='1'>
-        <repository location='http://download.eclipse.org/tools/cdt/releases/9.4'/>
-      </repositories>
-    </iu>
-    <iu id='org.eclipse.linuxtools.cdt.libhover.feature.feature.group' name='C/C++ Library API Documentation Hover Help' version='6.2.0.201712060514'>
-      <repositories size='2'>
         <repository location='http://download.eclipse.org/releases/oxygen'/>
-        <repository location='http://download.eclipse.org/linuxtools/update'/>
       </repositories>
     </iu>
-    <iu id='org.eclipse.cdt.managedbuilder.llvm.feature.group' name='C/C++ LLVM-Family Compiler Build Support' version='9.4.2.201802122019'>
-      <repositories size='1'>
-        <repository location='http://download.eclipse.org/tools/cdt/releases/9.4'/>
-      </repositories>
-    </iu>
-    <iu id='org.eclipse.cdt.debug.ui.memory.feature.group' name='C/C++ Memory View Enhancements' version='9.4.0.201712051550'>
+    <iu id='org.eclipse.cdt.managedbuilder.llvm.feature.group' name='C/C++ LLVM-Family Compiler Build Support' version='9.4.3.201802261533'>
       <repositories size='2'>
         <repository location='http://download.eclipse.org/releases/oxygen'/>
         <repository location='http://download.eclipse.org/tools/cdt/releases/9.4'/>
       </repositories>
     </iu>
-    <iu id='org.eclipse.cdt.launch.remote.feature.group' name='C/C++ Remote Launch' version='9.4.0.201712051550'>
+    <iu id='org.eclipse.cdt.debug.ui.memory.feature.group' name='C/C++ Memory View Enhancements' version='9.4.3.201802261533'>
       <repositories size='2'>
         <repository location='http://download.eclipse.org/releases/oxygen'/>
         <repository location='http://download.eclipse.org/tools/cdt/releases/9.4'/>
       </repositories>
     </iu>
-    <iu id='org.eclipse.cdt.debug.standalone.feature.group' name='C/C++ Standalone Debugger' version='9.4.0.201712051550'>
+    <iu id='org.eclipse.cdt.launch.remote.feature.group' name='C/C++ Remote Launch' version='9.4.3.201802261533'>
+      <repositories size='2'>
+        <repository location='http://download.eclipse.org/releases/oxygen'/>
+        <repository location='http://download.eclipse.org/tools/cdt/releases/9.4'/>
+      </repositories>
+    </iu>
+    <iu id='org.eclipse.cdt.debug.standalone.feature.group' name='C/C++ Standalone Debugger' version='9.4.3.201802261533'>
       <repositories size='2'>
         <repository location='http://download.eclipse.org/releases/oxygen'/>
         <repository location='http://download.eclipse.org/tools/cdt/releases/9.4'/>
@@ -64,16 +65,14 @@
         <repository location='https://raw.githubusercontent.com/15knots/cmake4eclipse/master/releng/comp-update/'/>
       </repositories>
     </iu>
-    <iu id='org.eclipse.linuxtools.changelog.feature.group' name='ChangeLog Management Tools' version='6.2.0.201712060514'>
-      <repositories size='2'>
+    <iu id='org.eclipse.linuxtools.changelog.feature.group' name='ChangeLog Management Tools' version='6.2.1.201803061555'>
+      <repositories size='1'>
         <repository location='http://download.eclipse.org/releases/oxygen'/>
-        <repository location='http://download.eclipse.org/linuxtools/update'/>
       </repositories>
     </iu>
-    <iu id='org.eclipse.linuxtools.changelog.c.feature.group' name='ChangeLog Management Tools for C/C++' version='6.2.0.201712060514'>
-      <repositories size='2'>
+    <iu id='org.eclipse.linuxtools.changelog.c.feature.group' name='ChangeLog Management Tools for C/C++' version='6.2.1.201803061555'>
+      <repositories size='1'>
         <repository location='http://download.eclipse.org/releases/oxygen'/>
-        <repository location='http://download.eclipse.org/linuxtools/update'/>
       </repositories>
     </iu>
     <iu id='org.springframework.tooling.cloudfoundry.manifest.ls.feature.feature.group' name='Cloud Foundry Manifest Language Server Feature' version='4.0.0.201712181605'>
@@ -83,22 +82,26 @@
       </repositories>
     </iu>
     <iu id='org.eclipse.recommenders.rcp.feature.feature.group' name='Code Recommenders for Java Developers' version='2.5.1.v20180228-0833'>
-      <repositories size='1'>
+      <repositories size='2'>
+        <repository location='http://download.eclipse.org/releases/oxygen'/>
         <repository location='http://download.eclipse.org/recommenders/updates/stable/'/>
       </repositories>
     </iu>
     <iu id='org.eclipse.recommenders.mylyn.rcp.feature.feature.group' name='Code Recommenders Mylyn Integration' version='2.5.1.v20180228-0833'>
-      <repositories size='1'>
+      <repositories size='2'>
+        <repository location='http://download.eclipse.org/releases/oxygen'/>
         <repository location='http://download.eclipse.org/recommenders/updates/stable/'/>
       </repositories>
     </iu>
     <iu id='org.eclipse.recommenders.news.rcp.feature.feature.group' name='Code Recommenders News Feed' version='2.5.1.v20180228-0833'>
-      <repositories size='1'>
+      <repositories size='2'>
+        <repository location='http://download.eclipse.org/releases/oxygen'/>
         <repository location='http://download.eclipse.org/recommenders/updates/stable/'/>
       </repositories>
     </iu>
     <iu id='org.eclipse.recommenders.snipmatch.rcp.feature.feature.group' name='Code Recommenders Snipmatch' version='2.5.1.v20180228-0833'>
-      <repositories size='1'>
+      <repositories size='2'>
+        <repository location='http://download.eclipse.org/releases/oxygen'/>
         <repository location='http://download.eclipse.org/recommenders/updates/stable/'/>
       </repositories>
     </iu>
@@ -107,40 +110,36 @@
         <repository location='https://dl.bintray.com/cppcheclipse/p2/updates/'/>
       </repositories>
     </iu>
-    <iu id='org.jkiss.dbeaver.core.feature.feature.group' name='DBeaver Core' version='5.0.0'>
+    <iu id='org.jkiss.dbeaver.core.feature.feature.group' name='DBeaver Core' version='5.0.1'>
       <repositories size='2'>
         <repository location='https://raw.github.com/Enide/eclipse-p2-composite-repository/master/'/>
         <repository location='http://dbeaver.jkiss.org/update/latest/'/>
       </repositories>
     </iu>
-    <iu id='org.jkiss.dbeaver.ext.db2.feature.feature.group' name='DBeaver DB2 Extension' version='2.1.63'>
+    <iu id='org.jkiss.dbeaver.ext.db2.feature.feature.group' name='DBeaver DB2 Extension' version='2.1.64'>
       <repositories size='2'>
         <repository location='https://raw.github.com/Enide/eclipse-p2-composite-repository/master/'/>
         <repository location='http://dbeaver.jkiss.org/update/latest/'/>
       </repositories>
     </iu>
-    <iu id='org.jkiss.dbeaver.ext.generic.feature.feature.group' name='DBeaver Generic Extension' version='2.1.64'>
+    <iu id='org.jkiss.dbeaver.ext.generic.feature.feature.group' name='DBeaver Generic Extension' version='2.1.65'>
       <repositories size='2'>
         <repository location='https://raw.github.com/Enide/eclipse-p2-composite-repository/master/'/>
         <repository location='http://dbeaver.jkiss.org/update/latest/'/>
       </repositories>
     </iu>
-    <iu id='org.jkiss.dbeaver.runtime.feature.feature.group' name='DBeaver Runtime' version='5.0.0'>
+    <iu id='org.jkiss.dbeaver.runtime.feature.feature.group' name='DBeaver Runtime' version='5.0.1'>
       <repositories size='2'>
         <repository location='https://raw.github.com/Enide/eclipse-p2-composite-repository/master/'/>
         <repository location='http://dbeaver.jkiss.org/update/latest/'/>
       </repositories>
     </iu>
     <iu id='org.kacprzak.eclipse.django.feature.feature.group' name='Django Templates Editor' version='1.4.2.201506182028'>
-      <repositories size='1'>
-        <repository location='http://eclipse.kacprzak.org/updates/'/>
-      </repositories>
+      <repositories size='0'/>
     </iu>
-    <iu id='org.eclipse.linuxtools.docker.feature.feature.group' name='Docker Tooling' version='3.2.0.201712060514'>
-      <repositories size='3'>
+    <iu id='org.eclipse.linuxtools.docker.feature.feature.group' name='Docker Tooling' version='3.2.1.201803061555'>
+      <repositories size='1'>
         <repository location='http://download.eclipse.org/releases/oxygen'/>
-        <repository location='http://download.eclipse.org/linuxtools/update-oxygen-docker'/>
-        <repository location='http://download.eclipse.org/linuxtools/update-docker'/>
       </repositories>
     </iu>
     <iu id='org.eclipse.dltk.core.feature.group' name='Dynamic Languages Toolkit - Core Frameworks' version='5.8.2.201709190955'>
@@ -155,52 +154,48 @@
       </repositories>
     </iu>
     <iu id='net.sf.colorer.feature.group' name='Eclipse Colorer' version='0.9.9'>
-      <repositories size='1'>
-        <repository location='http://colorer.sf.net/eclipsecolorer/'/>
-      </repositories>
+      <repositories size='0'/>
     </iu>
-    <iu id='epp.package.cpp' name='Eclipse IDE for C/C++ Developers' version='4.7.2.20171218-0600'>
+    <iu id='epp.package.cpp' name='Eclipse IDE for C/C++ Developers' version='4.7.3.20180308-1800'>
       <repositories size='1'>
         <repository location='http://download.eclipse.org/releases/oxygen'/>
       </repositories>
     </iu>
-    <iu id='epp.package.java' name='Eclipse IDE for Java Developers' version='4.7.2.20171218-0600'>
+    <iu id='epp.package.java' name='Eclipse IDE for Java Developers' version='4.7.3.20180308-1800'>
       <repositories size='1'>
         <repository location='http://download.eclipse.org/releases/oxygen'/>
       </repositories>
     </iu>
-    <iu id='org.eclipse.jdt.feature.group' name='Eclipse Java Development Tools' version='3.13.2.v20171130-0906'>
+    <iu id='org.eclipse.jdt.feature.group' name='Eclipse Java Development Tools' version='3.13.3.v20180301-0715'>
       <repositories size='2'>
         <repository location='http://download.eclipse.org/releases/oxygen'/>
         <repository location='http://download.eclipse.org/eclipse/updates/4.7'/>
       </repositories>
     </iu>
-    <iu id='org.springsource.ide.eclipse.commons.quicksearch.feature.feature.group' name='Eclipse Quicksearch' version='3.9.2.201712210818-RELEASE'>
+    <iu id='org.springsource.ide.eclipse.commons.quicksearch.feature.feature.group' name='Eclipse Quicksearch' version='3.9.3.201803200759-RELEASE'>
       <repositories size='1'>
         <repository location='http://dist.springsource.com/release/TOOLS/update/e4.7/'/>
       </repositories>
     </iu>
-    <iu id='org.eclipse.wst.xml_ui.feature.feature.group' name='Eclipse XML Editors and Tools' version='3.9.1.v201707252002'>
+    <iu id='org.eclipse.wst.xml_ui.feature.feature.group' name='Eclipse XML Editors and Tools' version='3.9.2.v201801171858'>
       <repositories size='1'>
         <repository location='http://download.eclipse.org/releases/oxygen'/>
       </repositories>
     </iu>
-    <iu id='org.eclipse.linuxtools.gcov.feature.group' name='GCov Integration' version='6.2.0.201712060514'>
-      <repositories size='2'>
+    <iu id='org.eclipse.linuxtools.gcov.feature.group' name='GCov Integration' version='6.2.1.201803061555'>
+      <repositories size='1'>
         <repository location='http://download.eclipse.org/releases/oxygen'/>
-        <repository location='http://download.eclipse.org/linuxtools/update'/>
       </repositories>
     </iu>
-    <iu id='org.eclipse.tracecompass.gdbtrace.feature.group' name='GDB Tracepoint Analysis' version='3.2.0.201712061002'>
-      <repositories size='2'>
+    <iu id='org.eclipse.tracecompass.gdbtrace.feature.group' name='GDB Tracepoint Analysis' version='3.3.0.201803071910'>
+      <repositories size='1'>
         <repository location='http://download.eclipse.org/releases/oxygen'/>
-        <repository location='http://download.eclipse.org/tracecompass/master/repository'/>
       </repositories>
     </iu>
     <iu id='org.eclipse.egit.feature.group' name='Git integration for Eclipse' version='4.9.2.201712150930-r'>
       <repositories size='3'>
-        <repository location='http://dist.springsource.com/release/TOOLS/update/e4.7/'/>
         <repository location='http://download.eclipse.org/releases/oxygen'/>
+        <repository location='http://dist.springsource.com/release/TOOLS/update/e4.7/'/>
         <repository location='https://raw.github.com/Enide/eclipse-p2-composite-repository/master/'/>
       </repositories>
     </iu>
@@ -212,61 +207,56 @@
     </iu>
     <iu id='org.eclipse.egit.mylyn.feature.group' name='Git integration for Eclipse - Task focused interface' version='4.9.1.201712030800-r'>
       <repositories size='3'>
-        <repository location='http://dist.springsource.com/release/TOOLS/update/e4.7/'/>
         <repository location='http://download.eclipse.org/releases/oxygen'/>
+        <repository location='http://dist.springsource.com/release/TOOLS/update/e4.7/'/>
         <repository location='https://raw.github.com/Enide/eclipse-p2-composite-repository/master/'/>
       </repositories>
     </iu>
-    <iu id='org.eclipse.linuxtools.gprof.feature.feature.group' name='GProf Integration' version='6.2.0.201712060514'>
-      <repositories size='2'>
-        <repository location='http://download.eclipse.org/releases/oxygen'/>
-        <repository location='http://download.eclipse.org/linuxtools/update'/>
-      </repositories>
-    </iu>
-    <iu id='org.eclipse.wst.jsdt.feature.feature.group' name='JavaScript Development Tools' version='2.1.0.v201706011953'>
+    <iu id='org.eclipse.linuxtools.gprof.feature.feature.group' name='GProf Integration' version='6.2.1.201803061555'>
       <repositories size='1'>
         <repository location='http://download.eclipse.org/releases/oxygen'/>
       </repositories>
     </iu>
-    <iu id='org.eclipse.jst.webpageeditor.feature.feature.group' name='JSF Tools - Web Page Editor' version='2.9.0.v201704192341'>
+    <iu id='org.eclipse.wst.jsdt.feature.feature.group' name='JavaScript Development Tools' version='2.1.1.v201711211802'>
       <repositories size='1'>
         <repository location='http://download.eclipse.org/releases/oxygen'/>
       </repositories>
     </iu>
-    <iu id='org.eclipse.linuxtools.cdt.libhover.devhelp.feature.feature.group' name='Library Hover help for devhelp documentation' version='6.2.0.201712060514'>
-      <repositories size='2'>
+    <iu id='org.eclipse.jst.webpageeditor.feature.feature.group' name='JSF Tools - Web Page Editor' version='2.9.0.v201802231403'>
+      <repositories size='1'>
         <repository location='http://download.eclipse.org/releases/oxygen'/>
-        <repository location='http://download.eclipse.org/linuxtools/update'/>
       </repositories>
     </iu>
-    <iu id='org.eclipse.tracecompass.lttng2.kernel.feature.group' name='LTTng Kernel Analysis' version='3.2.0.201712061002'>
-      <repositories size='2'>
+    <iu id='org.eclipse.linuxtools.cdt.libhover.devhelp.feature.feature.group' name='Library Hover help for devhelp documentation' version='6.2.1.201803061555'>
+      <repositories size='1'>
         <repository location='http://download.eclipse.org/releases/oxygen'/>
-        <repository location='http://download.eclipse.org/tracecompass/master/repository'/>
       </repositories>
     </iu>
-    <iu id='org.eclipse.tracecompass.lttng2.control.feature.group' name='LTTng Tracer Control' version='3.2.0.201712061002'>
-      <repositories size='2'>
+    <iu id='org.eclipse.tracecompass.lttng2.kernel.feature.group' name='LTTng Kernel Analysis' version='3.3.0.201803071910'>
+      <repositories size='1'>
         <repository location='http://download.eclipse.org/releases/oxygen'/>
-        <repository location='http://download.eclipse.org/tracecompass/master/repository'/>
       </repositories>
     </iu>
-    <iu id='org.eclipse.tracecompass.lttng2.ust.feature.group' name='LTTng Userspace Analysis' version='3.2.0.201712061002'>
-      <repositories size='2'>
+    <iu id='org.eclipse.tracecompass.lttng2.control.feature.group' name='LTTng Tracer Control' version='3.3.0.201803071910'>
+      <repositories size='1'>
         <repository location='http://download.eclipse.org/releases/oxygen'/>
-        <repository location='http://download.eclipse.org/tracecompass/master/repository'/>
       </repositories>
     </iu>
-    <iu id='org.eclipse.m2e.feature.feature.group' name='m2e - Maven Integration for Eclipse (includes Incubating components)' version='1.8.2.20171007-0217'>
+    <iu id='org.eclipse.tracecompass.lttng2.ust.feature.group' name='LTTng Userspace Analysis' version='3.3.0.201803071910'>
+      <repositories size='1'>
+        <repository location='http://download.eclipse.org/releases/oxygen'/>
+      </repositories>
+    </iu>
+    <iu id='org.eclipse.m2e.feature.feature.group' name='m2e - Maven Integration for Eclipse (includes Incubating components)' version='1.8.3.20180227-2137'>
       <repositories size='2'>
+        <repository location='http://download.eclipse.org/releases/oxygen'/>
         <repository location='http://dist.springsource.com/release/TOOLS/update/e4.7/'/>
-        <repository location='http://download.eclipse.org/releases/oxygen'/>
       </repositories>
     </iu>
-    <iu id='org.eclipse.m2e.logback.feature.feature.group' name='m2e - slf4j over logback logging (Optional)' version='1.8.2.20171007-0217'>
+    <iu id='org.eclipse.m2e.logback.feature.feature.group' name='m2e - slf4j over logback logging (Optional)' version='1.8.3.20180227-2137'>
       <repositories size='2'>
-        <repository location='http://dist.springsource.com/release/TOOLS/update/e4.7/'/>
         <repository location='http://download.eclipse.org/releases/oxygen'/>
+        <repository location='http://dist.springsource.com/release/TOOLS/update/e4.7/'/>
       </repositories>
     </iu>
     <iu id='org.eclipse.mylyn.hudson.feature.group' name='Mylyn Builds Connector: Hudson/Jenkins' version='1.15.0.v20170411-2141'>
@@ -334,14 +324,11 @@
     </iu>
     <iu id='org.eclipse.mylyn.wikitext_feature.feature.group' name='Mylyn WikiText' version='3.0.19.201711172000'>
       <repositories size='2'>
-        <repository location='http://dist.springsource.com/release/TOOLS/update/e4.7/'/>
         <repository location='http://download.eclipse.org/releases/oxygen'/>
+        <repository location='http://dist.springsource.com/release/TOOLS/update/e4.7/'/>
       </repositories>
     </iu>
-    <iu id='org.nodeclipse.pluginslist.feature.feature.group' name='Nodeclipse Plugins List' version='1.0.2.201509250223'>
-      <repositories size='0'/>
-    </iu>
-    <iu id='org.python.pydev.feature.feature.group' name='PyDev for Eclipse' version='6.3.1.201802272029'>
+    <iu id='org.python.pydev.feature.feature.group' name='PyDev for Eclipse' version='6.3.2.201803171248'>
       <repositories size='1'>
         <repository location='http://www.pydev.org/updates/'/>
       </repositories>
@@ -351,10 +338,9 @@
         <repository location='http://download.eclipse.org/releases/oxygen'/>
       </repositories>
     </iu>
-    <iu id='org.eclipse.linuxtools.rpm.feature.group' name='RPM Tools' version='6.2.0.201712060514'>
-      <repositories size='2'>
+    <iu id='org.eclipse.linuxtools.rpm.feature.group' name='RPM Tools' version='6.2.1.201803061555'>
+      <repositories size='1'>
         <repository location='http://download.eclipse.org/releases/oxygen'/>
-        <repository location='http://download.eclipse.org/linuxtools/update'/>
       </repositories>
     </iu>
     <iu id='org.sonarlint.eclipse.feature.feature.group' name='SonarLint for Eclipse' version='3.4.0.201803051332'>
@@ -363,90 +349,86 @@
       </repositories>
     </iu>
     <iu id='com.github.spotbugs.plugin.eclipse.feature.group' name='SpotBugs' version='3.1.2.r201802250230-59118d9'>
-      <repositories size='1'>
-        <repository location='https://spotbugs.github.io/eclipse/'/>
-      </repositories>
+      <repositories size='0'/>
     </iu>
-    <iu id='org.springsource.ide.eclipse.dashboard.feature.group' name='Spring Dashboard (optional)' version='3.9.2.201712210818-RELEASE'>
+    <iu id='org.springsource.ide.eclipse.dashboard.feature.group' name='Spring Dashboard (optional)' version='3.9.3.201803200759-RELEASE'>
       <repositories size='1'>
         <repository location='http://dist.springsource.com/release/TOOLS/update/e4.7/'/>
       </repositories>
     </iu>
-    <iu id='org.springframework.ide.eclipse.aeri.feature.feature.group' name='Spring IDE AERI Integration' version='3.9.2.201712210913-RELEASE'>
+    <iu id='org.springframework.ide.eclipse.aeri.feature.feature.group' name='Spring IDE AERI Integration' version='3.9.3.201803200843-RELEASE'>
       <repositories size='1'>
         <repository location='http://dist.springsource.com/release/TOOLS/update/e4.7/'/>
       </repositories>
     </iu>
-    <iu id='org.springframework.ide.eclipse.ajdt.feature.feature.group' name='Spring IDE AJDT Integration (optional)' version='3.9.2.201712210913-RELEASE'>
+    <iu id='org.springframework.ide.eclipse.ajdt.feature.feature.group' name='Spring IDE AJDT Integration (optional)' version='3.9.3.201803200843-RELEASE'>
       <repositories size='1'>
         <repository location='http://dist.springsource.com/release/TOOLS/update/e4.7/'/>
       </repositories>
     </iu>
-    <iu id='org.springframework.ide.eclipse.aop.feature.feature.group' name='Spring IDE AOP Extension (optional)' version='3.9.2.201712210913-RELEASE'>
+    <iu id='org.springframework.ide.eclipse.aop.feature.feature.group' name='Spring IDE AOP Extension (optional)' version='3.9.3.201803200843-RELEASE'>
       <repositories size='1'>
         <repository location='http://dist.springsource.com/release/TOOLS/update/e4.7/'/>
       </repositories>
     </iu>
-    <iu id='org.springframework.ide.eclipse.autowire.feature.feature.group' name='Spring IDE Autowire Extension (optional)' version='3.9.2.201712210913-RELEASE'>
+    <iu id='org.springframework.ide.eclipse.autowire.feature.feature.group' name='Spring IDE Autowire Extension (optional)' version='3.9.3.201803200843-RELEASE'>
       <repositories size='1'>
         <repository location='http://dist.springsource.com/release/TOOLS/update/e4.7/'/>
       </repositories>
     </iu>
-    <iu id='org.springframework.ide.eclipse.batch.feature.feature.group' name='Spring IDE Batch Extension (optional)' version='3.9.2.201712210913-RELEASE'>
+    <iu id='org.springframework.ide.eclipse.batch.feature.feature.group' name='Spring IDE Batch Extension (optional)' version='3.9.3.201803200843-RELEASE'>
       <repositories size='1'>
         <repository location='http://dist.springsource.com/release/TOOLS/update/e4.7/'/>
       </repositories>
     </iu>
-    <iu id='org.springframework.ide.eclipse.boot.dash.feature.feature.group' name='Spring IDE Boot Microservices Dash' version='3.9.2.201712210913-RELEASE'>
+    <iu id='org.springframework.ide.eclipse.boot.dash.feature.feature.group' name='Spring IDE Boot Microservices Dash' version='3.9.3.201803200843-RELEASE'>
       <repositories size='1'>
         <repository location='http://dist.springsource.com/release/TOOLS/update/e4.7/'/>
       </repositories>
     </iu>
-    <iu id='org.springframework.ide.eclipse.feature.feature.group' name='Spring IDE Core (required)' version='3.9.2.201712210913-RELEASE'>
+    <iu id='org.springframework.ide.eclipse.feature.feature.group' name='Spring IDE Core (required)' version='3.9.3.201803200843-RELEASE'>
       <repositories size='1'>
         <repository location='http://dist.springsource.com/release/TOOLS/update/e4.7/'/>
       </repositories>
     </iu>
-    <iu id='org.springframework.ide.eclipse.integration.feature.feature.group' name='Spring IDE Integration, Flex and Web Services Extension (optional)' version='3.9.2.201712210913-RELEASE'>
+    <iu id='org.springframework.ide.eclipse.integration.feature.feature.group' name='Spring IDE Integration, Flex and Web Services Extension (optional)' version='3.9.3.201803200843-RELEASE'>
       <repositories size='1'>
         <repository location='http://dist.springsource.com/release/TOOLS/update/e4.7/'/>
       </repositories>
     </iu>
-    <iu id='org.springframework.ide.eclipse.maven.feature.feature.group' name='Spring IDE Maven Support' version='3.9.2.201712210913-RELEASE'>
+    <iu id='org.springframework.ide.eclipse.maven.feature.feature.group' name='Spring IDE Maven Support' version='3.9.3.201803200843-RELEASE'>
       <repositories size='1'>
         <repository location='http://dist.springsource.com/release/TOOLS/update/e4.7/'/>
       </repositories>
     </iu>
-    <iu id='org.springframework.ide.eclipse.mylyn.feature.feature.group' name='Spring IDE Mylyn Integration (optional)' version='3.9.2.201712210913-RELEASE'>
+    <iu id='org.springframework.ide.eclipse.mylyn.feature.feature.group' name='Spring IDE Mylyn Integration (optional)' version='3.9.3.201803200843-RELEASE'>
       <repositories size='1'>
         <repository location='http://dist.springsource.com/release/TOOLS/update/e4.7/'/>
       </repositories>
     </iu>
-    <iu id='org.springframework.ide.eclipse.security.feature.feature.group' name='Spring IDE Security Extension (optional)' version='3.9.2.201712210913-RELEASE'>
+    <iu id='org.springframework.ide.eclipse.security.feature.feature.group' name='Spring IDE Security Extension (optional)' version='3.9.3.201803200843-RELEASE'>
       <repositories size='1'>
         <repository location='http://dist.springsource.com/release/TOOLS/update/e4.7/'/>
       </repositories>
     </iu>
-    <iu id='org.springframework.ide.eclipse.data.feature.feature.group' name='Spring IDE Spring Data Support' version='3.9.2.201712210913-RELEASE'>
+    <iu id='org.springframework.ide.eclipse.data.feature.feature.group' name='Spring IDE Spring Data Support' version='3.9.3.201803200843-RELEASE'>
       <repositories size='1'>
         <repository location='http://dist.springsource.com/release/TOOLS/update/e4.7/'/>
       </repositories>
     </iu>
-    <iu id='org.springframework.ide.eclipse.webflow.feature.feature.group' name='Spring IDE Web Flow Extension (optional)' version='3.9.2.201712210913-RELEASE'>
+    <iu id='org.springframework.ide.eclipse.webflow.feature.feature.group' name='Spring IDE Web Flow Extension (optional)' version='3.9.3.201803200843-RELEASE'>
       <repositories size='1'>
         <repository location='http://dist.springsource.com/release/TOOLS/update/e4.7/'/>
       </repositories>
     </iu>
     <iu id='org.eclipse.tm.terminal.feature.feature.group' name='TM Terminal' version='4.3.0.201706140544'>
-      <repositories size='2'>
+      <repositories size='1'>
         <repository location='http://download.eclipse.org/releases/oxygen'/>
-        <repository location='http://download.eclipse.org/tm/terminal/updates/4.3'/>
       </repositories>
     </iu>
     <iu id='org.eclipse.tm.terminal.connector.cdtserial.feature.feature.group' name='TM Terminal Serial Connector Extensions' version='4.3.0.201706140544'>
-      <repositories size='2'>
+      <repositories size='1'>
         <repository location='http://download.eclipse.org/releases/oxygen'/>
-        <repository location='http://download.eclipse.org/tm/terminal/updates/4.3'/>
       </repositories>
     </iu>
     <iu id='com.android.ide.eclipse.gldebugger.feature.feature.group' name='Tracer for OpenGL ES' version='23.0.7.2120684'>
@@ -454,10 +436,9 @@
         <repository location='https://dl-ssl.google.com/android/eclipse/'/>
       </repositories>
     </iu>
-    <iu id='org.eclipse.linuxtools.valgrind.feature.group' name='Valgrind Tools Integration' version='6.2.0.201712060514'>
-      <repositories size='2'>
+    <iu id='org.eclipse.linuxtools.valgrind.feature.group' name='Valgrind Tools Integration' version='6.2.1.201803061555'>
+      <repositories size='1'>
         <repository location='http://download.eclipse.org/releases/oxygen'/>
-        <repository location='http://download.eclipse.org/linuxtools/update'/>
       </repositories>
     </iu>
     <iu id='net.sourceforge.vrapper.feature.group' name='Vrapper' version='0.72.0'>
