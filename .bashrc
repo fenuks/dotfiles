@@ -45,6 +45,11 @@ alias spacemacs='HOME=~/.spacemacs.d/ emacs'
 alias steam-wine='wine ${HOME}/.wine/drive_c/Program\ Files\ \(x86\)/Steam/Steam.exe -no-cef-sandbox -opengl -fullscreenopengl'
 alias vim='nvim'
 alias yaourt-vcs="yaourt -Su --devel"
+# faster edition of common files
+alias vb='vim ~/.bashrc'
+alias vd='vim docker-compose.yml'
+alias vm='vim Makefile'
+alias vv='vim ~/.config/nvim/init.vim'
 
 # export PAGER="/usr/local/bin/gvim -f -R -"
 export BROWSER=/usr/bin/firefox
