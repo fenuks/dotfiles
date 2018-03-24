@@ -491,6 +491,8 @@ augroup filetype_js
     autocmd FileType javascript nnoremap <buffer> <silent> gd :TernDef<CR>
     autocmd FileType javascript nnoremap <buffer> <silent> <Leader>u :TernRefs<CR>
     autocmd FileType javascript nnoremap <buffer> <silent> <Leader>r :TernRename<CR>
+    autocmd Filetype javascript setlocal path=.,src,node_modules
+    autocmd Filetype javascript setlocal suffixesadd=.js,.jsx
 augroup END
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
 let g:javascript_plugin_jsdoc = 1
