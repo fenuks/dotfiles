@@ -439,9 +439,9 @@ command! -nargs=* Agp
 
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
-noremap <Leader>f :Files<CR>
-noremap <Leader>t :Tags<CR>
-noremap <Leader>T :BTags<CR>
+noremap <Leader>of :Files<CR>
+noremap <Leader>ot :Tags<CR>
+noremap <Leader>oT :BTags<CR>
 noremap <Leader>bl :Buffers<CR>
 
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
