@@ -49,6 +49,7 @@ alias yaourt-vcs="yaourt -Su --devel"
 alias vb='vim ~/.bashrc'
 alias vd='vim docker-compose.yml'
 alias vm='vim Makefile'
+alias vp='vim PKGBUILD'
 alias vv='vim ~/.config/nvim/init.vim'
 
 # export PAGER="/usr/local/bin/gvim -f -R -"
