@@ -170,6 +170,7 @@ nnoremap [oh :set nohlsearch<CR>
 nnoremap [oi :set noignorecase<CR>
 nnoremap [ol :set nolist<CR>
 nnoremap [on :set nonumber<CR>
+nnoremap [op :set nopaste<CR>
 nnoremap [or :set norelativenumber<CR>
 nnoremap [os :set nospell<CR>
 nnoremap [ou :set nocursorcolumn<CR>
@@ -184,6 +185,7 @@ nnoremap ]oh :set hlsearch<CR>
 nnoremap ]oi :set ignorecase<CR>
 nnoremap ]ol :set list<CR>
 nnoremap ]on :set number<CR>
+nnoremap ]op :set nopaste<CR>
 nnoremap ]or :set relativenumber<CR>
 nnoremap ]os :set spell<CR>
 nnoremap ]ou :set cursorcolumn<CR>
@@ -198,6 +200,7 @@ nnoremap =oh :set hlsearch!<CR>
 nnoremap =oi :set ignorecase!<CR>
 nnoremap =ol :set list!<CR>
 nnoremap =on :set number!<CR>
+nnoremap =op :set paste!<CR>
 nnoremap =or :set relativenumber!<CR>
 nnoremap =os :set spell!<CR>
 nnoremap =ou :set cursorcolumn!<CR>
@@ -283,7 +286,7 @@ nnoremap <silent> <Leader>lT :call LanguageClient_textDocument_documentSymbol()<
 nnoremap <silent> <Leader>lu :call LanguageClient_textDocument_references()<CR>
 nnoremap <silent> <Leader>lq :call LanguageClient_textDocument_formatting()<CR>
 
-" Plug 'Valloric/YouCompleteMe'
+ Plug 'Valloric/YouCompleteMe'
 " Plug 'lifepillar/vim-mucomplete'
 " Plug 'maralla/completor.vim'
 if has('nvim')
