@@ -286,7 +286,11 @@ nnoremap <silent> <Leader>lT :call LanguageClient_textDocument_documentSymbol()<
 nnoremap <silent> <Leader>lu :call LanguageClient_textDocument_references()<CR>
 nnoremap <silent> <Leader>lq :call LanguageClient_textDocument_formatting()<CR>
 
- Plug 'Valloric/YouCompleteMe'
+Plug 'Valloric/YouCompleteMe', { 'for': 'java' }
+let g:ycm_autoclose_preview_window_after_completion=1
+let g:ycm_semantic_triggers =  {
+  \   'java' : ['.', '@'],
+  \ }
 " Plug 'lifepillar/vim-mucomplete'
 " Plug 'maralla/completor.vim'
 if has('nvim')
@@ -318,6 +322,7 @@ if has('nvim')
 
     " NVIM COMPLETION MANAGER
     Plug 'roxma/nvim-completion-manager'
+    let g:cm_matcher={'module': 'cm_matchers.abbrev_matcher', 'case': 'smartcase'}
 else
     Plug 'Shougo/neocomplete.vim'
     let g:neocomplete#enable_at_startup = 1
@@ -442,9 +447,9 @@ command! -nargs=* Agp
 
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
-noremap <Leader>of :Files<CR>
-noremap <Leader>ot :Tags<CR>
-noremap <Leader>oT :BTags<CR>
+noremap <Leader>gf :Files<CR>
+noremap <Leader>gt :Tags<CR>
+noremap <Leader>gT :BTags<CR>
 noremap <Leader>bl :Buffers<CR>
 
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
@@ -551,24 +556,33 @@ augroup END
 Plug '/usr/share/vim/vimfiles/plugin/eclim.vim', { 'dir': '/usr/share/vim/vimfiles/', 'for': 'java' }
 augroup filetype_java
     autocmd!
-    nnoremap <buffer> <silent> <Leader>ii <Plug>(JavaComplete-Imports-AddSmart)
-    nnoremap <buffer> <silent> <Leader>iI <Plug>(JavaComplete-Imports-Add)
-    nnoremap <buffer> <silent> <Leader>ia <Plug>(JavaComplete-Imports-AddMissing)
-    nnoremap <buffer> <silent> <Leader>id <Plug>(JavaComplete-Imports-RemoveUnused)
+    autocmd FileType java nnoremap <buffer> <silent> <Leader>ii <Plug>(JavaComplete-Imports-AddSmart)
+    autocmd FileType java nnoremap <buffer> <silent> <Leader>iI <Plug>(JavaComplete-Imports-Add)
+    autocmd FileType java nnoremap <buffer> <silent> <Leader>ia <Plug>(JavaComplete-Imports-AddMissing)
+    autocmd FileType java nnoremap <buffer> <silent> <Leader>id <Plug>(JavaComplete-Imports-RemoveUnused)
 
-    nnoremap <buffer> <silent> <Leader>am <Plug>(JavaComplete-Generate-AbstractMethods)
-    nnoremap <buffer> <silent> <Leader>aA <Plug>(JavaComplete-Generate-Accessors)
-    nnoremap <buffer> <silent> <Leader>as <Plug>(JavaComplete-Generate-AccessorSetter)
-    nnoremap <buffer> <silent> <Leader>ag <Plug>(JavaComplete-Generate-AccessorGetter)
-    nnoremap <buffer> <silent> <Leader>aa <Plug>(JavaComplete-Generate-AccessorSetterGetter)
-    nnoremap <buffer> <silent> <Leader>ats <Plug>(JavaComplete-Generate-ToString)
-    nnoremap <buffer> <silent> <Leader>aeq <Plug>(JavaComplete-Generate-EqualsAndHashCode)
-    nnoremap <buffer> <silent> <Leader>aI <Plug>(JavaComplete-Generate-Constructor)
-    nnoremap <buffer> <silent> <Leader>ai <Plug>(JavaComplete-Generate-DefaultConstructor)
+    autocmd FileType java nnoremap <buffer> <silent> <Leader>am <Plug>(JavaComplete-Generate-AbstractMethods)
+    autocmd FileType java nnoremap <buffer> <silent> <Leader>aA <Plug>(JavaComplete-Generate-Accessors)
+    autocmd FileType java nnoremap <buffer> <silent> <Leader>as <Plug>(JavaComplete-Generate-AccessorSetter)
+    autocmd FileType java nnoremap <buffer> <silent> <Leader>ag <Plug>(JavaComplete-Generate-AccessorGetter)
+    autocmd FileType java nnoremap <buffer> <silent> <Leader>aa <Plug>(JavaComplete-Generate-AccessorSetterGetter)
+    autocmd FileType java nnoremap <buffer> <silent> <Leader>ats <Plug>(JavaComplete-Generate-ToString)
+    autocmd FileType java nnoremap <buffer> <silent> <Leader>aeq <Plug>(JavaComplete-Generate-EqualsAndHashCode)
+    autocmd FileType java nnoremap <buffer> <silent> <Leader>aI <Plug>(JavaComplete-Generate-Constructor)
+    autocmd FileType java nnoremap <buffer> <silent> <Leader>ai <Plug>(JavaComplete-Generate-DefaultConstructor)
 
-    nnoremap <buffer> <silent> <Leader>ac <Plug>(JavaComplete-Generate-NewClass)
-    nnoremap <buffer> <silent> <Leader>aC <Plug>(JavaComplete-Generate-ClassInFile)
-    setlocal formatexpr=LanguageClient_textDocument_rangeFormatting()
+    autocmd FileType java nnoremap <buffer> <silent> <Leader>ac <Plug>(JavaComplete-Generate-NewClass)
+    autocmd FileType java nnoremap <buffer> <silent> <Leader>aC <Plug>(JavaComplete-Generate-ClassInFile)
+    autocmd FileType java setlocal formatexpr=LanguageClient_textDocument_rangeFormatting()
+
+    autocmd FileType java call cm#disable_for_buffer()
+    autocmd FileType java nnoremap <buffer> <Leader>cf :YcmCompleter FixIt<CR>
+    autocmd FileType java nnoremap <buffer> gd :YcmCompleter GoTo<CR>
+    autocmd FileType java nnoremap <buffer> K :YcmCompleter GetDoc<CR>
+    autocmd FileType java nnoremap <buffer> gq :YcmCompleter Format<CR>
+    autocmd FileType java vnoremap <buffer> gq :YcmCompleter Format<CR>
+    autocmd FileType java nnoremap <buffer> <Leader>gu :YcmCompleter GoToReferences<CR>
+    autocmd FileType java nnoremap <buffer> <Leader>rn :YcmCompleter RefactorRename 
 augroup END
 
 "##### Scala
