@@ -393,6 +393,7 @@ nnoremap <silent> <Leader>cn <Plug>(ale_next_wrap)
 Plug 'neomake/neomake', { 'on': ['Neomake', 'NeomakeProject'] }
 let g:neomake_open_list = 2
 let g:airline#extensions#neomake#enabled = 0
+
 Plug 'janko-m/vim-test', { 'on': ['TestNearest', 'TestFile', 'TestSuite', 'TestLast', 'TestVisit'] }
 let test#strategy = 'neomake'
 nnoremap <silent> <leader>xn :TestNearest<CR>
@@ -553,9 +554,12 @@ augroup END
 "##### JVM
 "##### Java
 " Plug 'artur-shaik/vim-javacomplete2', { 'for': 'java' }
-Plug '/usr/share/vim/vimfiles/plugin/eclim.vim', { 'dir': '/usr/share/vim/vimfiles/', 'for': 'java' }
+" Plug '/usr/share/vim/vimfiles/plugin/eclim.vim', { 'dir': '/usr/share/vim/vimfiles/', 'for': 'java' }
+Plug 'mikelue/vim-maven-plugin', { 'on': ['Mvn', 'MvnNewMainFile'] }
 augroup filetype_java
     autocmd!
+    " autocmd FileType java setlocal makeprg=mvn errorformat='[%tRROR]\ %f:[%l]\ %m,%-G%.%#'
+
     autocmd FileType java nnoremap <buffer> <silent> <Leader>ii <Plug>(JavaComplete-Imports-AddSmart)
     autocmd FileType java nnoremap <buffer> <silent> <Leader>iI <Plug>(JavaComplete-Imports-Add)
     autocmd FileType java nnoremap <buffer> <silent> <Leader>ia <Plug>(JavaComplete-Imports-AddMissing)
@@ -573,7 +577,7 @@ augroup filetype_java
 
     autocmd FileType java nnoremap <buffer> <silent> <Leader>ac <Plug>(JavaComplete-Generate-NewClass)
     autocmd FileType java nnoremap <buffer> <silent> <Leader>aC <Plug>(JavaComplete-Generate-ClassInFile)
-    autocmd FileType java setlocal formatexpr=LanguageClient_textDocument_rangeFormatting()
+    " autocmd FileType java setlocal formatexpr=LanguageClient_textDocument_rangeFormatting()
 
     autocmd FileType java call cm#disable_for_buffer()
     autocmd FileType java nnoremap <buffer> <Leader>cf :YcmCompleter FixIt<CR>
