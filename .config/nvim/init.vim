@@ -261,7 +261,7 @@ let g:AutoPairsShortcutJump=''
 let g:AutoPairsShortcutBackInsert=''
 
 " ##### Code autocompletion
-Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'cargo build --release', 'for': ['haskell', 'javascript', 'rust', 'typescript', 'vue'] }
+Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'make release', 'for': ['haskell', 'javascript', 'rust', 'typescript', 'vue'] }
 let g:LanguageClient_serverCommands = {
     \ 'cpp': ['clangd'],
     \ 'haskell': ['hie', '--lsp'],
