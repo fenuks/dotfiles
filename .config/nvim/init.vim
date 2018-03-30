@@ -155,6 +155,7 @@ nnoremap ]T :<C-U>tlast<CR>
 nnoremap <Leader>bd :bdelete<CR>
 nnoremap <Leader>bh :hide<CR>
 nnoremap <Leader>bc :close<CR>
+nnoremap <Leader>bo :new<CR>:only<CR>
 
 function! Conflict(reverse)
   call search('^\(@@ .* @@\|[<=>|]\{7}[<=>|]\@!\)', a:reverse ? 'bW' : 'W')
@@ -286,7 +287,7 @@ nnoremap <silent> <Leader>lT :call LanguageClient_textDocument_documentSymbol()<
 nnoremap <silent> <Leader>lu :call LanguageClient_textDocument_references()<CR>
 nnoremap <silent> <Leader>lq :call LanguageClient_textDocument_formatting()<CR>
 
-Plug 'Valloric/YouCompleteMe', { 'for': 'java' }
+Plug 'Valloric/YouCompleteMe', { 'for': ['java', 'python'] }
 let g:ycm_autoclose_preview_window_after_completion=1
 let g:ycm_semantic_triggers =  {
   \   'java' : ['.', '@'],
@@ -380,13 +381,18 @@ nmap <Leader>ga <Plug>(EasyAlign)
 "Plug 'vim-syntastic/syntastic'
 Plug 'w0rp/ale'
 let g:ale_fixers = {
-\   'json': ['fixjson'],
+\   '': ['trim_whitespace'],
 \   'javascript': ['eslint'],
+\   'json': ['fixjson'],
+\   'python': ['yapf', 'isort']
 \}
 let g:airline#extensions#ale#enabled = 1
 nnoremap <Leader>cf :ALEFix<CR>
 nnoremap <silent> <Leader>cp <Plug>(ale_previous_wrap)
 nnoremap <silent> <Leader>cn <Plug>(ale_next_wrap)
+nnoremap <silent> <Leader>cn <Plug>(ale_next_wrap)
+nnoremap <silent> <Leader>co :lopen<CR>
+nnoremap <silent> <Leader>cO :lclose<CR>
 " let g:ale_open_list = 1 " conflicts with ultisnips jumping
 
 "##### Tasks
@@ -412,7 +418,7 @@ Plug 'arcticicestudio/nord-vim'
 "#### Version Control
 Plug 'sjl/gundo.vim', { 'on': 'GundoToggle' }
 Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
-nnoremap <Leader>u :UndotreeToggle<CR>
+nnoremap <Leader>vL :UndotreeToggle<CR>
 Plug 'mhinz/vim-signify', { 'on': 'SignifyToggle' } " shows which lines were added and such
 let g:signify_vcs_list=['git', 'hg']
 nmap <Leader>vl :SignifyToggle<CR>
@@ -448,10 +454,11 @@ command! -nargs=* Agp
 
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
-noremap <Leader>gf :Files<CR>
-noremap <Leader>gt :Tags<CR>
-noremap <Leader>gT :BTags<CR>
-noremap <Leader>bl :Buffers<CR>
+nnoremap <C-p> :Files<CR>
+nnoremap <Leader>gf :Files<CR>
+nnoremap <Leader>gt :Tags<CR>
+nnoremap <Leader>gT :BTags<CR>
+nnoremap <Leader>bl :Buffers<CR>
 
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 map <Leader>F :NERDTreeToggle<CR>
@@ -519,6 +526,8 @@ Plug 'othree/javascript-libraries-syntax.vim', { 'for': 'javascript' }
 augroup filetype_python
     autocmd!
     autocmd BufRead,BufNewFile *.recipe setfiletype python
+    autocmd FileType python call cm#disable_for_buffer()
+    autocmd FileType python nnoremap <buffer> <silent> <Leader>u :YcmCompleter GoToReferences<CR>
 augroup END
 
 Plug 'davidhalter/jedi-vim', { 'for': 'python' }
@@ -527,13 +536,13 @@ let g:jedi#goto_command = "gd"
 let g:jedi#goto_definitions_command = "gD"
 let g:jedi#rename_command = "<Leader>rn"
 let g:jedi#show_call_signatures = "2"
-let g:jedi#usages_command = "<Leader>u"
+" let g:jedi#usages_command = "<Leader>u"
 
 let g:jedi#completions_enabled = 0
 let g:jedi#completions_command = ""
 
 
-Plug 'python-rope/ropevim', { 'for': 'python' }
+" Plug 'python-rope/ropevim', { 'for': 'python' }
 let ropevim_enable_shortcuts = 0
 
 "##### Rust
