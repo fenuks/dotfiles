@@ -140,11 +140,15 @@ nnoremap ]b :<C-U>bnext<CR>
 nnoremap [B :<C-U>bfirst<CR>
 nnoremap ]B :<C-U>blast<CR>
 nnoremap [l :<C-U>lprevious<CR>
+nnoremap <C-k> :<C-U>lprevious<CR>
 nnoremap ]l :<C-U>lnext<CR>
+nnoremap <C-j> :<C-U>lnext<CR>
 nnoremap [L :<C-U>lfirst<CR>
 nnoremap ]L :<C-U>llast<CR>
 nnoremap [q :<C-U>cprevious<CR>
+nnoremap <C-h> :<C-U>cprevious<CR>
 nnoremap ]q :<C-U>cnext<CR>
+nnoremap <C-l> :<C-U>cnext<CR>
 nnoremap [Q :<C-U>cfirst<CR>
 nnoremap ]Q :<C-U>clast<CR>
 nnoremap [t gT
@@ -361,10 +365,10 @@ let g:airline#extensions#tabline#enabled = 1
 " gtags
 Plug 'easymotion/vim-easymotion'
 Plug 'fenuks/vim-uncommented'
-nmap <C-j> <Plug>(NextUncommented)
-nmap <C-k> <Plug>(PrevUncommented)
-" nnoremap <C-S-j> <Plug>(NextCommented)
-" nnoremap <C-S-k> <Plug>(PrevCommented)
+nmap <C-o> <Plug>(NextUncommented)
+nmap <C-i> <Plug>(PrevUncommented)
+" nmap <C-S-j> <Plug>(NextCommented)
+" nmap <C-S-k> <Plug>(PrevCommented)
 
 "##### Formatting
 Plug 'sbdchd/neoformat', { 'on': 'Neoformat' }
@@ -388,9 +392,9 @@ let g:ale_fixers = {
 \}
 let g:airline#extensions#ale#enabled = 1
 nnoremap <Leader>cf :ALEFix<CR>
-nnoremap <silent> <Leader>cp <Plug>(ale_previous_wrap)
-nnoremap <silent> <Leader>cn <Plug>(ale_next_wrap)
-nnoremap <silent> <Leader>cn <Plug>(ale_next_wrap)
+nmap <silent> <Leader>cp <Plug>(ale_previous_wrap)
+nmap <silent> <Leader>cn <Plug>(ale_next_wrap)
+nmap <silent> <Leader>cn <Plug>(ale_next_wrap)
 nnoremap <silent> <Leader>co :lopen<CR>
 nnoremap <silent> <Leader>cO :lclose<CR>
 " let g:ale_open_list = 1 " conflicts with ultisnips jumping
@@ -507,7 +511,7 @@ augroup filetype_js
     autocmd FileType javascript nnoremap <buffer> <silent> gd :TernDef<CR>
     autocmd FileType javascript nnoremap <buffer> <silent> <Leader>u :TernRefs<CR>
     autocmd FileType javascript nnoremap <buffer> <silent> <Leader>r :TernRename<CR>
-    autocmd Filetype javascript setlocal path=.,src,node_modules
+    " autocmd Filetype javascript setlocal path=.,src,node_modules
     autocmd Filetype javascript setlocal suffixesadd=.js,.jsx
 augroup END
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
@@ -527,7 +531,7 @@ augroup filetype_python
     autocmd!
     autocmd BufRead,BufNewFile *.recipe setfiletype python
     autocmd FileType python call cm#disable_for_buffer()
-    autocmd FileType python nnoremap <buffer> <silent> <Leader>u :YcmCompleter GoToReferences<CR>
+    autocmd FileType python nnoremap <buffer> <silent> <Leader>U :YcmCompleter GoToReferences<CR>
 augroup END
 
 Plug 'davidhalter/jedi-vim', { 'for': 'python' }
@@ -536,7 +540,7 @@ let g:jedi#goto_command = "gd"
 let g:jedi#goto_definitions_command = "gD"
 let g:jedi#rename_command = "<Leader>rn"
 let g:jedi#show_call_signatures = "2"
-" let g:jedi#usages_command = "<Leader>u"
+let g:jedi#usages_command = "<Leader>u"
 
 let g:jedi#completions_enabled = 0
 let g:jedi#completions_command = ""
