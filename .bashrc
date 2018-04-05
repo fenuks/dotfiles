@@ -48,8 +48,13 @@ alias yaourt-vcs="yaourt -Su --devel"
 # faster edition of common files
 alias vb='vim ~/.bashrc'
 alias vd='vim docker-compose.yml'
+alias vD='vim Dockerfile'
+alias vh='sudoedit /etc/hosts'
 alias vm='vim Makefile'
 alias vp='vim PKGBUILD'
+alias vR='sudoedit /etc/resolv.conf'
+alias vr='vim requirements.txt'
+alias vrd='vim requirements-dev.txt'
 alias vv='vim ~/.config/nvim/init.vim'
 
 # export PAGER="/usr/local/bin/gvim -f -R -"

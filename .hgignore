@@ -8,9 +8,12 @@ syntax: glob
 *.o
 *.a
 *.out
+# python files
 *.pyc
+.eggs/
 # eclipse files
 .project
 .settings/
 .classpath
 .sts4-cache/
+.metadata/

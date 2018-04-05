@@ -365,10 +365,8 @@ let g:airline#extensions#tabline#enabled = 1
 " gtags
 Plug 'easymotion/vim-easymotion'
 Plug 'fenuks/vim-uncommented'
-nmap <C-o> <Plug>(NextUncommented)
-nmap <C-i> <Plug>(PrevUncommented)
-" nmap <C-S-j> <Plug>(NextCommented)
-" nmap <C-S-k> <Plug>(PrevCommented)
+" nmap <C-)> <Plug>(NextUncommented)
+" nmap <C-(> <Plug>(PrevUncommented)
 
 "##### Formatting
 Plug 'sbdchd/neoformat', { 'on': 'Neoformat' }
