@@ -1,9 +1,12 @@
+scriptencoding utf-8
 " editor behavior
 set t_Co=256
 set history=1000 " Number of things to remember in history."
 " set textwidth=80 " max line width
 set formatprg=par " gq formatting program
 set formatoptions+=j " more intelligent j joining
+set linebreak " breaklines *nicely*, virtually
+" set showbreak='@' " show line continuation sign
 " formatting formatprg, formatexpr, formatoptions
 set whichwrap=h,l " specify keys that can wrap next line
 set ignorecase " Do case insensitive matching with
@@ -27,7 +30,6 @@ set wildmenu " enhanced command-line mode
 set wildignore=*.swp,*.bak,*.pyc,*.class,*.git
 set lazyredraw " redraw only at the end of the macro
 set hidden " allow background buffers without saving
-set linebreak " breaklines *nicely*
 set spelllang=en_gb,pl
 " set breakat-=_ " don't break at _
 " diff mode
@@ -66,7 +68,7 @@ set title " update terminal title
 set ruler " show line position on bottom ruler
 set cmdwinheight=20 " set commandline window height
 set listchars=tab:▸\ ,eol:¬,trail:·
-let mapleader = ","
+let g:mapleader = ','
 
 if has('nvim')
     set termguicolors " use trucolor
@@ -145,12 +147,16 @@ nnoremap ]l :<C-U>lnext<CR>
 nnoremap <C-j> :<C-U>lnext<CR>
 nnoremap [L :<C-U>lfirst<CR>
 nnoremap ]L :<C-U>llast<CR>
+nnoremap =l :<C-U>lwindow<CR>
+nnoremap =L :<C-U>lclose<CR>
 nnoremap [q :<C-U>cprevious<CR>
 nnoremap <C-h> :<C-U>cprevious<CR>
 nnoremap ]q :<C-U>cnext<CR>
 nnoremap <C-l> :<C-U>cnext<CR>
 nnoremap [Q :<C-U>cfirst<CR>
 nnoremap ]Q :<C-U>clast<CR>
+nnoremap =q :<C-U>cwindow<CR>
+nnoremap =Q :<C-U>cclose<CR>
 nnoremap [t gT
 nnoremap ]t gt
 nnoremap [T :<C-U>tfirst<CR>
@@ -403,7 +409,7 @@ let g:neomake_open_list = 2
 let g:airline#extensions#neomake#enabled = 0
 
 Plug 'janko-m/vim-test', { 'on': ['TestNearest', 'TestFile', 'TestSuite', 'TestLast', 'TestVisit'] }
-let test#strategy = 'neomake'
+let g:test#strategy = 'neomake'
 nnoremap <silent> <leader>xn :TestNearest<CR>
 nnoremap <silent> <leader>xf :TestFile<CR>
 nnoremap <silent> <leader>xa :TestSuite<CR>
@@ -464,7 +470,7 @@ nnoremap <Leader>bl :Buffers<CR>
 
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 map <Leader>F :NERDTreeToggle<CR>
-let NERDTreeIgnore=['\.pyc$', '\~$']
+let g:NERDTreeIgnore=['\.pyc$', '\~$']
 
 Plug 'mhinz/vim-grepper', { 'on': ['Grepper', '<Plug>(GrepperOperator)'] }
 " let g:grepper.highlight = 1
@@ -474,6 +480,7 @@ nnoremap <Leader>s :Grepper -tool ag<CR>
 " Plug 'sheerun/vim-polyglot'
 " let g:polyglot_disabled = ['python']
 " ##### VIML
+Plug 'junegunn/vader.vim', { 'on': 'Vader' }
 augroup viml
     autocmd!
     autocmd FileType vim nnoremap <buffer> <silent> K :help <C-r><C-w><CR>
@@ -502,8 +509,8 @@ Plug 'ap/vim-css-color', { 'for': ['css', 'scss'] }
 
 "##### JS
 Plug 'ternjs/tern_for_vim', { 'for': 'javascript' }
-let g:tern#command = ["tern"]
-let g:tern#arguments = ["--persistent"]
+let g:tern#command = ['tern']
+let g:tern#arguments = ['--persistent']
 augroup filetype_js
     autocmd!
     autocmd FileType javascript nnoremap <buffer> <silent> gd :TernDef<CR>
@@ -533,19 +540,19 @@ augroup filetype_python
 augroup END
 
 Plug 'davidhalter/jedi-vim', { 'for': 'python' }
-let g:jedi#completions_command = "<C-space>"
-let g:jedi#goto_command = "gd"
-let g:jedi#goto_definitions_command = "gD"
-let g:jedi#rename_command = "<Leader>rn"
-let g:jedi#show_call_signatures = "2"
-let g:jedi#usages_command = "<Leader>u"
+let g:jedi#completions_command = '<C-space>'
+let g:jedi#goto_command = 'gd'
+let g:jedi#goto_definitions_command = 'gD'
+let g:jedi#rename_command = '<Leader>rn'
+let g:jedi#show_call_signatures = '2'
+let g:jedi#usages_command = '<Leader>u'
 
 let g:jedi#completions_enabled = 0
-let g:jedi#completions_command = ""
+let g:jedi#completions_command = ''
 
 
 " Plug 'python-rope/ropevim', { 'for': 'python' }
-let ropevim_enable_shortcuts = 0
+let g:ropevim_enable_shortcuts = 0
 
 "##### Rust
 Plug 'rust-lang/rust.vim', { 'for': 'rust' }
@@ -597,7 +604,7 @@ augroup filetype_java
     autocmd FileType java nnoremap <buffer> gq :YcmCompleter Format<CR>
     autocmd FileType java vnoremap <buffer> gq :YcmCompleter Format<CR>
     autocmd FileType java nnoremap <buffer> <Leader>gu :YcmCompleter GoToReferences<CR>
-    autocmd FileType java nnoremap <buffer> <Leader>rn :YcmCompleter RefactorRename 
+    autocmd FileType java nnoremap <buffer> <Leader>rn :YcmCompleter RefactorRename
 augroup END
 
 "##### Scala
@@ -625,12 +632,13 @@ augroup natural_language
     autocmd FileType hgcommit setlocal spell
     autocmd FileType org setlocal spell
     autocmd FileType text setlocal commentstring=#\ %s
+    autocmd FileType help setlocal spell
 augroup END
 
 call plug#end()
 
 if has('gui_running')
-    let g:solarized_diffmode="high"
+    let g:solarized_diffmode='high'
     colorscheme solarized
     set lines=50 columns=140
     set guifont=Fira\ Code
