@@ -68,7 +68,7 @@ set title " update terminal title
 set ruler " show line position on bottom ruler
 set cmdwinheight=20 " set commandline window height
 set listchars=tab:▸\ ,eol:¬,trail:·
-let g:mapleader = ','
+let mapleader = ','
 
 if has('nvim')
     set termguicolors " use trucolor
@@ -218,6 +218,11 @@ nnoremap =ou :set cursorcolumn!<CR>
 " nnoremap =ov :set virtualedit=""<CR>
 nnoremap =ow :set wrap!<CR>
 nnoremap =ox :set cursorline! cursorcolumn!<CR>
+nnoremap =ofd :setlocal foldmethod=diff<CR>
+nnoremap =ofi :setlocal foldmethod=indent<CR>
+nnoremap =ofm :setlocal foldmethod=manual<CR>
+nnoremap =ofm :setlocal foldmethod=marker<CR>
+nnoremap =ofs :setlocal foldmethod=syntax<CR>
 
 nnoremap [<CR> O<ESC>
 nnoremap ]<CR> o<ESC>
@@ -297,7 +302,7 @@ nnoremap <silent> <Leader>lT :call LanguageClient_textDocument_documentSymbol()<
 nnoremap <silent> <Leader>lu :call LanguageClient_textDocument_references()<CR>
 nnoremap <silent> <Leader>lq :call LanguageClient_textDocument_formatting()<CR>
 
-Plug 'Valloric/YouCompleteMe', { 'for': ['java', 'python'] }
+Plug 'Valloric/YouCompleteMe', { 'for': ['java'] }
 let g:ycm_autoclose_preview_window_after_completion=1
 let g:ycm_semantic_triggers =  {
   \   'java' : ['.', '@'],
@@ -517,6 +522,7 @@ augroup filetype_js
     autocmd FileType javascript nnoremap <buffer> <silent> <Leader>u :TernRefs<CR>
     autocmd FileType javascript nnoremap <buffer> <silent> <Leader>r :TernRename<CR>
     " autocmd Filetype javascript setlocal path=.,src,node_modules
+    autocmd FileType javascript setlocal softtabstop=2 shiftwidth=2
     autocmd Filetype javascript setlocal suffixesadd=.js,.jsx
 augroup END
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
@@ -535,7 +541,7 @@ Plug 'othree/javascript-libraries-syntax.vim', { 'for': 'javascript' }
 augroup filetype_python
     autocmd!
     autocmd BufRead,BufNewFile *.recipe setfiletype python
-    autocmd FileType python call cm#disable_for_buffer()
+    " autocmd FileType python call cm#disable_for_buffer()
     autocmd FileType python nnoremap <buffer> <silent> <Leader>U :YcmCompleter GoToReferences<CR>
 augroup END
 
