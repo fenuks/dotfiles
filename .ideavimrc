@@ -9,6 +9,7 @@ inoremap <silent> <A-p> <Esc>ddp
 vnoremap <silent> <A-n> dkPgv=gv
 vnoremap <silent> <A-p> dpgv=gv
 inoremap <C-j> <CR>
+let mapleader=','
 " IdeaVim stuff
 set vim-surround
 nnoremap gd :action GotoTypeDeclaration<CR>

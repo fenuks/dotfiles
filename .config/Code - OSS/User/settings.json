@@ -68,11 +68,15 @@
         "suppressGitVersionWarning": false,
         "suppressLineUncommittedWarning": false,
         "suppressNoRepositoryWarning": false,
+        "suppressResultsExplorerNotice": false,
+        "suppressShowKeyBindingsNotice": true,
         "suppressUpdateNotice": false,
         "suppressWelcomeNotice": true
     },
-    "gitlens.keymap": "alternate",
-    "java.jdt.ls.vmargs": "-noverify -Xmx1G -XX:+UseG1GC -XX:+UseStringDeduplication -javaagent:\"/usr/share/java/lombok/lombok.jar\" -Xbootclasspath/a:\"/usr/share/java/lombok/lombok.jar\" -javaagent:\"/home/rkozicki/.vscode/extensions/GabrielBB.vscode-lombok-0.9.2/server/lombok.jar\" -Xbootclasspath/a:\"/home/rkozicki/.vscode/extensions/GabrielBB.vscode-lombok-0.9.2/server/lombok.jar\""
+    "gitlens.keymap": "chorded",
+    "java.jdt.ls.vmargs": "-noverify -Xmx1G -XX:+UseG1GC -XX:+UseStringDeduplication -javaagent:\"/usr/share/java/lombok/lombok.jar\" -Xbootclasspath/a:\"/usr/share/java/lombok/lombok.jar\" -javaagent:\"/home/rkozicki/.vscode/extensions/GabrielBB.vscode-lombok-0.9.2/server/lombok.jar\" -Xbootclasspath/a:\"/home/rkozicki/.vscode/extensions/GabrielBB.vscode-lombok-0.9.2/server/lombok.jar\"",
+    "gitlens.advanced.telemetry.enabled": false,
+    "sonarlint.disableTelemetry": true
     // "editor.formatOnType": true,
     // "editor.formatOnPaste": true,
     // "editor.autoIndent": true
