@@ -1,4 +1,4 @@
-scriptencoding utf-8
+scriptencoding utf-8 
 " editor behavior
 set t_Co=256
 set history=1000 " Number of things to remember in history."
@@ -453,7 +453,8 @@ Plug 'gregsexton/gitv', {'on': 'Gitv'}
 nnoremap <Leader>vg :Gitv<CR>
 Plug 'junegunn/gv.vim', {'on': 'GV'}
 nnoremap <Leader>vG :GV<CR>
-Plug 'jreybert/vimagit'
+Plug 'jreybert/vimagit', { 'on': 'Magit' }
+nnoremap <Leader>vM :Magit<CR>
 "HG
 Plug 'ludovicchabant/vim-lawrencium'
 " Plug 'jlfwong/vim-mercenary'
