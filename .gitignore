@@ -16,3 +16,7 @@ CMakeCache.txt
 *.autosave
 compile_commands.json
 .idea/
+*.lock
+*.temp
+.ropeproject/
+.mypy_cache/

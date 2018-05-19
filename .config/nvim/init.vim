@@ -292,6 +292,7 @@ let g:LanguageClient_serverCommands = {
 " \ 'cpp': ['cquery', '--language-server', '--log-file=/tmp/cq.log'],
 
 let g:LanguageClient_autoStart = 1
+" let g:LanguageClient_loggingLevel = 'DEBUG'
 " setlocal omnifunc=LanguageClient#complete
 
 nnoremap <silent> <Leader>lk :call LanguageClient_textDocument_hover()<CR>
@@ -301,6 +302,25 @@ nnoremap <silent> <Leader>lt :call LanguageClient_workspace_symbol()<CR>
 nnoremap <silent> <Leader>lT :call LanguageClient_textDocument_documentSymbol()<CR>
 nnoremap <silent> <Leader>lu :call LanguageClient_textDocument_references()<CR>
 nnoremap <silent> <Leader>lq :call LanguageClient_textDocument_formatting()<CR>
+
+" Plug 'prabirshrestha/async.vim'
+" Plug 'prabirshrestha/vim-lsp'
+let g:lsp_signs_enabled = 1         " enable signs
+let g:lsp_diagnostics_echo_cursor = 1 " enable echo under cursor when in normal mode
+let g:lsp_log_verbose = 1
+let g:lsp_log_file = expand('/tmp/vim-lsp.log')
+
+" augroup vim_lsp
+"     autocmd!
+"     autocmd User lsp_setup call lsp#register_server({
+"         \ 'name': 'rls',
+"         \ 'cmd': {server_info->['rustup', 'run', 'nightly', 'rls']},
+"         \ 'whitelist': ['rust'],
+"         \ })
+"
+"     autocmd FileType rust setlocal omnifunc=lsp#complete
+" augroup END
+
 
 Plug 'Valloric/YouCompleteMe', { 'for': ['java'] }
 let g:ycm_autoclose_preview_window_after_completion=1
@@ -339,6 +359,9 @@ if has('nvim')
     " NVIM COMPLETION MANAGER
     Plug 'roxma/nvim-completion-manager'
     let g:cm_matcher={'module': 'cm_matchers.abbrev_matcher', 'case': 'smartcase'}
+    let g:cm_sources_override = {
+        \ 'cm-tags': {'enable': 0}
+    \ }
 else
     Plug 'Shougo/neocomplete.vim'
     let g:neocomplete#enable_at_startup = 1
@@ -370,17 +393,19 @@ Plug 'kshenoy/vim-signature', {'on': 'SignatureToggleSigns'}
 let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
 Plug 'nelstrom/vim-visual-star-search'
 Plug 'ludovicchabant/vim-gutentags'
+let g:gutentags_ctags_exclude = ['.mypy_cache']
 Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
 let g:airline#extensions#tabline#enabled = 1
 " Plug 'devjoe/vim-codequery' " rich support for searching symbols support
 " gtags
 Plug 'easymotion/vim-easymotion'
 Plug 'fenuks/vim-uncommented'
-" nmap <C-)> <Plug>(NextUncommented)
-" nmap <C-(> <Plug>(PrevUncommented)
+nmap ]u <Plug>(NextUncommented)
+nmap [u <Plug>(PrevUncommented)
 
 "##### Formatting
 Plug 'sbdchd/neoformat', { 'on': 'Neoformat' }
+let g:neoformat_enabled_python = ['yapf', 'isort']
 nnoremap <Leader>q :Neoformat<CR>
 
 Plug 'junegunn/vim-easy-align', { 'on': '<Plug>(EasyAlign)' }
@@ -393,12 +418,16 @@ nmap <Leader>ga <Plug>(EasyAlign)
 "##### Syntax analysis
 "Plug 'vim-syntastic/syntastic'
 Plug 'w0rp/ale'
+let g:ale_linters = {
+\   'python': ['mypy', 'pylint']
+\}
 let g:ale_fixers = {
 \   '': ['trim_whitespace'],
 \   'javascript': ['eslint'],
 \   'json': ['fixjson'],
 \   'python': ['yapf', 'isort']
 \}
+let g:ale_python_mypy_options='--ignore-missing-imports'
 let g:airline#extensions#ale#enabled = 1
 nnoremap <Leader>cf :ALEFix<CR>
 nmap <silent> <Leader>cp <Plug>(ale_previous_wrap)
@@ -476,7 +505,7 @@ nnoremap <Leader>bl :Buffers<CR>
 
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 map <Leader>F :NERDTreeToggle<CR>
-let g:NERDTreeIgnore=['\.pyc$', '\~$']
+let g:NERDTreeIgnore=['\.pyc$', '\~$', '__pycache__']
 
 Plug 'mhinz/vim-grepper', { 'on': ['Grepper', '<Plug>(GrepperOperator)'] }
 " let g:grepper.highlight = 1
@@ -544,6 +573,7 @@ augroup filetype_python
     autocmd BufRead,BufNewFile *.recipe setfiletype python
     " autocmd FileType python call cm#disable_for_buffer()
     autocmd FileType python nnoremap <buffer> <silent> <Leader>U :YcmCompleter GoToReferences<CR>
+    autocmd FileType python let b:neoformat_run_all_formatters = 1
 augroup END
 
 Plug 'davidhalter/jedi-vim', { 'for': 'python' }
@@ -563,7 +593,6 @@ let g:ropevim_enable_shortcuts = 0
 
 "##### Rust
 Plug 'rust-lang/rust.vim', { 'for': 'rust' }
-Plug 'racer-rust/vim-racer', { 'for': 'rust' }
 augroup filetype_rust
     autocmd!
     autocmd FileType rust nnoremap <buffer> <silent> gd <Plug>(rust-def)

@@ -44,6 +44,7 @@ alias sm='HOME=~/.spacemacs.d emacs'
 alias spacemacs='HOME=~/.spacemacs.d/ emacs'
 alias steam-wine='wine ${HOME}/.wine/drive_c/Program\ Files\ \(x86\)/Steam/Steam.exe -no-cef-sandbox -opengl -fullscreenopengl'
 alias vim='nvim'
+alias check-yapf-config="diff <(yapf --style-help | grep -oP '^[a-zA-Z_0-9]+' | sort) <(grep -oP '^[a-zA-Z_0-9]+' ~/.config/yapf/style | sort)"
 alias yaourt-vcs="yaourt -Su --devel"
 # faster edition of common files
 alias vb='vim ~/.bashrc'
