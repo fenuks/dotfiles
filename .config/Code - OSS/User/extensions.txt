@@ -20,6 +20,7 @@ ms-python.python
 ms-vscode.cpptools
 ms-vscode.Go
 ms-vscode.node-debug2
+ms-vsliveshare.vsliveshare
 octref.vetur
 PeterJausovec.vscode-docker
 Pivotal.vscode-boot-dev-pack
