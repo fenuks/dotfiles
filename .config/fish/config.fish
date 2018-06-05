@@ -68,3 +68,18 @@ set -x SKIM_DEFAULT_COMMAND 'git ls-tree -r --name-only HEAD || rg --files'
 # [[ -r "/usr/share/z/z.sh" ]] && source /usr/share/z/z.sh
 # if test -r "$HOME/.enhancd/init.sh"; source "$HOME/.enhancd/init.sh"; end
 set -x ENHANCD_COMMAND fzf
+# if test -r "$HOME/.enhancd/init.sh"; source "$HOME/.enhancd/init.sh"; end
+
+function fish_user_key_bindings
+    fzf_key_bindings
+end
+
+function fish_prompt
+    powerline-go -error $status -shell bare
+end
+
+function fish_greeting
+    if test -x /usr/bin/fortune
+        fortune
+    end
+end
