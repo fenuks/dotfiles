@@ -1,4 +1,26 @@
-target/
+*.class
 env/
 *.pyc
 __pycache__/
+*.swp
+*~
+*.o
+*.a
+*.out
+# python files
+*.pyc
+.eggs/
+# eclipse files
+.project
+.settings/
+.classpath
+.sts4-cache/
+.metadata/
+bower_components/
+.cache/
+env/
+venv/
+node_modules/
+*.css.map
+*.min.css
+*.min.js

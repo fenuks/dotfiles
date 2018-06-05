@@ -17,3 +17,5 @@ syntax: glob
 .classpath
 .sts4-cache/
 .metadata/
+venv/
+env/

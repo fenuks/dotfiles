@@ -1,3 +1,6 @@
+[$Version]
+update_info=powerdevil_move_shortcuts.upd:powerdevil_move_shortcuts
+
 [KDE Keyboard Layout Switcher]
 Switch keyboard layout to Polski=none,none,Przełącz układ klawiatury na Polski
 Switch to Next Keyboard Layout=Ctrl+Alt+K,none,Przełącz do następnego układu klawiatury
@@ -38,24 +41,16 @@ Toggle Touchpad=Touchpad Toggle,Touchpad Toggle,Przełącz gładzik
 _k_friendly_name=KDE Daemon
 
 [kded5]
-Decrease Keyboard Brightness=Keyboard Brightness Down,Keyboard Brightness Down,Zmniejsz jasność klawiatury
-Decrease Screen Brightness=Monitor Brightness Down,Monitor Brightness Down,Zmniejsz jasność ekranu
-Hibernate=Hibernate,Hibernate,Hibernuj
-Increase Keyboard Brightness=Keyboard Brightness Up,Keyboard Brightness Up,Zwiększ jasność klawiatury
-Increase Screen Brightness=Monitor Brightness Up,Monitor Brightness Up,Zwiększ jasność ekranu
-PowerOff=Power Off,Power Off,Wyłącz
 Show System Activity=Ctrl+Esc,Ctrl+Esc,Pokaż aktywność systemu
-Sleep=Sleep,Sleep,Uśpij
-Toggle Keyboard Backlight=Keyboard Light On/Off,Keyboard Light On/Off,Przełącz podświetlenie klawiatury
-_k_friendly_name=Zarządzanie energią
+_k_friendly_name=KDE Daemon
 display=Display\t,Display\tMeta+P,Przełącz ekran
 
 [khotkeys]
-_k_friendly_name=Ustawienia systemowe
+_k_friendly_name=KDE Daemon
 {137fc5b5-c529-4178-864c-e6b6b928fca8}=Print,none,Wywołaj narzędzie zrzutów ekranu
+{1835a502-70bf-4e0e-bd5f-acb494c8d710}=Meta+W,none,rofi
 {3d218318-612b-49bb-8fd5-1ca46eee71ac}=Meta+Shift+Print,none,Wykonaj zrzut prostokątnego obszaru
 {5bff21e9-ff8c-49e0-845b-56641f8c08b0}=Shift+Print,none,Wykonaj zrzut całego ekranu
-{c6e023b6-75c8-4174-b930-2a7ffa6641e7}=Ctrl+Shift+Space,none,keepass
 {c7898af1-2a4f-4e11-9a0a-4d3e1be4279d}=Meta+Print,none,Wykonaj zrzut obecnie aktywnego okna
 {d03619b6-9b3c-48cc-9d9c-a2aadb485550}=,none,Znajdź
 
@@ -73,11 +68,11 @@ show-on-mouse-pos=none,none,Otwórz Klippera pod wskaźnikiem myszy
 [kmix]
 _k_friendly_name=KMix
 decrease_microphone_volume=Microphone Volume Down,Microphone Volume Down,Zmniejsz głośność mikrofonu
-decrease_volume=Volume Down\tMeta+Alt+-,Volume Down,Decrease Volume
+decrease_volume=Volume Down\tMeta+Alt+-,Volume Down,Zmniejsz głośność
 increase_microphone_volume=Microphone Volume Up,Microphone Volume Up,Zwiększ głośność mikrofonu
-increase_volume=Volume Up\tMeta+Alt+=,Volume Up,Increase Volume
+increase_volume=Volume Up\tMeta+Alt+=,Volume Up,Zwiększ głośność
 mic_mute=Microphone Mute,Microphone Mute,Wycisz mikrofon
-mute=Volume Mute\tMeta+Alt+M,Volume Mute,Mute
+mute=Volume Mute\tMeta+Alt+M,Volume Mute,Wycisz
 
 [krunner]
 _k_friendly_name=Wykonaj polecenie
@@ -249,6 +244,17 @@ playpausemedia=Media Play\tMeta+Alt+P,Media Play,Odtwórz/Wstrzymaj odtwarzanie
 previousmedia=Media Previous\tMeta+Alt+Shift+N,Media Previous,Odtwórz poprzedni plik
 stopmedia=Media Stop,Media Stop,Zatrzymaj odtwarzanie pliku
 
+[org_kde_powerdevil]
+Decrease Keyboard Brightness=Keyboard Brightness Down,Keyboard Brightness Down,Zmniejsz jasność klawiatury
+Decrease Screen Brightness=Monitor Brightness Down,Monitor Brightness Down,Zmniejsz jasność ekranu
+Hibernate=Hibernate,Hibernate,Hibernuj
+Increase Keyboard Brightness=Keyboard Brightness Up,Keyboard Brightness Up,Zwiększ jasność klawiatury
+Increase Screen Brightness=Monitor Brightness Up,Monitor Brightness Up,Zwiększ jasność ekranu
+PowerOff=Power Off,Power Off,Wyłącz
+Sleep=Sleep,Sleep,Uśpij
+Toggle Keyboard Backlight=Keyboard Light On/Off,Keyboard Light On/Off,Przełącz podświetlenie klawiatury
+_k_friendly_name=Zarządzanie energią
+
 [plasmashell]
 _k_friendly_name=Plazma
 activate task manager entry 1=Meta+1,Meta+1,Aktywuj wpis 1 na pasku zadań
@@ -279,4 +285,4 @@ stop current activity=Meta+S,Meta+S,Zatrzymaj bieżącą aktywność
 
 [yakuake]
 _k_friendly_name=Yakuake
-toggle-window-state=F12,F12,Open/Retract Yakuake
+toggle-window-state=F12\tF1,F12,Otwórz/ukryj Yakuake

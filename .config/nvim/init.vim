@@ -358,6 +358,10 @@ if has('nvim')
 
     " NVIM COMPLETION MANAGER
     Plug 'roxma/nvim-completion-manager'
+    let g:cm_sources_override = {
+    \ 'cm-tags': {'enable': 0}
+    \ }
+
     let g:cm_matcher={'module': 'cm_matchers.abbrev_matcher', 'case': 'smartcase'}
     let g:cm_sources_override = {
         \ 'cm-tags': {'enable': 0}
@@ -512,7 +516,7 @@ Plug 'mhinz/vim-grepper', { 'on': ['Grepper', '<Plug>(GrepperOperator)'] }
 nnoremap <Leader>s :Grepper -tool ag<CR>
 
 """ Language specific
-" Plug 'sheerun/vim-polyglot'
+Plug 'sheerun/vim-polyglot'
 " let g:polyglot_disabled = ['python']
 " ##### VIML
 Plug 'junegunn/vader.vim', { 'on': 'Vader' }

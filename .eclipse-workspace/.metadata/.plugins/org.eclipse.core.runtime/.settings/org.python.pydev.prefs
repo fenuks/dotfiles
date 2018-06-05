@@ -13,3 +13,5 @@ TRIM_EMPTY_LINES=true
 USE_PYLINT=true
 eclipse.preferences.version=1
 org.python.pydev.editor.templates.PyTemplatePreferencesPage=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?><templates/>
+synch_ignore_entries_edycjuftodnq40ag66ytlve0m=/home/rkozicki/.config/nvim/plugged/ropevim|||/home/rkozicki
+synch_ignore_entries_ew3kbtua5av9q7cowhluelexc=/home/rkozicki/.config/nvim/plugged/ropevim|||/home/rkozicki
