@@ -9,24 +9,8 @@ if [ $TERMINIX_ID  ] || [ $VTE_VERSION  ]; then
     source /etc/profile.d/vte.sh
 fi
 
-shopt -s globstar
-# Prevent file overwrite on stdout redirection
-# Use `>|` to force redirection to an existing file
-set -o noclobber
-# Enable history expansion with space
-# E.g. typing !!<space> will replace the !! with your last command
-bind Space:magic-space
-# Save multi-line commands as one command
-shopt -s cmdhist
-
-complete -cf sudo
-complete -cf kdesudo
-complete -cf man
-source /usr/share/git/completion/git-completion.bash
-
 alias chromium-dev='chromium --disable-web-security --user-data-dir --remote-debugging-port=9222'
 alias cgit='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
-complete -o default -o nospace -F _git cgit
 alias clear="clear && printf '\e[3J'"
 alias dc='docker-compose'
 alias eclimd='/usr/lib/eclipse/eclimd'
@@ -62,6 +46,9 @@ alias vv='vim ~/.config/nvim/init.vim'
 export BROWSER=/usr/bin/firefox
 export CALIBRE_USE_SYSTEM_THEME=1
 export EDITOR=nvim
+export ENHANCD_COMMAND=fzf
+export FZF_DEFAULT_COMMAND='fd --type f'
+export FZF_CTRL_T_COMMAND="${FZF_DEFAULT_COMMAND}"
 export GCC_COLORS=auto
 export GPODDER_HOME=/home/fenuks/Podcasts/
 export HISTCONTROL=ignoreboth
@@ -69,7 +56,6 @@ export HISTIGNORE="&:[ ]*:exit:ls:bg:fg:history:clear"
 export HISTSIZE=10000
 export HISTTIMEFORMAT="%d/%m/%y %T "
 export JAVA_HOME=$JDK_HOME
-LOMBOK_VERSION=1.16.20
 export JAVA_TOOLS_OPTIONS="-javaagent:/usr/share/java/lombok/lombok.jar -Xbootclasspath/p:/usr/share/java/lombok/lombok.jar"
 export JDK_HOME=/usr/lib/jvm/java-8-openjdk/
 export PATH="${PATH}:${HOME}.local/bin"
@@ -80,6 +66,7 @@ export PYTHONSTARTUP=${HOME}/.pythonrc
 export RUSTFLAGS="-C target-cpu=native"
 export RUST_SRC_PATH="${HOME}/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src"
 export SHELLCHECK_OPTS="-e SC2034 -e SC2164"
+export SKIM_DEFAULT_COMMAND='git ls-tree -r --name-only HEAD || rg --files'
 export SSH_ASKPASS=/usr/bin/ksshaskpass
 export SSH_AUTH_SOCK=/tmp/ssh-agent.sock
 export UNCRUSTIFY_CONFIG="${HOME}/.config/uncrustify.cfg"
@@ -87,19 +74,28 @@ export UNCRUSTIFY_CONFIG="${HOME}/.config/uncrustify.cfg"
 set -o vi
 # bind 'set show-all-if-ambiguous on'
 # bind 'TAB:menu-complete'
+shopt -s globstar
+# Prevent file overwrite on stdout redirection
+# Use `>|` to force redirection to an existing file
+set -o noclobber
+# Enable history expansion with space
+# E.g. typing !!<space> will replace the !! with your last command
+bind Space:magic-space
+# Save multi-line commands as one command
+shopt -s cmdhist
 
-# fuzzy searchers
+complete -cf sudo
+complete -cf kdesudo
+complete -cf man
+source /usr/share/git/completion/git-completion.bash
+source /usr/share/bash-completion/completions/hg
+complete -o default -o nospace -F _git cgit
 [[ -r '/usr/share/fzf/key-bindings.bash' ]] && source /usr/share/fzf/key-bindings.bash
 [[ -r '/usr/share/fzf/completion.bash' ]] && source /usr/share/fzf/completion.bash
-# export FZF_ALT_C_COMMAND="find /home/fenuks -type d ! -perm -g+r,u+r,o+r -prune -o -not -path '!/Documents/*' -not -path '*/\.*' -readable"
-# export FZF_DEFAULT_COMMAND='rg --files 2> /dev/null'
-export FZF_DEFAULT_COMMAND='fd --type f'
-export FZF_CTRL_T_COMMAND="${FZF_DEFAULT_COMMAND}"
-# export FZF_CTRL_T_COMMAND='ag -g "" 2> /dev/null'
-export SKIM_DEFAULT_COMMAND='git ls-tree -r --name-only HEAD || rg --files'
 # [[ -r "/usr/share/z/z.sh" ]] && source /usr/share/z/z.sh
+[[ -r "${HOME}/.config/fzf/completions/fzf-hg.sh" ]] && source "${HOME}/.config/fzf/completions/fzf-hg.sh"
 [[ -r "${HOME}/.enhancd/init.sh" ]] && source "${HOME}/.enhancd/init.sh"
-export ENHANCD_COMMAND=fzf
+
 
 function _update_ps1() {
     PS1="$(powerline-go -error $?)"
