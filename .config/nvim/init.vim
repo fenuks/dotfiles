@@ -432,7 +432,6 @@ let g:ale_fixers = {
 \   'python': ['yapf', 'isort']
 \}
 let g:ale_python_mypy_options='--ignore-missing-imports'
-let g:ale_sh_shellcheck_options='--exclude=SC1090'
 let g:airline#extensions#ale#enabled = 1
 nnoremap <Leader>cf :ALEFix<CR>
 nmap <silent> <Leader>cp <Plug>(ale_previous_wrap)

@@ -64,7 +64,7 @@ export PYTHONPATH="${PYTHONPATH}:${HOME}/.config/nvim/plugged/ropevim/"
 export PYTHONSTARTUP=${HOME}/.pythonrc
 export RUSTFLAGS="-C target-cpu=native"
 export RUST_SRC_PATH="${HOME}/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src"
-export SHELLCHECK_OPTS="-e SC2034 -e SC2164"
+export SHELLCHECK_OPTS="-e SC1090,SC2034,SC2164"
 export SKIM_DEFAULT_COMMAND='git ls-tree -r --name-only HEAD || rg --files'
 export SSH_ASKPASS=/usr/bin/ksshaskpass
 export SSH_AUTH_SOCK=/tmp/ssh-agent.sock
