@@ -165,7 +165,7 @@ nnoremap ]T :<C-U>tlast<CR>
 nnoremap <Leader>bd :bdelete<CR>
 nnoremap <Leader>bh :hide<CR>
 nnoremap <Leader>bc :close<CR>
-nnoremap <Leader>bo :new<CR>:only<CR>
+nnoremap <Leader>bn :new<CR>:only<CR>
 
 function! Conflict(reverse)
   call search('^\(@@ .* @@\|[<=>|]\{7}[<=>|]\@!\)', a:reverse ? 'bW' : 'W')
@@ -423,7 +423,7 @@ nmap <Leader>ga <Plug>(EasyAlign)
 "Plug 'vim-syntastic/syntastic'
 Plug 'w0rp/ale'
 let g:ale_linters = {
-\   'python': ['mypy', 'pylint']
+\   'python': ['mypy', 'pylint', 'flake8']
 \}
 let g:ale_fixers = {
 \   '': ['trim_whitespace'],
@@ -432,6 +432,7 @@ let g:ale_fixers = {
 \   'python': ['yapf', 'isort']
 \}
 let g:ale_python_mypy_options='--ignore-missing-imports'
+let g:ale_sh_shellcheck_options='--exclude=SC1090'
 let g:airline#extensions#ale#enabled = 1
 nnoremap <Leader>cf :ALEFix<CR>
 nmap <silent> <Leader>cp <Plug>(ale_previous_wrap)

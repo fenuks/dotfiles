@@ -1,17 +1,15 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-if [ -f /etc/bashrc ]; then
-    . /etc/bashrc
-fi
+[[ -r /etc/bashrc ]] && source /etc/bashrc
 
-if [ $TERMINIX_ID  ] || [ $VTE_VERSION  ]; then
+if [ "${TERMINIX_ID}" ] || [ "${VTE_VERSION}" ]; then
     source /etc/profile.d/vte.sh
 fi
 
 alias chromium-dev='chromium --disable-web-security --user-data-dir --remote-debugging-port=9222'
 alias cgit='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
-alias clear="clear && printf '\e[3J'"
+alias clear="clear && printf \\e[3J"
 alias dc='docker-compose'
 alias eclimd='/usr/lib/eclipse/eclimd'
 alias eclim='/usr/lib/eclipse/eclimd'
@@ -26,6 +24,7 @@ alias llt='ls -la --sort=time'
 alias run-ssh-agent='eval `ssh-agent -a /tmp/ssh-agent.sock`'
 alias sm='HOME=~/.spacemacs.d emacs'
 alias spacemacs='HOME=~/.spacemacs.d/ emacs'
+alias steam-flatpak='flatpak run com.valvesoftware.Steam'
 alias steam-wine='wine ${HOME}/.wine/drive_c/Program\ Files\ \(x86\)/Steam/Steam.exe -no-cef-sandbox -opengl -fullscreenopengl'
 alias vim='nvim'
 alias check-yapf-config="diff <(yapf --style-help | grep -oP '^[a-zA-Z_0-9]+' | sort) <(grep -oP '^[a-zA-Z_0-9]+' ~/.config/yapf/style | sort)"
@@ -105,6 +104,4 @@ if [ "$TERM" != "linux" ]; then
     PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
 fi
 
-if [ -f ~/.bashrc.local ]; then
-    . ~/.bashrc.local
-fi
+[[ -f ~/.bashrc.local ]] && source ~/.bashrc.local
