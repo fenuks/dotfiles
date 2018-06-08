@@ -10,7 +10,6 @@ _fzf_complete_hg() {
     hg="${COMP_WORDS[0]}"
     hg_opt="${COMP_WORDS[*]:1}"
     hg_last_opt="${COMP_WORDS[${COMP_CWORD}-1]}"
-    echo "LAST WORD: ${hg_last_opt}"
     fzf="$(__fzfcmd_complete)"
     fzf_opt="--height ${FZF_TMUX_HEIGHT:-50%} --min-height 15 --reverse ${FZF_DEFAULT_OPTS} --preview 'echo {}' --preview-window down:3:wrap ${FZF_COMPLETION_OPTS}"
 
@@ -43,6 +42,16 @@ _fzf_complete_hg() {
         fi
     elif [[ "${hg_opt}" == 'revert '* ]]; then
         selected=$( ( ${hg} status -mard ) | FZF_DEFAULT_OPTS=${fzf_opt} ${fzf} -m | awk '{print $2}' | tr '\n' ' ')
+    elif [[ "${hg_opt}" == 'shelve '* ]]; then
+        if [[ "${hg_last_opt}" == '-d' ]] || [[ "${hg_last_opt}" == '--delete' ]]; then
+            selected=$( ( ${hg} shelve --list ) | FZF_DEFAULT_OPTS=${fzf_opt} ${fzf} -m | awk '{print $1}' | tr '\n' ' ')
+        else
+            selected=$( ( ${hg} status -ma ) | FZF_DEFAULT_OPTS=${fzf_opt} ${fzf} -m | awk '{print $2}' | tr '\n' ' ')
+        fi
+    elif [[ "${hg_opt}" == 'unshelve '* ]]; then
+        if [[ "${hg_last_opt}" == '-n' ]] || [[ "${hg_last_opt}" == '--name' ]]; then
+            selected=$( ( ${hg} shelve --list ) | FZF_DEFAULT_OPTS=${fzf_opt} ${fzf} -m | awk '{print $1}' | tr '\n' ' ')
+        fi
     fi
 
     if [[ -v selected ]]; then
