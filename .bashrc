@@ -57,7 +57,15 @@ export HISTTIMEFORMAT="%d/%m/%y %T "
 export JAVA_HOME=$JDK_HOME
 export JAVA_TOOLS_OPTIONS="-javaagent:/usr/share/java/lombok/lombok.jar -Xbootclasspath/p:/usr/share/java/lombok/lombok.jar"
 export JDK_HOME=/usr/lib/jvm/java-8-openjdk/
-export PATH="${PATH}:${HOME}.local/bin"
+export LESS=-R
+export LESS_TERMCAP_mb=$'\e[01;31m'       # begin blinking
+export LESS_TERMCAP_md=$'\e[01;38;5;74m'  # begin bold
+export LESS_TERMCAP_me=$'\e[0m'           # end mode
+export LESS_TERMCAP_se=$'\e[0m'           # end standout-mode
+export LESS_TERMCAP_so=$'\e[38;5;246m'    # begin standout-mode - info box
+export LESS_TERMCAP_ue=$'\e[0m'           # end underline
+export LESS_TERMCAP_us=$'\e[04;38;5;146m' # begin underline
+export PATH="${PATH}:${HOME}/.local/bin"
 export PYTHON2DOCDIR=/usr/share/doc/python2/html/
 export PYTHON3DOCDIR=/usr/share/doc/python/html/
 export PYTHONPATH="${PYTHONPATH}:${HOME}/.config/nvim/plugged/ropevim/"
@@ -74,6 +82,8 @@ set -o vi
 # bind 'set show-all-if-ambiguous on'
 # bind 'TAB:menu-complete'
 shopt -s globstar
+# append to history from multiple terminals
+shopt -s histappend 
 # Prevent file overwrite on stdout redirection
 # Use `>|` to force redirection to an existing file
 set -o noclobber
