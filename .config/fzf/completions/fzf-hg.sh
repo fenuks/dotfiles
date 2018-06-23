@@ -13,7 +13,9 @@ _fzf_complete_hg() {
     fzf="$(__fzfcmd_complete)"
     fzf_opt="--height ${FZF_TMUX_HEIGHT:-50%} --min-height 15 --reverse ${FZF_DEFAULT_OPTS} --preview 'echo {}' --preview-window down:3:wrap ${FZF_COMPLETION_OPTS}"
 
-    if [[ "${hg_opt}" == 'merge '* ]] || [[ "${hg_opt}" == 'up '* ]] \
+    if [[ "${hg_last_opt}" == '-b' ]] || [[ "${hg_last_opt}" == '--branch' ]]; then
+            selected=$( ( ${hg} branches ) | FZF_DEFAULT_OPTS=${fzf_opt} ${fzf} -m | awk '{print $1}' | tr '\n' ' ')
+    elif [[ "${hg_opt}" == 'merge '* ]] || [[ "${hg_opt}" == 'up '* ]] \
         || [[ "${hg_opt}" == 'update '* ]] || [[ "${hg_opt}" == 'co '* ]] \
         || [[ "${hg_opt}" == 'checkout '* ]];
     then
@@ -33,9 +35,7 @@ _fzf_complete_hg() {
             # TODO: support for revisions -r
             _hg "$@"
             return 0
-        elif [[ "${hg_last_opt}" == '-b' ]]; then
-            selected=$( ( ${hg} branches ) | FZF_DEFAULT_OPTS=${fzf_opt} ${fzf} -m | tr '\n' ' ')
-        elif [[ "${hg_last_opt}" == '-B' ]]; then
+        elif [[ "${hg_last_opt}" == '-B' ]] || [[ "${hg_last_opt}" == '--bookmark' ]]; then
             # TODO: support for bookmarks
             _hg "$@"
             return 0
@@ -56,10 +56,10 @@ _fzf_complete_hg() {
 
     if [[ -v selected ]]; then
         printf '\e[5n'
-    fi
-    if [ -n "${selected}" ]; then
-        COMPREPLY=( "$selected" )
-        return 0
+        if [ -n "${selected}" ]; then
+            COMPREPLY=( "$selected" )
+            return 0
+        fi
     fi
     _hg "$@"
 }
