@@ -30,6 +30,8 @@ _fzf_complete_hg() {
         selected=$( ( ${hg} status --unknown ) | FZF_DEFAULT_OPTS=${fzf_opt} ${fzf} -m | awk '{print $2}' | tr '\n' ' ')
     elif [[ "${hg_opt}" == 'annotate '* ]]; then
         selected=$( ( ${hg} files ) | FZF_DEFAULT_OPTS=${fzf_opt} ${fzf} -m | tr '\n' ' ')
+    elif [[ "${hg_opt}" == 'diff '* ]]; then
+        selected=$( ( ${hg} status -mard ) | FZF_DEFAULT_OPTS=${fzf_opt} ${fzf} -m | awk '{print $2}' | tr '\n' ' ')
     elif [[ "${hg_opt}" == 'push '* ]]; then
         if [[ "${hg_last_opt}" == '-r' ]]; then
             # TODO: support for revisions -r
