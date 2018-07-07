@@ -7,9 +7,11 @@ donjayamanne.githistory
 DotJoshJohnson.xml
 dragos.scala-lsp
 eamodio.gitlens
+EditorConfig.EditorConfig
 eg2.tslint
 hackwaly.ocaml
 hbenl.vscode-firefox-debug
+humao.rest-client
 jcanero.hoogle-vscode
 justusadam.language-haskell
 kalitaalexey.vscode-rust
@@ -47,3 +49,4 @@ vscjava.vscode-spring-initializr
 vscodevim.vim
 vsmobile.vscode-react-native
 webfreak.debug
+wix.vscode-import-cost
