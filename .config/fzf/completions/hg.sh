@@ -32,6 +32,8 @@ _fzf_complete_hg() {
         selected=$( ( ${hg} files ) | FZF_DEFAULT_OPTS=${fzf_opt} ${fzf} -m | tr '\n' ' ')
     elif [[ "${hg_opt}" == 'diff '* ]]; then
         selected=$( ( ${hg} status -mard ) | FZF_DEFAULT_OPTS=${fzf_opt} ${fzf} -m | awk '{print $2}' | tr '\n' ' ')
+    elif [[ "${hg_opt}" == 'forget '* ]]; then
+        selected=$( ( ${hg} status -a ) | FZF_DEFAULT_OPTS=${fzf_opt} ${fzf} -m | awk '{print $2}' | tr '\n' ' ')
     elif [[ "${hg_opt}" == 'push '* ]]; then
         if [[ "${hg_last_opt}" == '-r' ]]; then
             # TODO: support for revisions -r
@@ -44,6 +46,8 @@ _fzf_complete_hg() {
         fi
     elif [[ "${hg_opt}" == 'revert '* ]]; then
         selected=$( ( ${hg} status -mard ) | FZF_DEFAULT_OPTS=${fzf_opt} ${fzf} -m | awk '{print $2}' | tr '\n' ' ')
+    elif [[ "${hg_opt}" == 'rm '* ]] || [[ "${hg_opt}" == 'remove '* ]]; then
+        selected=$( ( ${hg} files ) | FZF_DEFAULT_OPTS=${fzf_opt} ${fzf} -m | tr '\n' ' ')
     elif [[ "${hg_opt}" == 'shelve '* ]]; then
         if [[ "${hg_last_opt}" == '-d' ]] || [[ "${hg_last_opt}" == '--delete' ]]; then
             selected=$( ( ${hg} shelve --list ) | FZF_DEFAULT_OPTS=${fzf_opt} ${fzf} -m | awk '{print $1}' | tr '\n' ' ')
@@ -52,7 +56,7 @@ _fzf_complete_hg() {
         fi
     elif [[ "${hg_opt}" == 'unshelve '* ]]; then
         if [[ "${hg_last_opt}" == '-n' ]] || [[ "${hg_last_opt}" == '--name' ]]; then
-            selected=$( ( ${hg} shelve --list ) | FZF_DEFAULT_OPTS=${fzf_opt} ${fzf} -m | awk '{print $1}' | tr '\n' ' ')
+            selected=$( ( ${hg} shelve --list --quiet ) | FZF_DEFAULT_OPTS=${fzf_opt} ${fzf} -m | awk '{print $1}' | tr '\n' ' ')
         fi
     fi
 

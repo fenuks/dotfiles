@@ -103,7 +103,7 @@ complete -o default -o nospace -F _git cgit
 [[ -r '/usr/share/fzf/key-bindings.bash' ]] && source /usr/share/fzf/key-bindings.bash
 [[ -r '/usr/share/fzf/completion.bash' ]] && source /usr/share/fzf/completion.bash
 # [[ -r "/usr/share/z/z.sh" ]] && source /usr/share/z/z.sh
-[[ -r "${HOME}/.config/fzf/completions/fzf-hg.sh" ]] && source "${HOME}/.config/fzf/completions/fzf-hg.sh"
+[[ -r "${HOME}/.config/fzf/completions/hg.sh" ]] && source "${HOME}/.config/fzf/completions/hg.sh"
 [[ -r "${HOME}/.enhancd/init.sh" ]] && source "${HOME}/.enhancd/init.sh"
 
 
