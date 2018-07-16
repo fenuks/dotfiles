@@ -10,7 +10,7 @@ gpg =
 hgext.bookmarks =
 # hggit =
 histedit = 
-largefiles = 
+# largefiles = 
 mq = 
 pager =
 progress =
@@ -21,6 +21,9 @@ show =
 sparse = 
 strip =
 uncommit = 
+
+[alias]
+cm = !${HG} commit -m "Scal z $(${HG} parents | grep 'branch:' | sed 's/branch:\s*//')"
 
 [color]
 mode = auto

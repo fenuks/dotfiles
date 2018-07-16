@@ -9,7 +9,8 @@ fi
 
 alias chromium-dev='chromium --disable-web-security --user-data-dir --remote-debugging-port=9222'
 alias cgit='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
-alias clear="clear && printf \\e[3J"
+alias clear="clear && printf \"\\e[3J\""
+# alias clear="printf \"\\033c\""
 alias dc='docker-compose'
 alias eclimd='/usr/lib/eclipse/eclimd'
 alias eclim='/usr/lib/eclipse/eclimd'
