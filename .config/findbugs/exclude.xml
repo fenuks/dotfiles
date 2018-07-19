@@ -1,0 +1,5 @@
+<FindBugsFilter>
+  <Match>
+      <Class name="~.*\.Q[A-Z].+" />
+  </Match>
+</FindBugsFilter>
