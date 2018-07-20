@@ -1,3 +1,4 @@
+config.ini
 .directory
 eclimd.log
 segments_1
@@ -74,4 +75,16 @@ http-cache.lucene60/
 .metadata/.plugins/org.springframework.ide.eclipse.aop.core/.state
 .metadata/.plugins/org.springframework.ide.eclipse.boot/installs/
 .metadata/.plugins/org.springsource.ide.eclipse.dashboard.ui/feeds/
+.metadata/.plugins/org.python.pydev/
+.metadata/.plugins/com.python.pydev.analysis/
 .metadata/version.ini
+.metadata/.plugins/org.eclipse.core.resources/
+.metadata/.plugins/org.eclipse.equinox.p2.discovery.compatibility/cache/
+.metadata/.plugins/org.eclipse.rse.core/profiles/
+.metadata/.plugins/org.eclipse.rse.ui/.log
+.metadata/.plugins/org.eclipse.jdt.core/savedIndexNames.txt
+.metadata/.plugins/org.eclipse.jdt.core/externalLibsTimeStamps
+.metadata/.plugins/org.eclipse.linuxtools.cdt.libhover/C/devhelp.libhover
+.metadata/.plugins/org.eclipse.m2e.core/workspacestate.properties
+.metadata/.plugins/org.eclipse.rse.core/initializerMarks/
+.metadata/.plugins/org.eclipse.ui.workbench/workingsets.xml
