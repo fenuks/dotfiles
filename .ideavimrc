@@ -2,10 +2,10 @@ source ~/.config/nvim/init.vim
 " redefine things that do not work in IdeaVim
 nnoremap / /
 vnoremap / /
-nnoremap <silent> <A-p> ddkP
-nnoremap <silent> <A-n> ddp
-inoremap <silent> <A-n> <Esc>ddkPi
-inoremap <silent> <A-p> <Esc>ddp
+nnoremap <silent> <A-n> :action MoveLineDown<CR>
+nnoremap <silent> <A-p> :action MoveLineUp<CR>
+inoremap <silent> <A-n> :action MoveLineDown<CR>
+inoremap <silent> <A-p> :action MoveLineUp<CR>
 vnoremap <silent> <A-n> dkPgv=gv
 vnoremap <silent> <A-p> dpgv=gv
 inoremap <C-j> <CR>
