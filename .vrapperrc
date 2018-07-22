@@ -1,3 +1,10 @@
 source ~/.config/nvim/init.vim
 
+cnoremap g/ g/
+cnoremap v/ v/
+
 set contentassistmode
+
+eclipseuiaction Files org.eclipse.ui.navigate.openResource
+
+nnoremap! <Leader>gf <Plug>(Files)<CR>

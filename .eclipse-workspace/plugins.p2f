@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <?p2f version='1.0.0'?>
 <p2f version='1.0.0'>
-  <ius size='95'>
+  <ius size='105'>
     <iu id='org.eclipse.cdt.arduino.feature.group' name='Arduino C++ Tools' version='9.5.0.201806170908'>
       <repositories size='3'>
         <repository location='http://download.eclipse.org/releases/latest'/>
@@ -10,8 +10,9 @@
       </repositories>
     </iu>
     <iu id='org.eclipse.buildship.feature.group' name='Buildship: Eclipse Plug-ins for Gradle' version='2.2.1.v20180125-1441'>
-      <repositories size='2'>
+      <repositories size='3'>
         <repository location='http://download.eclipse.org/releases/latest'/>
+        <repository location='http://download.eclipse.org/buildship/updates/e47/releases/2.x'/>
         <repository location='http://download.eclipse.org/releases/photon/'/>
       </repositories>
     </iu>
@@ -65,9 +66,10 @@
       </repositories>
     </iu>
     <iu id='org.eclipse.linuxtools.cdt.libhover.feature.feature.group' name='C/C++ Library API Documentation Hover Help' version='7.0.0.201806122135'>
-      <repositories size='2'>
+      <repositories size='3'>
         <repository location='http://download.eclipse.org/releases/latest'/>
         <repository location='http://download.eclipse.org/releases/photon/'/>
+        <repository location='http://download.eclipse.org/linuxtools/update'/>
       </repositories>
     </iu>
     <iu id='org.eclipse.cdt.managedbuilder.llvm.feature.group' name='C/C++ LLVM-Family Compiler Build Support' version='9.5.1.201807051742'>
@@ -123,22 +125,27 @@
       </repositories>
     </iu>
     <iu id='org.eclipse.linuxtools.changelog.feature.group' name='ChangeLog Management Tools' version='7.0.0.201806122135'>
-      <repositories size='2'>
+      <repositories size='3'>
         <repository location='http://download.eclipse.org/releases/latest'/>
         <repository location='http://download.eclipse.org/releases/photon/'/>
+        <repository location='http://download.eclipse.org/linuxtools/update'/>
       </repositories>
     </iu>
     <iu id='org.eclipse.linuxtools.changelog.c.feature.group' name='ChangeLog Management Tools for C/C++' version='7.0.0.201806122135'>
-      <repositories size='2'>
+      <repositories size='3'>
         <repository location='http://download.eclipse.org/releases/latest'/>
         <repository location='http://download.eclipse.org/releases/photon/'/>
+        <repository location='http://download.eclipse.org/linuxtools/update'/>
       </repositories>
     </iu>
-    <iu id='org.springframework.tooling.cloudfoundry.manifest.ls.feature.feature.group' name='Cloud Foundry Manifest Language Server Feature' version='4.0.0.201804061725'>
-      <repositories size='3'>
-        <repository location='http://dist.springsource.com/release/TOOLS/update/e4.7/'/>
+    <iu id='checker.framework.eclipse.feature.feature.group' name='Checker Framework Feature' version='2.3.2'>
+      <repositories size='1'>
+        <repository location='https://checkerframework.org/eclipse'/>
+      </repositories>
+    </iu>
+    <iu id='org.springframework.tooling.cloudfoundry.manifest.ls.feature.feature.group' name='Cloud Foundry Manifest Language Server Feature' version='4.0.0.201806290921'>
+      <repositories size='1'>
         <repository location='http://download.springsource.com/release/TOOLS/update/e4.8/'/>
-        <repository location='http://download.springsource.com/release/TOOLS/sts4-language-servers'/>
       </repositories>
     </iu>
     <iu id='org.eclipse.recommenders.rcp.feature.feature.group' name='Code Recommenders for Java Developers' version='2.5.3.v20180609-1554'>
@@ -199,7 +206,8 @@
       </repositories>
     </iu>
     <iu id='org.eclipse.linuxtools.docker.feature.feature.group' name='Docker Tooling' version='4.0.0.201806122135'>
-      <repositories size='2'>
+      <repositories size='3'>
+        <repository location='http://download.eclipse.org/linuxtools/update-docker'/>
         <repository location='http://download.eclipse.org/releases/latest'/>
         <repository location='http://download.eclipse.org/releases/photon/'/>
       </repositories>
@@ -215,6 +223,16 @@
         <repository location='http://download.eclipse.org/releases/latest'/>
         <repository location='http://download.eclipse.org/releases/photon/'/>
         <repository location='http://update.eclemma.org/'/>
+      </repositories>
+    </iu>
+    <iu id='net.sf.eclipsecs.feature.group' name='Eclipse Checkstyle Plug-in' version='8.10.0.201805130740'>
+      <repositories size='1'>
+        <repository location='https://checkstyle.github.io/eclipse-cs/update'/>
+      </repositories>
+    </iu>
+    <iu id='org.codehaus.groovy.eclipse.feature.feature.group' name='Eclipse Groovy Development Tools' version='3.0.0.xx-201807191639-e48'>
+      <repositories size='1'>
+        <repository location='http://dist.springsource.org/snapshot/GRECLIPSE/e4.8'/>
       </repositories>
     </iu>
     <iu id='epp.package.cpp' name='Eclipse IDE for C/C++ Developers' version='4.8.0.20180619-1200'>
@@ -236,6 +254,11 @@
         <repository location='http://download.eclipse.org/releases/photon/'/>
       </repositories>
     </iu>
+    <iu id='ch.acanda.eclipse.pmd.feature.feature.group' name='Eclipse PMD Plug-in' version='1.13.0.201806091459'>
+      <repositories size='1'>
+        <repository location='http://www.acanda.ch/eclipse-pmd/release/latest'/>
+      </repositories>
+    </iu>
     <iu id='org.springsource.ide.eclipse.commons.quicksearch.feature.feature.group' name='Eclipse Quicksearch' version='3.9.5.201807030629-RELEASE'>
       <repositories size='2'>
         <repository location='http://dist.springsource.com/release/TOOLS/update/e4.7/'/>
@@ -249,9 +272,10 @@
       </repositories>
     </iu>
     <iu id='org.eclipse.linuxtools.gcov.feature.group' name='GCov Integration' version='7.0.0.201806122135'>
-      <repositories size='2'>
+      <repositories size='3'>
         <repository location='http://download.eclipse.org/releases/latest'/>
         <repository location='http://download.eclipse.org/releases/photon/'/>
+        <repository location='http://download.eclipse.org/linuxtools/update'/>
       </repositories>
     </iu>
     <iu id='org.eclipse.tracecompass.gdbtrace.feature.group' name='GDB Tracepoint Analysis' version='4.0.0.201806131415'>
@@ -285,9 +309,25 @@
       </repositories>
     </iu>
     <iu id='org.eclipse.linuxtools.gprof.feature.feature.group' name='GProf Integration' version='7.0.0.201806122135'>
-      <repositories size='2'>
+      <repositories size='3'>
         <repository location='http://download.eclipse.org/releases/latest'/>
         <repository location='http://download.eclipse.org/releases/photon/'/>
+        <repository location='http://download.eclipse.org/linuxtools/update'/>
+      </repositories>
+    </iu>
+    <iu id='org.codehaus.groovy25.feature.feature.group' name='Groovy Compiler 2.5' version='3.0.0.xx-201807191639-e48'>
+      <repositories size='1'>
+        <repository location='http://dist.springsource.org/snapshot/GRECLIPSE/e4.8'/>
+      </repositories>
+    </iu>
+    <iu id='org.codehaus.groovy26.feature.feature.group' name='Groovy Compiler 2.6 (early access)' version='3.0.0.xx-201807191639-e48'>
+      <repositories size='1'>
+        <repository location='http://dist.springsource.org/snapshot/GRECLIPSE/e4.8'/>
+      </repositories>
+    </iu>
+    <iu id='org.codehaus.groovy.m2eclipse.feature.feature.group' name='Groovy-Eclipse M2E integration' version='3.0.0.xx-201807191639-e48'>
+      <repositories size='1'>
+        <repository location='http://dist.springsource.org/snapshot/GRECLIPSE/e4.8'/>
       </repositories>
     </iu>
     <iu id='org.eclipse.wst.jsdt.feature.feature.group' name='JavaScript Development Tools' version='2.1.1.v201804042202'>
@@ -303,9 +343,10 @@
       </repositories>
     </iu>
     <iu id='org.eclipse.linuxtools.cdt.libhover.devhelp.feature.feature.group' name='Library Hover help for devhelp documentation' version='7.0.0.201806122135'>
-      <repositories size='2'>
+      <repositories size='3'>
         <repository location='http://download.eclipse.org/releases/latest'/>
         <repository location='http://download.eclipse.org/releases/photon/'/>
+        <repository location='http://download.eclipse.org/linuxtools/update'/>
       </repositories>
     </iu>
     <iu id='org.eclipse.tracecompass.lttng2.kernel.feature.group' name='LTTng Kernel Analysis' version='4.0.0.201806131415'>
@@ -343,6 +384,16 @@
         <repository location='http://dist.springsource.com/release/TOOLS/update/e4.7/'/>
         <repository location='http://download.springsource.com/release/TOOLS/update/e4.8/'/>
         <repository location='http://download.eclipse.org/releases/photon/'/>
+      </repositories>
+    </iu>
+    <iu id='org.basepom.m2e.mycila_license.feature.feature.group' name='m2e extension for the Mycila license plugin.' version='1.1.0'>
+      <repositories size='1'>
+        <repository location='http://basepom.github.io/basepom-m2e/update-site/latest/'/>
+      </repositories>
+    </iu>
+    <iu id='com.mousefeed.feature.feature.group' name='MouseFeed' version='2.0.3.201608180916'>
+      <repositories size='1'>
+        <repository location='http://download.sigasi.com/updates/mousefeed/'/>
       </repositories>
     </iu>
     <iu id='org.eclipse.mylyn.hudson.feature.group' name='Mylyn Builds Connector: Hudson/Jenkins' version='1.16.0.v20180403-2055'>
@@ -428,15 +479,21 @@
       </repositories>
     </iu>
     <iu id='org.eclipse.linuxtools.rpm.feature.group' name='RPM Tools' version='7.0.0.201806122135'>
-      <repositories size='2'>
+      <repositories size='3'>
         <repository location='http://download.eclipse.org/releases/latest'/>
         <repository location='http://download.eclipse.org/releases/photon/'/>
+        <repository location='http://download.eclipse.org/linuxtools/update'/>
       </repositories>
     </iu>
     <iu id='org.sonarlint.eclipse.feature.feature.group' name='SonarLint for Eclipse' version='3.6.0.201806071228'>
       <repositories size='2'>
         <repository location='http://eclipse.sonarlint.org/'/>
         <repository location='https://eclipse-uc.sonarlint.org'/>
+      </repositories>
+    </iu>
+    <iu id='com.github.spotbugs.plugin.eclipse.feature.group' name='SpotBugs' version='3.1.6.r201807182348-e76b799'>
+      <repositories size='1'>
+        <repository location='https://spotbugs.github.io/eclipse/'/>
       </repositories>
     </iu>
     <iu id='org.springsource.ide.eclipse.dashboard.feature.group' name='Spring Dashboard (optional)' version='3.9.5.201807030629-RELEASE'>
@@ -541,9 +598,10 @@
       </repositories>
     </iu>
     <iu id='org.eclipse.linuxtools.valgrind.feature.group' name='Valgrind Tools Integration' version='7.0.0.201806122135'>
-      <repositories size='2'>
+      <repositories size='3'>
         <repository location='http://download.eclipse.org/releases/latest'/>
         <repository location='http://download.eclipse.org/releases/photon/'/>
+        <repository location='http://download.eclipse.org/linuxtools/update'/>
       </repositories>
     </iu>
     <iu id='net.sourceforge.vrapper.feature.group' name='Vrapper' version='0.72.0'>
