@@ -279,7 +279,7 @@ let g:AutoPairsShortcutBackInsert=''
 " ##### Code autocompletion
 Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'make release', 'for': ['haskell', 'javascript', 'rust', 'typescript', 'vue'] }
 let g:LanguageClient_serverCommands = {
-    \ 'cpp': ['clangd'],
+    \ 'cpp': ['cquery'],
     \ 'haskell': ['hie', '--lsp'],
     \ 'java': ['jdtls', '-javaagent:/usr/share/java/lombok/lombok.jar', '-Xbootclasspath/p:/usr/share/java/lombok/lombok.jar'],
     \ 'javascript': ['javascript-typescript-stdio'],
@@ -383,13 +383,15 @@ Plug 'honza/vim-snippets'
 Plug 'wellle/targets.vim'
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'PeterRincker/vim-argumentative'
-Plug 'tpope/vim-surround'
+" Plug 'tpope/vim-surround'
+Plug 'machakann/vim-sandwich'
 Plug 'fenuks/vim-bracket-objects'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'tomtom/tcomment_vim'
 Plug 'tommcdo/vim-exchange'
 Plug 'kshenoy/vim-signature', {'on': 'SignatureToggleSigns'}
 "##### Navigation
+" gtags
 " GNU global
 " set cscopeprg=gtags-cscope
 " source /usr/share/vim/vimfiles/plugin/gtags.vim
@@ -401,11 +403,12 @@ let g:gutentags_ctags_exclude = ['.mypy_cache']
 Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
 let g:airline#extensions#tabline#enabled = 1
 " Plug 'devjoe/vim-codequery' " rich support for searching symbols support
-" gtags
 Plug 'easymotion/vim-easymotion'
 Plug 'fenuks/vim-uncommented'
 nmap ]u <Plug>(NextUncommented)
 nmap [u <Plug>(PrevUncommented)
+
+Plug 'lambdalisue/lista.nvim', { 'on': 'Lista' }
 
 "##### Formatting
 Plug 'sbdchd/neoformat', { 'on': 'Neoformat' }

@@ -7,8 +7,13 @@ if [ "${TERMINIX_ID}" ] || [ "${VTE_VERSION}" ]; then
     source /etc/profile.d/vte.sh
 fi
 
+function cgit() {
+    /usr/bin/git --git-dir="${HOME}/.dotfiles/" --work-tree="${HOME}" "$@"
+}
+export -f cgit
+
+
 alias chromium-dev='chromium --disable-web-security --user-data-dir --remote-debugging-port=9222'
-alias cgit='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 alias clear="clear && printf \"\\e[3J\""
 # alias clear="printf \"\\033c\""
 alias dc='docker-compose'
@@ -100,21 +105,17 @@ complete -cf man
 source /usr/share/git/completion/git-completion.bash
 source /usr/share/bash-completion/completions/hg
 source /usr/share/bash-completion/completions/docker
-complete -o default -o nospace -F _git cgit
 [[ -r '/usr/share/fzf/key-bindings.bash' ]] && source /usr/share/fzf/key-bindings.bash
 [[ -r '/usr/share/fzf/completion.bash' ]] && source /usr/share/fzf/completion.bash
 # [[ -r "/usr/share/z/z.sh" ]] && source /usr/share/z/z.sh
+if [[ -r "${HOME}/.config/fzf/completions/git.sh" ]]; then 
+    source "${HOME}/.config/fzf/completions/git.sh"
+    complete -o default -o nospace -F _fzf_complete_git cgit
+else
+    complete -o default -o nospace -F _git cgit
+fi
 [[ -r "${HOME}/.config/fzf/completions/hg.sh" ]] && source "${HOME}/.config/fzf/completions/hg.sh"
 [[ -r "${HOME}/.config/fzf/completions/docker.sh" ]] && source "${HOME}/.config/fzf/completions/docker.sh"
 [[ -r "${HOME}/.enhancd/init.sh" ]] && source "${HOME}/.enhancd/init.sh"
-
-
-function _update_ps1() {
-    PS1="$(powerline-go -error $?)"
-}
-
-if [ "$TERM" != "linux" ]; then
-    PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
-fi
 
 [[ -f ~/.bashrc.local ]] && source ~/.bashrc.local

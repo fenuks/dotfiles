@@ -14,7 +14,7 @@ _fzf_complete_hg() {
     fzf_opt="--height ${FZF_TMUX_HEIGHT:-50%} --min-height 15 --reverse ${FZF_DEFAULT_OPTS} --preview 'echo {}' --preview-window down:3:wrap ${FZF_COMPLETION_OPTS}"
 
     if [[ "${hg_last_opt}" == '-b' ]] || [[ "${hg_last_opt}" == '--branch' ]]; then
-            selected=$( ( ${hg} branches ) | FZF_DEFAULT_OPTS=${fzf_opt} ${fzf} -m | awk '{print $1}' | tr '\n' ' ')
+            selected=$( ( ${hg} branches ) | FZF_DEFAULT_OPTS=${fzf_opt} ${fzf} | awk '{print $1}' | tr '\n' ' ')
     elif [[ "${hg_opt}" == 'merge '* ]] || [[ "${hg_opt}" == 'up '* ]] \
         || [[ "${hg_opt}" == 'update '* ]] || [[ "${hg_opt}" == 'co '* ]] \
         || [[ "${hg_opt}" == 'checkout '* ]];
@@ -24,7 +24,7 @@ _fzf_complete_hg() {
             _hg "$@"
             return 0
         else
-            selected=$( ( ${hg} branches & ${hg} tags ) | FZF_DEFAULT_OPTS=${fzf_opt} ${fzf} -m | awk '{print $1}' | tr '\n' ' ')
+            selected=$( ( ${hg} branches & ${hg} tags ) | FZF_DEFAULT_OPTS=${fzf_opt} ${fzf} | awk '{print $1}' | tr '\n' ' ')
         fi
     elif [[ "${hg_opt}" == 'add '* ]]; then
         selected=$( ( ${hg} status --unknown ) | FZF_DEFAULT_OPTS=${fzf_opt} ${fzf} -m | awk '{print $2}' | tr '\n' ' ')
