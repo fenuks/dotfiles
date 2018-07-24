@@ -413,6 +413,7 @@ Plug 'lambdalisue/lista.nvim', { 'on': 'Lista' }
 "##### Formatting
 Plug 'sbdchd/neoformat', { 'on': 'Neoformat' }
 let g:neoformat_enabled_python = ['yapf', 'isort']
+let g:neoformat_enabled_json = ['prettier', 'js-beautify', 'jq']
 nnoremap <Leader>q :Neoformat<CR>
 
 Plug 'junegunn/vim-easy-align', { 'on': '<Plug>(EasyAlign)' }

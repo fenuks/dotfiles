@@ -28,5 +28,9 @@ nnoremap <Leader>rv :action IntroduceVariable<CR>
 nnoremap <Leader>rc :action IntroduceConstant<CR>
 nnoremap g; :action JumpToLastChange<CR>
 nnoremap g, :action JumpToNextChange<CR>
+nnoremap <C-w>m :action HideAllWindows<CR>
+nnoremap <C-w>} :action QuickImplementations<CR>
+nnoremap <Leader>tt :action RerunTests<CR>
+nnoremap <Leader>tf :action RerunFailedTests<CR>
 " version control
 nnoremap <Leader>va :action Annotate<CR>

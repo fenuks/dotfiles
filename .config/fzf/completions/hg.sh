@@ -49,13 +49,13 @@ _fzf_complete_hg() {
     elif [[ "${hg_opt}" == 'rm '* ]] || [[ "${hg_opt}" == 'remove '* ]]; then
         selected=$( ( ${hg} files ) | FZF_DEFAULT_OPTS=${fzf_opt} ${fzf} -m | tr '\n' ' ')
     elif [[ "${hg_opt}" == 'shelve '* ]]; then
-        if [[ "${hg_last_opt}" == '-d' ]] || [[ "${hg_last_opt}" == '--delete' ]]; then
-            selected=$( ( ${hg} shelve --list ) | FZF_DEFAULT_OPTS=${fzf_opt} ${fzf} -m | awk '{print $1}' | tr '\n' ' ')
+        if [[ "${hg_last_opt}" == '-d' ]] || [[ "${hg_last_opt}" == '--delete' ]] || [[ "${hg_last_opt}" == '-p' ]] || [[ "${hg_last_opt}" == '--patch' ]]; then
+            selected=$( ( ${hg} shelve --list --quiet ) | FZF_DEFAULT_OPTS=${fzf_opt} ${fzf} -m | awk '{print $1}' | tr '\n' ' ')
         else
             selected=$( ( ${hg} status -ma ) | FZF_DEFAULT_OPTS=${fzf_opt} ${fzf} -m | awk '{print $2}' | tr '\n' ' ')
         fi
     elif [[ "${hg_opt}" == 'unshelve '* ]]; then
-        if [[ "${hg_last_opt}" == '-n' ]] || [[ "${hg_last_opt}" == '--name' ]]; then
+        if [[ "${hg_last_opt}" == '-n' ]] || [[ "${hg_last_opt}" == '--name' ]] || [[ "${hg_last_opt}" == "unshelve" ]]; then
             selected=$( ( ${hg} shelve --list --quiet ) | FZF_DEFAULT_OPTS=${fzf_opt} ${fzf} -m | awk '{print $1}' | tr '\n' ' ')
         fi
     fi

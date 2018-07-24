@@ -16,6 +16,8 @@ _fzf_complete_git() {
 
     if [[ "${cmd_opt}" == 'add '* ]]; then
         selected=$( ( ${binary} status --short | grep -v -P '^(A|R|D|M) ' ) | ${fzf} "${fzf_opt[@]}" -m | awk '{print $2}' | tr '\n' ' ')
+    elif [[ "${cmd_opt}" == 'diff '* ]]; then
+        selected=$( ( ${binary} status --short ) | ${fzf} "${fzf_opt[@]}" -m | awk '{print $2}' | tr '\n' ' ')
     fi
 
     if [[ -v selected ]]; then
