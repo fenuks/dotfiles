@@ -1,0 +1,7 @@
+<application>
+  <component name="GroovyApplicationSettings">
+    <option name="INTRODUCE_LOCAL_SELECT_DEF" value="false" />
+    <option name="EXTRACT_METHOD_SPECIFY_TYPE" value="true" />
+    <option name="EXTRACT_METHOD_VISIBILITY" value="private" />
+  </component>
+</application>

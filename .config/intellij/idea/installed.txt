@@ -1,0 +1,21 @@
+AceJump
+BashSupport
+CheckStyle-IDEA
+Code Navigator
+Error-prone plugin
+FindBugs-IDEA
+IdeaVIM
+Key promoter
+Lombook Plugin
+Lua
+PMDPlugin
+PlantUML integration
+com.wix.eslint
+io.protostuff.protostuff-jetbrains-plugin
+mobi.hsz.idea.gitignore
+mobi.hsz.idea.latex
+org.intellij.scala
+org.jboss.forge.plugin.idea
+org.rust.lang
+org.sonarlint.idea
+ua.in.dej.myEmmet

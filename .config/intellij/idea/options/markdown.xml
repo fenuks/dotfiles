@@ -1,0 +1,6 @@
+<application>
+  <component name="MarkdownApplicationSettings">
+    <MarkdownCssSettings StylesheetUri="jar:file:/home/rkozicki/Programs/idea/plugins/markdown/lib/markdown.jar!/org/intellij/plugins/markdown/settings/darcula.css" />
+  </component>
+  <component name="MarkdownSettings" smarts="false" quotes="false" abbreviations="false" hardWraps="false" autoLinks="false" wikiLinks="false" tables="false" definitions="false" fencedCodeBlocks="false" suppressHTMLBlocks="false" suppressInlineHTML="false" />
+</application>
