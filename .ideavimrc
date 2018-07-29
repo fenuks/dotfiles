@@ -10,8 +10,8 @@ inoremap <silent> <A-p> :action MoveLineUp<CR>
 vnoremap <silent> <A-n> dkPgv=gv
 vnoremap <silent> <A-p> dpgv=gv
 inoremap <C-j> <CR>
-nnoremap [[ :action MethodUp<CR>
-nnoremap ]] :action MethodDown<CR>
+nnoremap [m :action MethodUp<CR>
+nnoremap ]m :action MethodDown<CR>
 " IdeaVim stuff
 set vim-surround
 nnoremap gd :action GotoTypeDeclaration<CR>

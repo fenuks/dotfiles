@@ -166,6 +166,7 @@ nnoremap <Leader>bd :bdelete<CR>
 nnoremap <Leader>bh :hide<CR>
 nnoremap <Leader>bc :close<CR>
 nnoremap <Leader>bn :new<CR>:only<CR>
+nnoremap <silent> <Leader>bo :%bd<CR><C-^><C-^>:bd<CR>
 
 function! Conflict(reverse)
   call search('^\(@@ .* @@\|[<=>|]\{7}[<=>|]\@!\)', a:reverse ? 'bW' : 'W')
