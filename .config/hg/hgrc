@@ -24,6 +24,7 @@ uncommit =
 
 [alias]
 cm = !${HG} commit -m "Scal z $(${HG} parents | grep 'branch:' | sed 's/branch:\s*//')"
+b = branch
 
 [color]
 mode = auto

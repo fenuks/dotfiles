@@ -32,7 +32,10 @@ nnoremap g; :action JumpToLastChange<CR>
 nnoremap g, :action JumpToNextChange<CR>
 nnoremap <C-w>m :action HideAllWindows<CR>
 nnoremap <C-w>} :action QuickImplementations<CR>
+
 nnoremap <Leader>tt :action RerunTests<CR>
 nnoremap <Leader>tf :action RerunFailedTests<CR>
+nnoremap <Leader>tc :action RunClass<CR>
+nnoremap <Leader>tC :action DebugClass<CR>
 " version control
 nnoremap <Leader>va :action Annotate<CR>
