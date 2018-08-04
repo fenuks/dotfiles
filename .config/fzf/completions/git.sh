@@ -15,9 +15,11 @@ _fzf_complete_git() {
     fzf_opt=(--height "${FZF_TMUX_HEIGHT:-50%}" --min-height 15 --reverse --preview 'echo {}' --preview-window down:3:wrap ${FZF_COMPLETION_OPTS} ${FZF_DEFAULT_OPTS})
 
     if [[ "${cmd_opt}" == 'add '* ]]; then
-        selected=$( ( ${binary} status --short | grep -v -P '^(A|R|D|M) ' ) | ${fzf} "${fzf_opt[@]}" -m | awk '{print $2}' | tr '\n' ' ')
+        selected=$( ( ${binary} status --short | grep -v -P '^(A|R|D|M) ' ) | ${fzf} "${fzf_opt[@]}" -m | awk '{$1=""; print substr($0,2)}' | tr '\n' ' ')
+    elif [[ "${cmd_opt}" == 'reset '* ]]; then
+        selected=$( ( ${binary} status --short | grep -P '^(A|R|D|M)' ) | ${fzf} "${fzf_opt[@]}" -m | awk '{$1=""; print substr($0,2)}' | tr '\n' ' ')
     elif [[ "${cmd_opt}" == 'diff '* ]]; then
-        selected=$( ( ${binary} status --short ) | ${fzf} "${fzf_opt[@]}" -m | awk '{print $2}' | tr '\n' ' ')
+        selected=$( ( ${binary} status --short ) | ${fzf} "${fzf_opt[@]}" -m | awk '{$1=""; print substr($0,2)}' | tr '\n' ' ')
     fi
 
     if [[ -v selected ]]; then
