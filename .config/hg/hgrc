@@ -29,6 +29,24 @@ b = branch
 [color]
 mode = auto
 
+color.orange=202
+color.lightyellow=191
+color.darkorange=220
+color.brightyellow=226
+
+log.branch=cyan
+log.summary=lightyellow
+log.description=lightyellow
+log.bookmark=green
+log.tag=darkorange
+log.activebookmark = green bold underline
+
+changeset.public=orange bold
+changeset.secret=blue bold
+changeset.draft=brightyellow bold
+
+desc.here=bold blue_background
+
 [diff]
 git = true
 nobinary = false

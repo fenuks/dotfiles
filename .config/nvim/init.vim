@@ -1,4 +1,4 @@
-scriptencoding utf-8 
+scriptencoding utf-8
 " editor behavior
 set t_Co=256
 set history=1000 " Number of things to remember in history."
@@ -104,6 +104,9 @@ cnoremap v/ v/\v
 
 " shortcuts
 inoremap jk <ESC>
+inoremap jK <ESC>
+inoremap Jk <ESC>
+inoremap JK <ESC>
 nnoremap <C-s> :w<Enter>
 inoremap <C-s> <ESC>:w<Enter>a
 inoremap <A-m> <ESC>o
@@ -323,24 +326,26 @@ let g:lsp_log_file = expand('/tmp/vim-lsp.log')
 " augroup END
 
 
-Plug 'Valloric/YouCompleteMe', { 'for': ['java'] }
+Plug 'Valloric/YouCompleteMe'
 let g:ycm_autoclose_preview_window_after_completion=1
 let g:ycm_semantic_triggers =  {
   \   'java' : ['.', '@'],
   \ }
 " Plug 'lifepillar/vim-mucomplete'
 " Plug 'maralla/completor.vim'
-if has('nvim')
+" Plug 'Shougo/neocomplete.vim'
+" let g:neocomplete#enable_at_startup = 1
+" if has('nvim')
     " DEOPLETE
     " Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
     " let g:deoplete#enable_at_startup = 1
-    let g:deoplete#omni#input_patterns = {} " faster, called by deoplete
+    " let g:deoplete#omni#input_patterns = {} " faster, called by deoplete
     " let g:deoplete#omni#input_patterns._ = '.+'
     " let g:deoplete#omni#input_patterns.java = '[^. *\t]\.\w*'
-    let g:deoplete#omni#input_patterns.javascript = ''
+    " let g:deoplete#omni#input_patterns.javascript = ''
     " let g:deoplete#omni#input_patterns.cpp = ['[^. *\t]\.\w*', '[^. *\t]\::\w*', '[^. *\t]\->\w*', '[<"].*/']
     " let g:deoplete#omni#input_patterns.python = '.+'
-    let g:deoplete#omni_patterns = {}  " slower, called by vim, https://github.com/Shougo/deoplete.nvim/issues/190
+    " let g:deoplete#omni_patterns = {}  " slower, called by vim, https://github.com/Shougo/deoplete.nvim/issues/190
     " let g:deoplete#omni_patterns._ = '.+'
     " let g:deoplete#omni#functions = {}
     " let g:deoplete#omni#functions.javascript = tern#Complete
@@ -350,27 +355,28 @@ if has('nvim')
     " Plug 'tweekmonster/deoplete-clang2', { 'for': ['c', 'cpp', 'objc', 'objcpp'] }
     " Plug 'zchee/deoplete-clang', { 'for': ['c', 'cpp', 'objc', 'objcpp'] }
     " Plug 'carlitux/deoplete-ternjs', { 'for': 'javascript' }
-    let g:deoplete#sources#ternjs#types = 1
-    let g:deoplete#sources#ternjs#docs = 1
+    " let g:deoplete#sources#ternjs#types = 1
+    " let g:deoplete#sources#ternjs#docs = 1
     " Plug 'zchee/deoplete-jedi', { 'for': 'python' }
-    let g:deoplete#sources#jedi#show_docstring=1
+    " let g:deoplete#sources#jedi#show_docstring=1
     " alternatively use jedi-vim
     " Plug 'zchee/deoplete-go', { 'for': 'go' }
 
     " NVIM COMPLETION MANAGER
-    Plug 'roxma/nvim-completion-manager'
-    let g:cm_sources_override = {
-    \ 'cm-tags': {'enable': 0}
-    \ }
-
-    let g:cm_matcher={'module': 'cm_matchers.abbrev_matcher', 'case': 'smartcase'}
-    let g:cm_sources_override = {
-        \ 'cm-tags': {'enable': 0}
-    \ }
-else
-    Plug 'Shougo/neocomplete.vim'
-    let g:neocomplete#enable_at_startup = 1
-endif
+    " Plug 'ncm2/ncm2'
+    " Plug 'roxma/nvim-yarp'
+    " Plug 'ncm2/ncm2-bufword'
+    " Plug 'ncm2/ncm2-path'
+    " Plug 'ncm2/ncm2-ultisnips'
+    " Plug 'ncm2/ncm2-jedi', { 'for': 'python' }
+    " Plug 'ncm2/ncm2-pyclang', { 'for': ['c', 'cpp'] }
+    " Plug 'ncm2/ncm2-cssomni', { 'for': ['html', 'css', 'jsx'] }
+    " Plug 'ncm2/ncm2-html-subscope', { 'for': 'html' }
+    " Plug 'ncm2/ncm2-tern',  { 'do': 'npm install', 'for': 'javascript' }
+    " augroup NCM
+    "     autocmd BufEnter * call ncm2#enable_for_buffer()
+    " augroup END
+" endif
 
 
 Plug 'SirVer/ultisnips'
