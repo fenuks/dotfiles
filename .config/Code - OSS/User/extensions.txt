@@ -26,11 +26,8 @@ ms-vscode.node-debug2
 ms-vsliveshare.vsliveshare
 octref.vetur
 PeterJausovec.vscode-docker
-Pivotal.vscode-boot-dev-pack
 Pivotal.vscode-boot-java
 Pivotal.vscode-boot-properties
-Pivotal.vscode-concourse
-Pivotal.vscode-manifest-yaml
 Pivotal.vscode-spring-boot
 platformio.platformio-ide
 redhat.java
