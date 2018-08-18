@@ -40,18 +40,10 @@ set noerrorbells " don't beep
 set confirm " Ask to save instead of complaining
 set splitright splitbelow " open splits in more natural position
 
-let g:python_host_prog='/usr/bin/python2'
-let g:python3_host_prog='/usr/bin/python3'
-
-
-if !isdirectory('/tmp/vim-undo-dir')
-    call mkdir('/tmp/vim-undo-dir', '', 0700)
-endif
 set undodir=/tmp/vim-undo-dir
 set undofile
 set undolevels=1000
 
-" editor appearance
 syntax on " syntax highlight on
 filetype indent plugin on " enable filetype detection
 set number " Show line numbers
@@ -68,6 +60,19 @@ set title " update terminal title
 set ruler " show line position on bottom ruler
 set cmdwinheight=20 " set commandline window height
 set listchars=tab:▸\ ,eol:¬,trail:·
+
+set dictionary+=/usr/share/dict/british,/usr/share/dict/polish
+set thesaurus+=/usr/share/thesaurus/moby-thesaurus.txt
+digraph !! 8252 " ‼
+digraph ?! 8264 " ⁈
+digraph !? 8265 " ⁉
+
+if !isdirectory('/tmp/vim-undo-dir')
+    call mkdir('/tmp/vim-undo-dir', '', 0700)
+endif
+
+let g:python_host_prog='/usr/bin/python2'
+let g:python3_host_prog='/usr/bin/python3'
 let mapleader = ','
 
 if has('nvim')
@@ -78,13 +83,7 @@ else
     set viminfofile=$HOME/.config/nvim/viminfo
 endif
 
-" language
-set dictionary+=/usr/share/dict/british,/usr/share/dict/polish
-set thesaurus+=/usr/share/thesaurus/moby-thesaurus.txt
-digraph !! 8252 " ‼
-digraph ?! 8264 " ⁈
-digraph !? 8265 " ⁉
-
+" mappings
 nnoremap <Leader>ev :edit $MYVIMRC<CR>
 nnoremap <Leader>eb :edit $HOME/.bashrc<CR>
 " set very magic regex (perl compatitible)
@@ -102,7 +101,6 @@ cnoremap <C-E> <End>
 cnoremap g/ g/\v
 cnoremap v/ v/\v
 
-" shortcuts
 inoremap jk <ESC>
 inoremap jK <ESC>
 inoremap Jk <ESC>
@@ -112,18 +110,18 @@ inoremap <C-s> <ESC>:w<Enter>a
 inoremap <A-m> <ESC>o
 
 " moving lines up and down
-nnoremap <silent> <A-p> :<c-u>execute 'move -1-'. v:count1<CR>
-nnoremap <silent> <A-n> :<c-u>execute 'move +'. v:count1<CR>
+nnoremap <silent> <A-p> :<C-u>execute 'move -1-'. v:count1<CR>
+nnoremap <silent> <A-n> :<C-u>execute 'move +'. v:count1<CR>
 inoremap <silent> <A-n> <Esc>:m .+1<CR>==gi
 inoremap <silent> <A-p> <Esc>:m .-2<CR>==gi
 vnoremap <silent> <A-n> :m '>+1<CR>gv=gv
 vnoremap <silent> <A-p> :m '<-2<CR>gv=gv
 " insert spaces
-nnoremap <silent> [<space>  :<c-u>put! =repeat(nr2char(10), v:count1)<CR>'[
-nnoremap <silent> ]<space> :<c-u>put =repeat(nr2char(10), v:count1)<CR>
+nnoremap <silent> [<space>  :<C-u>put! =repeat(nr2char(10), v:count1)<CR>'[
+nnoremap <silent> ]<space> :<C-u>put =repeat(nr2char(10), v:count1)<CR>
 
 " edit register
-nnoremap <silent> <Leader>@ :<c-u><c-r><c-r>='let @'. v:register .' = '. string(getreg(v:register))<cr><c-f><left><Paste>
+nnoremap <silent> <Leader>@ :<C-u><C-r><C-r>='let @'. v:register .' = '. string(getreg(v:register))<CR><C-F><LEFT>
 
 inoremap <A-h> <LEFT>
 inoremap <A-l> <RIGHT>
@@ -134,6 +132,32 @@ vnoremap <A-j> gj
 vnoremap <A-k> gk
 nnoremap <A-j> gj
 nnoremap <A-k> gk
+
+nnoremap <Leader>bd :bdelete<CR>
+nnoremap <Leader>bh :hide<CR>
+nnoremap <Leader>bc :close<CR>
+nnoremap <silent> <Leader>bn :new<CR>:only<CR>
+nnoremap <silent> <Leader>bo :%bd<CR><C-^><C-^>:bd<CR>
+
+nnoremap Y y$
+vnoremap <Leader>y "+y
+
+vnoremap <Leader>d "+d
+vnoremap <Leader>p "+p
+vnoremap <Leader>P "+P
+
+nnoremap <Leader>y "+y
+nnoremap <Leader>Y "+y$
+nnoremap <Leader>d "+d
+nnoremap <Leader>D "+D
+nnoremap <Leader>p "+p
+nnoremap <Leader>P "+P
+
+vmap . :normal .<CR>
+
+cmap w!! %!sudo tee > /dev/null %
+
+nnoremap <Leader><Space>s :%s/\s\+$//<CR>
 
 " unimpaired mappings
 nnoremap [a :<C-U>previous<CR>
@@ -164,12 +188,6 @@ nnoremap [t gT
 nnoremap ]t gt
 nnoremap [T :<C-U>tfirst<CR>
 nnoremap ]T :<C-U>tlast<CR>
-
-nnoremap <Leader>bd :bdelete<CR>
-nnoremap <Leader>bh :hide<CR>
-nnoremap <Leader>bc :close<CR>
-nnoremap <Leader>bn :new<CR>:only<CR>
-nnoremap <silent> <Leader>bo :%bd<CR><C-^><C-^>:bd<CR>
 
 function! Conflict(reverse)
   call search('^\(@@ .* @@\|[<=>|]\{7}[<=>|]\@!\)', a:reverse ? 'bW' : 'W')
@@ -228,30 +246,7 @@ nnoremap =ofm :setlocal foldmethod=manual<CR>
 nnoremap =ofm :setlocal foldmethod=marker<CR>
 nnoremap =ofs :setlocal foldmethod=syntax<CR>
 
-nnoremap [<CR> O<ESC>
-nnoremap ]<CR> o<ESC>
-
-nnoremap Y y$
-
-vnoremap <Leader>y "+y
-
-vnoremap <Leader>d "+d
-vnoremap <Leader>p "+p
-vnoremap <Leader>P "+P
-
-nnoremap <Leader>y "+y
-nnoremap <Leader>Y "+y$
-nnoremap <Leader>d "+d
-nnoremap <Leader>D "+D
-nnoremap <Leader>p "+p
-nnoremap <Leader>P "+P
-
-vmap . :normal .<CR>
-
-cmap w!! %!sudo tee > /dev/null %
-
-nnoremap <Leader><Space>s :%s/\s\+$//<CR>
-
+let g:loaded_2html_plugin = 1
 if has('nvim')
     call plug#begin('~/.config/nvim/plugged')
 else
@@ -270,122 +265,6 @@ nnoremap <C-w>m :WinResizerStartResize<CR>
 Plug 'wellle/visual-split.vim', { 'on': ['VSResize', 'VSSplit', 'VSSplitAbove', 'VSSplitBelow', '<Plug>(Visual-Split-VSResize)', '<Plug>(Visual-Split-VSSplit)', '<Plug>(Visual-Split-VSSplitAbove)', '<Plug>(Visual-Split-VSSplitBelow)'] }
 xmap <C-W>s <Plug>(Visual-Split-VSSplit)
 
-"##### Autocomplete
-"Plug 'Townk/vim-autoclose'
-Plug 'jiangmiao/auto-pairs'
-let g:AutoPairs = {'(':')', '[':']', '{':'}', "'":"'", '"':'"', '`':'`',
-\                    '„':'”', '‘':'’', '“':'”'}
-let g:AutoPairsShortcutToggle=''
-let g:AutoPairsShortcutFastWrap=''
-let g:AutoPairsShortcutJump=''
-let g:AutoPairsShortcutBackInsert=''
-
-" ##### Code autocompletion
-Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'make release', 'for': ['haskell', 'javascript', 'rust', 'typescript', 'vue'] }
-let g:LanguageClient_serverCommands = {
-    \ 'cpp': ['cquery'],
-    \ 'haskell': ['hie', '--lsp'],
-    \ 'java': ['jdtls', '-javaagent:/usr/share/java/lombok/lombok.jar', '-Xbootclasspath/p:/usr/share/java/lombok/lombok.jar'],
-    \ 'javascript': ['javascript-typescript-stdio'],
-    \ 'javascript.jsx': ['javascript-typescript-stdio'],
-    \ 'python': ['pyls'],
-    \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
-    \ 'typescript': ['javascript-typescript-stdio'],
-    \ 'vue': ['vls'],
-    \ }
-" \ 'cpp': ['cquery', '--language-server', '--log-file=/tmp/cq.log'],
-
-let g:LanguageClient_autoStart = 1
-" let g:LanguageClient_loggingLevel = 'DEBUG'
-" setlocal omnifunc=LanguageClient#complete
-
-nnoremap <silent> <Leader>lk :call LanguageClient_textDocument_hover()<CR>
-nnoremap <silent> <Leader>ld :call LanguageClient_textDocument_definition()<CR>
-nnoremap <silent> <Leader>lr :call LanguageClient_textDocument_rename()<CR>
-nnoremap <silent> <Leader>lt :call LanguageClient_workspace_symbol()<CR>
-nnoremap <silent> <Leader>lT :call LanguageClient_textDocument_documentSymbol()<CR>
-nnoremap <silent> <Leader>lu :call LanguageClient_textDocument_references()<CR>
-nnoremap <silent> <Leader>lq :call LanguageClient_textDocument_formatting()<CR>
-
-" Plug 'prabirshrestha/async.vim'
-" Plug 'prabirshrestha/vim-lsp'
-let g:lsp_signs_enabled = 1         " enable signs
-let g:lsp_diagnostics_echo_cursor = 1 " enable echo under cursor when in normal mode
-let g:lsp_log_verbose = 1
-let g:lsp_log_file = expand('/tmp/vim-lsp.log')
-
-" augroup vim_lsp
-"     autocmd!
-"     autocmd User lsp_setup call lsp#register_server({
-"         \ 'name': 'rls',
-"         \ 'cmd': {server_info->['rustup', 'run', 'nightly', 'rls']},
-"         \ 'whitelist': ['rust'],
-"         \ })
-"
-"     autocmd FileType rust setlocal omnifunc=lsp#complete
-" augroup END
-
-
-Plug 'Valloric/YouCompleteMe'
-let g:ycm_autoclose_preview_window_after_completion=1
-let g:ycm_semantic_triggers =  {
-  \   'java' : ['.', '@'],
-  \ }
-" Plug 'lifepillar/vim-mucomplete'
-" Plug 'maralla/completor.vim'
-" Plug 'Shougo/neocomplete.vim'
-" let g:neocomplete#enable_at_startup = 1
-" if has('nvim')
-    " DEOPLETE
-    " Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-    " let g:deoplete#enable_at_startup = 1
-    " let g:deoplete#omni#input_patterns = {} " faster, called by deoplete
-    " let g:deoplete#omni#input_patterns._ = '.+'
-    " let g:deoplete#omni#input_patterns.java = '[^. *\t]\.\w*'
-    " let g:deoplete#omni#input_patterns.javascript = ''
-    " let g:deoplete#omni#input_patterns.cpp = ['[^. *\t]\.\w*', '[^. *\t]\::\w*', '[^. *\t]\->\w*', '[<"].*/']
-    " let g:deoplete#omni#input_patterns.python = '.+'
-    " let g:deoplete#omni_patterns = {}  " slower, called by vim, https://github.com/Shougo/deoplete.nvim/issues/190
-    " let g:deoplete#omni_patterns._ = '.+'
-    " let g:deoplete#omni#functions = {}
-    " let g:deoplete#omni#functions.javascript = tern#Complete
-    " let g:deoplete#omni#functions.python = 'jedi#completions'
-    " let g:deoplete#omni#functions.python = 'RopeCompleteFunc'
-    " DEOPLETE PLUGINS
-    " Plug 'tweekmonster/deoplete-clang2', { 'for': ['c', 'cpp', 'objc', 'objcpp'] }
-    " Plug 'zchee/deoplete-clang', { 'for': ['c', 'cpp', 'objc', 'objcpp'] }
-    " Plug 'carlitux/deoplete-ternjs', { 'for': 'javascript' }
-    " let g:deoplete#sources#ternjs#types = 1
-    " let g:deoplete#sources#ternjs#docs = 1
-    " Plug 'zchee/deoplete-jedi', { 'for': 'python' }
-    " let g:deoplete#sources#jedi#show_docstring=1
-    " alternatively use jedi-vim
-    " Plug 'zchee/deoplete-go', { 'for': 'go' }
-
-    " NVIM COMPLETION MANAGER
-    " Plug 'ncm2/ncm2'
-    " Plug 'roxma/nvim-yarp'
-    " Plug 'ncm2/ncm2-bufword'
-    " Plug 'ncm2/ncm2-path'
-    " Plug 'ncm2/ncm2-ultisnips'
-    " Plug 'ncm2/ncm2-jedi', { 'for': 'python' }
-    " Plug 'ncm2/ncm2-pyclang', { 'for': ['c', 'cpp'] }
-    " Plug 'ncm2/ncm2-cssomni', { 'for': ['html', 'css', 'jsx'] }
-    " Plug 'ncm2/ncm2-html-subscope', { 'for': 'html' }
-    " Plug 'ncm2/ncm2-tern',  { 'do': 'npm install', 'for': 'javascript' }
-    " augroup NCM
-    "     autocmd BufEnter * call ncm2#enable_for_buffer()
-    " augroup END
-" endif
-
-
-Plug 'SirVer/ultisnips'
-let g:UltiSnipsExpandTrigger='<Tab>'
-" let g:UltiSnipsJumpForwardTrigger='<Tab>'
-" let g:UltiSnipsJumpBackwardTrigger='<S-Tab>'
-" let g:UltiSnipsListSnippets='<C-\>'
-Plug 'honza/vim-snippets'
-
 "##### Refactoring; edition
 Plug 'wellle/targets.vim'
 Plug 'michaeljsmith/vim-indent-object'
@@ -397,6 +276,62 @@ Plug 'terryma/vim-multiple-cursors'
 Plug 'tomtom/tcomment_vim'
 Plug 'tommcdo/vim-exchange'
 Plug 'kshenoy/vim-signature', {'on': 'SignatureToggleSigns'}
+
+"#### Version Control
+Plug 'sjl/gundo.vim', { 'on': 'GundoToggle' }
+Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
+nnoremap <Leader>vL :UndotreeToggle<CR>
+Plug 'mhinz/vim-signify', { 'on': 'SignifyToggle' } " shows which lines were added and such
+let g:signify_vcs_list=['git', 'hg']
+nmap <Leader>vl :SignifyToggle<CR>
+Plug 'airblade/vim-gitgutter', { 'on': 'GitGutterSignsToggle' }
+"GIT
+Plug 'tpope/vim-fugitive'
+nnoremap <Leader>va :Gwrite<CR>
+nnoremap <Leader>vb :Gblame<CR>
+nnoremap <Leader>vc :Gcommit<CR>
+nnoremap <Leader>vd :Gvdiff<CR>
+nnoremap <Leader>vh :Glog<CR>
+nnoremap <Leader>vm :Gmove<CR>
+nnoremap <Leader>U  :GundoToggle<CR>
+nnoremap <Leader>vp :Git! diff --staged<CR>
+nnoremap <Leader>vP :Git! diff<CR>
+nnoremap <Leader>vr :Gread<CR>
+nnoremap <Leader>vR :Gremove<CR>
+nnoremap <Leader>vs :Gstatus<CR>
+Plug 'gregsexton/gitv', {'on': 'Gitv'}
+nnoremap <Leader>vg :Gitv<CR>
+Plug 'junegunn/gv.vim', {'on': 'GV'}
+nnoremap <Leader>vG :GV<CR>
+Plug 'jreybert/vimagit', { 'on': 'Magit' }
+nnoremap <Leader>vM :Magit<CR>
+"HG
+Plug 'ludovicchabant/vim-lawrencium'
+" Plug 'jlfwong/vim-mercenary'
+Plug 'will133/vim-dirdiff', { 'on': 'DirDiff' }
+
+"#### Filesystem
+" Plugin 'kien/ctrlp.vim'
+command! -nargs=* Agp
+  \ call fzf#vim#ag(<q-args>, '2> /dev/null',
+  \                 fzf#vim#with_preview({'left':'90%'},'up:60%'))
+
+Plug 'junegunn/fzf'
+Plug 'junegunn/fzf.vim'
+nnoremap <C-p> :Files<CR>
+nnoremap <Leader>gf :Files<CR>
+nnoremap <Leader>gt :Tags<CR>
+nnoremap <Leader>gT :BTags<CR>
+nnoremap <Leader>bl :Buffers<CR>
+
+Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+map <Leader>F :NERDTreeToggle<CR>
+let g:NERDTreeIgnore=['\.pyc$', '\~$', '__pycache__']
+
+Plug 'mhinz/vim-grepper', { 'on': ['Grepper', '<Plug>(GrepperOperator)'] }
+" let g:grepper.highlight = 1
+nnoremap <Leader>s :Grepper -tool ag<CR>
+
 "##### Navigation
 " gtags
 " GNU global
@@ -448,7 +383,7 @@ nnoremap <Leader>cf :ALEFix<CR>
 nmap <silent> <Leader>cp <Plug>(ale_previous_wrap)
 nmap <silent> <Leader>cn <Plug>(ale_next_wrap)
 nmap <silent> <Leader>cn <Plug>(ale_next_wrap)
-nnoremap <silent> <Leader>co :lopen<CR>
+nnoremap <silent> <Leader>co :lwindow<CR>
 nnoremap <silent> <Leader>cO :lclose<CR>
 " let g:ale_open_list = 1 " conflicts with ultisnips jumping
 
@@ -472,61 +407,129 @@ Plug 'arcticicestudio/nord-vim'
 " Plug 'altercation/vim-colors-solarized'
 " Plug 'fmoralesc/molokayo'
 
-"#### Version Control
-Plug 'sjl/gundo.vim', { 'on': 'GundoToggle' }
-Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
-nnoremap <Leader>vL :UndotreeToggle<CR>
-Plug 'mhinz/vim-signify', { 'on': 'SignifyToggle' } " shows which lines were added and such
-let g:signify_vcs_list=['git', 'hg']
-nmap <Leader>vl :SignifyToggle<CR>
-"GIT
-Plug 'tpope/vim-fugitive'
-nnoremap <Leader>va :Gwrite<CR>
-nnoremap <Leader>vb :Gblame<CR>
-nnoremap <Leader>vc :Gcommit<CR>
-nnoremap <Leader>vd :Gvdiff<CR>
-nnoremap <Leader>vh :Glog<CR>
-nnoremap <Leader>vm :Gmove<CR>
-nnoremap <Leader>U  :GundoToggle<CR>
-nnoremap <Leader>vp :Git! diff --staged<CR>
-nnoremap <Leader>vP :Git! diff<CR>
-nnoremap <Leader>vr :Gread<CR>
-nnoremap <Leader>vR :Gremove<CR>
-nnoremap <Leader>vs :Gstatus<CR>
-Plug 'gregsexton/gitv', {'on': 'Gitv'}
-nnoremap <Leader>vg :Gitv<CR>
-Plug 'junegunn/gv.vim', {'on': 'GV'}
-nnoremap <Leader>vG :GV<CR>
-Plug 'jreybert/vimagit', { 'on': 'Magit' }
-nnoremap <Leader>vM :Magit<CR>
-"HG
-Plug 'ludovicchabant/vim-lawrencium'
-" Plug 'jlfwong/vim-mercenary'
-Plug 'will133/vim-dirdiff', { 'on': 'DirDiff' }
+"##### Autocomplete
+"Plug 'Townk/vim-autoclose'
+Plug 'jiangmiao/auto-pairs'
+let g:AutoPairs = {'(':')', '[':']', '{':'}', "'":"'", '"':'"', '`':'`',
+\                    '„':'”', '‘':'’', '“':'”'}
+let g:AutoPairsShortcutToggle=''
+let g:AutoPairsShortcutFastWrap=''
+let g:AutoPairsShortcutJump=''
+let g:AutoPairsShortcutBackInsert=''
 
-"#### Filesystem
-" Plugin 'kien/ctrlp.vim'
-command! -nargs=* Agp
-  \ call fzf#vim#ag(<q-args>, '2> /dev/null',
-  \                 fzf#vim#with_preview({'left':'90%'},'up:60%'))
+" ##### Code autocompletion
+Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'make release', 'for': ['haskell', 'javascript', 'rust', 'typescript', 'vue', 'c', 'cpp'] }
+let g:LanguageClient_serverCommands = {
+    \ 'c': ['cquery', '--log-file=/tmp/cq.log', '--init={"cacheDirectory":"/tmp/cquery/"}'],
+    \ 'cpp': ['cquery', '--log-file=/tmp/cq.log', '--init={"cacheDirectory":"/tmp/cquery/"}'],
+    \ 'haskell': ['hie', '--lsp'],
+    \ 'java': ['jdtls', '-javaagent:/usr/share/java/lombok/lombok.jar', '-Xbootclasspath/p:/usr/share/java/lombok/lombok.jar'],
+    \ 'javascript': ['javascript-typescript-stdio'],
+    \ 'javascript.jsx': ['javascript-typescript-stdio'],
+    \ 'python': ['pyls'],
+    \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
+    \ 'typescript': ['javascript-typescript-stdio'],
+    \ 'vue': ['vls'],
+    \ }
 
-Plug 'junegunn/fzf'
-Plug 'junegunn/fzf.vim'
-nnoremap <C-p> :Files<CR>
-nnoremap <Leader>gf :Files<CR>
-nnoremap <Leader>gt :Tags<CR>
-nnoremap <Leader>gT :BTags<CR>
-nnoremap <Leader>bl :Buffers<CR>
+let g:LanguageClient_autoStart = 1
+let g:LanguageClient_loggingLevel = 'DEBUG'
+let g:LanguageClient_loggingFile='/tmp/lc.log'
+let g:LanguageClient_serverStderr = '/tmp/lc.log'
+" setlocal omnifunc=LanguageClient#complete
 
-Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
-map <Leader>F :NERDTreeToggle<CR>
-let g:NERDTreeIgnore=['\.pyc$', '\~$', '__pycache__']
+nnoremap <silent> <Leader>lk :call LanguageClient_textDocument_hover()<CR>
+nnoremap <silent> <Leader>ld :call LanguageClient_textDocument_definition()<CR>
+nnoremap <silent> <Leader>lr :call LanguageClient_textDocument_rename()<CR>
+nnoremap <silent> <Leader>lt :call LanguageClient_workspace_symbol()<CR>
+nnoremap <silent> <Leader>lT :call LanguageClient_textDocument_documentSymbol()<CR>
+nnoremap <silent> <Leader>lu :call LanguageClient_textDocument_references()<CR>
+nnoremap <silent> <Leader>lq :call LanguageClient_textDocument_formatting()<CR>
 
-Plug 'mhinz/vim-grepper', { 'on': ['Grepper', '<Plug>(GrepperOperator)'] }
-" let g:grepper.highlight = 1
-nnoremap <Leader>s :Grepper -tool ag<CR>
+" Plug 'prabirshrestha/async.vim'
+" Plug 'prabirshrestha/vim-lsp'
+let g:lsp_signs_enabled = 1         " enable signs
+let g:lsp_diagnostics_echo_cursor = 1 " enable echo under cursor when in normal mode
+let g:lsp_log_verbose = 1
+let g:lsp_log_file = expand('/tmp/vim-lsp.log')
 
-""" Language specific
+" augroup vim_lsp
+"     autocmd!
+"     autocmd User lsp_setup call lsp#register_server({
+"         \ 'name': 'rls',
+"         \ 'cmd': {server_info->['rustup', 'run', 'nightly', 'rls']},
+"         \ 'whitelist': ['rust'],
+"         \ })
+"
+"     autocmd FileType rust setlocal omnifunc=lsp#complete
+" augroup END
+
+
+Plug 'Valloric/YouCompleteMe', { 'for': 'java' }
+let g:ycm_autoclose_preview_window_after_completion=1
+let g:ycm_semantic_triggers =  {
+  \   'java' : ['.', '@'],
+  \ }
+" Plug 'lifepillar/vim-mucomplete'
+" Plug 'maralla/completor.vim'
+" Plug 'Shougo/neocomplete.vim'
+" let g:neocomplete#enable_at_startup = 1
+if has('nvim')
+    " DEOPLETE
+    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+
+    " let g:deoplete#omni#input_patterns = {} " faster, called by deoplete
+    " let g:deoplete#omni#input_patterns._ = '.+'
+    " let g:deoplete#omni#input_patterns.java = '[^. *\t]\.\w*'
+    " let g:deoplete#omni#input_patterns.javascript = ''
+    " let g:deoplete#omni#input_patterns.cpp = ['[^. *\t]\.\w*', '[^. *\t]\::\w*', '[^. *\t]\->\w*', '[<"].*/']
+    " let g:deoplete#omni#input_patterns.python = '.+'
+    " let g:deoplete#omni_patterns = {}  " slower, called by vim, https://github.com/Shougo/deoplete.nvim/issues/190
+    " let g:deoplete#omni_patterns._ = '.+'
+    " let g:deoplete#omni#functions = {}
+    " let g:deoplete#omni#functions.javascript = tern#Complete
+    " let g:deoplete#omni#functions.python = 'jedi#completions'
+    " let g:deoplete#omni#functions.python = 'RopeCompleteFunc'
+    " DEOPLETE PLUGINS
+    " Plug 'tweekmonster/deoplete-clang2', { 'for': ['c', 'cpp', 'objc', 'objcpp'] }
+    " Plug 'zchee/deoplete-clang', { 'for': ['c', 'cpp', 'objc', 'objcpp'] }
+    " Plug 'carlitux/deoplete-ternjs', { 'for': 'javascript' }
+    " let g:deoplete#sources#ternjs#types = 1
+    " let g:deoplete#sources#ternjs#docs = 1
+    " Plug 'zchee/deoplete-jedi', { 'for': 'python' }
+    " let g:deoplete#sources#jedi#show_docstring=1
+    " alternatively use jedi-vim
+    " Plug 'zchee/deoplete-go', { 'for': 'go' }
+
+    " NVIM COMPLETION MANAGER
+    " Plug 'ncm2/ncm2'
+    " Plug 'roxma/nvim-yarp'
+    " Plug 'ncm2/ncm2-bufword'
+    " Plug 'ncm2/ncm2-path'
+    " Plug 'ncm2/ncm2-ultisnips'
+    " Plug 'ncm2/ncm2-jedi', { 'for': 'python' }
+    " Plug 'ncm2/ncm2-pyclang', { 'for': ['c', 'cpp'] }
+    " Plug 'ncm2/ncm2-cssomni', { 'for': ['html', 'css', 'jsx'] }
+    " Plug 'ncm2/ncm2-html-subscope', { 'for': 'html' }
+    " Plug 'ncm2/ncm2-tern',  { 'do': 'npm install', 'for': 'javascript' }
+    " augroup NCM
+    "     autocmd BufEnter * call ncm2#enable_for_buffer()
+    " augroup END
+else
+    Plug 'Shougo/deoplete.nvim'
+    Plug 'roxma/nvim-yarp'
+    Plug 'roxma/vim-hug-neovim-rpc'
+endif
+
+
+Plug 'SirVer/ultisnips'
+let g:UltiSnipsExpandTrigger='<Tab>'
+" let g:UltiSnipsJumpForwardTrigger='<Tab>'
+" let g:UltiSnipsJumpBackwardTrigger='<S-Tab>'
+" let g:UltiSnipsListSnippets='<C-\>'
+Plug 'honza/vim-snippets'
+
+"#### Language specific
 Plug 'sheerun/vim-polyglot'
 " let g:polyglot_disabled = ['python']
 " ##### VIML
@@ -538,20 +541,6 @@ augroup END
 "##### HTML5
 Plug 'mattn/emmet-vim', { 'for': ['html', 'htmldjango'] }
 Plug 'othree/html5.vim', { 'for': ['html', 'htmldjango'] }
-
-"##### ORG
-Plug 'jceb/vim-orgmode', { 'for': 'org' }
-
-"##### Markdown
-Plug 'suan/vim-instant-markdown', { 'for': 'markdown' }
-" Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
-Plug 'gabrielelana/vim-markdown', { 'for': 'markdown' }
-
-augroup yaml
-    autocmd!
-    autocmd FileType yaml setlocal softtabstop=2 shiftwidth=2
-augroup END
-
 
 "##### CSS
 Plug 'ap/vim-css-color', { 'for': ['css', 'scss'] }
@@ -586,7 +575,6 @@ Plug 'othree/javascript-libraries-syntax.vim', { 'for': 'javascript' }
 augroup filetype_python
     autocmd!
     autocmd BufRead,BufNewFile *.recipe setfiletype python
-    " autocmd FileType python call cm#disable_for_buffer()
     autocmd FileType python nnoremap <buffer> <silent> <Leader>U :YcmCompleter GoToReferences<CR>
     autocmd FileType python let b:neoformat_run_all_formatters = 1
 augroup END
@@ -601,7 +589,6 @@ let g:jedi#usages_command = '<Leader>u'
 
 let g:jedi#completions_enabled = 0
 let g:jedi#completions_command = ''
-
 
 " Plug 'python-rope/ropevim', { 'for': 'python' }
 let g:ropevim_enable_shortcuts = 0
@@ -648,7 +635,6 @@ augroup filetype_java
     autocmd FileType java nnoremap <buffer> <silent> <Leader>aC <Plug>(JavaComplete-Generate-ClassInFile)
     " autocmd FileType java setlocal formatexpr=LanguageClient_textDocument_rangeFormatting()
 
-    autocmd FileType java call cm#disable_for_buffer()
     autocmd FileType java nnoremap <buffer> <Leader>cf :YcmCompleter FixIt<CR>
     autocmd FileType java nnoremap <buffer> gd :YcmCompleter GoTo<CR>
     autocmd FileType java nnoremap <buffer> K :YcmCompleter GetDoc<CR>
@@ -665,16 +651,31 @@ augroup END
 " Plug 'parsonsmatt/intero-neovim', { 'for': 'haskell' }
 
 "##### C family
-Plug 'lyuts/vim-rtags', { 'for': ['c', 'cpp', 'objc', 'objcpp'] }
+" Plug 'lyuts/vim-rtags', { 'for': ['c', 'cpp', 'objc', 'objcpp'] }
 let g:rtagsUseDefaultMappings = 1
 let g:rtagsAutoLaunchRdm=1
-Plug 'Rip-Rip/clang_complete', { 'for': ['c', 'cpp', 'objc', 'objcpp'] }
-
+" Plug 'Rip-Rip/clang_complete', { 'for': ['c', 'cpp', 'objc', 'objcpp'] }
+" Plug 'arakashic/chromatica.nvim', { 'for': ['c', 'cpp', 'objc', 'objcpp'], 'do': ':UpdateRemotePlugins' }
+let g:chromatica#enable_at_startup=1
+let g:chromatica#responsive_mode=1
 
 "##### Natural language
+"##### Markdown
+Plug 'suan/vim-instant-markdown', { 'for': 'markdown' }
+" Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
+Plug 'gabrielelana/vim-markdown', { 'for': 'markdown' }
+
+augroup yaml
+    autocmd!
+    autocmd FileType yaml setlocal softtabstop=2 shiftwidth=2
+augroup END
+
+"##### ORG
+Plug 'jceb/vim-orgmode', { 'for': 'org' }
+
 " Plug 'vim-scripts/LanguageTool'
-Plug 'dpelle/vim-LanguageTool', { 'for': ['markdown', 'rst'] }
-Plug 'rhysd/vim-grammarous', { 'for': ['markdown', 'rst'] }
+Plug 'dpelle/vim-LanguageTool', { 'for': ['markdown', 'rst', 'org'] }
+Plug 'rhysd/vim-grammarous', { 'for': ['markdown', 'rst', 'org'] }
 let g:grammarous#languagetool_cmd = 'languagetool'
 let g:grammarous#use_vim_spelllang = 1
 augroup natural_language
@@ -698,6 +699,12 @@ elseif &diff
 else
     colorscheme Tomorrow-Night
 endif
+
+let g:deoplete#enable_at_startup = 1
+call deoplete#custom#option({
+    \ 'smart_case': v:true,
+    \ 'ignore_case': v:false
+\ })
 " transparent: CandyPaper,
 " gruvbox, badwolf
 " truecolor: onedark, OceanicNext
