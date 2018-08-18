@@ -324,7 +324,7 @@ nnoremap <Leader>gt :Tags<CR>
 nnoremap <Leader>gT :BTags<CR>
 nnoremap <Leader>bl :Buffers<CR>
 
-Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
 map <Leader>F :NERDTreeToggle<CR>
 let g:NERDTreeIgnore=['\.pyc$', '\~$', '__pycache__']
 
@@ -369,7 +369,9 @@ nmap <Leader>ga <Plug>(EasyAlign)
 "Plug 'vim-syntastic/syntastic'
 Plug 'w0rp/ale'
 let g:ale_linters = {
-\   'python': ['mypy', 'pylint', 'flake8']
+\   'c': ['cppcheck'],
+\   'cpp': ['cppcheck', 'clazy'],
+\   'python': ['mypy', 'pylint', 'flake8'],
 \}
 let g:ale_fixers = {
 \   '': ['trim_whitespace'],
@@ -377,6 +379,7 @@ let g:ale_fixers = {
 \   'json': ['fixjson'],
 \   'python': ['yapf', 'isort']
 \}
+let g:ale_cpp_clazy_options='-only-qt -qt4-compat'
 let g:ale_python_mypy_options='--ignore-missing-imports'
 let g:airline#extensions#ale#enabled = 1
 nnoremap <Leader>cf :ALEFix<CR>
@@ -419,6 +422,7 @@ let g:AutoPairsShortcutBackInsert=''
 
 " ##### Code autocompletion
 Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'make release', 'for': ['haskell', 'javascript', 'rust', 'typescript', 'vue', 'c', 'cpp'] }
+set signcolumn=yes
 let g:LanguageClient_serverCommands = {
     \ 'c': ['cquery', '--log-file=/tmp/cq.log', '--init={"cacheDirectory":"/tmp/cquery/"}'],
     \ 'cpp': ['cquery', '--log-file=/tmp/cq.log', '--init={"cacheDirectory":"/tmp/cquery/"}'],
@@ -431,6 +435,7 @@ let g:LanguageClient_serverCommands = {
     \ 'typescript': ['javascript-typescript-stdio'],
     \ 'vue': ['vls'],
     \ }
+    " \ 'c': ['clangd'],
 
 let g:LanguageClient_autoStart = 1
 let g:LanguageClient_loggingLevel = 'DEBUG'
@@ -703,7 +708,8 @@ endif
 let g:deoplete#enable_at_startup = 1
 call deoplete#custom#option({
     \ 'smart_case': v:true,
-    \ 'ignore_case': v:false
+    \ 'ignore_case': v:false,
+    \ 'ignore_sources': {'c': ['tag'], 'cpp': ['tag']}
 \ })
 " transparent: CandyPaper,
 " gruvbox, badwolf
