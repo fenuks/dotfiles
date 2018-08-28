@@ -67,6 +67,10 @@ digraph !! 8252 " ‼
 digraph ?! 8264 " ⁈
 digraph !? 8265 " ⁉
 
+augroup SETTINGS
+    autocmd CursorHold * checktime " needed for autoread to be triggered
+augroup END
+
 if !isdirectory('/tmp/vim-undo-dir')
     call mkdir('/tmp/vim-undo-dir', '', 0700)
 endif
@@ -138,6 +142,8 @@ nnoremap <Leader>bh :hide<CR>
 nnoremap <Leader>bc :close<CR>
 nnoremap <silent> <Leader>bn :new<CR>:only<CR>
 nnoremap <silent> <Leader>bo :%bd<CR><C-^><C-^>:bd<CR>
+nnoremap <silent> <Leader>bts :new<CR>:terminal<CR>
+nnoremap <silent> <Leader>btv :vnew<CR>:terminal<CR>
 
 nnoremap Y y$
 vnoremap <Leader>y "+y
@@ -421,7 +427,7 @@ let g:AutoPairsShortcutJump=''
 let g:AutoPairsShortcutBackInsert=''
 
 " ##### Code autocompletion
-Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'make release', 'for': ['haskell', 'javascript', 'rust', 'typescript', 'vue', 'c', 'cpp'] }
+Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'make release', 'for': ['haskell', 'rust', 'typescript', 'vue', 'c', 'cpp'] }
 set signcolumn=yes
 let g:LanguageClient_serverCommands = {
     \ 'c': ['cquery', '--log-file=/tmp/cq.log', '--init={"cacheDirectory":"/tmp/cquery/"}'],
@@ -470,7 +476,7 @@ let g:lsp_log_file = expand('/tmp/vim-lsp.log')
 " augroup END
 
 
-Plug 'Valloric/YouCompleteMe', { 'for': 'java' }
+Plug 'Valloric/YouCompleteMe', { 'for': ['java', 'javascript'] }
 let g:ycm_autoclose_preview_window_after_completion=1
 let g:ycm_semantic_triggers =  {
   \   'java' : ['.', '@'],
@@ -501,8 +507,10 @@ if has('nvim')
     " Plug 'carlitux/deoplete-ternjs', { 'for': 'javascript' }
     " let g:deoplete#sources#ternjs#types = 1
     " let g:deoplete#sources#ternjs#docs = 1
-    " Plug 'zchee/deoplete-jedi', { 'for': 'python' }
-    " let g:deoplete#sources#jedi#show_docstring=1
+
+    Plug 'zchee/deoplete-jedi', { 'for': 'python' }
+    let g:deoplete#sources#jedi#show_docstring=1
+
     " alternatively use jedi-vim
     " Plug 'zchee/deoplete-go', { 'for': 'go' }
 
@@ -529,8 +537,8 @@ endif
 
 Plug 'SirVer/ultisnips'
 let g:UltiSnipsExpandTrigger='<Tab>'
-" let g:UltiSnipsJumpForwardTrigger='<Tab>'
-" let g:UltiSnipsJumpBackwardTrigger='<S-Tab>'
+let g:UltiSnipsJumpForwardTrigger='<Tab>'
+let g:UltiSnipsJumpBackwardTrigger='<S-Tab>'
 " let g:UltiSnipsListSnippets='<C-\>'
 Plug 'honza/vim-snippets'
 
@@ -582,6 +590,8 @@ augroup filetype_python
     autocmd BufRead,BufNewFile *.recipe setfiletype python
     autocmd FileType python nnoremap <buffer> <silent> <Leader>U :YcmCompleter GoToReferences<CR>
     autocmd FileType python let b:neoformat_run_all_formatters = 1
+    " autocmd FileType python
+    "    \ call deoplete#custom#buffer_option('auto_complete', v:false)
 augroup END
 
 Plug 'davidhalter/jedi-vim', { 'for': 'python' }
@@ -711,6 +721,7 @@ call deoplete#custom#option({
     \ 'ignore_case': v:false,
     \ 'ignore_sources': {'c': ['tag'], 'cpp': ['tag']}
 \ })
+call deoplete#custom#source('_', 'matchers', ['matcher_full_fuzzy'])
 " transparent: CandyPaper,
 " gruvbox, badwolf
 " truecolor: onedark, OceanicNext
