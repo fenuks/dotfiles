@@ -36,9 +36,11 @@ alias vim='nvim'
 alias check-yapf-config="diff <(yapf --style-help | grep -oP '^[a-zA-Z_0-9]+' | sort) <(grep -oP '^[a-zA-Z_0-9]+' ~/.config/yapf/style | sort)"
 alias yaourt-vcs="yaourt -Su --devel"
 # faster edition of common files
+alias v='vim'
 alias vb='vim ~/.bashrc'
 alias vd='vim docker-compose.yml'
 alias vD='vim Dockerfile'
+alias vf='vim ~/.config/fish/config.fish'
 alias vh='sudoedit /etc/hosts'
 alias vm='vim Makefile'
 alias vp='vim PKGBUILD'
