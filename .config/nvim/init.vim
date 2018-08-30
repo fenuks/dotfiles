@@ -40,7 +40,6 @@ set noerrorbells " don't beep
 set confirm " Ask to save instead of complaining
 set splitright splitbelow " open splits in more natural position
 
-set undodir=/tmp/vim-undo-dir
 set undofile
 set undolevels=1000
 
@@ -71,8 +70,21 @@ augroup SETTINGS
     autocmd CursorHold * checktime " needed for autoread to be triggered
 augroup END
 
-if !isdirectory('/tmp/vim-undo-dir')
-    call mkdir('/tmp/vim-undo-dir', '', 0700)
+if has('unix')
+    set undodir=/tmp/vim-undo-dir
+
+    if has('nvim')
+        call plug#begin('~/.config/nvim/plugged')
+    else
+        call plug#begin('~/.vim/plugged')
+    endif
+else
+    call plug#begin(fnamemodify($MYVIMRC, ':p:h') . '/vim/plugged')
+    set undodir=$TMP/vim-undo-dir
+endif
+
+if !isdirectory(&undodir)
+    call mkdir(&undodir, 0700)
 endif
 
 let g:python_host_prog='/usr/bin/python2'
@@ -253,11 +265,6 @@ nnoremap =ofm :setlocal foldmethod=marker<CR>
 nnoremap =ofs :setlocal foldmethod=syntax<CR>
 
 let g:loaded_2html_plugin = 1
-if has('nvim')
-    call plug#begin('~/.config/nvim/plugged')
-else
-    call plug#begin('~/.vim/plugged')
-endif
 
 "##### TUI
 Plug 'bling/vim-airline'
