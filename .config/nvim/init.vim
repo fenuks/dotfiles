@@ -79,7 +79,7 @@ if has('unix')
         call plug#begin('~/.vim/plugged')
     endif
 else
-    call plug#begin(fnamemodify($MYVIMRC, ':p:h') . '/vim/plugged')
+    call plug#begin(fnamemodify($MYVIMRC, ':p:h') . '/vimfiles/plugged')
     set undodir=$TMP/vim-undo-dir
 endif
 
