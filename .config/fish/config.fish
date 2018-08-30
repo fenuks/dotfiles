@@ -23,9 +23,11 @@ alias vim='nvim'
 alias check-yapf-config="diff <(yapf --style-help | grep -oP '^[a-zA-Z_0-9]+' | sort) <(grep -oP '^[a-zA-Z_0-9]+' ~/.config/yapf/style | sort)"
 alias yaourt-vcs="yaourt -Su --devel"
 # faster edition of common files
+alias v='vim'
 alias vb='vim ~/.bashrc'
 alias vd='vim docker-compose.yml'
 alias vD='vim Dockerfile'
+alias vf='vim ~/.config/fish/config.fish'
 alias vh='sudoedit /etc/hosts'
 alias vm='vim Makefile'
 alias vp='vim PKGBUILD'
@@ -47,6 +49,7 @@ set -x JAVA_HOME $JDK_HOME
 set -x JAVA_TOOLS_OPTIONS "-javaagent:/usr/share/java/lombok/lombok.jar -Xbootclasspath/p:/usr/share/java/lombok/lombok.jar"
 set -x JDK_HOME /usr/lib/jvm/java-8-openjdk/
 set -x fish_user_paths $HOME/.local/bin $fish_user_paths
+set -x LESS -R
 set -x PYTHON2DOCDIR /usr/share/doc/python2/html/
 set -x PYTHON3DOCDIR /usr/share/doc/python/html/
 set -x PYTHONPATH "$PYTHONPATH:$HOME/.config/nvim/plugged/ropevim/"
@@ -73,6 +76,8 @@ set -x ENHANCD_COMMAND fzf
 function fish_user_key_bindings
     fzf_key_bindings
 end
+
+# set -g fish_key_bindings fish_vi_key_bindings
 
 function fish_prompt
     powerline-go -error $status -shell bare

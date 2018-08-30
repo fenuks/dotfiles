@@ -382,8 +382,6 @@ nmap <Leader>ga <Plug>(EasyAlign)
 "Plug 'vim-syntastic/syntastic'
 Plug 'w0rp/ale'
 let g:ale_linters = {
-\   'c': ['cppcheck'],
-\   'cpp': ['cppcheck', 'clazy'],
 \   'python': ['mypy', 'pylint', 'flake8'],
 \}
 let g:ale_fixers = {
@@ -392,7 +390,6 @@ let g:ale_fixers = {
 \   'json': ['fixjson'],
 \   'python': ['yapf', 'isort']
 \}
-let g:ale_cpp_clazy_options='-only-qt -qt4-compat'
 let g:ale_python_mypy_options='--ignore-missing-imports'
 let g:airline#extensions#ale#enabled = 1
 nnoremap <Leader>cf :ALEFix<CR>
