@@ -26,3 +26,6 @@
 	trustExitCode = true
 [rerere]
 	enabled = true
+[remote-hg]
+	hg-git-compat = true
+	track-branches = false

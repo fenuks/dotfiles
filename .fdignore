@@ -1,6 +1,7 @@
 *.class
 env/
 *.pyc
+*.pyo
 __pycache__/
 *.swp
 *~
