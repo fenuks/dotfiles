@@ -623,8 +623,10 @@ augroup filetype_rust
     autocmd FileType rust nnoremap <buffer> <silent> K <Plug>(rust-doc)
 augroup END
 
-"##### Go
+"##### Golang
 "Plug 'fatih/vim-go'
+
+Plug 'mitsuse/autocomplete-swift', { 'for': 'swift' }
 
 "##### JVM
 "##### Java
