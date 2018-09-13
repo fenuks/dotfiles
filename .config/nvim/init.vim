@@ -78,6 +78,15 @@ if has('unix')
     else
         call plug#begin('~/.vim/plugged')
     endif
+
+    if has('mac')
+        let g:python_host_prog='/usr/local/bin/python2'
+        let g:python3_host_prog='/usr/local/bin/python3'
+    else
+        let g:python_host_prog='/usr/bin/python2'
+        let g:python3_host_prog='/usr/bin/python3'
+    endif
+
 else
     call plug#begin(fnamemodify($MYVIMRC, ':p:h') . '/vimfiles/plugged')
     set undodir=$TMP/vim-undo-dir
@@ -87,8 +96,6 @@ if !isdirectory(&undodir)
     call mkdir(&undodir, 0700)
 endif
 
-let g:python_host_prog='/usr/bin/python2'
-let g:python3_host_prog='/usr/bin/python3'
 let mapleader = ','
 
 if has('nvim')
