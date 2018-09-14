@@ -1,0 +1,358 @@
+<application>
+  <component name="VimSettings">
+    <state version="4" enabled="true" />
+    <globalmarks />
+    <filemarks>
+      <file name="/start_script.py" timestamp="1536957624860">
+        <mark key="[" line="0" column="0" />
+      </file>
+      <file name="$USER_HOME$/Projects/calibre-addons/addons/metadata/biblionetka/parser.py" timestamp="1492893513492">
+        <mark key="'" line="74" column="52" />
+        <mark key="[" line="76" column="12" />
+        <mark key="]" line="76" column="17" />
+        <mark key="." line="76" column="17" />
+        <mark key="^" line="76" column="17" />
+      </file>
+      <file name="$USER_HOME$/Projects/calibre-addons/addons/metadata/biblionetka/utils.py" timestamp="1491540202089">
+        <mark key="[" line="5" column="0" />
+        <mark key="]" line="5" column="0" />
+        <mark key="^" line="8" column="15" />
+        <mark key="." line="5" column="0" />
+      </file>
+      <file name="/Python Console" timestamp="1504225138429">
+        <mark key="[" line="0" column="0" />
+      </file>
+      <file name="$USER_HOME$/Projects/calibre-addons/addons/metadata/biblionetka/changelog.txt" timestamp="1491346470925">
+        <mark key="[" line="0" column="25" />
+        <mark key="]" line="0" column="25" />
+        <mark key="." line="0" column="25" />
+        <mark key="^" line="0" column="23" />
+      </file>
+      <file name="/fragment.py" timestamp="1494826630655">
+        <mark key="[" line="0" column="0" />
+      </file>
+      <file name="/a.dummy" timestamp="1494826285428">
+        <mark key="[" line="0" column="0" />
+      </file>
+      <file name="$USER_HOME$/Projects/calibre-addons/addons/metadata/biblionetka/__init__.py" timestamp="1491539601117">
+        <mark key="[" line="8" column="0" />
+        <mark key="]" line="8" column="0" />
+        <mark key="." line="8" column="0" />
+      </file>
+      <file name="$USER_HOME$/Projects/monika/call_center/main.py" timestamp="1496864509424">
+        <mark key="'" line="77" column="37" />
+      </file>
+      <file name="$USER_HOME$/Projects/calibre-addons/addons/metadata/biblionetka/prefs_mock.py" timestamp="1491541756965">
+        <mark key="[" line="4" column="15" />
+        <mark key="]" line="4" column="15" />
+        <mark key="^" line="0" column="17" />
+        <mark key="." line="4" column="15" />
+      </file>
+      <file name="$USER_HOME$/Projects/calibre-addons/addons/metadata/biblionetka/bbbbase.py" timestamp="1491516509683">
+        <mark key="'" line="0" column="7" />
+        <mark key="[" line="110" column="0" />
+        <mark key="]" line="110" column="12" />
+        <mark key="." line="110" column="12" />
+        <mark key="^" line="110" column="11" />
+      </file>
+      <file name="$USER_HOME$/Projects/calibre-addons/addons/metadata/biblionetka/base.py" timestamp="1491516025815">
+        <mark key="'" line="109" column="10" />
+        <mark key="[" line="10" column="17" />
+        <mark key="]" line="10" column="17" />
+        <mark key="^" line="11" column="7" />
+        <mark key="." line="10" column="17" />
+      </file>
+      <file name="$USER_HOME$/Programs/projects/monika/python/main.py" timestamp="1489614954341">
+        <mark key="[" line="0" column="0" />
+      </file>
+      <file name="$USER_HOME$/Projects/calibre-addons/addons/metadata/biblionetka/parser_base.py" timestamp="1492893646663">
+        <mark key="'" line="124" column="7" />
+        <mark key="[" line="97" column="42" />
+        <mark key="]" line="97" column="38" />
+        <mark key="." line="97" column="38" />
+        <mark key="^" line="97" column="38" />
+      </file>
+      <file name="$USER_HOME$/Projects/calibre-addons/addons/metadata/biblionetka/config.py" timestamp="1491538891730">
+        <mark key="'" line="152" column="0" />
+        <mark key="[" line="13" column="0" />
+        <mark key="]" line="13" column="0" />
+        <mark key="." line="13" column="0" />
+      </file>
+      <file name="$USER_HOME$/Projects/monika/populacje/main.py" timestamp="1495988565399">
+        <mark key="[" line="28" column="17" />
+        <mark key="]" line="28" column="0" />
+        <mark key="." line="28" column="0" />
+      </file>
+      <file name="$USER_HOME$/Projects/calibre-addons/addons/metadata/biblionetka/config_widget.py" timestamp="1491637059205">
+        <mark key="[" line="13" column="0" />
+        <mark key="]" line="13" column="0" />
+        <mark key="." line="13" column="0" />
+      </file>
+      <file name="/Dummy.txt" timestamp="1536957648584">
+        <mark key="[" line="0" column="0" />
+      </file>
+      <file name="$USER_HOME$/Projects/calibre-addons/addons/metadata/biblionetka/.gitignore" timestamp="1491540188510">
+        <mark key="[" line="0" column="6" />
+        <mark key="]" line="1" column="8" />
+        <mark key="^" line="1" column="8" />
+        <mark key="." line="1" column="8" />
+      </file>
+      <file name="$USER_HOME$/Projects/calibre-addons/addons/metadata/biblionetka/constraints.py" timestamp="1491340989250">
+        <mark key="[" line="0" column="0" />
+        <mark key="]" line="0" column="4" />
+        <mark key="^" line="0" column="4" />
+        <mark key="." line="0" column="4" />
+      </file>
+      <file name="$USER_HOME$/Programs/projects/reddit/make_epub.py" timestamp="1481846283284">
+        <mark key="[" line="51" column="0" />
+        <mark key="]" line="51" column="0" />
+        <mark key="^" line="48" column="13" />
+        <mark key="." line="51" column="0" />
+      </file>
+      <file name="$USER_HOME$/Projects/calibre-addons/addons/metadata/biblionetka/plugin_meta.py" timestamp="1491542774297">
+        <mark key="[" line="0" column="0" />
+        <mark key="]" line="0" column="0" />
+        <mark key="^" line="0" column="14" />
+        <mark key="." line="0" column="0" />
+      </file>
+      <file name="$USER_HOME$/Projects/calibre-addons/addons/metadata/biblionetka/plugin_base.py" timestamp="1491544323245">
+        <mark key="'" line="93" column="23" />
+        <mark key="[" line="96" column="36" />
+        <mark key="]" line="96" column="41" />
+        <mark key="." line="96" column="41" />
+      </file>
+      <file name="$USER_HOME$/Programs/projects/monika/lab02_2/main.py" timestamp="1484786313484">
+        <mark key="[" line="16" column="0" />
+        <mark key="]" line="16" column="0" />
+        <mark key="." line="16" column="0" />
+      </file>
+      <file name="$USER_HOME$/Projects/reddit/make_comments_html.py" timestamp="1491963886354">
+        <mark key="[" line="75" column="20" />
+        <mark key="]" line="75" column="4" />
+        <mark key="." line="75" column="4" />
+        <mark key="^" line="75" column="15" />
+      </file>
+    </filemarks>
+    <jumps>
+      <jump line="260" column="57" filename="$USER_HOME$/Projects/calibre-addons/addons/metadata/biblionetka/parser.py" />
+      <jump line="228" column="12" filename="$USER_HOME$/Projects/calibre-addons/addons/metadata/biblionetka/parser.py" />
+      <jump line="227" column="38" filename="$USER_HOME$/Projects/calibre-addons/addons/metadata/biblionetka/parser.py" />
+      <jump line="232" column="42" filename="$USER_HOME$/Projects/calibre-addons/addons/metadata/biblionetka/parser.py" />
+      <jump line="264" column="48" filename="$USER_HOME$/Projects/calibre-addons/addons/metadata/biblionetka/parser.py" />
+      <jump line="206" column="0" filename="$USER_HOME$/Projects/calibre-addons/addons/metadata/biblionetka/parser.py" />
+      <jump line="234" column="34" filename="$USER_HOME$/Projects/calibre-addons/addons/metadata/biblionetka/parser.py" />
+      <jump line="236" column="66" filename="$USER_HOME$/Projects/calibre-addons/addons/metadata/biblionetka/parser.py" />
+      <jump line="237" column="66" filename="$USER_HOME$/Projects/calibre-addons/addons/metadata/biblionetka/parser.py" />
+      <jump line="239" column="38" filename="$USER_HOME$/Projects/calibre-addons/addons/metadata/biblionetka/parser.py" />
+      <jump line="265" column="19" filename="$USER_HOME$/Projects/calibre-addons/addons/metadata/biblionetka/parser.py" />
+      <jump line="266" column="101" filename="$USER_HOME$/Projects/calibre-addons/addons/metadata/biblionetka/parser.py" />
+      <jump line="209" column="49" filename="$USER_HOME$/Projects/calibre-addons/addons/metadata/biblionetka/parser.py" />
+      <jump line="280" column="25" filename="$USER_HOME$/Projects/calibre-addons/addons/metadata/biblionetka/parser.py" />
+      <jump line="330" column="30" filename="$USER_HOME$/Projects/calibre-addons/addons/metadata/biblionetka/parser.py" />
+      <jump line="46" column="89" filename="$USER_HOME$/Projects/calibre-addons/addons/metadata/biblionetka/parser.py" />
+      <jump line="314" column="56" filename="$USER_HOME$/Projects/calibre-addons/addons/metadata/biblionetka/parser.py" />
+      <jump line="0" column="0" filename="$USER_HOME$/Projects/calibre-addons/addons/metadata/biblionetka/parser.py" />
+      <jump line="136" column="67" filename="$USER_HOME$/Projects/calibre-addons/addons/metadata/biblionetka/parser.py" />
+      <jump line="202" column="86" filename="$USER_HOME$/Projects/calibre-addons/addons/metadata/biblionetka/parser.py" />
+      <jump line="285" column="69" filename="$USER_HOME$/Projects/calibre-addons/addons/metadata/biblionetka/parser.py" />
+      <jump line="315" column="86" filename="$USER_HOME$/Projects/calibre-addons/addons/metadata/biblionetka/parser.py" />
+      <jump line="317" column="105" filename="$USER_HOME$/Projects/calibre-addons/addons/metadata/biblionetka/parser.py" />
+      <jump line="54" column="0" filename="$USER_HOME$/Projects/calibre-addons/addons/metadata/biblionetka/config.py" />
+      <jump line="176" column="0" filename="$USER_HOME$/Projects/calibre-addons/addons/metadata/biblionetka/config.py" />
+      <jump line="18" column="4" filename="$USER_HOME$/Projects/calibre-addons/addons/metadata/biblionetka/base.py" />
+      <jump line="78" column="27" filename="$USER_HOME$/Projects/calibre-addons/addons/metadata/biblionetka/base.py" />
+      <jump line="94" column="34" filename="$USER_HOME$/Projects/calibre-addons/addons/metadata/biblionetka/base.py" />
+      <jump line="46" column="63" filename="$USER_HOME$/Projects/calibre-addons/addons/metadata/biblionetka/__init__.py" />
+      <jump line="53" column="30" filename="$USER_HOME$/Projects/calibre-addons/addons/metadata/biblionetka/__init__.py" />
+      <jump line="68" column="20" filename="$USER_HOME$/Projects/calibre-addons/addons/metadata/biblionetka/__init__.py" />
+      <jump line="86" column="16" filename="$USER_HOME$/Projects/calibre-addons/addons/metadata/biblionetka/__init__.py" />
+      <jump line="89" column="36" filename="$USER_HOME$/Projects/calibre-addons/addons/metadata/biblionetka/__init__.py" />
+      <jump line="104" column="17" filename="$USER_HOME$/Projects/calibre-addons/addons/metadata/biblionetka/__init__.py" />
+      <jump line="29" column="4" filename="$USER_HOME$/Projects/calibre-addons/addons/metadata/biblionetka/__init__.py" />
+      <jump line="45" column="74" filename="$USER_HOME$/Projects/calibre-addons/addons/metadata/biblionetka/__init__.py" />
+      <jump line="18" column="17" filename="$USER_HOME$/Projects/calibre-addons/addons/metadata/biblionetka/__init__.py" />
+      <jump line="35" column="39" filename="$USER_HOME$/Projects/calibre-addons/addons/metadata/biblionetka/__init__.py" />
+      <jump line="38" column="25" filename="$USER_HOME$/Projects/calibre-addons/addons/metadata/biblionetka/__init__.py" />
+      <jump line="10" column="31" filename="$USER_HOME$/Projects/calibre-addons/addons/metadata/biblionetka/__init__.py" />
+      <jump line="37" column="18" filename="$USER_HOME$/Projects/calibre-addons/addons/metadata/biblionetka/__init__.py" />
+      <jump line="33" column="39" filename="$USER_HOME$/Projects/calibre-addons/addons/metadata/biblionetka/base.py" />
+      <jump line="36" column="24" filename="$USER_HOME$/Projects/calibre-addons/addons/metadata/biblionetka/base.py" />
+      <jump line="16" column="17" filename="$USER_HOME$/Projects/calibre-addons/addons/metadata/biblionetka/base.py" />
+      <jump line="106" column="10" filename="$USER_HOME$/Projects/calibre-addons/addons/metadata/biblionetka/base.py" />
+      <jump line="6" column="17" filename="$USER_HOME$/Projects/calibre-addons/addons/metadata/biblionetka/bbbbase.py" />
+      <jump line="16" column="0" filename="$USER_HOME$/Projects/calibre-addons/addons/metadata/biblionetka/bbbbase.py" />
+      <jump line="106" column="0" filename="$USER_HOME$/Projects/calibre-addons/addons/metadata/biblionetka/bbbbase.py" />
+      <jump line="15" column="0" filename="$USER_HOME$/Projects/calibre-addons/addons/metadata/biblionetka/bbbbase.py" />
+      <jump line="13" column="31" filename="$USER_HOME$/Projects/calibre-addons/addons/metadata/biblionetka/bbbbase.py" />
+      <jump line="0" column="7" filename="$USER_HOME$/Projects/calibre-addons/addons/metadata/biblionetka/bbbbase.py" />
+      <jump line="13" column="21" filename="$USER_HOME$/Projects/calibre-addons/addons/metadata/biblionetka/plugin_base.py" />
+      <jump line="38" column="39" filename="$USER_HOME$/Projects/calibre-addons/addons/metadata/biblionetka/plugin_base.py" />
+      <jump line="52" column="74" filename="$USER_HOME$/Projects/calibre-addons/addons/metadata/biblionetka/plugin_base.py" />
+      <jump line="53" column="63" filename="$USER_HOME$/Projects/calibre-addons/addons/metadata/biblionetka/plugin_base.py" />
+      <jump line="60" column="30" filename="$USER_HOME$/Projects/calibre-addons/addons/metadata/biblionetka/plugin_base.py" />
+      <jump line="75" column="20" filename="$USER_HOME$/Projects/calibre-addons/addons/metadata/biblionetka/plugin_base.py" />
+      <jump line="93" column="23" filename="$USER_HOME$/Projects/calibre-addons/addons/metadata/biblionetka/plugin_base.py" />
+      <jump line="117" column="0" filename="$USER_HOME$/Projects/calibre-addons/addons/metadata/biblionetka/parser.py" />
+      <jump line="61" column="45" filename="$USER_HOME$/Projects/calibre-addons/addons/metadata/biblionetka/parser.py" />
+      <jump line="18" column="0" filename="$USER_HOME$/Projects/calibre-addons/addons/metadata/biblionetka/parser.py" />
+      <jump line="23" column="4" filename="$USER_HOME$/Projects/calibre-addons/addons/metadata/biblionetka/parser.py" />
+      <jump line="52" column="34" filename="$USER_HOME$/Projects/calibre-addons/addons/metadata/biblionetka/parser.py" />
+      <jump line="54" column="34" filename="$USER_HOME$/Projects/calibre-addons/addons/metadata/biblionetka/parser.py" />
+      <jump line="86" column="38" filename="$USER_HOME$/Projects/calibre-addons/addons/metadata/biblionetka/parser.py" />
+      <jump line="88" column="38" filename="$USER_HOME$/Projects/calibre-addons/addons/metadata/biblionetka/parser.py" />
+      <jump line="159" column="62" filename="$USER_HOME$/Projects/calibre-addons/addons/metadata/biblionetka/parser.py" />
+      <jump line="20" column="4" filename="$USER_HOME$/Projects/calibre-addons/addons/metadata/biblionetka/parser.py" />
+      <jump line="31" column="23" filename="$USER_HOME$/Projects/calibre-addons/addons/metadata/biblionetka/parser.py" />
+      <jump line="27" column="23" filename="$USER_HOME$/Projects/calibre-addons/addons/metadata/biblionetka/parser.py" />
+      <jump line="19" column="4" filename="$USER_HOME$/Projects/calibre-addons/addons/metadata/biblionetka/parser.py" />
+      <jump line="255" column="18" filename="$USER_HOME$/Projects/calibre-addons/addons/metadata/biblionetka/parser.py" />
+      <jump line="38" column="19" filename="$USER_HOME$/Projects/calibre-addons/addons/metadata/biblionetka/parser.py" />
+      <jump line="63" column="48" filename="$USER_HOME$/Projects/calibre-addons/addons/metadata/biblionetka/parser.py" />
+      <jump line="67" column="46" filename="$USER_HOME$/Projects/calibre-addons/addons/metadata/biblionetka/parser.py" />
+      <jump line="72" column="18" filename="$USER_HOME$/Projects/calibre-addons/addons/metadata/biblionetka/parser.py" />
+      <jump line="81" column="18" filename="$USER_HOME$/Projects/calibre-addons/addons/metadata/biblionetka/parser.py" />
+      <jump line="101" column="59" filename="$USER_HOME$/Projects/calibre-addons/addons/metadata/biblionetka/parser.py" />
+      <jump line="149" column="18" filename="$USER_HOME$/Projects/calibre-addons/addons/metadata/biblionetka/parser.py" />
+      <jump line="194" column="8" filename="$USER_HOME$/Projects/calibre-addons/addons/metadata/biblionetka/parser.py" />
+      <jump line="198" column="27" filename="$USER_HOME$/Projects/calibre-addons/addons/metadata/biblionetka/parser.py" />
+      <jump line="226" column="27" filename="$USER_HOME$/Projects/calibre-addons/addons/metadata/biblionetka/parser.py" />
+      <jump line="39" column="24" filename="$USER_HOME$/Projects/calibre-addons/addons/metadata/biblionetka/parser.py" />
+      <jump line="41" column="24" filename="$USER_HOME$/Projects/calibre-addons/addons/metadata/biblionetka/parser.py" />
+      <jump line="270" column="61" filename="$USER_HOME$/Projects/calibre-addons/addons/metadata/biblionetka/parser.py" />
+      <jump line="45" column="30" filename="$USER_HOME$/Projects/calibre-addons/addons/metadata/biblionetka/parser.py" />
+      <jump line="9" column="0" filename="$USER_HOME$/Projects/calibre-addons/addons/metadata/biblionetka/parser.py" />
+      <jump line="230" column="44" filename="$USER_HOME$/Projects/calibre-addons/addons/metadata/biblionetka/parser.py" />
+      <jump line="50" column="0" filename="$USER_HOME$/Projects/calibre-addons/addons/metadata/biblionetka/parser.py" />
+      <jump line="73" column="29" filename="$USER_HOME$/Projects/calibre-addons/addons/metadata/biblionetka/parser.py" />
+      <jump line="71" column="51" filename="$USER_HOME$/Projects/calibre-addons/addons/metadata/biblionetka/parser.py" />
+      <jump line="274" column="56" filename="$USER_HOME$/Projects/calibre-addons/addons/metadata/biblionetka/parser.py" />
+      <jump line="74" column="52" filename="$USER_HOME$/Projects/calibre-addons/addons/metadata/biblionetka/parser.py" />
+      <jump line="229" column="50" filename="$USER_HOME$/Projects/calibre-addons/addons/metadata/biblionetka/parser.py" />
+      <jump line="119" column="7" filename="$USER_HOME$/Projects/calibre-addons/addons/metadata/biblionetka/parser_base.py" />
+      <jump line="78" column="10" filename="$USER_HOME$/Projects/monika/call_center/main.py" />
+      <jump line="80" column="11" filename="$USER_HOME$/Projects/monika/call_center/main.py" />
+      <jump line="73" column="4" filename="$USER_HOME$/Projects/monika/call_center/main.py" />
+      <jump line="74" column="67" filename="$USER_HOME$/Projects/monika/call_center/main.py" />
+      <jump line="77" column="37" filename="$USER_HOME$/Projects/monika/call_center/main.py" />
+    </jumps>
+    <registers>
+      <register name="&quot;" type="2">
+        <text encoding="base64">ZGF0YV9saXN0ID0gW10K</text>
+      </register>
+      <register name="-" type="4">
+        <text>data_list</text>
+      </register>
+      <register name="/" type="4">
+        <text encoding="base64">XDxjdXN0b21lcl9zdGF0c1w+</text>
+      </register>
+      <register name="0" type="4">
+        <text encoding="base64">J2xhbmd1YWdlcycgaW4gc2VsZi5wcmVmcy5kZWZhdWx0IGFuZCA=</text>
+      </register>
+      <register name="1" type="2">
+        <text encoding="base64">ZGF0YV9saXN0ID0gW10K</text>
+      </register>
+      <register name="2" type="2">
+        <text encoding="base64">Cg==</text>
+      </register>
+      <register name="3" type="2">
+        <text encoding="base64">b2JzZXJ2ZWQgPSBucC5hcnJheShbY291bnRlcl9kaWN0XSkK</text>
+      </register>
+      <register name="4" type="2">
+        <text encoding="base64">Y291bnRlcl9kaWN0ID0gZGljdChjb3VudGVyKQo=</text>
+      </register>
+      <register name="5" type="2">
+        <text encoding="base64">ICAgIGRhdGFfbGlzdC5hcHBlbmQoY291bnRlcltzdHIoaSldIC8gZGF0YXNpemUpCg==</text>
+      </register>
+      <register name="6" type="2">
+        <text encoding="base64">Y291bnRlciA9IGRlZmF1bHRkaWN0KGludCkK</text>
+      </register>
+      <register name="7" type="2">
+        <text encoding="base64">Cg==</text>
+      </register>
+      <register name="8" type="2">
+        <text encoding="base64">IyBleHBlY3RlZCA9IG5wLmFycmF5KFtiZW5mb3JkXSkKb2JzID0ge2ludChrKTppbnQodikgZm9yIGssdiBpbiBjb3VudGVyX2RpY3QuaXRlbXMoKX0K</text>
+      </register>
+      <register name="9" type="2">
+        <text encoding="base64">Cg==</text>
+      </register>
+    </registers>
+    <search>
+      <last-search encoding="base64">XDxjdXN0b21lcl9zdGF0c1w+</last-search>
+      <last-offset />
+      <last-pattern encoding="base64">XDxjdXN0b21lcl9zdGF0c1w+</last-pattern>
+      <last-dir>1</last-dir>
+      <show-last>false</show-last>
+    </search>
+    <history>
+      <history-search>
+        <entry encoding="base64">XDxib29rX3Nlcmllc1w+</entry>
+        <entry encoding="base64">XDxib29rX29yaWdpbmFsX3RpdGxlXD4=</entry>
+        <entry encoding="base64">XDxib29rX2NhdGVnb3J5XD4=</entry>
+        <entry encoding="base64">XDxib29rX2dlbnJlXD4=</entry>
+        <entry encoding="base64">XDxhZGRpdGlvbmFsX21ldGFcPg==</entry>
+        <entry>BECKY</entry>
+        <entry>Match found</entry>
+        <entry>%s</entry>
+        <entry encoding="base64">XDxjb3ZlcnNcPg==</entry>
+        <entry encoding="base64">XDxwcmVmc1w+</entry>
+        <entry encoding="base64">XDxCT09LX1BBR0VfVVJMX1NDSEVNRVw+</entry>
+        <entry encoding="base64">XDxJREVOVElGSUVSXD4=</entry>
+        <entry>Config</entry>
+        <entry>self.prefs</entry>
+        <entry encoding="base64">XDxhdXRob3JzX3NwbGl0X2RlbGltaXRlclw+</entry>
+        <entry encoding="base64">XDxhdXRob3JzX2pvaW5fZGVsaW1pdGVyXD4=</entry>
+        <entry encoding="base64">XDx1cmxfc2NoZW1lX3RpdGxlXD4=</entry>
+        <entry encoding="base64">XDx1cmxfc2NoZW1lX3RpdGxlX2F1dGhvcnNcPg==</entry>
+        <entry encoding="base64">XDxyb290XD4=</entry>
+        <entry encoding="base64">XDxjdXN0b21lcl9zdGF0c1w+</entry>
+      </history-search>
+      <history-cmd />
+      <history-expr />
+      <history-input />
+    </history>
+    <shortcut-conflicts>
+      <shortcut-conflict owner="ide">
+        <text>ctrl pressed V</text>
+      </shortcut-conflict>
+      <shortcut-conflict owner="vim">
+        <text>ctrl pressed S</text>
+      </shortcut-conflict>
+      <shortcut-conflict owner="vim">
+        <text>ctrl pressed D</text>
+      </shortcut-conflict>
+      <shortcut-conflict owner="vim">
+        <text>ctrl pressed A</text>
+      </shortcut-conflict>
+      <shortcut-conflict owner="vim">
+        <text>ctrl pressed F</text>
+      </shortcut-conflict>
+      <shortcut-conflict owner="vim">
+        <text>ctrl pressed R</text>
+      </shortcut-conflict>
+      <shortcut-conflict owner="vim">
+        <text>ctrl pressed N</text>
+      </shortcut-conflict>
+      <shortcut-conflict owner="vim">
+        <text>ctrl pressed P</text>
+      </shortcut-conflict>
+      <shortcut-conflict owner="vim">
+        <text>ctrl pressed C</text>
+      </shortcut-conflict>
+      <shortcut-conflict owner="vim">
+        <text>ctrl pressed O</text>
+      </shortcut-conflict>
+      <shortcut-conflict owner="vim">
+        <text>ctrl pressed B</text>
+      </shortcut-conflict>
+      <shortcut-conflict owner="vim">
+        <text>ctrl pressed W</text>
+      </shortcut-conflict>
+      <shortcut-conflict owner="vim">
+        <text>ctrl pressed X</text>
+      </shortcut-conflict>
+      <shortcut-conflict owner="vim">
+        <text>ctrl pressed Q</text>
+      </shortcut-conflict>
+    </shortcut-conflicts>
+  </component>
+</application>

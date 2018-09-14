@@ -1,0 +1,10 @@
+<application>
+  <component name="libraryTable">
+    <library name="Bundled Protobuf Distribution">
+      <CLASSES />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.PyCharmCE2018.2/config/plugins/protobuf-jetbrains-plugin/lib/protobuf-java-3.6.1-sources.jar!/" />
+      </SOURCES>
+    </library>
+  </component>
+</application>

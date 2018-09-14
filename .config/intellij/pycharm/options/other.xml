@@ -1,0 +1,24 @@
+<application>
+  <component name="DBNavigator.Application.Settings">
+    <enable-debug-mode value="false" />
+    <enable-developer-mode value="false" />
+    <show-plugin-conflict-dialog value="false" />
+  </component>
+  <component name="PyTestFrameworkService">
+    <option name="SDK_TO_PYTEST">
+      <map>
+        <entry key="$USER_HOME$/Programs/projects/monika/lab/env/bin/python" value="false" />
+        <entry key="$USER_HOME$/Projects/monika/call_center/env/bin/python" value="false" />
+        <entry key="$USER_HOME$/Projects/reddit/env/bin/python" value="false" />
+        <entry key="/usr/bin/python2.7" value="false" />
+      </map>
+    </option>
+    <option name="SDK_TO_NOSETEST">
+      <map>
+        <entry key="$USER_HOME$/Projects/monika/call_center/env/bin/python" value="false" />
+        <entry key="$USER_HOME$/Projects/reddit/env/bin/python" value="false" />
+        <entry key="/usr/bin/python2.7" value="false" />
+      </map>
+    </option>
+  </component>
+</application>

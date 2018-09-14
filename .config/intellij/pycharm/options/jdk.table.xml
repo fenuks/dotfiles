@@ -1,0 +1,211 @@
+<application>
+  <component name="ProjectJdkTable">
+    <jdk version="2">
+      <name value="Python 2.7.12 virtualenv at ~/Programs/projects/monika/lab/env" />
+      <type value="Python SDK" />
+      <version value="Python 2.7.12" />
+      <homePath value="$USER_HOME$/Programs/projects/monika/lab/env/bin/python" />
+      <roots>
+        <classPath>
+          <root type="composite">
+            <root url="file://$USER_HOME$/Programs/projects/pythonlibs" type="simple" />
+            <root url="file://$USER_HOME$/Programs/projects/monika/lab/env/lib/python2.7" type="simple" />
+            <root url="file://$USER_HOME$/Programs/projects/monika/lab/env/lib/python2.7/lib-dynload" type="simple" />
+            <root url="file:///usr/lib64/python2.7" type="simple" />
+            <root url="file:///usr/lib/python2.7" type="simple" />
+            <root url="file:///usr/lib/python2.7/plat-linux2" type="simple" />
+            <root url="file:///usr/lib64/python2.7/lib-tk" type="simple" />
+            <root url="file:///usr/lib/python2.7/lib-tk" type="simple" />
+            <root url="file://$USER_HOME$/Programs/projects/monika/lab/env/lib/python2.7/site-packages" type="simple" />
+            <root url="file://$USER_HOME$/.PyCharmCE2016.3/system/python_stubs/-971883761" type="simple" />
+            <root url="file://$APPLICATION_HOME_DIR$/helpers/python-skeletons" type="simple" />
+          </root>
+        </classPath>
+        <sourcePath>
+          <root type="composite" />
+        </sourcePath>
+      </roots>
+      <additional ASSOCIATED_PROJECT_PATH="$USER_HOME$/Programs/projects/monika/lab" />
+    </jdk>
+    <jdk version="2">
+      <name value="Python 2.7.13 virtualenv at ~/Programs/projects/monika/lab02_2/env" />
+      <type value="Python SDK" />
+      <version value="Python 2.7.13" />
+      <homePath value="$USER_HOME$/Programs/projects/monika/lab02_2/env/bin/python" />
+      <roots>
+        <classPath>
+          <root type="composite">
+            <root url="file://$USER_HOME$/Programs/projects/pythonlibs" type="simple" />
+            <root url="file://$USER_HOME$/Programs/projects/monika/lab02_2/env/lib/python2.7" type="simple" />
+            <root url="file://$USER_HOME$/Programs/projects/monika/lab02_2/env/lib/python2.7/lib-dynload" type="simple" />
+            <root url="file:///usr/lib64/python2.7" type="simple" />
+            <root url="file:///usr/lib/python2.7" type="simple" />
+            <root url="file:///usr/lib/python2.7/plat-linux2" type="simple" />
+            <root url="file:///usr/lib64/python2.7/lib-tk" type="simple" />
+            <root url="file:///usr/lib/python2.7/lib-tk" type="simple" />
+            <root url="file://$USER_HOME$/Programs/projects/monika/lab02_2/env/lib/python2.7/site-packages" type="simple" />
+            <root url="file://$USER_HOME$/.PyCharmCE2016.3/system/python_stubs/1688073274" type="simple" />
+            <root url="file://$APPLICATION_HOME_DIR$/helpers/python-skeletons" type="simple" />
+          </root>
+        </classPath>
+        <sourcePath>
+          <root type="composite" />
+        </sourcePath>
+      </roots>
+      <additional ASSOCIATED_PROJECT_PATH="$USER_HOME$/Programs/projects/monika/lab02_2" />
+    </jdk>
+    <jdk version="2">
+      <name value="Python 2.7.13 (/usr/bin/python2.7)" />
+      <type value="Python SDK" />
+      <version value="Python 2.7.13" />
+      <homePath value="/usr/bin/python2.7" />
+      <roots>
+        <classPath>
+          <root type="composite">
+            <root url="file:///usr/lib/python2.7" type="simple" />
+            <root url="file:///usr/lib/python2.7/plat-linux2" type="simple" />
+            <root url="file:///usr/lib/python2.7/lib-tk" type="simple" />
+            <root url="file:///usr/lib/python2.7/lib-dynload" type="simple" />
+            <root url="file:///usr/lib/python2.7/site-packages" type="simple" />
+            <root url="file:///usr/lib/python2.7/site-packages/gtk-2.0" type="simple" />
+            <root url="file:///usr/lib/python2.7/site-packages/wx-3.0-gtk2" type="simple" />
+            <root url="file://$USER_HOME$/.PyCharmCE2017.1/system/python_stubs/-1247972723" type="simple" />
+            <root url="file://$APPLICATION_HOME_DIR$/helpers/python-skeletons" type="simple" />
+            <root url="file://$APPLICATION_HOME_DIR$/helpers/typeshed/stdlib/2" type="simple" />
+            <root url="file://$APPLICATION_HOME_DIR$/helpers/typeshed/stdlib/2and3" type="simple" />
+            <root url="file://$APPLICATION_HOME_DIR$/helpers/typeshed/third_party/2" type="simple" />
+            <root url="file://$APPLICATION_HOME_DIR$/helpers/typeshed/third_party/2and3" type="simple" />
+          </root>
+        </classPath>
+        <sourcePath>
+          <root type="composite" />
+        </sourcePath>
+      </roots>
+      <additional />
+    </jdk>
+    <jdk version="2">
+      <name value="Python 3.6.1 virtualenv at ~/Projects/reddit/env" />
+      <type value="Python SDK" />
+      <version value="Python 3.6.1" />
+      <homePath value="$USER_HOME$/Projects/reddit/env/bin/python" />
+      <roots>
+        <classPath>
+          <root type="composite">
+            <root url="file:///usr/lib/python3.6" type="simple" />
+            <root url="file:///usr/lib/python3.6/lib-dynload" type="simple" />
+            <root url="file://$USER_HOME$/Projects/reddit/env/lib/python3.6/site-packages" type="simple" />
+            <root url="file://$USER_HOME$/.PyCharmCE2017.1/system/python_stubs/1862993186" type="simple" />
+            <root url="file://$APPLICATION_HOME_DIR$/helpers/python-skeletons" type="simple" />
+            <root url="file://$APPLICATION_HOME_DIR$/helpers/typeshed/stdlib/3.6" type="simple" />
+            <root url="file://$APPLICATION_HOME_DIR$/helpers/typeshed/stdlib/3" type="simple" />
+            <root url="file://$APPLICATION_HOME_DIR$/helpers/typeshed/stdlib/2and3" type="simple" />
+            <root url="file://$APPLICATION_HOME_DIR$/helpers/typeshed/third_party/3" type="simple" />
+            <root url="file://$APPLICATION_HOME_DIR$/helpers/typeshed/third_party/2and3" type="simple" />
+          </root>
+        </classPath>
+        <sourcePath>
+          <root type="composite" />
+        </sourcePath>
+      </roots>
+      <additional />
+    </jdk>
+    <jdk version="2">
+      <name value="Python 2.7.13 virtualenv at ~/Projects/monika/populacje/env" />
+      <type value="Python SDK" />
+      <version value="Python 2.7.13" />
+      <homePath value="$USER_HOME$/Projects/monika/populacje/env/bin/python" />
+      <roots>
+        <classPath>
+          <root type="composite">
+            <root url="file://$USER_HOME$/Projects/monika/populacje/env/lib/python2.7" type="simple" />
+            <root url="file://$USER_HOME$/Projects/monika/populacje/env/lib/python2.7/lib-dynload" type="simple" />
+            <root url="file:///usr/lib64/python2.7" type="simple" />
+            <root url="file:///usr/lib/python2.7" type="simple" />
+            <root url="file:///usr/lib/python2.7/plat-linux2" type="simple" />
+            <root url="file:///usr/lib64/python2.7/lib-tk" type="simple" />
+            <root url="file:///usr/lib/python2.7/lib-tk" type="simple" />
+            <root url="file://$USER_HOME$/Projects/monika/populacje/env/lib/python2.7/site-packages" type="simple" />
+            <root url="file://$USER_HOME$/.PyCharmCE2017.1/system/python_stubs/-1139972361" type="simple" />
+            <root url="file://$APPLICATION_HOME_DIR$/helpers/python-skeletons" type="simple" />
+            <root url="file://$APPLICATION_HOME_DIR$/helpers/typeshed/stdlib/2" type="simple" />
+            <root url="file://$APPLICATION_HOME_DIR$/helpers/typeshed/stdlib/2and3" type="simple" />
+            <root url="file://$APPLICATION_HOME_DIR$/helpers/typeshed/third_party/2" type="simple" />
+            <root url="file://$APPLICATION_HOME_DIR$/helpers/typeshed/third_party/2and3" type="simple" />
+          </root>
+        </classPath>
+        <sourcePath>
+          <root type="composite" />
+        </sourcePath>
+      </roots>
+      <additional ASSOCIATED_PROJECT_PATH="$USER_HOME$/Projects/monika/populacje" />
+    </jdk>
+    <jdk version="2">
+      <name value="Python 3.6.1 virtualenv at ~/Projects/monika/call_center/env" />
+      <type value="Python SDK" />
+      <homePath value="$USER_HOME$/Projects/monika/call_center/env/bin/python" />
+      <roots>
+        <classPath>
+          <root type="composite">
+            <root url="file://$USER_HOME$/Projects/monika/call_center/env/bin" type="simple" />
+            <root url="file://$USER_HOME$/Projects/pythonlibs" type="simple" />
+            <root url="file://$USER_HOME$/.config/nvim/plugged/ropevim" type="simple" />
+            <root url="file:///usr/lib/calibre" type="simple" />
+            <root url="file://$USER_HOME$/Projects/monika/call_center/env/lib/python3.6" type="simple" />
+            <root url="file://$USER_HOME$/Projects/monika/call_center/env/lib/python3.6/lib-dynload" type="simple" />
+            <root url="file:///usr/lib64/python3.6" type="simple" />
+            <root url="file:///usr/lib/python3.6" type="simple" />
+            <root url="file://$USER_HOME$/Projects/monika/call_center/env/lib/python3.6/site-packages" type="simple" />
+            <root url="file://$USER_HOME$/.PyCharmCE2017.2/system/python_stubs/-831538874" type="simple" />
+            <root url="file://$APPLICATION_HOME_DIR$/helpers/python-skeletons" type="simple" />
+            <root url="file://$APPLICATION_HOME_DIR$/helpers/typeshed/stdlib/3.6" type="simple" />
+            <root url="file://$APPLICATION_HOME_DIR$/helpers/typeshed/stdlib/3.5" type="simple" />
+            <root url="file://$APPLICATION_HOME_DIR$/helpers/typeshed/stdlib/3.4" type="simple" />
+            <root url="file://$APPLICATION_HOME_DIR$/helpers/typeshed/stdlib/3.3" type="simple" />
+            <root url="file://$APPLICATION_HOME_DIR$/helpers/typeshed/stdlib/3" type="simple" />
+            <root url="file://$APPLICATION_HOME_DIR$/helpers/typeshed/stdlib/2and3" type="simple" />
+            <root url="file://$APPLICATION_HOME_DIR$/helpers/typeshed/third_party/3" type="simple" />
+            <root url="file://$APPLICATION_HOME_DIR$/helpers/typeshed/third_party/2and3" type="simple" />
+          </root>
+        </classPath>
+        <sourcePath>
+          <root type="composite" />
+        </sourcePath>
+      </roots>
+      <additional />
+    </jdk>
+    <jdk version="2">
+      <name value="Kahlua" />
+      <type value="Lua SDK" />
+      <version value="Kahlua" />
+      <homePath value="" />
+      <roots>
+        <classPath>
+          <root type="composite" />
+        </classPath>
+        <sourcePath>
+          <root type="composite">
+            <root url="file://$USER_HOME$/.PyCharmCE2018.2/config/plugins/Lua/stdlibrary" type="simple" />
+          </root>
+        </sourcePath>
+      </roots>
+      <additional />
+    </jdk>
+    <jdk version="2">
+      <name value="LuaJ" />
+      <type value="Lua SDK" />
+      <version value="LuaJ" />
+      <homePath value="" />
+      <roots>
+        <classPath>
+          <root type="composite" />
+        </classPath>
+        <sourcePath>
+          <root type="composite">
+            <root url="file://$USER_HOME$/.PyCharmCE2018.2/config/plugins/Lua/stdlibrary" type="simple" />
+          </root>
+        </sourcePath>
+      </roots>
+      <additional />
+    </jdk>
+  </component>
+</application>
