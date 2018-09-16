@@ -367,8 +367,25 @@ let g:airline#extensions#tabline#enabled = 1
 " Plug 'devjoe/vim-codequery' " rich support for searching symbols support
 Plug 'easymotion/vim-easymotion'
 Plug 'fenuks/vim-uncommented'
-nmap ]u <Plug>(NextUncommented)
-nmap [u <Plug>(PrevUncommented)
+" Plug 'bkad/CamelCaseMotion'
+" map <silent> -              <Plug>CamelCaseMotion_e
+" map <silent> _              <Plug>CamelCaseMotion_b
+" sunmap -
+" sunmap _
+" omap <silent> i-            <Plug>CamelCaseMotion_ie
+" xmap <silent> i-            <Plug>CamelCaseMotion_ie
+" omap <silent> i_            <Plug>CamelCaseMotion_ib
+" xmap <silent> i_            <Plug>CamelCaseMotion_ib
+Plug 'chaoren/vim-wordmotion'
+let g:wordmotion_mappings = {
+\ 'w' : 'g-',
+\ 'b' : '_',
+\ 'e' : '-',
+\ 'ge' : 'g_',
+\ 'aw' : 'a-',
+\ 'iw' : 'i-',
+\ '<C-R><C-W>' : '<C-R><M-w>'
+\ }
 
 Plug 'lambdalisue/lista.nvim', { 'on': 'Lista' }
 
