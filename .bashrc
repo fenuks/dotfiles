@@ -9,6 +9,16 @@ function cgit() {
     /usr/bin/git --git-dir="${HOME}/.dotfiles/" --work-tree="${HOME}" "$@"
 }
 
+if command -v nvim > /dev/null; then
+    function vim() {
+        nvim "$@"
+    }
+fi
+
+function svim() {
+    vim -u ~/.config/svim/vimrc "$@"
+}
+
 source_if_exists /etc/bashrc
 source_if_exists ~/.bashrc.local.before
 
@@ -37,12 +47,6 @@ alias sm='HOME=~/.spacemacs.d emacs'
 alias spacemacs='HOME=~/.spacemacs.d/ emacs'
 alias steam-flatpak='flatpak run com.valvesoftware.Steam'
 alias steam-wine='wine ${HOME}/.wine/drive_c/Program\ Files\ \(x86\)/Steam/Steam.exe -no-cef-sandbox -opengl -fullscreenopengl'
-if command -v nvim > /dev/null; then
-    alias vim='nvim'
-    export EDITOR=nvim
-else
-    export EDITOR=vim
-fi
 
 alias check-yapf-config="diff <(yapf --style-help | grep -oP '^[a-zA-Z_0-9]+' | sort) <(grep -oP '^[a-zA-Z_0-9]+' ~/.config/yapf/style | sort)"
 alias yaourt-vcs="yaourt -Su --devel"
@@ -63,6 +67,7 @@ alias vv='vim ~/.config/nvim/init.vim'
 # export PAGER="/usr/local/bin/gvim -f -R -"
 export BROWSER=firefox
 export CALIBRE_USE_SYSTEM_THEME=1
+export EDITOR=vim
 export ENHANCD_COMMAND=fzf
 if [[ ! -v FZF_DEFAULT_COMMAND ]]; then
     export FZF_DEFAULT_COMMAND='fd --type f'
@@ -89,7 +94,6 @@ export MAVEN_OPTS='-Xmx2048m'
 export PATH="${PATH}:${HOME}/.local/bin"
 export PYTHON2DOCDIR=/usr/share/doc/python2/html/
 export PYTHON3DOCDIR=/usr/share/doc/python/html/
-export PYTHONPATH="${PYTHONPATH}:${HOME}/.config/nvim/plugged/ropevim/"
 export PYTHONSTARTUP=${HOME}/.pythonrc
 export RUSTFLAGS="-C target-cpu=native"
 export RUST_SRC_PATH="${HOME}/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src"
