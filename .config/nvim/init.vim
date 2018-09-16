@@ -49,7 +49,7 @@ set number " Show line numbers
 set relativenumber " show relative numbers
 set noruler " show line and column numbers
 set showcmd " Display an incomplete command in the lower right corner of the Vim window"
-set noshowmode " show current mode
+set noshowmode " do not show current mode
 set showmatch  " Show matching brackets
 " set matchpairs+=<:> " make % match between < and >
 set cursorline " highlight current line

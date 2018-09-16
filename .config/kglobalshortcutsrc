@@ -47,12 +47,13 @@ display=Display\t,Display\tMeta+P,Przełącz ekran
 
 [khotkeys]
 _k_friendly_name=KDE Daemon
-{137fc5b5-c529-4178-864c-e6b6b928fca8}=Print,none,Wywołaj narzędzie zrzutów ekranu
-{1835a502-70bf-4e0e-bd5f-acb494c8d710}=Meta+W,none,rofi
-{3d218318-612b-49bb-8fd5-1ca46eee71ac}=Meta+Shift+Print,none,Wykonaj zrzut prostokątnego obszaru
-{5bff21e9-ff8c-49e0-845b-56641f8c08b0}=Shift+Print,none,Wykonaj zrzut całego ekranu
-{c7898af1-2a4f-4e11-9a0a-4d3e1be4279d}=Meta+Print,none,Wykonaj zrzut obecnie aktywnego okna
+{0180d98b-0516-4bb9-b1c4-cd2cb3f1d417}=Meta+W,none,rofi
+{1bcdd663-a016-4ecb-9a1e-63cfb676dcea}=none,none,keepass
+{22d0cead-7fb9-4109-8e91-cf823a6e984c}=none,none,Zrzut ekranu
+{3c218e91-0379-4cd9-9cf9-d906c769bcc9}=none,none,konsole
 {d03619b6-9b3c-48cc-9d9c-a2aadb485550}=,none,Znajdź
+{e69c9a59-e4c9-4e85-80c2-e3810e4bc959}=Ctrl+Shift+D,none,Terminal
+{e8fb3d87-fd0e-4da9-8898-4e71a4bcd956}=Ctrl+Alt+T,none,Launch Konsole
 
 [klipper]
 _k_friendly_name=Klipper
@@ -66,7 +67,7 @@ show-barcode=none,none,Pokaż kod kreskowy...
 show-on-mouse-pos=none,none,Otwórz Klippera pod wskaźnikiem myszy
 
 [kmix]
-_k_friendly_name=KMix
+_k_friendly_name=Głośność dźwięku
 decrease_microphone_volume=Microphone Volume Down,Microphone Volume Down,Zmniejsz głośność mikrofonu
 decrease_volume=Volume Down\tMeta+Alt+-,Volume Down,Zmniejsz głośność
 increase_microphone_volume=Microphone Volume Up,Microphone Volume Up,Zwiększ głośność mikrofonu
@@ -100,10 +101,10 @@ Invert Screen Colors=none,none,Odwróć kolory ekranu
 Kill Window=Ctrl+Alt+Esc,Ctrl+Alt+Esc,Zniszcz okno
 MoveMouseToCenter=Meta+F6,Meta+F6,Przenieś mysz do środka
 MoveMouseToFocus=Meta+F5,Meta+F5,Przenieś mysz do uaktywnienia
-MoveZoomDown=,Meta+Down,Przenieś powiększony obszar w dół
-MoveZoomLeft=,Meta+Left,Przenieś powiększony obszar w lewo
-MoveZoomRight=,Meta+Right,Przenieś powiększony obszar w prawo
-MoveZoomUp=,Meta+Up,Przenieś powiększony obszar w górę
+MoveZoomDown=,none,Przenieś powiększony obszar w dół
+MoveZoomLeft=,none,Przenieś powiększony obszar w lewo
+MoveZoomRight=,none,Przenieś powiększony obszar w prawo
+MoveZoomUp=,none,Przenieś powiększony obszar w górę
 Remove Window From Group=none,none,Usuń okno z grupy
 Setup Window Shortcut=none,none,Ustawienia skrótu okna
 Show Desktop=none,none,Pokaż pulpit
@@ -171,10 +172,10 @@ Window Fullscreen=none,none,Uczyń oknem pełnoekranowym
 Window Grow Horizontal=none,none,Rozwiń okno w poziomie
 Window Grow Vertical=none,none,Rozwiń okno w pionie
 Window Lower=none,none,Odwołaj okno
-Window Maximize=Meta+M,none,Maksymalizuj okno
+Window Maximize=Meta+M,Meta+PgUp,Maksymalizuj okno
 Window Maximize Horizontal=none,none,Maksymalizuj okno w poziomie
 Window Maximize Vertical=none,none,Maksymalizuj okno w pionie
-Window Minimize=Meta+Shift+M,none,Minimalizuj okno
+Window Minimize=Meta+Shift+M,Meta+PgDown,Minimalizuj okno
 Window Move=none,none,Przenieś okno
 Window No Border=none,none,Ukryj obramowanie okna
 Window On All Desktops=none,none,Na wszystkich pulpitach
@@ -187,12 +188,12 @@ Window Pack Down=none,none,Wyrównaj okno do dołu
 Window Pack Left=none,none,Wyrównaj okno do lewej
 Window Pack Right=none,none,Wyrównaj okno do prawej
 Window Pack Up=none,none,Wyrównaj okno do góry
-Window Quick Tile Bottom=Meta+Down,none,Kafelka z okna na dolnej krawędzi
+Window Quick Tile Bottom=Meta+Down,Meta+Down,Kafelka z okna na dolnej krawędzi
 Window Quick Tile Bottom Left=Meta+Ctrl+Left,none,Kafelka z okna w dolnym lewym narożniku
 Window Quick Tile Bottom Right=Meta+Ctrl+Right,none,Kafelka z okna w dolnym prawym narożniku
-Window Quick Tile Left=Meta+Left,none,Kafelka z okna na lewej krawędzi
-Window Quick Tile Right=Meta+Right,none,Kafelka z okna na prawej krawędzi
-Window Quick Tile Top=Meta+Up,none,Kafelka z okna na górnej krawędzi
+Window Quick Tile Left=Meta+Left,Meta+Left,Kafelka z okna na lewej krawędzi
+Window Quick Tile Right=Meta+Right,Meta+Right,Kafelka z okna na prawej krawędzi
+Window Quick Tile Top=Meta+Up,Meta+Up,Kafelka z okna na górnej krawędzi
 Window Quick Tile Top Left=Meta+Shift+Left,none,Kafelka z okna w górnym lewym narożniku
 Window Quick Tile Top Right=Meta+Shift+Right,none,Kafelka z okna w górnym prawym narożniku
 Window Raise=none,none,Przywołaj okno
@@ -239,6 +240,8 @@ view_zoom_out=Meta+-,Meta+-,Pomniejsz
 
 [mediacontrol]
 _k_friendly_name=Pilot multimedialny
+mediavolumedown=none,none,Zmniejsz głośność
+mediavolumeup=none,none,Zwiększ głośność
 nextmedia=Media Next\tMeta+Alt+N,Media Next,Odtwórz następny plik
 playpausemedia=Media Play\tMeta+Alt+P,Media Play,Odtwórz/Wstrzymaj odtwarzanie
 previousmedia=Media Previous\tMeta+Alt+Shift+N,Media Previous,Odtwórz poprzedni plik

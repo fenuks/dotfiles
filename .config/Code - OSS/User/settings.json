@@ -27,6 +27,7 @@
     "files.watcherExclude": {
         "**/bower_components/**": true,
         "**/env/**": true,
+        "**/.env/**": true,
         "**/.git/objects/**": true,
         "**/.hg/**": true,
         "**/node_modules/**": true,
@@ -41,6 +42,7 @@
         "**/CVS": true,
         "**/.DS_Store": true,
         "env": true,
+        ".env": true,
         "**/.git": true,
         "**/.hg": true,
         ".idea": true,
@@ -53,7 +55,6 @@
         "tags": true,
         "**/volumes/**": true
     },
-    "python.envFile": "${workspaceRoot}/env",
     "tslint.jsEnable": true,
     "files.eol": "\n",
     "java.errors.incompleteClasspath.severity": "ignore",

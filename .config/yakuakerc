@@ -6,7 +6,7 @@ Translucency=true
 RememberFullscreen=true
 
 [Desktop Entry]
-DefaultProfile=Profil 1.profile
+DefaultProfile=qt5.profile
 
 [Dialogs]
 FirstRun=false

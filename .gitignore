@@ -24,3 +24,4 @@ CMakeFiles/
 target/
 *.iml
 env/
+.env/
