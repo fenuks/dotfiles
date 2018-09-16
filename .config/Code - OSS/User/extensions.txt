@@ -10,6 +10,7 @@ dragos.scala-lsp
 eamodio.gitlens
 EditorConfig.EditorConfig
 eg2.tslint
+GitHub.vscode-pull-request-github
 hackwaly.ocaml
 hbenl.vscode-firefox-debug
 humao.rest-client
