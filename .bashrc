@@ -42,9 +42,10 @@ alias ll='ls -l'
 alias ll.='ls -la'
 alias lls='ls -la --sort=size'
 alias llt='ls -la --sort=time'
+md () { mkdir -p "$@" && cd "$1"; }
 alias run-ssh-agent='eval `ssh-agent -a /tmp/ssh-agent.sock`'
-alias sm='HOME=~/.spacemacs.d emacs'
-alias spacemacs='HOME=~/.spacemacs.d/ emacs'
+alias sm='HOME=~/.spacemacs emacs'
+alias spacemacs='HOME=~/.spacemacs emacs'
 alias steam-flatpak='flatpak run com.valvesoftware.Steam'
 alias steam-wine='wine ${HOME}/.wine/drive_c/Program\ Files\ \(x86\)/Steam/Steam.exe -no-cef-sandbox -opengl -fullscreenopengl'
 

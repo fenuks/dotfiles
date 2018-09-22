@@ -97,6 +97,7 @@ if !isdirectory(&undodir)
 endif
 
 let mapleader = ','
+let maplocalleader = ','
 
 if has('nvim')
     set termguicolors " use trucolor
@@ -165,18 +166,17 @@ nnoremap <silent> <Leader>bts :new<CR>:terminal<CR>
 nnoremap <silent> <Leader>btv :vnew<CR>:terminal<CR>
 
 nnoremap Y y$
-vnoremap <Leader>y "+y
 
-vnoremap <Leader>d "+d
-vnoremap <Leader>p "+p
-vnoremap <Leader>P "+P
+vnoremap <LocalLeader>y "+y
+vnoremap <LocalLeader>d "+d
+vnoremap <LocalLeader>p "+p
 
-nnoremap <Leader>y "+y
-nnoremap <Leader>Y "+y$
-nnoremap <Leader>d "+d
-nnoremap <Leader>D "+D
-nnoremap <Leader>p "+p
-nnoremap <Leader>P "+P
+nnoremap <LocalLeader>y "+y
+nnoremap <LocalLeader>Y "+y$
+nnoremap <LocalLeader>d "+d
+nnoremap <LocalLeader>D "+D
+nnoremap <LocalLeader>p "+p
+nnoremap <LocalLeader>P "+P
 
 vmap . :normal .<CR>
 
@@ -329,6 +329,10 @@ nnoremap <Leader>vM :Magit<CR>
 Plug 'ludovicchabant/vim-lawrencium'
 " Plug 'jlfwong/vim-mercenary'
 Plug 'will133/vim-dirdiff', { 'on': 'DirDiff' }
+nnoremap <Leader>dg :diffget<CR>
+nnoremap <Leader>dp :diffput<CR>
+nnoremap <Leader>dp :diffput<CR>
+nnoremap <Leader>dd :diffput<CR>
 
 "#### Filesystem
 " Plugin 'kien/ctrlp.vim'
@@ -345,7 +349,7 @@ nnoremap <Leader>gT :BTags<CR>
 nnoremap <Leader>bl :Buffers<CR>
 
 Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
-map <Leader>F :NERDTreeToggle<CR>
+map <Leader>ft :NERDTreeToggle<CR>
 let g:NERDTreeIgnore=['\.pyc$', '\~$', '__pycache__']
 
 Plug 'mhinz/vim-grepper', { 'on': ['Grepper', '<Plug>(GrepperOperator)'] }
@@ -428,6 +432,9 @@ nnoremap <silent> <Leader>cO :lclose<CR>
 Plug 'neomake/neomake', { 'on': ['Neomake', 'NeomakeProject'] }
 let g:neomake_open_list = 2
 let g:airline#extensions#neomake#enabled = 0
+nnoremap <Leader>mb :make compile<CR>
+nnoremap <Leader>mi :make install<CR>
+nnoremap <Leader>mc :make clean<CR>
 
 Plug 'janko-m/vim-test', { 'on': ['TestNearest', 'TestFile', 'TestSuite', 'TestLast', 'TestVisit'] }
 let g:test#strategy = 'neomake'
@@ -591,14 +598,17 @@ Plug 'ap/vim-css-color', { 'for': ['css', 'scss'] }
 Plug 'ternjs/tern_for_vim', { 'for': 'javascript' }
 let g:tern#command = ['tern']
 let g:tern#arguments = ['--persistent']
+function! ConfigureJavascript() abort
+    " setlocal path=.,src,node_modules
+    nnoremap <buffer> <silent> gd :TernDef<CR>
+    nnoremap <buffer> <silent> <Leader>u :TernRefs<CR>
+    nnoremap <buffer> <silent> <Leader>r :TernRename<CR>
+    setlocal softtabstop=2 shiftwidth=2
+    setlocal suffixesadd=.js,.jsx
+endfunction
 augroup filetype_js
     autocmd!
-    autocmd FileType javascript nnoremap <buffer> <silent> gd :TernDef<CR>
-    autocmd FileType javascript nnoremap <buffer> <silent> <Leader>u :TernRefs<CR>
-    autocmd FileType javascript nnoremap <buffer> <silent> <Leader>r :TernRename<CR>
-    " autocmd Filetype javascript setlocal path=.,src,node_modules
-    autocmd FileType javascript setlocal softtabstop=2 shiftwidth=2
-    autocmd Filetype javascript setlocal suffixesadd=.js,.jsx
+    autocmd FileType javascript call ConfigureJavascript()
 augroup END
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
 let g:javascript_plugin_jsdoc = 1
@@ -613,14 +623,18 @@ Plug 'othree/javascript-libraries-syntax.vim', { 'for': 'javascript' }
 " Plug 'Quramy/tsuquyomi', { 'for': ['javascript', 'typescript'] }
 
 "##### Python
+function ConfigurePython() abort
+    python nnoremap <buffer> <silent> <Leader>U :YcmCompleter GoToReferences<CR>
+    python let b:neoformat_run_all_formatters = 1
+    " call deoplete#custom#buffer_option('auto_complete', v:false)
+endfunction
 augroup filetype_python
     autocmd!
     autocmd BufRead,BufNewFile *.recipe setfiletype python
-    autocmd FileType python nnoremap <buffer> <silent> <Leader>U :YcmCompleter GoToReferences<CR>
-    autocmd FileType python let b:neoformat_run_all_formatters = 1
-    " autocmd FileType python
-    "    \ call deoplete#custom#buffer_option('auto_complete', v:false)
+    autocmd FileType call ConfigurePython()
 augroup END
+
+Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins' }
 
 Plug 'davidhalter/jedi-vim', { 'for': 'python' }
 let g:jedi#completions_command = '<C-space>'
@@ -638,13 +652,16 @@ let g:ropevim_enable_shortcuts = 0
 
 "##### Rust
 Plug 'rust-lang/rust.vim', { 'for': 'rust' }
+function! ConfigureRust() abort
+    nnoremap <buffer> <silent> gd <Plug>(rust-def)
+    nnoremap <buffer> <silent> <C-]> <Plug>(rust-def)
+    nnoremap <buffer> <silent> <C-w><C-]> <Plug>(rust-def-split)
+    nnoremap <buffer> <silent> <C-w>} <Plug>(rust-def-vertical)
+    nnoremap <buffer> <silent> K <Plug>(rust-doc)
+endfunction
 augroup filetype_rust
     autocmd!
-    autocmd FileType rust nnoremap <buffer> <silent> gd <Plug>(rust-def)
-    autocmd FileType rust nnoremap <buffer> <silent> <C-]> <Plug>(rust-def)
-    autocmd FileType rust nnoremap <buffer> <silent> <C-w><C-]> <Plug>(rust-def-split)
-    autocmd FileType rust nnoremap <buffer> <silent> <C-w>} <Plug>(rust-def-vertical)
-    autocmd FileType rust nnoremap <buffer> <silent> K <Plug>(rust-doc)
+    autocmd FileType rust call ConfigureRust()
 augroup END
 
 "##### Golang
@@ -657,36 +674,39 @@ Plug 'mitsuse/autocomplete-swift', { 'for': 'swift' }
 " Plug 'artur-shaik/vim-javacomplete2', { 'for': 'java' }
 " Plug '/usr/share/vim/vimfiles/plugin/eclim.vim', { 'dir': '/usr/share/vim/vimfiles/', 'for': 'java' }
 Plug 'mikelue/vim-maven-plugin', { 'on': ['Mvn', 'MvnNewMainFile'] }
+function! ConfigureJava() abort
+    nnoremap <buffer> <silent> <Leader>ii <Plug>(JavaComplete-Imports-AddSmart)
+    nnoremap <buffer> <silent> <Leader>iI <Plug>(JavaComplete-Imports-Add)
+    nnoremap <buffer> <silent> <Leader>ia <Plug>(JavaComplete-Imports-AddMissing)
+    nnoremap <buffer> <silent> <Leader>id <Plug>(JavaComplete-Imports-RemoveUnused)
+                                                                                             
+    nnoremap <buffer> <silent> <Leader>am <Plug>(JavaComplete-Generate-AbstractMethods)
+    nnoremap <buffer> <silent> <Leader>aA <Plug>(JavaComplete-Generate-Accessors)
+    nnoremap <buffer> <silent> <Leader>as <Plug>(JavaComplete-Generate-AccessorSetter)
+    nnoremap <buffer> <silent> <Leader>ag <Plug>(JavaComplete-Generate-AccessorGetter)
+    nnoremap <buffer> <silent> <Leader>aa <Plug>(JavaComplete-Generate-AccessorSetterGetter)
+    nnoremap <buffer> <silent> <Leader>ats <Plug>(JavaComplete-Generate-ToString)
+    nnoremap <buffer> <silent> <Leader>aeq <Plug>(JavaComplete-Generate-EqualsAndHashCode)
+    nnoremap <buffer> <silent> <Leader>aI <Plug>(JavaComplete-Generate-Constructor)
+    nnoremap <buffer> <silent> <Leader>ai <Plug>(JavaComplete-Generate-DefaultConstructor)
+                                                                                             
+    nnoremap <buffer> <silent> <Leader>ac <Plug>(JavaComplete-Generate-NewClass)
+    nnoremap <buffer> <silent> <Leader>aC <Plug>(JavaComplete-Generate-ClassInFile)
+    " autocmd FileType java setlocal formatexpr=LanguageClient_textDocument_rangeFormatting()
+                                                                                             
+    nnoremap <buffer> <Leader>cf :YcmCompleter FixIt<CR>
+    nnoremap <buffer> gd :YcmCompleter GoTo<CR>
+    nnoremap <buffer> K :YcmCompleter GetDoc<CR>
+    nnoremap <buffer> gq :YcmCompleter Format<CR>
+    vnoremap <buffer> gq :YcmCompleter Format<CR>
+    nnoremap <buffer> <Leader>gu :YcmCompleter GoToReferences<CR>
+    nnoremap <buffer> <Leader>rn :YcmCompleter RefactorRename
+endfunction
+
 augroup filetype_java
     autocmd!
     " autocmd FileType java setlocal makeprg=mvn errorformat='[%tRROR]\ %f:[%l]\ %m,%-G%.%#'
-
-    autocmd FileType java nnoremap <buffer> <silent> <Leader>ii <Plug>(JavaComplete-Imports-AddSmart)
-    autocmd FileType java nnoremap <buffer> <silent> <Leader>iI <Plug>(JavaComplete-Imports-Add)
-    autocmd FileType java nnoremap <buffer> <silent> <Leader>ia <Plug>(JavaComplete-Imports-AddMissing)
-    autocmd FileType java nnoremap <buffer> <silent> <Leader>id <Plug>(JavaComplete-Imports-RemoveUnused)
-
-    autocmd FileType java nnoremap <buffer> <silent> <Leader>am <Plug>(JavaComplete-Generate-AbstractMethods)
-    autocmd FileType java nnoremap <buffer> <silent> <Leader>aA <Plug>(JavaComplete-Generate-Accessors)
-    autocmd FileType java nnoremap <buffer> <silent> <Leader>as <Plug>(JavaComplete-Generate-AccessorSetter)
-    autocmd FileType java nnoremap <buffer> <silent> <Leader>ag <Plug>(JavaComplete-Generate-AccessorGetter)
-    autocmd FileType java nnoremap <buffer> <silent> <Leader>aa <Plug>(JavaComplete-Generate-AccessorSetterGetter)
-    autocmd FileType java nnoremap <buffer> <silent> <Leader>ats <Plug>(JavaComplete-Generate-ToString)
-    autocmd FileType java nnoremap <buffer> <silent> <Leader>aeq <Plug>(JavaComplete-Generate-EqualsAndHashCode)
-    autocmd FileType java nnoremap <buffer> <silent> <Leader>aI <Plug>(JavaComplete-Generate-Constructor)
-    autocmd FileType java nnoremap <buffer> <silent> <Leader>ai <Plug>(JavaComplete-Generate-DefaultConstructor)
-
-    autocmd FileType java nnoremap <buffer> <silent> <Leader>ac <Plug>(JavaComplete-Generate-NewClass)
-    autocmd FileType java nnoremap <buffer> <silent> <Leader>aC <Plug>(JavaComplete-Generate-ClassInFile)
-    " autocmd FileType java setlocal formatexpr=LanguageClient_textDocument_rangeFormatting()
-
-    autocmd FileType java nnoremap <buffer> <Leader>cf :YcmCompleter FixIt<CR>
-    autocmd FileType java nnoremap <buffer> gd :YcmCompleter GoTo<CR>
-    autocmd FileType java nnoremap <buffer> K :YcmCompleter GetDoc<CR>
-    autocmd FileType java nnoremap <buffer> gq :YcmCompleter Format<CR>
-    autocmd FileType java vnoremap <buffer> gq :YcmCompleter Format<CR>
-    autocmd FileType java nnoremap <buffer> <Leader>gu :YcmCompleter GoToReferences<CR>
-    autocmd FileType java nnoremap <buffer> <Leader>rn :YcmCompleter RefactorRename
+    autocmd FileType java call ConfigureJava()
 augroup END
 
 "##### Scala
@@ -703,6 +723,18 @@ let g:rtagsAutoLaunchRdm=1
 " Plug 'arakashic/chromatica.nvim', { 'for': ['c', 'cpp', 'objc', 'objcpp'], 'do': ':UpdateRemotePlugins' }
 let g:chromatica#enable_at_startup=1
 let g:chromatica#responsive_mode=1
+
+function! ConfigurePkgbuild() abort
+    setlocal makeprg=makepkg
+    nnoremap <buffer> <Leader>mi :make -i<CR>
+    nnoremap <buffer> <Leader>mb :make<CR>
+endfunction
+
+"##### Shell
+augroup shell
+    autocmd!
+    autocmd BufRead,BufNewFile PKGBUILD call ConfigurePkgbuild()
+augroup END
 
 "##### Natural language
 "##### Markdown
