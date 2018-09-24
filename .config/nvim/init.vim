@@ -97,7 +97,7 @@ if !isdirectory(&undodir)
 endif
 
 let mapleader = ','
-let maplocalleader = ','
+let maplocalleader = '\'
 
 if has('nvim')
     set termguicolors " use trucolor
@@ -349,7 +349,8 @@ nnoremap <Leader>gT :BTags<CR>
 nnoremap <Leader>bl :Buffers<CR>
 
 Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
-map <Leader>ft :NERDTreeToggle<CR>
+nnoremap <Leader>ft :NERDTreeToggle<CR>
+nnoremap <Leader>fT :NERDTreeFind<CR>
 let g:NERDTreeIgnore=['\.pyc$', '\~$', '__pycache__']
 
 Plug 'mhinz/vim-grepper', { 'on': ['Grepper', '<Plug>(GrepperOperator)'] }
@@ -582,10 +583,15 @@ Plug 'sheerun/vim-polyglot'
 " let g:polyglot_disabled = ['python']
 " ##### VIML
 Plug 'junegunn/vader.vim', { 'on': 'Vader' }
-augroup viml
+augroup vim
     autocmd!
     autocmd FileType vim nnoremap <buffer> <silent> K :help <C-r><C-w><CR>
+    autocmd FileType qf setlocal nobuflisted " exclude quickfix withow from :bnext, etc.
+    autocmd FileType text setlocal commentstring=#\ %s
+    autocmd BufRead,BufNewFile *.conf setfiletype conf
+    autocmd FileType conf setlocal commentstring=#\ %s
 augroup END
+
 "##### HTML5
 Plug 'mattn/emmet-vim', { 'for': ['html', 'htmldjango'] }
 Plug 'othree/html5.vim', { 'for': ['html', 'htmldjango'] }
@@ -760,7 +766,6 @@ augroup natural_language
     autocmd FileType gitcommit setlocal spell
     autocmd FileType hgcommit setlocal spell
     autocmd FileType org setlocal spell
-    autocmd FileType text setlocal commentstring=#\ %s
     autocmd FileType help setlocal spell
 augroup END
 
