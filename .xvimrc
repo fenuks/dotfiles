@@ -1,0 +1,78 @@
+" options
+set ignorecase
+set smartcase
+
+" vim specific
+inoremap jk <ESC>
+inoremap jK <ESC>
+inoremap Jk <ESC>
+inoremap JK <ESC>
+nnoremap Y y$
+vnoremap < <gv
+vnoremap > >gv
+cnoremap <c-n> <down>
+cnoremap <c-p> <up>
+cnoremap <c-a> <home>
+cnoremap <c-e> <end>
+" insert spaces
+nnoremap <silent> [<space> O<esc>
+nnoremap <silent> ]<space> o<esc>
+inoremap <a-h> <left>
+inoremap <a-l> <right>
+inoremap <a-k> <up>
+inoremap <a-j> <down>
+
+vnoremap <a-j> gj
+vnoremap <a-k> gk
+nnoremap <a-j> gj
+nnoremap <a-k> gk
+
+
+" Xcode specific
+nnoremap ,gf :xccmd openQuickly<cr>
+nnoremap ,go :xcmenucmd Show Document Items<cr>
+nnoremap ,gi :xcmenucmd Jump to Generated Interface<cr>
+nnoremap gt :tabNext<cr>
+nnoremap gT :xccmd selectPreviousTab<cr>
+nnoremap ,gs xccmd findSelectedTextInWorkspace<cr>
+nnoremap ,gu xcmenucmd Find Selected Symbol in Workspace<cr>
+nnoremap <c-j> :nissue<cr>
+nnoremap <c-k> :pissue<cr>
+
+nnoremap ,ft :xccmd toggleNavigatorsVisibility<cr>
+nnoremap <c-w>td :xccmd toggleDebuggerVisibility<cr>
+nnoremap <c-w>tu :xccmd toggleUtilitiesVisibility<cr>
+nnoremap <c-w>tt :xccmd toggleToolbarShown<cr>
+nnoremap <c-w>ta :xccmd toggleTokenizedEditing<cr>
+nnoremap <c-w>tc :xcmenucmd Activate Console<cr>
+
+nnoremap ,st xccmd findSelectedTextInWorkspace<cr>
+
+nnoremap K :xccmd showQuickHelp<cr>
+
+nnoremap ,rn :xcmenucmd Rename...<cr>
+
+nnoremap ,mr :xmenucmd Run<cr>
+nnoremap ,mb :xcmenucmd Build<cr>
+nnoremap ,mc :xcmenucmd Clean Build Folder<cr>
+
+nnoremap ,db :xccmd toggleBreakpointAtCurrentLine<CR>
+
+" TODO
+nnoremap <c-z> :xccmd unfoldAll<CR>
+nnoremap ,ma :xccmd foldAllMethods<CR>
+nnoremap ,ua :xccmd unfoldAllMethods<CR>
+nnoremap ,fa :xccmd foldAllMethods<CR>
+nnoremap ,ua :xccmd unfoldAllMethods<CR>
+nnoremap ,fc :xccmd foldAllComments<CR>
+nnoremap ,uc :xccmd unfoldAllComments<CR>
+nnoremap ,s viw:xccmd findSelectedTextInWorkspace<CR>
+nnoremap ,hh :xccmd searchDocumentationForSelectedText<CR>
+nnoremap ,cw  :xccmd performClose<CR>
+nnoremap ,q  :xccmd closeDocument<CR>
+nnoremap ,cm :xccmd addDocumentation<CR>
+nnoremap ,pr :xccmd revealInProjectNavigator<CR>
+nnoremap ,sr :xccmd revealInSymbolNavigator<CR>
+nnoremap ,hh :xccmd searchDocumentationForSelectedText<CR>
+nnoremap ,fn :xcmenucmd Filter in Navigator<CR>
+nnoremap ,fl :xcmenucmd Filter in Library<CR>
