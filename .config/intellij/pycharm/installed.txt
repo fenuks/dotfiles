@@ -1,0 +1,39 @@
+.ignore
+AceJump
+BashSupport
+CVS Integration
+Database Navigator
+Docker integration
+EditorConfig
+EmmyLua
+Gerrit
+Git Flow Integration
+Git Integration
+GitHub
+Haskell
+hunspell
+IdeaVim
+Ini4Idea
+IntelliLang
+IPython Notebook
+Key Promoter X
+Lua
+Markdown support
+Mercurial Integration
+Perl
+Properties Support
+Protobuf Support
+Pylint
+Python IntelliLang
+Python ReStructureText Integration
+Python Terminal
+ReStructuredText Support
+Rust
+Settings Repository
+Shellcheck
+SonarLint
+Subversion Integration
+Swagger Plugin
+Task Management
+Terminal
+YAML

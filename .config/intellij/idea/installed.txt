@@ -1,21 +1,48 @@
-AceJump
+.ignore
+Android Support
+Ant Support
 BashSupport
-CheckStyle-IDEA
-Code Navigator
-Error-prone plugin
+Bytecode Viewer
+Copyright
+Coverage
+CVS Integration
+Database Navigator
+Docker integration
+Eclipse Integration
+EditorConfig
 FindBugs-IDEA
-IdeaVIM
-Key promoter
-Lombook Plugin
+Git Integration
+GitHub
+Gradle
+Groovy
+Haskell
+HaskForce
+I18n for Java
+IdeaVim
+IntelliLang
+Java Bytecode Decompiler
+Java Stream Debugger
+JavaFX
+JUnit
+Kotlin
+Lombok Plugin
 Lua
-PMDPlugin
-PlantUML integration
-com.wix.eslint
-io.protostuff.protostuff-jetbrains-plugin
-mobi.hsz.idea.gitignore
-mobi.hsz.idea.latex
-org.intellij.scala
-org.jboss.forge.plugin.idea
-org.rust.lang
-org.sonarlint.idea
-ua.in.dej.myEmmet
+Markdown support
+Maven Integration
+Mercurial Integration
+Plugin DevKit
+Properties Support
+Rust
+Scala
+Settings Repository
+Smali Support
+SonarLint
+Subversion Integration
+Swagger Plugin
+Task Management
+Terminal
+TestNG-J
+UI Designer
+XPathView + XSLT Support
+XSLT-Debugger
+YAML
