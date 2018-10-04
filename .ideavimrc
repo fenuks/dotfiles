@@ -1,8 +1,4 @@
-source ~/.config/nvim/init.vim
-" redefine things that do not work in IdeaVim
 let mapleader=','
-nnoremap / /
-vnoremap / /
 nnoremap <silent> <A-n> :action MoveLineDown<CR>
 nnoremap <silent> <A-p> :action MoveLineUp<CR>
 inoremap <silent> <A-n> :action MoveLineDown<CR>
@@ -33,7 +29,10 @@ nnoremap g, :action JumpToNextChange<CR>
 nnoremap <C-w>m :action HideAllWindows<CR>
 nnoremap <C-w>} :action QuickImplementations<CR>
 
-nnoremap <Leader>tt :action RerunTests<CR>
+nnoremap <Leader>mr :action Run<CR>
+nnoremap <Leader>md :action Debug<CR>
+
+nnoremap <Leader>tr :action RerunTests<CR>
 nnoremap <Leader>tf :action RerunFailedTests<CR>
 nnoremap <Leader>tc :action RunClass<CR>
 nnoremap <Leader>tC :action DebugClass<CR>

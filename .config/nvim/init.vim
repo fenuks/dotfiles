@@ -355,7 +355,7 @@ let g:NERDTreeIgnore=['\.pyc$', '\~$', '__pycache__']
 
 Plug 'mhinz/vim-grepper', { 'on': ['Grepper', '<Plug>(GrepperOperator)'] }
 " let g:grepper.highlight = 1
-nnoremap <Leader>s :Grepper -tool ag<CR>
+nnoremap <Leader>s :Grepper -tool rg<CR>
 
 "##### Navigation
 " gtags
