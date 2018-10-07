@@ -1,7 +1,7 @@
 scriptencoding utf-8
 " editor behavior
 set t_Co=256
-set history=1000 " Number of things to remember in history."
+set history=1000 " Number of things to remember in history
 " set textwidth=80 " max line width
 set formatprg=par " gq formatting program
 set formatoptions+=j " more intelligent j joining
@@ -9,14 +9,14 @@ set linebreak " breaklines *nicely*, virtually
 " set showbreak='@' " show line continuation sign
 " formatting formatprg, formatexpr, formatoptions
 set whichwrap=h,l " specify keys that can wrap next line
+set hlsearch " highlight search
 set ignorecase " Do case insensitive matching with
 set infercase " Do *not* ignore case in autocompletion
 set smartcase " Do case sensitive if text contains upper letters
+set incsearch " Search while typing
 " set gdefault " Automatically enable the 'g' flag for substitution
 set autoread " Automatically reload file changed outside vim if not changed in vim
 set completeopt=longest,menuone,preview " complete longest common text instead of first word
-" set incsearch " Search while typing
-set hlsearch " highlight search
 " set timeoutlen=150 " Time to wait after ESC (default causes an annoying delay), it affects also leader key, unfortunately
 set backspace=indent,eol,start " more powerful backspacing"
 set autoindent " align the new line indent with the previous one
@@ -31,6 +31,7 @@ set wildignore=*.swp,*.bak,*.pyc,*.class,*.git
 set lazyredraw " redraw only at the end of the macro
 set hidden " allow background buffers without saving
 set spelllang=en_gb,pl
+set signcolumn=yes
 " set breakat-=_ " don't break at _
 " diff mode
 set diffopt+=iwhite " ignore whitespace character changes
@@ -66,12 +67,10 @@ digraph !! 8252 " ‼
 digraph ?! 8264 " ⁈
 digraph !? 8265 " ⁉
 
-augroup SETTINGS
-    autocmd CursorHold * checktime " needed for autoread to be triggered
-augroup END
 
 if has('unix')
-    set undodir=/tmp/vim-undo-dir
+    let g:tmp_dir='/tmp'
+    let g:local_share_dir=expand('~/.local/share')
 
     if has('nvim')
         call plug#begin('~/.config/nvim/plugged')
@@ -89,25 +88,47 @@ if has('unix')
 
 else
     call plug#begin(fnamemodify($MYVIMRC, ':p:h') . '/vimfiles/plugged')
-    set undodir=$TMP/vim-undo-dir
+    let g:tmp_dir=$TMP
+    let g:local_share_dir=$APP_DATA
 endif
-
-if !isdirectory(&undodir)
-    call mkdir(&undodir, 0700)
-endif
-
-let mapleader = ','
-let maplocalleader = '\'
 
 if has('nvim')
     set termguicolors " use trucolor
     set scrollback=-1 " NeoVim terminal unlimited scrolling
     tnoremap jk <C-\><C-n>
+    let g:vim_share_dir=g:local_share_dir . '/nvim'
 else
     set viminfofile=$HOME/.config/nvim/viminfo
+    let g:vim_share_dir=g:local_share_dir . '/vim'
+endif
+let g:vim_sesssions_dir=g:vim_share_dir . '/sessions'
+
+let &undodir=g:tmp_dir . '/vim-undo-dir'
+if !isdirectory(&undodir)
+    call mkdir(&undodir, 0600)
+endif
+if !isdirectory(g:vim_share_dir)
+    call mkdir(g:vim_share_dir, 0600)
+endif
+if !isdirectory(g:vim_sesssions_dir)
+    call mkdir(g:vim_sesssions_dir, 0600)
 endif
 
+
+let mapleader = ','
+let maplocalleader = '\'
+
+function! GetSessionName() abort
+    " return g:vim_sesssions_dir . '/' . fnamemodify(getcwd(), ':p:h:t') . '.vim'
+    return fnamemodify(getcwd(), ':p:h:t') . '.vim'
+endfunction
+
 " mappings
+nnoremap <Leader>ps :SSave <C-r>=GetSessionName()<CR>
+nnoremap <Leader>pl :SLoad <C-r>=GetSessionName()<CR>
+nnoremap <Leader>pd :SDelete<CR>
+nnoremap <Leader>pc :SClose<CR>
+
 nnoremap <Leader>ev :edit $MYVIMRC<CR>
 nnoremap <Leader>eb :edit $HOME/.bashrc<CR>
 " set very magic regex (perl compatitible)
@@ -161,9 +182,12 @@ nnoremap <Leader>bd :bdelete<CR>
 nnoremap <Leader>bh :hide<CR>
 nnoremap <Leader>bc :close<CR>
 nnoremap <silent> <Leader>bn :new<CR>:only<CR>
+nnoremap <silent> <Leader>bs :new<CR>
+nnoremap <silent> <Leader>bv :vnew<CR>
 nnoremap <silent> <Leader>bo :%bd<CR><C-^><C-^>:bd<CR>
 nnoremap <silent> <Leader>bts :new<CR>:terminal<CR>
 nnoremap <silent> <Leader>btv :vnew<CR>:terminal<CR>
+nnoremap <silent> <Leader>bT :new<CR>:terminal<CR>:only<CR>
 
 nnoremap Y y$
 
@@ -185,6 +209,10 @@ cmap w!! %!sudo tee > /dev/null %
 nnoremap <Leader><Space>s :%s/\s\+$//<CR>
 
 " unimpaired mappings
+function! Conflict(reverse) abort
+  call search('^\(@@ .* @@\|[<=>|]\{7}[<=>|]\@!\)', a:reverse ? 'bW' : 'W')
+endfunction
+
 nnoremap [a :<C-U>previous<CR>
 nnoremap ]a :<C-U>next<CR>
 nnoremap [A :<C-U>first<CR>
@@ -213,10 +241,6 @@ nnoremap [t gT
 nnoremap ]t gt
 nnoremap [T :<C-U>tfirst<CR>
 nnoremap ]T :<C-U>tlast<CR>
-
-function! Conflict(reverse)
-  call search('^\(@@ .* @@\|[<=>|]\{7}[<=>|]\@!\)', a:reverse ? 'bW' : 'W')
-endfunction
 
 nnoremap <silent> ]n :call Conflict(0)<CR>
 nnoremap <silent> [n :call Conflict(1)<CR>
@@ -279,11 +303,17 @@ let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 
 "##### Windows
+Plug 'mhinz/vim-startify'
+let g:startify_session_dir=g:vim_sesssions_dir
+let g:startify_fortune_use_unicode = 1
+let g:startify_use_env = 1
 Plug 'simeji/winresizer', { 'on': 'WinResizerStartResize' }
 let g:winresizer_start_key = ''
-nnoremap <C-w>m :WinResizerStartResize<CR>
+nnoremap <Leader>wr :WinResizerStartResize<CR>
 Plug 'wellle/visual-split.vim', { 'on': ['VSResize', 'VSSplit', 'VSSplitAbove', 'VSSplitBelow', '<Plug>(Visual-Split-VSResize)', '<Plug>(Visual-Split-VSSplit)', '<Plug>(Visual-Split-VSSplitAbove)', '<Plug>(Visual-Split-VSSplitBelow)'] }
-xmap <C-W>s <Plug>(Visual-Split-VSSplit)
+xmap <Leader>ws <Plug>(Visual-Split-VSSplit)
+Plug 't9md/vim-choosewin', { 'on': '<Plug>(choosewin)' }
+nmap <Leader>wl <Plug>(choosewin)
 
 "##### Refactoring; edition
 Plug 'wellle/targets.vim'
@@ -354,8 +384,14 @@ nnoremap <Leader>fT :NERDTreeFind<CR>
 let g:NERDTreeIgnore=['\.pyc$', '\~$', '__pycache__']
 
 Plug 'mhinz/vim-grepper', { 'on': ['Grepper', '<Plug>(GrepperOperator)'] }
-" let g:grepper.highlight = 1
-nnoremap <Leader>s :Grepper -tool rg<CR>
+let g:grepper = {}
+let g:grepper.highlight = 1
+let g:grepper.prompt_quote = 3
+nnoremap <Leader>ss :Grepper -tool rg<CR>
+nnoremap <Leader>sS :Grepper -tool rg -side<CR>
+nnoremap <leader>s* :Grepper -tool rg -open -switch -cword -noprompt<CR>
+nnoremap <leader>sd :Grepper -tool rg -dir file<CR>
+nnoremap <leader>sD :Grepper -tool rg -dir file -side<CR>
 
 "##### Navigation
 " gtags
@@ -372,15 +408,7 @@ let g:airline#extensions#tabline#enabled = 1
 " Plug 'devjoe/vim-codequery' " rich support for searching symbols support
 Plug 'easymotion/vim-easymotion'
 Plug 'fenuks/vim-uncommented'
-" Plug 'bkad/CamelCaseMotion'
-" map <silent> -              <Plug>CamelCaseMotion_e
-" map <silent> _              <Plug>CamelCaseMotion_b
-" sunmap -
-" sunmap _
-" omap <silent> i-            <Plug>CamelCaseMotion_ie
-" xmap <silent> i-            <Plug>CamelCaseMotion_ie
-" omap <silent> i_            <Plug>CamelCaseMotion_ib
-" xmap <silent> i_            <Plug>CamelCaseMotion_ib
+Plug 'andymass/vim-matchup'
 Plug 'chaoren/vim-wordmotion'
 let g:wordmotion_mappings = {
 \ 'w' : 'g-',
@@ -463,8 +491,7 @@ let g:AutoPairsShortcutJump=''
 let g:AutoPairsShortcutBackInsert=''
 
 " ##### Code autocompletion
-Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'make release', 'for': ['haskell', 'rust', 'typescript', 'vue', 'c', 'cpp'] }
-set signcolumn=yes
+Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'make release', 'for': ['haskell', 'rust', 'typescript', 'vue', 'c', 'cpp', 'xml'] }
 let g:LanguageClient_serverCommands = {
     \ 'c': ['cquery', '--log-file=/tmp/cq.log', '--init={"cacheDirectory":"/tmp/cquery/"}'],
     \ 'cpp': ['cquery', '--log-file=/tmp/cq.log', '--init={"cacheDirectory":"/tmp/cquery/"}'],
@@ -475,6 +502,8 @@ let g:LanguageClient_serverCommands = {
     \ 'python': ['pyls'],
     \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
     \ 'typescript': ['javascript-typescript-stdio'],
+    \ 'xml': ['lsp4xml'],
+    \ 'mvn_pom': ['lsp4xml'],
     \ 'vue': ['vls'],
     \ }
     " \ 'c': ['clangd'],
@@ -482,7 +511,7 @@ let g:LanguageClient_serverCommands = {
 let g:LanguageClient_autoStart = 1
 let g:LanguageClient_loggingLevel = 'DEBUG'
 let g:LanguageClient_loggingFile='/tmp/lc.log'
-let g:LanguageClient_serverStderr = '/tmp/lc.log'
+let g:LanguageClient_serverStderr = '/tmp/ls.log'
 " setlocal omnifunc=LanguageClient#complete
 
 nnoremap <silent> <Leader>lk :call LanguageClient_textDocument_hover()<CR>
@@ -590,6 +619,7 @@ augroup vim
     autocmd FileType text setlocal commentstring=#\ %s
     autocmd BufRead,BufNewFile *.conf setfiletype conf
     autocmd FileType conf setlocal commentstring=#\ %s
+    autocmd CursorHold * checktime " needed for autoread to be triggered
 augroup END
 
 "##### HTML5
@@ -629,7 +659,7 @@ Plug 'othree/javascript-libraries-syntax.vim', { 'for': 'javascript' }
 " Plug 'Quramy/tsuquyomi', { 'for': ['javascript', 'typescript'] }
 
 "##### Python
-function ConfigurePython() abort
+function! ConfigurePython() abort
     python nnoremap <buffer> <silent> <Leader>U :YcmCompleter GoToReferences<CR>
     python let b:neoformat_run_all_formatters = 1
     " call deoplete#custom#buffer_option('auto_complete', v:false)
@@ -655,6 +685,8 @@ let g:jedi#completions_command = ''
 
 " Plug 'python-rope/ropevim', { 'for': 'python' }
 let g:ropevim_enable_shortcuts = 0
+" ##### Julia
+Plug 'JuliaEditorSupport/julia-vim', { 'for': 'julia' }
 
 "##### Rust
 Plug 'rust-lang/rust.vim', { 'for': 'rust' }
@@ -685,7 +717,6 @@ function! ConfigureJava() abort
     nnoremap <buffer> <silent> <Leader>iI <Plug>(JavaComplete-Imports-Add)
     nnoremap <buffer> <silent> <Leader>ia <Plug>(JavaComplete-Imports-AddMissing)
     nnoremap <buffer> <silent> <Leader>id <Plug>(JavaComplete-Imports-RemoveUnused)
-                                                                                             
     nnoremap <buffer> <silent> <Leader>am <Plug>(JavaComplete-Generate-AbstractMethods)
     nnoremap <buffer> <silent> <Leader>aA <Plug>(JavaComplete-Generate-Accessors)
     nnoremap <buffer> <silent> <Leader>as <Plug>(JavaComplete-Generate-AccessorSetter)
@@ -695,11 +726,11 @@ function! ConfigureJava() abort
     nnoremap <buffer> <silent> <Leader>aeq <Plug>(JavaComplete-Generate-EqualsAndHashCode)
     nnoremap <buffer> <silent> <Leader>aI <Plug>(JavaComplete-Generate-Constructor)
     nnoremap <buffer> <silent> <Leader>ai <Plug>(JavaComplete-Generate-DefaultConstructor)
-                                                                                             
+
     nnoremap <buffer> <silent> <Leader>ac <Plug>(JavaComplete-Generate-NewClass)
     nnoremap <buffer> <silent> <Leader>aC <Plug>(JavaComplete-Generate-ClassInFile)
     " autocmd FileType java setlocal formatexpr=LanguageClient_textDocument_rangeFormatting()
-                                                                                             
+
     nnoremap <buffer> <Leader>cf :YcmCompleter FixIt<CR>
     nnoremap <buffer> gd :YcmCompleter GoTo<CR>
     nnoremap <buffer> K :YcmCompleter GetDoc<CR>
@@ -786,7 +817,7 @@ let g:deoplete#enable_at_startup = 1
 call deoplete#custom#option({
     \ 'smart_case': v:true,
     \ 'ignore_case': v:false,
-    \ 'ignore_sources': {'c': ['tag'], 'cpp': ['tag']}
+    \ 'ignore_sources': {'c': ['tag'], 'cpp': ['tag'], 'xml': ['tag']}
 \ })
 call deoplete#custom#source('_', 'matchers', ['matcher_full_fuzzy'])
 " transparent: CandyPaper,

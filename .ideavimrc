@@ -1,13 +1,51 @@
 let mapleader=','
-nnoremap <silent> <A-n> :action MoveLineDown<CR>
-nnoremap <silent> <A-p> :action MoveLineUp<CR>
+let localleader='\'
+
+set history=1000
+set hlsearch
+set ignorecase
+set infercase
+set smartcase
+set incsearch
+set number
+set relativenumber
+set scrolloff=3
+set undolevels=1000
+
+" insert mode
+inoremap jk <ESC>
+inoremap jK <ESC>
+inoremap Jk <ESC>
+inoremap JK <ESC>
+inoremap <C-j> <CR>
+inoremap <A-h> <LEFT>
+inoremap <A-l> <RIGHT>
+inoremap <A-k> <UP>
+inoremap <A-j> <DOWN>
+
+vnoremap <LocalLeader>y "+y
+vnoremap <LocalLeader>d "+d
+vnoremap <LocalLeader>p "+p
+
+nnoremap <LocalLeader>y "+y
+nnoremap <LocalLeader>Y "+y$
+nnoremap <LocalLeader>d "+d
+nnoremap <LocalLeader>D "+D
+nnoremap <LocalLeader>p "+p
+nnoremap <LocalLeader>P "+P
+
 inoremap <silent> <A-n> :action MoveLineDown<CR>
 inoremap <silent> <A-p> :action MoveLineUp<CR>
+nnoremap <silent> <A-n> :action MoveLineDown<CR>
+nnoremap <silent> <A-p> :action MoveLineUp<CR>
 vnoremap <silent> <A-n> dkPgv=gv
 vnoremap <silent> <A-p> dpgv=gv
-inoremap <C-j> <CR>
 nnoremap [m :action MethodUp<CR>
 nnoremap ]m :action MethodDown<CR>
+nnoremap [<space> O<ESC>
+nnoremap ]<space> o<ESC>
+nnoremap Y y$
+
 " IdeaVim stuff
 set vim-surround
 nnoremap gd :action GotoTypeDeclaration<CR>

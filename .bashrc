@@ -142,3 +142,7 @@ fi
 source_if_exists "${HOME}/.config/fzf/completions/hg.sh"
 source_if_exists "${HOME}/.config/fzf/completions/docker.sh"
 source_if_exists "${HOME}/.enhancd/init.sh"
+
+if [[ -x $(command -v fortune) ]]; then
+    fortune
+fi
