@@ -130,8 +130,10 @@ complete -cf man
 source_if_exists /usr/share/git/completion/git-completion.bash
 source_if_exists /usr/share/bash-completion/completions/hg
 source_if_exists /usr/share/bash-completion/completions/docker
+source_if_exists /usr/share/bash-completion/completions/docker-compose
 source_if_exists /usr/share/fzf/key-bindings.bash
 source_if_exists /usr/share/fzf/completion.bash
+complete -o default -o nospace -F _docker_compose dc
 # [[ -r "/usr/share/z/z.sh" ]] && source /usr/share/z/z.sh
 if [[ -r "${HOME}/.config/fzf/completions/git.sh" ]]; then 
     source "${HOME}/.config/fzf/completions/git.sh"
