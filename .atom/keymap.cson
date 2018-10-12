@@ -5,3 +5,16 @@
   'pagedown': 'autocomplete-plus:page-down'
   'home': 'autocomplete-plus:move-to-top'
   'end': 'autocomplete-plus:move-to-bottom'
+
+'atom-text-editor:not([mini])':
+  ', j j': 'hydrogen:run-and-move-down'
+  ', j a': 'hydrogen:run-all'
+  ', j u': 'hydrogen:run-all-above'
+  ', j l': 'hydrogen:clear-results'
+
+'body':
+  'ctrl-p': 'core:move-up'
+  'ctrl-n': 'core:move-down'
+
+'.platform-linux':
+  ', g f': 'fuzzy-finder:toggle-file-finder'
