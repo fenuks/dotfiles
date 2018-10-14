@@ -35,6 +35,7 @@
       "linter-clang"
       "linter-stylelint"
       "linter-eslint"
+      "linter"
     ]
     packagesWithKeymapsDisabled: [
       "Hydrogen"
