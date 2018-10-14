@@ -7,5 +7,5 @@ fi
 
 while read -r ext
 do
-    ${CODE} --install-extension ${ext}
+    yes 0 | "${CODE}" --install-extension "${ext}"
 done < extensions.txt

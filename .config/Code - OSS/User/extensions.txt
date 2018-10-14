@@ -15,6 +15,7 @@ hackwaly.ocaml
 hbenl.vscode-firefox-debug
 humao.rest-client
 jcanero.hoogle-vscode
+julialang.language-julia
 justusadam.language-haskell
 kalitaalexey.vscode-rust
 lextudio.restructuredtext
@@ -25,10 +26,9 @@ ms-vscode.cpptools
 ms-vscode.Go
 ms-vscode.node-debug2
 ms-vsliveshare.vsliveshare
+neuron.neuron-IPE
 octref.vetur
 PeterJausovec.vscode-docker
-Pivotal.vscode-boot-java
-Pivotal.vscode-boot-properties
 Pivotal.vscode-spring-boot
 platformio.platformio-ide
 redhat.java
