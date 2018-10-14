@@ -88,6 +88,7 @@ export HISTSIZE=10000
 export HISTTIMEFORMAT="%d/%m/%y %T "
 export JAVA_HOME=$JDK_HOME
 export JAVA_TOOLS_OPTIONS="-javaagent:/usr/share/java/lombok/lombok.jar -Xbootclasspath/p:/usr/share/java/lombok/lombok.jar"
+export JUPYTER_CONFIG_DIR="${HOME}/.config/jupyter"
 export JDK_HOME=/usr/lib/jvm/java-8-openjdk/
 export LESS=-R
 export LESS_TERMCAP_mb=$'\e[01;31m'       # begin blinking
@@ -101,7 +102,6 @@ export MAVEN_OPTS='-Xmx2048m'
 export PATH="${PATH}:${HOME}/.local/bin"
 export PYTHON2DOCDIR=/usr/share/doc/python2/html/
 export PYTHON3DOCDIR=/usr/share/doc/python/html/
-export PYTHONSTARTUP=${HOME}/.pythonrc
 export RUSTFLAGS="-C target-cpu=native"
 export RUST_SRC_PATH="${HOME}/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src"
 export SHELLCHECK_OPTS="-e SC1090,SC2034,SC2164"

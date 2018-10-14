@@ -48,12 +48,12 @@ set -x HISTTIMEFORMAT "%d/%m/%y %T "
 set -x JAVA_HOME $JDK_HOME
 set -x JAVA_TOOLS_OPTIONS "-javaagent:/usr/share/java/lombok/lombok.jar -Xbootclasspath/p:/usr/share/java/lombok/lombok.jar"
 set -x JDK_HOME /usr/lib/jvm/java-8-openjdk/
+set -x JUPYTER_CONFIG_DIR $HOME/.config/jupyter
 set -x fish_user_paths $HOME/.local/bin $fish_user_paths
 set -x LESS -R
 set -x PYTHON2DOCDIR /usr/share/doc/python2/html/
 set -x PYTHON3DOCDIR /usr/share/doc/python/html/
 set -x PYTHONPATH "$PYTHONPATH:$HOME/.config/nvim/plugged/ropevim/"
-set -x PYTHONSTARTUP $HOME/.pythonrc
 set -x RUSTFLAGS "-C target-cpu=native"
 set -x RUST_SRC_PATH "$HOME/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src"
 set -x SHELLCHECK_OPTS "-e SC2034 -e SC2164"
