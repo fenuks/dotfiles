@@ -16,6 +16,8 @@ _fzf_complete_git() {
 
     if [[ "${cmd_opt}" == 'add '* ]]; then
         selected=$( ( ${binary} status --short | grep -v -P '^(A|R|D|M) ' ) | ${fzf} "${fzf_opt[@]}" -m --preview 'echo {} | awk '\''{$1=""; print substr($0,2)}'\'' | cgit --no-pager diff' | awk '{$1=""; print substr($0,2)}' | tr '\n' ' ')
+    elif [[ "${cmd_opt}" == 'checkout '* ]]; then
+        selected=$( ${binary} status --short | ${fzf} "${fzf_opt[@]}" -m | awk '{$1=""; print substr($0,2)}' | tr '\n' ' ')
     elif [[ "${cmd_opt}" == 'reset '* ]]; then
         selected=$( ( ${binary} status --short | grep -P '^(A|R|D|M)' ) | ${fzf} "${fzf_opt[@]}" -m | awk '{$1=""; print substr($0,2)}' | tr '\n' ' ')
     elif [[ "${cmd_opt}" == 'diff '* ]]; then
