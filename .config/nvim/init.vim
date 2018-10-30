@@ -364,6 +364,9 @@ nnoremap <Leader>dp :diffput<CR>
 nnoremap <Leader>dp :diffput<CR>
 nnoremap <Leader>dd :diffput<CR>
 
+nnoremap ,dp :diffput<CR>
+nnoremap ,dg :diffget<CR>
+
 "#### Filesystem
 " Plugin 'kien/ctrlp.vim'
 command! -nargs=* Agp
@@ -451,7 +454,6 @@ let g:ale_python_mypy_options='--ignore-missing-imports'
 let g:airline#extensions#ale#enabled = 1
 nnoremap <Leader>cf :ALEFix<CR>
 nmap <silent> <Leader>cp <Plug>(ale_previous_wrap)
-nmap <silent> <Leader>cn <Plug>(ale_next_wrap)
 nmap <silent> <Leader>cn <Plug>(ale_next_wrap)
 nnoremap <silent> <Leader>co :lwindow<CR>
 nnoremap <silent> <Leader>cO :lclose<CR>
@@ -670,7 +672,9 @@ augroup filetype_python
     autocmd FileType call ConfigurePython()
 augroup END
 
-Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins' }
+if has('nvim')
+    Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins' }
+endif
 
 Plug 'davidhalter/jedi-vim', { 'for': 'python' }
 let g:jedi#completions_command = '<C-space>'

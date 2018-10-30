@@ -24,6 +24,9 @@
         cmd = vim -f '+next' '+execute \"DirDiff\" argv(0) argv(1)' $LOCAL $REMOTE
 [mergetool]
 	trustExitCode = true
+[merge "mergepbx"]
+        name = XCode project files merger
+        driver = mergepbx %O %A %B
 [rerere]
 	enabled = true
 [remote-hg]

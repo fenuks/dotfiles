@@ -14,6 +14,8 @@ cnoremap <c-n> <down>
 cnoremap <c-p> <up>
 cnoremap <c-a> <home>
 cnoremap <c-e> <end>
+nnoremap <c-o> :xcmenucmd Go Back<cr>
+nnoremap <c-i> :xcmenucmd Go Forward<cr>
 " insert spaces
 nnoremap <silent> [<space> O<esc>
 nnoremap <silent> ]<space> o<esc>
@@ -34,17 +36,24 @@ nnoremap ,go :xcmenucmd Show Document Items<cr>
 nnoremap ,gi :xcmenucmd Jump to Generated Interface<cr>
 nnoremap gt :tabNext<cr>
 nnoremap gT :xccmd selectPreviousTab<cr>
-nnoremap ,gs xccmd findSelectedTextInWorkspace<cr>
-nnoremap ,gu xcmenucmd Find Selected Symbol in Workspace<cr>
+nnoremap ,gs :xccmd findSelectedTextInWorkspace<cr>
+nnoremap ,gu :xcmenucmd Find Selected Symbol in Workspace<cr>
 nnoremap <c-j> :nissue<cr>
 nnoremap <c-k> :pissue<cr>
 
 nnoremap ,ft :xccmd toggleNavigatorsVisibility<cr>
+
 nnoremap <c-w>td :xccmd toggleDebuggerVisibility<cr>
 nnoremap <c-w>tu :xccmd toggleUtilitiesVisibility<cr>
 nnoremap <c-w>tt :xccmd toggleToolbarShown<cr>
 nnoremap <c-w>ta :xccmd toggleTokenizedEditing<cr>
 nnoremap <c-w>tc :xcmenucmd Activate Console<cr>
+
+nnoremap ,wtd :xccmd toggleDebuggerVisibility<cr>
+nnoremap ,wtu :xccmd toggleUtilitiesVisibility<cr>
+nnoremap ,wtt :xccmd toggleToolbarShown<cr>
+nnoremap ,wta :xccmd toggleTokenizedEditing<cr>
+nnoremap ,wtc :xcmenucmd Activate Console<cr>
 
 nnoremap ,st xccmd findSelectedTextInWorkspace<cr>
 
