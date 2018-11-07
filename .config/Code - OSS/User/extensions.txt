@@ -14,6 +14,7 @@ GitHub.vscode-pull-request-github
 hackwaly.ocaml
 hbenl.vscode-firefox-debug
 humao.rest-client
+James-Yu.latex-workshop
 jcanero.hoogle-vscode
 julialang.language-julia
 justusadam.language-haskell
@@ -26,7 +27,6 @@ ms-vscode.cpptools
 ms-vscode.Go
 ms-vscode.node-debug2
 ms-vsliveshare.vsliveshare
-neuron.neuron-IPE
 octref.vetur
 PeterJausovec.vscode-docker
 Pivotal.vscode-spring-boot

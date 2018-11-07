@@ -546,7 +546,7 @@ let g:lsp_log_file = expand('/tmp/vim-lsp.log')
 Plug 'Valloric/YouCompleteMe', { 'for': ['java', 'javascript'] }
 let g:ycm_autoclose_preview_window_after_completion=1
 let g:ycm_semantic_triggers =  {
-  \   'java' : ['.', '@'],
+  \   'java' : ['.', '@', '::'],
   \ }
 " Plug 'lifepillar/vim-mucomplete'
 " Plug 'maralla/completor.vim'
@@ -769,6 +769,9 @@ function! ConfigurePkgbuild() abort
     setlocal makeprg=makepkg
     nnoremap <buffer> <Leader>mi :make -i<CR>
     nnoremap <buffer> <Leader>mb :make<CR>
+    setlocal softtabstop=2
+    setlocal shiftwidth=2
+    setlocal filetype=sh
 endfunction
 
 "##### Shell
@@ -790,6 +793,9 @@ augroup END
 
 "##### ORG
 Plug 'jceb/vim-orgmode', { 'for': 'org' }
+
+"##### TeX
+Plug 'lervag/vimtex', { 'for': 'tex' }
 
 " Plug 'vim-scripts/LanguageTool'
 Plug 'dpelle/vim-LanguageTool', { 'for': ['markdown', 'rst', 'org'] }
