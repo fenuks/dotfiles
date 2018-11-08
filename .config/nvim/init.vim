@@ -187,7 +187,10 @@ nnoremap <silent> <Leader>bv :vnew<CR>
 nnoremap <silent> <Leader>bo :%bd<CR><C-^><C-^>:bd<CR>
 nnoremap <silent> <Leader>bts :new<CR>:terminal<CR>
 nnoremap <silent> <Leader>btv :vnew<CR>:terminal<CR>
-nnoremap <silent> <Leader>bT :new<CR>:terminal<CR>:only<CR>
+nnoremap <silent> <Leader>btn :new<CR>:terminal<CR>:only<CR>
+nnoremap <silent> <Leader>btt :tabnew<CR>:terminal<CR>
+
+nnoremap <silent> <Leader>tn :tabnew<CR>
 
 nnoremap Y y$
 
@@ -709,7 +712,7 @@ augroup END
 "##### Golang
 "Plug 'fatih/vim-go'
 
-Plug 'mitsuse/autocomplete-swift', { 'for': 'swift' }
+" Plug 'mitsuse/autocomplete-swift', { 'for': 'swift' }
 
 "##### JVM
 "##### Java
