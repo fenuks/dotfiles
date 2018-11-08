@@ -181,14 +181,16 @@ nnoremap <A-k> gk
 nnoremap <Leader>bd :bdelete<CR>
 nnoremap <Leader>bh :hide<CR>
 nnoremap <Leader>bc :close<CR>
+nnoremap <Leader>bl :Buffers<CR>
 nnoremap <silent> <Leader>bn :new<CR>:only<CR>
 nnoremap <silent> <Leader>bs :new<CR>
 nnoremap <silent> <Leader>bv :vnew<CR>
 nnoremap <silent> <Leader>bo :%bd<CR><C-^><C-^>:bd<CR>
-nnoremap <silent> <Leader>bts :new<CR>:terminal<CR>
-nnoremap <silent> <Leader>btv :vnew<CR>:terminal<CR>
-nnoremap <silent> <Leader>btn :new<CR>:terminal<CR>:only<CR>
-nnoremap <silent> <Leader>btt :tabnew<CR>:terminal<CR>
+
+nnoremap <silent> <Leader>Tn :new<CR>:only<CR>:terminal<CR>
+nnoremap <silent> <Leader>Ts :new<CR>:terminal<CR>
+nnoremap <silent> <Leader>Tv :vnew<CR>:terminal<CR>
+nnoremap <silent> <Leader>Tt :tabnew<CR>:terminal<CR>
 
 nnoremap <silent> <Leader>tn :tabnew<CR>
 
@@ -315,8 +317,15 @@ let g:winresizer_start_key = ''
 nnoremap <Leader>wr :WinResizerStartResize<CR>
 Plug 'wellle/visual-split.vim', { 'on': ['VSResize', 'VSSplit', 'VSSplitAbove', 'VSSplitBelow', '<Plug>(Visual-Split-VSResize)', '<Plug>(Visual-Split-VSSplit)', '<Plug>(Visual-Split-VSSplitAbove)', '<Plug>(Visual-Split-VSSplitBelow)'] }
 xmap <Leader>ws <Plug>(Visual-Split-VSSplit)
+nnoremap <silent> <Leader>ws :split<CR>
+nnoremap <silent> <Leader>wv :vsplit<CR>
 Plug 't9md/vim-choosewin', { 'on': '<Plug>(choosewin)' }
 nmap <Leader>wl <Plug>(choosewin)
+nnoremap <silent> <Leader>wL :Windows<CR>
+nnoremap <silent> <Leader>wc :close<CR>
+nnoremap <silent> <Leader>wo :only<CR>
+nnoremap <silent> <Leader>wq :quit<CR>
+nnoremap <silent> <Leader>wQ :quitall<CR>
 
 "##### Refactoring; edition
 Plug 'wellle/targets.vim'
@@ -382,7 +391,6 @@ nnoremap <C-p> :Files<CR>
 nnoremap <Leader>gf :Files<CR>
 nnoremap <Leader>gt :Tags<CR>
 nnoremap <Leader>gT :BTags<CR>
-nnoremap <Leader>bl :Buffers<CR>
 
 Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
 nnoremap <Leader>ft :NERDTreeToggle<CR>
@@ -807,10 +815,7 @@ let g:grammarous#languagetool_cmd = 'languagetool'
 let g:grammarous#use_vim_spelllang = 1
 augroup natural_language
     autocmd!
-    autocmd FileType gitcommit setlocal spell
-    autocmd FileType hgcommit setlocal spell
-    autocmd FileType org setlocal spell
-    autocmd FileType help setlocal spell
+    autocmd FileType gitcommit,hgcommit,org,help setlocal spell
 augroup END
 
 call plug#end()
