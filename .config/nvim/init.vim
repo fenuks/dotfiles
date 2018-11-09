@@ -67,7 +67,6 @@ digraph !! 8252 " ‼
 digraph ?! 8264 " ⁈
 digraph !? 8265 " ⁉
 
-
 if has('unix')
     let g:tmp_dir='/tmp'
     let g:local_share_dir=expand('~/.local/share')
@@ -114,23 +113,10 @@ if !isdirectory(g:vim_sesssions_dir)
     call mkdir(g:vim_sesssions_dir, 0600)
 endif
 
-
+" mappings
 let mapleader = ','
 let maplocalleader = '\'
 
-function! GetSessionName() abort
-    " return g:vim_sesssions_dir . '/' . fnamemodify(getcwd(), ':p:h:t') . '.vim'
-    return fnamemodify(getcwd(), ':p:h:t') . '.vim'
-endfunction
-
-" mappings
-nnoremap <Leader>ps :SSave <C-r>=GetSessionName()<CR>
-nnoremap <Leader>pl :SLoad <C-r>=GetSessionName()<CR>
-nnoremap <Leader>pd :SDelete<CR>
-nnoremap <Leader>pc :SClose<CR>
-
-nnoremap <Leader>ev :edit $MYVIMRC<CR>
-nnoremap <Leader>eb :edit $HOME/.bashrc<CR>
 " set very magic regex (perl compatitible)
 nnoremap / /\v
 vnoremap / /\v
@@ -146,13 +132,33 @@ cnoremap <C-E> <End>
 cnoremap g/ g/\v
 cnoremap v/ v/\v
 
+nnoremap <C-s> :w<Enter>
+inoremap <C-s> <ESC>:w<Enter>a
+inoremap <A-m> <ESC>o
+
 inoremap jk <ESC>
 inoremap jK <ESC>
 inoremap Jk <ESC>
 inoremap JK <ESC>
-nnoremap <C-s> :w<Enter>
-inoremap <C-s> <ESC>:w<Enter>a
-inoremap <A-m> <ESC>o
+
+nnoremap Y y$
+
+vnoremap <LocalLeader>y "+y
+vnoremap <LocalLeader>d "+d
+vnoremap <LocalLeader>p "+p
+
+nnoremap <LocalLeader>y "+y
+nnoremap <LocalLeader>Y "+y$
+nnoremap <LocalLeader>d "+d
+nnoremap <LocalLeader>D "+D
+nnoremap <LocalLeader>p "+p
+nnoremap <LocalLeader>P "+P
+
+vmap . :normal .<CR>
+
+cmap w!! %!sudo tee > /dev/null %
+
+nnoremap <Leader><Space>s :%s/\s\+$//<CR>
 
 " moving lines up and down
 nnoremap <silent> <A-p> :<C-u>execute 'move -1-'. v:count1<CR>
@@ -178,46 +184,35 @@ vnoremap <A-k> gk
 nnoremap <A-j> gj
 nnoremap <A-k> gk
 
-nnoremap <Leader>bd :bdelete<CR>
-nnoremap <Leader>bh :hide<CR>
-nnoremap <Leader>bc :close<CR>
-nnoremap <Leader>bl :Buffers<CR>
-nnoremap <silent> <Leader>bn :new<CR>:only<CR>
-nnoremap <silent> <Leader>bs :new<CR>
-nnoremap <silent> <Leader>bv :vnew<CR>
+nnoremap <Leader>ps :SSave <C-r>=GetSessionName()<CR>
+nnoremap <Leader>pl :SLoad <C-r>=GetSessionName()<CR>
+nnoremap <Leader>pd :SDelete<CR>
+nnoremap <Leader>pc :SClose<CR>
+
+nnoremap <Leader>ev :edit $MYVIMRC<CR>
+nnoremap <Leader>eb :edit $HOME/.bashrc<CR>
+
+" buffers
+nnoremap <silent> <Leader>bn <CMD>call Normal([":new", ":only"])<CR>
+nnoremap <silent> <Leader>bs <CMD>call Normal([":new"])<CR>
+nnoremap <silent> <Leader>bv <CMD>call Normal([":vnew"])<CR>
+nnoremap <silent> <Leader>bd <CMD>call Normal([":bdelete"])<CR>
+nnoremap <silent> <Leader>bh <CMD>call Normal([":hide"])<CR>
+nnoremap <silent> <Leader>bc <CMD>call Normal([":close"])<CR>
 nnoremap <silent> <Leader>bo :%bd<CR><C-^><C-^>:bd<CR>
+nnoremap <silent> <Leader>bl :Buffers<CR>
 
-nnoremap <silent> <Leader>Tn :new<CR>:only<CR>:terminal<CR>
-nnoremap <silent> <Leader>Ts :new<CR>:terminal<CR>
-nnoremap <silent> <Leader>Tv :vnew<CR>:terminal<CR>
-nnoremap <silent> <Leader>Tt :tabnew<CR>:terminal<CR>
+" terminal
+nnoremap <silent> <Leader>Tn <CMD>call Normal([":new\|:only\|:terminal"])<CR> " there seems to be bug, cannot pass list
+nnoremap <silent> <Leader>Ts <CMD>call Normal([":new\|:terminal"])<CR>
+nnoremap <silent> <Leader>Tv <CMD>call Normal([":vnew\|:terminal"])<CR>
+nnoremap <silent> <Leader>Tt <CMD>call Normal([":tabnew\|:terminal"])<CR>
 
-nnoremap <silent> <Leader>tn :tabnew<CR>
-
-nnoremap Y y$
-
-vnoremap <LocalLeader>y "+y
-vnoremap <LocalLeader>d "+d
-vnoremap <LocalLeader>p "+p
-
-nnoremap <LocalLeader>y "+y
-nnoremap <LocalLeader>Y "+y$
-nnoremap <LocalLeader>d "+d
-nnoremap <LocalLeader>D "+D
-nnoremap <LocalLeader>p "+p
-nnoremap <LocalLeader>P "+P
-
-vmap . :normal .<CR>
-
-cmap w!! %!sudo tee > /dev/null %
-
-nnoremap <Leader><Space>s :%s/\s\+$//<CR>
+" tabs
+nnoremap <silent> <Leader>tn <CMD>call Normal([":tabnew"])<CR>
+nnoremap <silent> <Leader>to :tabonly<CR>
 
 " unimpaired mappings
-function! Conflict(reverse) abort
-  call search('^\(@@ .* @@\|[<=>|]\{7}[<=>|]\@!\)', a:reverse ? 'bW' : 'W')
-endfunction
-
 nnoremap [a :<C-U>previous<CR>
 nnoremap ]a :<C-U>next<CR>
 nnoremap [A :<C-U>first<CR>
@@ -647,14 +642,6 @@ Plug 'ap/vim-css-color', { 'for': ['css', 'scss'] }
 Plug 'ternjs/tern_for_vim', { 'for': 'javascript' }
 let g:tern#command = ['tern']
 let g:tern#arguments = ['--persistent']
-function! ConfigureJavascript() abort
-    " setlocal path=.,src,node_modules
-    nnoremap <buffer> <silent> gd :TernDef<CR>
-    nnoremap <buffer> <silent> <Leader>u :TernRefs<CR>
-    nnoremap <buffer> <silent> <Leader>r :TernRename<CR>
-    setlocal softtabstop=2 shiftwidth=2
-    setlocal suffixesadd=.js,.jsx
-endfunction
 augroup filetype_js
     autocmd!
     autocmd FileType javascript call ConfigureJavascript()
@@ -672,11 +659,6 @@ Plug 'othree/javascript-libraries-syntax.vim', { 'for': 'javascript' }
 " Plug 'Quramy/tsuquyomi', { 'for': ['javascript', 'typescript'] }
 
 "##### Python
-function! ConfigurePython() abort
-    python nnoremap <buffer> <silent> <Leader>U :YcmCompleter GoToReferences<CR>
-    python let b:neoformat_run_all_formatters = 1
-    " call deoplete#custom#buffer_option('auto_complete', v:false)
-endfunction
 augroup filetype_python
     autocmd!
     autocmd BufRead,BufNewFile *.recipe setfiletype python
@@ -705,13 +687,6 @@ Plug 'JuliaEditorSupport/julia-vim', { 'for': 'julia' }
 
 "##### Rust
 Plug 'rust-lang/rust.vim', { 'for': 'rust' }
-function! ConfigureRust() abort
-    nnoremap <buffer> <silent> gd <Plug>(rust-def)
-    nnoremap <buffer> <silent> <C-]> <Plug>(rust-def)
-    nnoremap <buffer> <silent> <C-w><C-]> <Plug>(rust-def-split)
-    nnoremap <buffer> <silent> <C-w>} <Plug>(rust-def-vertical)
-    nnoremap <buffer> <silent> K <Plug>(rust-doc)
-endfunction
 augroup filetype_rust
     autocmd!
     autocmd FileType rust call ConfigureRust()
@@ -727,33 +702,6 @@ augroup END
 " Plug 'artur-shaik/vim-javacomplete2', { 'for': 'java' }
 " Plug '/usr/share/vim/vimfiles/plugin/eclim.vim', { 'dir': '/usr/share/vim/vimfiles/', 'for': 'java' }
 Plug 'mikelue/vim-maven-plugin', { 'on': ['Mvn', 'MvnNewMainFile'] }
-function! ConfigureJava() abort
-    nnoremap <buffer> <silent> <Leader>ii <Plug>(JavaComplete-Imports-AddSmart)
-    nnoremap <buffer> <silent> <Leader>iI <Plug>(JavaComplete-Imports-Add)
-    nnoremap <buffer> <silent> <Leader>ia <Plug>(JavaComplete-Imports-AddMissing)
-    nnoremap <buffer> <silent> <Leader>id <Plug>(JavaComplete-Imports-RemoveUnused)
-    nnoremap <buffer> <silent> <Leader>am <Plug>(JavaComplete-Generate-AbstractMethods)
-    nnoremap <buffer> <silent> <Leader>aA <Plug>(JavaComplete-Generate-Accessors)
-    nnoremap <buffer> <silent> <Leader>as <Plug>(JavaComplete-Generate-AccessorSetter)
-    nnoremap <buffer> <silent> <Leader>ag <Plug>(JavaComplete-Generate-AccessorGetter)
-    nnoremap <buffer> <silent> <Leader>aa <Plug>(JavaComplete-Generate-AccessorSetterGetter)
-    nnoremap <buffer> <silent> <Leader>ats <Plug>(JavaComplete-Generate-ToString)
-    nnoremap <buffer> <silent> <Leader>aeq <Plug>(JavaComplete-Generate-EqualsAndHashCode)
-    nnoremap <buffer> <silent> <Leader>aI <Plug>(JavaComplete-Generate-Constructor)
-    nnoremap <buffer> <silent> <Leader>ai <Plug>(JavaComplete-Generate-DefaultConstructor)
-
-    nnoremap <buffer> <silent> <Leader>ac <Plug>(JavaComplete-Generate-NewClass)
-    nnoremap <buffer> <silent> <Leader>aC <Plug>(JavaComplete-Generate-ClassInFile)
-    " autocmd FileType java setlocal formatexpr=LanguageClient_textDocument_rangeFormatting()
-
-    nnoremap <buffer> <Leader>cf :YcmCompleter FixIt<CR>
-    nnoremap <buffer> gd :YcmCompleter GoTo<CR>
-    nnoremap <buffer> K :YcmCompleter GetDoc<CR>
-    nnoremap <buffer> gq :YcmCompleter Format<CR>
-    vnoremap <buffer> gq :YcmCompleter Format<CR>
-    nnoremap <buffer> <Leader>gu :YcmCompleter GoToReferences<CR>
-    nnoremap <buffer> <Leader>rn :YcmCompleter RefactorRename
-endfunction
 
 augroup filetype_java
     autocmd!
@@ -775,15 +723,6 @@ let g:rtagsAutoLaunchRdm=1
 " Plug 'arakashic/chromatica.nvim', { 'for': ['c', 'cpp', 'objc', 'objcpp'], 'do': ':UpdateRemotePlugins' }
 let g:chromatica#enable_at_startup=1
 let g:chromatica#responsive_mode=1
-
-function! ConfigurePkgbuild() abort
-    setlocal makeprg=makepkg
-    nnoremap <buffer> <Leader>mi :make -i<CR>
-    nnoremap <buffer> <Leader>mb :make<CR>
-    setlocal softtabstop=2
-    setlocal shiftwidth=2
-    setlocal filetype=sh
-endfunction
 
 "##### Shell
 augroup shell
@@ -841,4 +780,89 @@ call deoplete#custom#source('_', 'matchers', ['matcher_full_fuzzy'])
 " transparent: CandyPaper,
 " gruvbox, badwolf
 " truecolor: onedark, OceanicNext
+
+""" functions
+function! GetSessionName() abort
+    " return g:vim_sesssions_dir . '/' . fnamemodify(getcwd(), ':p:h:t') . '.vim'
+    return fnamemodify(getcwd(), ':p:h:t') . '.vim'
+endfunction
+
+function! Normal(commands) abort
+    """Executes array of normal commands respecting count""""
+    let l:count = v:count
+    if l:count == 0
+        let l:count = 1
+    endif
+    let l:command = join(a:commands, "\<CR>")
+    if len(a:commands) == 1
+        let l:command = l:command . "\<CR>"
+    endif
+    for i in range(1, l:count)
+        silent execute 'normal ' . l:command
+    endfor
+endfunction
+
+function! Conflict(reverse) abort
+  call search('^\(@@ .* @@\|[<=>|]\{7}[<=>|]\@!\)', a:reverse ? 'bW' : 'W')
+endfunction
+
+function! ConfigureJavascript() abort
+    " setlocal path=.,src,node_modules
+    nnoremap <buffer> <silent> gd :TernDef<CR>
+    nnoremap <buffer> <silent> <Leader>u :TernRefs<CR>
+    nnoremap <buffer> <silent> <Leader>r :TernRename<CR>
+    setlocal softtabstop=2 shiftwidth=2
+    setlocal suffixesadd=.js,.jsx
+endfunction
+
+function! ConfigurePython() abort
+    python nnoremap <buffer> <silent> <Leader>U :YcmCompleter GoToReferences<CR>
+    python let b:neoformat_run_all_formatters = 1
+    " call deoplete#custom#buffer_option('auto_complete', v:false)
+endfunction
+
+function! ConfigureRust() abort
+    nnoremap <buffer> <silent> gd <Plug>(rust-def)
+    nnoremap <buffer> <silent> <C-]> <Plug>(rust-def)
+    nnoremap <buffer> <silent> <C-w><C-]> <Plug>(rust-def-split)
+    nnoremap <buffer> <silent> <C-w>} <Plug>(rust-def-vertical)
+    nnoremap <buffer> <silent> K <Plug>(rust-doc)
+endfunction
+
+function! ConfigureJava() abort
+    nnoremap <buffer> <silent> <Leader>ii <Plug>(JavaComplete-Imports-AddSmart)
+    nnoremap <buffer> <silent> <Leader>iI <Plug>(JavaComplete-Imports-Add)
+    nnoremap <buffer> <silent> <Leader>ia <Plug>(JavaComplete-Imports-AddMissing)
+    nnoremap <buffer> <silent> <Leader>id <Plug>(JavaComplete-Imports-RemoveUnused)
+    nnoremap <buffer> <silent> <Leader>am <Plug>(JavaComplete-Generate-AbstractMethods)
+    nnoremap <buffer> <silent> <Leader>aA <Plug>(JavaComplete-Generate-Accessors)
+    nnoremap <buffer> <silent> <Leader>as <Plug>(JavaComplete-Generate-AccessorSetter)
+    nnoremap <buffer> <silent> <Leader>ag <Plug>(JavaComplete-Generate-AccessorGetter)
+    nnoremap <buffer> <silent> <Leader>aa <Plug>(JavaComplete-Generate-AccessorSetterGetter)
+    nnoremap <buffer> <silent> <Leader>ats <Plug>(JavaComplete-Generate-ToString)
+    nnoremap <buffer> <silent> <Leader>aeq <Plug>(JavaComplete-Generate-EqualsAndHashCode)
+    nnoremap <buffer> <silent> <Leader>aI <Plug>(JavaComplete-Generate-Constructor)
+    nnoremap <buffer> <silent> <Leader>ai <Plug>(JavaComplete-Generate-DefaultConstructor)
+
+    nnoremap <buffer> <silent> <Leader>ac <Plug>(JavaComplete-Generate-NewClass)
+    nnoremap <buffer> <silent> <Leader>aC <Plug>(JavaComplete-Generate-ClassInFile)
+    " autocmd FileType java setlocal formatexpr=LanguageClient_textDocument_rangeFormatting()
+
+    nnoremap <buffer> <Leader>cf :YcmCompleter FixIt<CR>
+    nnoremap <buffer> gd :YcmCompleter GoTo<CR>
+    nnoremap <buffer> K :YcmCompleter GetDoc<CR>
+    nnoremap <buffer> gq :YcmCompleter Format<CR>
+    vnoremap <buffer> gq :YcmCompleter Format<CR>
+    nnoremap <buffer> <Leader>gu :YcmCompleter GoToReferences<CR>
+    nnoremap <buffer> <Leader>rn :YcmCompleter RefactorRename
+endfunction
+
+function! ConfigurePkgbuild() abort
+    setlocal makeprg=makepkg
+    nnoremap <buffer> <Leader>mi :make -i<CR>
+    nnoremap <buffer> <Leader>mb :make<CR>
+    setlocal softtabstop=2
+    setlocal shiftwidth=2
+    setlocal filetype=sh
+endfunction
 
