@@ -35,6 +35,7 @@ alias dc='docker-compose'
 alias eclimd='/usr/lib/eclipse/eclimd'
 alias eclim='/usr/lib/eclipse/eclimd'
 alias firefox-debug='firefox -start-debugger-server -no-remote'
+alias g='git'
 alias grep="grep --color=auto"
 alias jad-decompile="jad -o -d src-jad -r -s java **/*.class"
 alias ls='ls --color --classify --human-readable'
@@ -138,8 +139,10 @@ complete -o default -o nospace -F _docker_compose dc
 if [[ -r "${HOME}/.config/fzf/completions/git.sh" ]]; then 
     source "${HOME}/.config/fzf/completions/git.sh"
     complete -o default -o nospace -F _fzf_complete_git cgit
+    complete -o default -o nospace -F _fzf_complete_git g
 else
     complete -o default -o nospace -F _git cgit
+    complete -o default -o nospace -F _git g
 fi
 source_if_exists "${HOME}/.config/fzf/completions/hg.sh"
 source_if_exists "${HOME}/.config/fzf/completions/docker.sh"

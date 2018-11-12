@@ -1,6 +1,7 @@
 "*":
   "atom-beautify": {}
   "autocomplete-plus":
+    confirmCompletion: "tab always, enter when suggestion explicitly selected"
     minimumWordLength: 0
     useCoreMovementCommands: false
   "autoupdate-packages":
@@ -49,6 +50,7 @@
     replaceCharacters: "abcdefghijklmnopqrstuvwxyz"
   editor:
     fontFamily: "Hack"
+    scrollPastEnd: true
     softWrap: true
   "exception-reporting":
     userId: "037b0b67-74ff-36ff-1575-0ff65271a777"
@@ -56,11 +58,16 @@
     pylsPlugins:
       yapf:
         enabled: true
+  "julia-client":
+    firstBoot: false
+    uiOptions:
+      enableMenu: true
+      enableToolBar: true
   linter: {}
   "linter-flake8": {}
   "linter-rust": {}
   "linter-ui-default":
-    panelHeight: 81
+    panelHeight: 208
   "markdown-preview": {}
   metrics: {}
   nuclide: {}
@@ -77,8 +84,11 @@
       "one-light-ui one-light-syntax"
     ]
   tokamak: {}
-  "tool-bar": {}
+  "tool-bar":
+    position: "Left"
   "tree-view": {}
+  "uber-juno":
+    disable: true
   "vim-mode":
     useSmartcaseForSearch: true
   "vim-mode-plus":

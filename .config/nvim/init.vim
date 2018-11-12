@@ -340,8 +340,14 @@ Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
 nnoremap <Leader>vL :UndotreeToggle<CR>
 Plug 'mhinz/vim-signify', { 'on': 'SignifyToggle' } " shows which lines were added and such
 let g:signify_vcs_list=['git', 'hg']
-nmap <Leader>vl :SignifyToggle<CR>
-Plug 'airblade/vim-gitgutter', { 'on': 'GitGutterSignsToggle' }
+Plug 'airblade/vim-gitgutter'
+nmap ]c <Plug>GitGutterNextHunk
+nmap [c <Plug>GitGutterPrevHunk
+let g:gitgutter_map_keys = 0
+nnoremap <Leader>vll :GitGutterToggle<CR>
+nmap <Leader>vls <Plug>GitGutterStageHunk
+nmap <Leader>vlr <Plug>GitGutterUndoHunk
+nmap <Leader>vld <Plug>GitGutterPreviewHunk
 "GIT
 Plug 'tpope/vim-fugitive'
 nnoremap <Leader>va :Gwrite<CR>
