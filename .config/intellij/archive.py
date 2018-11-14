@@ -7,7 +7,8 @@ if len(sys.argv) != 2:
     print('Please provide name of directory to be compressed')
 
 SPECIAL_FILES = {'installed.txt', 'IntelliJ IDEA Global Settings'}
-PRODUCTS = {'idea': '.IdeaIC2018.2', 'pycharm': '.PyCharmCE2018.2'}
+PRODUCTS = {'idea': '.IdeaIC2018.2', 'pycharm': '.PyCharmCE2018.2',
+            'android': '.AndroidStudio3.2'}
 
 
 def add_file(zf: ZipFile, file: pathlib.Path, root_dir: pathlib.Path, product: str):

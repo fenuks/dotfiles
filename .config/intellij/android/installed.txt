@@ -1,0 +1,14 @@
+BashSupport
+DBN
+Dart
+FindBugs-IDEA
+IdeaVIM
+Key Promoter X
+Lombook Plugin
+com.urswolfer.intellij.plugin.gerrit
+io.flutter
+mobi.hsz.idea.gitignore
+org.jetbrains.kotlin
+org.rust.lang
+org.sonarlint.idea
+org.zalando.intellij.swagger
