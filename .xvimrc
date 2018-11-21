@@ -16,6 +16,7 @@ cnoremap <c-a> <home>
 cnoremap <c-e> <end>
 nnoremap <c-o> :xcmenucmd Go Back<cr>
 nnoremap <c-i> :xcmenucmd Go Forward<cr>
+nnoremap <c-w>T :xcmenucmd Tab<cr>
 " insert spaces
 nnoremap <silent> [<space> O<esc>
 nnoremap <silent> ]<space> o<esc>
@@ -28,6 +29,8 @@ vnoremap <a-j> gj
 vnoremap <a-k> gk
 nnoremap <a-j> gj
 nnoremap <a-k> gk
+nnoremap [m ?func <cr>
+nnoremap ]m /func <cr>
 
 
 " Xcode specific
@@ -40,6 +43,13 @@ nnoremap ,gs :xccmd findSelectedTextInWorkspace<cr>
 nnoremap ,gu :xcmenucmd Find Selected Symbol in Workspace<cr>
 nnoremap <c-j> :nissue<cr>
 nnoremap <c-k> :pissue<cr>
+nnoremap ,cn :nissue<cr>
+nnoremap ,cp :pissue<cr>
+nnoremap ,cF :xcmenucmd Fix All Issues<cr>
+nnoremap ,cd :xcmenucmd Show Issue<cr>
+nnoremap <c-/> :xcmenucmd Toggle Comments<cr>
+vnoremap <c-/> :xcmenucmd Toggle Comments<cr>
+inoremap <c-/> <esc>:xcmenucmd Toggle Comments<cr>a
 
 nnoremap ,ft :xccmd toggleNavigatorsVisibility<cr>
 
@@ -61,7 +71,7 @@ nnoremap K :xccmd showQuickHelp<cr>
 
 nnoremap ,rn :xcmenucmd Rename...<cr>
 
-nnoremap ,mr :xmenucmd Run<cr>
+nnoremap ,mr :xcmenucmd Run<cr>
 nnoremap ,mb :xcmenucmd Build<cr>
 nnoremap ,mc :xcmenucmd Clean Build Folder<cr>
 
