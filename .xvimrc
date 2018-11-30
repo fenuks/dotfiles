@@ -14,8 +14,8 @@ cnoremap <c-n> <down>
 cnoremap <c-p> <up>
 cnoremap <c-a> <home>
 cnoremap <c-e> <end>
-nnoremap <c-o> :xcmenucmd Go Back<cr>
-nnoremap <c-i> :xcmenucmd Go Forward<cr>
+" nnoremap <c-o> :xcmenucmd Go Back<cr>
+" nnoremap <c-i> :xcmenucmd Go Forward<cr>
 nnoremap <c-w>T :xcmenucmd Tab<cr>
 " insert spaces
 nnoremap <silent> [<space> O<esc>
@@ -31,7 +31,8 @@ nnoremap <a-j> gj
 nnoremap <a-k> gk
 nnoremap [m ?func <cr>
 nnoremap ]m /func <cr>
-
+vnoremap \y "+y
+nnoremap \y "+y
 
 " Xcode specific
 nnoremap ,gf :xccmd openQuickly<cr>
@@ -54,18 +55,12 @@ inoremap <c-/> <esc>:xcmenucmd Toggle Comments<cr>a
 nnoremap ,ft :xccmd toggleNavigatorsVisibility<cr>
 
 nnoremap <c-w>td :xccmd toggleDebuggerVisibility<cr>
-nnoremap <c-w>tu :xccmd toggleUtilitiesVisibility<cr>
-nnoremap <c-w>tt :xccmd toggleToolbarShown<cr>
-nnoremap <c-w>ta :xccmd toggleTokenizedEditing<cr>
 nnoremap <c-w>tc :xcmenucmd Activate Console<cr>
 
 nnoremap ,wtd :xccmd toggleDebuggerVisibility<cr>
-nnoremap ,wtu :xccmd toggleUtilitiesVisibility<cr>
-nnoremap ,wtt :xccmd toggleToolbarShown<cr>
-nnoremap ,wta :xccmd toggleTokenizedEditing<cr>
 nnoremap ,wtc :xcmenucmd Activate Console<cr>
 
-nnoremap ,st xccmd findSelectedTextInWorkspace<cr>
+nnoremap ,st :xccmd findSelectedTextInWorkspace<cr>
 
 nnoremap K :xccmd showQuickHelp<cr>
 
