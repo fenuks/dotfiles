@@ -25,3 +25,4 @@ target/
 *.iml
 env/
 .env/
+.DS_Store
