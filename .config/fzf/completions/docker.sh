@@ -28,7 +28,7 @@ _fzf_complete_docker() {
     elif [[ "${cmd_opt}" == 'pull '* ]]; then
         selected=$( __fzf_docker_images "${binary}" | awk '{print $1}' | sort | uniq | ${fzf} "${fzf_opt[@]}" -m | tr '\n' ' ')
     elif [[ "${cmd_opt}" == 'push '* ]]; then
-        selected=$( "${binary}" images | sed '1d' | ${fzf} "${fzf_opt[@]}" -m | awk '{print $3}' | tr '\n' ' ')
+        selected=$( "${binary}" images | sed '1d' | ${fzf} "${fzf_opt[@]}" -m | awk '{print $1":"$2}' | tr '\n' ' ')
     elif [[ "${cmd_opt}" == 'rmi '* ]]; then
         selected=$( "${binary}" images | sed '1d' | ${fzf} "${fzf_opt[@]}" -m | awk '{print $3}' | tr '\n' ' ')
     fi
