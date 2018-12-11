@@ -1,5 +1,5 @@
 let mapleader=','
-let localleader='\'
+let maplocalleader='\'
 
 set history=1000
 set hlsearch
@@ -11,6 +11,7 @@ set number
 set relativenumber
 set scrolloff=3
 set undolevels=1000
+set visualbell
 
 " insert mode
 inoremap jk <ESC>
