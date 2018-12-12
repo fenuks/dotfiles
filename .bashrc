@@ -71,6 +71,9 @@ alias vR='sudoedit /etc/resolv.conf'
 alias vr='vim requirements.txt'
 alias vrd='vim requirements-dev.txt'
 alias vv='vim ~/.config/nvim/init.vim'
+alias sb='source ~/.bashrc'
+alias sf='source ~/.config/fish/config.fish'
+alias se='source .env/bin/activate'
 
 # export PAGER="/usr/local/bin/gvim -f -R -"
 export BROWSER=firefox

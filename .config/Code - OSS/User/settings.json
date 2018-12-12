@@ -96,7 +96,8 @@
     "hg.commandMode": "server",
     "python.autoComplete.addBrackets": true,
     "telemetry.optout": true,
-    "latex-workshop.view.pdf.viewer": "tab"
+    "latex-workshop.view.pdf.viewer": "tab",
+    "search.usePCRE2": true
     // "editor.formatOnType": true,
     // "editor.formatOnPaste": true,
     // "editor.autoIndent": true

@@ -35,6 +35,7 @@ set signcolumn=yes
 " set breakat-=_ " don't break at _
 " diff mode
 set diffopt+=iwhite " ignore whitespace character changes
+set diffopt+=internal,algorithm:patience,indent-heuristic " use vimproved internal patch
 set includeexpr=substitute(v:fname,'\\.','/','g') " expression to change gf filename mapping
 set visualbell " don't beep
 set noerrorbells " don't beep
@@ -345,6 +346,7 @@ nmap ]c <Plug>GitGutterNextHunk
 nmap [c <Plug>GitGutterPrevHunk
 let g:gitgutter_map_keys = 0
 nnoremap <Leader>vll :GitGutterToggle<CR>
+nnoremap <Leader>vlL :SignifyToggle<CR>
 nmap <Leader>vls <Plug>GitGutterStageHunk
 nmap <Leader>vlr <Plug>GitGutterUndoHunk
 nmap <Leader>vld <Plug>GitGutterPreviewHunk
