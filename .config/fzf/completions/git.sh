@@ -15,9 +15,13 @@ _fzf_complete_git() {
     fzf_opt=(--height "${FZF_TMUX_HEIGHT:-50%}" --min-height 15 --reverse ${FZF_COMPLETION_OPTS} ${FZF_DEFAULT_OPTS})
 
     if [[ "${cmd_opt}" == 'add '* ]]; then
-        selected=$( ( ${binary} status --short | grep -v -P '^(A|R|D|M) ' ) | ${fzf} "${fzf_opt[@]}" -m --preview 'echo {} | awk '\''{$1=""; print substr($0,2)}'\'' | cgit --no-pager diff' | awk '{$1=""; print substr($0,2)}' | tr '\n' ' ')
+        selected=$( ( ${binary} status --short | grep -v -P '^(A|R|D|M) ' ) | ${fzf} "${fzf_opt[@]}" -m | awk '{$1=""; print substr($0,2)}' | tr '\n' ' ')
     elif [[ "${cmd_opt}" == 'checkout '* ]]; then
-        selected=$( ${binary} status --short | ${fzf} "${fzf_opt[@]}" -m | awk '{$1=""; print substr($0,2)}' | tr '\n' ' ')
+        if [[ "${cmd_last_opt}" == "-b" ]] || [[ "${cmd_last_opt}" == "--branch" ]]; then
+            selected=$( ${binary} branch --remotes | sed 1d | awk '{ print $1 }' | ${fzf} "${fzf_opt[@]}" -m |  tr '\n' ' ')
+        else
+            selected=$( ${binary} status --short | ${fzf} "${fzf_opt[@]}" -m | awk '{$1=""; print substr($0,2)}' | tr '\n' ' ')
+        fi
     elif [[ "${cmd_opt}" == 'reset '* ]]; then
         selected=$( ( ${binary} status --short | grep -P '^(A|R|D|M)' ) | ${fzf} "${fzf_opt[@]}" -m | awk '{$1=""; print substr($0,2)}' | tr '\n' ' ')
     elif [[ "${cmd_opt}" == 'diff '* ]]; then
