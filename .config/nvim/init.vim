@@ -1,6 +1,7 @@
 scriptencoding utf-8
 " editor behavior
 set t_Co=256
+set modelines=0 " number of lines vim probes to find vi: commands
 set history=1000 " Number of things to remember in history
 " set textwidth=80 " max line width
 set formatprg=par " gq formatting program
@@ -23,6 +24,7 @@ set autoindent " align the new line indent with the previous one
 " set tabstop=4 " Set the default tabstop
 set softtabstop=4 " Insert/delete 4 spaces when hitting TAB/Backspace
 set shiftwidth=4 " Set the default shift width for indents
+set shiftround " Round indent to multiple of 'shiftwidth'.
 set expandtab " Make tabs into spaces (set by tabstop)
 set smarttab " Smarter tab levels
 set scrolloff=3 " number of context lines visible near cursor
@@ -30,17 +32,19 @@ set wildmenu " enhanced command-line mode
 set wildignore=*.swp,*.bak,*.pyc,*.class,*.git
 set lazyredraw " redraw only at the end of the macro
 set hidden " allow background buffers without saving
+set title " change terminal title as formatted by `titlestring`
 set spelllang=en_gb,pl
 set signcolumn=yes
 " set breakat-=_ " don't break at _
 " diff mode
 set diffopt+=iwhite " ignore whitespace character changes
-set diffopt+=internal,algorithm:patience,indent-heuristic " use vimproved internal patch
+" set diffopt+=internal,algorithm:patience,indent-heuristic " use vimproved internal patch
 set includeexpr=substitute(v:fname,'\\.','/','g') " expression to change gf filename mapping
 set visualbell " don't beep
 set noerrorbells " don't beep
 set confirm " Ask to save instead of complaining
 set splitright splitbelow " open splits in more natural position
+set synmaxcol=800 " don't highligh longer lines
 
 set undofile
 set undolevels=1000
@@ -775,7 +779,7 @@ if has('gui_running')
 elseif &diff
     colorscheme Monokai
 else
-    colorscheme Tomorrow-Night
+    colorscheme evening
 endif
 
 let g:deoplete#enable_at_startup = 1
