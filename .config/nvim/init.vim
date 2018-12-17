@@ -395,7 +395,8 @@ command! -nargs=* Agp
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 nnoremap <C-p> :Files<CR>
-nnoremap <Leader>gf :Files<CR>
+nnoremap <Leader>fl :Files<CR>
+nnoremap <Leader>fd :Files <C-r>=expand("%:h")<CR>/<CR>
 nnoremap <Leader>gt :Tags<CR>
 nnoremap <Leader>gT :BTags<CR>
 
@@ -629,7 +630,6 @@ Plug 'honza/vim-snippets'
 
 "#### Language specific
 Plug 'sheerun/vim-polyglot'
-" let g:polyglot_disabled = ['python']
 " ##### VIML
 Plug 'junegunn/vader.vim', { 'on': 'Vader' }
 augroup vim
@@ -679,6 +679,7 @@ augroup END
 
 if has('nvim')
     Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins' }
+    let g:polyglot_disabled = ['python']
 endif
 
 Plug 'davidhalter/jedi-vim', { 'for': 'python' }
@@ -712,7 +713,6 @@ augroup END
 "##### JVM
 "##### Java
 " Plug 'artur-shaik/vim-javacomplete2', { 'for': 'java' }
-" Plug '/usr/share/vim/vimfiles/plugin/eclim.vim', { 'dir': '/usr/share/vim/vimfiles/', 'for': 'java' }
 Plug 'mikelue/vim-maven-plugin', { 'on': ['Mvn', 'MvnNewMainFile'] }
 
 augroup filetype_java

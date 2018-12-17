@@ -78,6 +78,7 @@ alias se='source .env/bin/activate'
 # export PAGER="/usr/local/bin/gvim -f -R -"
 export BROWSER=firefox
 export CALIBRE_USE_SYSTEM_THEME=1
+export DOTNET_CLI_TELEMETRY_OPTOUT=1
 export EDITOR=vim
 export ENHANCD_COMMAND=fzf
 if [[ ! -v FZF_DEFAULT_COMMAND ]]; then
@@ -85,6 +86,7 @@ if [[ ! -v FZF_DEFAULT_COMMAND ]]; then
 fi
 export FZF_CTRL_T_COMMAND="${FZF_DEFAULT_COMMAND}"
 export GCC_COLORS=auto
+export GTK_USE_PORTAL=1
 export GPODDER_HOME="${HOME}/Podcasts/"
 export HISTCONTROL=ignoreboth
 export HISTIGNORE="&:[ ]*:exit:ls:bg:fg:history:clear"
