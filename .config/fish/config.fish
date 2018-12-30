@@ -75,6 +75,7 @@ set -x ENHANCD_COMMAND fzf
 
 function fish_user_key_bindings
     fzf_key_bindings
+    # skim_key_bindings
 end
 
 # set -g fish_key_bindings fish_vi_key_bindings

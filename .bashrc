@@ -13,7 +13,18 @@ if command -v nvim > /dev/null; then
     function vim() {
         nvim "$@"
     }
+    function vimpager() {
+        nvim -R "$@"
+    }
+    export MANPAGER="nvim -c 'set ft=man' -"
+
+else
+    function vimpager() {
+        vim -R "$@"
+    }
+    export MANPAGER="env MAN_PN=1 vim -M +MANPAGER -"
 fi
+
 
 function svim() {
     vim -u ~/.config/svim/vimrc "$@"
@@ -27,6 +38,9 @@ if [ "${TERMINIX_ID}" ] || [ "${VTE_VERSION}" ]; then
 fi
 
 export -f cgit
+export -f vim
+export -f vimpager
+export -f svim
 
 alias chromium-dev='chromium --disable-web-security --user-data-dir --remote-debugging-port=9222'
 alias clear="clear && printf \"\\e[3J\""
@@ -75,7 +89,6 @@ alias sb='source ~/.bashrc'
 alias sf='source ~/.config/fish/config.fish'
 alias se='source .env/bin/activate'
 
-# export PAGER="/usr/local/bin/gvim -f -R -"
 export BROWSER=firefox
 export CALIBRE_USE_SYSTEM_THEME=1
 export DOTNET_CLI_TELEMETRY_OPTOUT=1

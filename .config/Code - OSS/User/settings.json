@@ -95,9 +95,9 @@
     "hg.useBookmarks": true,
     "hg.commandMode": "server",
     "python.autoComplete.addBrackets": true,
-    "telemetry.optout": true,
     "latex-workshop.view.pdf.viewer": "tab",
-    "search.usePCRE2": true
+    "search.usePCRE2": true,
+    "githubPullRequests.telemetry.enabled": false
     // "editor.formatOnType": true,
     // "editor.formatOnPaste": true,
     // "editor.autoIndent": true

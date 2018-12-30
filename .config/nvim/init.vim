@@ -1,40 +1,31 @@
 scriptencoding utf-8
-" editor behavior
-set t_Co=256
-set modelines=0 " number of lines vim probes to find vi: commands
-set history=1000 " Number of things to remember in history
-" set textwidth=80 " max line width
-set formatprg=par " gq formatting program
-set formatoptions+=j " more intelligent j joining
-set linebreak " breaklines *nicely*, virtually
-" set showbreak='@' " show line continuation sign
-" formatting formatprg, formatexpr, formatoptions
-set whichwrap=h,l " specify keys that can wrap next line
+
+" behaviour
+syntax on " syntax highlight on
+filetype indent plugin on " enable filetype detection
+set synmaxcol=800 " don't highligh longer lines
+
+"" search
 set hlsearch " highlight search
 set ignorecase " Do case insensitive matching with
 set infercase " Do *not* ignore case in autocompletion
 set smartcase " Do case sensitive if text contains upper letters
 set incsearch " Search while typing
 " set gdefault " Automatically enable the 'g' flag for substitution
+
+"" misc
+set modelines=0 " number of lines vim probes to find vi: commands
+set history=1000 " Number of things to remember in history
+set cmdwinheight=20 " set commandline window height
+set undofile
+set undolevels=1000
 set autoread " Automatically reload file changed outside vim if not changed in vim
 set completeopt=longest,menuone,preview " complete longest common text instead of first word
 " set timeoutlen=150 " Time to wait after ESC (default causes an annoying delay), it affects also leader key, unfortunately
-set backspace=indent,eol,start " more powerful backspacing"
-set autoindent " align the new line indent with the previous one
-" set tabstop=4 " Set the default tabstop
-set softtabstop=4 " Insert/delete 4 spaces when hitting TAB/Backspace
-set shiftwidth=4 " Set the default shift width for indents
-set shiftround " Round indent to multiple of 'shiftwidth'.
-set expandtab " Make tabs into spaces (set by tabstop)
-set smarttab " Smarter tab levels
 set scrolloff=3 " number of context lines visible near cursor
 set wildmenu " enhanced command-line mode
 set wildignore=*.swp,*.bak,*.pyc,*.class,*.git
-set lazyredraw " redraw only at the end of the macro
 set hidden " allow background buffers without saving
-set title " change terminal title as formatted by `titlestring`
-set spelllang=en_gb,pl
-set signcolumn=yes
 " set breakat-=_ " don't break at _
 " diff mode
 set diffopt+=iwhite " ignore whitespace character changes
@@ -44,28 +35,45 @@ set visualbell " don't beep
 set noerrorbells " don't beep
 set confirm " Ask to save instead of complaining
 set splitright splitbelow " open splits in more natural position
-set synmaxcol=800 " don't highligh longer lines
-
-set undofile
-set undolevels=1000
-
-syntax on " syntax highlight on
-filetype indent plugin on " enable filetype detection
-set number " Show line numbers
-set relativenumber " show relative numbers
-set noruler " show line and column numbers
-set showcmd " Display an incomplete command in the lower right corner of the Vim window"
-set noshowmode " do not show current mode
-set showmatch  " Show matching brackets
 " set matchpairs+=<:> " make % match between < and >
-set cursorline " highlight current line
-set colorcolumn=80 " show vertical line at column
-set laststatus=2 " always show status line
+
+" formatting
+set backspace=indent,eol,start " more powerful backspacing"
+set formatprg=par " gq formatting program
+set formatoptions+=j " more intelligent j joining
+set linebreak " breaklines *nicely*, virtually
+" formatting formatprg, formatexpr, formatoptions
+set whichwrap=h,l " specify keys that can wrap next line
+set autoindent " align the new line indent with the previous one
+" set tabstop=4 " Set the default tabstop
+set softtabstop=4 " Insert/delete 4 spaces when hitting TAB/Backspace
+set shiftwidth=4 " Set the default shift width for indents
+set shiftround " Round indent to multiple of 'shiftwidth'.
+set expandtab " Make tabs into spaces (set by tabstop)
+set smarttab " Smarter tab levels
+" set textwidth=80 " max line width
+
+" display
+set t_Co=256
+set lazyredraw " redraw only at the end of the macro
+set listchars=tab:▸\ ,eol:¬,trail:·
 set title " update terminal title
 set ruler " show line position on bottom ruler
-set cmdwinheight=20 " set commandline window height
-set listchars=tab:▸\ ,eol:¬,trail:·
+set laststatus=2 " always show status line
+set cursorline " highlight current line
+set colorcolumn=80 " show vertical line at column
+set showmatch  " Show matching brackets
+set showcmd " Display an incomplete command in the lower right corner of the Vim window"
+set relativenumber " show relative numbers
+set noshowmode " do not show current mode
+set number " Show line numbers
+set noruler " show line and column numbers
+set title " change terminal title as formatted by `titlestring`
+set signcolumn=yes
+" set showbreak='@' " show line continuation sign
 
+" language
+set spelllang=en_gb,pl
 set dictionary+=/usr/share/dict/british,/usr/share/dict/polish
 set thesaurus+=/usr/share/thesaurus/moby-thesaurus.txt
 digraph !! 8252 " ‼
@@ -76,11 +84,7 @@ if has('unix')
     let g:tmp_dir='/tmp'
     let g:local_share_dir=expand('~/.local/share')
 
-    if has('nvim')
-        call plug#begin('~/.config/nvim/plugged')
-    else
-        call plug#begin('~/.vim/plugged')
-    endif
+    call plug#begin('~/.config/nvim/plugged')
 
     if has('mac')
         let g:python_host_prog='/usr/local/bin/python2'
@@ -105,9 +109,10 @@ else
     set viminfofile=$HOME/.config/nvim/viminfo
     let g:vim_share_dir=g:local_share_dir . '/vim'
 endif
-let g:vim_sesssions_dir=g:vim_share_dir . '/sessions'
 
+let g:vim_sesssions_dir=g:vim_share_dir . '/sessions'
 let &undodir=g:tmp_dir . '/vim-undo-dir'
+
 if !isdirectory(&undodir)
     call mkdir(&undodir, 0600)
 endif
@@ -122,20 +127,35 @@ endif
 let mapleader = ','
 let maplocalleader = '\'
 
+vmap . :normal .<CR>
+cmap w!! %!sudo tee > /dev/null %
+nnoremap <Leader><Space>s :%s/\s\+$//<CR>
 " set very magic regex (perl compatitible)
 nnoremap / /\v
 vnoremap / /\v
+cnoremap g/ g/\v
+cnoremap v/ v/\v
 " stay in visual mode while changing indentation
-vnoremap < <gv
-vnoremap > >gv
 nnoremap gV `[v`] " select last changed text, original gV mapping is obscure
 " better history scrolling, with context
 cnoremap <C-n> <down>
 cnoremap <C-p> <up>
 cnoremap <C-A> <Home>
 cnoremap <C-E> <End>
-cnoremap g/ g/\v
-cnoremap v/ v/\v
+
+" moving lines up and down
+nnoremap <silent> <A-p> :<C-u>execute 'move -1-'. v:count1<CR>
+nnoremap <silent> <A-n> :<C-u>execute 'move +'. v:count1<CR>
+inoremap <silent> <A-n> <Esc>:m .+1<CR>==gi
+inoremap <silent> <A-p> <Esc>:m .-2<CR>==gi
+vnoremap <silent> <A-n> :m '>+1<CR>gv=gv
+vnoremap <silent> <A-p> :m '<-2<CR>gv=gv
+" insert spaces
+nnoremap <silent> [<space>  :<C-u>put! =repeat(nr2char(10), v:count1)<CR>'[
+nnoremap <silent> ]<space> :<C-u>put =repeat(nr2char(10), v:count1)<CR>
+
+" edit register
+nnoremap <silent> <Leader>@ :<C-u><C-r><C-r>='let @'. v:register .' = '. string(getreg(v:register))<CR><C-F><LEFT>
 
 nnoremap <C-s> :w<Enter>
 inoremap <C-s> <ESC>:w<Enter>a
@@ -159,26 +179,6 @@ nnoremap <LocalLeader>D "+D
 nnoremap <LocalLeader>p "+p
 nnoremap <LocalLeader>P "+P
 
-vmap . :normal .<CR>
-
-cmap w!! %!sudo tee > /dev/null %
-
-nnoremap <Leader><Space>s :%s/\s\+$//<CR>
-
-" moving lines up and down
-nnoremap <silent> <A-p> :<C-u>execute 'move -1-'. v:count1<CR>
-nnoremap <silent> <A-n> :<C-u>execute 'move +'. v:count1<CR>
-inoremap <silent> <A-n> <Esc>:m .+1<CR>==gi
-inoremap <silent> <A-p> <Esc>:m .-2<CR>==gi
-vnoremap <silent> <A-n> :m '>+1<CR>gv=gv
-vnoremap <silent> <A-p> :m '<-2<CR>gv=gv
-" insert spaces
-nnoremap <silent> [<space>  :<C-u>put! =repeat(nr2char(10), v:count1)<CR>'[
-nnoremap <silent> ]<space> :<C-u>put =repeat(nr2char(10), v:count1)<CR>
-
-" edit register
-nnoremap <silent> <Leader>@ :<C-u><C-r><C-r>='let @'. v:register .' = '. string(getreg(v:register))<CR><C-F><LEFT>
-
 inoremap <A-h> <LEFT>
 inoremap <A-l> <RIGHT>
 inoremap <A-k> <UP>
@@ -189,13 +189,13 @@ vnoremap <A-k> gk
 nnoremap <A-j> gj
 nnoremap <A-k> gk
 
-nnoremap <Leader>ps :SSave <C-r>=GetSessionName()<CR>
-nnoremap <Leader>pl :SLoad <C-r>=GetSessionName()<CR>
-nnoremap <Leader>pd :SDelete<CR>
-nnoremap <Leader>pc :SClose<CR>
+nnoremap <silent> <Leader>ps :SSave <C-r>=GetSessionName()<CR>
+nnoremap <silent> <Leader>pl :SLoad <C-r>=GetSessionName()<CR>
+nnoremap <silent> <Leader>pd :SDelete<CR>
+nnoremap <silent> <Leader>pc :SClose<CR>
 
-nnoremap <Leader>ev :edit $MYVIMRC<CR>
-nnoremap <Leader>eb :edit $HOME/.bashrc<CR>
+nnoremap <silent> <Leader>ev :edit $MYVIMRC<CR>
+nnoremap <silent> <Leader>eb :edit $HOME/.bashrc<CR>
 
 " buffers
 nnoremap <silent> <Leader>bn <CMD>call Normal([":new", ":only"])<CR>
@@ -401,8 +401,8 @@ nnoremap <Leader>gt :Tags<CR>
 nnoremap <Leader>gT :BTags<CR>
 
 Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
-nnoremap <Leader>ft :NERDTreeToggle<CR>
-nnoremap <Leader>fT :NERDTreeFind<CR>
+nnoremap <silent> <Leader>ft :NERDTreeToggle<CR>
+nnoremap <silent> <Leader>fT :NERDTreeFind<CR>
 let g:NERDTreeIgnore=['\.pyc$', '\~$', '__pycache__']
 
 Plug 'mhinz/vim-grepper', { 'on': ['Grepper', '<Plug>(GrepperOperator)'] }
@@ -469,6 +469,8 @@ let g:ale_fixers = {
 \   'json': ['fixjson'],
 \   'python': ['yapf', 'isort']
 \}
+let g:ale_c_parse_makefile=0
+let g:ale_c_parse_compile_commands=1
 let g:ale_python_mypy_options='--ignore-missing-imports'
 let g:airline#extensions#ale#enabled = 1
 nnoremap <Leader>cf :ALEFix<CR>
@@ -630,6 +632,13 @@ Plug 'honza/vim-snippets'
 
 "#### Language specific
 Plug 'sheerun/vim-polyglot'
+if has('nvim')
+    Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins' }
+    Plug 'arakashic/chromatica.nvim', { 'for': ['c', 'cpp', 'objc', 'objcpp'], 'do': ':UpdateRemotePlugins' }
+    let g:chromatica#enable_at_startup=1
+    let g:chromatica#responsive_mode=1
+    let g:polyglot_disabled = ['python', 'c', 'cpp', 'objc', 'objcpp']
+endif
 " ##### VIML
 Plug 'junegunn/vader.vim', { 'on': 'Vader' }
 augroup vim
@@ -677,11 +686,6 @@ augroup filetype_python
     autocmd FileType call ConfigurePython()
 augroup END
 
-if has('nvim')
-    Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins' }
-    let g:polyglot_disabled = ['python']
-endif
-
 Plug 'davidhalter/jedi-vim', { 'for': 'python' }
 let g:jedi#completions_command = '<C-space>'
 let g:jedi#goto_command = 'gd'
@@ -695,6 +699,7 @@ let g:jedi#completions_command = ''
 
 " Plug 'python-rope/ropevim', { 'for': 'python' }
 let g:ropevim_enable_shortcuts = 0
+
 " ##### Julia
 Plug 'JuliaEditorSupport/julia-vim', { 'for': 'julia' }
 
@@ -732,9 +737,7 @@ augroup END
 let g:rtagsUseDefaultMappings = 1
 let g:rtagsAutoLaunchRdm=1
 " Plug 'Rip-Rip/clang_complete', { 'for': ['c', 'cpp', 'objc', 'objcpp'] }
-" Plug 'arakashic/chromatica.nvim', { 'for': ['c', 'cpp', 'objc', 'objcpp'], 'do': ':UpdateRemotePlugins' }
-let g:chromatica#enable_at_startup=1
-let g:chromatica#responsive_mode=1
+
 
 "##### Shell
 augroup shell
