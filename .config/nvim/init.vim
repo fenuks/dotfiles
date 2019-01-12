@@ -42,7 +42,7 @@ set backspace=indent,eol,start " more powerful backspacing"
 set formatprg=par " gq formatting program
 set formatoptions+=j " more intelligent j joining
 set linebreak " breaklines *nicely*, virtually
-" formatting formatprg, formatexpr, formatoptions
+" formatting formatprg, formatexpr, formatoptions, equalprg
 set whichwrap=h,l " specify keys that can wrap next line
 set autoindent " align the new line indent with the previous one
 " set tabstop=4 " Set the default tabstop
@@ -171,6 +171,8 @@ nnoremap Y y$
 vnoremap <LocalLeader>y "+y
 vnoremap <LocalLeader>d "+d
 vnoremap <LocalLeader>p "+p
+nnoremap <Leader><Space>p a <ESC>"+p
+nnoremap <Space>p a <ESC>p
 
 nnoremap <LocalLeader>y "+y
 nnoremap <LocalLeader>Y "+y$
@@ -314,18 +316,22 @@ let g:startify_fortune_use_unicode = 1
 let g:startify_use_env = 1
 Plug 'simeji/winresizer', { 'on': 'WinResizerStartResize' }
 let g:winresizer_start_key = ''
-nnoremap <Leader>wr :WinResizerStartResize<CR>
 Plug 'wellle/visual-split.vim', { 'on': ['VSResize', 'VSSplit', 'VSSplitAbove', 'VSSplitBelow', '<Plug>(Visual-Split-VSResize)', '<Plug>(Visual-Split-VSSplit)', '<Plug>(Visual-Split-VSSplitAbove)', '<Plug>(Visual-Split-VSSplitBelow)'] }
+Plug 't9md/vim-choosewin', { 'on': '<Plug>(choosewin)' }
+nnoremap <silent> <Leader>wr :WinResizerStartResize<CR>
 xmap <Leader>ws <Plug>(Visual-Split-VSSplit)
 nnoremap <silent> <Leader>ws :split<CR>
 nnoremap <silent> <Leader>wv :vsplit<CR>
-Plug 't9md/vim-choosewin', { 'on': '<Plug>(choosewin)' }
 nmap <Leader>wl <Plug>(choosewin)
 nnoremap <silent> <Leader>wL :Windows<CR>
 nnoremap <silent> <Leader>wc :close<CR>
 nnoremap <silent> <Leader>wo :only<CR>
 nnoremap <silent> <Leader>wq :quit<CR>
 nnoremap <silent> <Leader>wQ :quitall<CR>
+nnoremap <silent> <Leader>wh <C-w>h
+nnoremap <silent> <Leader>wj <C-w>j
+nnoremap <silent> <Leader>wk <C-w>k
+nnoremap <silent> <Leader>wl <C-w>l
 
 "##### Refactoring; edition
 Plug 'wellle/targets.vim'
@@ -378,10 +384,8 @@ nnoremap <Leader>vM :Magit<CR>
 Plug 'ludovicchabant/vim-lawrencium'
 " Plug 'jlfwong/vim-mercenary'
 Plug 'will133/vim-dirdiff', { 'on': 'DirDiff' }
-nnoremap <Leader>dg :diffget<CR>
-nnoremap <Leader>dp :diffput<CR>
-nnoremap <Leader>dp :diffput<CR>
-nnoremap <Leader>dd :diffput<CR>
+nnoremap <silent> <Leader>dg :diffget<CR>
+nnoremap <silent> <Leader>dp :diffput<CR>
 
 nnoremap ,dp :diffput<CR>
 nnoremap ,dg :diffget<CR>
@@ -394,11 +398,11 @@ command! -nargs=* Agp
 
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
-nnoremap <C-p> :Files<CR>
-nnoremap <Leader>fl :Files<CR>
-nnoremap <Leader>fd :Files <C-r>=expand("%:h")<CR>/<CR>
-nnoremap <Leader>gt :Tags<CR>
-nnoremap <Leader>gT :BTags<CR>
+nnoremap <silent> <C-p> :Files<CR>
+nnoremap <silent> <Leader>fl :Files<CR>
+nnoremap <silent> <Leader>fd :Files <C-r>=expand("%:h")<CR>/<CR>
+nnoremap <silent> <Leader>gt :Tags<CR>
+nnoremap <silent> <Leader>gT :BTags<CR>
 
 Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
 nnoremap <silent> <Leader>ft :NERDTreeToggle<CR>
@@ -412,6 +416,8 @@ let g:grepper.prompt_quote = 3
 nnoremap <Leader>ss :Grepper -tool rg<CR>
 nnoremap <Leader>sS :Grepper -tool rg -side<CR>
 nnoremap <leader>s* :Grepper -tool rg -open -switch -cword -noprompt<CR>
+vmap <Leader>s* <Plug>(GrepperOperator)
+nmap <Leader>so <Plug>(GrepperOperator)
 nnoremap <leader>sd :Grepper -tool rg -dir file<CR>
 nnoremap <leader>sD :Grepper -tool rg -dir file -side<CR>
 
@@ -504,10 +510,12 @@ Plug 'arcticicestudio/nord-vim'
 " Plug 'fmoralesc/molokayo'
 
 "##### Autocomplete
-"Plug 'Townk/vim-autoclose'
+" Plug 'Raimondi/delimitMate'
+" Plug 'Townk/vim-autoclose'
 Plug 'jiangmiao/auto-pairs'
 let g:AutoPairs = {'(':')', '[':']', '{':'}', "'":"'", '"':'"', '`':'`',
 \                    '„':'”', '‘':'’', '“':'”'}
+let g:AutoClosePairs_add = '<> | „” ‘’'
 let g:AutoPairsShortcutToggle=''
 let g:AutoPairsShortcutFastWrap=''
 let g:AutoPairsShortcutJump=''
@@ -637,6 +645,7 @@ if has('nvim')
     Plug 'arakashic/chromatica.nvim', { 'for': ['c', 'cpp', 'objc', 'objcpp'], 'do': ':UpdateRemotePlugins' }
     let g:chromatica#enable_at_startup=1
     let g:chromatica#responsive_mode=1
+    " let g:polyglot_disabled = ['python', 'c', 'cpp', 'objc', 'objcpp']
     let g:polyglot_disabled = ['python', 'c', 'cpp', 'objc', 'objcpp']
 endif
 " ##### VIML
