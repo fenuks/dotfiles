@@ -13,6 +13,8 @@ if command -v nvim > /dev/null; then
     function vim() {
         nvim "$@"
     }
+    export -f vim
+
     function vimpager() {
         nvim -R "$@"
     }
@@ -38,7 +40,6 @@ if [ "${TERMINIX_ID}" ] || [ "${VTE_VERSION}" ]; then
 fi
 
 export -f cgit
-export -f vim
 export -f vimpager
 export -f svim
 
