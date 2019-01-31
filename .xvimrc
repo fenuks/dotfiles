@@ -33,6 +33,8 @@ nnoremap [m ?func <cr>
 nnoremap ]m /func <cr>
 vnoremap \y "+y
 nnoremap \y "+y
+inoremap <c-m> <cr>
+inoremap <s-enter> <esc>o
 
 " Xcode specific
 nnoremap ,gf :xccmd openQuickly<cr>
