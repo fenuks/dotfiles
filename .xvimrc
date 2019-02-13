@@ -55,14 +55,21 @@ vnoremap <c-/> :xcmenucmd Toggle Comments<cr>
 inoremap <c-/> <esc>:xcmenucmd Toggle Comments<cr>a
 
 nnoremap ,ft :xccmd toggleNavigatorsVisibility<cr>
+nnoremap <c-w>tf :xccmd toggleNavigatorsVisibility<cr>
+nnoremap ,wtf :xccmd toggleNavigatorsVisibility<cr>
 
 nnoremap <c-w>td :xccmd toggleDebuggerVisibility<cr>
-nnoremap <c-w>tc :xcmenucmd Activate Console<cr>
-
 nnoremap ,wtd :xccmd toggleDebuggerVisibility<cr>
-nnoremap ,wtc :xcmenucmd Activate Console<cr>
+
+nnoremap <c-w>ti <c-s-z>
+" nnoremap ,wti :xcmenucmd Hide Inspectors<cr>
+nnoremap ,wti <c-s-z>
+
+nnoremap <c-w>ta :xccmd toggleDebuggerVisibility<cr>:xccmd toggleNavigatorsVisibility<cr>:xcmenucmd Hide Inspectors<cr>
+nnoremap ,wta :xccmd toggleDebuggerVisibility<cr>:xccmd toggleNavigatorsVisibility<cr>:xcmenucmd Hide Inspectors<cr>
 
 nnoremap ,st :xccmd findSelectedTextInWorkspace<cr>
+nnoremap ,sr :xcmenucmd Find Selected Symbol in Workspace<cr>
 
 nnoremap K :xccmd showQuickHelp<cr>
 
@@ -75,6 +82,8 @@ nnoremap ,mc :xcmenucmd Clean Build Folder<cr>
 nnoremap ,db :xccmd toggleBreakpointAtCurrentLine<CR>
 
 " TODO
+" nnoremap <c-w>tc :xcmenucmd Activate Console<cr> " works but not toggle
+" "nnoremap ,wtc :xcmenucmd Activate Console<cr>
 nnoremap <c-z> :xccmd unfoldAll<CR>
 nnoremap ,ma :xccmd foldAllMethods<CR>
 nnoremap ,ua :xccmd unfoldAllMethods<CR>
