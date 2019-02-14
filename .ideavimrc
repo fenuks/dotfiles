@@ -24,16 +24,16 @@ inoremap <A-l> <RIGHT>
 inoremap <A-k> <UP>
 inoremap <A-j> <DOWN>
 
-vnoremap <LocalLeader>y "+y
-vnoremap <LocalLeader>d "+d
-vnoremap <LocalLeader>p "+p
+vnoremap \y "+y
+vnoremap \d "+d
+vnoremap \p "+p
 
-nnoremap <LocalLeader>y "+y
-nnoremap <LocalLeader>Y "+y$
-nnoremap <LocalLeader>d "+d
-nnoremap <LocalLeader>D "+D
-nnoremap <LocalLeader>p "+p
-nnoremap <LocalLeader>P "+P
+nnoremap \y "+y
+nnoremap \Y "+y$
+nnoremap \d "+d
+nnoremap \D "+D
+nnoremap \p "+p
+nnoremap \P "+P
 
 inoremap <silent> <A-n> :action MoveLineDown<CR>
 inoremap <silent> <A-p> :action MoveLineUp<CR>
