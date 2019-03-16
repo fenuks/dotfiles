@@ -23,6 +23,7 @@ set autoread " Automatically reload file changed outside vim if not changed in v
 set completeopt=longest,menuone,preview " complete longest common text instead of first word
 " set timeoutlen=150 " Time to wait after ESC (default causes an annoying delay), it affects also leader key, unfortunately
 set scrolloff=3 " number of context lines visible near cursor
+set sidescrolloff=5 " like 'scrolloff' but for columns
 set wildmenu " enhanced command-line mode
 set wildignore=*.swp,*.bak,*.pyc,*.class,*.git
 set hidden " allow background buffers without saving
@@ -70,6 +71,7 @@ set number " Show line numbers
 set noruler " show line and column numbers
 set title " change terminal title as formatted by `titlestring`
 set signcolumn=yes
+set termguicolors " use trucolor
 " set showbreak='@' " show line continuation sign
 
 " language
@@ -101,9 +103,7 @@ else
 endif
 
 if has('nvim')
-    set termguicolors " use trucolor
     set scrollback=-1 " NeoVim terminal unlimited scrolling
-    tnoremap jk <C-\><C-n>
     let g:vim_share_dir=g:local_share_dir . '/nvim'
 else
     set viminfofile=$HOME/.config/nvim/viminfo
@@ -210,6 +210,7 @@ nnoremap <silent> <Leader>bo :%bd<CR><C-^><C-^>:bd<CR>
 nnoremap <silent> <Leader>bl :Buffers<CR>
 
 " terminal
+tnoremap jk <C-\><C-n>
 nnoremap <silent> <Leader>Tn <CMD>call Normal([":new\|:only\|:terminal"])<CR> " there seems to be bug, cannot pass list
 nnoremap <silent> <Leader>Ts <CMD>call Normal([":new\|:terminal"])<CR>
 nnoremap <silent> <Leader>Tv <CMD>call Normal([":vnew\|:terminal"])<CR>
@@ -454,7 +455,7 @@ Plug 'lambdalisue/lista.nvim', { 'on': 'Lista' }
 Plug 'sbdchd/neoformat', { 'on': 'Neoformat' }
 let g:neoformat_enabled_python = ['yapf', 'isort']
 let g:neoformat_enabled_json = ['prettier', 'js-beautify', 'jq']
-nnoremap <Leader>q :Neoformat<CR>
+nnoremap <silent> <Leader>q :Neoformat<CR>
 
 Plug 'junegunn/vim-easy-align', { 'on': '<Plug>(EasyAlign)' }
 xmap <Leader>ga <Plug>(EasyAlign)
@@ -522,7 +523,7 @@ let g:AutoPairsShortcutJump=''
 let g:AutoPairsShortcutBackInsert=''
 
 " ##### Code autocompletion
-Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'make release', 'for': ['haskell', 'rust', 'typescript', 'vue', 'c', 'cpp', 'xml'] }
+" Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'make release', 'for': ['haskell', 'rust', 'typescript', 'vue', 'c', 'cpp', 'xml'] }
 let g:LanguageClient_serverCommands = {
     \ 'c': ['cquery', '--log-file=/tmp/cq.log', '--init={"cacheDirectory":"/tmp/cquery/"}'],
     \ 'cpp': ['cquery', '--log-file=/tmp/cq.log', '--init={"cacheDirectory":"/tmp/cquery/"}'],
@@ -572,7 +573,7 @@ let g:lsp_log_file = expand('/tmp/vim-lsp.log')
 " augroup END
 
 
-Plug 'Valloric/YouCompleteMe', { 'for': ['java', 'javascript'] }
+Plug 'Valloric/YouCompleteMe', { 'for': ['java', 'javascript', 'python'] }
 let g:ycm_autoclose_preview_window_after_completion=1
 let g:ycm_semantic_triggers =  {
   \   'java' : ['.', '@', '::'],
@@ -604,7 +605,7 @@ if has('nvim')
     " let g:deoplete#sources#ternjs#types = 1
     " let g:deoplete#sources#ternjs#docs = 1
 
-    Plug 'zchee/deoplete-jedi', { 'for': 'python' }
+    " Plug 'zchee/deoplete-jedi', { 'for': 'python' }
     let g:deoplete#sources#jedi#show_docstring=1
 
     " alternatively use jedi-vim
@@ -646,7 +647,7 @@ if has('nvim')
     let g:chromatica#enable_at_startup=1
     let g:chromatica#responsive_mode=1
     " let g:polyglot_disabled = ['python', 'c', 'cpp', 'objc', 'objcpp']
-    let g:polyglot_disabled = ['python', 'c', 'cpp', 'objc', 'objcpp']
+    let g:polyglot_disabled = ['python', 'c', 'cpp', 'objc', 'objcpp', 'org']
 endif
 " ##### VIML
 Plug 'junegunn/vader.vim', { 'on': 'Vader' }
@@ -842,7 +843,7 @@ endfunction
 function! ConfigurePython() abort
     python nnoremap <buffer> <silent> <Leader>U :YcmCompleter GoToReferences<CR>
     python let b:neoformat_run_all_formatters = 1
-    " call deoplete#custom#buffer_option('auto_complete', v:false)
+    call deoplete#custom#buffer_option('auto_complete', v:false)
 endfunction
 
 function! ConfigureRust() abort
