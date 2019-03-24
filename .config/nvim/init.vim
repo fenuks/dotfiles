@@ -333,6 +333,7 @@ nnoremap <silent> <Leader>wh <C-w>h
 nnoremap <silent> <Leader>wj <C-w>j
 nnoremap <silent> <Leader>wk <C-w>k
 nnoremap <silent> <Leader>wl <C-w>l
+Plug 'troydm/zoomwintab.vim'
 
 "##### Refactoring; edition
 Plug 'wellle/targets.vim'
@@ -375,12 +376,13 @@ nnoremap <Leader>vP :Git! diff<CR>
 nnoremap <Leader>vr :Gread<CR>
 nnoremap <Leader>vR :Gremove<CR>
 nnoremap <Leader>vs :Gstatus<CR>
-Plug 'gregsexton/gitv', {'on': 'Gitv'}
-nnoremap <Leader>vg :Gitv<CR>
+Plug 'rbong/vim-flog', {'on': 'Flog'}
+nnoremap <Leader>vg :Flog<CR>
 Plug 'junegunn/gv.vim', {'on': 'GV'}
 nnoremap <Leader>vG :GV<CR>
 Plug 'jreybert/vimagit', { 'on': 'Magit' }
 nnoremap <Leader>vM :Magit<CR>
+Plug 'rhysd/git-messenger.vim', { 'on': 'GitMessenger' }
 "HG
 Plug 'ludovicchabant/vim-lawrencium'
 " Plug 'jlfwong/vim-mercenary'
@@ -527,7 +529,7 @@ let g:AutoPairsShortcutBackInsert=''
 let g:LanguageClient_serverCommands = {
     \ 'c': ['cquery', '--log-file=/tmp/cq.log', '--init={"cacheDirectory":"/tmp/cquery/"}'],
     \ 'cpp': ['cquery', '--log-file=/tmp/cq.log', '--init={"cacheDirectory":"/tmp/cquery/"}'],
-    \ 'haskell': ['hie', '--lsp'],
+    \ 'haskell': ['hie-wrapper'],
     \ 'java': ['jdtls', '-javaagent:/usr/share/java/lombok/lombok.jar', '-Xbootclasspath/p:/usr/share/java/lombok/lombok.jar'],
     \ 'javascript': ['javascript-typescript-stdio'],
     \ 'javascript.jsx': ['javascript-typescript-stdio'],
@@ -553,6 +555,7 @@ nnoremap <silent> <Leader>lt :call LanguageClient_workspace_symbol()<CR>
 nnoremap <silent> <Leader>lT :call LanguageClient_textDocument_documentSymbol()<CR>
 nnoremap <silent> <Leader>lu :call LanguageClient_textDocument_references()<CR>
 nnoremap <silent> <Leader>lq :call LanguageClient_textDocument_formatting()<CR>
+nnoremap <silent> <Leader>la :call LanguageClient#textDocument_codeAction()<CR>
 
 " Plug 'prabirshrestha/async.vim'
 " Plug 'prabirshrestha/vim-lsp'

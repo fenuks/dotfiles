@@ -88,7 +88,16 @@ alias vrd='vim requirements-dev.txt'
 alias vv='vim ~/.config/nvim/init.vim'
 alias sb='source ~/.bashrc'
 alias sf='source ~/.config/fish/config.fish'
-alias se='source .env/bin/activate'
+function sv() {
+    if [[ -f .env/bin/activate ]]; then
+        source .env/bin/activate
+    elif [[ -f env/bin/activate ]]; then
+        source env/bin/activate
+    elif [[ -f venv/bin/activate ]]; then
+        source venv/bin/activate
+    fi
+}
+export -f sv
 
 export BROWSER=firefox
 export CALIBRE_USE_SYSTEM_THEME=1
@@ -119,7 +128,7 @@ export LESS_TERMCAP_so=$'\e[38;5;246m'    # begin standout-mode - info box
 export LESS_TERMCAP_ue=$'\e[0m'           # end underline
 export LESS_TERMCAP_us=$'\e[04;38;5;146m' # begin underline
 export MAVEN_OPTS='-Xmx2048m'
-export PATH="${PATH}:${HOME}/.local/bin"
+export PATH="${HOME}/.local/bin:${PATH}"
 export PYTHON2DOCDIR=/usr/share/doc/python2/html/
 export PYTHON3DOCDIR=/usr/share/doc/python/html/
 export RUSTFLAGS="-C target-cpu=native"
