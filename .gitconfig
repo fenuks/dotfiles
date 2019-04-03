@@ -1,34 +1,38 @@
 [include]
-        path = ~/.gitconfig.local
+    path = ~/.gitconfig.local
 [core]
-	excludesfile = ~/.gitignore
+    excludesfile = ~/.gitignore
 [cola]
-	spellcheck = false
+    spellcheck = false
 [credential]
-	helper = cache
+    helper = cache
 [alias]
-	lg = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit | less -r; }; f"
-	d = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git diff --color \"$@\" | diff-so-fancy | less --tabs=4 -RFX; }; f"
-	ds = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git diff --staged --color \"$@\" | diff-so-fancy | less --tabs=4 -RFX; }; f"
-	st = status -s
-	co = checkout
-	ci = commit
+    lg = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit | less -r; }; f"
+    d = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git diff --color \"$@\" | diff-so-fancy | less --tabs=4 -RFX; }; f"
+    ds = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git diff --staged --color \"$@\" | diff-so-fancy | less --tabs=4 -RFX; }; f"
+    diffs = diff --staged
+    st = status -s
+    co = checkout
+    ci = commit
+    commitp = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && PKGVER=$(grep -oP '^pkgver=\\K.+' PKGBUILD)-$(grep -oP '^pkgrel=\\K.+' PKGBUILD); git commit -m \"Update to ${PKGVER}\" $@; }; f"
 [color]
-	ui = auto
+    ui = auto
 [push]
-	default = current
+    default = current
 [difftool]
-	trustExitCode = true
-	prompt = false
+    trustExitCode = true
+    prompt = false
 [difftool "vimdir"]
-        cmd = vim -f '+next' '+execute \"DirDiff\" argv(0) argv(1)' $LOCAL $REMOTE
+    cmd = vim -f '+next' '+execute \"DirDiff\" argv(0) argv(1)' $LOCAL $REMOTE
 [mergetool]
-	trustExitCode = true
+    trustExitCode = true
 [merge "mergepbx"]
-        name = XCode project files merger
-        driver = mergepbx %O %A %B
+    name = XCode project files merger
+    driver = mergepbx %O %A %B
 [rerere]
-	enabled = true
+    enabled = true
 [remote-hg]
-	hg-git-compat = true
-	track-branches = false
+    hg-git-compat = true
+    track-branches = false
+[pull]
+    rebase = true
