@@ -10,6 +10,7 @@ set hlsearch " highlight search
 set ignorecase " Do case insensitive matching with
 set infercase " Do *not* ignore case in autocompletion
 set smartcase " Do case sensitive if text contains upper letters
+set tagcase=match " Match case in tag search
 set incsearch " Search while typing
 " set gdefault " Automatically enable the 'g' flag for substitution
 
@@ -185,6 +186,8 @@ inoremap <A-h> <LEFT>
 inoremap <A-l> <RIGHT>
 inoremap <A-k> <UP>
 inoremap <A-j> <DOWN>
+" conflicts with builtin mapping that has duplicate in <C-m>
+inoremap <C-j> <ESC>o
 
 vnoremap <A-j> gj
 vnoremap <A-k> gk
@@ -297,11 +300,14 @@ nnoremap =ou :set cursorcolumn!<CR>
 " nnoremap =ov :set virtualedit=""<CR>
 nnoremap =ow :set wrap!<CR>
 nnoremap =ox :set cursorline! cursorcolumn!<CR>
-nnoremap =ofd :setlocal foldmethod=diff<CR>
-nnoremap =ofi :setlocal foldmethod=indent<CR>
-nnoremap =ofm :setlocal foldmethod=manual<CR>
-nnoremap =ofm :setlocal foldmethod=marker<CR>
-nnoremap =ofs :setlocal foldmethod=syntax<CR>
+nnoremap [of zN
+nnoremap ]of zn
+nnoremap <silent> =of :call ToggleFoldmethod()<CR>
+nnoremap ]ofd :setlocal foldmethod=diff<CR>
+nnoremap ]ofi :setlocal foldmethod=indent<CR>
+nnoremap ]ofm :setlocal foldmethod=manual<CR>
+nnoremap ]ofm :setlocal foldmethod=marker<CR>
+nnoremap ]ofs :setlocal foldmethod=syntax<CR>
 
 let g:loaded_2html_plugin = 1
 
@@ -894,3 +900,17 @@ function! ConfigurePkgbuild() abort
     setlocal filetype=sh
 endfunction
 
+let g:foldmethods = {
+\ 'manual': 'indent',
+\ 'indent': 'expr',
+\ 'expr': 'marker',
+\ 'marker': 'syntax',
+\ 'syntax': 'diff',
+\ 'diff': 'manual'
+\}
+
+function! ToggleFoldmethod() abort
+    let l:next_foldmethod = g:foldmethods[&foldmethod]
+    execute 'setlocal foldmethod=' . l:next_foldmethod
+    setlocal foldmethod?
+endfunction
