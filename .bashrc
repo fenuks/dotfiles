@@ -115,6 +115,7 @@ export HISTCONTROL=ignoreboth
 export HISTIGNORE="&:[ ]*:exit:ls:bg:fg:history:clear"
 export HISTSIZE=100000
 export HISTTIMEFORMAT="%d/%m/%y %T "
+export HTML_TIDY="${HOME}/.config/tidy.conf"
 export JAVA_HOME=$JDK_HOME
 export JAVA_TOOLS_OPTIONS="-javaagent:/usr/share/java/lombok/lombok.jar -Xbootclasspath/p:/usr/share/java/lombok/lombok.jar"
 export JUPYTER_CONFIG_DIR="${HOME}/.config/jupyter"
