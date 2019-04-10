@@ -12,8 +12,11 @@
     ds = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git diff --staged --color \"$@\" | diff-so-fancy | less --tabs=4 -RFX; }; f"
     diffs = diff --staged
     st = status -s
+    stu = !git --no-pager diff --name-only
+    sts = !git --no-pager diff --staged
     co = checkout
     ci = commit
+    b = branch
     commitp = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && PKGVER=$(grep -oP '^pkgver=\\K.+' PKGBUILD)-$(grep -oP '^pkgrel=\\K.+' PKGBUILD); git commit -m \"Update to ${PKGVER}\" $@; }; f"
 [color]
     ui = auto
@@ -26,9 +29,6 @@
     cmd = vim -f '+next' '+execute \"DirDiff\" argv(0) argv(1)' $LOCAL $REMOTE
 [mergetool]
     trustExitCode = true
-[merge "mergepbx"]
-    name = XCode project files merger
-    driver = mergepbx %O %A %B
 [rerere]
     enabled = true
 [remote-hg]
@@ -36,3 +36,7 @@
     track-branches = false
 [pull]
     rebase = true
+    hg-git-compat = true
+    track-branches = false
+[fetch]
+    prune = true
