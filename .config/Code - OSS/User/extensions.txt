@@ -8,7 +8,6 @@ DotJoshJohnson.xml
 dragos.scala-lsp
 eamodio.gitlens
 EditorConfig.EditorConfig
-eg2.tslint
 GitHub.vscode-pull-request-github
 hackwaly.ocaml
 hbenl.vscode-firefox-debug
@@ -26,6 +25,7 @@ ms-python.python
 ms-vscode.cpptools
 ms-vscode.Go
 ms-vscode.node-debug2
+ms-vscode.vscode-typescript-tslint-plugin
 ms-vsliveshare.vsliveshare
 naco-siren.gradle-language
 naumovs.color-highlight
