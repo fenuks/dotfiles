@@ -130,7 +130,7 @@ let maplocalleader = '\'
 
 vmap . :normal .<CR>
 cmap w!! %!sudo tee > /dev/null %
-nnoremap <Leader><Space>s :%s/\s\+$//<CR>
+nnoremap <Space>t :%s/\s\+$//<CR>
 " set very magic regex (perl compatitible)
 nnoremap / /\v
 vnoremap / /\v
@@ -398,6 +398,9 @@ nnoremap <silent> <Leader>dp :diffput<CR>
 
 nnoremap ,dp :diffput<CR>
 nnoremap ,dg :diffget<CR>
+command DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis
+	 	\ | wincmd p | diffthis
+nnoremap <silent> ,df :DiffOrig<CR>
 
 "#### Filesystem
 " Plugin 'kien/ctrlp.vim'
@@ -582,7 +585,7 @@ let g:lsp_log_file = expand('/tmp/vim-lsp.log')
 " augroup END
 
 
-Plug 'Valloric/YouCompleteMe', { 'for': ['java', 'javascript', 'python'] }
+Plug 'Valloric/YouCompleteMe', { 'for': ['java', 'javascript'] }
 let g:ycm_autoclose_preview_window_after_completion=1
 let g:ycm_semantic_triggers =  {
   \   'java' : ['.', '@', '::'],
@@ -614,7 +617,7 @@ if has('nvim')
     " let g:deoplete#sources#ternjs#types = 1
     " let g:deoplete#sources#ternjs#docs = 1
 
-    " Plug 'zchee/deoplete-jedi', { 'for': 'python' }
+    Plug 'zchee/deoplete-jedi', { 'for': 'python' }
     let g:deoplete#sources#jedi#show_docstring=1
 
     " alternatively use jedi-vim
@@ -852,7 +855,7 @@ endfunction
 function! ConfigurePython() abort
     python nnoremap <buffer> <silent> <Leader>U :YcmCompleter GoToReferences<CR>
     python let b:neoformat_run_all_formatters = 1
-    call deoplete#custom#buffer_option('auto_complete', v:false)
+    " call deoplete#custom#buffer_option('auto_complete', v:false)
 endfunction
 
 function! ConfigureRust() abort
