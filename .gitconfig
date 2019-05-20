@@ -17,7 +17,8 @@
     co = checkout
     ci = commit
     b = branch
-    commitp = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && PKGVER=$(grep -oP '^pkgver=\\K.+' PKGBUILD)-$(grep -oP '^pkgrel=\\K.+' PKGBUILD); git commit -m \"Update to ${PKGVER}\" $@; }; f"
+    commitp = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && PKGVER=$(grep -oP 'pkgver=\\K.+' .SRCINFO)-$(grep -oP 'pkgrel=\\K.+' .SRCINFO); git commit -m \"Update to ${PKGVER}\" $@; }; f"
+    b = branch
 [color]
     ui = auto
 [push]
