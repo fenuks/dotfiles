@@ -30,6 +30,8 @@
     cmd = vim -f '+next' '+execute \"DirDiff\" argv(0) argv(1)' $LOCAL $REMOTE
 [mergetool]
     trustExitCode = true
+[rebase]
+    autoStash = true
 [rerere]
     enabled = true
 [remote-hg]
