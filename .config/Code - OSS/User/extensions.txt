@@ -21,12 +21,14 @@ kisstkondoros.vscode-gutter-preview
 lextudio.restructuredtext
 mrcrowl.hg
 msjsdiag.debugger-for-chrome
+msjsdiag.vscode-react-native
 ms-python.python
 ms-vscode.cpptools
 ms-vscode.Go
 ms-vscode.node-debug2
 ms-vscode.vscode-typescript-tslint-plugin
 ms-vsliveshare.vsliveshare
+mtxr.sqltools
 naco-siren.gradle-language
 naumovs.color-highlight
 octref.vetur
@@ -51,6 +53,5 @@ vscjava.vscode-maven
 vscjava.vscode-spring-boot-dashboard
 vscjava.vscode-spring-initializr
 vscodevim.vim
-vsmobile.vscode-react-native
 webfreak.debug
 wix.vscode-import-cost
