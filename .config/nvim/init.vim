@@ -1,4 +1,5 @@
 scriptencoding utf-8
+set encoding=utf-8
 
 " behaviour
 syntax on " syntax highlight on
@@ -107,7 +108,8 @@ if has('nvim')
     set scrollback=-1 " NeoVim terminal unlimited scrolling
     let g:vim_share_dir=g:local_share_dir . '/nvim'
 else
-    set viminfofile=$HOME/.config/nvim/viminfo
+    set pyxversion=2
+    set viminfofile=$HOME/.vim/viminfo
     let g:vim_share_dir=g:local_share_dir . '/vim'
 endif
 
@@ -334,7 +336,7 @@ nnoremap <silent> <Leader>wL :Windows<CR>
 nnoremap <silent> <Leader>wc :close<CR>
 nnoremap <silent> <Leader>wo :only<CR>
 nnoremap <silent> <Leader>wq :quit<CR>
-nnoremap <silent> <Leader>wQ :quitall<CR>
+nnoremap <silent> <Leader>wq :quitall<CR>
 nnoremap <silent> <Leader>wh <C-w>h
 nnoremap <silent> <Leader>wj <C-w>j
 nnoremap <silent> <Leader>wk <C-w>k
@@ -678,7 +680,7 @@ Plug 'mattn/emmet-vim', { 'for': ['html', 'htmldjango'] }
 Plug 'othree/html5.vim', { 'for': ['html', 'htmldjango'] }
 
 "##### CSS
-Plug 'ap/vim-css-color', { 'for': ['css', 'scss'] }
+Plug 'ap/vim-css-color'
 " Plug 'lilydjwg/colorizer', {'for': ['css']}
 
 "##### JS

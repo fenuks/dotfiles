@@ -31,6 +31,7 @@ export MAVEN_OPTS='-Xmx2048m'
 export PATH="${HOME}/.local/bin:${PATH}"
 export PYTHON2DOCDIR=/usr/share/doc/python2/html/
 export PYTHON3DOCDIR=/usr/share/doc/python/html/
+export PYTHONSTARTUP="$HOME/.config/python/pythonrc"
 export RUSTFLAGS="-C target-cpu=native"
 export RUST_SRC_PATH="${HOME}/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src"
 export SHELLCHECK_OPTS="-e SC1090,SC2034,SC2164"

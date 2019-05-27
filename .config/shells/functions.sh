@@ -27,7 +27,7 @@ if command -v nvim > /dev/null; then
         nvim -R "$@"
     }
     export MANPAGER="nvim -c 'set ft=man' -"
-    [[ -v "$BASH_VERSION" ]] && export -f vim
+    [[ -v BASH_VERSION ]] && export -f vim
 else
     function vimpager() {
         vim -R "$@"
@@ -51,7 +51,7 @@ function svim() {
 
 
 # export functions in bash
-if [[ -v "$BASH_VERSION" ]]; then
+if [[ -v BASH_VERSION ]]; then
     export -f cgit
     export -f vimpager
     export -f sv

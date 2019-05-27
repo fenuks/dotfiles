@@ -1,14 +1,16 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-source "${HOME}/.config/shells/functions.sh"
+if [[ -f ~/.bashrc.local.before ]]; then
+    source ~/.bashrc.local.before
+fi
 source "${HOME}/.config/shells/env.sh"
+source "${HOME}/.config/shells/functions.sh"
 source "${HOME}/.config/shells/aliases.sh"
 source "${HOME}/.config/shells/config.sh"
 
 # bash-specific things
 source_if_exists /etc/bashrc
-source_if_exists ~/.bashrc.local.before
 
 # bind 'set show-all-if-ambiguous on'
 # bind 'TAB:menu-complete'
@@ -48,3 +50,4 @@ source_if_exists "${HOME}/.config/fzf/completions/hg.sh"
 source_if_exists "${HOME}/.config/fzf/completions/docker.sh"
 source_if_exists "${HOME}/.enhancd/init.sh"
 
+source_if_exists ~/.bashrc.local.after
