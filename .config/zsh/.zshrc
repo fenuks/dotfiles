@@ -6,9 +6,10 @@ zstyle :compinstall filename ~/.config/zsh/.zshrc
 autoload -Uz compinit
 compinit
 
-source ~/.config/shells/functions.sh
+source ~/.config/shells/env
 source ~/.config/shells/env.sh
-source ~/.config/shells/aliases.sh
+source ~/.config/shells/functions.sh
+source ~/.config/shells/aliases
 source ~/.config/shells/config.sh
 
 source /usr/share/fzf/key-bindings.zsh

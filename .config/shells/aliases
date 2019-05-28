@@ -16,10 +16,9 @@ alias llt='ls -la --sort=time'
 alias sm='HOME=~/.spacemacs emacs'
 alias spacemacs='HOME=~/.spacemacs emacs'
 alias steam-flatpak='flatpak run com.valvesoftware.Steam'
-alias steam-wine='wine ${HOME}/.wine/drive_c/Program\ Files\ \(x86\)/Steam/Steam.exe -no-cef-sandbox -opengl -fullscreenopengl'
+alias steam-wine='wine $HOME/.wine/drive_c/Program\ Files\ \(x86\)/Steam/Steam.exe -no-cef-sandbox -opengl -fullscreenopengl'
 
 alias check-yapf-config="diff <(yapf --style-help | grep -oP '^[a-zA-Z_0-9]+' | sort) <(grep -oP '^[a-zA-Z_0-9]+' ~/.config/yapf/style | sort)"
-alias yaourt-vcs="yaourt -Su --devel"
 # faster edition of common files
 alias v='vim'
 alias vb='vim ~/.bashrc'

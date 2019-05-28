@@ -4,9 +4,10 @@
 if [[ -f ~/.bashrc.local.before ]]; then
     source ~/.bashrc.local.before
 fi
+source "${HOME}/.config/shells/env"
 source "${HOME}/.config/shells/env.sh"
 source "${HOME}/.config/shells/functions.sh"
-source "${HOME}/.config/shells/aliases.sh"
+source "${HOME}/.config/shells/aliases"
 source "${HOME}/.config/shells/config.sh"
 
 # bash-specific things
