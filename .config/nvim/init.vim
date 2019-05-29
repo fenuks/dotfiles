@@ -351,7 +351,8 @@ Plug 'PeterRincker/vim-argumentative'
 Plug 'machakann/vim-sandwich'
 Plug 'fenuks/vim-bracket-objects'
 Plug 'terryma/vim-multiple-cursors'
-Plug 'tomtom/tcomment_vim'
+Plug 'tpope/vim-commentary'
+noremap <silent> <c-_> :Commentary<CR>
 Plug 'tommcdo/vim-exchange'
 Plug 'kshenoy/vim-signature', {'on': 'SignatureToggleSigns'}
 
