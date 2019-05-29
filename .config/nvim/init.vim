@@ -46,7 +46,7 @@ set formatprg=par " gq formatting program
 set formatoptions+=j " more intelligent j joining
 set linebreak " breaklines *nicely*, virtually
 " formatting formatprg, formatexpr, formatoptions, equalprg
-set whichwrap=h,l " specify keys that can wrap next line
+set whichwrap=h,l,[,] " specify keys that can wrap next line
 set autoindent " align the new line indent with the previous one
 " set tabstop=4 " Set the default tabstop
 set softtabstop=4 " Insert/delete 4 spaces when hitting TAB/Backspace
@@ -71,7 +71,6 @@ set relativenumber " show relative numbers
 set noshowmode " do not show current mode
 set number " Show line numbers
 set noruler " show line and column numbers
-set title " change terminal title as formatted by `titlestring`
 set signcolumn=yes
 set termguicolors " use trucolor
 " set showbreak='@' " show line continuation sign
@@ -176,6 +175,7 @@ vnoremap <LocalLeader>d "+d
 vnoremap <LocalLeader>p "+p
 nnoremap <Leader><Space>p a <ESC>"+p
 nnoremap <Space>p a <ESC>p
+nnoremap <Space>P i <ESC>P
 
 nnoremap <LocalLeader>y "+y
 nnoremap <LocalLeader>Y "+y$
@@ -518,8 +518,8 @@ nnoremap <silent> <leader>xg :TestVisit<CR>
 
 "##### Colorshemes
 " Plug 'Olical/vim-syntax-expand' " adds abbreviations that make editor pretty
-Plug 'flazz/vim-colorschemes'
 Plug 'arcticicestudio/nord-vim'
+Plug 'aonemd/kuroi.vim'
 " Plug 'altercation/vim-colors-solarized'
 " Plug 'fmoralesc/molokayo'
 
@@ -800,13 +800,13 @@ call plug#end()
 
 if has('gui_running')
     let g:solarized_diffmode='high'
-    colorscheme solarized
+    colorscheme kuroi
     set lines=50 columns=140
     set guifont=Fira\ Code
 elseif &diff
-    colorscheme Monokai
+    colorscheme kuroi
 else
-    colorscheme evening
+    colorscheme kuroi
 endif
 
 let g:deoplete#enable_at_startup = 1
