@@ -312,6 +312,7 @@ nnoremap ]ofm :setlocal foldmethod=marker<CR>
 nnoremap ]ofs :setlocal foldmethod=syntax<CR>
 
 let g:loaded_2html_plugin = 1
+let g:loaded_skim = 1
 
 "##### TUI
 Plug 'bling/vim-airline'
@@ -393,7 +394,7 @@ Plug 'jreybert/vimagit', { 'on': 'Magit' }
 nnoremap <Leader>vM :Magit<CR>
 Plug 'rhysd/git-messenger.vim', { 'on': 'GitMessenger' }
 "HG
-Plug 'ludovicchabant/vim-lawrencium'
+" Plug 'ludovicchabant/vim-lawrencium' " disabled, it takes 5ms to load
 " Plug 'jlfwong/vim-mercenary'
 Plug 'will133/vim-dirdiff', { 'on': 'DirDiff' }
 nnoremap <silent> <Leader>dg :diffget<CR>
