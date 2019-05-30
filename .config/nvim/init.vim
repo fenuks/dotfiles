@@ -337,7 +337,7 @@ nnoremap <silent> <Leader>wL :Windows<CR>
 nnoremap <silent> <Leader>wc :close<CR>
 nnoremap <silent> <Leader>wo :only<CR>
 nnoremap <silent> <Leader>wq :quit<CR>
-nnoremap <silent> <Leader>wq :quitall<CR>
+nnoremap <silent> <Leader>wQ :quitall<CR>
 nnoremap <silent> <Leader>wh <C-w>h
 nnoremap <silent> <Leader>wj <C-w>j
 nnoremap <silent> <Leader>wk <C-w>k
@@ -402,7 +402,7 @@ nnoremap <silent> <Leader>dp :diffput<CR>
 
 nnoremap ,dp :diffput<CR>
 nnoremap ,dg :diffget<CR>
-command DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis
+command! DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis
 	 	\ | wincmd p | diffthis
 nnoremap <silent> ,df :DiffOrig<CR>
 
