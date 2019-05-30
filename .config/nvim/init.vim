@@ -790,7 +790,7 @@ Plug 'lervag/vimtex', { 'for': 'tex' }
 
 " Plug 'vim-scripts/LanguageTool'
 Plug 'dpelle/vim-LanguageTool', { 'for': ['markdown', 'rst', 'org'] }
-Plug 'rhysd/vim-grammarous', { 'for': ['markdown', 'rst', 'org'] }
+Plug 'rhysd/vim-grammarous', { 'on': 'GrammarousCheck' }
 let g:grammarous#languagetool_cmd = 'languagetool'
 let g:grammarous#use_vim_spelllang = 1
 augroup natural_language
