@@ -378,7 +378,7 @@ nnoremap <Leader>va :Gwrite<CR>
 nnoremap <Leader>vb :Gblame<CR>
 nnoremap <Leader>vc :Gcommit<CR>
 nnoremap <Leader>vd :Gvdiff<CR>
-nnoremap <Leader>vh :Glog<CR>
+nnoremap <Leader>vh :0Glog<CR>
 nnoremap <Leader>vm :Gmove<CR>
 nnoremap <Leader>U  :GundoToggle<CR>
 nnoremap <Leader>vp :Git! diff --staged<CR>
