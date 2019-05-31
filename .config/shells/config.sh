@@ -5,5 +5,9 @@ fi
 set -o vi
 
 if [[ -x $(command -v fortune) ]]; then
-    fortune
+    if [[ -x $(command -v cowsay) ]]; then
+        fortune | cowsay
+    else
+        fortune
+    fi
 fi
