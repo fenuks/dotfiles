@@ -76,7 +76,7 @@ set termguicolors " use trucolor
 " set showbreak='@' " show line continuation sign
 
 " language
-set spelllang=en_gb,pl
+set spelllang=pl,en_gb
 set dictionary+=/usr/share/dict/british,/usr/share/dict/polish
 set thesaurus+=/usr/share/thesaurus/moby-thesaurus.txt
 digraph !! 8252 " ‼
@@ -418,6 +418,7 @@ nnoremap <silent> <C-p> :Files<CR>
 nnoremap <silent> <Leader>fl :Files<CR>
 nnoremap <silent> <Leader>fd :Files <C-r>=expand("%:h")<CR>/<CR>
 nnoremap <silent> <Leader>gt :Tags<CR>
+nnoremap <silent> <Leader>gh :History<CR>
 nnoremap <silent> <Leader>gT :BTags<CR>
 
 Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
@@ -921,3 +922,10 @@ function! ToggleFoldmethod() abort
     execute 'setlocal foldmethod=' . l:next_foldmethod
     setlocal foldmethod?
 endfunction
+
+function! Mkspell() abort
+    for spellfile in split(glob('~/.config/nvim/spell/*.add'), '\n')
+        execute 'mkspell! ' . spellfile
+    endfor
+endfunction
+command! Mkspell call Mkspell()
