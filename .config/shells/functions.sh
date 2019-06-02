@@ -13,11 +13,6 @@ function run-ssh-agent {
     ssh-agent -a "${SSH_AUTH_SOCK}"
 }
 
-# exported
-function cgit() {
-    /usr/bin/git --git-dir="${HOME}/.dotfiles/" --work-tree="${HOME}" "$@"
-}
-
 if command -v nvim > /dev/null; then
     function vim() {
         nvim "$@"
@@ -52,7 +47,6 @@ function svim() {
 
 # export functions in bash
 if [[ -v BASH_VERSION ]]; then
-    export -f cgit
     export -f vimpager
     export -f sv
     export -f svim
