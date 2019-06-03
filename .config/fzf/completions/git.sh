@@ -22,10 +22,12 @@ _fzf_complete_git() {
         else
             selected=$( ${binary} status --short | ${fzf} "${fzf_opt[@]}" -m | awk '{$1=""; print substr($0,2)}' | tr '\n' ' ')
         fi
-    elif [[ "${cmd_opt}" == 'reset '* ]]; then
-        selected=$( ( ${binary} status --short | grep -P '^(A|R|D|M)' ) | ${fzf} "${fzf_opt[@]}" -m | awk '{$1=""; print substr($0,2)}' | tr '\n' ' ')
     elif [[ "${cmd_opt}" == 'diff '* ]]; then
         selected=$( ( ${binary} status --short ) | ${fzf} "${fzf_opt[@]}" -m --preview "echo {} | cut -c 3- | xargs -I '%' ${binary} diff --color=always % | head -$LINES" | awk '{$1=""; print substr($0,2)}' | tr '\n' ' ')
+    elif [[ "${cmd_opt}" == 'reset '* ]]; then
+        selected=$( ( ${binary} status --short | grep -P '^(A|R|D|M)' ) | ${fzf} "${fzf_opt[@]}" -m | awk '{$1=""; print substr($0,2)}' | tr '\n' ' ')
+    elif [[ "${cmd_opt}" == 'stash push '* ]]; then
+        selected=$( ( ${binary} status --short | grep -v -P '^(A|R|D|M) ' ) | ${fzf} "${fzf_opt[@]}" -m | awk '{$1=""; print substr($0,2)}' | tr '\n' ' ')
     fi
 
     if [[ -v selected ]]; then
