@@ -14,3 +14,5 @@ source ~/.config/shells/config.sh
 
 source /usr/share/fzf/key-bindings.zsh
 source /usr/share/fzf/completion.zsh
+
+ZSH_THEME="random"
