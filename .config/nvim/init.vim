@@ -183,6 +183,8 @@ nnoremap <LocalLeader>d "+d
 nnoremap <LocalLeader>D "+D
 nnoremap <LocalLeader>p "+p
 nnoremap <LocalLeader>P "+P
+nnoremap c* ciw
+nnoremap d* diw
 
 inoremap <A-h> <LEFT>
 inoremap <A-l> <RIGHT>
@@ -213,6 +215,8 @@ nnoremap <silent> <Leader>bh <CMD>call Normal([":hide"])<CR>
 nnoremap <silent> <Leader>bc <CMD>call Normal([":close"])<CR>
 nnoremap <silent> <Leader>bo :%bd<CR><C-^><C-^>:bd<CR>
 nnoremap <silent> <Leader>bl :Buffers<CR>
+nnoremap <silent> <Tab> :bnext<CR>
+nnoremap <silent> <S-Tab> :bprevious<CR>
 
 " terminal
 tnoremap jk <C-\><C-n>

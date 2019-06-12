@@ -9,8 +9,24 @@ function ssh-kde () {
     ssh-agent -a "${SSH_AUTH_SOCK}"
     ssh-add </dev/null
 }
-function run-ssh-agent {
+
+function run-ssh-agent() {
     ssh-agent -a "${SSH_AUTH_SOCK}"
+}
+
+function bak() {
+    if [[ ! "$#" -eq 1 ]]; then
+        return 1
+    fi
+    if [[ ! -f "$1" ]]; then
+        return 2
+    fi
+    if [[ "${1:(-4)}" = ".bak" ]]; then
+        cp -i "${1::(-4)}"{.bak,}
+    else
+        cp -i "${1}"{,.bak}
+    fi
+
 }
 
 if command -v nvim > /dev/null; then

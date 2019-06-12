@@ -1,9 +1,14 @@
 [$Version]
 update_info=powerdevil_move_shortcuts.upd:powerdevil_move_shortcuts
 
+[ActivityManager]
+_k_friendly_name=Zarządzanie aktywnościami
+switch-to-activity-a7fdd794-ad96-4958-8e34-13ca2ec00fbf=none,none,Przełącz do aktywności "Icons"
+switch-to-activity-b5460424-2b99-479d-948f-d40dd8849532=none,none,Przełącz do aktywności "New Activity"
+
 [KDE Keyboard Layout Switcher]
 Switch keyboard layout to Polski=none,none,Przełącz układ klawiatury na Polski
-Switch to Next Keyboard Layout=Ctrl+Alt+K,none,Przełącz do następnego układu klawiatury
+Switch to Next Keyboard Layout=Ctrl+Alt+K,Ctrl+Alt+K,Przełącz do następnego układu klawiatury
 _k_friendly_name=KDE Daemon
 
 [amarok]
@@ -38,7 +43,7 @@ _k_friendly_name=Dostępność
 Disable Touchpad=Touchpad Off,Touchpad Off,Wyłącz gładzik
 Enable Touchpad=Touchpad On,Touchpad On,Włącz gładzik
 Toggle Touchpad=Touchpad Toggle,Touchpad Toggle,Przełącz gładzik
-_k_friendly_name=KDE Daemon
+_k_friendly_name=KWin
 
 [kded5]
 Show System Activity=Ctrl+Esc,Ctrl+Esc,Pokaż aktywność systemu
@@ -46,14 +51,18 @@ _k_friendly_name=KDE Daemon
 display=Display\t,Display\tMeta+P,Przełącz ekran
 
 [khotkeys]
-_k_friendly_name=KDE Daemon
+_k_friendly_name=Moduł ustawień systemowych
 {0180d98b-0516-4bb9-b1c4-cd2cb3f1d417}=Meta+W,none,rofi
+{13f7cac7-98ba-48ab-9560-553a58f79c81}=Print,none,Wywołaj narzędzie zrzutów ekranu
 {1bcdd663-a016-4ecb-9a1e-63cfb676dcea}=none,none,keepass
 {22d0cead-7fb9-4109-8e91-cf823a6e984c}=none,none,Zrzut ekranu
 {3c218e91-0379-4cd9-9cf9-d906c769bcc9}=none,none,konsole
+{40a62dd3-2d6a-4ca4-835b-6a42781c2e44}=Shift+Print,none,Wykonaj zrzut całego ekranu
 {d03619b6-9b3c-48cc-9d9c-a2aadb485550}=,none,Znajdź
 {e69c9a59-e4c9-4e85-80c2-e3810e4bc959}=Ctrl+Shift+D,none,Terminal
 {e8fb3d87-fd0e-4da9-8898-4e71a4bcd956}=Ctrl+Alt+T,none,Launch Konsole
+{e9246c50-b599-4d38-a2c1-61f25895d8f7}=Meta+Print,none,Wykonaj zrzut obecnie aktywnego okna
+{ec3fd754-7570-45cc-b9de-0214f3c9aa98}=Meta+Shift+Print,none,Wykonaj zrzut prostokątnego obszaru
 
 [klipper]
 _k_friendly_name=Klipper
@@ -82,7 +91,7 @@ run command on clipboard contents=Alt+Shift+F2,Alt+Shift+F2,Wykonaj polecenie na
 
 [ksmserver]
 Halt Without Confirmation=Ctrl+Alt+Shift+PgDown,none,Zatrzymaj bez potwierdzenia
-Lock Session=Ctrl+Alt+L\tScreensaver,Ctrl+Alt+L\tScreensaver,Zablokuj sesję
+Lock Session=Ctrl+Alt+L\tScreensaver,Meta+L\tCtrl+Alt+L\tScreensaver,Zablokuj sesję
 Log Out=Ctrl+Alt+Del,none,Wyloguj
 Log Out Without Confirmation=Ctrl+Alt+Shift+Del,none,Wyloguj bez potwierdzenia
 Reboot Without Confirmation=Ctrl+Alt+Shift+PgUp,none,Uruchom ponownie bez potwierdzenia
@@ -107,7 +116,7 @@ MoveZoomRight=,none,Przenieś powiększony obszar w prawo
 MoveZoomUp=,none,Przenieś powiększony obszar w górę
 Remove Window From Group=none,none,Usuń okno z grupy
 Setup Window Shortcut=none,none,Ustawienia skrótu okna
-Show Desktop=none,none,Pokaż pulpit
+Show Desktop=none,Meta+D,Pokaż pulpit
 ShowDesktopGrid=Ctrl+F8,Ctrl+F8,Pokaż siatkę na pulpicie
 Suspend Compositing=Alt+Shift+F12,Alt+Shift+F12,Wstrzymaj kompozycje
 Switch One Desktop Down=,none,Przełącz jeden pulpit niżej
@@ -158,7 +167,7 @@ Walk Through Desktops (Reverse)=none,none,Przełączanie pulpitów (odwrotne)
 Walk Through Window Tabs=none,none,Przełącz kartę okna
 Walk Through Window Tabs (Reverse)=none,none,Przełącz kartę okna (odwrotnie)
 Walk Through Windows=Alt+Tab,none,Przełączanie okien
-Walk Through Windows (Reverse)=Alt+Shift+Backtab,none,Przełączanie okien (odwrotne)
+Walk Through Windows (Reverse)=none,none,Przełączanie okien (odwrotne)
 Walk Through Windows Alternative=none,none,Alternatywne przełączanie okien
 Walk Through Windows Alternative (Reverse)=none,none,Alternatywne przełączanie okien (odwrotne)
 Walk Through Windows of Current Application=Alt+`,none,Przełączanie okien bieżącego programu
@@ -279,7 +288,7 @@ cyclePrevAction=none,none,Poprzedni element historii
 edit_clipboard=none,none,Zmień zawartość...
 manage activities=Meta+Q,Meta+Q,Aktywności...
 next activity=Meta+Tab,none,Przełączaj między aktywnościami
-previous activity=Meta+Shift+Tab,none,Przełączaj między aktywnościami (odwrotnie)
+previous activity=none,none,Przełączaj między aktywnościami (odwrotnie)
 repeat_action=Ctrl+Alt+R,Ctrl+Alt+R,Ręcznie wywołaj działanie na zawartości schowka
 show dashboard=Meta+F12,Ctrl+F12,Pokaż pulpit
 show-barcode=none,none,Pokaż kod kreskowy...
@@ -288,4 +297,4 @@ stop current activity=Meta+S,Meta+S,Zatrzymaj bieżącą aktywność
 
 [yakuake]
 _k_friendly_name=Yakuake
-toggle-window-state=F12\tF1,F12,Otwórz/ukryj Yakuake
+toggle-window-state=F12,F12,Otwórz/ukryj Yakuake

@@ -1,3 +1,6 @@
+[$Version]
+update_info=kwin.upd:replace-scalein-with-scale,kwin.upd:port-minimizeanimation-effect-to-js,kwin.upd:port-scale-effect-to-js,kwin.upd:port-dimscreen-effect-to-js
+
 [Compositing]
 AnimationSpeed=3
 Backend=OpenGL
@@ -14,6 +17,9 @@ WindowsBlockCompositing=true
 XRenderSmoothScale=false
 
 [Desktops]
+Id_1=5afb2e17-2266-47bc-adac-e9436f866a6d
+Id_2=2cb21be3-6cc1-4390-b16f-59098eae2570
+Id_3=d4d179ff-4a39-4144-a5da-f1cc5da0c0b3
 Number=3
 Rows=1
 

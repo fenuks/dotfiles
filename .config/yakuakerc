@@ -6,13 +6,13 @@ Translucency=true
 RememberFullscreen=true
 
 [Desktop Entry]
-DefaultProfile=qt5.profile
+DefaultProfile=yakuake.profile
 
 [Dialogs]
 FirstRun=false
 
 [Favorite Profiles]
-Favorites=
+Favorites=konsole.profile,yakuake.profile
 
 [FileDialogSize]
 Height 1200=480
@@ -23,24 +23,21 @@ Width 1920=640
 [Shortcuts]
 close-active-terminal=Ctrl+Shift+R
 close-session=Ctrl+Shift+W
-decrease-window-height=Alt+Shift+Up
-decrease-window-width=Alt+Shift+Left
 file_quit=Ctrl+Shift+Q
 grow-terminal-bottom=Ctrl+Alt+Down
 grow-terminal-left=Ctrl+Alt+Left
 grow-terminal-right=Ctrl+Alt+Right
 grow-terminal-top=Ctrl+Alt+Up
 help_whats_this=none
-increase-window-height=Alt+Shift+Down
-increase-window-width=Alt+Shift+Right
 keep-open=Shift+F1
 move-session-left=Ctrl+Shift+Left;\s
 move-session-right=Ctrl+Shift+Right
 new-session=Ctrl+Shift+T
-next-session=Shift+Right; Ctrl+Shift+L
-next-terminal=Ctrl+Shift+Down; Ctrl+Tab
-previous-session=Shift+Left; Ctrl+Shift+H
-previous-terminal=Ctrl+Shift+Up
+next-session=Ctrl+Shift+L
+next-terminal=Ctrl+Tab
+options_configure=none
+previous-session=Ctrl+Shift+H
+previous-terminal=Ctrl+Shift+Tab
 rename-session=Ctrl+Alt+S
 split-left-right=Ctrl+Shift+I
 split-top-bottom=Ctrl+Shift+O
@@ -51,5 +48,4 @@ view-full-screen=Ctrl+Shift+F11
 DynamicTabTitles=true
 Height=100
 KeepAbove=false
-Screen=1
 Width=100
