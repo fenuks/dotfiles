@@ -57,6 +57,7 @@ inoremap <c-/> <esc>:xcmenucmd Toggle Comments<cr>a
 nnoremap ,ft :xccmd toggleNavigatorsVisibility<cr>
 nnoremap <c-w>tf :xccmd toggleNavigatorsVisibility<cr>
 nnoremap ,wtf :xccmd toggleNavigatorsVisibility<cr>
+nnoremap ,wsi :xcmenucmd Show Issue Navigator<cr>
 
 nnoremap <c-w>td :xccmd toggleDebuggerVisibility<cr>
 nnoremap ,wtd :xccmd toggleDebuggerVisibility<cr>
