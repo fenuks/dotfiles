@@ -46,6 +46,10 @@ nnoremap ]m :action MethodDown<CR>
 nnoremap [<space> O<ESC>
 nnoremap ]<space> o<ESC>
 nnoremap Y y$
+nnoremap <C-h> :action GotoPreviousError<CR>
+nnoremap <C-l> :action GotoNextError<CR>
+nnoremap <C-o> :action Back<CR>
+nnoremap <C-i> :action Forward<CR>
 
 " IdeaVim stuff
 set vim-surround
