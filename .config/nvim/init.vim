@@ -176,6 +176,8 @@ vnoremap <LocalLeader>p "+p
 nnoremap <Leader><Space>p a <ESC>"+p
 nnoremap <Space>p a <ESC>p
 nnoremap <Space>P i <ESC>P
+nnoremap <Leader>pf :put =expand('%:p')<CR>
+nnoremap <Leader>pd :put =expand('%:r')<CR>
 
 nnoremap <LocalLeader>y "+y
 nnoremap <LocalLeader>Y "+y$
@@ -215,8 +217,8 @@ nnoremap <silent> <Leader>bh <CMD>call Normal([":hide"])<CR>
 nnoremap <silent> <Leader>bc <CMD>call Normal([":close"])<CR>
 nnoremap <silent> <Leader>bo :%bd<CR><C-^><C-^>:bd<CR>
 nnoremap <silent> <Leader>bl :Buffers<CR>
-nnoremap <silent> <Tab> :bnext<CR>
-nnoremap <silent> <S-Tab> :bprevious<CR>
+nnoremap <silent> <Tab> call ChangeBuffer(1)<CR>
+nnoremap <silent> <S-Tab> call ChangeBuffer(0)<CR>
 
 " terminal
 tnoremap jk <C-\><C-n>
@@ -234,8 +236,8 @@ nnoremap [a :<C-U>previous<CR>
 nnoremap ]a :<C-U>next<CR>
 nnoremap [A :<C-U>first<CR>
 nnoremap ]A :<C-U>last<CR>
-nnoremap [b :<C-U>bprevious<CR>
-nnoremap ]b :<C-U>bnext<CR>
+nnoremap <silent> [b :<C-U>call ChangeBuffer(0)<CR>
+nnoremap <silent> ]b :<C-U>call ChangeBuffer(1)<CR>
 nnoremap [B :<C-U>bfirst<CR>
 nnoremap ]B :<C-U>blast<CR>
 nnoremap [l :<C-U>lprevious<CR>
@@ -334,18 +336,9 @@ Plug 'wellle/visual-split.vim', { 'on': ['VSResize', 'VSSplit', 'VSSplitAbove', 
 Plug 't9md/vim-choosewin', { 'on': '<Plug>(choosewin)' }
 nnoremap <silent> <Leader>wr :WinResizerStartResize<CR>
 xmap <Leader>ws <Plug>(Visual-Split-VSSplit)
-nnoremap <silent> <Leader>ws :split<CR>
-nnoremap <silent> <Leader>wv :vsplit<CR>
 nmap <Leader>wl <Plug>(choosewin)
 nnoremap <silent> <Leader>wL :Windows<CR>
-nnoremap <silent> <Leader>wc :close<CR>
-nnoremap <silent> <Leader>wo :only<CR>
-nnoremap <silent> <Leader>wq :quit<CR>
 nnoremap <silent> <Leader>wQ :quitall<CR>
-nnoremap <silent> <Leader>wh <C-w>h
-nnoremap <silent> <Leader>wj <C-w>j
-nnoremap <silent> <Leader>wk <C-w>k
-nnoremap <silent> <Leader>wl <C-w>l
 Plug 'troydm/zoomwintab.vim'
 
 "##### Refactoring; edition
@@ -921,11 +914,25 @@ let g:foldmethods = {
 \ 'diff': 'manual'
 \}
 
+let g:ignored_buffers = ['nerdtree', 'qf']
+
 function! ToggleFoldmethod() abort
     let l:next_foldmethod = g:foldmethods[&foldmethod]
     execute 'setlocal foldmethod=' . l:next_foldmethod
     setlocal foldmethod?
 endfunction
+
+function! ChangeBuffer(next) abort
+    if index(g:ignored_buffers, &filetype) != -1
+        return
+    endif
+    if a:next == 1
+        bnext
+    else
+        bprevious
+    endif
+endfunction
+
 
 function! Mkspell() abort
     for spellfile in split(glob('~/.config/nvim/spell/*.add'), '\n')
@@ -934,5 +941,5 @@ function! Mkspell() abort
 endfunction
 command! Mkspell call Mkspell()
 
-command PlugInit !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
+command! PlugInit !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
 \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
