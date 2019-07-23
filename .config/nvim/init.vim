@@ -19,7 +19,6 @@ set incsearch " Search while typing
 set modelines=0 " number of lines vim probes to find vi: commands
 set history=1000 " Number of things to remember in history
 set cmdwinheight=20 " set commandline window height
-set undofile
 set undolevels=1000
 set autoread " Automatically reload file changed outside vim if not changed in vim
 set completeopt=longest,menuone,preview " complete longest common text instead of first word
@@ -32,7 +31,7 @@ set hidden " allow background buffers without saving
 " set breakat-=_ " don't break at _
 " diff mode
 set diffopt+=iwhite " ignore whitespace character changes
-" set diffopt+=internal,algorithm:patience,indent-heuristic " use vimproved internal patch
+set diffopt+=internal,algorithm:patience,indent-heuristic " use vimproved internal patch
 set includeexpr=substitute(v:fname,'\\.','/','g') " expression to change gf filename mapping
 set visualbell " don't beep
 set noerrorbells " don't beep
@@ -112,8 +111,14 @@ else
     let g:vim_share_dir=g:local_share_dir . '/vim'
 endif
 
+" persistence
+set swapfile
+set writebackup " write backup before overriding file
+set nobackup " delete backup file after successful save
+set undofile
 let g:vim_sesssions_dir=g:vim_share_dir . '/sessions'
-let &undodir=g:tmp_dir . '/vim-undo-dir'
+let &undodir=g:tmp_dir . '/vim/undo'
+let &backupdir=g:vim_share_dir . '/backup'
 
 if !isdirectory(&undodir)
     call mkdir(&undodir, 0600)
@@ -123,6 +128,9 @@ if !isdirectory(g:vim_share_dir)
 endif
 if !isdirectory(g:vim_sesssions_dir)
     call mkdir(g:vim_sesssions_dir, 0600)
+endif
+if !isdirectory(&backupdir)
+    call mkdir(&backupdir, 0600)
 endif
 
 " mappings
@@ -509,7 +517,7 @@ nnoremap <Leader>mi :make install<CR>
 nnoremap <Leader>mc :make clean<CR>
 
 Plug 'janko-m/vim-test', { 'on': ['TestNearest', 'TestFile', 'TestSuite', 'TestLast', 'TestVisit'] }
-let g:test#strategy = 'neomake'
+let g:test#strategy = 'neovim'
 nnoremap <silent> <leader>xn :TestNearest<CR>
 nnoremap <silent> <leader>xf :TestFile<CR>
 nnoremap <silent> <leader>xa :TestSuite<CR>
@@ -923,10 +931,10 @@ function! ToggleFoldmethod() abort
 endfunction
 
 function! ChangeBuffer(next) abort
-    if index(g:ignored_buffers, &filetype) != -1
+    if index(g:ignored_buffers, &filetype) !=# -1
         return
     endif
-    if a:next == 1
+    if a:next ==# 1
         bnext
     else
         bprevious
