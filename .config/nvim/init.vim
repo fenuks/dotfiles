@@ -121,16 +121,16 @@ let &undodir=g:tmp_dir . '/vim/undo'
 let &backupdir=g:vim_share_dir . '/backup'
 
 if !isdirectory(&undodir)
-    call mkdir(&undodir, 0600)
+    call mkdir(&undodir, "p", 0600)
 endif
 if !isdirectory(g:vim_share_dir)
-    call mkdir(g:vim_share_dir, 0600)
+    call mkdir(g:vim_share_dir, "p", 0600)
 endif
 if !isdirectory(g:vim_sesssions_dir)
-    call mkdir(g:vim_sesssions_dir, 0600)
+    call mkdir(g:vim_sesssions_dir, "p", 0600)
 endif
 if !isdirectory(&backupdir)
-    call mkdir(&backupdir, 0600)
+    call mkdir(&backupdir, "p", 0600)
 endif
 
 " mappings
