@@ -38,11 +38,13 @@ if command -v nvim > /dev/null; then
         nvim -R "$@"
     }
     export MANPAGER="nvim -c 'set ft=man' -"
+    export EDITOR=nvim
     [[ -v BASH_VERSION ]] && export -f vim
 else
     function vimpager() {
         vim -R "$@"
     }
+    export EDITOR=vim
     export MANPAGER="env MAN_PN=1 vim -M +MANPAGER -"
 fi
 
