@@ -121,7 +121,7 @@ let &undodir=g:tmp_dir . '/vim/undo'
 let &backupdir=g:vim_share_dir . '/backup'
 
 if !isdirectory(&undodir)
-    call mkdir(&undodir, "p", 0600)
+    call mkdir(&undodir, "p", 0700)
 endif
 if !isdirectory(g:vim_share_dir)
     call mkdir(g:vim_share_dir, "p", 0600)
