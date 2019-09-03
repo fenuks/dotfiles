@@ -18,9 +18,6 @@ source_if_exists /etc/bashrc
 shopt -s globstar
 # append to history from multiple terminals
 shopt -s histappend 
-# Prevent file overwrite on stdout redirection
-# Use `>|` to force redirection to an existing file
-set -o noclobber
 # Enable history expansion with space
 # E.g. typing !!<space> will replace the !! with your last command
 bind Space:magic-space

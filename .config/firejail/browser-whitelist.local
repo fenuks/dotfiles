@@ -1,0 +1,5 @@
+include browser-blacklist.local
+whitelist ${HOME}/.cache/mozilla
+whitelist ${HOME}/.mozilla
+whitelist ${HOME}/.pki
+whitelist ${HOME}/.local/share/pki

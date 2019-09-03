@@ -1,0 +1,4 @@
+noblacklist ${HOME}/.cache/mozilla
+noblacklist ${HOME}/.mozilla
+noblacklist ${HOME}/.pki
+noblacklist ${HOME}/.local/share/pki

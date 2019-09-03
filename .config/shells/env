@@ -1,3 +1,7 @@
+export XDG_CONFIG_HOME="${HOME}/.config"
+export XDG_CACHE_HOME="${HOME}/.cache"
+export XDG_DATA_HOME="${HOME}/.local/share"
+
 export BROWSER=firefox
 export CALIBRE_USE_SYSTEM_THEME=1
 export DOTNET_CLI_TELEMETRY_OPTOUT=1
