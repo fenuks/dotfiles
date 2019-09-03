@@ -31,7 +31,7 @@ set hidden " allow background buffers without saving
 " set breakat-=_ " don't break at _
 " diff mode
 set diffopt+=iwhite " ignore whitespace character changes
-set diffopt+=internal,algorithm:patience,indent-heuristic " use vimproved internal patch
+set diffopt+=filler,internal,algorithm:histogram,indent-heuristic " use vimproved internal patch
 set includeexpr=substitute(v:fname,'\\.','/','g') " expression to change gf filename mapping
 set visualbell " don't beep
 set noerrorbells " don't beep
@@ -121,16 +121,16 @@ let &undodir=g:tmp_dir . '/vim/undo'
 let &backupdir=g:vim_share_dir . '/backup'
 
 if !isdirectory(&undodir)
-    call mkdir(&undodir, "p", 0700)
+    call mkdir(&undodir, 'p', 0700)
 endif
 if !isdirectory(g:vim_share_dir)
-    call mkdir(g:vim_share_dir, "p", 0600)
+    call mkdir(g:vim_share_dir, 'p', 0700)
 endif
 if !isdirectory(g:vim_sesssions_dir)
-    call mkdir(g:vim_sesssions_dir, "p", 0600)
+    call mkdir(g:vim_sesssions_dir, 'p', 0700)
 endif
 if !isdirectory(&backupdir)
-    call mkdir(&backupdir, "p", 0600)
+    call mkdir(&backupdir, 'p', 0700)
 endif
 
 " mappings
@@ -217,26 +217,26 @@ nnoremap <silent> <Leader>ev :edit $MYVIMRC<CR>
 nnoremap <silent> <Leader>eb :edit $HOME/.bashrc<CR>
 
 " buffers
-nnoremap <silent> <Leader>bn <CMD>call Normal([":new", ":only"])<CR>
-nnoremap <silent> <Leader>bs <CMD>call Normal([":new"])<CR>
-nnoremap <silent> <Leader>bv <CMD>call Normal([":vnew"])<CR>
-nnoremap <silent> <Leader>bd <CMD>call Normal([":bdelete"])<CR>
-nnoremap <silent> <Leader>bh <CMD>call Normal([":hide"])<CR>
-nnoremap <silent> <Leader>bc <CMD>call Normal([":close"])<CR>
+nnoremap <silent> <Leader>bn :call Execute(['new', 'only'])<CR>
+nnoremap <silent> <Leader>bs :call Execute(['new'])<CR>
+nnoremap <silent> <Leader>bv :call Execute(['vnew'])<CR>
+nnoremap <silent> <Leader>bd :call Execute(['bdelete'])<CR>
+nnoremap <silent> <Leader>bh :call Execute(['hide'])<CR>
+nnoremap <silent> <Leader>bc :call Execute(['close'])<CR>
 nnoremap <silent> <Leader>bo :%bd<CR><C-^><C-^>:bd<CR>
 nnoremap <silent> <Leader>bl :Buffers<CR>
-nnoremap <silent> <Tab> call ChangeBuffer(1)<CR>
-nnoremap <silent> <S-Tab> call ChangeBuffer(0)<CR>
+nnoremap <silent> <Tab> :call ChangeBuffer(1)<CR>
+nnoremap <silent> <S-Tab> :call ChangeBuffer(0)<CR>
 
 " terminal
 tnoremap jk <C-\><C-n>
-nnoremap <silent> <Leader>Tn <CMD>call Normal([":new\|:only\|:terminal"])<CR> " there seems to be bug, cannot pass list
-nnoremap <silent> <Leader>Ts <CMD>call Normal([":new\|:terminal"])<CR>
-nnoremap <silent> <Leader>Tv <CMD>call Normal([":vnew\|:terminal"])<CR>
-nnoremap <silent> <Leader>Tt <CMD>call Normal([":tabnew\|:terminal"])<CR>
+nnoremap <silent> <Leader>Tn :call Execute(['new', 'only', 'terminal'])<CR>
+nnoremap <silent> <Leader>Ts :call Execute(['new', 'terminal'])<CR>
+nnoremap <silent> <Leader>Tv :call Execute(['vnew', 'terminal'])<CR>
+nnoremap <silent> <Leader>Tt :call Execute(['tabnew', 'terminal'])<CR>
 
 " tabs
-nnoremap <silent> <Leader>tn <CMD>call Normal([":tabnew"])<CR>
+nnoremap <silent> <Leader>tn :call Execute(['tabnew'])<CR>
 nnoremap <silent> <Leader>to :tabonly<CR>
 
 " unimpaired mappings
@@ -248,18 +248,18 @@ nnoremap <silent> [b :<C-U>call ChangeBuffer(0)<CR>
 nnoremap <silent> ]b :<C-U>call ChangeBuffer(1)<CR>
 nnoremap [B :<C-U>bfirst<CR>
 nnoremap ]B :<C-U>blast<CR>
-nnoremap [l :<C-U>lprevious<CR>
-nnoremap <C-k> :<C-U>lprevious<CR>
-nnoremap ]l :<C-U>lnext<CR>
-nnoremap <C-j> :<C-U>lnext<CR>
+nnoremap <silent> [l :<C-U>Lprevious<CR>
+nnoremap <silent> <C-k> :<C-U>Lprevious<CR>
+nnoremap <silent> ]l :C-U>Lnext<CR>
+nnoremap <silent> <C-j> :<C-U>Lnext<CR>
 nnoremap [L :<C-U>lfirst<CR>
 nnoremap ]L :<C-U>llast<CR>
 nnoremap =l :<C-U>lwindow<CR>
 nnoremap =L :<C-U>lclose<CR>
-nnoremap [q :<C-U>cprevious<CR>
-nnoremap <C-h> :<C-U>cprevious<CR>
-nnoremap ]q :<C-U>cnext<CR>
-nnoremap <C-l> :<C-U>cnext<CR>
+nnoremap <silent> [q :<C-U>Cprevious<CR>
+nnoremap <silent> <C-h> :<C-U>Cprevious<CR>
+nnoremap <silent> ]q :<C-U>Cnext<CR>
+nnoremap <silent> <C-l> :<C-U>Cnext<CR>
 nnoremap [Q :<C-U>cfirst<CR>
 nnoremap ]Q :<C-U>clast<CR>
 nnoremap =q :<C-U>cwindow<CR>
@@ -565,7 +565,8 @@ let g:LanguageClient_autoStart = 1
 let g:LanguageClient_loggingLevel = 'DEBUG'
 let g:LanguageClient_loggingFile='/tmp/lc.log'
 let g:LanguageClient_serverStderr = '/tmp/ls.log'
-" setlocal omnifunc=LanguageClient#complete
+
+Plug 'neoclide/coc.nvim', { 'branch': 'release', 'for': ['haskell'] }
 
 nnoremap <silent> <Leader>lk :call LanguageClient_textDocument_hover()<CR>
 nnoremap <silent> <Leader>ld :call LanguageClient_textDocument_definition()<CR>
@@ -652,7 +653,6 @@ else
     Plug 'roxma/nvim-yarp'
     Plug 'roxma/vim-hug-neovim-rpc'
 endif
-
 
 Plug 'SirVer/ultisnips'
 let g:UltiSnipsExpandTrigger='<Tab>'
@@ -763,8 +763,13 @@ augroup END
 
 "##### Haskell
 " Plug 'parsonsmatt/intero-neovim', { 'for': 'haskell' }
+Plug 'neovimhaskell/haskell-vim', { 'for': 'haskell' }
+augroup haskell
+    autocmd!
+    autocmd FileType haskell call ConfigureCoc()
+augroup END
 
-"##### C family
+" ##### C family
 " Plug 'lyuts/vim-rtags', { 'for': ['c', 'cpp', 'objc', 'objcpp'] }
 let g:rtagsUseDefaultMappings = 1
 let g:rtagsAutoLaunchRdm=1
@@ -834,18 +839,30 @@ function! GetSessionName() abort
     return fnamemodify(getcwd(), ':p:h:t') . '.vim'
 endfunction
 
-function! Normal(commands) abort
-    """Executes array of normal commands respecting count""""
+function! WrapListCommand(command, wrapping_command) abort
+    try
+        execute a:command
+    catch /^Vim\%((\a\+)\)\=:E553/
+        execute a:wrapping_command
+    catch /^Vim\%((\a\+)\)\=:E\%(776\|42\):/
+        echo 'No errors'
+    endtry
+endfunction
+
+command! Cnext call WrapListCommand('cnext', 'cfirst')
+command! Cprevious call WrapListCommand('cprev', 'clast')
+command! Lnext call WrapListCommand('lnext', 'lfirst')
+command! Lprevious call WrapListCommand('lprev', 'llast')
+
+function! Execute(commands) abort
+    """Executes array of commands respecting count""""
     let l:count = v:count
     if l:count == 0
         let l:count = 1
     endif
-    let l:command = join(a:commands, "\<CR>")
-    if len(a:commands) == 1
-        let l:command = l:command . "\<CR>"
-    endif
+    let l:command = join(a:commands, '|')
     for i in range(1, l:count)
-        silent execute 'normal ' . l:command
+        execute l:command
     endfor
 endfunction
 
@@ -893,7 +910,6 @@ function! ConfigureJava() abort
 
     nnoremap <buffer> <silent> <Leader>ac <Plug>(JavaComplete-Generate-NewClass)
     nnoremap <buffer> <silent> <Leader>aC <Plug>(JavaComplete-Generate-ClassInFile)
-    " autocmd FileType java setlocal formatexpr=LanguageClient_textDocument_rangeFormatting()
 
     nnoremap <buffer> <Leader>cf :YcmCompleter FixIt<CR>
     nnoremap <buffer> gd :YcmCompleter GoTo<CR>
@@ -911,6 +927,28 @@ function! ConfigurePkgbuild() abort
     setlocal softtabstop=2
     setlocal shiftwidth=2
     setlocal filetype=sh
+endfunction
+
+function! ConfigureLanguageClient() abort
+    nnoremap <silent> <buffer> K :call LanguageClient_textDocument_hover()<CR>
+    nnoremap <silent> <buffer> <Leader>gd :call LanguageClient_textDocument_definition()<CR>
+    nnoremap <silent> <buffer> <Leader>rn :call LanguageClient_textDocument_rename()<CR>
+    nnoremap <silent> <buffer> <Leader>gt :call LanguageClient_workspace_symbol()<CR>
+    nnoremap <silent> <buffer> <Leader>gT :call LanguageClient_textDocument_documentSymbol()<CR>
+    nnoremap <silent> <buffer> <Leader>lu :call LanguageClient_textDocument_references()<CR>
+    nnoremap <silent> <buffer> <Leader>lq :call LanguageClient_textDocument_formatting()<CR>
+    nnoremap <silent> <buffer> <Leader>la :call LanguageClient#textDocument_codeAction()<CR>
+    " setlocal formatexpr=LanguageClient_textDocument_rangeFormatting()
+    " setlocal omnifunc=LanguageClient#complete
+endfunction
+
+function! ConfigureCoc() abort
+    nnoremap <silent> K :call CocAction('doHover')<CR>
+    nmap <silent> gd <Plug>(coc-definition)
+    nmap <silent> gy <Plug>(coc-type-definition)
+    nmap <silent> gi <Plug>(coc-implementation)
+    nmap <silent> gr <Plug>(coc-references)
+    nmap <silent> <leader>rn <Plug>(coc-rename)
 endfunction
 
 let g:foldmethods = {
@@ -940,7 +978,6 @@ function! ChangeBuffer(next) abort
         bprevious
     endif
 endfunction
-
 
 function! Mkspell() abort
     for spellfile in split(glob('~/.config/nvim/spell/*.add'), '\n')
