@@ -1,3 +1,2 @@
 noblacklist ${HOME}/Games/
-net none
 ignore seccomp
