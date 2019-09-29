@@ -1,5 +1,5 @@
-scriptencoding utf-8
 set encoding=utf-8
+scriptencoding utf-8
 
 " behaviour
 syntax on " syntax highlight on
@@ -74,13 +74,7 @@ set signcolumn=yes
 set termguicolors " use trucolor
 " set showbreak='@' " show line continuation sign
 
-" language
-set spelllang=pl,en_gb
-set dictionary+=/usr/share/dict/british,/usr/share/dict/polish
-set thesaurus+=/usr/share/thesaurus/moby-thesaurus.txt
-digraph !! 8252 " ‼
-digraph ?! 8264 " ⁈
-digraph !? 8265 " ⁉
+let g:vim_dir_path=fnamemodify($MYVIMRC, ':p:h')
 
 if has('unix')
     let g:tmp_dir='/tmp'
@@ -97,7 +91,7 @@ if has('unix')
     endif
 
 else
-    call plug#begin(fnamemodify($MYVIMRC, ':p:h') . '/vimfiles/plugged')
+    call plug#begin(g:vim_dir_path . '/vimfiles/plugged')
     let g:tmp_dir=$TMP
     let g:local_share_dir=$APP_DATA
 endif
@@ -715,7 +709,6 @@ Plug 'othree/javascript-libraries-syntax.vim', { 'for': 'javascript' }
 augroup filetype_python
     autocmd!
     autocmd BufRead,BufNewFile *.recipe setfiletype python
-    autocmd FileType call ConfigurePython()
 augroup END
 
 Plug 'davidhalter/jedi-vim', { 'for': 'python' }
@@ -804,11 +797,6 @@ Plug 'dpelle/vim-LanguageTool', { 'for': ['markdown', 'rst', 'org'] }
 Plug 'rhysd/vim-grammarous', { 'on': 'GrammarousCheck' }
 let g:grammarous#languagetool_cmd = 'languagetool'
 let g:grammarous#use_vim_spelllang = 1
-augroup natural_language
-    autocmd!
-    autocmd FileType gitcommit,hgcommit,org,help setlocal spell
-augroup END
-
 call plug#end()
 
 if has('gui_running')
@@ -877,12 +865,6 @@ function! ConfigureJavascript() abort
     nnoremap <buffer> <silent> <Leader>r :TernRename<CR>
     setlocal softtabstop=2 shiftwidth=2
     setlocal suffixesadd=.js,.jsx
-endfunction
-
-function! ConfigurePython() abort
-    python nnoremap <buffer> <silent> <Leader>U :YcmCompleter GoToReferences<CR>
-    python let b:neoformat_run_all_formatters = 1
-    " call deoplete#custom#buffer_option('auto_complete', v:false)
 endfunction
 
 function! ConfigureRust() abort
@@ -979,12 +961,7 @@ function! ChangeBuffer(next) abort
     endif
 endfunction
 
-function! Mkspell() abort
-    for spellfile in split(glob('~/.config/nvim/spell/*.add'), '\n')
-        execute 'mkspell! ' . spellfile
-    endfor
-endfunction
-command! Mkspell call Mkspell()
+execute 'source ' . g:vim_dir_path . '/spelling.vim'
 
 command! PlugInit !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
 \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
