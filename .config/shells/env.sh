@@ -6,6 +6,7 @@ elif command -v ag > /dev/null; then
     export FZF_DEFAULT_COMMAND='ag -g "" 2> /dev/null'
 fi
 export SKIM_DEFAULT_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export LESS_TERMCAP_mb=$'\e[01;31m'       # begin blinking
 export LESS_TERMCAP_md=$'\e[01;38;5;74m'  # begin bold
 export LESS_TERMCAP_me=$'\e[0m'           # end mode
