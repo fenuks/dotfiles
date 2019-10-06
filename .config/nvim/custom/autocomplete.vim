@@ -77,3 +77,25 @@ let g:deoplete#sources#jedi#show_docstring=1
 " augroup NCM
 "     autocmd BufEnter * call ncm2#enable_for_buffer()
 " augroup END
+
+function! ConfigureLanguageClient() abort
+    nnoremap <silent> <buffer> K :call LanguageClient_textDocument_hover()<CR>
+    nnoremap <silent> <buffer> <Leader>gd :call LanguageClient_textDocument_definition()<CR>
+    nnoremap <silent> <buffer> <Leader>rn :call LanguageClient_textDocument_rename()<CR>
+    nnoremap <silent> <buffer> <Leader>gt :call LanguageClient_workspace_symbol()<CR>
+    nnoremap <silent> <buffer> <Leader>gT :call LanguageClient_textDocument_documentSymbol()<CR>
+    nnoremap <silent> <buffer> <Leader>lu :call LanguageClient_textDocument_references()<CR>
+    nnoremap <silent> <buffer> <Leader>lq :call LanguageClient_textDocument_formatting()<CR>
+    nnoremap <silent> <buffer> <Leader>la :call LanguageClient#textDocument_codeAction()<CR>
+    " setlocal formatexpr=LanguageClient_textDocument_rangeFormatting()
+    " setlocal omnifunc=LanguageClient#complete
+endfunction
+
+function! ConfigureCoc() abort
+    nnoremap <silent> K :call CocAction('doHover')<CR>
+    nmap <silent> gd <Plug>(coc-definition)
+    nmap <silent> gy <Plug>(coc-type-definition)
+    nmap <silent> gi <Plug>(coc-implementation)
+    nmap <silent> gr <Plug>(coc-references)
+    nmap <silent> <leader>rn <Plug>(coc-rename)
+endfunction

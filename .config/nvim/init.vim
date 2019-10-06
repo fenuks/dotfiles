@@ -704,6 +704,15 @@ command! Cprevious call WrapListCommand('cprev', 'clast')
 command! Lnext call WrapListCommand('lnext', 'lfirst')
 command! Lprevious call WrapListCommand('lprev', 'llast')
 
+function! ConfigurePkgbuild() abort
+    setlocal makeprg=makepkg
+    nnoremap <buffer> <Leader>mi :make -i<CR>
+    nnoremap <buffer> <Leader>mb :make<CR>
+    setlocal softtabstop=2
+    setlocal shiftwidth=2
+    setlocal filetype=sh
+endfunction
+
 execute 'source ' . g:vim_dir_path . '/custom/spelling.vim'
 
 command! PlugInit !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs

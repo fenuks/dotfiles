@@ -40,37 +40,6 @@ function! Conflict(reverse) abort
   call search('^\(@@ .* @@\|[<=>|]\{7}[<=>|]\@!\)', a:reverse ? 'bW' : 'W')
 endfunction
 
-function! ConfigurePkgbuild() abort
-    setlocal makeprg=makepkg
-    nnoremap <buffer> <Leader>mi :make -i<CR>
-    nnoremap <buffer> <Leader>mb :make<CR>
-    setlocal softtabstop=2
-    setlocal shiftwidth=2
-    setlocal filetype=sh
-endfunction
-
-function! ConfigureLanguageClient() abort
-    nnoremap <silent> <buffer> K :call LanguageClient_textDocument_hover()<CR>
-    nnoremap <silent> <buffer> <Leader>gd :call LanguageClient_textDocument_definition()<CR>
-    nnoremap <silent> <buffer> <Leader>rn :call LanguageClient_textDocument_rename()<CR>
-    nnoremap <silent> <buffer> <Leader>gt :call LanguageClient_workspace_symbol()<CR>
-    nnoremap <silent> <buffer> <Leader>gT :call LanguageClient_textDocument_documentSymbol()<CR>
-    nnoremap <silent> <buffer> <Leader>lu :call LanguageClient_textDocument_references()<CR>
-    nnoremap <silent> <buffer> <Leader>lq :call LanguageClient_textDocument_formatting()<CR>
-    nnoremap <silent> <buffer> <Leader>la :call LanguageClient#textDocument_codeAction()<CR>
-    " setlocal formatexpr=LanguageClient_textDocument_rangeFormatting()
-    " setlocal omnifunc=LanguageClient#complete
-endfunction
-
-function! ConfigureCoc() abort
-    nnoremap <silent> K :call CocAction('doHover')<CR>
-    nmap <silent> gd <Plug>(coc-definition)
-    nmap <silent> gy <Plug>(coc-type-definition)
-    nmap <silent> gi <Plug>(coc-implementation)
-    nmap <silent> gr <Plug>(coc-references)
-    nmap <silent> <leader>rn <Plug>(coc-rename)
-endfunction
-
 function! ToggleFoldmethod() abort
     let l:next_foldmethod = g:foldmethods[&foldmethod]
     execute 'setlocal foldmethod=' . l:next_foldmethod
