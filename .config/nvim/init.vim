@@ -406,7 +406,6 @@ command! DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis
 nnoremap <silent> ,df :DiffOrig<CR>
 
 "#### Filesystem
-" Plugin 'kien/ctrlp.vim'
 command! -nargs=* Agp
   \ call fzf#vim#ag(<q-args>, '2> /dev/null',
   \                 fzf#vim#with_preview({'left':'90%'},'up:60%'))
@@ -480,7 +479,6 @@ nmap <Leader>ga <Plug>(EasyAlign)
 "let g:lion_squeeze_spaces = 1
 
 "##### Syntax analysis
-"Plug 'vim-syntastic/syntastic'
 Plug 'w0rp/ale'
 let g:ale_linters = {
 \   'python': ['mypy', 'pylint', 'flake8'],
@@ -538,113 +536,27 @@ let g:AutoPairsShortcutJump=''
 let g:AutoPairsShortcutBackInsert=''
 
 " ##### Code autocompletion
-" Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'make release', 'for': ['haskell', 'rust', 'typescript', 'vue', 'c', 'cpp', 'xml'] }
-let g:LanguageClient_serverCommands = {
-    \ 'c': ['cquery', '--log-file=/tmp/cq.log', '--init={"cacheDirectory":"/tmp/cquery/"}'],
-    \ 'cpp': ['cquery', '--log-file=/tmp/cq.log', '--init={"cacheDirectory":"/tmp/cquery/"}'],
-    \ 'haskell': ['hie-wrapper'],
-    \ 'java': ['jdtls', '-javaagent:/usr/share/java/lombok/lombok.jar', '-Xbootclasspath/p:/usr/share/java/lombok/lombok.jar'],
-    \ 'javascript': ['javascript-typescript-stdio'],
-    \ 'javascript.jsx': ['javascript-typescript-stdio'],
-    \ 'python': ['pyls'],
-    \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
-    \ 'typescript': ['javascript-typescript-stdio'],
-    \ 'xml': ['lsp4xml'],
-    \ 'mvn_pom': ['lsp4xml'],
-    \ 'vue': ['vls'],
-    \ }
-    " \ 'c': ['clangd'],
-
-let g:LanguageClient_autoStart = 1
-let g:LanguageClient_loggingLevel = 'DEBUG'
-let g:LanguageClient_loggingFile='/tmp/lc.log'
-let g:LanguageClient_serverStderr = '/tmp/ls.log'
-
+Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'make release', 'for': ['rust', 'typescript', 'vue', 'c', 'cpp', 'xml'] }
 Plug 'neoclide/coc.nvim', { 'branch': 'release', 'for': ['haskell'] }
-
-nnoremap <silent> <Leader>lk :call LanguageClient_textDocument_hover()<CR>
-nnoremap <silent> <Leader>ld :call LanguageClient_textDocument_definition()<CR>
-nnoremap <silent> <Leader>lr :call LanguageClient_textDocument_rename()<CR>
-nnoremap <silent> <Leader>lt :call LanguageClient_workspace_symbol()<CR>
-nnoremap <silent> <Leader>lT :call LanguageClient_textDocument_documentSymbol()<CR>
-nnoremap <silent> <Leader>lu :call LanguageClient_textDocument_references()<CR>
-nnoremap <silent> <Leader>lq :call LanguageClient_textDocument_formatting()<CR>
-nnoremap <silent> <Leader>la :call LanguageClient#textDocument_codeAction()<CR>
 
 " Plug 'prabirshrestha/async.vim'
 " Plug 'prabirshrestha/vim-lsp'
-let g:lsp_signs_enabled = 1         " enable signs
-let g:lsp_diagnostics_echo_cursor = 1 " enable echo under cursor when in normal mode
-let g:lsp_log_verbose = 1
-let g:lsp_log_file = expand('/tmp/vim-lsp.log')
-
-" augroup vim_lsp
-"     autocmd!
-"     autocmd User lsp_setup call lsp#register_server({
-"         \ 'name': 'rls',
-"         \ 'cmd': {server_info->['rustup', 'run', 'nightly', 'rls']},
-"         \ 'whitelist': ['rust'],
-"         \ })
-"
-"     autocmd FileType rust setlocal omnifunc=lsp#complete
-" augroup END
-
 
 Plug 'Valloric/YouCompleteMe', { 'for': ['java', 'javascript'] }
-let g:ycm_autoclose_preview_window_after_completion=1
-let g:ycm_semantic_triggers =  {}
 " Plug 'lifepillar/vim-mucomplete'
 " Plug 'maralla/completor.vim'
 " Plug 'Shougo/neocomplete.vim'
 " let g:neocomplete#enable_at_startup = 1
 if has('nvim')
-    " DEOPLETE
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-
-    " let g:deoplete#omni#input_patterns = {} " faster, called by deoplete
-    " let g:deoplete#omni#input_patterns._ = '.+'
-    " let g:deoplete#omni#input_patterns.java = '[^. *\t]\.\w*'
-    " let g:deoplete#omni#input_patterns.javascript = ''
-    " let g:deoplete#omni#input_patterns.cpp = ['[^. *\t]\.\w*', '[^. *\t]\::\w*', '[^. *\t]\->\w*', '[<"].*/']
-    " let g:deoplete#omni#input_patterns.python = '.+'
-    " let g:deoplete#omni_patterns = {}  " slower, called by vim, https://github.com/Shougo/deoplete.nvim/issues/190
-    " let g:deoplete#omni_patterns._ = '.+'
-    " let g:deoplete#omni#functions = {}
-    " let g:deoplete#omni#functions.javascript = tern#Complete
-    " let g:deoplete#omni#functions.python = 'jedi#completions'
-    " let g:deoplete#omni#functions.python = 'RopeCompleteFunc'
-    " DEOPLETE PLUGINS
-    " Plug 'tweekmonster/deoplete-clang2', { 'for': ['c', 'cpp', 'objc', 'objcpp'] }
-    " Plug 'zchee/deoplete-clang', { 'for': ['c', 'cpp', 'objc', 'objcpp'] }
-    " Plug 'carlitux/deoplete-ternjs', { 'for': 'javascript' }
-    " let g:deoplete#sources#ternjs#types = 1
-    " let g:deoplete#sources#ternjs#docs = 1
-
     Plug 'zchee/deoplete-jedi', { 'for': 'python' }
-    let g:deoplete#sources#jedi#show_docstring=1
-
-    " alternatively use jedi-vim
     " Plug 'zchee/deoplete-go', { 'for': 'go' }
-
-    " NVIM COMPLETION MANAGER
-    " Plug 'ncm2/ncm2'
-    " Plug 'roxma/nvim-yarp'
-    " Plug 'ncm2/ncm2-bufword'
-    " Plug 'ncm2/ncm2-path'
-    " Plug 'ncm2/ncm2-ultisnips'
-    " Plug 'ncm2/ncm2-jedi', { 'for': 'python' }
-    " Plug 'ncm2/ncm2-pyclang', { 'for': ['c', 'cpp'] }
-    " Plug 'ncm2/ncm2-cssomni', { 'for': ['html', 'css', 'jsx'] }
-    " Plug 'ncm2/ncm2-html-subscope', { 'for': 'html' }
-    " Plug 'ncm2/ncm2-tern',  { 'do': 'npm install', 'for': 'javascript' }
-    " augroup NCM
-    "     autocmd BufEnter * call ncm2#enable_for_buffer()
-    " augroup END
 else
     Plug 'Shougo/deoplete.nvim'
     Plug 'roxma/nvim-yarp'
     Plug 'roxma/vim-hug-neovim-rpc'
 endif
+execute 'source ' . g:vim_dir_path . '/custom/autocomplete.vim'
 
 Plug 'SirVer/ultisnips'
 let g:UltiSnipsExpandTrigger='<Tab>'
@@ -660,7 +572,6 @@ if has('nvim')
     Plug 'arakashic/chromatica.nvim', { 'for': ['c', 'cpp', 'objc', 'objcpp'], 'do': ':UpdateRemotePlugins' }
     let g:chromatica#enable_at_startup=1
     let g:chromatica#responsive_mode=1
-    " let g:polyglot_disabled = ['python', 'c', 'cpp', 'objc', 'objcpp']
     let g:polyglot_disabled = ['python', 'c', 'cpp', 'objc', 'objcpp', 'org']
 endif
 " ##### VIML
@@ -670,8 +581,8 @@ augroup vim
     autocmd FileType vim nnoremap <buffer> <silent> K :help <C-r><C-w><CR>
     autocmd FileType qf setlocal nobuflisted " exclude quickfix withow from :bnext, etc.
     autocmd FileType text setlocal commentstring=#\ %s
-    autocmd BufRead,BufNewFile *.conf setfiletype conf
     autocmd FileType conf setlocal commentstring=#\ %s
+    autocmd BufRead,BufNewFile *.conf setfiletype conf
     autocmd CursorHold * checktime " needed for autoread to be triggered
 augroup END
 
@@ -702,7 +613,6 @@ augroup filetype_python
 augroup END
 
 Plug 'davidhalter/jedi-vim', { 'for': 'python' }
-
 " Plug 'python-rope/ropevim', { 'for': 'python' }
 
 " ##### Julia
@@ -788,100 +698,11 @@ call deoplete#custom#source('_', 'matchers', ['matcher_full_fuzzy'])
 " truecolor: onedark, OceanicNext
 
 """ functions
-function! GetSessionName() abort
-    " return g:vim_sesssions_dir . '/' . fnamemodify(getcwd(), ':p:h:t') . '.vim'
-    return fnamemodify(getcwd(), ':p:h:t') . '.vim'
-endfunction
-
-function! WrapListCommand(command, wrapping_command) abort
-    try
-        execute a:command
-    catch /^Vim\%((\a\+)\)\=:E553/
-        execute a:wrapping_command
-    catch /^Vim\%((\a\+)\)\=:E\%(776\|42\):/
-        echo 'No errors'
-    endtry
-endfunction
-
+execute 'source ' . g:vim_dir_path . '/custom/functions.vim'
 command! Cnext call WrapListCommand('cnext', 'cfirst')
 command! Cprevious call WrapListCommand('cprev', 'clast')
 command! Lnext call WrapListCommand('lnext', 'lfirst')
 command! Lprevious call WrapListCommand('lprev', 'llast')
-
-function! Execute(commands) abort
-    """Executes array of commands respecting count""""
-    let l:count = v:count
-    if l:count == 0
-        let l:count = 1
-    endif
-    let l:command = join(a:commands, '|')
-    for i in range(1, l:count)
-        execute l:command
-    endfor
-endfunction
-
-function! Conflict(reverse) abort
-  call search('^\(@@ .* @@\|[<=>|]\{7}[<=>|]\@!\)', a:reverse ? 'bW' : 'W')
-endfunction
-
-function! ConfigurePkgbuild() abort
-    setlocal makeprg=makepkg
-    nnoremap <buffer> <Leader>mi :make -i<CR>
-    nnoremap <buffer> <Leader>mb :make<CR>
-    setlocal softtabstop=2
-    setlocal shiftwidth=2
-    setlocal filetype=sh
-endfunction
-
-function! ConfigureLanguageClient() abort
-    nnoremap <silent> <buffer> K :call LanguageClient_textDocument_hover()<CR>
-    nnoremap <silent> <buffer> <Leader>gd :call LanguageClient_textDocument_definition()<CR>
-    nnoremap <silent> <buffer> <Leader>rn :call LanguageClient_textDocument_rename()<CR>
-    nnoremap <silent> <buffer> <Leader>gt :call LanguageClient_workspace_symbol()<CR>
-    nnoremap <silent> <buffer> <Leader>gT :call LanguageClient_textDocument_documentSymbol()<CR>
-    nnoremap <silent> <buffer> <Leader>lu :call LanguageClient_textDocument_references()<CR>
-    nnoremap <silent> <buffer> <Leader>lq :call LanguageClient_textDocument_formatting()<CR>
-    nnoremap <silent> <buffer> <Leader>la :call LanguageClient#textDocument_codeAction()<CR>
-    " setlocal formatexpr=LanguageClient_textDocument_rangeFormatting()
-    " setlocal omnifunc=LanguageClient#complete
-endfunction
-
-function! ConfigureCoc() abort
-    nnoremap <silent> K :call CocAction('doHover')<CR>
-    nmap <silent> gd <Plug>(coc-definition)
-    nmap <silent> gy <Plug>(coc-type-definition)
-    nmap <silent> gi <Plug>(coc-implementation)
-    nmap <silent> gr <Plug>(coc-references)
-    nmap <silent> <leader>rn <Plug>(coc-rename)
-endfunction
-
-let g:foldmethods = {
-\ 'manual': 'indent',
-\ 'indent': 'expr',
-\ 'expr': 'marker',
-\ 'marker': 'syntax',
-\ 'syntax': 'diff',
-\ 'diff': 'manual'
-\}
-
-let g:ignored_buffers = ['nerdtree', 'qf']
-
-function! ToggleFoldmethod() abort
-    let l:next_foldmethod = g:foldmethods[&foldmethod]
-    execute 'setlocal foldmethod=' . l:next_foldmethod
-    setlocal foldmethod?
-endfunction
-
-function! ChangeBuffer(next) abort
-    if index(g:ignored_buffers, &filetype) !=# -1
-        return
-    endif
-    if a:next ==# 1
-        bnext
-    else
-        bprevious
-    endif
-endfunction
 
 execute 'source ' . g:vim_dir_path . '/custom/spelling.vim'
 
