@@ -17,3 +17,6 @@ function! Mkspell() abort
 endfunction
 command! Mkspell call Mkspell()
 
+" rhysd/vim-grammarous
+let g:grammarous#languagetool_cmd = 'languagetool'
+let g:grammarous#use_vim_spelllang = 1

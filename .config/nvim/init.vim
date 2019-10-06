@@ -592,9 +592,7 @@ let g:lsp_log_file = expand('/tmp/vim-lsp.log')
 
 Plug 'Valloric/YouCompleteMe', { 'for': ['java', 'javascript'] }
 let g:ycm_autoclose_preview_window_after_completion=1
-let g:ycm_semantic_triggers =  {
-  \   'java' : ['.', '@', '::'],
-  \ }
+let g:ycm_semantic_triggers =  {}
 " Plug 'lifepillar/vim-mucomplete'
 " Plug 'maralla/completor.vim'
 " Plug 'Shougo/neocomplete.vim'
@@ -687,15 +685,7 @@ Plug 'ap/vim-css-color'
 
 "##### JS
 Plug 'ternjs/tern_for_vim', { 'for': 'javascript' }
-let g:tern#command = ['tern']
-let g:tern#arguments = ['--persistent']
-augroup filetype_js
-    autocmd!
-    autocmd FileType javascript call ConfigureJavascript()
-augroup END
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
-let g:javascript_plugin_jsdoc = 1
-let g:javascript_plugin_flow = 1
 Plug 'jelera/vim-javascript-syntax', { 'for': 'javascript' }
 Plug 'othree/javascript-libraries-syntax.vim', { 'for': 'javascript' }
 
@@ -712,44 +702,22 @@ augroup filetype_python
 augroup END
 
 Plug 'davidhalter/jedi-vim', { 'for': 'python' }
-let g:jedi#completions_command = '<C-space>'
-let g:jedi#goto_command = 'gd'
-let g:jedi#goto_definitions_command = 'gD'
-let g:jedi#rename_command = '<Leader>rn'
-let g:jedi#show_call_signatures = '2'
-let g:jedi#usages_command = '<Leader>u'
-
-let g:jedi#completions_enabled = 0
-let g:jedi#completions_command = ''
 
 " Plug 'python-rope/ropevim', { 'for': 'python' }
-let g:ropevim_enable_shortcuts = 0
 
 " ##### Julia
 Plug 'JuliaEditorSupport/julia-vim', { 'for': 'julia' }
 
 "##### Rust
 Plug 'rust-lang/rust.vim', { 'for': 'rust' }
-augroup filetype_rust
-    autocmd!
-    autocmd FileType rust call ConfigureRust()
-augroup END
 
 "##### Golang
 "Plug 'fatih/vim-go'
-
-" Plug 'mitsuse/autocomplete-swift', { 'for': 'swift' }
 
 "##### JVM
 "##### Java
 " Plug 'artur-shaik/vim-javacomplete2', { 'for': 'java' }
 Plug 'mikelue/vim-maven-plugin', { 'on': ['Mvn', 'MvnNewMainFile'] }
-
-augroup filetype_java
-    autocmd!
-    " autocmd FileType java setlocal makeprg=mvn errorformat='[%tRROR]\ %f:[%l]\ %m,%-G%.%#'
-    autocmd FileType java call ConfigureJava()
-augroup END
 
 "##### Scala
 "Plug 'ensime/ensime-vim', { 'for': ['java', 'scala'] }
@@ -795,8 +763,6 @@ Plug 'lervag/vimtex', { 'for': 'tex' }
 " Plug 'vim-scripts/LanguageTool'
 Plug 'dpelle/vim-LanguageTool', { 'for': ['markdown', 'rst', 'org'] }
 Plug 'rhysd/vim-grammarous', { 'on': 'GrammarousCheck' }
-let g:grammarous#languagetool_cmd = 'languagetool'
-let g:grammarous#use_vim_spelllang = 1
 call plug#end()
 
 if has('gui_running')
@@ -858,50 +824,6 @@ function! Conflict(reverse) abort
   call search('^\(@@ .* @@\|[<=>|]\{7}[<=>|]\@!\)', a:reverse ? 'bW' : 'W')
 endfunction
 
-function! ConfigureJavascript() abort
-    " setlocal path=.,src,node_modules
-    nnoremap <buffer> <silent> gd :TernDef<CR>
-    nnoremap <buffer> <silent> <Leader>u :TernRefs<CR>
-    nnoremap <buffer> <silent> <Leader>r :TernRename<CR>
-    setlocal softtabstop=2 shiftwidth=2
-    setlocal suffixesadd=.js,.jsx
-endfunction
-
-function! ConfigureRust() abort
-    nnoremap <buffer> <silent> gd <Plug>(rust-def)
-    nnoremap <buffer> <silent> <C-]> <Plug>(rust-def)
-    nnoremap <buffer> <silent> <C-w><C-]> <Plug>(rust-def-split)
-    nnoremap <buffer> <silent> <C-w>} <Plug>(rust-def-vertical)
-    nnoremap <buffer> <silent> K <Plug>(rust-doc)
-endfunction
-
-function! ConfigureJava() abort
-    nnoremap <buffer> <silent> <Leader>ii <Plug>(JavaComplete-Imports-AddSmart)
-    nnoremap <buffer> <silent> <Leader>iI <Plug>(JavaComplete-Imports-Add)
-    nnoremap <buffer> <silent> <Leader>ia <Plug>(JavaComplete-Imports-AddMissing)
-    nnoremap <buffer> <silent> <Leader>id <Plug>(JavaComplete-Imports-RemoveUnused)
-    nnoremap <buffer> <silent> <Leader>am <Plug>(JavaComplete-Generate-AbstractMethods)
-    nnoremap <buffer> <silent> <Leader>aA <Plug>(JavaComplete-Generate-Accessors)
-    nnoremap <buffer> <silent> <Leader>as <Plug>(JavaComplete-Generate-AccessorSetter)
-    nnoremap <buffer> <silent> <Leader>ag <Plug>(JavaComplete-Generate-AccessorGetter)
-    nnoremap <buffer> <silent> <Leader>aa <Plug>(JavaComplete-Generate-AccessorSetterGetter)
-    nnoremap <buffer> <silent> <Leader>ats <Plug>(JavaComplete-Generate-ToString)
-    nnoremap <buffer> <silent> <Leader>aeq <Plug>(JavaComplete-Generate-EqualsAndHashCode)
-    nnoremap <buffer> <silent> <Leader>aI <Plug>(JavaComplete-Generate-Constructor)
-    nnoremap <buffer> <silent> <Leader>ai <Plug>(JavaComplete-Generate-DefaultConstructor)
-
-    nnoremap <buffer> <silent> <Leader>ac <Plug>(JavaComplete-Generate-NewClass)
-    nnoremap <buffer> <silent> <Leader>aC <Plug>(JavaComplete-Generate-ClassInFile)
-
-    nnoremap <buffer> <Leader>cf :YcmCompleter FixIt<CR>
-    nnoremap <buffer> gd :YcmCompleter GoTo<CR>
-    nnoremap <buffer> K :YcmCompleter GetDoc<CR>
-    nnoremap <buffer> gq :YcmCompleter Format<CR>
-    vnoremap <buffer> gq :YcmCompleter Format<CR>
-    nnoremap <buffer> <Leader>gu :YcmCompleter GoToReferences<CR>
-    nnoremap <buffer> <Leader>rn :YcmCompleter RefactorRename
-endfunction
-
 function! ConfigurePkgbuild() abort
     setlocal makeprg=makepkg
     nnoremap <buffer> <Leader>mi :make -i<CR>
@@ -961,7 +883,7 @@ function! ChangeBuffer(next) abort
     endif
 endfunction
 
-execute 'source ' . g:vim_dir_path . '/spelling.vim'
+execute 'source ' . g:vim_dir_path . '/custom/spelling.vim'
 
 command! PlugInit !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
 \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
