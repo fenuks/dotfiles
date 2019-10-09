@@ -2,6 +2,7 @@
 let g:LanguageClient_serverCommands = {
     \ 'c': ['cquery', '--log-file=/tmp/cq.log', '--init={"cacheDirectory":"/tmp/cquery/"}'],
     \ 'cpp': ['cquery', '--log-file=/tmp/cq.log', '--init={"cacheDirectory":"/tmp/cquery/"}'],
+    \ 'swift': ['sourcekit-lsp'],
     \ 'haskell': ['hie-wrapper'],
     \ 'java': ['jdtls', '-javaagent:/usr/share/java/lombok/lombok.jar', '-Xbootclasspath/p:/usr/share/java/lombok/lombok.jar'],
     \ 'javascript': ['javascript-typescript-stdio'],

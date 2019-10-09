@@ -75,6 +75,7 @@ set termguicolors " use trucolor
 " set showbreak='@' " show line continuation sign
 
 let g:vim_dir_path=fnamemodify($MYVIMRC, ':p:h')
+let g:vim_custom_scripts='$HOME/.config/nvim/custom/'
 
 if has('unix')
     let g:tmp_dir='/tmp'
@@ -536,7 +537,7 @@ let g:AutoPairsShortcutJump=''
 let g:AutoPairsShortcutBackInsert=''
 
 " ##### Code autocompletion
-Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'make release', 'for': ['rust', 'typescript', 'vue', 'c', 'cpp', 'xml'] }
+Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'make release', 'for': ['rust', 'typescript', 'vue', 'c', 'cpp', 'xml', 'swift'] }
 Plug 'neoclide/coc.nvim', { 'branch': 'release', 'for': ['haskell'] }
 
 " Plug 'prabirshrestha/async.vim'
@@ -556,7 +557,7 @@ else
     Plug 'roxma/nvim-yarp'
     Plug 'roxma/vim-hug-neovim-rpc'
 endif
-execute 'source ' . g:vim_dir_path . '/custom/autocomplete.vim'
+execute 'source ' . g:vim_custom_scripts . 'autocomplete.vim'
 
 Plug 'SirVer/ultisnips'
 let g:UltiSnipsExpandTrigger='<Tab>'
@@ -655,7 +656,7 @@ augroup END
 
 "##### Natural language
 "##### Markdown
-Plug 'suan/vim-instant-markdown', { 'for': 'markdown' }
+" Plug 'suan/vim-instant-markdown', { 'for': 'markdown' }
 " Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 Plug 'gabrielelana/vim-markdown', { 'for': 'markdown' }
 
@@ -698,7 +699,7 @@ call deoplete#custom#source('_', 'matchers', ['matcher_full_fuzzy'])
 " truecolor: onedark, OceanicNext
 
 """ functions
-execute 'source ' . g:vim_dir_path . '/custom/functions.vim'
+execute 'source ' . g:vim_custom_scripts . 'functions.vim'
 command! Cnext call WrapListCommand('cnext', 'cfirst')
 command! Cprevious call WrapListCommand('cprev', 'clast')
 command! Lnext call WrapListCommand('lnext', 'lfirst')
@@ -713,7 +714,7 @@ function! ConfigurePkgbuild() abort
     setlocal filetype=sh
 endfunction
 
-execute 'source ' . g:vim_dir_path . '/custom/spelling.vim'
+execute 'source ' . g:vim_custom_scripts . 'spelling.vim'
 
 command! PlugInit !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
 \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim

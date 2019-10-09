@@ -112,6 +112,10 @@ gr() {
   cut -d$'\t' -f1
 }
 
+help_vmap() {
+    rg '^\s*(v|c|n|i|o|x)?(nnore)?map' ~/.config/nvim/
+}
+
 
 # export functions in bash
 if [[ -v BASH_VERSION ]]; then
