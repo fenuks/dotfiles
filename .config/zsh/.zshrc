@@ -16,8 +16,8 @@ source ~/.config/shells/functions.sh
 source ~/.config/shells/aliases
 source ~/.config/shells/config.sh
 
-source /usr/share/fzf/key-bindings.zsh
-source /usr/share/fzf/completion.zsh
+source_if_exists /usr/share/fzf/key-bindings.zsh
+source_if_exists /usr/share/fzf/completion.zsh
 
 ZSH_THEME="random"
 
