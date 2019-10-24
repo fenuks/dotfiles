@@ -44,6 +44,8 @@ nnoremap gt :tabNext<cr>
 nnoremap gT :xccmd selectPreviousTab<cr>
 nnoremap ,gs :xccmd findSelectedTextInWorkspace<cr>
 nnoremap ,gu :xcmenucmd Find Selected Symbol in Workspace<cr>
+nnoremap ]q :xcmenucmd Find Next in Workspace<cr>
+nnoremap [q :xcmenucmd Find Previous in Workspace<cr>
 nnoremap <c-j> :nissue<cr>
 nnoremap <c-k> :pissue<cr>
 nnoremap ,cn :nissue<cr>
@@ -75,6 +77,7 @@ nnoremap ,sr :xcmenucmd Find Selected Symbol in Workspace<cr>
 nnoremap K :xccmd showQuickHelp<cr>
 
 nnoremap ,rn :xcmenucmd Rename...<cr>
+nnoremap ,rl :xcmenucmd Edit All in Scope<cr>
 
 nnoremap ,mr :xcmenucmd Run<cr>
 nnoremap ,mb :xcmenucmd Build<cr>

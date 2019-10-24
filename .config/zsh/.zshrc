@@ -30,3 +30,5 @@ function zle-line-init zle-keymap-select {
 
 zle -N zle-line-init
 zle -N zle-keymap-select
+
+source ~/.config/zsh/zshrc.local.after

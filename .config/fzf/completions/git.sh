@@ -20,12 +20,12 @@ _fzf_complete_git() {
         if [[ "${cmd_last_opt}" == "-b" ]] || [[ "${cmd_last_opt}" == "--branch" ]]; then
             selected=$( ${binary} branch --remotes | sed 1d | awk '{ print $1 }' | ${fzf} "${fzf_opt[@]}" -m |  tr '\n' ' ')
         else
-            selected=$( ${binary} status --short | ${fzf} "${fzf_opt[@]}" -m --preview "echo {} | cut -c 3- | xargs -I '%' ${binary} diff --color=always % | head -$LINES" | awk '{$1=""; print substr($0,2)}' | tr '\n' ' ')
+            selected=$( ( ${binary} status --short | grep -v -P '^(A|R|D|M|U) ' ) | ${fzf} "${fzf_opt[@]}" -m --preview "echo {} | cut -c 3- | xargs -I '%' ${binary} diff --color=always % | head -$LINES" | awk '{$1=""; print substr($0,2)}' | tr '\n' ' ')
         fi
     elif [[ "${cmd_opt}" == 'diff '* ]]; then
         selected=$( ( ${binary} status --short ) | ${fzf} "${fzf_opt[@]}" -m --preview "echo {} | cut -c 3- | xargs -I '%' ${binary} diff --color=always % | head -$LINES" | awk '{$1=""; print substr($0,2)}' | tr '\n' ' ')
     elif [[ "${cmd_opt}" == 'reset '* ]]; then
-        selected=$( ( ${binary} status --short | grep -P '^(A|R|D|M)' ) | ${fzf} "${fzf_opt[@]}" -m --preview "echo {} | cut -c 3- | xargs -I '%' ${binary} diff --color=always % | head -$LINES" | awk '{$1=""; print substr($0,2)}' | tr '\n' ' ')
+        selected=$( ( ${binary} status --short | grep -P '^(A|R|D|M|U)' ) | ${fzf} "${fzf_opt[@]}" -m --preview "echo {} | cut -c 3- | xargs -I '%' ${binary} diff --color=always % | head -$LINES" | awk '{$1=""; print substr($0,2)}' | tr '\n' ' ')
     elif [[ "${cmd_opt}" == 'stash push '* ]]; then
         selected=$( ( ${binary} status --short | grep -v -P '^(A|R|D|M) ' ) | ${fzf} "${fzf_opt[@]}" -m --preview "echo {} | cut -c 3- | xargs -I '%' ${binary} diff --color=always % | head -$LINES" | awk '{$1=""; print substr($0,2)}' | tr '\n' ' ')
     fi
