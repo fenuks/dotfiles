@@ -537,13 +537,13 @@ let g:AutoPairsShortcutJump=''
 let g:AutoPairsShortcutBackInsert=''
 
 " ##### Code autocompletion
-Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'make release', 'for': ['rust', 'typescript', 'vue', 'c', 'cpp', 'xml', 'swift'] }
-Plug 'neoclide/coc.nvim', { 'branch': 'release', 'for': ['haskell'] }
+Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'make release', 'for': ['rust', 'typescript', 'vue', 'xml', 'swift'] }
+Plug 'neoclide/coc.nvim', { 'branch': 'release', 'for': [ 'haskell', 'dart' ], 'on': ['CocInstall', 'CocConfig'] }
 
 " Plug 'prabirshrestha/async.vim'
 " Plug 'prabirshrestha/vim-lsp'
 
-Plug 'Valloric/YouCompleteMe', { 'for': ['java', 'javascript'] }
+Plug 'Valloric/YouCompleteMe', { 'for': ['c', 'cpp', 'java', 'javascript'] }
 " Plug 'lifepillar/vim-mucomplete'
 " Plug 'maralla/completor.vim'
 " Plug 'Shougo/neocomplete.vim'
@@ -569,7 +569,7 @@ Plug 'honza/vim-snippets'
 "#### Language specific
 Plug 'sheerun/vim-polyglot'
 if has('nvim')
-    Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins' }
+    Plug 'numirias/semshi', { 'for': 'python', 'do': ':UpdateRemotePlugins' }
     Plug 'arakashic/chromatica.nvim', { 'for': ['c', 'cpp', 'objc', 'objcpp'], 'do': ':UpdateRemotePlugins' }
     let g:chromatica#enable_at_startup=1
     let g:chromatica#responsive_mode=1

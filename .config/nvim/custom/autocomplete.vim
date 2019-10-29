@@ -93,10 +93,39 @@ function! ConfigureLanguageClient() abort
 endfunction
 
 function! ConfigureCoc() abort
-    nnoremap <silent> K :call CocAction('doHover')<CR>
-    nmap <silent> gd <Plug>(coc-definition)
-    nmap <silent> gy <Plug>(coc-type-definition)
-    nmap <silent> gi <Plug>(coc-implementation)
-    nmap <silent> gr <Plug>(coc-references)
-    nmap <silent> <leader>rn <Plug>(coc-rename)
+    nnoremap <buffer> <silent> K :call CocAction('doHover')<CR>
+    nmap <buffer> <silent> gd <Plug>(coc-definition)
+    nmap <buffer> <silent> gD <Plug>(coc-declaration)
+    nmap <buffer> <silent> gy <Plug>(coc-type-definition)
+    nmap <buffer> <silent> gi <Plug>(coc-implementation)
+    nmap <buffer> <silent> gr <Plug>(coc-references)
+    vmap <buffer> <silent> gw <Plug>(coc-format-selected)
+    nmap <buffer> <silent> gw <Plug>(coc-format-selected)
+    nmap <buffer> <silent> <Leader>gw <Plug>(coc-format)
+    nmap <buffer> <silent> <leader>rn <Plug>(coc-rename)
+    nmap <buffer> <silent> <leader>rN <Plug>(coc-refactor)
+    " trigger autocomplete
+    inoremap <buffer> <silent> <expr> <c-space> coc#refresh()
+    " confirm completion with enter
+    inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<CR>"
+    " disable deoplete
+    call deoplete#custom#buffer_option('auto_complete', v:false)
+    " <Plug>(coc-diagnostic-next) 
+    " <Plug>(coc-diagnostic-prev) 
+    " <Plug>(coc-diagnostic-next-error)
+    " <Plug>(coc-diagnostic-prev-error)
+    " <Plug>(coc-codeaction)
+    " <Plug>(coc-codeaction-selected)
+    " <Plug>(coc-fix-current)
+    " <Plug>(coc-float-hide)
+    " <Plug>(coc-float-jump)
+    " <Plug>(coc-range-select)
+    " <Plug>(coc-range-select-backward)
 endfunction
+
+function! CocInstallSources() abort
+    CocInstall coc-flutter
+    CocInstall coc-json
+endfunction
+
+command! CocInstallSources call CocInstallSources()
