@@ -37,10 +37,29 @@ augroup vim_lsp
 
     autocmd FileType rust setlocal omnifunc=lsp#complete
 augroup END
+    
+function! ConfigureYcm() abort
+    nnoremap <silent> <buffer> <Leader>ck :YcmShowDetailedDiagnostic<CR>
+    nnoremap <silent> <buffer> <Leader>cK :YcmShowDetailedDiagnostic<CR>
+    nnoremap <silent> <buffer> <Leader>cc :YcmCompleter FixIt<CR>
+    nnoremap <silent> <buffer> <Leader>ci :YcmCompleter OrganizeImports<CR>
+    nnoremap <silent> <buffer> g% :YcmCompleter GoToInclude<CR>
+    nnoremap <silent> <buffer> <C-]> :YcmCompleter GoTo<CR>
+    nnoremap <silent> <buffer> gd :YcmCompleter GoToDefinition<CR>
+    nnoremap <silent> <buffer> gD :YcmCompleter GoToDeclaration<CR>
+    nnoremap <silent> <buffer> gy :YcmCompleter GoToImplementation<CR>
+    nnoremap <silent> <buffer> <Leader>gu :YcmCompleter GoToReferences<CR>
+    nnoremap <silent> <buffer> <Leader>K :YcmCompleter GetType<CR>
+    nnoremap <silent> <buffer> K :YcmCompleter GetDoc<CR>
+    nnoremap <silent> <buffer> <Leader>rn :YcmCompleter RefactorRename
+    nnoremap <buffer> <silent> gw :YcmCompleter Format<CR>
+    vnoremap <buffer> <silent> gw :YcmCompleter Format<CR>
+endfunction
 
 " Valloric/YoutCompleteMe
 let g:ycm_autoclose_preview_window_after_completion=1
 let g:ycm_semantic_triggers =  {}
+let g:ycm_language_server = []
 
 " Shougo/deoplete
 " let g:deoplete#omni#input_patterns = {} " faster, called by deoplete
@@ -81,7 +100,7 @@ let g:deoplete#sources#jedi#show_docstring=1
 
 function! ConfigureLanguageClient() abort
     nnoremap <silent> <buffer> K :call LanguageClient_textDocument_hover()<CR>
-    nnoremap <silent> <buffer> <Leader>gd :call LanguageClient_textDocument_definition()<CR>
+    nnoremap <silent> <buffer> gd :call LanguageClient_textDocument_definition()<CR>
     nnoremap <silent> <buffer> <Leader>rn :call LanguageClient_textDocument_rename()<CR>
     nnoremap <silent> <buffer> <Leader>gt :call LanguageClient_workspace_symbol()<CR>
     nnoremap <silent> <buffer> <Leader>gT :call LanguageClient_textDocument_documentSymbol()<CR>
@@ -92,13 +111,14 @@ function! ConfigureLanguageClient() abort
     " setlocal omnifunc=LanguageClient#complete
 endfunction
 
+
 function! ConfigureCoc() abort
     nnoremap <buffer> <silent> K :call CocAction('doHover')<CR>
     nmap <buffer> <silent> gd <Plug>(coc-definition)
     nmap <buffer> <silent> gD <Plug>(coc-declaration)
     nmap <buffer> <silent> gy <Plug>(coc-type-definition)
-    nmap <buffer> <silent> gi <Plug>(coc-implementation)
-    nmap <buffer> <silent> gr <Plug>(coc-references)
+    nmap <buffer> <silent> gy <Plug>(coc-implementation)
+    nmap <buffer> <silent> <Leader>gu <Plug>(coc-references)
     vmap <buffer> <silent> gw <Plug>(coc-format-selected)
     nmap <buffer> <silent> gw <Plug>(coc-format-selected)
     nmap <buffer> <silent> <Leader>gw <Plug>(coc-format)
@@ -107,7 +127,7 @@ function! ConfigureCoc() abort
     " trigger autocomplete
     inoremap <buffer> <silent> <expr> <c-space> coc#refresh()
     " confirm completion with enter
-    inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<CR>"
+    inoremap <buffer> <expr> <cr> pumvisible() ? "\<C-y>" : "\<CR>"
     " disable deoplete
     call deoplete#custom#buffer_option('auto_complete', v:false)
     " <Plug>(coc-diagnostic-next) 
@@ -124,6 +144,7 @@ function! ConfigureCoc() abort
 endfunction
 
 function! CocInstallSources() abort
+    " call coc#add_extension('coc-json', 'coc-flutter')
     CocInstall coc-flutter
     CocInstall coc-json
 endfunction

@@ -218,7 +218,7 @@ nnoremap <silent> <Leader>bv :call Execute(['vnew'])<CR>
 nnoremap <silent> <Leader>bd :call Execute(['bdelete'])<CR>
 nnoremap <silent> <Leader>bh :call Execute(['hide'])<CR>
 nnoremap <silent> <Leader>bc :call Execute(['close'])<CR>
-nnoremap <silent> <Leader>bo :%bd<CR><C-^><C-^>:bd<CR>
+nnoremap <silent> <Leader>bo :%bdelete<CR><C-^><C-^>:bdelete<CR>
 nnoremap <silent> <Leader>bl :Buffers<CR>
 nnoremap <silent> <Tab> :call ChangeBuffer(1)<CR>
 nnoremap <silent> <S-Tab> :call ChangeBuffer(0)<CR>
@@ -402,8 +402,7 @@ nnoremap <silent> <Leader>dp :diffput<CR>
 
 nnoremap ,dp :diffput<CR>
 nnoremap ,dg :diffget<CR>
-command! DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis
-	 	\ | wincmd p | diffthis
+command! DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis | wincmd p | diffthis
 nnoremap <silent> ,df :DiffOrig<CR>
 
 "#### Filesystem
