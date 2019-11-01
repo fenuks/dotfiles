@@ -2,6 +2,7 @@ if exists('b:did_javascript_ftplugin')
     finish
 endif
 let b:did_javascript_ftplugin = 1
+
 nnoremap <buffer> <silent> gd :TernDef<CR>
 nnoremap <buffer> <silent> <Leader>u :TernRefs<CR>
 nnoremap <buffer> <silent> <Leader>r :TernRename<CR>

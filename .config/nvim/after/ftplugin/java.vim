@@ -2,6 +2,7 @@ if exists('b:did_java_ftplugin')
     finish
 endif
 let b:did_java_ftplugin = 1
+
 call ConfigureYcm()
 let g:ycm_semantic_triggers.java = ['.', '@', '::']
 let g:JavaComplete_EnableDefaultMappings = 0
