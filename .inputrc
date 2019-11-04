@@ -1,14 +1,20 @@
-set editing-mode vi
-# cycle through list
-#TAB: menu-complete
-# move backward
-# "\e[Z": menu-complete-backward
-# first tab shows list, next cycles
-set menu-complete-display-prefix on
-set show-all-if-ambiguous on
-set colored-stats on
+# show matching parenthesis
+set blink-matching-paren on
 # highligh common prefix
 set colored-completion-prefix on
+set colored-stats on
+set editing-mode vi
+# first tab shows list, next cycles
+set menu-complete-display-prefix on
+# move backward
+# "\e[Z": menu-complete-backward
+set show-all-if-ambiguous on
 # set completion-ignore-case on
 # Treat hypens and underscores as equivalent when completing
 # set completion-map-case on
+
+# keybindings
+Control-k history-search-backward
+Control-j history-search-forward
+Control-n menu-complete
+Control-p menu-complete-backward
