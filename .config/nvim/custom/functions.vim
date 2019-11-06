@@ -7,7 +7,7 @@ let g:foldmethods = {
 \ 'diff': 'manual'
 \}
 
-let g:ignored_buffers = ['nerdtree', 'qf']
+let g:ignored_buffers = ['qf', 'fugitiveblame', 'nerdtree']
 
 function! GetSessionName() abort
     " return g:vim_sesssions_dir . '/' . fnamemodify(getcwd(), ':p:h:t') . '.vim'
