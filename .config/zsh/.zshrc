@@ -1,14 +1,6 @@
 HISTSIZE=10000
 SAVEHIST=10000
 export KEYTIMEOUT=1 # vim-mode timeout
-bindkey -v # use vim-mode
-bindkey '^P' up-history
-bindkey '^N' down-history
-
-zstyle :compinstall filename ~/.config/zsh/.zshrc
-
-autoload -Uz compinit
-compinit
 
 source ~/.config/shells/env
 source ~/.config/shells/env.sh
@@ -18,6 +10,15 @@ source ~/.config/shells/config.sh
 
 source_if_exists /usr/share/fzf/key-bindings.zsh
 source_if_exists /usr/share/fzf/completion.zsh
+
+bindkey -v # use vim-mode
+bindkey '^P' up-history
+bindkey '^N' down-history
+autoload -Uz compinit
+compinit
+zstyle ':completion::complete:*' gain-privileges 1
+
+zstyle :compinstall filename ~/.config/zsh/.zshrc
 
 ZSH_THEME="random"
 
