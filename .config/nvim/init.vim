@@ -479,7 +479,7 @@ nmap <Leader>ga <Plug>(EasyAlign)
 "let g:lion_squeeze_spaces = 1
 
 "##### Syntax analysis
-Plug 'w0rp/ale'
+Plug 'dense-analysis/ale'
 let g:ale_linters = {
 \   'python': ['mypy', 'pylint', 'flake8'],
 \}
