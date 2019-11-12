@@ -195,6 +195,10 @@ inoremap <A-h> <LEFT>
 inoremap <A-l> <RIGHT>
 inoremap <A-k> <UP>
 inoremap <A-j> <DOWN>
+cnoremap <A-h> <LEFT>
+cnoremap <A-l> <RIGHT>
+cnoremap <A-k> <UP>
+cnoremap <A-j> <DOWN>
 " conflicts with builtin mapping that has duplicate in <C-m>
 inoremap <C-j> <ESC>o
 

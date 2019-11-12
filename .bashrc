@@ -23,6 +23,8 @@ shopt -s histappend
 bind Space:magic-space
 # Save multi-line commands as one command
 shopt -s cmdhist
+# clear screen pernamently
+bind '"\C-l": "clear && printf \"\\e[3J\""'
 
 # bind fzf git keys
 bind '"\er": redraw-current-line'
