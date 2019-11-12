@@ -12,7 +12,7 @@ DefaultProfile=yakuake.profile
 FirstRun=false
 
 [Favorite Profiles]
-Favorites=konsole.profile,yakuake.profile
+Favorites=yakuake.profile
 
 [FileDialogSize]
 Height 1200=480
@@ -21,28 +21,17 @@ Width 1080=640
 Width 1920=640
 
 [Shortcuts]
-close-active-terminal=Ctrl+Shift+R
-close-session=Ctrl+Shift+W
-file_quit=Ctrl+Shift+Q
-grow-terminal-bottom=Ctrl+Alt+Down
-grow-terminal-left=Ctrl+Alt+Left
-grow-terminal-right=Ctrl+Alt+Right
-grow-terminal-top=Ctrl+Alt+Up
 help_whats_this=none
 keep-open=Shift+F1
 move-session-left=Ctrl+Shift+Left;\s
-move-session-right=Ctrl+Shift+Right
-new-session=Ctrl+Shift+T
 next-session=Ctrl+Shift+L
 next-terminal=Ctrl+Tab
 options_configure=none
 previous-session=Ctrl+Shift+H
 previous-terminal=Ctrl+Shift+Tab
-rename-session=Ctrl+Alt+S
 split-left-right=Ctrl+Shift+I
 split-top-bottom=Ctrl+Shift+O
-toggle-session-monitor-activity=Ctrl+Shift+A
-view-full-screen=Ctrl+Shift+F11
+toggle-session-monitor-silence=none
 
 [Window]
 DynamicTabTitles=true

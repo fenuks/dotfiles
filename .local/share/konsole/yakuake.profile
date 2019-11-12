@@ -13,6 +13,7 @@ KeyBindings=custom
 [Scrolling]
 HistoryMode=2
 HistorySize=3000
+ScrollFullPage=1
 
 [Terminal Features]
 BlinkingTextEnabled=false

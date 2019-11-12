@@ -14,6 +14,23 @@ function run-ssh-agent() {
     ssh-agent -a "${SSH_AUTH_SOCK}"
 }
 
+find-up () {
+  path=$(pwd)
+  match="$1"
+  while true; do
+    if [[ "${path}" == "" ]]; then
+        break
+    fi
+
+    if [[ -e "${path}/$1" ]]; then
+        match="${path}/$1"
+        break
+    fi
+    path=${path%/*}
+  done
+  echo "${match}"
+}
+
 function bak() {
     if [[ ! "$#" -eq 1 ]]; then
         return 1
