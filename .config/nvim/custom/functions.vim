@@ -7,7 +7,7 @@ let g:foldmethods = {
 \ 'diff': 'manual'
 \}
 
-let g:ignored_buffers = ['qf', 'fugitiveblame', 'nerdtree']
+let g:auxiliary_buffers = ['qf', 'fugitiveblame', 'nerdtree']
 
 function! GetSessionName() abort
     " return g:vim_sesssions_dir . '/' . fnamemodify(getcwd(), ':p:h:t') . '.vim'
@@ -27,7 +27,7 @@ endfunction
 function! Execute(commands) abort
     """Executes array of commands respecting count""""
     let l:count = v:count
-    if l:count == 0
+    if l:count is# 0
         let l:count = 1
     endif
     let l:command = join(a:commands, '|')
@@ -47,12 +47,25 @@ function! ToggleFoldmethod() abort
 endfunction
 
 function! ChangeBuffer(next) abort
-    if index(g:ignored_buffers, &filetype) !=# -1
+    if index(g:auxiliary_buffers, &filetype) !=# -1
         return
     endif
-    if a:next ==# 1
+    if a:next is# 1
         bnext
     else
         bprevious
     endif
+endfunction
+
+function! CloseAuxiliaryBuffers() abort
+    for window in getwininfo()
+        let l:bufnr = l:window['bufnr']
+        let l:filetype = getbufvar(l:bufnr, '&filetype')
+        if index(g:auxiliary_buffers, l:filetype) is# -1
+            continue
+        endif
+
+        execute 'bdelete ' . bufnr
+    endfor
+    
 endfunction
