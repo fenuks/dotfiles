@@ -344,6 +344,8 @@ Plug 't9md/vim-choosewin', { 'on': '<Plug>(choosewin)' }
 nnoremap <silent> <Leader>wr :WinResizerStartResize<CR>
 xmap <Leader>ws <Plug>(Visual-Split-VSSplit)
 nmap <Leader>wl <Plug>(choosewin)
+nnoremap <silent> <Leader>wz :call CloseAuxiliaryWindows()<CR>
+nnoremap <silent> <C-w>z :call CloseAuxiliaryWindows()<CR>
 nnoremap <silent> <Leader>wL :Windows<CR>
 nnoremap <silent> <Leader>wQ :quitall<CR>
 Plug 'troydm/zoomwintab.vim'

@@ -8,6 +8,7 @@ let g:foldmethods = {
 \}
 
 let g:auxiliary_buffers = ['qf', 'fugitiveblame', 'nerdtree']
+let g:extra_auxiliary_buffers = ['ale-fix-suggest', 'help']
 
 function! GetSessionName() abort
     " return g:vim_sesssions_dir . '/' . fnamemodify(getcwd(), ':p:h:t') . '.vim'
@@ -57,15 +58,15 @@ function! ChangeBuffer(next) abort
     endif
 endfunction
 
-function! CloseAuxiliaryBuffers() abort
+function! CloseAuxiliaryWindows() abort
     for window in getwininfo()
         let l:bufnr = l:window['bufnr']
         let l:filetype = getbufvar(l:bufnr, '&filetype')
-        if index(g:auxiliary_buffers, l:filetype) is# -1
+        if index(g:auxiliary_buffers, l:filetype) is# -1 && index(g:extra_auxiliary_buffers, l:filetype) is# -1
             continue
         endif
 
         execute 'bdelete ' . bufnr
     endfor
-    
+    pclose
 endfunction
