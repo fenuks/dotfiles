@@ -333,10 +333,6 @@ let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 
 "##### Windows
-Plug 'mhinz/vim-startify'
-let g:startify_session_dir=g:vim_sesssions_dir
-let g:startify_fortune_use_unicode = 1
-let g:startify_use_env = 1
 Plug 'simeji/winresizer', { 'on': 'WinResizerStartResize' }
 let g:winresizer_start_key = ''
 Plug 'wellle/visual-split.vim', { 'on': ['VSResize', 'VSSplit', 'VSSplitAbove', 'VSSplitBelow', '<Plug>(Visual-Split-VSResize)', '<Plug>(Visual-Split-VSSplit)', '<Plug>(Visual-Split-VSSplitAbove)', '<Plug>(Visual-Split-VSSplitBelow)'] }
