@@ -14,6 +14,7 @@ source_if_exists /usr/share/fzf/completion.zsh
 bindkey -v # use vim-mode
 bindkey '^P' up-history
 bindkey '^N' down-history
+bindkey -s '^l' 'clear\n'
 autoload -Uz compinit
 compinit
 zstyle ':completion::complete:*' gain-privileges 1
@@ -21,6 +22,7 @@ zstyle ':completion::complete:*' gain-privileges 1
 zstyle :compinstall filename ~/.config/zsh/.zshrc
 
 ZSH_THEME="random"
+alias -s {yml,yaml}=vim
 
 # vim-mode status indicator
 function zle-line-init zle-keymap-select {

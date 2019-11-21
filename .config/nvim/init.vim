@@ -32,7 +32,6 @@ set hidden " allow background buffers without saving
 " diff mode
 set diffopt+=iwhite " ignore whitespace character changes
 set diffopt+=filler,internal,algorithm:histogram,indent-heuristic " use vimproved internal patch
-set includeexpr=substitute(v:fname,'\\.','/','g') " expression to change gf filename mapping
 set visualbell " don't beep
 set noerrorbells " don't beep
 set confirm " Ask to save instead of complaining
@@ -346,6 +345,9 @@ nnoremap <silent> <C-w>z :call CloseAuxiliaryWindows()<CR>
 nnoremap <silent> <Leader>wL :Windows<CR>
 nnoremap <silent> <Leader>wQ :quitall<CR>
 Plug 'troydm/zoomwintab.vim'
+let g:zoomwintab_remap=0
+nnoremap <silent> <C-w>u :ZoomWinTabToggle<CR>
+nnoremap <silent> <Leader>wu :ZoomWinTabToggle<CR>
 
 "##### Refactoring; edition
 Plug 'wellle/targets.vim'
@@ -434,7 +436,7 @@ let g:grepper.prompt_quote = 3
 nnoremap <Leader>ss :Grepper -tool rg<CR>
 nnoremap <Leader>sS :Grepper -tool rg -side<CR>
 nnoremap <leader>s* :Grepper -tool rg -open -switch -cword -noprompt<CR>
-vmap <Leader>s* <Plug>(GrepperOperator)
+vmap <Leader>s <Plug>(GrepperOperator)
 nmap <Leader>so <Plug>(GrepperOperator)
 nnoremap <leader>sd :Grepper -tool rg -dir file<CR>
 nnoremap <leader>sD :Grepper -tool rg -dir file -side<CR>
@@ -485,6 +487,7 @@ nmap <Leader>ga <Plug>(EasyAlign)
 Plug 'dense-analysis/ale'
 let g:ale_linters = {
 \   'python': ['mypy', 'pylint', 'flake8'],
+\   'cpp': []
 \}
 let g:ale_fixers = {
 \   '': ['trim_whitespace'],
@@ -540,12 +543,12 @@ let g:AutoPairsShortcutBackInsert=''
 
 " ##### Code autocompletion
 Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'make release', 'for': ['rust', 'typescript', 'vue', 'xml', 'swift'] }
-Plug 'neoclide/coc.nvim', { 'branch': 'release', 'for': [ 'haskell', 'dart' ], 'on': ['CocInstall', 'CocConfig'] }
+Plug 'neoclide/coc.nvim', { 'branch': 'release', 'for': [ 'haskell', 'dart', 'c', 'cpp' ], 'on': ['CocInstall', 'CocConfig'] }
 
 " Plug 'prabirshrestha/async.vim'
 " Plug 'prabirshrestha/vim-lsp'
 
-Plug 'Valloric/YouCompleteMe', { 'for': ['c', 'cpp', 'java', 'javascript'] }
+Plug 'Valloric/YouCompleteMe', { 'for': ['java', 'javascript'] }
 " Plug 'lifepillar/vim-mucomplete'
 " Plug 'maralla/completor.vim'
 " Plug 'Shougo/neocomplete.vim'

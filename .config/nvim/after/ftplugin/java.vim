@@ -3,6 +3,8 @@ if exists('b:did_java_ftplugin')
 endif
 let b:did_java_ftplugin = 1
 
+setlocal includeexpr=substitute(v:fname,'\\.','/','g') " expression to change gf filename mapping
+
 call ConfigureYcm()
 let g:ycm_semantic_triggers.java = ['.', '@', '::']
 let g:JavaComplete_EnableDefaultMappings = 0

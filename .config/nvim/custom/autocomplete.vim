@@ -1,7 +1,7 @@
 " autozimu/LanguageClient-neovim
 let g:LanguageClient_serverCommands = {
-    \ 'c': ['cquery', '--log-file=/tmp/cq.log', '--init={"cacheDirectory":"/tmp/cquery/"}'],
-    \ 'cpp': ['cquery', '--log-file=/tmp/cq.log', '--init={"cacheDirectory":"/tmp/cquery/"}'],
+    \ 'c': ['clangd'],
+    \ 'cpp': ['clangd'],
     \ 'swift': ['sourcekit-lsp'],
     \ 'haskell': ['hie-wrapper'],
     \ 'java': ['jdtls', '-javaagent:/usr/share/java/lombok/lombok.jar', '-Xbootclasspath/p:/usr/share/java/lombok/lombok.jar'],
@@ -14,7 +14,8 @@ let g:LanguageClient_serverCommands = {
     \ 'mvn_pom': ['lsp4xml'],
     \ 'vue': ['vls'],
     \ }
-    " \ 'c': ['clangd'],
+    " \ 'c': ['cquery', '--log-file=/tmp/cq.log', '--init={"cacheDirectory":"/tmp/cquery/"}'],
+    " \ 'cpp': ['cquery', '--log-file=/tmp/cq.log', '--init={"cacheDirectory":"/tmp/cquery/"}'],
 
 let g:LanguageClient_autoStart = 1
 let g:LanguageClient_loggingLevel = 'DEBUG'
@@ -122,8 +123,9 @@ function! ConfigureCoc() abort
     vmap <buffer> <silent> gw <Plug>(coc-format-selected)
     nmap <buffer> <silent> gw <Plug>(coc-format-selected)
     nmap <buffer> <silent> <Leader>gw <Plug>(coc-format)
-    nmap <buffer> <silent> <leader>rn <Plug>(coc-rename)
-    nmap <buffer> <silent> <leader>rN <Plug>(coc-refactor)
+    nmap <buffer> <silent> <Leader>rn <Plug>(coc-rename)
+    nmap <buffer> <silent> <Leader>rN <Plug>(coc-refactor)
+    nmap <buffer> <silent> <Leader>cc <Plug>(coc-fix-current)
     " trigger autocomplete
     inoremap <buffer> <silent> <expr> <c-space> coc#refresh()
     " confirm completion with enter
@@ -136,7 +138,6 @@ function! ConfigureCoc() abort
     " <Plug>(coc-diagnostic-prev-error)
     " <Plug>(coc-codeaction)
     " <Plug>(coc-codeaction-selected)
-    " <Plug>(coc-fix-current)
     " <Plug>(coc-float-hide)
     " <Plug>(coc-float-jump)
     " <Plug>(coc-range-select)

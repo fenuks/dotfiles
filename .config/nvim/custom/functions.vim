@@ -70,3 +70,21 @@ function! CloseAuxiliaryWindows() abort
     endfor
     pclose
 endfunction
+
+function! DeleteBuffers(buffers_nr) abort
+    if !empty(a:buffers_nr)
+        execute 'bdelete ' . join(a:buffers_nr)
+    endif
+endfunction
+
+function! DeleteHiddenBuffers() abort
+    let buffers=filter(getbufinfo(), 'empty(v:val.windows)')
+    let buffers_nr=map(l:buffers, 'v:val.bufnr')
+    call DeleteBuffers(l:buffers_nr)
+endfunction
+
+function! DeleteNamelessBuffers() abort
+    let buffers=filter(getbufinfo(), 'v:val.name is# ""')
+    let buffers_nr=map(l:buffers, 'v:val.bufnr')
+    call DeleteBuffers(l:buffers_nr)
+endfunction
