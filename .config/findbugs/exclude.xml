@@ -1,8 +1,14 @@
 <FindBugsFilter>
-  <Match>
-      <Class name="~.*\.Q[A-Z].+" />
-  </Match>
-  <Match>
-      <Bug pattern="EXS_EXCEPTION_SOFTENING_NO_CONSTRAINTS" />
-  </Match>
+    <Match>
+        <Or>
+            <!-- exclude android generated files -->
+            <Class name="~.*\.R\$.*" />
+            <Class name="~.*\.Manifest\$.*" />
+            <!-- exclude querydls generated files -->
+            <Class name="~.*\.Q[A-Z].+" />
+        </Or>
+    </Match>
+    <Match>
+        <Bug pattern="EXS_EXCEPTION_SOFTENING_NO_CONSTRAINTS" />
+    </Match>
 </FindBugsFilter>

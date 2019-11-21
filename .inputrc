@@ -18,3 +18,5 @@ Control-k history-search-backward
 Control-j history-search-forward
 Control-n menu-complete
 Control-p menu-complete-backward
+Control-a beginning-of-line 
+Control-e end-of-line 
