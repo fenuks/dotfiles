@@ -54,6 +54,7 @@ set shiftround " Round indent to multiple of 'shiftwidth'.
 set expandtab " Make tabs into spaces (set by tabstop)
 set smarttab " Smarter tab levels
 " set textwidth=80 " max line width
+set commentstring=#\ %s
 
 " display
 set t_Co=256
