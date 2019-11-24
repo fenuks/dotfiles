@@ -6,6 +6,7 @@ if [[ -f "$HOME/.bashrc.local.before" ]]; then
 fi
 source "$HOME/.config/shells/env"
 source "$HOME/.config/shells/env.sh"
+source "$HOME/.config/shells/env.bash"
 source "$HOME/.config/shells/functions.sh"
 source "$HOME/.config/shells/aliases"
 source "$HOME/.config/shells/config.sh"
