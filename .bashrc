@@ -6,7 +6,7 @@ if [[ -f "$HOME/.bashrc.local.before" ]]; then
 fi
 source "$HOME/.config/shells/env"
 source "$HOME/.config/shells/env.sh"
-source "$HOME/.config/shells/env.bash"
+source "$HOME/.config/bash/env"
 source "$HOME/.config/shells/functions.sh"
 source "$HOME/.config/shells/aliases"
 source "$HOME/.config/shells/config.sh"
@@ -25,7 +25,7 @@ bind Space:magic-space
 # Save multi-line commands as one command
 shopt -s cmdhist
 # clear screen pernamently
-bind '"\C-l": "clear && printf \"\\e[3J\""'
+bind '"\C-l": " clear && printf \"\\e[3J\""'
 
 # bind fzf git keys
 bind '"\er": redraw-current-line'

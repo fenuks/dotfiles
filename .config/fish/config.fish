@@ -1,6 +1,6 @@
 source "$HOME/.config/shells/env"
-source "$HOME/.config/shells/env.fish"
-source "$HOME/.config/shells/functions.fish"
+source "$HOME/.config/fish/env.fish"
+source "$HOME/.config/fish/functions.fish"
 source "$HOME/.config/shells/aliases"
 
 
