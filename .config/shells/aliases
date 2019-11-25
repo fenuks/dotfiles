@@ -21,10 +21,11 @@ alias steam-wine='wine $HOME/.wine/drive_c/Program\ Files\ \(x86\)/Steam/Steam.e
 alias check-yapf-config="diff <(yapf --style-help | grep -oP '^[a-zA-Z_0-9]+' | sort) <(grep -oP '^[a-zA-Z_0-9]+' ~/.config/yapf/style | sort)"
 # faster edition of common files
 alias v='vim'
-alias vb='vim ~/.bashrc'
+alias vsb='vim ~/.bashrc'
+alias vsz='vim ~/.config/zsh/.zshrc'
+alias vsf='vim ~/.config/fish/config.fish'
 alias vd='vim $(find-up docker-compose.yml)'
 alias vD='vim $(find-up Dockerfile)'
-alias vf='vim ~/.config/fish/config.fish'
 alias vh='sudoedit /etc/hosts'
 alias vm='vim $(find-up Makefile)'
 alias vp='vim $(find-up PKGBUILD)'

@@ -71,6 +71,9 @@ aliases = {
   UNSET = "set -clear";
   RESET = "set -default";
 };
+hilights = (
+  { text = "fenuks"; nick = "yes"; word = "yes"; }
+)
 
 statusbar = {
   # formats:

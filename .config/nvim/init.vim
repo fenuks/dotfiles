@@ -449,6 +449,7 @@ nnoremap <leader>sD :Grepper -tool rg -dir file -side<CR>
 " set cscopeprg=gtags-cscope
 " source /usr/share/vim/vimfiles/plugin/gtags.vim
 " source /usr/share/vim/vimfiles/plugin/gtags-cscope.vim
+nnoremap <silent> <C-l> :mode\|nohlsearch<CR>
 let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
 Plug 'nelstrom/vim-visual-star-search'
 Plug 'ludovicchabant/vim-gutentags'
