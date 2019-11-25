@@ -10,10 +10,13 @@ source_if_exists /usr/share/fzf/completion.zsh
 
 bindkey -v # use vim-mode
 KEYTIMEOUT=1 # vim-mode timeout
-bindkey '^P' up-history
-bindkey '^N' down-history
+bindkey '^k' history-beginning-search-backward
+bindkey '^j' history-beginning-search-forward
+bindkey '^P' reverse-menu-complete
+bindkey '^N' expand-or-complete
 bindkey -s '^l' 'clear\n'
 # autoload -U colors && colors
+bindkey -s '^l' 'clear\n'
 autoload -Uz compinit
 zstyle ':completion::complete:*' gain-privileges 1
 zstyle ':completion:*' menu select

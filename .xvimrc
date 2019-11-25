@@ -17,6 +17,7 @@ cnoremap <c-e> <end>
 " nnoremap <c-o> :xcmenucmd Go Back<cr>
 " nnoremap <c-i> :xcmenucmd Go Forward<cr>
 nnoremap <c-w>T :xcmenucmd Tab<cr>
+nnoremap <c-w>v :xcmenucmd Editor On Right<cr>
 " insert spaces
 nnoremap <silent> [<space> O<esc>
 nnoremap <silent> ]<space> o<esc>

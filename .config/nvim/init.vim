@@ -440,6 +440,8 @@ vmap <Leader>s <Plug>(GrepperOperator)
 nmap <Leader>so <Plug>(GrepperOperator)
 nnoremap <leader>sd :Grepper -tool rg -dir file<CR>
 nnoremap <leader>sD :Grepper -tool rg -dir file -side<CR>
+" search url ((\w+://)|/)[a-zA-Z0-9.?&/]+
+" vim regex: ( |"|\[|\=)((\w+:\/\/)|\/)[a-zA-Z0-9.?&/\-{}*]+
 
 "##### Navigation
 " gtags
