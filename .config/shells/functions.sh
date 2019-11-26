@@ -14,6 +14,16 @@ function run-ssh-agent() {
     ssh-agent -a "${SSH_AUTH_SOCK}"
 }
 
+function rcd {
+    tempfile="$(mktemp -t tmp.XXXXXX)"
+    ranger --choosedir="$tempfile" "${@:-$(pwd)}" --show-only-dirs
+    test -f "$tempfile" &&
+    if [ "$(cat -- "$tempfile")" != "$(echo -n `pwd`)" ]; then
+        cd -- "$(cat "$tempfile")"
+    fi
+    rm -f -- "$tempfile"
+}
+
 find-up () {
   path=$(pwd)
   match="$1"

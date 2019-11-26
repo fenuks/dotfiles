@@ -16,7 +16,8 @@ KEYTIMEOUT=1 # vim-mode timeout
 bindkey '^k' history-beginning-search-backward
 bindkey '^j' history-beginning-search-forward
 bindkey '^P' reverse-menu-complete
-bindkey '^N' expand-or-complete
+bindkey '^N' menu-expand-or-complete
+bindkey -s '^o' ' rcd'
 bindkey -s '^l' ' clear'
 # autoload -U colors && colors
 autoload -Uz compinit
