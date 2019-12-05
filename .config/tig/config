@@ -1,0 +1,2 @@
+bind generic <C-f> scroll-page-down
+bind generic <C-b> scroll-page-up

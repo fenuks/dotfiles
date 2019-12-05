@@ -274,6 +274,7 @@ nnoremap <silent> [n :call Conflict(1)<CR>
 nnoremap [ob :set background=light<CR>
 nnoremap [oc :set nocursorline<CR>
 nnoremap [od :diffoff<CR>
+nnoremap [oD :windo diffoff<CR>
 nnoremap [oh :set nohlsearch<CR>
 nnoremap [oi :set noignorecase<CR>
 nnoremap [ol :set nolist<CR>
@@ -289,6 +290,7 @@ nnoremap [ox :set nocursorline nocursorcolumn<CR>
 nnoremap ]ob :set background=dark<CR>
 nnoremap ]oc :set cursorline<CR>
 nnoremap ]od :diffthis<CR>
+nnoremap ]oD :windo diffthis<CR>
 nnoremap ]oh :set hlsearch<CR>
 nnoremap ]oi :set ignorecase<CR>
 nnoremap ]ol :set list<CR>
@@ -303,6 +305,7 @@ nnoremap ]ox :set cursorline cursorcolumn<CR>
 
 nnoremap =ob :let &background = ( &background == "dark"? "light" : "dark" )<CR>
 nnoremap =oc :set cursorline!<CR>
+nnoremap =od :set diff!<CR>
 nnoremap =od :set diff!<CR>
 nnoremap =oh :set hlsearch!<CR>
 nnoremap =oi :set ignorecase!<CR>
@@ -449,7 +452,7 @@ nnoremap <leader>sD :Grepper -tool rg -dir file -side<CR>
 " set cscopeprg=gtags-cscope
 " source /usr/share/vim/vimfiles/plugin/gtags.vim
 " source /usr/share/vim/vimfiles/plugin/gtags-cscope.vim
-nnoremap <silent> <C-l> :mode\|nohlsearch<CR>
+nnoremap <silent> <Leader>ol :mode\|nohlsearch<CR>
 let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
 Plug 'nelstrom/vim-visual-star-search'
 Plug 'ludovicchabant/vim-gutentags'
