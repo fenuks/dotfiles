@@ -7,6 +7,7 @@ alias eclim='/usr/lib/eclipse/eclimd'
 alias firefox-debug='firefox -start-debugger-server -no-remote'
 alias g='git'
 alias grep="grep --color=auto"
+alias irssi="irssi --config=\"$XDG_CONFIG_HOME\"/irssi/config --home=\"$XDG_DATA_HOME\"/irssi"
 alias jad-decompile="jad -o -d src-jad -r -s java **/*.class"
 alias ls='ls --color --classify --human-readable'
 alias ll='ls -l'
@@ -17,6 +18,7 @@ alias sm='HOME=~/.spacemacs emacs'
 alias spacemacs='HOME=~/.spacemacs emacs'
 alias steam-flatpak='flatpak run com.valvesoftware.Steam'
 alias steam-wine='wine $HOME/.wine/drive_c/Program\ Files\ \(x86\)/Steam/Steam.exe -no-cef-sandbox -opengl -fullscreenopengl'
+alias sqlite3="sqlite3 -init ~/.config/sqliterc"
 
 alias check-yapf-config="diff <(yapf --style-help | grep -oP '^[a-zA-Z_0-9]+' | sort) <(grep -oP '^[a-zA-Z_0-9]+' ~/.config/yapf/style | sort)"
 # faster edition of common files

@@ -1,5 +1,5 @@
 [$Version]
-update_info=kwin.upd:replace-scalein-with-scale,kwin.upd:port-minimizeanimation-effect-to-js,kwin.upd:port-scale-effect-to-js,kwin.upd:port-dimscreen-effect-to-js
+update_info=kwin.upd:replace-scalein-with-scale,kwin.upd:port-minimizeanimation-effect-to-js,kwin.upd:port-scale-effect-to-js,kwin.upd:port-dimscreen-effect-to-js,kwin.upd:auto-bordersize
 
 [Compositing]
 AnimationSpeed=3
@@ -23,6 +23,12 @@ Id_3=d4d179ff-4a39-4144-a5da-f1cc5da0c0b3
 Number=3
 Rows=1
 
+[DrmOutputs][3e74e80cda][56d7bab71b]
+Scale=1
+
+[DrmOutputs][3e74e80cda][7b98fc86db]
+Scale=1
+
 [Effect-CoverSwitch]
 TabBox=false
 TabBoxAlternative=false
@@ -33,6 +39,11 @@ TabBoxAlternative=false
 
 [Effect-Zoom]
 InitialZoom=1
+
+[NightColor]
+LatitudeAuto=54.4646
+LongitudeAuto=17.0297
+NightTemperature=2000
 
 [Plugins]
 coverswitchEnabled=true
@@ -76,7 +87,10 @@ RollOverDesktops=true
 
 [org.kde.kdecoration2]
 BorderSize=Normal
+BorderSizeAuto=false
 ButtonsOnLeft=MS
 ButtonsOnRight=HIAX
 CloseOnDoubleClickOnMenu=false
+ShowToolTips=true
 library=org.kde.breeze
+theme=Bryza

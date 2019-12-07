@@ -595,7 +595,10 @@ augroup vim
     autocmd FileType text setlocal commentstring=#\ %s
     autocmd FileType conf setlocal commentstring=#\ %s
     autocmd BufRead,BufNewFile *.conf setfiletype conf
+    autocmd BufRead,BufNewFile env setfiletype sh
     autocmd CursorHold * checktime " needed for autoread to be triggered
+    " reopening a file, restore last cursor position
+    autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | execute "normal! g'\"" | endif
 augroup END
 
 "##### HTML5

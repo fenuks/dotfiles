@@ -4,7 +4,7 @@ servers = (
     chatnet = "freenode";
     port = "6697";
     use_tls = "yes";
-    tls_cert = "~/.irssi/certs/freenode.pem";
+    tls_cert = "~/.config/irssi/certs/freenode.pem";
     tls_verify = "no";
     autoconnect = "yes";
   },

@@ -1,7 +1,8 @@
 [include]
-    path = ~/.gitconfig.local
+    path = ~/.config/git/config.local
 [core]
     excludesfile = ~/.gitignore
+    # pager = delta
 [cola]
     spellcheck = false
 [credential]
@@ -16,8 +17,9 @@
     sts = !git --no-pager diff --staged
     co = checkout
     ci = commit
+    cm = commit -m
     b = branch
-    commitp = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && PKGVER=$(grep -oP 'pkgver=\\K.+' .SRCINFO)-$(grep -oP 'pkgrel=\\K.+' .SRCINFO); git commit -m \"Update to ${PKGVER}\" $@; }; f"
+    commitp = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && PKGVER=$(grep -oP 'pkgver ?= ?\\K.+' .SRCINFO)-$(grep -oP 'pkgrel ?= ?\\K.+' .SRCINFO); git commit -m \"Update to ${PKGVER}\" $@; }; f"
     b = branch
 [color]
     ui = auto

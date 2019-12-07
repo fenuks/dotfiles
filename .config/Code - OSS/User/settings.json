@@ -1,7 +1,6 @@
 // Place your settings in this file to overwrite the default settings
 {
     "editor.fontFamily": "'Fira Code', 'Hack', 'Source Code Pro', 'Droid Sans Mono', 'Courier New', monospace, 'Droid Sans Fallback'",
-    "telemetry.enableCrashReporter": false,
     "telemetry.enableTelemetry": false,
     "extensions.showRecommendationsOnlyOnDemand": true,
     "[cpp]": {
@@ -100,7 +99,17 @@
     "latex-workshop.view.pdf.viewer": "tab",
     "search.usePCRE2": true,
     "githubPullRequests.telemetry.enabled": false,
-    "vim.neovimPath": "/usr/bin/nvim"
+    "vim.neovimPath": "/usr/bin/nvim",
+    "atlascode.jira.workingSite": {
+        "baseUrlSuffix": "atlassian.net"
+    },
+    "editor.suggestSelection": "first",
+    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+    "languageServerHaskell.useCustomHieWrapper": true,
+    "languageServerHaskell.useCustomHieWrapperPath": "/usr/bin/hie-wrapper",
+    "telemetry.enableCrashReporter": false,
+    "sqltools.telemetry": false,
+    "rest-client.enableTelemetry": false
     // "editor.formatOnType": true,
     // "editor.formatOnPaste": true,
     // "editor.autoIndent": true

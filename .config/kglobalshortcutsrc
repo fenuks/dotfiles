@@ -51,18 +51,14 @@ _k_friendly_name=KDE Daemon
 display=Display\t,Display\tMeta+P,Przełącz ekran
 
 [khotkeys]
-_k_friendly_name=Moduł ustawień systemowych
+_k_friendly_name=KDE Daemon
 {0180d98b-0516-4bb9-b1c4-cd2cb3f1d417}=Meta+W,none,rofi
-{13f7cac7-98ba-48ab-9560-553a58f79c81}=Print,none,Wywołaj narzędzie zrzutów ekranu
 {1bcdd663-a016-4ecb-9a1e-63cfb676dcea}=none,none,keepass
 {22d0cead-7fb9-4109-8e91-cf823a6e984c}=none,none,Zrzut ekranu
 {3c218e91-0379-4cd9-9cf9-d906c769bcc9}=none,none,konsole
-{40a62dd3-2d6a-4ca4-835b-6a42781c2e44}=Shift+Print,none,Wykonaj zrzut całego ekranu
 {d03619b6-9b3c-48cc-9d9c-a2aadb485550}=,none,Znajdź
 {e69c9a59-e4c9-4e85-80c2-e3810e4bc959}=Ctrl+Shift+D,none,Terminal
 {e8fb3d87-fd0e-4da9-8898-4e71a4bcd956}=Ctrl+Alt+T,none,Launch Konsole
-{e9246c50-b599-4d38-a2c1-61f25895d8f7}=Meta+Print,none,Wykonaj zrzut obecnie aktywnego okna
-{ec3fd754-7570-45cc-b9de-0214f3c9aa98}=Meta+Shift+Print,none,Wykonaj zrzut prostokątnego obszaru
 
 [klipper]
 _k_friendly_name=Klipper
@@ -84,10 +80,10 @@ increase_volume=Volume Up\tMeta+Alt+=,Volume Up,Zwiększ głośność
 mic_mute=Microphone Mute,Microphone Mute,Wycisz mikrofon
 mute=Volume Mute\tMeta+Alt+M,Volume Mute,Wycisz
 
-[krunner]
-_k_friendly_name=Wykonaj polecenie
-run command=Alt+Space\tAlt+F2\tSearch,Alt+Space,Wykonaj polecenie
-run command on clipboard contents=Alt+Shift+F2,Alt+Shift+F2,Wykonaj polecenie na zawartości schowka
+[krunner.desktop]
+RunClipboard=Alt+Shift+F2,Alt+Shift+F2,Wykonaj polecenie na zawartości schowka
+_k_friendly_name=KRunner
+_launch=Alt+Space\tAlt+F2\tSearch,none,KRunner
 
 [ksmserver]
 Halt Without Confirmation=Ctrl+Alt+Shift+PgDown,none,Zatrzymaj bez potwierdzenia
@@ -159,6 +155,7 @@ Switch to Screen 4=none,none,Przełącz na ekran 4
 Switch to Screen 5=none,none,Przełącz na ekran 5
 Switch to Screen 6=none,none,Przełącz na ekran 6
 Switch to Screen 7=none,none,Przełącz na ekran 7
+Toggle Night Color=none,none,Toggle Night Color
 Toggle Window Raise/Lower=none,none,Przełącz przywołanie/odwołanie okna
 Walk Through Desktop List=none,none,Przełączanie pulpitów z listy
 Walk Through Desktop List (Reverse)=none,none,Przełączanie pulpitów z listy (odwrotne)
@@ -166,12 +163,12 @@ Walk Through Desktops=none,none,Przełączanie pulpitów
 Walk Through Desktops (Reverse)=none,none,Przełączanie pulpitów (odwrotne)
 Walk Through Window Tabs=none,none,Przełącz kartę okna
 Walk Through Window Tabs (Reverse)=none,none,Przełącz kartę okna (odwrotnie)
-Walk Through Windows=Alt+Tab,none,Przełączanie okien
-Walk Through Windows (Reverse)=none,none,Przełączanie okien (odwrotne)
+Walk Through Windows=Alt+Tab,Alt+Tab,Przełączanie okien
+Walk Through Windows (Reverse)=none,Alt+Shift+Backtab,Przełączanie okien (odwrotne)
 Walk Through Windows Alternative=none,none,Alternatywne przełączanie okien
 Walk Through Windows Alternative (Reverse)=none,none,Alternatywne przełączanie okien (odwrotne)
-Walk Through Windows of Current Application=Alt+`,none,Przełączanie okien bieżącego programu
-Walk Through Windows of Current Application (Reverse)=Alt+~,none,Przełączanie okien bieżącego programu (odwrotne)
+Walk Through Windows of Current Application=Alt+`,Alt+`,Przełączanie okien bieżącego programu
+Walk Through Windows of Current Application (Reverse)=Alt+~,Alt+~,Przełączanie okien bieżącego programu (odwrotne)
 Walk Through Windows of Current Application Alternative=none,none,Alternatywne przełączanie okien bieżącego programu
 Walk Through Windows of Current Application Alternative (Reverse)=none,none,Alternatywne przełączanie okien bieżącego programu (odwrotne)
 Window Above Other Windows=none,none,Okno zawsze na wierzchu
@@ -256,6 +253,18 @@ playpausemedia=Media Play\tMeta+Alt+P,Media Play,Odtwórz/Wstrzymaj odtwarzanie
 previousmedia=Media Previous\tMeta+Alt+Shift+N,Media Previous,Odtwórz poprzedni plik
 stopmedia=Media Stop,Media Stop,Zatrzymaj odtwarzanie pliku
 
+[org.kde.dolphin.desktop]
+_k_friendly_name=Dolphin
+_launch=Meta+E,Meta+E,Dolphin
+
+[org.kde.spectacle.desktop]
+ActiveWindowScreenShot=Meta+Print,Meta+Print,Przechwyć bieżące okno
+CurrentMonitorScreenShot=,none,Przechwyć bieżący monitor
+FullScreenScreenShot=Shift+Print,Shift+Print,Przechwyć cały pulpit
+RectangularRegionScreenShot=Meta+Shift+Print,Meta+Shift+Print,Przechwyć obszar prostokątny
+_k_friendly_name=Spectacle
+_launch=Print,Print,Uruchom Spectacle
+
 [org_kde_powerdevil]
 Decrease Keyboard Brightness=Keyboard Brightness Down,Keyboard Brightness Down,Zmniejsz jasność klawiatury
 Decrease Screen Brightness=Monitor Brightness Down,Monitor Brightness Down,Zmniejsz jasność ekranu
@@ -265,6 +274,7 @@ Increase Screen Brightness=Monitor Brightness Up,Monitor Brightness Up,Zwiększ 
 PowerOff=Power Off,Power Off,Wyłącz
 Sleep=Sleep,Sleep,Uśpij
 Toggle Keyboard Backlight=Keyboard Light On/Off,Keyboard Light On/Off,Przełącz podświetlenie klawiatury
+Turn Off Screen=none,none,Wyłącz ekran
 _k_friendly_name=Zarządzanie energią
 
 [plasmashell]

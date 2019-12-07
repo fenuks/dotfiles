@@ -20,6 +20,9 @@ Height 1920=480
 Width 1080=640
 Width 1920=640
 
+[KFileDialog Settings]
+listViewIconSize=0
+
 [Shortcuts]
 help_whats_this=none
 keep-open=Shift+F1
@@ -37,4 +40,5 @@ toggle-session-monitor-silence=none
 DynamicTabTitles=true
 Height=100
 KeepAbove=false
+Screen=2
 Width=100
