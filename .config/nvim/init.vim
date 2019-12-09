@@ -207,7 +207,7 @@ vnoremap <A-k> gk
 nnoremap <A-j> gj
 nnoremap <A-k> gk
 
-nnoremap <silent> <Leader>ps :SSave <C-r>=GetSessionName()<CR>
+nnoremap <silent> <Leader>ps :mksession! <C-r>=GetSessionName()<CR>
 nnoremap <silent> <Leader>pl :SLoad <C-r>=GetSessionName()<CR>
 nnoremap <silent> <Leader>pd :SDelete<CR>
 nnoremap <silent> <Leader>pc :SClose<CR>
@@ -220,6 +220,7 @@ nnoremap <silent> <Leader>bn :call Execute(['new', 'only'])<CR>
 nnoremap <silent> <Leader>bs :call Execute(['new'])<CR>
 nnoremap <silent> <Leader>bv :call Execute(['vnew'])<CR>
 nnoremap <silent> <Leader>bd :call Execute(['bdelete'])<CR>
+nnoremap <silent> <Leader>bu :call Execute(['call ChangeBuffer(1)', 'bdelete#'])<CR>
 nnoremap <silent> <Leader>bh :call Execute(['hide'])<CR>
 nnoremap <silent> <Leader>bc :call Execute(['close'])<CR>
 nnoremap <silent> <Leader>bo :%bdelete<CR><C-^><C-^>:bdelete<CR>
@@ -587,7 +588,7 @@ if has('nvim')
     let g:polyglot_disabled = ['python', 'c', 'cpp', 'objc', 'objcpp', 'org']
 endif
 " ##### VIML
-Plug 'junegunn/vader.vim', { 'on': 'Vader' }
+Plug 'junegunn/vader.vim', { 'on': 'Vader', 'for': 'vader' }
 augroup vim
     autocmd!
     autocmd FileType vim nnoremap <buffer> <silent> K :help <C-r><C-w><CR>
@@ -595,6 +596,7 @@ augroup vim
     autocmd FileType text setlocal commentstring=#\ %s
     autocmd FileType conf setlocal commentstring=#\ %s
     autocmd BufRead,BufNewFile *.conf setfiletype conf
+    autocmd BufRead,BufNewFile *.conf setfiletype vader
     autocmd BufRead,BufNewFile env setfiletype sh
     autocmd CursorHold * checktime " needed for autoread to be triggered
     " reopening a file, restore last cursor position
