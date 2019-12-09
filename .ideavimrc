@@ -71,6 +71,7 @@ nnoremap g; :action JumpToLastChange<CR>
 nnoremap g, :action JumpToNextChange<CR>
 nnoremap <C-w>m :action HideAllWindows<CR>
 nnoremap <C-w>} :action QuickImplementations<CR>
+nnoremap <C-w>q :action CloseEditor<CR>
 
 nnoremap <Leader>mr :action Run<CR>
 nnoremap <Leader>md :action Debug<CR>
