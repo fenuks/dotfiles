@@ -1,7 +1,7 @@
 [include]
     path = ~/.config/git/config.local
 [core]
-    excludesfile = ~/.gitignore
+    excludesfile = ~/.config/git/ignore
     # pager = delta
 [cola]
     spellcheck = false
