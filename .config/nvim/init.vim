@@ -676,11 +676,6 @@ augroup END
 " Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 Plug 'gabrielelana/vim-markdown', { 'for': 'markdown' }
 
-augroup yaml
-    autocmd!
-    autocmd FileType yaml setlocal softtabstop=2 shiftwidth=2
-augroup END
-
 "##### ORG
 Plug 'jceb/vim-orgmode', { 'for': 'org' }
 
