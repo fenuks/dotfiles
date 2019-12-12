@@ -17,7 +17,6 @@ export HISTSIZE=100000
 export HISTTIMEFORMAT="%d/%m/%y %T "
 export HTML_TIDY="$HOME/.config/tidy.conf"
 export JAVA_HOME=$JDK_HOME
-export JAVA_TOOLS_OPTIONS="-javaagent:/usr/share/java/lombok/lombok.jar -Xbootclasspath/p:/usr/share/java/lombok/lombok.jar"
 export JDK_HOME=/usr/lib/jvm/java-8-openjdk/
 export LESS=-R
 export LESSHISTFILE="${XDG_CACHE_HOME}/less_history"
@@ -34,3 +33,7 @@ export SKIM_DEFAULT_COMMAND='git ls-tree -r --name-only HEAD || rg --files'
 export SSH_ASKPASS=/usr/bin/ksshaskpass
 export SSH_AUTH_SOCK=/tmp/ssh-agent.sock
 export UNCRUSTIFY_CONFIG="$HOME/.config/uncrustify.cfg"
+
+if [[ -f /usr/share/java/lombok/lombok.jar ]]; then
+    export JAVA_TOOLS_OPTIONS="-javaagent:/usr/share/java/lombok/lombok.jar -Xbootclasspath/p:/usr/share/java/lombok/lombok.jar"
+fi

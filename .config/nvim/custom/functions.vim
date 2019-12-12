@@ -8,7 +8,8 @@ let g:foldmethods = {
 \}
 
 let g:auxiliary_buffers = ['qf', 'fugitiveblame', 'nerdtree']
-let g:extra_auxiliary_buffers = ['ale-fix-suggest', 'help', 'git', 'vim-plug', '']
+" buffer types to close
+let g:extra_auxiliary_buffers = ['ale-fix-suggest', 'help', 'git', 'vim-plug', '', 'man']
 
 function! GetSessionName() abort
     " return g:vim_sesssions_dir . '/' . fnamemodify(getcwd(), ':p:h:t') . '.vim'

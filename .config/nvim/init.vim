@@ -481,6 +481,7 @@ Plug 'lambdalisue/lista.nvim', { 'on': 'Lista' }
 Plug 'sbdchd/neoformat', { 'on': 'Neoformat' }
 let g:neoformat_enabled_python = ['yapf', 'isort']
 let g:neoformat_enabled_json = ['prettier', 'js-beautify', 'jq']
+let g:neoformat_enabled_yaml = ['prettier']
 nnoremap <silent> <Leader>q :Neoformat<CR>
 
 Plug 'junegunn/vim-easy-align', { 'on': '<Plug>(EasyAlign)' }
@@ -562,6 +563,7 @@ Plug 'Valloric/YouCompleteMe', { 'for': ['java', 'javascript'] }
 " let g:neocomplete#enable_at_startup = 1
 if has('nvim')
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+    Plug 'deoplete-plugins/deoplete-dictionary'
     Plug 'zchee/deoplete-jedi', { 'for': 'python' }
     " Plug 'zchee/deoplete-go', { 'for': 'go' }
 else

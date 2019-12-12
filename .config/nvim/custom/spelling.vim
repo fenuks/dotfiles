@@ -7,7 +7,7 @@ digraph !? 8265 " ⁉
 
 augroup natural_language
     autocmd!
-    autocmd FileType gitcommit,hgcommit,org,help setlocal spell
+    autocmd FileType gitcommit,hgcommit,org,help setlocal spell dictionary+=/usr/share/dict/polish
 augroup END
 
 function! Mkspell() abort
