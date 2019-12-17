@@ -4,6 +4,7 @@ set thesaurus+=/usr/share/thesaurus/moby-thesaurus.txt
 digraph !! 8252 " ‼
 digraph ?! 8264 " ⁈
 digraph !? 8265 " ⁉
+set spellcapcheck=
 
 augroup natural_language
     autocmd!
