@@ -655,6 +655,7 @@ Plug 'rust-lang/rust.vim', { 'for': 'rust' }
 "##### Java
 " Plug 'artur-shaik/vim-javacomplete2', { 'for': 'java' }
 Plug 'mikelue/vim-maven-plugin', { 'on': ['Mvn', 'MvnNewMainFile'] }
+let g:java_highlight_functions=1
 
 "##### Scala
 "Plug 'ensime/ensime-vim', { 'for': ['java', 'scala'] }

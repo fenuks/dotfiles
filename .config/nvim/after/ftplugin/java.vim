@@ -6,6 +6,14 @@ let b:did_java_ftplugin = 1
 setlocal softtabstop=2
 setlocal shiftwidth=2
 
+" fold imports and comments
+function! FoldJavaExpr(lineno) abort
+    return getline(a:lineno) =~# '^import\|^\s*\(\*\|\/\*\)'
+endfunction
+
+setlocal foldexpr=FoldJavaExpr(v:lnum)
+setlocal foldmethod=expr
+
 setlocal includeexpr=substitute(v:fname,'\\.','/','g') " expression to change gf filename mapping
 setlocal colorcolumn=100
 
