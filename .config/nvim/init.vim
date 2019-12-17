@@ -80,7 +80,8 @@ set termguicolors " use trucolor
 " set showbreak='@' " show line continuation sign
 
 let g:vim_dir_path=fnamemodify($MYVIMRC, ':p:h')
-let g:vim_custom_scripts='$HOME/.config/nvim/custom/'
+let g:nvim_dir_path=expand('~/.config/nvim/')
+let g:vim_custom_scripts=g:nvim_dir_path . 'custom/'
 
 if has('unix')
     let g:tmp_dir='/tmp'
@@ -437,6 +438,7 @@ nnoremap <silent> <Leader>gT :BTags<CR>
 Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
 nnoremap <silent> <Leader>ft :NERDTreeToggle<CR>
 nnoremap <silent> <Leader>fT :NERDTreeFind<CR>
+nnoremap <silent> <Leader>fs :call ReadSkeletonFile()<CR>
 let g:NERDTreeIgnore=['\.pyc$', '\~$', '__pycache__']
 
 Plug 'mhinz/vim-grepper', { 'on': ['Grepper', '<Plug>(GrepperOperator)'] }

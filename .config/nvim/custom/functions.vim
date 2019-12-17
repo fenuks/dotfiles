@@ -89,3 +89,12 @@ function! DeleteNamelessBuffers() abort
     let buffers_nr=map(l:buffers, 'v:val.bufnr')
     call DeleteBuffers(l:buffers_nr)
 endfunction
+
+function! ReadSkeletonFile() abort
+    let l:skeleton_file = g:nvim_dir_path . 'templates/skeleton.' . &filetype
+    if filereadable(l:skeleton_file)
+        execute (line('.') - 1) . 'read ' . l:skeleton_file
+    else
+        echo 'Skeleton file ' . l:skeleton_file . " doesn't exist"
+    endif
+endfunction
