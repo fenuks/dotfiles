@@ -22,6 +22,11 @@ set cmdwinheight=20 " set commandline window height
 set undolevels=1000
 set autoread " Automatically reload file changed outside vim if not changed in vim
 set completeopt=longest,menuone,preview " complete longest common text instead of first word
+" scroll autocomplete popup down with <C-f>
+inoremap <expr> <C-f> pumvisible() ? "\<PageDown>" : "\<C-f>"
+" scroll autocomplete popup up with <C-b>
+inoremap <expr> <C-b> pumvisible() ? "\<PageUp>" : "\<C-b>"
+
 " set timeoutlen=150 " Time to wait after ESC (default causes an annoying delay), it affects also leader key, unfortunately
 set scrolloff=3 " number of context lines visible near cursor
 set sidescrolloff=5 " like 'scrolloff' but for columns
@@ -41,7 +46,7 @@ set splitright splitbelow " open splits in more natural position
 " formatting
 set backspace=indent,eol,start " more powerful backspacing"
 set formatprg=par " gq formatting program
-set formatoptions+=j " more intelligent j joining
+set formatoptions+=j " remove leading comment on J line joining
 set linebreak " breaklines *nicely*, virtually
 " formatting formatprg, formatexpr, formatoptions, equalprg
 set whichwrap=h,l,[,] " specify keys that can wrap next line
@@ -238,6 +243,7 @@ nnoremap <silent> <Leader>Tt :call Execute(['tabnew', 'terminal'])<CR>
 " tabs
 nnoremap <silent> <Leader>tn :call Execute(['tabnew'])<CR>
 nnoremap <silent> <Leader>to :tabonly<CR>
+nnoremap <silent> <Leader>td :tabclose<CR>
 
 " unimpaired mappings
 nnoremap [a :<C-U>previous<CR>
@@ -495,7 +501,7 @@ nmap <Leader>ga <Plug>(EasyAlign)
 Plug 'dense-analysis/ale'
 let g:ale_linters = {
 \   'python': ['mypy', 'pylint', 'flake8'],
-\   'cpp': []
+\   'java': ['javalsp', 'pmd']
 \}
 let g:ale_fixers = {
 \   '': ['trim_whitespace'],

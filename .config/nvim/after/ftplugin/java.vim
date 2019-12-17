@@ -3,6 +3,9 @@ if exists('b:did_java_ftplugin')
 endif
 let b:did_java_ftplugin = 1
 
+setlocal softtabstop=2
+setlocal shiftwidth=2
+
 setlocal includeexpr=substitute(v:fname,'\\.','/','g') " expression to change gf filename mapping
 setlocal colorcolumn=100
 

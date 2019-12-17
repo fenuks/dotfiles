@@ -7,7 +7,7 @@ let g:foldmethods = {
 \ 'diff': 'manual'
 \}
 
-let g:auxiliary_buffers = ['qf', 'fugitiveblame', 'nerdtree']
+let g:auxiliary_buffers = ['qf',  'fugitive', 'fugitiveblame', 'nerdtree']
 " buffer types to close
 let g:extra_auxiliary_buffers = ['ale-fix-suggest', 'help', 'git', 'vim-plug', '', 'man']
 
