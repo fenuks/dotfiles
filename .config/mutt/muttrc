@@ -1,0 +1,5 @@
+set copy=yes
+set mail_check=60
+set ssl_force_tls=yes
+set ssl_starttls
+source ~/.config/mutt/muttrc.local
