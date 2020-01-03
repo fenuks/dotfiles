@@ -716,6 +716,8 @@ call deoplete#custom#option({
     \ 'ignore_sources': {'c': ['tag'], 'cpp': ['tag'], 'xml': ['tag']}
 \ })
 call deoplete#custom#source('_', 'matchers', ['matcher_full_fuzzy'])
+call deoplete#custom#source('dictionary', 'matchers', ['matcher_head'])
+call deoplete#custom#source('dictionary', 'sorters', [])
 " transparent: CandyPaper,
 " gruvbox, badwolf
 " truecolor: onedark, OceanicNext

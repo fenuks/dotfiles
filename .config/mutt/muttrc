@@ -1,5 +1,16 @@
+source ~/.config/mutt/muttrc.local
+
 set copy=yes
 set mail_check=60
 set ssl_force_tls=yes
 set ssl_starttls
-source ~/.config/mutt/muttrc.local
+
+macro index,pager F "<pipe-message> urlscan<Enter>" "call urlscan to extract URLs out of a message"
+
+macro attach,compose F "<pipe-entry> urlscan<Enter>" "call urlscan to extract URLs out of a message"
+
+set header_cache = ~/.cache/mutt
+set message_cachedir = ~/.cache/mutt
+
+# experimental
+set query_command = "echo && notmuch address %s | fzf --height=10 --query=%s"
