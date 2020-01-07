@@ -1,6 +1,4 @@
 set spelllang=pl,en_gb
-set dictionary+=/usr/share/dict/british,/usr/share/dict/polish
-set thesaurus+=/usr/share/thesaurus/moby-thesaurus.txt
 digraph !! 8252 " ‼
 digraph ?! 8264 " ⁈
 digraph !? 8265 " ⁉
