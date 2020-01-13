@@ -15,12 +15,15 @@ _fzf_complete_git() {
     preview_command="
     git_file={}
     file=\${git_file:3}
-    if [[ \${git_file:0:2} == \"??\" ]]; then
+    git_prefix=\${git_file:0:2}
+    if [[ \${git_prefix} == \"??\" ]]; then
         if [[ -f \${file} ]]; then
             cat \${file} | head -$LINES
         else
             ls \${file} --color=always | head -$LINES
         fi
+    elif [[ \${git_prefix} == ' D' ]]; then
+        ${binary} show \"HEAD^:\${file}\" | head -$LINES
     else
         ${binary} diff --color=always \${file} | head -$LINES
     fi

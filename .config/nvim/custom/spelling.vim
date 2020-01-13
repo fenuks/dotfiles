@@ -6,8 +6,13 @@ set spellcapcheck=
 
 augroup natural_language
     autocmd!
-    autocmd FileType gitcommit,hgcommit,org,help setlocal spell dictionary+=/usr/share/dict/polish
+    autocmd FileType gitcommit,hgcommit,org,help call ConfigureLanguage()
 augroup END
+
+function! ConfigureLanguage() abort
+    setlocal spell dictionary+=/usr/share/dict/polish
+    call airline#extensions#whitespace#disable()
+endfunction
 
 function! Mkspell() abort
     for spellfile in split(glob('~/.config/nvim/spell/*.add'), '\n')
