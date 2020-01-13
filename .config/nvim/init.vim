@@ -45,7 +45,7 @@ set splitright splitbelow " open splits in more natural position
 
 " formatting
 set backspace=indent,eol,start " more powerful backspacing"
-set formatprg=par " gq formatting program
+set formatprg=par\ w79 " gq formatting program
 set formatoptions+=j " remove leading comment on J line joining
 set linebreak " breaklines *nicely*, virtually
 " formatting formatprg, formatexpr, formatoptions, equalprg
@@ -149,8 +149,8 @@ cnoremap v/ v/\v
 " stay in visual mode while changing indentation
 nnoremap gV `[v`] " select last changed text, original gV mapping is obscure
 " better history scrolling, with context
-cnoremap <C-n> <down>
-cnoremap <C-p> <up>
+cnoremap <expr> <C-n> pumvisible() ? "\<C-n>" : "\<Down>"
+cnoremap <expr> <C-p> pumvisible() ? "\<C-p>" : "\<Up>"
 cnoremap <C-A> <Home>
 cnoremap <C-E> <End>
 
@@ -422,6 +422,8 @@ command! DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis | wincmd p | d
 nnoremap <silent> ,df :DiffOrig<CR>
 
 "#### Filesystem
+Plug 'junegunn/fzf'
+Plug 'junegunn/fzf.vim'
 command! -nargs=* Agp
   \ call fzf#vim#ag(<q-args>, '2> /dev/null',
   \                 fzf#vim#with_preview({'left':'90%'},'up:60%'))
@@ -434,12 +436,14 @@ nnoremap <silent> <Leader>fd :Files <C-r>=expand("%:h")<CR>/<CR>
 nnoremap <silent> <Leader>gt :Tags<CR>
 nnoremap <silent> <Leader>gh :History<CR>
 nnoremap <silent> <Leader>gT :BTags<CR>
+snoremap <silent> <C-k> <ESC>ddi
 
 Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
 nnoremap <silent> <Leader>ft :NERDTreeToggle<CR>
 nnoremap <silent> <Leader>fT :NERDTreeFind<CR>
 nnoremap <silent> <Leader>fs :call ReadSkeletonFile()<CR>
 let g:NERDTreeIgnore=['\.pyc$', '\~$', '__pycache__']
+let g:NERDTreeMinimalUI=1
 
 Plug 'mhinz/vim-grepper', { 'on': ['Grepper', '<Plug>(GrepperOperator)'] }
 let g:grepper = {}
