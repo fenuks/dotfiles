@@ -4,6 +4,9 @@ set copy=yes
 set mail_check=60
 set ssl_force_tls=yes
 set ssl_starttls
+set text_flowed
+set send_charset="utf-8"
+set edit_headers=yes
 
 macro index,pager F "<pipe-message> urlscan<Enter>" "call urlscan to extract URLs out of a message"
 

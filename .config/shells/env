@@ -6,7 +6,6 @@ export BROWSER=firefox
 export DOTNET_CLI_TELEMETRY_OPTOUT=1
 export EDITOR=vim
 export ENHANCD_COMMAND=fzf
-export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_DEFAULT_OPTS='--height 80% --bind=ctrl-d:preview-page-down,ctrl-u:preview-page-up'
 export GCC_COLORS=auto
 export GTK_USE_PORTAL=1
@@ -16,8 +15,8 @@ export HISTIGNORE="&:[ ]*:exit:ls:bg:fg:history:clear"
 export HISTSIZE=100000
 export HISTTIMEFORMAT="%d/%m/%y %T "
 export HTML_TIDY="$HOME/.config/tidy.conf"
-export JAVA_HOME=$JDK_HOME
 export JDK_HOME=/usr/lib/jvm/java-8-openjdk/
+export JAVA_HOME="${JDK_HOME}"
 export LESS=-R
 export LESSHISTFILE="${XDG_CACHE_HOME}/less_history"
 export MAVEN_OPTS='-Xmx2048m'

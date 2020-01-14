@@ -1,9 +1,9 @@
+alias ag='ag --smart-case'
 alias chromium-dev='chromium --disable-web-security --user-data-dir --remote-debugging-port=9222'
 alias clear="clear && printf \"\\e[3J\""
 # alias clear="printf \"\\033c\""
 alias dc='docker-compose'
-alias eclimd='/usr/lib/eclipse/eclimd'
-alias eclim='/usr/lib/eclipse/eclimd'
+alias edit="${EDITOR}"
 alias firefox-debug='firefox -start-debugger-server -no-remote'
 alias g='git'
 alias grep="grep --color=auto"
@@ -14,6 +14,9 @@ alias ll='ls -l'
 alias ll.='ls -la'
 alias lls='ls -la --sort=size'
 alias llt='ls -la --sort=time'
+alias pager="${PAGER}"
+alias py='python'
+alias ipy='ipython'
 alias sm='HOME=~/.spacemacs emacs'
 alias spacemacs='HOME=~/.spacemacs emacs'
 alias steam-flatpak='flatpak run com.valvesoftware.Steam'

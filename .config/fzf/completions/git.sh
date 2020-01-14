@@ -16,6 +16,9 @@ _fzf_complete_git() {
     git_file={}
     file=\${git_file:3}
     git_prefix=\${git_file:0:2}
+    if [[ \${file:0:1} == '\"' ]]; then
+        file=\${file:1:-1}
+    fi
     if [[ \${git_prefix} == \"??\" ]]; then
         if [[ -f \${file} ]]; then
             cat \${file} | head -$LINES
@@ -25,7 +28,7 @@ _fzf_complete_git() {
     elif [[ \${git_prefix} == ' D' ]]; then
         ${binary} show \"HEAD^:\${file}\" | head -$LINES
     else
-        ${binary} diff --color=always \${file} | head -$LINES
+        ${binary} diff --color=always \"\${file}\" | head -$LINES
     fi
     "
 

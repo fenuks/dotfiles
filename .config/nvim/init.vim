@@ -595,8 +595,8 @@ Plug 'honza/vim-snippets'
 "#### Language specific
 Plug 'sheerun/vim-polyglot'
 if has('nvim')
-    Plug 'numirias/semshi', { 'for': 'python', 'do': ':UpdateRemotePlugins' }
-    Plug 'arakashic/chromatica.nvim', { 'for': ['c', 'cpp', 'objc', 'objcpp'], 'do': ':UpdateRemotePlugins' }
+    Plug 'numirias/semshi', { 'do': ':UpdateRemotePlugins' }
+    Plug 'arakashic/chromatica.nvim', { 'do': ':UpdateRemotePlugins' }
     let g:chromatica#enable_at_startup=1
     let g:chromatica#responsive_mode=1
     let g:polyglot_disabled = ['python', 'c', 'cpp', 'objc', 'objcpp', 'org']
@@ -609,12 +609,18 @@ augroup vim
     autocmd FileType qf setlocal nobuflisted " exclude quickfix withow from :bnext, etc.
     autocmd FileType text setlocal commentstring=#\ %s
     autocmd FileType conf setlocal commentstring=#\ %s
-    autocmd BufRead,BufNewFile *.conf setfiletype conf
-    autocmd BufRead,BufNewFile *.conf setfiletype vader
-    autocmd BufRead,BufNewFile env setfiletype sh
     autocmd CursorHold * checktime " needed for autoread to be triggered
     " reopening a file, restore last cursor position
     autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | execute "normal! g'\"" | endif
+augroup END
+
+augroup filetype_detect
+    autocmd!
+    autocmd BufRead,BufNewFile *.recipe setfiletype python
+    autocmd BufRead,BufNewFile *.conf setfiletype conf
+    autocmd BufRead,BufNewFile *.conf setfiletype vader
+    autocmd BufRead,BufNewFile env setfiletype sh
+    autocmd BufRead,BufNewFile PKGBUILD call ConfigurePkgbuild()
 augroup END
 
 "##### HTML5
@@ -638,11 +644,6 @@ Plug 'othree/javascript-libraries-syntax.vim', { 'for': 'javascript' }
 " Plug 'Quramy/tsuquyomi', { 'for': ['javascript', 'typescript'] }
 
 "##### Python
-augroup filetype_python
-    autocmd!
-    autocmd BufRead,BufNewFile *.recipe setfiletype python
-augroup END
-
 Plug 'davidhalter/jedi-vim', { 'for': 'python' }
 " Plug 'python-rope/ropevim', { 'for': 'python' }
 
@@ -678,12 +679,6 @@ let g:rtagsUseDefaultMappings = 1
 let g:rtagsAutoLaunchRdm=1
 " Plug 'Rip-Rip/clang_complete', { 'for': ['c', 'cpp', 'objc', 'objcpp'] }
 
-
-"##### Shell
-augroup shell
-    autocmd!
-    autocmd BufRead,BufNewFile PKGBUILD call ConfigurePkgbuild()
-augroup END
 
 "##### Natural language
 "##### Markdown

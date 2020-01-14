@@ -6,6 +6,7 @@ source ~/.config/shells/config.sh
 HISTFILE=~/.cache/zsh_history
 setopt HIST_IGNORE_SPACE
 setopt HIST_IGNORE_ALL_DUPS
+setopt COMPLETE_ALIASES
 
 
 source_if_exists /usr/share/fzf/key-bindings.zsh
@@ -21,7 +22,7 @@ bindkey -s '^o' ' rcd'
 bindkey -s '^l' ' clear'
 # autoload -U colors && colors
 autoload -Uz compinit
-zstyle ':completion::complete:*' gain-privileges 1
+zstyle ':completion::complete:*'
 zstyle ':completion:*' menu select
 compinit
 
