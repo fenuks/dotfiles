@@ -58,13 +58,13 @@ function bak() {
 function prune-history() {
     # remove simple commands having less than three words from history
     if [[ ! "${HISTFILE:-}" ]]; then
-        echo "Unset HISTFILE"
+        echo "ERROR: Unset HISTFILE"
         return
     fi
 
-    grep -P '^([^ \\]+(?<!\\) +){2,}.+$' "${HISTFILE}" --color=none >| /tmp/pruned-history
+    tac "${HISTFILE}" | awk '!x[$0]++' | grep -P '^([^ \\]+(?<!\\) +){2,}.+$' --color=none >| /tmp/history-pruned
+    tac /tmp/history-pruned >| "${HISTFILE}"
     history -c
-    mv /tmp/pruned-history "${HISTFILE}"
     history -r
 
 }
