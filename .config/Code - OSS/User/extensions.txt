@@ -8,9 +8,9 @@ DotJoshJohnson.xml
 dragos.scala-lsp
 eamodio.gitlens
 EditorConfig.EditorConfig
+firefox-devtools.vscode-firefox-debug
 GitHub.vscode-pull-request-github
 hackwaly.ocaml
-hbenl.vscode-firefox-debug
 humao.rest-client
 James-Yu.latex-workshop
 jcanero.hoogle-vscode
@@ -20,6 +20,7 @@ kalitaalexey.vscode-rust
 kisstkondoros.vscode-gutter-preview
 lextudio.restructuredtext
 mrcrowl.hg
+ms-azuretools.vscode-docker
 msjsdiag.debugger-for-chrome
 msjsdiag.vscode-react-native
 ms-python.python
@@ -28,11 +29,9 @@ ms-vscode.Go
 ms-vscode.node-debug2
 ms-vscode.vscode-typescript-tslint-plugin
 ms-vsliveshare.vsliveshare
-mtxr.sqltools
 naco-siren.gradle-language
 naumovs.color-highlight
 octref.vetur
-PeterJausovec.vscode-docker
 Pivotal.vscode-spring-boot
 platformio.platformio-ide
 redhat.java
