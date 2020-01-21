@@ -27,6 +27,13 @@ shopt -s cmdhist
 # clear screen pernamently
 bind '"\C-l": " clear && printf \"\\e[3J\""'
 
+_bash_exit() {
+    history -a
+    history -w
+}
+
+trap _bash_exit EXIT
+
 # bind fzf git keys
 bind '"\er": redraw-current-line'
 bind '"\C-g\C-f": "$(gf)\e\C-e\er"'

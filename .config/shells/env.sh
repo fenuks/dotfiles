@@ -1,5 +1,6 @@
 if command -v fd > /dev/null; then
     export FZF_DEFAULT_COMMAND='fd --type f'
+    export FZF_ALT_C_COMMAND='fd --type d'
 elif command -v rg > /dev/null; then
     export FZF_DEFAULT_COMMAND='rg --files 2> /dev/null'
 elif command -v ag > /dev/null; then
