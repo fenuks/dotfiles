@@ -106,6 +106,7 @@ endif
 if has('nvim')
     set scrollback=-1 " NeoVim terminal unlimited scrolling
     let g:vim_share_dir=g:local_share_dir . '/nvim'
+    set inccommand=nosplit
 else
     set pyxversion=2
     set viminfofile=$HOME/.vim/viminfo
@@ -452,6 +453,7 @@ let g:grepper.prompt_quote = 3
 nnoremap <Leader>ss :Grepper -tool rg<CR>
 nnoremap <Leader>sS :Grepper -tool rg -side<CR>
 nnoremap <leader>s* :Grepper -tool rg -open -switch -cword -noprompt<CR>
+nnoremap <Leader>sf :Grepper -tool rg -grepprg rg -H --no-heading --vimgrep -l<CR>
 vmap <Leader>s <Plug>(GrepperOperator)
 nmap <Leader>so <Plug>(GrepperOperator)
 nnoremap <leader>sd :Grepper -tool rg -dir file<CR>
