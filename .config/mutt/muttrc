@@ -15,5 +15,19 @@ macro attach,compose F "<pipe-entry> urlscan<Enter>" "call urlscan to extract UR
 set header_cache = ~/.cache/mutt
 set message_cachedir = ~/.cache/mutt
 
+# make mutt behave more like a vim
+bind index \Cu half-up
+bind pager \Cu half-up
+bind index \Cd half-down
+bind pager \Cd half-down
+bind generic,index,pager \Cf       next-page
+bind generic,index,pager \Cb       previous-page
+bind generic             gg        first-entry
+bind generic,index       G         last-entry
+bind pager               gg        top
+bind pager               G         bottom
+bind generic,pager       \Cy       previous-line
+bind generic,index,pager \Ce       next-line
+
 # experimental
 set query_command = "echo && notmuch address %s | fzf --height=10 --query=%s"
