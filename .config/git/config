@@ -2,6 +2,7 @@
     path = ~/.config/git/config.local
 [core]
     excludesfile = ~/.config/git/ignore
+    quotePath = false
     # pager = delta
 [cola]
     spellcheck = false

@@ -55,7 +55,11 @@
         "**/.svn": true,
         "tags": true,
         ".sonarlint": true,
-        "**/volumes/**": true
+        "**/volumes/**": true,
+        "**/.classpath": true,
+        "**/.project": true,
+        "**/.settings": true,
+        "**/.factorypath": true
     },
     "tslint.jsEnable": true,
     "files.eol": "\n",
@@ -77,7 +81,7 @@
         "suppressWelcomeNotice": true
     },
     "gitlens.keymap": "chorded",
-    "java.jdt.ls.vmargs": "-noverify -Xmx1G -XX:+UseG1GC -XX:+UseStringDeduplication -javaagent:\"/usr/share/java/lombok/lombok.jar\" -Xbootclasspath/a:\"/usr/share/java/lombok/lombok.jar\" -javaagent:\"/home/rkozicki/.vscode/extensions/GabrielBB.vscode-lombok-0.9.2/server/lombok.jar\" -Xbootclasspath/a:\"/home/rkozicki/.vscode/extensions/GabrielBB.vscode-lombok-0.9.2/server/lombok.jar\"",
+    "java.jdt.ls.vmargs": "-noverify -Xmx1G -XX:+UseG1GC -XX:+UseStringDeduplication -javaagent:\"/usr/share/java/lombok/lombok.jar\" -Xbootclasspath/a:\"/usr/share/java/lombok/lombok.jar\"",
     "gitlens.advanced.telemetry.enabled": false,
     "sonarlint.disableTelemetry": true,
     "javascript.implicitProjectConfig.checkJs": true,

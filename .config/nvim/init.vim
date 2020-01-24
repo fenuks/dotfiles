@@ -381,8 +381,8 @@ nnoremap <Leader>vL :UndotreeToggle<CR>
 Plug 'mhinz/vim-signify', { 'on': 'SignifyToggle' } " shows which lines were added and such
 let g:signify_vcs_list=['git', 'hg']
 Plug 'airblade/vim-gitgutter'
-nmap ]c <Plug>GitGutterNextHunk
-nmap [c <Plug>GitGutterPrevHunk
+nmap ]c <Plug>(GitGutterNextHunk)
+nmap [c <Plug>(GitGutterPrevHunk)
 let g:gitgutter_map_keys = 0
 nnoremap <Leader>vll :GitGutterToggle<CR>
 nnoremap <Leader>vlL :SignifyToggle<CR>
@@ -489,6 +489,9 @@ let g:wordmotion_mappings = {
 \ '<C-R><C-W>' : '<C-R><M-w>'
 \ }
 
+imap <C-q> <C-\><C-o>d_
+
+
 Plug 'lambdalisue/lista.nvim', { 'on': 'Lista' }
 
 "##### Formatting
@@ -546,10 +549,8 @@ nnoremap <silent> <leader>xg :TestVisit<CR>
 
 "##### Colorshemes
 " Plug 'Olical/vim-syntax-expand' " adds abbreviations that make editor pretty
-Plug 'arcticicestudio/nord-vim'
-Plug 'aonemd/kuroi.vim'
-" Plug 'altercation/vim-colors-solarized'
-" Plug 'fmoralesc/molokayo'
+Plug 'gruvbox-community/gruvbox'
+Plug 'iCyMind/NeoSolarized'
 
 "##### Autocomplete
 " Plug 'Raimondi/delimitMate'
@@ -701,13 +702,13 @@ call plug#end()
 
 if has('gui_running')
     let g:solarized_diffmode='high'
-    colorscheme kuroi
+    colorscheme gruvbox
     set lines=50 columns=140
     set guifont=Fira\ Code
 elseif &diff
-    colorscheme kuroi
+    colorscheme gruvbox
 else
-    colorscheme kuroi
+    colorscheme gruvbox
 endif
 
 let g:deoplete#enable_at_startup = 1
