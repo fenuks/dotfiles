@@ -63,13 +63,27 @@ function! CloseAuxiliaryWindows() abort
     for window in getwininfo()
         let l:bufnr = l:window['bufnr']
         let l:filetype = getbufvar(l:bufnr, '&filetype')
-        if index(g:auxiliary_buffers, l:filetype) is# -1 && index(g:extra_auxiliary_buffers, l:filetype) is# -1
+        let l:buftype = getbufvar(l:bufnr, '&buftype')
+        if index(g:auxiliary_buffers, l:filetype) is# -1 && index(g:extra_auxiliary_buffers, l:filetype) is# -1 && l:buftype isnot# 'nofile'
             continue
         endif
 
         execute 'bdelete ' . bufnr
     endfor
     pclose
+endfunction
+
+function! DiffOrig() abort
+    let l:original_filetype=&filetype
+    vert new
+    setlocal buftype=nofile
+    setlocal nobuflisted
+    execute 'setlocal filetype=' . l:original_filetype
+    read #
+    normal 0d_
+    diffthis
+    wincmd p
+    diffthis
 endfunction
 
 function! DeleteBuffers(buffers_nr) abort

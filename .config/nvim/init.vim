@@ -417,10 +417,9 @@ Plug 'will133/vim-dirdiff', { 'on': 'DirDiff' }
 nnoremap <silent> <Leader>dg :diffget<CR>
 nnoremap <silent> <Leader>dp :diffput<CR>
 
-nnoremap ,dp :diffput<CR>
-nnoremap ,dg :diffget<CR>
-command! DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis | wincmd p | diffthis
-nnoremap <silent> ,df :DiffOrig<CR>
+nnoremap <Leader>dp :diffput<CR>
+nnoremap <Leader>dg :diffget<CR>
+nnoremap <silent> <Leader>df :call DiffOrig()<CR>
 
 "#### Filesystem
 Plug 'junegunn/fzf'
@@ -453,6 +452,7 @@ let g:grepper.prompt_quote = 3
 nnoremap <Leader>ss :Grepper -tool rg<CR>
 nnoremap <Leader>sS :Grepper -tool rg -side<CR>
 nnoremap <leader>s* :Grepper -tool rg -open -switch -cword -noprompt<CR>
+nnoremap <Leader>s# :Grepper -open -switch -cword -noprompt -tool rg -grepprg rg -H --no-heading --vimgrep -l<CR>
 nnoremap <Leader>sf :Grepper -tool rg -grepprg rg -H --no-heading --vimgrep -l<CR>
 vmap <Leader>s <Plug>(GrepperOperator)
 nmap <Leader>so <Plug>(GrepperOperator)
@@ -490,6 +490,7 @@ let g:wordmotion_mappings = {
 \ }
 
 imap <C-q> <C-\><C-o>d_
+Plug 'arthurxavierx/vim-caser'
 
 
 Plug 'lambdalisue/lista.nvim', { 'on': 'Lista' }
@@ -682,7 +683,6 @@ let g:rtagsUseDefaultMappings = 1
 let g:rtagsAutoLaunchRdm=1
 " Plug 'Rip-Rip/clang_complete', { 'for': ['c', 'cpp', 'objc', 'objcpp'] }
 
-
 "##### Natural language
 "##### Markdown
 " Plug 'suan/vim-instant-markdown', { 'for': 'markdown' }
@@ -698,6 +698,7 @@ Plug 'lervag/vimtex', { 'for': 'tex' }
 " Plug 'vim-scripts/LanguageTool'
 Plug 'dpelle/vim-LanguageTool', { 'for': ['markdown', 'rst', 'org'] }
 Plug 'rhysd/vim-grammarous', { 'on': 'GrammarousCheck' }
+
 call plug#end()
 
 if has('gui_running')
