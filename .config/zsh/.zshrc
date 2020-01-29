@@ -7,6 +7,7 @@ HISTFILE=~/.cache/zsh_history
 setopt HIST_IGNORE_SPACE
 setopt HIST_IGNORE_ALL_DUPS
 setopt COMPLETE_ALIASES
+setopt EXTENDED_GLOB
 
 
 source_if_exists /usr/share/fzf/key-bindings.zsh
