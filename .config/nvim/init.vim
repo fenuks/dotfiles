@@ -208,6 +208,7 @@ cnoremap <A-k> <UP>
 cnoremap <A-j> <DOWN>
 " conflicts with builtin mapping that has duplicate in <C-m>
 inoremap <C-j> <ESC>o
+inoremap <C-l> <DEL>
 
 vnoremap <A-j> gj
 vnoremap <A-k> gk
