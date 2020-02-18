@@ -4,6 +4,7 @@ update_info=powerdevil_move_shortcuts.upd:powerdevil_move_shortcuts
 [ActivityManager]
 _k_friendly_name=Zarządzanie aktywnościami
 switch-to-activity-a7fdd794-ad96-4958-8e34-13ca2ec00fbf=none,none,Przełącz do aktywności "Icons"
+switch-to-activity-ae08d1c5-f380-4c93-b2b9-ee5781397ae1=none,none,Przełącz do aktywności "Default"
 switch-to-activity-b5460424-2b99-479d-948f-d40dd8849532=none,none,Przełącz do aktywności "New Activity"
 
 [KDE Keyboard Layout Switcher]
@@ -43,7 +44,7 @@ _k_friendly_name=Dostępność
 Disable Touchpad=Touchpad Off,Touchpad Off,Wyłącz gładzik
 Enable Touchpad=Touchpad On,Touchpad On,Włącz gładzik
 Toggle Touchpad=Touchpad Toggle,Touchpad Toggle,Przełącz gładzik
-_k_friendly_name=KWin
+_k_friendly_name=KDE Daemon
 
 [kded5]
 Show System Activity=Ctrl+Esc,Ctrl+Esc,Pokaż aktywność systemu
@@ -52,13 +53,8 @@ display=Display\t,Display\tMeta+P,Przełącz ekran
 
 [khotkeys]
 _k_friendly_name=KDE Daemon
-{0180d98b-0516-4bb9-b1c4-cd2cb3f1d417}=Meta+W,none,rofi
-{1bcdd663-a016-4ecb-9a1e-63cfb676dcea}=none,none,keepass
-{22d0cead-7fb9-4109-8e91-cf823a6e984c}=none,none,Zrzut ekranu
-{3c218e91-0379-4cd9-9cf9-d906c769bcc9}=none,none,konsole
+{17e95744-4157-4f03-9acb-073c8c5586e7}=none,none,Launch Konsole
 {d03619b6-9b3c-48cc-9d9c-a2aadb485550}=,none,Znajdź
-{e69c9a59-e4c9-4e85-80c2-e3810e4bc959}=Ctrl+Shift+D,none,Terminal
-{e8fb3d87-fd0e-4da9-8898-4e71a4bcd956}=Ctrl+Alt+T,none,Launch Konsole
 
 [klipper]
 _k_friendly_name=Klipper
@@ -96,7 +92,7 @@ _k_friendly_name=ksmserver
 [kwin]
 Activate Window Demanding Attention=Ctrl+Alt+A,Ctrl+Alt+A,Uaktywnij okno żądające uwagi
 Decrease Opacity=none,none,Zmniejsz nieprzezroczystość aktywnego okna o 5 %
-Expose=Ctrl+F9,Ctrl+F9,Włącz/wyłącz prezentację okien (Bieżący pulpit)
+Expose=Ctrl+F9\tMeta+P,Ctrl+F9,Włącz/wyłącz prezentację okien (Bieżący pulpit)
 ExposeAll=Ctrl+F10\tLaunch (C),Ctrl+F10\tLaunch (C),Włącz/wyłącz prezentację okien (Wszystkie pulpity)
 ExposeClass=Ctrl+F7,Ctrl+F7,Włącz/wyłącz prezentację okien (Klasa okna)
 FlipSwitchAll=none,none,Przełączanie przełącznika stosowego (Wszystkie pulpity)
@@ -115,10 +111,10 @@ Setup Window Shortcut=none,none,Ustawienia skrótu okna
 Show Desktop=none,Meta+D,Pokaż pulpit
 ShowDesktopGrid=Ctrl+F8,Ctrl+F8,Pokaż siatkę na pulpicie
 Suspend Compositing=Alt+Shift+F12,Alt+Shift+F12,Wstrzymaj kompozycje
-Switch One Desktop Down=,none,Przełącz jeden pulpit niżej
-Switch One Desktop Up=,none,Przełącz jeden pulpit wyżej
-Switch One Desktop to the Left=Meta+H,none,Przełącz na pulpit po lewej
-Switch One Desktop to the Right=Meta+L,none,Przełącz na pulpit po prawej
+Switch One Desktop Down=,Meta+Ctrl+Down,Przełącz jeden pulpit niżej
+Switch One Desktop Up=,Meta+Ctrl+Up,Przełącz jeden pulpit wyżej
+Switch One Desktop to the Left=Meta+H,Meta+Ctrl+Left,Przełącz na pulpit po lewej
+Switch One Desktop to the Right=Meta+L,Meta+Ctrl+Right,Przełącz na pulpit po prawej
 Switch Window Down=Meta+Alt+Down,Meta+Alt+Down,Przełącz do okna poniżej
 Switch Window Left=Meta+Alt+Left,Meta+Alt+Left,Przełącz do okna z lewej
 Switch Window Right=Meta+Alt+Right,Meta+Alt+Right,Przełącz do okna z prawej
@@ -257,6 +253,10 @@ stopmedia=Media Stop,Media Stop,Zatrzymaj odtwarzanie pliku
 _k_friendly_name=Dolphin
 _launch=Meta+E,Meta+E,Dolphin
 
+[org.kde.plasma.emojier.desktop]
+_k_friendly_name=Wybierak Emoji
+_launch=Meta+.,Meta+.,Wybierak Emoji
+
 [org.kde.spectacle.desktop]
 ActiveWindowScreenShot=Meta+Print,Meta+Print,Przechwyć bieżące okno
 CurrentMonitorScreenShot=,none,Przechwyć bieżący monitor
@@ -291,6 +291,7 @@ activate task manager entry 8=Meta+8,Meta+8,Aktywuj wpis 8 na pasku zadań
 activate task manager entry 9=Meta+9,Meta+9,Aktywuj wpis 9 na pasku zadań
 activate widget 2=Alt+F1,none,Włącz element interfejsu: Aktywator programów
 activate widget 31=Meta+Space,none,Włącz element interfejsu: Tablica programów
+activate widget 64=,none,Włącz element interfejsu: Aktywator programów
 clear-history=none,none,Wyczyść historię schowka
 clipboard_action=Ctrl+Alt+X,Ctrl+Alt+X,Włącz działania schowka
 cycleNextAction=none,none,Następny element historii
@@ -304,6 +305,9 @@ show dashboard=Meta+F12,Ctrl+F12,Pokaż pulpit
 show-barcode=none,none,Pokaż kod kreskowy...
 show-on-mouse-pos=none,none,Otwórz Klippera pod wskaźnikiem myszy
 stop current activity=Meta+S,Meta+S,Zatrzymaj bieżącą aktywność
+switch to next activity=none,none,Switch to Next Activity
+switch to previous activity=none,none,Switch to Previous Activity
+toggle do not disturb=none,none,Toggle do not disturb
 
 [yakuake]
 _k_friendly_name=Yakuake

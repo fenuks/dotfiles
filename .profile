@@ -10,6 +10,7 @@ export CCACHE_CONFIGPATH="$XDG_CONFIG_HOME"/ccache.config
 export CCACHE_DIR="$XDG_CACHE_HOME"/ccache 
 export GTK_USE_PORTAL=1
 export IPYTHONDIR="$XDG_CONFIG_HOME"/jupyter
+export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel'
 export JUPYTER_CONFIG_DIR="$HOME/.config/jupyter"
 export KODI_DATA="${XDG_DATA_HOME}/kodi"
 export KODI_HOME="${XDG_DATA_HOME}/kodi"
