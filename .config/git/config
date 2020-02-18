@@ -22,6 +22,7 @@
     b = branch
     commitp = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && PKGVER=$(grep -oP 'pkgver ?= ?\\K.+' .SRCINFO)-$(grep -oP 'pkgrel ?= ?\\K.+' .SRCINFO); git commit -m \"Update to ${PKGVER}\" $@; }; f"
     b = branch
+    url = remote get-url origin
 [color]
     ui = auto
 [push]
@@ -46,3 +47,7 @@
     track-branches = false
 [fetch]
     prune = true
+[url "https://anongit.kde.org/"]
+	insteadOf = kde:
+[url "git@git.kde.org:"]
+	pushInsteadOf = kde:

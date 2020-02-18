@@ -6,3 +6,4 @@ node_modules/
 *.min.css
 *.min.js
 tags
+build/

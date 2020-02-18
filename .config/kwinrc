@@ -65,7 +65,7 @@ HighlightWindows=true
 LayoutName=present_windows
 MinimizedMode=0
 MultiScreenMode=0
-ShowDesktopMode=0
+ShowDesktopMode=1
 ShowTabBox=true
 SwitchingMode=0
 

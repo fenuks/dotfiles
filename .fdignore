@@ -27,3 +27,4 @@ node_modules/
 *.min.js
 CMakeFiles/
 target/
+build/

@@ -35,7 +35,6 @@ octref.vetur
 Pivotal.vscode-spring-boot
 platformio.platformio-ide
 redhat.java
-robinbentley.sass-indented
 rust-lang.rust
 SonarSource.sonarlint-vscode
 timonwong.shellcheck

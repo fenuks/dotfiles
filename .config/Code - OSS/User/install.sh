@@ -2,7 +2,7 @@
 if [ -f /usr/bin/visual-studio-code-oss ]; then
     CODE=visual-studio-code-oss
 else
-    CODE=code
+    CODE=/usr/bin/code
 fi
 
 while read -r ext
