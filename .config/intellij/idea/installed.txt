@@ -1,48 +1,32 @@
-.ignore
-Android Support
-Ant Support
+AceJump
 BashSupport
-Bytecode Viewer
+CheckStyle-IDEA
+Code Navigator
 Copyright
-Coverage
-CVS Integration
-Database Navigator
-Docker integration
-Eclipse Integration
-EditorConfig
+Dart
+Error-prone plugin
 FindBugs-IDEA
-Git Integration
-GitHub
-Gradle
-Groovy
-Haskell
-HaskForce
-I18n for Java
-IdeaVim
-IntelliLang
-Java Bytecode Decompiler
-Java Stream Debugger
-JavaFX
-JUnit
-Kotlin
-Lombok Plugin
+IdeaVIM
+Key Promoter X
+Lombook Plugin
 Lua
-Markdown support
-Maven Integration
-Mercurial Integration
-Plugin DevKit
-Properties Support
-Rust
-Scala
-Settings Repository
-Smali Support
-SonarLint
-Subversion Integration
-Swagger Plugin
-Task Management
-Terminal
-TestNG-J
-UI Designer
-XPathView + XSLT Support
-XSLT-Debugger
-YAML
+PMDPlugin
+PlantUML integration
+com.dmarcotte.handlebars
+com.intellij.plugins.html.instantEditing
+com.wix.eslint
+google-java-format
+io.flutter
+io.protostuff.protostuff-jetbrains-plugin
+mobi.hsz.idea.gitignore
+mobi.hsz.idea.latex
+org.asciidoctor.intellij.asciidoc
+org.intellij.scala
+org.jboss.forge.plugin.idea
+org.jetbrains.kotlin
+org.rust.lang
+org.sonarlint.idea
+org.toml.lang
+org.zalando.intellij.swagger
+training
+ua.in.dej.myEmmet

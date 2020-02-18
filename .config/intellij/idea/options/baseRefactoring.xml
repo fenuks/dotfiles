@@ -1,15 +1,4 @@
 <application>
-  <component name="CodeStyleSchemesUIConfiguration">
-    <option name="RECENT_IMPORT_FILE_LOCATION" value="file:$USER_HOME$/Downloads/enigma_idea_coding_convention_v1.2.xml" />
-  </component>
-  <component name="DBNavigator.Application.Settings">
-    <enable-debug-mode value="false" />
-    <enable-developer-mode value="false" />
-    <show-plugin-conflict-dialog value="false" />
-  </component>
-  <component name="NodeJsLocalInterpreters">
-    <local-interpreter path="/usr/bin/node" />
-  </component>
   <component name="RefactoringSettings">
     <option name="RENAME_SEARCH_IN_COMMENTS_FOR_CLASS" value="false" />
     <option name="RENAME_SEARCH_IN_COMMENTS_FOR_METHOD" value="false" />
