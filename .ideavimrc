@@ -6,6 +6,7 @@ set hlsearch
 set ignorecase
 set infercase
 set smartcase
+set ideajoin
 set incsearch
 set number
 set relativenumber
@@ -50,6 +51,14 @@ nnoremap <C-h> :action GotoPreviousError<CR>
 nnoremap <C-l> :action GotoNextError<CR>
 nnoremap <C-o> :action Back<CR>
 nnoremap <C-i> :action Forward<CR>
+nnoremap - ]w
+nnoremap _ ]b
+nnoremap g- [w
+nnoremap g_ [b
+nnoremap d- d]w
+nnoremap d_ d[b
+nnoremap c- c]w
+nnoremap c_ c[b
 
 " IdeaVim stuff
 set vim-surround
@@ -72,6 +81,12 @@ nnoremap g, :action JumpToNextChange<CR>
 nnoremap <C-w>m :action HideAllWindows<CR>
 nnoremap <C-w>} :action QuickImplementations<CR>
 nnoremap <C-w>q :action CloseEditor<CR>
+nnoremap <C-w>z :action HideAllWindows<CR>
+nnoremap <C-w>z :action HideAllWindows<CR>
+nnoremap <C-w><C-w>z :action HideAllWindows<CR>
+
+nnoremap <Leader>bn :action NewClass<CR>
+nnoremap <C-w>n :action NewClass<CR>
 
 nnoremap <Leader>mr :action Run<CR>
 nnoremap <Leader>md :action Debug<CR>
