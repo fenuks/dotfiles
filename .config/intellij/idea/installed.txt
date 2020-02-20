@@ -2,7 +2,6 @@ AceJump
 BashSupport
 CheckStyle-IDEA
 Code Navigator
-Copyright
 Dart
 Error-prone plugin
 FindBugs-IDEA
@@ -12,9 +11,18 @@ Lombook Plugin
 Lua
 PMDPlugin
 PlantUML integration
+color.scheme.GapStyle
+color.scheme.GitHub 3
+color.scheme.Monokai Materialized
+color.scheme.Tomorrow Dark
+com.berzanmikaili.intellij.monokai_pro
 com.dmarcotte.handlebars
+com.hiberbee.intellij.hiberbee-theme
 com.intellij.plugins.html.instantEditing
+com.jetbrains.lightThemePreview
+com.thvardhan.gradianto
 com.wix.eslint
+de.thl.intellijinfer
 google-java-format
 io.flutter
 io.protostuff.protostuff-jetbrains-plugin
@@ -28,5 +36,6 @@ org.rust.lang
 org.sonarlint.idea
 org.toml.lang
 org.zalando.intellij.swagger
+tanvd.grazi
 training
 ua.in.dej.myEmmet

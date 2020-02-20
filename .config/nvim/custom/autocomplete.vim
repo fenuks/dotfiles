@@ -11,6 +11,7 @@ let g:LanguageClient_serverCommands = {
     \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
     \ 'typescript': ['javascript-typescript-stdio'],
     \ 'xml': ['lsp4xml'],
+    \ 'yaml': ['yaml-language-server', '--stdio'],
     \ 'mvn_pom': ['lsp4xml'],
     \ 'vue': ['vls'],
     \ }
@@ -82,6 +83,7 @@ let g:ycm_language_server = []
 " let g:deoplete#sources#ternjs#types = 1
 " let g:deoplete#sources#ternjs#docs = 1
 " deoplete-jedi
+
 let g:deoplete#sources#jedi#show_docstring=1
 
 " NVIM COMPLETION MANAGER
@@ -110,6 +112,7 @@ function! ConfigureLanguageClient() abort
     nnoremap <silent> <buffer> <Leader>la :call LanguageClient#textDocument_codeAction()<CR>
     " setlocal formatexpr=LanguageClient_textDocument_rangeFormatting()
     " setlocal omnifunc=LanguageClient#complete
+    LanguageClientStart
 endfunction
 
 
@@ -132,6 +135,7 @@ function! ConfigureCoc() abort
     inoremap <buffer> <expr> <cr> pumvisible() ? "\<C-y>" : "\<CR>"
     " disable deoplete
     call deoplete#custom#buffer_option('auto_complete', v:false)
+    CocEnable
     " <Plug>(coc-diagnostic-next) 
     " <Plug>(coc-diagnostic-prev) 
     " <Plug>(coc-diagnostic-next-error)
@@ -148,6 +152,7 @@ function! CocInstallSources() abort
     " call coc#add_extension('coc-json', 'coc-flutter')
     CocInstall coc-flutter
     CocInstall coc-json
+    CocInstall coc-yaml
 endfunction
 
 command! CocInstallSources call CocInstallSources()

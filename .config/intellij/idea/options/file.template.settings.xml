@@ -1,11 +1,7 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <application>
   <component name="ExportableFileTemplateSettings">
-    <default_templates />
-    <internal_templates />
-    <includes_templates />
-    <code_templates />
-    <j2ee_templates />
+    <default_templates>
+      <template name="Entity.java" reformat="true" live-template-enabled="true" />
+    </default_templates>
   </component>
 </application>
-

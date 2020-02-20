@@ -86,7 +86,8 @@ nnoremap <C-w>z :action HideAllWindows<CR>
 nnoremap <C-w><C-w>z :action HideAllWindows<CR>
 
 nnoremap <Leader>bn :action NewClass<CR>
-nnoremap <C-w>n :action NewClass<CR>
+" nnoremap <C-w>n :action NewElementSamePlace<CR>
+nnoremap <C-w>n :action NewElement<CR>
 
 nnoremap <Leader>mr :action Run<CR>
 nnoremap <Leader>md :action Debug<CR>

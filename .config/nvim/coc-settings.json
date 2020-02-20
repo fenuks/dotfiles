@@ -31,5 +31,8 @@
     "rootPatterns": ["compile_flags.txt", "compile_commands.json", ".vim/", ".git/", ".hg/"],
     "filetypes": ["c", "cpp", "objc", "objcpp"]
   }
+},
+"yaml.schemas": {
+    "openapi": "https://raw.githubusercontent.com/OAI/OpenAPI-Specification/master/schemas/v3.0/schema.yaml"
 }
 }

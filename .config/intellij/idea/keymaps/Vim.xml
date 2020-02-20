@@ -52,6 +52,10 @@
   <action id="EditorCodeBlockStart">
     <keyboard-shortcut first-keystroke="shift ctrl alt open_bracket" />
   </action>
+  <action id="EditorCompleteStatement">
+    <keyboard-shortcut first-keystroke="shift ctrl enter" />
+    <keyboard-shortcut first-keystroke="shift ctrl m" />
+  </action>
   <action id="EditorCopy">
     <keyboard-shortcut first-keystroke="ctrl insert" />
   </action>
@@ -60,6 +64,9 @@
   </action>
   <action id="EditorDeleteLine">
     <keyboard-shortcut first-keystroke="shift ctrl y" />
+  </action>
+  <action id="EditorDeleteToWordStartInDifferentHumpsMode">
+    <keyboard-shortcut first-keystroke="ctrl q" />
   </action>
   <action id="EditorDown">
     <keyboard-shortcut first-keystroke="down" />
@@ -72,6 +79,7 @@
   <action id="EditorLeftWithSelection">
     <keyboard-shortcut first-keystroke="shift ctrl alt left" />
   </action>
+  <action id="EditorMatchBrace" />
   <action id="EditorMoveToPageBottom">
     <keyboard-shortcut first-keystroke="ctrl alt page_down" />
   </action>
@@ -153,6 +161,7 @@
   <action id="InsertLiveTemplate">
     <keyboard-shortcut first-keystroke="shift ctrl alt j" />
   </action>
+  <action id="JumpToLastWindow" />
   <action id="MethodHierarchy.ImplementMethodAction" />
   <action id="MethodHierarchy.OverrideMethodAction">
     <keyboard-shortcut first-keystroke="shift ctrl o" />
@@ -263,4 +272,10 @@
   <action id="android.deploy.CodeSwap">
     <keyboard-shortcut first-keystroke="ctrl alt f10" />
   </action>
+  <action id="latex.align_center" />
+  <action id="latex.align_left" />
+  <action id="latex.align_right" />
+  <action id="latex.bold" />
+  <action id="latex.italic" />
+  <action id="latex.underline" />
 </keymap>

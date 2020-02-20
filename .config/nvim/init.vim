@@ -428,9 +428,9 @@ Plug 'junegunn/fzf.vim'
 command! -nargs=* Agp
   \ call fzf#vim#ag(<q-args>, '2> /dev/null',
   \                 fzf#vim#with_preview({'left':'90%'},'up:60%'))
-
-Plug 'junegunn/fzf'
-Plug 'junegunn/fzf.vim'
+inoremap <expr> <c-x><c-f> fzf#vim#complete#path(
+    \ "find . -path '*/\.*' -prune -o -print \| sed '1d;s:^..::'",
+    \ fzf#wrap({'dir': expand('%:p:h')}))
 nnoremap <silent> <C-p> :Files<CR>
 nnoremap <silent> <Leader>fl :Files<CR>
 nnoremap <silent> <Leader>fd :Files <C-r>=expand("%:h")<CR>/<CR>
@@ -453,7 +453,7 @@ let g:grepper.prompt_quote = 3
 nnoremap <Leader>ss :Grepper -tool rg<CR>
 nnoremap <Leader>sS :Grepper -tool rg -side<CR>
 nnoremap <leader>s* :Grepper -tool rg -open -switch -cword -noprompt<CR>
-nnoremap <Leader>s# :Grepper -open -switch -cword -noprompt -tool rg -grepprg rg -H --no-heading --vimgrep -l<CR>
+nnoremap <Leader>s% :Grepper -open -switch -cword -noprompt -tool rg -grepprg rg -H --no-heading --vimgrep -l<CR>
 nnoremap <Leader>sf :Grepper -tool rg -grepprg rg -H --no-heading --vimgrep -l<CR>
 vmap <Leader>s <Plug>(GrepperOperator)
 nmap <Leader>so <Plug>(GrepperOperator)
@@ -557,7 +557,8 @@ Plug 'iCyMind/NeoSolarized'
 "##### Autocomplete
 " Plug 'Raimondi/delimitMate'
 " Plug 'Townk/vim-autoclose'
-Plug 'jiangmiao/auto-pairs'
+" Plug 'jiangmiao/auto-pairs'
+Plug '~/Projects/thirdparty/auto-pairs'
 let g:AutoPairs = {'(':')', '[':']', '{':'}', "'":"'", '"':'"', '`':'`',
 \                    '„':'”', '‘':'’', '“':'”'}
 let g:AutoClosePairs_add = '<> | „” ‘’'
@@ -567,8 +568,8 @@ let g:AutoPairsShortcutJump=''
 let g:AutoPairsShortcutBackInsert=''
 
 " ##### Code autocompletion
-Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'make release', 'for': ['rust', 'typescript', 'vue', 'xml', 'swift'] }
-Plug 'neoclide/coc.nvim', { 'branch': 'release', 'for': [ 'haskell', 'dart', 'c', 'cpp' ], 'on': ['CocInstall', 'CocConfig'] }
+Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'make release', 'on': ['LanguageClientStart'] }
+Plug 'neoclide/coc.nvim', { 'branch': 'release', 'on': ['CocInstall', 'CocConfig', 'CocEnable'] }
 
 " Plug 'prabirshrestha/async.vim'
 " Plug 'prabirshrestha/vim-lsp'
@@ -695,6 +696,7 @@ Plug 'jceb/vim-orgmode', { 'for': 'org' }
 
 "##### TeX
 Plug 'lervag/vimtex', { 'for': 'tex' }
+" Plug 'scrooloose/vim-slumlord'
 
 " Plug 'vim-scripts/LanguageTool'
 Plug 'dpelle/vim-LanguageTool', { 'for': ['markdown', 'rst', 'org'] }
@@ -746,3 +748,15 @@ execute 'source ' . g:vim_custom_scripts . 'spelling.vim'
 
 command! PlugInit !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
 \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
+function DiffCurrentQuickfixEntry() abort
+  cc
+  let qf = getqflist({'context': 0, 'idx': 0})
+  if get(qf, 'idx') && type(get(qf, 'context')) == type({}) && type(get(qf.context, 'items')) == type([])
+    let diff = get(qf.context.items[qf.idx - 1], 'diff', [])
+    for i in reverse(range(len(diff)))
+      exe (i ? 'rightbelow' : 'leftabove') 'vert diffsplit' fnameescape(diff[i].filename)
+      wincmd p
+    endfor
+  endif
+endfunction

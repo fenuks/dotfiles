@@ -13,7 +13,7 @@
     <setting name="animationDuration" value="500" />
     <setting name="includeNonProjectClasses" value="false" />
     <setting name="includeTestClasses" value="false" />
-    <setting name="classCloudScopeName" value="" />
+    <setting name="classCloudScopeName" value="Project Files" />
     <setting name="highlightCyclicEdges" value="false" />
     <setting name="thumbnailHeight" value="40" />
     <setting name="saveThumbnails" value="false" />
