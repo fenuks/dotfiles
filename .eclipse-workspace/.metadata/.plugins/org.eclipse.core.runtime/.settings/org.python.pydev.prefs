@@ -1,14 +1,2 @@
-ADD_SPACE_AND_COLON_WHEN_NEEDED=true
-ADD_SPACE_WHEN_NEEDED=true
-BREAK_IMPORTS_MODE=PARENTHESIS
-DELETE_UNUSED_IMPORTS=true
-DONT_GENERATE_TYPETAGS_PREFIXES=sz\u0000n\u0000f\u0000
-FORCE_PY3K_PRINT_ON_PY2=true
 INTERPRETERS_CHECKED_ONCE=true
-PYDEV_TEXT_HOVER_MODIFIER_org.python.pydev.combininghover=
-SEARCH_PYLINT_LOCATION=SEARCH
-SORT_IMPORTS_ON_SAVE=true
-TRIM_EMPTY_LINES=true
-USE_PYLINT=true
 eclipse.preferences.version=1
-org.python.pydev.editor.templates.PyTemplatePreferencesPage=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?><templates/>

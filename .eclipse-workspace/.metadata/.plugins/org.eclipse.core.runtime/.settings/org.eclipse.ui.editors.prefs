@@ -1,7 +1,2 @@
 eclipse.preferences.version=1
-lineNumberRuler=true
-net.sourceforge.vrapper.eclipse.annotation.incsearchhl.showtext=false
 overviewRuler_migration=migrated_3.1
-quickdiff.defaultProvider=org.eclipse.egit.ui.internal.decorators.GitQuickDiffProvider
-spacesForTabs=true
-spellingEngine=org.eclipse.jdt.internal.ui.text.spelling.DefaultSpellingEngine
