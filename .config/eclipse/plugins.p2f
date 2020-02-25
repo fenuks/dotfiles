@@ -1,0 +1,221 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<?p2f version='1.0.0'?>
+<p2f version='1.0.0'>
+  <ius size='40'>
+    <iu id='org.springframework.tooling.bosh.ls.feature.feature.group' name='BOSH Language Server Feature' version='4.5.1.202001210741'>
+      <repositories size='1'>
+        <repository location='https://download.springsource.com/release/TOOLS/sts4/update/e4.14/'/>
+      </repositories>
+    </iu>
+    <iu id='org.springframework.tooling.cloudfoundry.manifest.ls.feature.feature.group' name='Cloud Foundry Manifest Language Server Feature' version='4.5.1.202001210741'>
+      <repositories size='1'>
+        <repository location='https://download.springsource.com/release/TOOLS/sts4/update/e4.14/'/>
+      </repositories>
+    </iu>
+    <iu id='org.springframework.tooling.concourse.ls.feature.feature.group' name='Concourse Pipeline Language Server Feature' version='4.5.1.202001210741'>
+      <repositories size='1'>
+        <repository location='https://download.springsource.com/release/TOOLS/sts4/update/e4.14/'/>
+      </repositories>
+    </iu>
+    <iu id='org.eclipse.corrosion.feature.feature.group' name='Corrosion: Rust edition in Eclipse IDE' version='0.4.2.201908051347'>
+      <repositories size='2'>
+        <repository location='http://download.eclipse.org/releases/latest'/>
+        <repository location='http://download.eclipse.org/releases/2019-12'/>
+      </repositories>
+    </iu>
+    <iu id='net.sf.eclipsecs.feature.group' name='Eclipse Checkstyle Plug-in' version='8.29.0.202001290016'>
+      <repositories size='1'>
+        <repository location='https://checkstyle.org/eclipse-cs/update'/>
+      </repositories>
+    </iu>
+    <iu id='epp.package.rust' name='Eclipse IDE for Rust Developers' version='4.14.0.20191212-1200'>
+      <repositories size='2'>
+        <repository location='http://download.eclipse.org/releases/latest'/>
+        <repository location='http://download.eclipse.org/releases/2019-12'/>
+      </repositories>
+    </iu>
+    <iu id='ch.acanda.eclipse.pmd.feature.feature.group' name='Eclipse PMD Plug-in' version='1.26.0.202001251052'>
+      <repositories size='1'>
+        <repository location='http://www.acanda.ch/eclipse-pmd/release/latest'/>
+      </repositories>
+    </iu>
+    <iu id='org.eclipse.egit.feature.group' name='Git integration for Eclipse' version='5.6.0.201912101111-r'>
+      <repositories size='3'>
+        <repository location='https://download.springsource.com/release/TOOLS/sts4/update/e4.14/'/>
+        <repository location='http://download.eclipse.org/releases/latest'/>
+        <repository location='http://download.eclipse.org/releases/2019-12'/>
+      </repositories>
+    </iu>
+    <iu id='org.eclipse.egit.gitflow.feature.feature.group' name='Git integration for Eclipse - Gitflow support' version='5.6.0.201912101111-r'>
+      <repositories size='3'>
+        <repository location='https://download.springsource.com/release/TOOLS/sts4/update/e4.14/'/>
+        <repository location='http://download.eclipse.org/releases/latest'/>
+        <repository location='http://download.eclipse.org/releases/2019-12'/>
+      </repositories>
+    </iu>
+    <iu id='org.eclipse.egit.mylyn.feature.group' name='Git integration for Eclipse - Task focused interface' version='5.6.0.201912101111-r'>
+      <repositories size='2'>
+        <repository location='http://download.eclipse.org/releases/latest'/>
+        <repository location='http://download.eclipse.org/releases/2019-12'/>
+      </repositories>
+    </iu>
+    <iu id='org.eclipse.epp.mpc.feature.group' name='Marketplace Client' version='1.8.1.v20191119-1757'>
+      <repositories size='1'>
+        <repository location='http://download.eclipse.org/mpc/releases/1.8.1'/>
+      </repositories>
+    </iu>
+    <iu id='org.eclipse.mylyn.ide_feature.feature.group' name='Mylyn Context Connector: Eclipse IDE' version='3.24.2.v20180905-0014'>
+      <repositories size='2'>
+        <repository location='http://download.eclipse.org/releases/latest'/>
+        <repository location='http://download.eclipse.org/releases/2019-12'/>
+      </repositories>
+    </iu>
+    <iu id='org.eclipse.mylyn_feature.feature.group' name='Mylyn Task List' version='3.24.2.v20180905-0003'>
+      <repositories size='2'>
+        <repository location='http://download.eclipse.org/releases/latest'/>
+        <repository location='http://download.eclipse.org/releases/2019-12'/>
+      </repositories>
+    </iu>
+    <iu id='org.eclipse.mylyn.context_feature.feature.group' name='Mylyn Task-Focused Interface' version='3.24.2.v20180905-0014'>
+      <repositories size='2'>
+        <repository location='http://download.eclipse.org/releases/latest'/>
+        <repository location='http://download.eclipse.org/releases/2019-12'/>
+      </repositories>
+    </iu>
+    <iu id='org.eclipse.mylyn.bugzilla_feature.feature.group' name='Mylyn Tasks Connector: Bugzilla' version='3.24.2.v20180905-0003'>
+      <repositories size='2'>
+        <repository location='http://download.eclipse.org/releases/latest'/>
+        <repository location='http://download.eclipse.org/releases/2019-12'/>
+      </repositories>
+    </iu>
+    <iu id='org.eclipse.mylyn.wikitext_feature.feature.group' name='Mylyn WikiText' version='3.0.35.201912061959'>
+      <repositories size='2'>
+        <repository location='http://download.eclipse.org/releases/latest'/>
+        <repository location='http://download.eclipse.org/releases/2019-12'/>
+      </repositories>
+    </iu>
+    <iu id='org.python.pydev.feature.feature.group' name='PyDev for Eclipse' version='7.5.0.202001101138'>
+      <repositories size='1'>
+        <repository location='http://www.pydev.org/updates/'/>
+      </repositories>
+    </iu>
+    <iu id='org.sonarlint.eclipse.feature.feature.group' name='SonarLint for Eclipse' version='5.0.0.15138'>
+      <repositories size='2'>
+        <repository location='http://eclipse.sonarlint.org/'/>
+        <repository location='https://eclipse-uc.sonarlint.org'/>
+      </repositories>
+    </iu>
+    <iu id='com.github.spotbugs.plugin.eclipse.feature.group' name='SpotBugs' version='4.0.0.r202002161120-1a45517'>
+      <repositories size='1'>
+        <repository location='https://spotbugs.github.io/eclipse/'/>
+      </repositories>
+    </iu>
+    <iu id='org.springframework.tooling.boot.ls.feature.feature.group' name='Spring Boot Language Server Feature' version='4.5.1.202001210741'>
+      <repositories size='1'>
+        <repository location='https://download.springsource.com/release/TOOLS/sts4/update/e4.14/'/>
+      </repositories>
+    </iu>
+    <iu id='org.springframework.ide.eclipse.boot.dash.feature.feature.group' name='Spring IDE Boot Microservices Dash' version='3.9.12.202001201914-CI-B2372'>
+      <repositories size='1'>
+        <repository location='https://download.springsource.com/release/TOOLS/sts4/update/e4.14/'/>
+      </repositories>
+    </iu>
+    <iu id='org.springframework.boot.ide.main.feature.feature.group' name='Spring Tool Suite 4 Main Feature' version='4.5.1.202001211336-RELEASE'>
+      <repositories size='1'>
+        <repository location='https://download.springsource.com/release/TOOLS/sts4/update/e4.14/'/>
+      </repositories>
+    </iu>
+    <iu id='org.springframework.ide.eclipse.xml.namespaces.feature.feature.group' name='Spring XML Namespace Support' version='3.9.12.202001201914-CI-B2372'>
+      <repositories size='1'>
+        <repository location='https://download.springsource.com/release/TOOLS/sts4/update/e4.14/'/>
+      </repositories>
+    </iu>
+    <iu id='org.eclipse.tm.terminal.feature.feature.group' name='TM Terminal' version='4.5.200.201911240504'>
+      <repositories size='3'>
+        <repository location='https://download.springsource.com/release/TOOLS/sts4/update/e4.14/'/>
+        <repository location='http://download.eclipse.org/releases/latest'/>
+        <repository location='http://download.eclipse.org/releases/2019-12'/>
+      </repositories>
+    </iu>
+    <iu id='net.sourceforge.vrapper.feature.group' name='Vrapper' version='0.74.0'>
+      <repositories size='1'>
+        <repository location='http://vrapper.sourceforge.net/update-site/stable'/>
+      </repositories>
+    </iu>
+    <iu id='net.sourceforge.vrapper.plugin.argtextobj.feature.group' name='Vrapper - argtextobj.vim Plugin (Optional)' version='0.74.0'>
+      <repositories size='1'>
+        <repository location='http://vrapper.sourceforge.net/update-site/stable'/>
+      </repositories>
+    </iu>
+    <iu id='net.sourceforge.vrapper.eclipse.cdt.feature.feature.group' name='Vrapper - C/C++ Extensions (Optional, requires CDT)' version='0.74.0'>
+      <repositories size='1'>
+        <repository location='http://vrapper.sourceforge.net/update-site/stable'/>
+      </repositories>
+    </iu>
+    <iu id='net.sourceforge.vrapper.plugin.clangformat.feature.group' name='Vrapper - Clang-Format Plugin (Optional)' version='0.74.0'>
+      <repositories size='1'>
+        <repository location='http://vrapper.sourceforge.net/update-site/stable'/>
+      </repositories>
+    </iu>
+    <iu id='net.sourceforge.vrapper.plugin.cycle.feature.group' name='Vrapper - cycle.vim Plugin (Optional)' version='0.74.0'>
+      <repositories size='1'>
+        <repository location='http://vrapper.sourceforge.net/update-site/stable'/>
+      </repositories>
+    </iu>
+    <iu id='net.sourceforge.vrapper.plugin.exchange.feature.group' name='Vrapper - exchange.vim Plugin (Optional)' version='0.74.0'>
+      <repositories size='1'>
+        <repository location='http://vrapper.sourceforge.net/update-site/stable'/>
+      </repositories>
+    </iu>
+    <iu id='net.sourceforge.vrapper.plugin.ipmotion.feature.group' name='Vrapper - ipmotion.vim Plugin (Optional)' version='0.74.0'>
+      <repositories size='1'>
+        <repository location='http://vrapper.sourceforge.net/update-site/stable'/>
+      </repositories>
+    </iu>
+    <iu id='net.sourceforge.vrapper.eclipse.jdt.feature.feature.group' name='Vrapper - Java Extensions (Optional, requires JDT)' version='0.74.0'>
+      <repositories size='1'>
+        <repository location='http://vrapper.sourceforge.net/update-site/stable'/>
+      </repositories>
+    </iu>
+    <iu id='net.sourceforge.vrapper.plugin.methodtextobj.feature.group' name='Vrapper - methodtextobj.vim Plugin (Optional)' version='0.74.0'>
+      <repositories size='1'>
+        <repository location='http://vrapper.sourceforge.net/update-site/stable'/>
+      </repositories>
+    </iu>
+    <iu id='net.sourceforge.vrapper.eclipse.pydev.feature.feature.group' name='Vrapper - Python Extensions (Optional, requires PyDev)' version='0.74.0'>
+      <repositories size='1'>
+        <repository location='http://vrapper.sourceforge.net/update-site/stable'/>
+      </repositories>
+    </iu>
+    <iu id='net.sourceforge.vrapper.plugin.sneak.feature.group' name='Vrapper - Sneak Plugin (Optional)' version='0.74.0'>
+      <repositories size='1'>
+        <repository location='http://vrapper.sourceforge.net/update-site/stable'/>
+      </repositories>
+    </iu>
+    <iu id='net.sourceforge.vrapper.plugin.splitEditor.feature.group' name='Vrapper - Split Editor Plugin (Optional, requires Eclipse 4+)' version='0.74.0'>
+      <repositories size='1'>
+        <repository location='http://vrapper.sourceforge.net/update-site/stable'/>
+      </repositories>
+    </iu>
+    <iu id='net.sourceforge.vrapper.plugin.subwordtextobj.feature.group' name='Vrapper - subwordtextobj.vim Plugin (Optional)' version='0.74.0'>
+      <repositories size='1'>
+        <repository location='http://vrapper.sourceforge.net/update-site/stable'/>
+      </repositories>
+    </iu>
+    <iu id='net.sourceforge.vrapper.plugin.surround.feature.group' name='Vrapper - Surround.vim Plugin (Optional)' version='0.74.0'>
+      <repositories size='1'>
+        <repository location='http://vrapper.sourceforge.net/update-site/stable'/>
+      </repositories>
+    </iu>
+    <iu id='net.sourceforge.vrapper.plugin.linetextobj.feature.group' name='Vrapper - textobj-line.vim Plugin (Optional)' version='0.74.0'>
+      <repositories size='1'>
+        <repository location='http://vrapper.sourceforge.net/update-site/stable'/>
+      </repositories>
+    </iu>
+    <iu id='net.sourceforge.vrapper.plugin.indenttextobj.feature.group' name='Vrapper - vim-indent-object.vim Plugin (Optional)' version='0.74.0'>
+      <repositories size='1'>
+        <repository location='http://vrapper.sourceforge.net/update-site/stable'/>
+      </repositories>
+    </iu>
+  </ius>
+</p2f>
