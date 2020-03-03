@@ -1,6 +1,6 @@
 // Place your settings in this file to overwrite the default settings
 {
-    "editor.fontFamily": "'Fira Code', 'Hack', 'Source Code Pro', 'Droid Sans Mono', 'Courier New', monospace, 'Droid Sans Fallback'",
+    "editor.fontFamily": "'Hack', 'Fira Code', 'Source Code Pro', 'Droid Sans Mono', 'Courier New', monospace, 'Droid Sans Fallback'",
     "telemetry.enableTelemetry": false,
     "extensions.showRecommendationsOnlyOnDemand": true,
     "[cpp]": {

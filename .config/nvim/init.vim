@@ -21,7 +21,7 @@ set history=1000 " Number of things to remember in history
 set cmdwinheight=20 " set commandline window height
 set undolevels=1000
 set autoread " Automatically reload file changed outside vim if not changed in vim
-set completeopt=longest,menuone,preview " complete longest common text instead of first word
+set completeopt=longest,menuone " complete longest common text instead of first word
 " scroll autocomplete popup down with <C-f>
 inoremap <expr> <C-f> pumvisible() ? "\<PageDown>" : "\<C-f>"
 " scroll autocomplete popup up with <C-b>
@@ -82,6 +82,7 @@ set termguicolors " use trucolor
 let g:vim_dir_path=fnamemodify($MYVIMRC, ':p:h')
 let g:nvim_dir_path=expand('~/.config/nvim/')
 let g:vim_custom_scripts=g:nvim_dir_path . 'custom/'
+set pyxversion=3
 
 if has('unix')
     let g:tmp_dir='/tmp'
@@ -108,7 +109,6 @@ if has('nvim')
     let g:vim_share_dir=g:local_share_dir . '/nvim'
     set inccommand=nosplit
 else
-    set pyxversion=2
     set viminfofile=$HOME/.vim/viminfo
     let g:vim_share_dir=g:local_share_dir . '/vim'
 endif
@@ -425,12 +425,11 @@ nnoremap <silent> <Leader>df :call DiffOrig()<CR>
 "#### Filesystem
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
+
 command! -nargs=* Agp
   \ call fzf#vim#ag(<q-args>, '2> /dev/null',
   \                 fzf#vim#with_preview({'left':'90%'},'up:60%'))
-inoremap <expr> <c-x><c-f> fzf#vim#complete#path(
-    \ "find . -path '*/\.*' -prune -o -print \| sed '1d;s:^..::'",
-    \ fzf#wrap({'dir': expand('%:p:h')}))
+Plug 'wsdjeg/vim-fetch'
 nnoremap <silent> <C-p> :Files<CR>
 nnoremap <silent> <Leader>fl :Files<CR>
 nnoremap <silent> <Leader>fd :Files <C-r>=expand("%:h")<CR>/<CR>
@@ -514,7 +513,7 @@ nmap <Leader>ga <Plug>(EasyAlign)
 Plug 'dense-analysis/ale'
 let g:ale_linters = {
 \   'python': ['mypy', 'pylint', 'flake8'],
-\   'java': ['javalsp', 'pmd']
+\   'java': ['javalsp', 'pmd', 'eclipselsp']
 \}
 let g:ale_fixers = {
 \   '': ['trim_whitespace'],
@@ -543,6 +542,7 @@ nnoremap <Leader>mc :make clean<CR>
 
 Plug 'janko-m/vim-test', { 'on': ['TestNearest', 'TestFile', 'TestSuite', 'TestLast', 'TestVisit'] }
 let g:test#strategy = 'neovim'
+let g:test#runner_commands = ['PyTest']
 nnoremap <silent> <leader>xn :TestNearest<CR>
 nnoremap <silent> <leader>xf :TestFile<CR>
 nnoremap <silent> <leader>xa :TestSuite<CR>
@@ -574,7 +574,7 @@ Plug 'neoclide/coc.nvim', { 'branch': 'release', 'on': ['CocInstall', 'CocConfig
 " Plug 'prabirshrestha/async.vim'
 " Plug 'prabirshrestha/vim-lsp'
 
-Plug 'Valloric/YouCompleteMe', { 'for': ['java', 'javascript'] }
+Plug 'Valloric/YouCompleteMe', { 'for': ['javascript'] }
 " Plug 'lifepillar/vim-mucomplete'
 " Plug 'maralla/completor.vim'
 " Plug 'Shougo/neocomplete.vim'
@@ -583,12 +583,15 @@ if has('nvim')
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
     Plug 'deoplete-plugins/deoplete-dictionary'
     Plug 'zchee/deoplete-jedi', { 'for': 'python' }
+
     " Plug 'zchee/deoplete-go', { 'for': 'go' }
 else
     Plug 'Shougo/deoplete.nvim'
     Plug 'roxma/nvim-yarp'
     Plug 'roxma/vim-hug-neovim-rpc'
 endif
+Plug 'ncm2/float-preview.nvim'
+let g:float_preview#docked = 0
 execute 'source ' . g:vim_custom_scripts . 'autocomplete.vim'
 
 Plug 'SirVer/ultisnips'

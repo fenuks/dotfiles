@@ -93,5 +93,10 @@
     {
         "key": "ctrl+\\",
         "command": "-workbench.action.splitEditor"
-    }
+    },
+    {
+        "key": "shift+k",
+        "command": "editor.action.showHover",
+        "when": "editorTextFocus && vim.mode != 'Insert'"
+      }
 ]

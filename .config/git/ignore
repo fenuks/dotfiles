@@ -27,5 +27,7 @@ env/
 .env/
 .DS_Store
 __pycache__/
+build/
+
 
 TODO.org

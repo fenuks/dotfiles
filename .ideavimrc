@@ -19,7 +19,7 @@ inoremap jk <ESC>
 inoremap jK <ESC>
 inoremap Jk <ESC>
 inoremap JK <ESC>
-inoremap <C-j> <CR>
+inoremap <C-j> <ESC>:action EditorStartNewLine<CR>i
 inoremap <A-h> <LEFT>
 inoremap <A-l> <RIGHT>
 inoremap <A-k> <UP>
@@ -83,14 +83,18 @@ nnoremap <C-w>} :action QuickImplementations<CR>
 nnoremap <C-w>q :action CloseEditor<CR>
 nnoremap <C-w>z :action HideAllWindows<CR>
 nnoremap <C-w>z :action HideAllWindows<CR>
-nnoremap <C-w><C-w>z :action HideAllWindows<CR>
+nnoremap <C-w>o :action CloseAllEditorsButActive<CR>
 
-nnoremap <Leader>bn :action NewClass<CR>
-" nnoremap <C-w>n :action NewElementSamePlace<CR>
 nnoremap <C-w>n :action NewElement<CR>
+nnoremap <Leader>bn :action NewClass<CR>
+nnoremap <C-w>c :action CloseEditor<CR>
+nnoremap <Leader>bd :action CloseEditor<CR>
+nnoremap <C-w>o :action CloseAllEditorsButActive<CR>
+nnoremap <Leader>bo :action CloseAllEditorsButActive<CR>
 
 nnoremap <Leader>mr :action Run<CR>
 nnoremap <Leader>md :action Debug<CR>
+nnoremap <Leader>mb :action Maven.ExecuteGoal<CR>
 
 nnoremap <Leader>tr :action RerunTests<CR>
 nnoremap <Leader>tf :action RerunFailedTests<CR>

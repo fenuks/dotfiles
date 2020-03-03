@@ -26,6 +26,8 @@ bind Space:magic-space
 shopt -s cmdhist
 # clear screen pernamently
 bind '"\C-l": " clear && printf \"\\e[3J\""'
+stty susp undef
+bind '"\C-z":"fg\015"'
 
 # _bash_exit() {
 #     history -a
@@ -67,3 +69,7 @@ source_if_exists "$HOME/.config/fzf/completions/docker.sh"
 source_if_exists "$HOME/.enhancd/init.sh"
 
 source_if_exists "$HOME/.bashrc.local.after"
+
+if [[ -x starship ]]; then
+    eval "$(starship init bash)"
+fi

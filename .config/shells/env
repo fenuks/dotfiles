@@ -15,8 +15,6 @@ export HISTIGNORE="&:[ ]*:exit:ls:bg:fg:history:clear"
 export HISTSIZE=100000
 # export HISTTIMEFORMAT="%d/%m/%y %T "
 export HTML_TIDY="$HOME/.config/tidy.conf"
-export JDK_HOME=/usr/lib/jvm/java-8-openjdk/
-export JAVA_HOME="${JDK_HOME}"
 export LESS=-R
 export LESSHISTFILE="${XDG_CACHE_HOME}/less_history"
 export MAVEN_OPTS='-Xmx2048m'
@@ -36,4 +34,7 @@ export UNCRUSTIFY_CONFIG="$HOME/.config/uncrustify.cfg"
 
 if [[ -f /usr/share/java/lombok/lombok.jar ]]; then
     export JAVA_TOOLS_OPTIONS="-javaagent:/usr/share/java/lombok/lombok.jar -Xbootclasspath/p:/usr/share/java/lombok/lombok.jar"
+fi
+if [[ -d /usr/lib/jvm/default ]]; then
+    export JAVA_HOME=/usr/lib/jvm/default/
 fi
