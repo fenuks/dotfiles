@@ -59,6 +59,7 @@ nnoremap d- d]w
 nnoremap d_ d[b
 nnoremap c- c]w
 nnoremap c_ c[b
+nnoremap gK :action ParameterInfo<CR>
 
 " IdeaVim stuff
 set vim-surround
@@ -93,8 +94,10 @@ nnoremap <C-w>o :action CloseAllEditorsButActive<CR>
 nnoremap <Leader>bo :action CloseAllEditorsButActive<CR>
 
 nnoremap <Leader>mr :action Run<CR>
+nnoremap <Leader>mR :action ChooseRunConfiguration<CR>
 nnoremap <Leader>md :action Debug<CR>
-nnoremap <Leader>mb :action Maven.ExecuteGoal<CR>
+nnoremap <Leader>mb :action Compile<CR>
+nnoremap <Leader>mB :action Maven.ExecuteGoal<CR>
 
 nnoremap <Leader>tr :action RerunTests<CR>
 nnoremap <Leader>tf :action RerunFailedTests<CR>

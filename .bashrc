@@ -70,6 +70,6 @@ source_if_exists "$HOME/.enhancd/init.sh"
 
 source_if_exists "$HOME/.bashrc.local.after"
 
-if [[ -x starship ]]; then
+if [[ -x "$(which starship)" ]]; then
     eval "$(starship init bash)"
 fi

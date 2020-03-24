@@ -387,9 +387,9 @@ nmap [c <Plug>(GitGutterPrevHunk)
 let g:gitgutter_map_keys = 0
 nnoremap <Leader>vll :GitGutterToggle<CR>
 nnoremap <Leader>vlL :SignifyToggle<CR>
-nmap <Leader>vls <Plug>GitGutterStageHunk
-nmap <Leader>vlr <Plug>GitGutterUndoHunk
-nmap <Leader>vld <Plug>GitGutterPreviewHunk
+nmap <Leader>vla <Plug>(GitGutterStageHunk)
+nmap <Leader>vlu <Plug>(GitGutterUndoHunk)
+nmap <Leader>vld <Plug>(GitGutterPreviewHunk)
 "GIT
 Plug 'tpope/vim-fugitive'
 nnoremap <Leader>va :Gwrite<CR>
@@ -449,6 +449,9 @@ Plug 'mhinz/vim-grepper', { 'on': ['Grepper', '<Plug>(GrepperOperator)'] }
 let g:grepper = {}
 let g:grepper.highlight = 1
 let g:grepper.prompt_quote = 3
+let g:grepper.rg = {}
+let g:grepper.rg.grepprg = 'rg -H --no-heading --vimgrep --smart-case'
+
 nnoremap <Leader>ss :Grepper -tool rg<CR>
 nnoremap <Leader>sS :Grepper -tool rg -side<CR>
 nnoremap <leader>s* :Grepper -tool rg -open -switch -cword -noprompt<CR>
@@ -458,6 +461,8 @@ vmap <Leader>s <Plug>(GrepperOperator)
 nmap <Leader>so <Plug>(GrepperOperator)
 nnoremap <leader>sd :Grepper -tool rg -dir file<CR>
 nnoremap <leader>sD :Grepper -tool rg -dir file -side<CR>
+nnoremap <leader>sb :Grepper -tool rg -buffers<CR>
+nnoremap <leader>sB :Grepper -tool rg -buffers -side<CR>
 " search url ((\w+://)|/)[a-zA-Z0-9.?&/]+
 " vim regex: ( |"|\[|\=)((\w+:\/\/)|\/)[a-zA-Z0-9.?&/\-{}*]+
 

@@ -24,6 +24,7 @@
     b = branch
     url = remote get-url origin
     root = rev-parse --show-toplevel
+    cat = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git show $(git rev-list --max-count=1 --all -- \"$@\")^:\"$@\"; }; f"
 [color]
     ui = auto
 [push]

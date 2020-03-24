@@ -14,6 +14,7 @@ alias ll='ls -l'
 alias ll.='ls -la'
 alias lls='ls -la --sort=size'
 alias llt='ls -la --sort=time'
+alias maven='mvn'
 alias pager="${PAGER}"
 alias py='python'
 alias ipy='ipython'
