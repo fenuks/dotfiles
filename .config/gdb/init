@@ -1,0 +1,5 @@
+set history save on
+set history filename ~/.cache/gdb_history
+set multiple-symbols ask
+set print array on
+set print pretty on

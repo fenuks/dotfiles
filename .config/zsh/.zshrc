@@ -6,6 +6,8 @@ source ~/.config/shells/config.sh
 HISTFILE=~/.cache/zsh_history
 setopt HIST_IGNORE_SPACE
 setopt HIST_IGNORE_ALL_DUPS
+setopt INC_APPEND_HISTORY
+setopt EXTENDED_HISTORY
 setopt COMPLETE_ALIASES
 setopt EXTENDED_GLOB
 

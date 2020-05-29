@@ -10,7 +10,7 @@ _fzf_complete_docker() {
     binary="${COMP_WORDS[0]}"
     cmd_opt="${COMP_WORDS[*]:1}"
     cmd_last_opt="${COMP_WORDS[${COMP_CWORD}-1]}"
-    fzf="$(__fzfcmd_complete)"
+    fzf="fzf-tmux"
     fzf_opt=(--height "${FZF_TMUX_HEIGHT:-50%}" --min-height 15 --reverse --preview 'echo {}' --preview-window down:3:wrap ${FZF_COMPLETION_OPTS} ${FZF_DEFAULT_OPTS})
 
     if [[ "${cmd_opt}" == 'attach '* ]]; then

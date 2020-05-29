@@ -24,6 +24,7 @@ Width 1920=640
 listViewIconSize=0
 
 [Shortcuts]
+close-active-terminal=none
 help_whats_this=none
 keep-open=Shift+F1
 move-session-left=Ctrl+Shift+Left;\s
@@ -40,6 +41,6 @@ toggle-session-monitor-silence=none
 DynamicTabTitles=true
 Height=100
 KeepAbove=false
-Screen=2
+Screen=1
 ToggleToFocus=true
 Width=100

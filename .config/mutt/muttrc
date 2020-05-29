@@ -6,7 +6,6 @@ set ssl_force_tls=yes
 set ssl_starttls
 set text_flowed
 set send_charset="utf-8"
-set edit_headers=yes
 
 macro index,pager F "<pipe-message> urlscan<Enter>" "call urlscan to extract URLs out of a message"
 
@@ -28,6 +27,17 @@ bind pager               gg        top
 bind pager               G         bottom
 bind generic,pager       \Cy       previous-line
 bind generic,index,pager \Ce       next-line
+bind index \Cm list-reply
+bind generic             zt        current-top
+bind generic             zz        current-middle
+bind generic             zb        current-bottom
+bind index               za        collapse-thread
+bind index               zA        collapse-all
+bind index,pager         N         search-opposite
 
 # experimental
 set query_command = "echo && notmuch address %s | fzf --height=10 --query=%s"
+
+# editing
+set edit_headers=yes
+

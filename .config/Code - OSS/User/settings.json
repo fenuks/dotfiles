@@ -113,7 +113,11 @@
     "languageServerHaskell.useCustomHieWrapperPath": "/usr/bin/hie-wrapper",
     "telemetry.enableCrashReporter": false,
     "sqltools.telemetry": false,
-    "rest-client.enableTelemetry": false
+    "rest-client.enableTelemetry": false,
+    "vim.highlightedyank.enable": true,
+    "editor.fontSize": 16,
+    "editor.parameterHints.cycle": true,
+    "java.semanticHighlighting.enabled": true
     // "editor.formatOnType": true,
     // "editor.formatOnPaste": true,
     // "editor.autoIndent": true

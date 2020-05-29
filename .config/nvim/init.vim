@@ -52,7 +52,7 @@ set linebreak " breaklines *nicely*, virtually
 set whichwrap=h,l,[,] " specify keys that can wrap next line
 set autoindent " align the new line indent with the previous one
 " set tabstop=4 " Set the default tabstop
-set softtabstop=4 " Insert/delete 4 spaces when hitting TAB/Backspace
+set softtabstop=8 " Insert/delete 8 spaces when hitting TAB/Backspace
 set shiftwidth=4 " Set the default shift width for indents
 set shiftround " Round indent to multiple of 'shiftwidth'.
 set expandtab " Make tabs into spaces (set by tabstop)
@@ -186,6 +186,8 @@ vnoremap <LocalLeader>p "+p
 nnoremap <Leader><Space>p a <ESC>"+p
 nnoremap <Space>p a <ESC>p
 nnoremap <Space>P i <ESC>P
+nnoremap yp "0p
+nnoremap yP "0P
 nnoremap <Leader>pf :put =expand('%:p')<CR>
 nnoremap <Leader>pd :put =expand('%:r')<CR>
 
@@ -214,6 +216,8 @@ vnoremap <A-j> gj
 vnoremap <A-k> gk
 nnoremap <A-j> gj
 nnoremap <A-k> gk
+" select last inserted/pasted text
+nnoremap gy `[v`]
 
 nnoremap <silent> <Leader>ps :mksession! <C-r>=GetSessionName()<CR>
 nnoremap <silent> <Leader>pl :SLoad <C-r>=GetSessionName()<CR>
@@ -224,27 +228,33 @@ nnoremap <silent> <Leader>ev :edit $MYVIMRC<CR>
 nnoremap <silent> <Leader>eb :edit $HOME/.bashrc<CR>
 
 " buffers
-nnoremap <silent> <Leader>bn :call Execute(['new', 'only'])<CR>
-nnoremap <silent> <Leader>bs :call Execute(['new'])<CR>
-nnoremap <silent> <Leader>bv :call Execute(['vnew'])<CR>
-nnoremap <silent> <Leader>bd :call Execute(['bdelete'])<CR>
-nnoremap <silent> <Leader>bu :call Execute(['call ChangeBuffer(1)', 'bdelete#'])<CR>
-nnoremap <silent> <Leader>bh :call Execute(['hide'])<CR>
-nnoremap <silent> <Leader>bc :call Execute(['close'])<CR>
+nnoremap <silent> <Leader>bn :<C-u>call Execute(['enew'])<CR>
+nnoremap <silent> <Leader>bs :<C-u>call Execute(['new'])<CR>
+nnoremap <silent> <Leader>bv :<C-u>call Execute(['vnew'])<CR>
+nnoremap <silent> <Leader>bd :<C-u>call Execute(['bdelete'])<CR>
+nnoremap <silent> <Leader>bu :<C-u>call Execute(['call ChangeBuffer(1)', 'bdelete#'])<CR>
+nnoremap <silent> <Leader>bh :<C-u>call Execute(['hide'])<CR>
+nnoremap <silent> <Leader>bc :<C-u>call Execute(['close'])<CR>
 nnoremap <silent> <Leader>bo :%bdelete<CR><C-^><C-^>:bdelete<CR>
 nnoremap <silent> <Leader>bl :Buffers<CR>
+nnoremap <silent> <Leader>br call DeleteHiddenBuffers()<CR>
 nnoremap <silent> <Tab> :call ChangeBuffer(1)<CR>
 nnoremap <silent> <S-Tab> :call ChangeBuffer(0)<CR>
 
+nnoremap <silent> dJ :<C-u>call DJ())<CR>
+nnoremap <silent> dK :<C-u>call DK())<CR>
+nnoremap <silent> gX :<C-u>call SearchWeb()<CR>
+vnoremap <silent> gX :<C-u>call SearchWebVisual()<CR>
+
 " terminal
 tnoremap jk <C-\><C-n>
-nnoremap <silent> <Leader>Tn :call Execute(['new', 'only', 'terminal'])<CR>
-nnoremap <silent> <Leader>Ts :call Execute(['new', 'terminal'])<CR>
-nnoremap <silent> <Leader>Tv :call Execute(['vnew', 'terminal'])<CR>
-nnoremap <silent> <Leader>Tt :call Execute(['tabnew', 'terminal'])<CR>
+nnoremap <silent> <Leader>Tn :<C-u>call Execute(['new', 'only', 'terminal'])<CR>
+nnoremap <silent> <Leader>Ts :<C-u>call Execute(['new', 'terminal'])<CR>
+nnoremap <silent> <Leader>Tv :<C-u>call Execute(['vnew', 'terminal'])<CR>
+nnoremap <silent> <Leader>Tt :<C-u>call Execute(['tabnew', 'terminal'])<CR>
 
 " tabs
-nnoremap <silent> <Leader>tn :call Execute(['tabnew'])<CR>
+nnoremap <silent> <Leader>tn :<C-u>call Execute(['tabnew'])<CR>
 nnoremap <silent> <Leader>to :tabonly<CR>
 nnoremap <silent> <Leader>td :tabclose<CR>
 
@@ -337,8 +347,21 @@ nnoremap ]ofm :setlocal foldmethod=manual<CR>
 nnoremap ]ofm :setlocal foldmethod=marker<CR>
 nnoremap ]ofs :setlocal foldmethod=syntax<CR>
 
+nnoremap <SPACE>K :Man<CR>
+
+function! OpenMan()
+    try
+        call man#open_page(v:count, v:count1, 'tabs', 'dirent')
+    catch
+        call man#open_page(v:count, v:count1, 'tabs', 'dirent.h')
+    catch
+    endtry
+endfunction
+
 let g:loaded_2html_plugin = 1
 let g:loaded_skim = 1
+packadd termdebug
+
 
 "##### TUI
 Plug 'bling/vim-airline'
@@ -355,11 +378,13 @@ xmap <Leader>ws <Plug>(Visual-Split-VSSplit)
 nmap <Leader>wl <Plug>(choosewin)
 nnoremap <silent> <Leader>wz :call CloseAuxiliaryWindows()<CR>
 nnoremap <silent> <C-w>z :call CloseAuxiliaryWindows()<CR>
+nnoremap <silent> <C-w><C-z> :call CloseAuxiliaryWindows()<CR>
 nnoremap <silent> <Leader>wL :Windows<CR>
 nnoremap <silent> <Leader>wQ :quitall<CR>
 Plug 'troydm/zoomwintab.vim'
 let g:zoomwintab_remap=0
 nnoremap <silent> <C-w>u :ZoomWinTabToggle<CR>
+nnoremap <silent> <C-w><C-u> :ZoomWinTabToggle<CR>
 nnoremap <silent> <Leader>wu :ZoomWinTabToggle<CR>
 
 "##### Refactoring; edition
@@ -418,8 +443,6 @@ Plug 'will133/vim-dirdiff', { 'on': 'DirDiff' }
 nnoremap <silent> <Leader>dg :diffget<CR>
 nnoremap <silent> <Leader>dp :diffput<CR>
 
-nnoremap <Leader>dp :diffput<CR>
-nnoremap <Leader>dg :diffget<CR>
 nnoremap <silent> <Leader>df :call DiffOrig()<CR>
 
 "#### Filesystem
@@ -482,6 +505,8 @@ let g:airline#extensions#tabline#enabled = 1
 " Plug 'devjoe/vim-codequery' " rich support for searching symbols support
 Plug 'easymotion/vim-easymotion'
 Plug 'fenuks/vim-uncommented'
+nmap ]u <Plug>(NextCommented)
+nmap [u <Plug>(PrevCommented)
 Plug 'andymass/vim-matchup'
 Plug 'chaoren/vim-wordmotion'
 let g:wordmotion_mappings = {
@@ -495,6 +520,7 @@ let g:wordmotion_mappings = {
 \ }
 
 imap <C-q> <C-\><C-o>d_
+cmap <C-q> <C-f>d_<C-c><C-c>:<UP>
 Plug 'arthurxavierx/vim-caser'
 
 
@@ -502,7 +528,7 @@ Plug 'lambdalisue/lista.nvim', { 'on': 'Lista' }
 
 "##### Formatting
 Plug 'sbdchd/neoformat', { 'on': 'Neoformat' }
-let g:neoformat_enabled_python = ['yapf', 'isort']
+let g:neoformat_enabled_python = ['black', 'isort']
 let g:neoformat_enabled_json = ['prettier', 'js-beautify', 'jq']
 let g:neoformat_enabled_yaml = ['prettier']
 nnoremap <silent> <Leader>q :Neoformat<CR>
@@ -574,6 +600,7 @@ let g:AutoPairsShortcutBackInsert=''
 
 " ##### Code autocompletion
 Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'make release', 'on': ['LanguageClientStart'] }
+let g:LanguageClient_diagnosticsList='Location'
 Plug 'neoclide/coc.nvim', { 'branch': 'release', 'on': ['CocInstall', 'CocConfig', 'CocEnable'] }
 
 " Plug 'prabirshrestha/async.vim'
@@ -597,6 +624,11 @@ else
 endif
 Plug 'ncm2/float-preview.nvim'
 let g:float_preview#docked = 0
+
+Plug 'Shougo/echodoc.vim'
+let g:echodoc#enable_at_startup = 1
+let g:echodoc#type = 'floating'
+
 execute 'source ' . g:vim_custom_scripts . 'autocomplete.vim'
 
 Plug 'SirVer/ultisnips'
@@ -610,17 +642,16 @@ Plug 'honza/vim-snippets'
 Plug 'sheerun/vim-polyglot'
 if has('nvim')
     Plug 'numirias/semshi', { 'do': ':UpdateRemotePlugins' }
-    Plug 'arakashic/chromatica.nvim', { 'do': ':UpdateRemotePlugins' }
-    let g:chromatica#enable_at_startup=1
-    let g:chromatica#responsive_mode=1
-    let g:polyglot_disabled = ['python', 'c', 'cpp', 'objc', 'objcpp', 'org']
+    let g:polyglot_disabled = ['python']
 endif
 " ##### VIML
 Plug 'junegunn/vader.vim', { 'on': 'Vader', 'for': 'vader' }
 augroup vim
     autocmd!
     autocmd FileType vim nnoremap <buffer> <silent> K :help <C-r><C-w><CR>
-    autocmd FileType qf setlocal nobuflisted " exclude quickfix withow from :bnext, etc.
+    autocmd FileType muttrc nnoremap <buffer> <silent> K :call SearchMan('neomuttrc', '')<CR>
+    autocmd FileType sshconfig nnoremap <buffer> <silent> K :call SearchMan('ssh_config', '')<CR>
+    autocmd FileType qf,fugitive setlocal nobuflisted " exclude quickfix withow from :bnext, etc.
     autocmd FileType text setlocal commentstring=#\ %s
     autocmd FileType conf setlocal commentstring=#\ %s
     autocmd CursorHold * checktime " needed for autoread to be triggered
@@ -676,10 +707,8 @@ Plug 'rust-lang/rust.vim', { 'for': 'rust' }
 Plug 'mikelue/vim-maven-plugin', { 'on': ['Mvn', 'MvnNewMainFile'] }
 let g:java_highlight_functions=1
 
-"##### Scala
-"Plug 'ensime/ensime-vim', { 'for': ['java', 'scala'] }
-
-"##### Haskell
+"####### Functional
+"""##### Haskell
 " Plug 'parsonsmatt/intero-neovim', { 'for': 'haskell' }
 Plug 'neovimhaskell/haskell-vim', { 'for': 'haskell' }
 augroup haskell
@@ -687,17 +716,25 @@ augroup haskell
     autocmd FileType haskell call ConfigureCoc()
 augroup END
 
+" Plug 'vlime/vlime' { 'for': 'lisp' }
+Plug 'kovisoft/slimv', { 'for': 'lisp' }
+let g:lisp_rainbow=1
+let g:scheme_builtin_swank=1
+
 " ##### C family
+Plug 'jackguo380/vim-lsp-cxx-highlight'
 " Plug 'lyuts/vim-rtags', { 'for': ['c', 'cpp', 'objc', 'objcpp'] }
 let g:rtagsUseDefaultMappings = 1
 let g:rtagsAutoLaunchRdm=1
 " Plug 'Rip-Rip/clang_complete', { 'for': ['c', 'cpp', 'objc', 'objcpp'] }
 
 "##### Natural language
+Plug 'tpope/vim-characterize'
+
 "##### Markdown
 " Plug 'suan/vim-instant-markdown', { 'for': 'markdown' }
-" Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
-Plug 'gabrielelana/vim-markdown', { 'for': 'markdown' }
+Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
+" Plug 'gabrielelana/vim-markdown', { 'for': 'markdown' }
 
 "##### ORG
 Plug 'jceb/vim-orgmode', { 'for': 'org' }

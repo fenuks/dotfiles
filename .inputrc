@@ -3,6 +3,9 @@ set blink-matching-paren on
 # highligh common prefix
 set colored-completion-prefix on
 set colored-stats on
+set completion-ignore-case off
+# treat _ and - alike in case-insensitive mode
+set completion-map-case off
 set editing-mode vi
 # first tab shows list, next cycles
 set menu-complete-display-prefix on

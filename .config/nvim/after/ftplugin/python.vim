@@ -1,7 +1,6 @@
-if exists('b:did_python_ftplugin')
-    finish
-endif
+if exists('b:did_python_ftplugin') | finish | endif
 let b:did_python_ftplugin = 1
+" let g:python_recommended_style=0
 
 nnoremap <buffer> <silent> <Leader>U :YcmCompleter GoToReferences<CR>
 let b:neoformat_run_all_formatters = 1

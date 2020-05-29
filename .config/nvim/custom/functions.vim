@@ -38,6 +38,22 @@ function! Execute(commands) abort
     endfor
 endfunction
 
+function! DK() abort
+    let l:count = v:count
+    if l:count is# 0
+        let l:count = 1
+    endif
+    execute 'normal D' . l:count . 'k' . l:count . 'ddk'
+endfunction
+
+function! DJ() abort
+    let l:count = v:count
+    if l:count is# 0
+        let l:count = 1
+    endif
+    execute 'normal Dj' . l:count . 'dd'
+endfunction
+
 function! Conflict(reverse) abort
   call search('^\(@@ .* @@\|[<=>|]\{7}[<=>|]\@!\)', a:reverse ? 'bW' : 'W')
 endfunction
@@ -112,3 +128,33 @@ function! ReadSkeletonFile() abort
         echo 'Skeleton file ' . l:skeleton_file . " doesn't exist"
     endif
 endfunction
+
+function! SearchMan(page, prefix) abort
+    let l:cursor_word = expand('<cWORD>')
+    execute 'Man ' . a:page
+    call search('\C\(\s\{2,\}\)\@<=' . a:prefix . l:cursor_word)
+endfunction
+
+function! SearchWeb() abort
+    let l:text = expand('<cWORD>')
+    call jobstart(['firefox', 'https://duckduckgo.com?q=' . l:text])
+endfunction
+
+function! SearchWebVisual() abort
+    let l:text = GetVisualSelection()
+    call jobstart(['firefox', 'https://duckduckgo.com?q=' . l:text])
+endfunction
+
+function! GetVisualSelection() abort
+    let [l:line_start, l:column_start] = getpos("'<")[1:2]
+    let [l:line_end, l:column_end] = getpos("'>")[1:2]
+    let l:lines = getline(line_start, line_end)
+    if len(l:lines) == 0
+        return ''
+    endif
+
+    let l:lines[-1] = l:lines[-1][: l:column_end - 1]
+    let l:lines[0] = l:lines[0][l:column_start - 1:]
+    return join(l:lines, "\n")
+endfunction
+

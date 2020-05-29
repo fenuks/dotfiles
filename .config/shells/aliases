@@ -6,6 +6,7 @@ alias dc='docker-compose'
 alias edit="${EDITOR}"
 alias firefox-debug='firefox -start-debugger-server -no-remote'
 alias g='git'
+alias gdb="gdb -nh -x \"${XDG_CONFIG_HOME}/gdb/init\""
 alias grep="grep --color=auto"
 alias irssi="irssi --config=\"$XDG_CONFIG_HOME\"/irssi/config --home=\"$XDG_DATA_HOME\"/irssi"
 alias jad-decompile="jad -o -d src-jad -r -s java **/*.class"
@@ -23,10 +24,13 @@ alias spacemacs='HOME=~/.spacemacs emacs'
 alias steam-flatpak='flatpak run com.valvesoftware.Steam'
 alias steam-wine='wine $HOME/.wine/drive_c/Program\ Files\ \(x86\)/Steam/Steam.exe -no-cef-sandbox -opengl -fullscreenopengl'
 alias sqlite3="sqlite3 -init ~/.config/sqliterc"
-
+_SILENT_JAVA_OPTIONS="$_JAVA_OPTIONS"
+unset _JAVA_OPTIONS
+alias java='java "$_SILENT_JAVA_OPTIONS"'
 alias check-yapf-config="diff <(yapf --style-help | grep -oP '^[a-zA-Z_0-9]+' | sort) <(grep -oP '^[a-zA-Z_0-9]+' ~/.config/yapf/style | sort)"
 # faster edition of common files
 alias v='vim'
+alias vg='vim $(gf)'
 alias vsb='vim ~/.bashrc'
 alias vsz='vim ~/.config/zsh/.zshrc'
 alias vsf='vim ~/.config/fish/config.fish'

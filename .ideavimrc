@@ -24,6 +24,7 @@ inoremap <A-h> <LEFT>
 inoremap <A-l> <RIGHT>
 inoremap <A-k> <UP>
 inoremap <A-j> <DOWN>
+inoremap <C-l> <Delete>
 
 vnoremap \y "+y
 vnoremap \d "+d
@@ -36,16 +37,29 @@ nnoremap \D "+D
 nnoremap \p "+p
 nnoremap \P "+P
 
+nnoremap yp "0p
+nnoremap yP "0P
+
 inoremap <silent> <A-n> :action MoveLineDown<CR>
 inoremap <silent> <A-p> :action MoveLineUp<CR>
 nnoremap <silent> <A-n> :action MoveLineDown<CR>
 nnoremap <silent> <A-p> :action MoveLineUp<CR>
+
+inoremap <silent> <A-S-n> :action MoveStatementDown<CR>
+inoremap <silent> <A-S-p> :action MoveStatementUp<CR>
+nnoremap <silent> <A-S-n> :action MoveStatementDown<CR>
+nnoremap <silent> <A-S-p> :action MoveStatementUp<CR>
+
 vnoremap <silent> <A-n> dkPgv=gv
 vnoremap <silent> <A-p> dpgv=gv
 nnoremap [m :action MethodUp<CR>
 nnoremap ]m :action MethodDown<CR>
 nnoremap [<space> O<ESC>
 nnoremap ]<space> o<ESC>
+nnoremap [v :action MoveElementLeft<CR>
+nnoremap ]v :action MoveElementRight<CR>
+vnoremap [v :action MoveElementLeft<CR>
+vnoremap ]v :action MoveElementRight<CR>
 nnoremap Y y$
 nnoremap <C-h> :action GotoPreviousError<CR>
 nnoremap <C-l> :action GotoNextError<CR>
@@ -60,9 +74,10 @@ nnoremap d_ d[b
 nnoremap c- c]w
 nnoremap c_ c[b
 nnoremap gK :action ParameterInfo<CR>
+nnoremap <Leader>q :action ReformatCode<CR>
 
 " IdeaVim stuff
-set vim-surround
+set surround
 nnoremap gd :action GotoTypeDeclaration<CR>
 nnoremap gD :action GotoImplementation<CR>
 nnoremap <Leader>gp :action GotoSuperMethod<CR>
@@ -79,23 +94,26 @@ nnoremap <Leader>rv :action IntroduceVariable<CR>
 nnoremap <Leader>rc :action IntroduceConstant<CR>
 nnoremap g; :action JumpToLastChange<CR>
 nnoremap g, :action JumpToNextChange<CR>
-nnoremap <C-w>m :action HideAllWindows<CR>
 nnoremap <C-w>} :action QuickImplementations<CR>
 nnoremap <C-w>q :action CloseEditor<CR>
 nnoremap <C-w>z :action HideAllWindows<CR>
-nnoremap <C-w>z :action HideAllWindows<CR>
-nnoremap <C-w>o :action CloseAllEditorsButActive<CR>
+nnoremap <C-w><C-z> :action HideAllWindows<CR>
+nnoremap <C-w>o :action UnsplitAll<CR>
+nnoremap <C-w><C-o> :action UnsplitAll<CR>
+nnoremap <C-w>] <C-w>v<C-]>
+nnoremap <C-w><C-]> <C-w>v<C-]>
+nnoremap <Leader>bo :action CloseAllEditorsButActive<CR>
+nnoremap <Leader>vlu :action Vcs.RollbackChangedLines<CR>
 
 nnoremap <C-w>n :action NewElement<CR>
 nnoremap <Leader>bn :action NewClass<CR>
 nnoremap <C-w>c :action CloseEditor<CR>
 nnoremap <Leader>bd :action CloseEditor<CR>
-nnoremap <C-w>o :action CloseAllEditorsButActive<CR>
-nnoremap <Leader>bo :action CloseAllEditorsButActive<CR>
 
 nnoremap <Leader>mr :action Run<CR>
 nnoremap <Leader>mR :action ChooseRunConfiguration<CR>
 nnoremap <Leader>md :action Debug<CR>
+nnoremap <Leader>db :action ToggleLineBreakpoint<CR>
 nnoremap <Leader>mb :action Compile<CR>
 nnoremap <Leader>mB :action Maven.ExecuteGoal<CR>
 

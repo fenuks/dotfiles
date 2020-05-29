@@ -10,8 +10,8 @@ _fzf_complete_git() {
     binary="${COMP_WORDS[0]}"
     cmd_opt="${COMP_WORDS[*]:1}"
     cmd_last_opt="${COMP_WORDS[${COMP_CWORD}-1]}"
-    fzf="$(__fzfcmd_complete)"
-    fzf_opt=(--height "${FZF_TMUX_HEIGHT:-50%}" --min-height 15 --reverse ${FZF_COMPLETION_OPTS} ${FZF_DEFAULT_OPTS})
+    fzf="fzf-tmux"
+    fzf_opt=(--ansi --height "${FZF_TMUX_HEIGHT:-50%}" --min-height 15 --reverse ${FZF_COMPLETION_OPTS} ${FZF_DEFAULT_OPTS})
     preview_command="
     git_file={}
     file=\${git_file:3}

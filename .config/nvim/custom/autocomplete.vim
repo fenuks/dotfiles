@@ -104,12 +104,16 @@ let g:deoplete#sources#jedi#show_docstring=1
 function! ConfigureLanguageClient() abort
     nnoremap <silent> <buffer> K :call LanguageClient_textDocument_hover()<CR>
     nnoremap <silent> <buffer> gd :call LanguageClient_textDocument_definition()<CR>
+    nnoremap <silent> <buffer> gD :call LanguageClient#textDocument_typeDefinition()<CR>
+    nnoremap <silent> <buffer> <C-w>d :call LanguageClient#textDocument_definition({'gotoCmd': 'split'})<CR>
+    nnoremap <silent> <buffer> <C-w><C-d> :call LanguageClient#textDocument_definition({'gotoCmd': 'split'})<CR>
     nnoremap <silent> <buffer> <Leader>rn :call LanguageClient_textDocument_rename()<CR>
     nnoremap <silent> <buffer> <Leader>gt :call LanguageClient_workspace_symbol()<CR>
     nnoremap <silent> <buffer> <Leader>gT :call LanguageClient_textDocument_documentSymbol()<CR>
-    nnoremap <silent> <buffer> <Leader>lu :call LanguageClient_textDocument_references()<CR>
+    nnoremap <silent> <buffer> <Leader>gu :call LanguageClient_textDocument_references()<CR>
     nnoremap <silent> <buffer> <Leader>lq :call LanguageClient_textDocument_formatting()<CR>
     nnoremap <silent> <buffer> <Leader>la :call LanguageClient#textDocument_codeAction()<CR>
+    " LanguageClient_textDocument_implementation()
     " setlocal formatexpr=LanguageClient_textDocument_rangeFormatting()
     " setlocal omnifunc=LanguageClient#complete
     LanguageClientStart
