@@ -1,14 +1,11 @@
 AceJump
-BashSupport
 CheckStyle-IDEA
-Code Navigator
 Dart
 Error-prone plugin
-FindBugs-IDEA
 IdeaVIM
+IntelliJDeodorant
 Key Promoter X
 Lombook Plugin
-Lua
 PMDPlugin
 PlantUML integration
 color.scheme.GapStyle
@@ -19,23 +16,17 @@ com.berzanmikaili.intellij.monokai_pro
 com.dmarcotte.handlebars
 com.hiberbee.intellij.hiberbee-theme
 com.intellij.plugins.html.instantEditing
-com.jetbrains.lightThemePreview
 com.thvardhan.gradianto
 com.wix.eslint
-de.thl.intellijinfer
 google-java-format
-io.flutter
 io.protostuff.protostuff-jetbrains-plugin
 mobi.hsz.idea.gitignore
 mobi.hsz.idea.latex
 org.asciidoctor.intellij.asciidoc
 org.intellij.scala
-org.jboss.forge.plugin.idea
-org.jetbrains.kotlin
+org.jetbrains.plugins.spotbugs
 org.rust.lang
 org.sonarlint.idea
 org.toml.lang
-org.zalando.intellij.swagger
-tanvd.grazi
 training
 ua.in.dej.myEmmet

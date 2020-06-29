@@ -4,6 +4,7 @@
   </component>
   <component name="CodeInsightSettings">
     <option name="SHOW_FULL_SIGNATURES_IN_PARAMETER_INFO" value="true" />
+    <option name="HIGHLIGHT_SCOPE" value="true" />
     <option name="ADD_UNAMBIGIOUS_IMPORTS_ON_THE_FLY" value="true" />
     <option name="JSP_ADD_UNAMBIGIOUS_IMPORTS_ON_THE_FLY" value="true" />
   </component>
@@ -14,9 +15,13 @@
   </component>
   <component name="EditorSettings">
     <option name="USE_SOFT_WRAPS" value="MAIN_EDITOR:CONSOLE" />
+    <option name="SOFT_WRAP_FILE_MASKS" value="*" />
+    <option name="IS_ENSURE_NEWLINE_AT_EOF" value="true" />
     <option name="ARE_LINE_NUMBERS_SHOWN" value="false" />
+    <option name="PRESELECT_RENAME" value="false" />
   </component>
   <component name="JavaCodeFoldingSettings">
+    <option name="collapseAccessors" value="true" />
     <option name="collapseOneLineMethods" value="false" />
   </component>
   <component name="TodoConfiguration">

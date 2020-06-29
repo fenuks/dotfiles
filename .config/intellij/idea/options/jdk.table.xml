@@ -123,6 +123,7 @@
         <annotationsPath>
           <root type="composite">
             <root url="jar://$APPLICATION_HOME_DIR$/plugins/java/lib/jdkAnnotations.jar!/" type="simple" />
+            <root url="jar://$APPLICATION_HOME_DIR$/lib/jdkAnnotations.jar!/" type="simple" />
           </root>
         </annotationsPath>
         <classPath>
@@ -201,6 +202,7 @@
         </classPath>
         <javadocPath>
           <root type="composite">
+            <root url="file:///usr/share/doc/java11-openjdk/api" type="simple" />
             <root url="https://docs.oracle.com/en/java/javase/11/docs/api/" type="simple" />
           </root>
         </javadocPath>

@@ -1,15 +1,11 @@
 <application>
   <component name="RefactoringSettings">
-    <option name="RENAME_SEARCH_IN_COMMENTS_FOR_CLASS" value="false" />
-    <option name="RENAME_SEARCH_IN_COMMENTS_FOR_METHOD" value="false" />
-    <option name="RENAME_SEARCH_IN_COMMENTS_FOR_FIELD" value="false" />
     <option name="RENAME_SEARCH_IN_COMMENTS_FOR_VARIABLE" value="false" />
     <option name="RENAME_SEARCH_FOR_TEXT_FOR_CLASS" value="false" />
-    <option name="RENAME_SEARCH_FOR_TEXT_FOR_METHOD" value="false" />
     <option name="RENAME_SEARCH_FOR_TEXT_FOR_VARIABLE" value="false" />
     <option name="MOVE_PREVIEW_USAGES" value="false" />
     <option name="MOVE_SEARCH_FOR_TEXT" value="false" />
-    <option name="MOVE_INNER_PREVIEW_USAGES" value="false" />
+    <option name="TYPE_COOK_COOK_OBJECTS" value="true" />
     <option name="INTRODUCE_FIELD_VISIBILITY" value="private" />
     <option name="INTRODUCE_CONSTANT_VISIBILITY" value="public" />
     <option name="INTRODUCE_LOCAL_CREATE_FINALS" value="false" />

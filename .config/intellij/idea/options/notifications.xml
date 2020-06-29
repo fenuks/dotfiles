@@ -1,6 +1,7 @@
 <application>
   <component name="NotificationConfiguration">
     <notification groupId="Android Module Importing" />
+    <notification groupId="Docker: Dockerfile detection" displayType="NONE" shouldLog="false" />
     <notification groupId="External Executable Critical Failures" displayType="STICKY_BALLOON" />
     <notification groupId="Git Important Messages" displayType="STICKY_BALLOON" />
     <notification groupId="Git Messages" displayType="TOOL_WINDOW" />

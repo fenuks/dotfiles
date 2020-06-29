@@ -17,6 +17,9 @@
   <action id="CheckinProject">
     <keyboard-shortcut first-keystroke="ctrl alt k" />
   </action>
+  <action id="ChooseRunConfiguration">
+    <keyboard-shortcut first-keystroke="f10" />
+  </action>
   <action id="ClassNameCompletion">
     <keyboard-shortcut first-keystroke="shift ctrl alt space" />
   </action>
@@ -32,6 +35,10 @@
   <action id="CompareTwoFiles">
     <keyboard-shortcut first-keystroke="ctrl alt d" />
   </action>
+  <action id="Console.Execute">
+    <keyboard-shortcut first-keystroke="enter" />
+    <keyboard-shortcut first-keystroke="ctrl m" />
+  </action>
   <action id="Console.History.BrowseTW">
     <keyboard-shortcut first-keystroke="shift ctrl alt e" />
   </action>
@@ -39,12 +46,22 @@
   <action id="Console.TableResult.Reload">
     <keyboard-shortcut first-keystroke="ctrl alt r" />
   </action>
+  <action id="CopyElement" />
+  <action id="DatabaseView.CopyTable" />
   <action id="Diff.SelectedChange" />
   <action id="Diff.UpdatedFiles">
     <keyboard-shortcut first-keystroke="ctrl alt d" />
   </action>
   <action id="DuplicatesForm.SendToRight">
     <keyboard-shortcut first-keystroke="ctrl alt 2" />
+  </action>
+  <action id="EditorChooseLookupItem">
+    <keyboard-shortcut first-keystroke="enter" />
+    <keyboard-shortcut first-keystroke="ctrl m" />
+  </action>
+  <action id="EditorChooseLookupItemReplace">
+    <keyboard-shortcut first-keystroke="tab" />
+    <keyboard-shortcut first-keystroke="ctrl i" />
   </action>
   <action id="EditorCodeBlockEnd">
     <keyboard-shortcut first-keystroke="shift ctrl alt close_bracket" />
@@ -65,6 +82,10 @@
   <action id="EditorDeleteLine">
     <keyboard-shortcut first-keystroke="shift ctrl y" />
   </action>
+  <action id="EditorDeleteToWordStart">
+    <keyboard-shortcut first-keystroke="ctrl back_space" />
+    <keyboard-shortcut first-keystroke="ctrl w" />
+  </action>
   <action id="EditorDeleteToWordStartInDifferentHumpsMode">
     <keyboard-shortcut first-keystroke="ctrl q" />
   </action>
@@ -76,9 +97,11 @@
   <action id="EditorDuplicate">
     <keyboard-shortcut first-keystroke="ctrl alt d" />
   </action>
-  <action id="EditorLeftWithSelection">
-    <keyboard-shortcut first-keystroke="shift ctrl alt left" />
+  <action id="EditorEnter">
+    <keyboard-shortcut first-keystroke="enter" />
+    <keyboard-shortcut first-keystroke="ctrl m" />
   </action>
+  <action id="EditorLeftWithSelection" />
   <action id="EditorMatchBrace" />
   <action id="EditorMoveToPageBottom">
     <keyboard-shortcut first-keystroke="ctrl alt page_down" />
@@ -92,9 +115,7 @@
   <action id="EditorPaste">
     <keyboard-shortcut first-keystroke="shift insert" />
   </action>
-  <action id="EditorPreviousWord">
-    <keyboard-shortcut first-keystroke="shift ctrl alt left" />
-  </action>
+  <action id="EditorPreviousWord" />
   <action id="EditorRightWithSelection">
     <keyboard-shortcut first-keystroke="shift ctrl alt right" />
   </action>
@@ -104,12 +125,17 @@
   <action id="EditorSelectWord">
     <keyboard-shortcut first-keystroke="ctrl alt w" />
   </action>
+  <action id="EditorTab">
+    <keyboard-shortcut first-keystroke="tab" />
+    <keyboard-shortcut first-keystroke="ctrl i" />
+  </action>
   <action id="EditorTextEnd">
     <keyboard-shortcut first-keystroke="ctrl alt end" />
   </action>
   <action id="EditorTextStart">
     <keyboard-shortcut first-keystroke="shift ctrl alt home" />
   </action>
+  <action id="EditorUnindentSelection" />
   <action id="EditorUp">
     <keyboard-shortcut first-keystroke="up" />
     <keyboard-shortcut first-keystroke="ctrl p" />
@@ -145,6 +171,7 @@
   <action id="GotoSuperMethod">
     <keyboard-shortcut first-keystroke="ctrl alt u" />
   </action>
+  <action id="Graph.ApplyCurrentLayout" />
   <action id="GuiDesigner.CreateListener">
     <keyboard-shortcut first-keystroke="shift ctrl o" />
   </action>
@@ -157,14 +184,30 @@
   <action id="GuiDesigner.QuickJavadoc">
     <mouse-shortcut keystroke="alt button2" />
   </action>
+  <action id="Images.Thumbnails.EnterAction">
+    <keyboard-shortcut first-keystroke="enter" />
+    <keyboard-shortcut first-keystroke="ctrl m" />
+  </action>
   <action id="ImplementMethods" />
   <action id="InsertLiveTemplate">
     <keyboard-shortcut first-keystroke="shift ctrl alt j" />
   </action>
   <action id="JumpToLastWindow" />
+  <action id="List-selectPreviousColumnExtendSelection" />
+  <action id="Maven_95550d18analizercaf44680compile">
+    <keyboard-shortcut first-keystroke="f5" />
+  </action>
+  <action id="Maven_cc9c3a00analizerec540b68compile">
+    <keyboard-shortcut first-keystroke="f5" />
+  </action>
   <action id="MethodHierarchy.ImplementMethodAction" />
   <action id="MethodHierarchy.OverrideMethodAction">
     <keyboard-shortcut first-keystroke="shift ctrl o" />
+  </action>
+  <action id="NextTemplateVariable">
+    <keyboard-shortcut first-keystroke="tab" />
+    <keyboard-shortcut first-keystroke="enter" />
+    <keyboard-shortcut first-keystroke="ctrl m" />
   </action>
   <action id="OverrideMethods">
     <keyboard-shortcut first-keystroke="shift ctrl o" />
@@ -192,6 +235,11 @@
   <action id="ScrollTreeToCenter">
     <keyboard-shortcut first-keystroke="shift ctrl alt m" />
   </action>
+  <action id="SearchEverywhere.PrevTab" />
+  <action id="SearchEverywhere.SelectItem">
+    <keyboard-shortcut first-keystroke="enter" />
+    <keyboard-shortcut first-keystroke="ctrl m" />
+  </action>
   <action id="Stop">
     <keyboard-shortcut first-keystroke="ctrl alt 2" />
   </action>
@@ -210,6 +258,8 @@
   <action id="SwitchUp">
     <keyboard-shortcut first-keystroke="shift alt up" />
   </action>
+  <action id="Table-selectPreviousColumnExtendSelection" />
+  <action id="Terminal.MoveToolWindowTabLeft" />
   <action id="TypeHierarchy" />
   <action id="UpdateRunningApplication" />
   <action id="UsageView.ShowRecentFindUsages">
@@ -272,10 +322,12 @@
   <action id="android.deploy.CodeSwap">
     <keyboard-shortcut first-keystroke="ctrl alt f10" />
   </action>
+  <action id="hg4idea.QPushAction" />
   <action id="latex.align_center" />
   <action id="latex.align_left" />
   <action id="latex.align_right" />
   <action id="latex.bold" />
   <action id="latex.italic" />
   <action id="latex.underline" />
+  <action id="tasks.goto" />
 </keymap>
