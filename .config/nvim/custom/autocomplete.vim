@@ -136,7 +136,6 @@ function! ConfigureCoc() abort
     " trigger autocomplete
     inoremap <buffer> <silent> <expr> <c-space> coc#refresh()
     " confirm completion with enter
-    inoremap <buffer> <expr> <cr> pumvisible() ? "\<C-y>" : "\<CR>"
     " disable deoplete
     call deoplete#custom#buffer_option('auto_complete', v:false)
     CocEnable

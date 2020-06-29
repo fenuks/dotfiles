@@ -62,7 +62,8 @@ function prune-history() {
         return
     fi
 
-    tac "${HISTFILE}" | awk '!x[$0]++' | grep -P '^([^ \\]+(?<!\\) +){2,}.+$' --color=none >| /tmp/history-pruned
+    # tac "${HISTFILE}" | awk '!x[$0]++' | grep -P '^([^ \\]+(?<!\\) +){2,}.+$' --color=none >| /tmp/history-pruned
+    tac "${HISTFILE}" | awk '!x[$0]++' >| /tmp/history-pruned
     tac /tmp/history-pruned >| "${HISTFILE}"
     history -c
     history -r

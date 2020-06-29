@@ -10,31 +10,31 @@ switch-to-activity-b5460424-2b99-479d-948f-d40dd8849532=none,none,Przełącz do 
 [KDE Keyboard Layout Switcher]
 Switch keyboard layout to Polski=none,none,Przełącz układ klawiatury na Polski
 Switch to Next Keyboard Layout=Ctrl+Alt+K,Ctrl+Alt+K,Przełącz do następnego układu klawiatury
-_k_friendly_name=KDE Daemon
+_k_friendly_name=Keyboard Layout Switcher
 
 [amarok]
 _k_friendly_name=Amarok
-decreaseVolume=,Meta+-,Zmniejsz głośność
-increaseVolume=Meta++,Meta++,Zwiększ głośność
-loveTrack=,Meta+L,Last.fm: Dodaj bieżący utwór do ulubionych
-mute=,Meta+M,Wyłącz dźwięk
-next=,Media Next,Następny utwór
-play_pause=,Media Play,Odtwarzaj/Wstrzymaj
-playlist_add=Meta+A,Meta+A,Dodaj multimedia...
-prev=,Media Previous,Poprzedni utwór
-rate1=,Meta+1,Oceń bieżący utwór: 1
-rate2=,Meta+2,Oceń bieżący utwór: 2
-rate3=,Meta+3,Oceń bieżący utwór: 3
-rate4=,Meta+4,Oceń bieżący utwór: 4
-rate5=,Meta+5,Oceń bieżący utwór: 5
-replay=none,none,Odtwórz ponownie bieżący utwór
-seek_backward_medium=Meta+Shift+-,Meta+Shift+-,Przesuń do tył o 10 seconds
-seek_forward_medium=Meta+Shift++,Meta+Shift++,Przesuń do przodu o 10 seconds
-showNotificationPopup=Meta+O,Meta+O,Pokaż dymki powiadomień
-skipTrack=,Meta+S,Last.fm: Pomiń bieżący utwór
-stop=,Media Stop,Zatrzymaj
-stop_after_current=Meta+Shift+V,Meta+Shift+V,Zatrzymaj po bieżącym utworze
-toggleMainWindow=none,none,Przełącz główne okno
+decreaseVolume=,Meta+-,Decrease Volume
+increaseVolume=Meta++,Meta++,Increase Volume
+loveTrack=,Meta+L,Last.fm: Love Current Track
+mute=,Meta+M,Mute Volume
+next=,none,Next Track
+play_pause=,none,Play/Pause
+playlist_add=Meta+A,Meta+A,Add Media...
+prev=,none,Previous Track
+rate1=,Meta+1,Rate Current Track: 1
+rate2=,Meta+2,Rate Current Track: 2
+rate3=,Meta+3,Rate Current Track: 3
+rate4=,Meta+4,Rate Current Track: 4
+rate5=,Meta+5,Rate Current Track: 5
+replay=none,none,Restart current track
+seek_backward_medium=Meta+Shift+-,Meta+Shift+-,Seek Backward by 10\\,00 sekund seconds
+seek_forward_medium=Meta+Shift++,Meta+Shift++,Seek Forward by 10\\,00 sekund seconds
+showNotificationPopup=Meta+O,Meta+O,Show Notification Popup
+skipTrack=,Meta+S,Last.fm: Skip Current Track
+stop=,none,Stop
+stop_after_current=Meta+Shift+V,Meta+Shift+V,Stop after current Track
+toggleMainWindow=none,none,Toggle Main Window
 
 [kaccess]
 Toggle Screen Reader On and Off=Meta+Alt+S,Meta+Alt+S,Włącz/wyłącz czytnik ekranowy
@@ -44,7 +44,7 @@ _k_friendly_name=Dostępność
 Disable Touchpad=Touchpad Off,Touchpad Off,Wyłącz gładzik
 Enable Touchpad=Touchpad On,Touchpad On,Włącz gładzik
 Toggle Touchpad=Touchpad Toggle,Touchpad Toggle,Przełącz gładzik
-_k_friendly_name=KDE Daemon
+_k_friendly_name=KWin
 
 [kded5]
 Show System Activity=Ctrl+Esc,Ctrl+Esc,Pokaż aktywność systemu
@@ -53,8 +53,13 @@ display=Display\t,Display\tMeta+P,Przełącz ekran
 
 [khotkeys]
 _k_friendly_name=KDE Daemon
-{17e95744-4157-4f03-9acb-073c8c5586e7}=none,none,Launch Konsole
+{0180d98b-0516-4bb9-b1c4-cd2cb3f1d417}=Meta+W,none,rofi
+{1bcdd663-a016-4ecb-9a1e-63cfb676dcea}=none,none,keepass
+{22d0cead-7fb9-4109-8e91-cf823a6e984c}=none,none,Zrzut ekranu
+{3c218e91-0379-4cd9-9cf9-d906c769bcc9}=none,none,konsole
 {d03619b6-9b3c-48cc-9d9c-a2aadb485550}=,none,Znajdź
+{e69c9a59-e4c9-4e85-80c2-e3810e4bc959}=Ctrl+Shift+D,none,Terminal
+{e8fb3d87-fd0e-4da9-8898-4e71a4bcd956}=Ctrl+Alt+T,none,Launch Konsole
 
 [klipper]
 _k_friendly_name=Klipper
@@ -87,7 +92,7 @@ Lock Session=Ctrl+Alt+L\tScreensaver,Meta+L\tCtrl+Alt+L\tScreensaver,Zablokuj se
 Log Out=Ctrl+Alt+Del,none,Wyloguj
 Log Out Without Confirmation=Ctrl+Alt+Shift+Del,none,Wyloguj bez potwierdzenia
 Reboot Without Confirmation=Ctrl+Alt+Shift+PgUp,none,Uruchom ponownie bez potwierdzenia
-_k_friendly_name=ksmserver
+_k_friendly_name=Session Management
 
 [kwin]
 Activate Window Demanding Attention=Ctrl+Alt+A,Ctrl+Alt+A,Uaktywnij okno żądające uwagi
@@ -271,6 +276,7 @@ Decrease Screen Brightness=Monitor Brightness Down,Monitor Brightness Down,Zmnie
 Hibernate=Hibernate,Hibernate,Hibernuj
 Increase Keyboard Brightness=Keyboard Brightness Up,Keyboard Brightness Up,Zwiększ jasność klawiatury
 Increase Screen Brightness=Monitor Brightness Up,Monitor Brightness Up,Zwiększ jasność ekranu
+PowerDown=Power Down,Power Down,Power Down
 PowerOff=Power Off,Power Off,Wyłącz
 Sleep=Sleep,Sleep,Uśpij
 Toggle Keyboard Backlight=Keyboard Light On/Off,Keyboard Light On/Off,Przełącz podświetlenie klawiatury
@@ -308,6 +314,10 @@ stop current activity=Meta+S,Meta+S,Zatrzymaj bieżącą aktywność
 switch to next activity=none,none,Switch to Next Activity
 switch to previous activity=none,none,Switch to Previous Activity
 toggle do not disturb=none,none,Toggle do not disturb
+
+[systemsettings.desktop]
+_k_friendly_name=Ustawienia systemowe
+_launch=Tools,Tools,Ustawienia systemowe
 
 [yakuake]
 _k_friendly_name=Yakuake

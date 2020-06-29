@@ -4,6 +4,12 @@
 if [[ -f "$HOME/.bashrc.local.before" ]]; then
     source ~/.bashrc.local.before
 fi
+
+# set -e # exit on non-zero code
+# set -o nounset # error when non-set variable is accessed
+set -o pipefail # return code of failed pipeline command
+
+
 source "$HOME/.config/shells/env"
 source "$HOME/.config/shells/env.sh"
 source "$HOME/.config/bash/env"
@@ -18,7 +24,8 @@ source_if_exists /etc/bashrc
 # bind 'TAB:menu-complete'
 shopt -s globstar
 # append to history from multiple terminals
-shopt -s histappend 
+shopt -s histappend
+prune-history
 # Enable history expansion with space
 # E.g. typing !!<space> will replace the !! with your last command
 bind Space:magic-space
@@ -28,13 +35,6 @@ shopt -s cmdhist
 bind '"\C-l": " clear && printf \"\\e[3J\""'
 stty susp undef
 bind '"\C-z":"fg\015"'
-
-# _bash_exit() {
-#     history -a
-#     history -w
-# }
-
-# trap _bash_exit EXIT
 
 # bind fzf git keys
 bind '"\er": redraw-current-line'

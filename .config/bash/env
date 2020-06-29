@@ -1,1 +1,11 @@
 export HISTFILE=~/.cache/bash_history
+export HISTCONTROL=ignoreboth # manually erasing duplicates for better result
+# export PROMPT_COMMAND="history -a; tac ${HISTFILE} >| ${HISTFILE}.tmp; awk '!x[\$0]++' ${HISTFILE}.tmp | tac >| ${HISTFILE}; history -c; history -r"
+export PROMPT_COMMAND='history -a' # don't wait to append to history until session ends
+
+# _bash_exit_trap() {
+#     history -a
+#     history -w
+# }
+
+# trap _bash_exit_trap EXIT

@@ -26,6 +26,19 @@ set completeopt=longest,menuone " complete longest common text instead of first 
 inoremap <expr> <C-f> pumvisible() ? "\<PageDown>" : "\<C-f>"
 " scroll autocomplete popup up with <C-b>
 inoremap <expr> <C-b> pumvisible() ? "\<PageUp>" : "\<C-b>"
+inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<CR>"
+" 'n' always goes forward
+nnoremap <expr> n  'Nn'[v:searchforward]
+" 'N' always goes back
+nnoremap <expr> N  'nN'[v:searchforward]
+" ; always goes forward
+nnoremap <expr> ; getcharsearch().forward ? ';' : ','
+" , always goes back
+nnoremap <expr> , getcharsearch().forward ? ',' : ';'
+" now i.e. 2dj will delete a column of 3 characters below
+onoremap J <C-v>j
+" now i.e. 2ck will change a column of 3 characters above
+onoremap K <C-v>k
 
 " set timeoutlen=150 " Time to wait after ESC (default causes an annoying delay), it affects also leader key, unfortunately
 set scrolloff=3 " number of context lines visible near cursor
@@ -504,6 +517,7 @@ Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
 let g:airline#extensions#tabline#enabled = 1
 " Plug 'devjoe/vim-codequery' " rich support for searching symbols support
 Plug 'easymotion/vim-easymotion'
+let g:EasyMotion_verbose = 0
 Plug 'fenuks/vim-uncommented'
 nmap ]u <Plug>(NextCommented)
 nmap [u <Plug>(PrevCommented)
@@ -589,7 +603,8 @@ Plug 'iCyMind/NeoSolarized'
 " Plug 'Raimondi/delimitMate'
 " Plug 'Townk/vim-autoclose'
 " Plug 'jiangmiao/auto-pairs'
-Plug '~/Projects/thirdparty/auto-pairs'
+" Plug 'cohama/lexima.vim'
+Plug 'jiangmiao/auto-pairs'
 let g:AutoPairs = {'(':')', '[':']', '{':'}', "'":"'", '"':'"', '`':'`',
 \                    '„':'”', '‘':'’', '“':'”'}
 let g:AutoClosePairs_add = '<> | „” ‘’'
