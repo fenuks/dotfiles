@@ -75,6 +75,8 @@ nnoremap c- c]w
 nnoremap c_ c[b
 nnoremap gK :action ParameterInfo<CR>
 nnoremap <Leader>q :action ReformatCode<CR>
+nnoremap <Tab> :action NextTab<CR>
+nnoremap <S-Tab> :action PrevTab<CR>
 
 " IdeaVim stuff
 set surround
@@ -106,6 +108,7 @@ nnoremap <Leader>bo :action CloseAllEditorsButActive<CR>
 nnoremap <Leader>vlu :action Vcs.RollbackChangedLines<CR>
 
 nnoremap <C-w>n :action NewElement<CR>
+nnoremap <C-w><C-n> :action NewElement<CR>
 nnoremap <Leader>bn :action NewClass<CR>
 nnoremap <C-w>c :action CloseEditor<CR>
 nnoremap <Leader>bd :action CloseEditor<CR>

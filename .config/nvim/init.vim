@@ -671,6 +671,7 @@ augroup END
 "##### HTML5
 Plug 'mattn/emmet-vim', { 'for': ['html', 'htmldjango'] }
 Plug 'othree/html5.vim', { 'for': ['html', 'htmldjango'] }
+Plug 'alvan/vim-closetag', { 'for': ['html', 'xml'] }
 
 "##### CSS
 Plug 'ap/vim-css-color'
@@ -722,7 +723,7 @@ let g:lisp_rainbow=1
 let g:scheme_builtin_swank=1
 
 " ##### C family
-Plug 'jackguo380/vim-lsp-cxx-highlight'
+Plug 'jackguo380/vim-lsp-cxx-highlight', { 'for': ['c', 'cpp'] }
 " Plug 'lyuts/vim-rtags', { 'for': ['c', 'cpp', 'objc', 'objcpp'] }
 let g:rtagsUseDefaultMappings = 1
 let g:rtagsAutoLaunchRdm=1

@@ -1,17 +1,25 @@
-[include]
-    path = ~/.config/git/config.local
+[user]
+name = fenuks
+email = fenuks
+[includeIf "gitdir:~/Projects/work/"]
+    path = ~/.config/git/work.config
 [core]
     excludesfile = ~/.config/git/ignore
     quotePath = false
-    # pager = delta
+    pager = delta --theme "ansi-dark" --plus-color="#274916" --minus-color="#5e1b1b"
+[interactive]
+    diffFilter = delta --color-only
 [cola]
     spellcheck = false
 [credential]
     helper = cache
 [alias]
     lg = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit | less -r; }; f"
-    d = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git diff --color \"$@\" | diff-so-fancy | less --tabs=4 -RFX; }; f"
-    ds = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git diff --staged --color \"$@\" | diff-so-fancy | less --tabs=4 -RFX; }; f"
+    ls = ls-tree --name-only --full-tree -r HEAD
+    df = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git diff --color \"$@\" | diff-so-fancy | less --tabs=8 -RFX; }; f"
+    d = diff
+    dsf = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git diff --staged --color \"$@\" | diff-so-fancy | less --tabs=8 -RFX; }; f"
+    ds = diff --staged
     diffs = diff --staged
     st = status -s
     stu = !git --no-pager diff --name-only
@@ -19,9 +27,9 @@
     co = checkout
     ci = commit
     cm = commit -m
-    b = branch
+    br = branch
+    brd = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git branch --merged | grep -Ev \"(^\\*|master|develop)\" | xargs git branch -d; }; f"
     commitp = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && PKGVER=$(grep -oP 'pkgver ?= ?\\K.+' .SRCINFO)-$(grep -oP 'pkgrel ?= ?\\K.+' .SRCINFO); git commit -m \"Update to ${PKGVER}\" $@; }; f"
-    b = branch
     url = remote get-url origin
     root = rev-parse --show-toplevel
     cat = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git show $(git rev-list --max-count=1 --all -- \"$@\")^:\"$@\"; }; f"
@@ -53,3 +61,8 @@
 	insteadOf = kde:
 [url "git@git.kde.org:"]
 	pushInsteadOf = kde:
+[filter "lfs"]
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f

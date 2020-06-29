@@ -41,6 +41,7 @@ toggle-session-monitor-silence=none
 DynamicTabTitles=true
 Height=100
 KeepAbove=false
+KeepOpen=false
 Screen=1
 ToggleToFocus=true
 Width=100
