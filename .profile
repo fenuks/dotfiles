@@ -25,3 +25,7 @@ export SQLITE_HISTORY=$XDG_CACHE_HOME/sqlite_history
 export SSH_AUTH_SOCK=/tmp/ssh-agent.sock
 
 alias vim=nvim
+
+if [[ -f ~/.config/user-dirs.dirs ]]; then
+    source ~/.config/user-dirs.dirs
+fi

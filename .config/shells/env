@@ -38,3 +38,6 @@ fi
 if [[ -d /usr/lib/jvm/default ]]; then
     export JAVA_HOME=/usr/lib/jvm/default/
 fi
+if [[ -f ~/.config/user-dirs.dirs ]]; then
+    source ~/.config/user-dirs.dirs
+fi

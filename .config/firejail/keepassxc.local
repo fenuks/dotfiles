@@ -1,0 +1,6 @@
+noblacklist /tmp/ssh-*
+noblacklist /etc/ssh
+noblacklist ${HOME}/.ssh
+noblacklist ${HOME}/.local/share/keepassxc
+ignore private-tmp
+# writable-run-user

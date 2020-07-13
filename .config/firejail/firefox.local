@@ -1,0 +1,3 @@
+# in order to use GTK_USE_PORTAL
+ignore nodbus
+ignore noroot
