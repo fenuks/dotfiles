@@ -184,7 +184,8 @@ nnoremap <silent> <Leader>@ :<C-u><C-r><C-r>='let @'. v:register .' = '. string(
 
 nnoremap <C-s> :w<Enter>
 inoremap <C-s> <ESC>:w<Enter>a
-inoremap <A-m> <ESC>o
+inoremap <A-CR> <END><CR>
+inoremap <C-S-CR> <UP><HOME><CR><UP>
 
 inoremap jk <ESC>
 inoremap jK <ESC>
@@ -192,7 +193,6 @@ inoremap Jk <ESC>
 inoremap JK <ESC>
 
 nnoremap Y y$
-
 vnoremap <LocalLeader>y "+y
 vnoremap <LocalLeader>d "+d
 vnoremap <LocalLeader>p "+p
@@ -201,6 +201,12 @@ nnoremap <Space>p a <ESC>p
 nnoremap <Space>P i <ESC>P
 nnoremap yp "0p
 nnoremap yP "0P
+nnoremap <M-y> "+y
+vnoremap <M-y> "+y
+nnoremap <M-S-y> "+y$
+nnoremap <M-p> "+p
+vnoremap <M-p> "+p
+inoremap <M-p> <C-o>"+p
 nnoremap <Leader>pf :put =expand('%:p')<CR>
 nnoremap <Leader>pd :put =expand('%:r')<CR>
 
