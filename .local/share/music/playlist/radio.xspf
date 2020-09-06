@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<playlist version="1" xmlns="http://xspf.org/ns/0/">
+  <trackList>
+    <track>
+      <location>http://94.23.201.38:8020/</location>
+      <title>Audiophile Jazz</title>
+    </track>
+    <track>
+      <location>http://94.23.201.38:8000/;</location>
+      <title>Audiophile Baroque</title>
+    </track>
+    <track>
+      <location>http://94.23.201.38:8010/;</location>
+      <title>Audiophile Classical</title>
+    </track>
+    <track>
+      <location>http://94.23.201.38:8040/;</location>
+      <title>Audiophile Rock-Blues</title>
+    </track>
+    <track>
+      <location>http://streams.greenhost.nl:8080/hardbop</location>
+      <title>Concertzender Hard Bop</title>
+    </track>
+    <track>
+      <location>http://streaming.radio.co/s297e618a7/listen</location>
+      <title>Giants of Jazz Radio</title>
+    </track>
+    <track>
+      <location>http://1.ice1.firststreaming.com/gndr_fm.aac</location>
+      <title>Golden Days Radio</title>
+    </track>
+    <track>
+      <location>https://jfm1.hostingradio.ru:14536/ijstream.mp3</location>
+      <title>Instrumental Jazz</title>
+    </track>
+    <track>
+      <location>http://jazz-wr01.ice.infomaniak.ch/jazz-wr01-128.mp3</location>
+      <title>Jazz Radio Classic Jazz</title>
+    </track>
+    <track>
+      <location>http://jazz-wr16.ice.infomaniak.ch/jazz-wr16-128.mp3</location>
+      <title>JazzRadio.fr Only Women</title>
+    </track>
+    <track>
+      <location>http://jazz-wr03.ice.infomaniak.ch/jazz-wr03-128.mp3</location>
+      <title>Jazz Radio New Orleans</title>
+    </track>
+    <track>
+      <location>http://stream3.polskieradio.pl:8184</location>
+      <title>MojePolskieRadio - Niezly Jazz</title>
+    </track>
+    <track>
+      <location>http://79.120.39.202:9085/;</location>
+      <title>Radio Caprice - Cool Jazz</title>
+    </track>
+    <track>
+      <location>http://79.111.14.76:8000/hardbop</location>
+      <title>Radio Caprice - Hard Bob</title>
+    </track>
+    <track>
+      <location>http://the1920sradionetwork.mediaplayer.whro.org/129</location>
+      <title>The 1920s Radio Network 128kb</title>
+    </track>
+    <track>
+      <location>http://wbgo.streamguys.net</location>
+      <title>WBGO 88.3 &quot;Jazz 88&quot; Newark, NJ</title>
+    </track>
+    <track>
+      <location>http://us2.internet-radio.com:8443/stream</location>
+      <title>Megaton Cafe Radio</title>
+    </track>
+    <track>
+      <location>https://daniel.torontocast.com:2630</location>
+      <title>Jazz Club Bandstand</title>
+    </track>
+    <track>
+      <location>http://199.189.111.28:8012/</location>
+      <title>1940s Radio Station</title>
+    </track>
+    <track>
+      <location>http://64.150.176.42:8098/stream</location>
+      <title>1940s 1950s Radio Retro</title>
+    </track>
+    <track>
+      <location>http://s2.voscast.com:10850/</location>
+      <title>Jazz &amp; Blues Music</title>
+    </track>
+    <track>
+      <location>http://198.178.123.14:7796/</location>
+      <title>Jazz4Jazz</title>
+    </track>
+    <track>
+      <location>http://192.99.170.8:5646/stream</location>
+      <title>Cool Jazz 100</title>
+    </track>
+    <track>
+      <location>http://66.147.225.141:8021/stream</location>
+      <title>Crooner Radio - All Crooners, All the Time!</title>
+    </track>
+  </trackList>
+</playlist>
