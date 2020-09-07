@@ -1,0 +1,2 @@
+noblacklist ${HOME}/.local/share/music
+ignore noroot
