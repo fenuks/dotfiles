@@ -10,9 +10,10 @@
     <mask>*.css</mask>
     <mask>*.mxml</mask>
     <mask>*.sql</mask>
+    <mask>*.mustache</mask>
     <mask>*.properties</mask>
-    <mask>*.java</mask>
-    <mask>*.xml</mask>
     <mask>*.groovy</mask>
+    <mask>*.xml</mask>
+    <mask>*.java</mask>
   </component>
 </application>

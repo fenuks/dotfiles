@@ -19,7 +19,6 @@ com.intellij.plugins.html.instantEditing
 com.thvardhan.gradianto
 com.wix.eslint
 google-java-format
-io.protostuff.protostuff-jetbrains-plugin
 mobi.hsz.idea.gitignore
 mobi.hsz.idea.latex
 org.asciidoctor.intellij.asciidoc

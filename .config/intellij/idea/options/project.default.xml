@@ -16,6 +16,13 @@
           </map>
         </option>
       </component>
+      <component name="MavenImportPreferences">
+        <option name="generalSettings">
+          <MavenGeneralSettings>
+            <option name="mavenHome" value="$APPLICATION_HOME_DIR$/plugins/maven/lib/maven3" />
+          </MavenGeneralSettings>
+        </option>
+      </component>
       <component name="ProjectRootManager" version="2" languageLevel="JDK_1_3" />
       <component name="PropertiesComponent">
         <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
