@@ -81,6 +81,8 @@ nnoremap gK :action ParameterInfo<CR>
 nnoremap <Leader>q :action ReformatCode<CR>
 nnoremap <Tab> :action NextTab<CR>
 nnoremap <S-Tab> :action PrevTab<CR>
+nnoremap ]b :action NextTab<CR>
+nnoremap [b :action PrevTab<CR>
 
 " IdeaVim stuff
 set surround

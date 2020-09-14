@@ -262,6 +262,8 @@ nnoremap <silent> <S-Tab> :call ChangeBuffer(0)<CR>
 
 nnoremap <silent> dJ :<C-u>call DJ())<CR>
 nnoremap <silent> dK :<C-u>call DK())<CR>
+nnoremap <silent> gx :<C-u>call OpenUrl()<CR>
+vnoremap <silent> gx :<C-u>call OpenUrlVisual()<CR>
 nnoremap <silent> gX :<C-u>call SearchWeb()<CR>
 vnoremap <silent> gX :<C-u>call SearchWebVisual()<CR>
 
@@ -413,7 +415,7 @@ Plug 'PeterRincker/vim-argumentative'
 " Plug 'tpope/vim-surround'
 Plug 'machakann/vim-sandwich'
 Plug 'fenuks/vim-bracket-objects'
-Plug 'terryma/vim-multiple-cursors'
+Plug 'mg979/vim-visual-multi'
 Plug 'tpope/vim-commentary'
 noremap <silent> <c-_> :Commentary<CR>
 Plug 'tommcdo/vim-exchange'
@@ -632,7 +634,7 @@ Plug 'neoclide/coc.nvim', { 'branch': 'release', 'on': ['CocInstall', 'CocConfig
 " Plug 'prabirshrestha/async.vim'
 " Plug 'prabirshrestha/vim-lsp'
 
-Plug 'Valloric/YouCompleteMe', { 'for': ['javascript'] }
+Plug 'Valloric/YouCompleteMe', { 'for': ['javascript', 'python'] }
 " Plug 'lifepillar/vim-mucomplete'
 " Plug 'maralla/completor.vim'
 " Plug 'Shougo/neocomplete.vim'

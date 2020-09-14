@@ -140,6 +140,16 @@ function! SearchWeb() abort
     call jobstart(['firefox', 'https://duckduckgo.com?q=' . l:text])
 endfunction
 
+function! OpenUrl() abort
+    let l:text = expand('<cWORD>')
+    call jobstart(['firefox', l:text])
+endfunction
+
+function! OpenUrlVisual() abort
+    let l:text = GetVisualSelection()
+    call jobstart(['firefox', l:text])
+endfunction
+
 function! SearchWebVisual() abort
     let l:text = GetVisualSelection()
     call jobstart(['firefox', 'https://duckduckgo.com?q=' . l:text])
