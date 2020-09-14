@@ -8,7 +8,7 @@ email = fenuks
     quotePath = false
     pager = delta --theme "ansi-dark" --plus-color="#274916" --minus-color="#5e1b1b"
 [interactive]
-    diffFilter = delta --color-only
+    diffFilter = delta --color-only | less -R
 [cola]
     spellcheck = false
 [credential]
@@ -33,6 +33,8 @@ email = fenuks
     url = remote get-url origin
     root = rev-parse --show-toplevel
     cat = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git show $(git rev-list --max-count=1 --all -- \"$@\")^:\"$@\"; }; f"
+    last = log -1 HEAD
+    au = add --update
 [color]
     ui = auto
 [push]
@@ -57,10 +59,6 @@ email = fenuks
     track-branches = false
 [fetch]
     prune = true
-[url "https://anongit.kde.org/"]
-	insteadOf = kde:
-[url "git@git.kde.org:"]
-	pushInsteadOf = kde:
 [filter "lfs"]
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
@@ -68,3 +66,9 @@ email = fenuks
 	clean = git-lfs clean -- %f
 [diff]
 	submodule = log
+        colorMoved = default
+
+[url "https://invent.kde.org/"]
+	insteadOf = kde:
+[url "ssh://git@invent.kde.org/"]
+	pushInsteadOf = kde:

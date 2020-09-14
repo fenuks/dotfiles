@@ -1,38 +1,31 @@
 {
-"languageserver": {
-  "haskell": {
-    "command": "stack",
-    "args": ["exec", "hie-core", "--", "--lsp"],
-    "rootPatterns": [
-      ".stack.yaml",
-      "cabal.config",
-      "package.yaml"
-    ],
-    "filetypes": [
-      "hs",
-      "lhs",
-      "haskell"
-    ],
-    "settings": {
-        "languageServerHaskell": {
-            "hlintOn": false,
-            "maxNumberOfProblems": 10,
-            "completionSnippetsOn": true
-        }
+  "languageserver": {
+    "haskell": {
+      "command": "haskell-language-server-wrapper",
+      "args": ["--lsp"],
+      "rootPatterns": [
+        "*.cabal",
+        "stack.yaml",
+        "cabal.project",
+        "package.yaml",
+        "hie.yaml"
+      ],
+      "filetypes": ["haskell", "lhaskell"]
     },
-    "initializationOptions": {
-      "languageServerHaskell": {
-      }
+    "clangd": {
+      "command": "clangd",
+      "args": ["--background-index"],
+      "rootPatterns": [
+        "compile_flags.txt",
+        "compile_commands.json",
+        ".vim/",
+        ".git/",
+        ".hg/"
+      ],
+      "filetypes": ["c", "cpp", "objc", "objcpp"]
     }
   },
-  "clangd": {
-    "command": "clangd",
-    "args": ["--background-index"],
-    "rootPatterns": ["compile_flags.txt", "compile_commands.json", ".vim/", ".git/", ".hg/"],
-    "filetypes": ["c", "cpp", "objc", "objcpp"]
-  }
-},
-"yaml.schemas": {
+  "yaml.schemas": {
     "openapi": "https://raw.githubusercontent.com/OAI/OpenAPI-Specification/master/schemas/v3.0/schema.yaml"
-}
+  }
 }

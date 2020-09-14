@@ -1,24 +1,11 @@
 AceJump
 CheckStyle-IDEA
-Dart
 Error-prone plugin
 IdeaVIM
-IntelliJDeodorant
 Key Promoter X
 Lombook Plugin
 PMDPlugin
-PlantUML integration
-color.scheme.GapStyle
-color.scheme.GitHub 3
-color.scheme.Monokai Materialized
-color.scheme.Tomorrow Dark
-com.berzanmikaili.intellij.monokai_pro
-com.dmarcotte.handlebars
-com.hiberbee.intellij.hiberbee-theme
 com.intellij.plugins.html.instantEditing
-com.thvardhan.gradianto
-com.wix.eslint
-google-java-format
 mobi.hsz.idea.gitignore
 mobi.hsz.idea.latex
 org.asciidoctor.intellij.asciidoc
@@ -27,5 +14,4 @@ org.jetbrains.plugins.spotbugs
 org.rust.lang
 org.sonarlint.idea
 org.toml.lang
-training
 ua.in.dej.myEmmet

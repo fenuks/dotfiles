@@ -418,6 +418,10 @@ Plug 'tpope/vim-commentary'
 noremap <silent> <c-_> :Commentary<CR>
 Plug 'tommcdo/vim-exchange'
 Plug 'kshenoy/vim-signature', {'on': 'SignatureToggleSigns'}
+Plug 'vim-scripts/ReplaceWithRegister'
+nmap sp <Plug>ReplaceWithRegisterOperator
+nmap spp <Plug>ReplaceWithRegisterLine
+xmap sp <Plug>ReplaceWithRegisterVisual
 
 "#### Version Control
 Plug 'sjl/gundo.vim', { 'on': 'GundoToggle' }
@@ -563,8 +567,9 @@ nmap <Leader>ga <Plug>(EasyAlign)
 "##### Syntax analysis
 Plug 'dense-analysis/ale'
 let g:ale_linters = {
+\   'haskell': ['cabal_ghc', 'stack-build', 'stack-ghc', 'hlint'],
 \   'python': ['mypy', 'pylint', 'flake8'],
-\   'java': ['javalsp', 'pmd', 'eclipselsp']
+\   'java': ['javalsp', 'pmd', 'eclipselsp'],
 \}
 let g:ale_fixers = {
 \   '': ['trim_whitespace'],
@@ -638,13 +643,13 @@ if has('nvim')
     Plug 'zchee/deoplete-jedi', { 'for': 'python' }
 
     " Plug 'zchee/deoplete-go', { 'for': 'go' }
+    Plug 'ncm2/float-preview.nvim'
+    let g:float_preview#docked = 0
 else
     Plug 'Shougo/deoplete.nvim'
     Plug 'roxma/nvim-yarp'
     Plug 'roxma/vim-hug-neovim-rpc'
 endif
-Plug 'ncm2/float-preview.nvim'
-let g:float_preview#docked = 0
 
 Plug 'Shougo/echodoc.vim'
 let g:echodoc#enable_at_startup = 1

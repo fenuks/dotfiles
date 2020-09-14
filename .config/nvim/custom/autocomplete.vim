@@ -3,7 +3,7 @@ let g:LanguageClient_serverCommands = {
     \ 'c': ['clangd'],
     \ 'cpp': ['clangd'],
     \ 'swift': ['sourcekit-lsp'],
-    \ 'haskell': ['hie-wrapper'],
+    \ 'haskell': ['haskell-language-server-wrapper'],
     \ 'java': ['jdtls', '-javaagent:/usr/share/java/lombok/lombok.jar', '-Xbootclasspath/p:/usr/share/java/lombok/lombok.jar'],
     \ 'javascript': ['javascript-typescript-stdio'],
     \ 'javascript.jsx': ['javascript-typescript-stdio'],
@@ -56,6 +56,7 @@ function! ConfigureYcm() abort
     nnoremap <silent> <buffer> <Leader>rn :YcmCompleter RefactorRename
     nnoremap <buffer> <silent> gw :YcmCompleter Format<CR>
     vnoremap <buffer> <silent> gw :YcmCompleter Format<CR>
+    call deoplete#custom#buffer_option('auto_complete', v:false)
 endfunction
 
 " Valloric/YoutCompleteMe
