@@ -1,5 +1,4 @@
-alanz.vscode-hie-server
-ban.spellright
+]0;firejail /usr/bin/code --list-extensions ban.spellright
 Dart-Code.dart-code
 Dart-Code.flutter
 dbaeumer.vscode-eslint
@@ -10,25 +9,25 @@ eamodio.gitlens
 EditorConfig.EditorConfig
 firefox-devtools.vscode-firefox-debug
 GitHub.vscode-pull-request-github
+GitLab.gitlab-workflow
+golang.go
 hackwaly.ocaml
+haskell.haskell
 humao.rest-client
 James-Yu.latex-workshop
 jcanero.hoogle-vscode
 julialang.language-julia
 justusadam.language-haskell
-kalitaalexey.vscode-rust
 kisstkondoros.vscode-gutter-preview
 lextudio.restructuredtext
 mrcrowl.hg
-ms-azuretools.vscode-docker
 msjsdiag.debugger-for-chrome
 msjsdiag.vscode-react-native
 ms-python.python
 ms-vscode.cpptools
-ms-vscode.Go
 ms-vscode.node-debug2
 ms-vscode.vscode-typescript-tslint-plugin
-ms-vsliveshare.vsliveshare
+mtxr.sqltools
 naco-siren.gradle-language
 naumovs.color-highlight
 octref.vetur
@@ -39,10 +38,7 @@ rust-lang.rust
 SonarSource.sonarlint-vscode
 timonwong.shellcheck
 tootone.org-mode
-UCL.haskelly
 vadimcn.vscode-lldb
-Vans.haskero
-VisualStudioExptTeam.vscodeintellicode
 vsciot-vscode.vscode-arduino
 vscjava.vscode-java-debug
 vscjava.vscode-java-dependency
