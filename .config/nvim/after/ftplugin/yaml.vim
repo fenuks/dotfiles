@@ -4,9 +4,7 @@ endif
 let b:did_yaml_ftplugin = 1
 
 if search('openapi:', '', 0)
-    setlocal foldlevelstart=2
     setlocal filetype+=.openapi
-    setlocal foldmethod=indent
 endif
 
 setlocal softtabstop=2
