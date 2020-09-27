@@ -168,3 +168,74 @@ function! GetVisualSelection() abort
     return join(l:lines, "\n")
 endfunction
 
+let g:mycolors = []
+let g:my_colorscheme=g:colors_name
+let g:my_airline_themes = []
+let g:user_background=&background
+
+" Set list of color scheme names that we will use, except
+function! SetColors() abort
+    let paths = split(globpath(&runtimepath, 'colors/*.vim'), "\n")
+    let g:mycolors = uniq(sort(map(paths, 'fnamemodify(v:val, ":t:r")')))
+    " call RemoveSublist(g:mycolors, ['blue', 'darkblue', 'delek', 'elflord', 'evening', 'industry', 'koehler', 'morning', 'murphy', 'pablo', 'peachpuff', 'ron', 'shine', 'solarized8_high', 'slate', 'torte', 'zellner'])
+endfunction
+
+function RemoveSublist(list, sublist) abort
+    for l:value in a:sublist
+        let l:index = index(a:list, l:value)
+        if l:index != -1
+            call remove(a:list, l:index)
+        endif
+    endfor
+endfunction
+
+function! NextColor(dir) abort
+  let l:colors_no = len(g:mycolors)
+  if l:colors_no == 0
+    call SetColors()
+    let l:colors_no = len(g:mycolors)
+  endif
+  let l:current = index(g:mycolors, g:my_colorscheme)
+  let l:next = l:current + a:dir
+  if a:dir == -1
+      if l:next < 0
+          let l:next = l:colors_no - 1
+      endif
+  elseif l:next >= l:colors_no
+    let l:next = 0
+  endif
+  try
+      let &background=g:user_background
+      execute 'colorscheme '.g:mycolors[l:next]
+      redraw
+      let g:my_colorscheme=g:mycolors[l:next]
+      echo g:colors_name
+  catch /E185:/
+      echo 'missing colorscheme ' . g:mycolors[l:next]
+  endtry
+endfunction
+
+function NextAirlineTheme(dir)
+  let l:number = len(g:my_airline_themes)
+  if l:number == 0
+    let g:my_airline_themes=airline#util#themes('')
+    let l:number = len(g:my_airline_themes)
+  endif
+  let l:current = index(g:my_airline_themes, g:airline_theme)
+  let l:next = l:current + a:dir
+  if a:dir == -1
+      if l:next < 0
+          let l:next = l:number - 1
+      endif
+  elseif l:next >= l:number
+    let l:next = 0
+  endif
+  let g:airline_theme=g:my_airline_themes[l:next]
+  AirlineRefresh
+  echo g:my_airline_themes[l:next]
+endfunction
+
+nnoremap <silent> <F8> :call NextColor(1)<CR>
+nnoremap <silent> <F20> :call NextColor(-1)<CR> " <S-F8>
+nnoremap <silent> <F9> :call NextAirlineTheme(1)<CR>
+nnoremap <silent> <F21> :call NextAirlineTheme(-1)<CR> " <S-F9>

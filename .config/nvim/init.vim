@@ -21,7 +21,7 @@ set history=1000 " Number of things to remember in history
 set cmdwinheight=20 " set commandline window height
 set undolevels=1000
 set autoread " Automatically reload file changed outside vim if not changed in vim
-set completeopt=longest,menuone " complete longest common text instead of first word
+set completeopt=menuone,noselect " complete longest common text instead of first word
 " scroll autocomplete popup down with <C-f>
 inoremap <expr> <C-f> pumvisible() ? "\<PageDown>" : "\<C-f>"
 " scroll autocomplete popup up with <C-b>
@@ -153,7 +153,7 @@ let mapleader = ','
 let maplocalleader = '\'
 
 vmap . :normal .<CR>
-cmap w!! %!sudo tee > /dev/null %
+cnoremap w!! %!sudo tee > /dev/null %
 nnoremap <Space>t :%s/\s\+$//<CR>
 " set very magic regex (perl compatitible)
 nnoremap / /\v
@@ -379,9 +379,13 @@ function! OpenMan()
     endtry
 endfunction
 
+let g:loaded_python_provider = 0
+let g:loaded_ruby_provider = 0
+let g:loaded_perl_provider = 0
 let g:loaded_2html_plugin = 1
 let g:loaded_skim = 1
 packadd termdebug
+packadd cfilter
 
 
 "##### TUI
@@ -525,6 +529,7 @@ let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
 Plug 'nelstrom/vim-visual-star-search'
 Plug 'ludovicchabant/vim-gutentags'
 let g:gutentags_ctags_exclude = ['.mypy_cache']
+let g:gutentags_ctags_executable_haskell = 'hasktags'
 Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
 let g:airline#extensions#tabline#enabled = 1
 " Plug 'devjoe/vim-codequery' " rich support for searching symbols support
@@ -557,6 +562,7 @@ Plug 'sbdchd/neoformat', { 'on': 'Neoformat' }
 let g:neoformat_enabled_python = ['black', 'isort']
 let g:neoformat_enabled_json = ['prettier', 'js-beautify', 'jq']
 let g:neoformat_enabled_yaml = ['prettier']
+let g:neoformat_enabled_haskell = ['stylish-haskell', 'floskell', 'ormolu']
 nnoremap <silent> <Leader>q :Neoformat<CR>
 
 Plug 'junegunn/vim-easy-align', { 'on': '<Plug>(EasyAlign)' }
@@ -572,6 +578,7 @@ let g:ale_linters = {
 \   'haskell': ['cabal_ghc', 'stack-build', 'stack-ghc', 'hlint'],
 \   'python': ['mypy', 'pylint', 'flake8'],
 \   'java': ['javalsp', 'pmd', 'eclipselsp'],
+\   'rust': ['cargo']
 \}
 let g:ale_fixers = {
 \   '': ['trim_whitespace'],
@@ -582,6 +589,7 @@ let g:ale_fixers = {
 let g:ale_c_parse_makefile=0
 let g:ale_c_parse_compile_commands=1
 let g:ale_python_mypy_options='--ignore-missing-imports'
+let g:ale_rust_cargo_use_clippy = executable('cargo-clippy')
 let g:airline#extensions#ale#enabled = 1
 nnoremap <Leader>cf :ALEFix<CR>
 nmap <silent> <Leader>cp <Plug>(ale_previous_wrap)
@@ -606,11 +614,6 @@ nnoremap <silent> <leader>xf :TestFile<CR>
 nnoremap <silent> <leader>xa :TestSuite<CR>
 nnoremap <silent> <leader>xl :TestLast<CR>
 nnoremap <silent> <leader>xg :TestVisit<CR>
-
-"##### Colorshemes
-" Plug 'Olical/vim-syntax-expand' " adds abbreviations that make editor pretty
-Plug 'gruvbox-community/gruvbox'
-Plug 'iCyMind/NeoSolarized'
 
 "##### Autocomplete
 " Plug 'Raimondi/delimitMate'
@@ -647,6 +650,18 @@ if has('nvim')
     " Plug 'zchee/deoplete-go', { 'for': 'go' }
     Plug 'ncm2/float-preview.nvim'
     let g:float_preview#docked = 0
+    if has('nvim-0.5')
+        Plug 'neovim/nvim-lspconfig'
+        Plug 'nvim-lua/completion-nvim'
+        Plug 'tjdevries/lsp_extensions.nvim'
+        Plug 'nvim-lua/diagnostic-nvim'
+        Plug 'nvim-lua/lsp-status.nvim'
+        " Visualize diagnostics
+        let g:diagnostic_enable_virtual_text = 1
+        let g:diagnostic_trimmed_virtual_text = '40'
+        " Don't show diagnostics while in insert mode
+        let g:diagnostic_insert_delay = 1
+    endif
 else
     Plug 'Shougo/deoplete.nvim'
     Plug 'roxma/nvim-yarp'
@@ -685,13 +700,13 @@ augroup vim
     autocmd CursorHold * checktime " needed for autoread to be triggered
     " reopening a file, restore last cursor position
     autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | execute "normal! g'\"" | endif
+    autocmd BufRead *.orig set readonly
 augroup END
 
 augroup filetype_detect
     autocmd!
     autocmd BufRead,BufNewFile *.recipe setfiletype python
     autocmd BufRead,BufNewFile *.conf setfiletype conf
-    autocmd BufRead,BufNewFile *.conf setfiletype vader
     autocmd BufRead,BufNewFile env setfiletype sh
     autocmd BufRead,BufNewFile PKGBUILD call ConfigurePkgbuild()
 augroup END
@@ -725,7 +740,7 @@ Plug 'davidhalter/jedi-vim', { 'for': 'python' }
 Plug 'JuliaEditorSupport/julia-vim', { 'for': 'julia' }
 
 "##### Rust
-Plug 'rust-lang/rust.vim', { 'for': 'rust' }
+Plug 'rust-lang/rust.vim', { 'for': 'rust' } " optionally, vim-polyglot has it as well
 
 "##### Golang
 "Plug 'fatih/vim-go'
@@ -767,6 +782,11 @@ Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 
 "##### ORG
 Plug 'jceb/vim-orgmode', { 'for': 'org' }
+Plug 'vimwiki/vimwiki'
+" let g:vimwiki_key_mappings = { 'all_maps': 0, }
+let g:vimwiki_list = [{'path': $XDG_DOCUMENTS_DIR . '/tekst'}]
+nmap sv <Plug>VimwikiIndex
+
 
 "##### TeX
 Plug 'lervag/vimtex', { 'for': 'tex' }
@@ -775,6 +795,31 @@ Plug 'lervag/vimtex', { 'for': 'tex' }
 " Plug 'vim-scripts/LanguageTool'
 Plug 'dpelle/vim-LanguageTool', { 'for': ['markdown', 'rst', 'org'] }
 Plug 'rhysd/vim-grammarous', { 'on': 'GrammarousCheck' }
+
+"##### Colorshemes
+" dark
+" set background=dark
+" Plug 'gruvbox-community/gruvbox'
+" Plug 'overcache/NeoSolarized'
+" Plug 'lifepillar/vim-solarized8'
+" Plug 'romainl/flattened'
+" Plug 'arzg/vim-corvine'
+" Plug 'lifepillar/vim-gruvbox8'
+" Plug 'sainnhe/gruvbox-material'
+" Plug 'kjssad/quantum.vim'
+" Plug 'ayu-theme/ayu-vim'
+" Plug 'aonemd/kuroi.vim'
+" Plug 'sonph/onehalf'
+" Plug 'nlknguyen/papercolor-theme'
+Plug 'flazz/vim-colorschemes'
+Plug 'sainnhe/edge'
+let g:edge_enable_italic = 1
+
+set background=light
+if &background ==# 'light'
+    let g:ayucolor='light'
+    Plug 'vim-airline/vim-airline-themes'
+endif
 
 call plug#end()
 
@@ -786,8 +831,16 @@ if has('gui_running')
 elseif &diff
     colorscheme gruvbox
 else
-    colorscheme gruvbox
+    if &background ==# 'light'
+        let g:airline_theme='edge'
+        colorscheme edge
+    else
+        colorscheme gruvbox8
+    endif
 endif
+" transparent: CandyPaper,
+" gruvbox, badwolf
+" truecolor: onedark, OceanicNext
 
 let g:deoplete#enable_at_startup = 1
 call deoplete#custom#option({
@@ -798,9 +851,6 @@ call deoplete#custom#option({
 call deoplete#custom#source('_', 'matchers', ['matcher_full_fuzzy'])
 call deoplete#custom#source('dictionary', 'matchers', ['matcher_head'])
 call deoplete#custom#source('dictionary', 'sorters', [])
-" transparent: CandyPaper,
-" gruvbox, badwolf
-" truecolor: onedark, OceanicNext
 
 """ functions
 execute 'source ' . g:vim_custom_scripts . 'functions.vim'

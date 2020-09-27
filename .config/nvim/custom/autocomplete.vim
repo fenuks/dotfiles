@@ -29,17 +29,6 @@ let g:lsp_diagnostics_echo_cursor = 1 " enable echo under cursor when in normal 
 let g:lsp_log_verbose = 1
 let g:lsp_log_file = expand('/tmp/vim-lsp.log')
 
-augroup vim_lsp
-    autocmd!
-    autocmd User lsp_setup call lsp#register_server({
-        \ 'name': 'rls',
-        \ 'cmd': {server_info->['rustup', 'run', 'nightly', 'rls']},
-        \ 'whitelist': ['rust'],
-        \ })
-
-    autocmd FileType rust setlocal omnifunc=lsp#complete
-augroup END
-    
 function! ConfigureYcm() abort
     nnoremap <silent> <buffer> <Leader>ck :YcmShowDetailedDiagnostic<CR>
     nnoremap <silent> <buffer> <Leader>cK :YcmShowDetailedDiagnostic<CR>
@@ -150,6 +139,15 @@ function! ConfigureCoc() abort
     " <Plug>(coc-float-jump)
     " <Plug>(coc-range-select)
     " <Plug>(coc-range-select-backward)
+    " xmap if <Plug>(coc-funcobj-i)
+    " xmap af <Plug>(coc-funcobj-a)
+    " omap if <Plug>(coc-funcobj-i)
+    " omap af <Plug>(coc-funcobj-a)
+    " 
+    " " Use <TAB> for selections ranges.
+    " nmap <silent> <TAB> <Plug>(coc-range-select)
+    " xmap <silent> <TAB> <Plug>(coc-range-select)
+
 endfunction
 
 function! CocInstallSources() abort
@@ -160,3 +158,18 @@ function! CocInstallSources() abort
 endfunction
 
 command! CocInstallSources call CocInstallSources()
+
+function! ConfigureNvimLsp() abort
+    call deoplete#custom#buffer_option('auto_complete', v:false)
+    setlocal omnifunc=v:lua.vim.lsp.omnifunc
+    nnoremap <silent> <buffer> gd    <cmd>lua vim.lsp.buf.declaration()<CR>
+    nnoremap <silent> <buffer> <c-]> <cmd>lua vim.lsp.buf.definition()<CR>
+    nnoremap <silent> <buffer> K     <cmd>lua vim.lsp.buf.hover()<CR>
+    nnoremap <silent> <buffer> gD    <cmd>lua vim.lsp.buf.implementation()<CR>
+    nnoremap <silent> <buffer> <c-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
+    nnoremap <silent> <buffer> 1gD   <cmd>lua vim.lsp.buf.type_definition()<CR>
+    nnoremap <silent> <buffer> gr    <cmd>lua vim.lsp.buf.references()<CR>
+    nnoremap <silent> <buffer> g0    <cmd>lua vim.lsp.buf.document_symbol()<CR>
+    nnoremap <silent> <buffer> gW    <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
+    " vim.lsp.util.show_line_diagnostics()
+endfunction

@@ -23,9 +23,9 @@ export PROMPT_COMMAND='history -a' # don't wait to append to history until sessi
 # export PROMPT_COMMAND='history -w' # only history -w removed duplicates
 export PYTHON2DOCDIR=/usr/share/doc/python2/html/
 export PYTHON3DOCDIR=/usr/share/doc/python/html/
+export PIP_DOWNLOAD_CACHE="${XDG_CACHE_HOME}/pip"
 export PYTHONSTARTUP="$HOME/.config/python/pythonrc"
 export RUSTFLAGS="-C target-cpu=native"
-export RUST_SRC_PATH="$HOME/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src"
 export SHELLCHECK_OPTS="-e SC1090,SC2034,SC2164"
 export SKIM_DEFAULT_COMMAND='git ls-tree -r --name-only HEAD || rg --files'
 export SSH_ASKPASS=/usr/bin/ksshaskpass
@@ -40,4 +40,12 @@ if [[ -d /usr/lib/jvm/default ]]; then
 fi
 if [[ -f ~/.config/user-dirs.dirs ]]; then
     source ~/.config/user-dirs.dirs
+    export XDG_DESKTOP_DIR
+    export XDG_DOWNLOAD_DIR
+    export XDG_TEMPLATES_DIR
+    export XDG_PUBLICSHARE_DIR
+    export XDG_DOCUMENTS_DIR
+    export XDG_MUSIC_DIR
+    export XDG_PICTURES_DIR
+    export XDG_VIDEOS_DIR
 fi

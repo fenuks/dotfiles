@@ -11,14 +11,14 @@ alias grep="grep --color=auto"
 alias irssi="irssi --config=\"$XDG_CONFIG_HOME\"/irssi/config --home=\"$XDG_DATA_HOME\"/irssi"
 alias jad-decompile="jad -o -d src-jad -r -s java **/*.class"
 alias ls='ls --color --classify --human-readable'
-alias ll='ls -l'
-alias ll.='ls -la'
-alias lls='ls -la --sort=size'
-alias llt='ls -la --sort=time'
+alias ll='ls -l --human-readable'
+alias ll.='ls -l --all --human-readable'
+alias lls='ls -l --all --sort=size --human-readable'
+alias llt='ls -l --all --sort=tim --human-readablee'
 alias maven='mvn'
 alias pager="${PAGER}"
 alias py='python'
-alias ipy='ipython'
+alias ipy="ipython --ipython-dir=${XDG_CONFIG_HOME}/jupyter"
 alias sm='HOME=~/.spacemacs emacs'
 alias spacemacs='HOME=~/.spacemacs emacs'
 alias steam-flatpak='flatpak run com.valvesoftware.Steam'
