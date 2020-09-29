@@ -369,6 +369,8 @@ nnoremap ]ofm :setlocal foldmethod=marker<CR>
 nnoremap ]ofs :setlocal foldmethod=syntax<CR>
 
 nnoremap <SPACE>K :Man<CR>
+" Reveal syntax group under cursor.
+nnoremap <F2> :echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')<CR>
 
 function! OpenMan()
     try
@@ -578,8 +580,19 @@ let g:ale_linters = {
 \   'haskell': ['cabal_ghc', 'stack-build', 'stack-ghc', 'hlint'],
 \   'python': ['mypy', 'pylint', 'flake8'],
 \   'java': ['javalsp', 'pmd', 'eclipselsp'],
-\   'rust': ['cargo']
+\   'rust': ['cargo'],
 \}
+let g:ale_sign_error = '🗴'
+let g:ale_sign_warning = '>>'
+let g:ale_virtualtext_cursor = 1
+let g:ale_sign_highlight_linenrs = 1
+
+ " languagetool doesn't understand md syntax…
+let g:ale_linters_ignore = {
+\ 'vimwiki': ['languagetool'],
+\}
+" disabled languagetool for vimwiki since it doesn't understand markdown syntax,
+" and reportss plenty of errors
 let g:ale_fixers = {
 \   '': ['trim_whitespace'],
 \   'javascript': ['eslint'],
@@ -777,14 +790,17 @@ Plug 'tpope/vim-characterize'
 
 "##### Markdown
 " Plug 'suan/vim-instant-markdown', { 'for': 'markdown' }
-Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
-" Plug 'gabrielelana/vim-markdown', { 'for': 'markdown' }
+" Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
+let g:vim_markdown_folding_disabled = 1
+let g:vim_markdown_strikethrough = 1
 
 "##### ORG
 Plug 'jceb/vim-orgmode', { 'for': 'org' }
 Plug 'vimwiki/vimwiki'
 " let g:vimwiki_key_mappings = { 'all_maps': 0, }
-let g:vimwiki_list = [{'path': $XDG_DOCUMENTS_DIR . '/tekst'}]
+let g:vimwiki_list = [{'path': $XDG_DOCUMENTS_DIR . '/tekst',
+                     \ 'syntax': 'markdown', 'ext': '.md' }]
+let g:vimwiki_folding='expr'
 nmap sv <Plug>VimwikiIndex
 
 
@@ -793,7 +809,7 @@ Plug 'lervag/vimtex', { 'for': 'tex' }
 " Plug 'scrooloose/vim-slumlord'
 
 " Plug 'vim-scripts/LanguageTool'
-Plug 'dpelle/vim-LanguageTool', { 'for': ['markdown', 'rst', 'org'] }
+Plug 'dpelle/vim-LanguageTool', { 'for': ['rst'] }
 Plug 'rhysd/vim-grammarous', { 'on': 'GrammarousCheck' }
 
 "##### Colorshemes

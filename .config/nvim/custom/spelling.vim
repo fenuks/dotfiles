@@ -1,4 +1,5 @@
 set spelllang=pl,en_gb
+set spelloptions=camel
 digraph !! 8252 " ‼
 digraph ?! 8264 " ⁈
 digraph !? 8265 " ⁉
