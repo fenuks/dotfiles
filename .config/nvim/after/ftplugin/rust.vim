@@ -40,4 +40,6 @@ augroup END
 " Goto previous/next diagnostic warning/error
 nnoremap <silent> g[ <cmd>PrevDiagnosticCycle<cr>
 nnoremap <silent> g] <cmd>NextDiagnosticCycle<cr>
+else
+call ConfigureLsc()
 endif

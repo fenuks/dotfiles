@@ -649,6 +649,22 @@ Plug 'neoclide/coc.nvim', { 'branch': 'release', 'on': ['CocInstall', 'CocConfig
 
 " Plug 'prabirshrestha/async.vim'
 " Plug 'prabirshrestha/vim-lsp'
+Plug 'natebosch/vim-lsc', { 'on': 'LSClientEnable' }
+let g:lsc_server_commands = {
+ \  'c': 'clangd',
+ \  'javascript': {
+ \    'command': 'typescript-language-server --stdio',
+ \    'suppress_stderr': v:true,
+ \  },
+ \  'rust': {
+ \    'command': 'rust-analyzer',
+ \  },
+ \ 'dart': 'dart_language_server',
+ \ 'html': 'dart_language_server',
+ \}
+let g:lsc_enable_autocomplete  = v:true
+let g:lsc_enable_diagnostics   = v:true
+let g:lsc_reference_highlights = v:true
 
 Plug 'Valloric/YouCompleteMe', { 'for': ['javascript', 'python'] }
 " Plug 'lifepillar/vim-mucomplete'

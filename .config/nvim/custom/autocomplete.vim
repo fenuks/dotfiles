@@ -173,3 +173,25 @@ function! ConfigureNvimLsp() abort
     nnoremap <silent> <buffer> gW    <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
     " vim.lsp.util.show_line_diagnostics()
 endfunction
+
+function! ConfigureLsc() abort
+    call deoplete#custom#buffer_option('auto_complete', v:false)
+    LSClientEnable
+    nnoremap <silent> <buffer> <C-]>                   :LSClientGoToDefinition<CR>
+    nnoremap <silent> <buffer> <C-W>]                  :LSClientGoToDefinitionSplit<CR>
+    nnoremap <silent> <buffer> <C-W><C-]>              :LSClientGoToDefinitionSplit<CR>
+    nnoremap <silent> <buffer> gr                      :LSClientFindReferences<CR>
+    nnoremap <silent> <buffer> <C-n>                   :LSClientNextReference<CR>
+    nnoremap <silent> <buffer> <C-p>                   :LSClientPreviousReference<CR>
+    nnoremap <silent> <buffer> gI                      :LSClientFindImplementations<CR>
+    nnoremap <silent> <buffer> go                      :LSClientDocumentSymbol<CR>
+    nnoremap <silent> <buffer> gS                      :LSClientWorkspaceSymbol<CR>
+    nnoremap <silent> <buffer> ga                      :LSClientFindCodeActions<CR>
+    nnoremap <silent> <buffer> gR                      :LSClientRename<CR>
+    nnoremap <silent> <buffer> gm                      :LSClientSignatureHelp<CR>
+    " LSClientAllDiagnostics
+    " LSClientWindowDiagnostics
+    " LSClientLineDiagnostics
+    setlocal keywordprg=:LSClientShowHover
+    setlocal shortmess-=F
+endfunction

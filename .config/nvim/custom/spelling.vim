@@ -1,5 +1,7 @@
 set spelllang=pl,en_gb
-set spelloptions=camel
+if exists('&spelloptions')
+    set spelloptions=camel
+endif
 digraph !! 8252 " ‼
 digraph ?! 8264 " ⁈
 digraph !? 8265 " ⁉

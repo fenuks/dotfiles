@@ -69,6 +69,7 @@ source_if_exists "$HOME/.config/fzf/completions/docker.sh"
 source_if_exists "$HOME/.enhancd/init.sh"
 
 source_if_exists "$HOME/.bashrc.local.after"
+PS0="\e[2 q" # reset cursor to normal before program runs
 
 if command -v starship > /dev/null; then
     eval "$(starship init bash)"
