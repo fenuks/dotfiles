@@ -633,7 +633,7 @@ nnoremap <silent> <leader>xg :TestVisit<CR>
 " Plug 'Townk/vim-autoclose'
 " Plug 'jiangmiao/auto-pairs'
 " Plug 'cohama/lexima.vim'
-Plug 'jiangmiao/auto-pairs'
+Plug 'fenuks/auto-pairs'
 let g:AutoPairs = {'(':')', '[':']', '{':'}', "'":"'", '"':'"', '`':'`',
 \                    '„':'”', '‘':'’', '“':'”'}
 let g:AutoClosePairs_add = '<> | „” ‘’'
@@ -641,6 +641,20 @@ let g:AutoPairsShortcutToggle=''
 let g:AutoPairsShortcutFastWrap=''
 let g:AutoPairsShortcutJump=''
 let g:AutoPairsShortcutBackInsert=''
+let g:AutoPairsOnlyWhitespace=v:true
+
+" Plug 'tmsvg/pear-tree'
+let g:pear_tree_pairs = {
+            \ '(': {'closer': ')'},
+            \ '[': {'closer': ']'},
+            \ '{': {'closer': '}'},
+            \ "'": {'closer': "'"},
+            \ '"': {'closer': '"'}
+            \ }
+
+let g:pear_tree_smart_openers = 1
+let g:pear_tree_smart_closers = 1
+let g:pear_tree_smart_backspace = 1
 
 " ##### Code autocompletion
 Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'make release', 'on': ['LanguageClientStart'] }
