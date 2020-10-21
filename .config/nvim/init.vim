@@ -91,6 +91,7 @@ set noruler " show line and column numbers
 set signcolumn=yes
 set termguicolors " use trucolor
 " set showbreak='@' " show line continuation sign
+" set selection=exclusive
 
 let g:vim_dir_path=fnamemodify($MYVIMRC, ':p:h')
 let g:nvim_dir_path=expand('~/.config/nvim/')
@@ -185,8 +186,12 @@ nnoremap <silent> <Leader>@ :<C-u><C-r><C-r>='let @'. v:register .' = '. string(
 nnoremap <C-s> :w<Enter>
 inoremap <C-s> <ESC>:w<Enter>a
 inoremap <A-CR> <END><CR>
-inoremap <C-S-CR> <UP><HOME><CR><UP>
-
+" conflicts with builtin mapping that has duplicate in <C-m>
+inoremap <C-S-CR> <CR><CR><UP><TAB>
+inoremap <C-j> <C-o>o
+" mapped as <C-S-j> in custom keymap
+inoremap <C-M-CR> <C-o>O
+inoremap <C-l> <DEL>
 inoremap jk <ESC>
 inoremap jK <ESC>
 inoremap Jk <ESC>
@@ -227,9 +232,6 @@ cnoremap <A-h> <LEFT>
 cnoremap <A-l> <RIGHT>
 cnoremap <A-k> <UP>
 cnoremap <A-j> <DOWN>
-" conflicts with builtin mapping that has duplicate in <C-m>
-inoremap <C-j> <ESC>o
-inoremap <C-l> <DEL>
 
 vnoremap <A-j> gj
 vnoremap <A-k> gk
@@ -386,6 +388,7 @@ let g:loaded_ruby_provider = 0
 let g:loaded_perl_provider = 0
 let g:loaded_2html_plugin = 1
 let g:loaded_skim = 1
+let g:loaded_tutor_mode_plugin = v:true
 packadd termdebug
 packadd cfilter
 
@@ -633,7 +636,7 @@ nnoremap <silent> <leader>xg :TestVisit<CR>
 " Plug 'Townk/vim-autoclose'
 " Plug 'jiangmiao/auto-pairs'
 " Plug 'cohama/lexima.vim'
-Plug 'fenuks/auto-pairs'
+" Plug 'fenuks/auto-pairs'
 let g:AutoPairs = {'(':')', '[':']', '{':'}', "'":"'", '"':'"', '`':'`',
 \                    '„':'”', '‘':'’', '“':'”'}
 let g:AutoClosePairs_add = '<> | „” ‘’'
@@ -643,7 +646,7 @@ let g:AutoPairsShortcutJump=''
 let g:AutoPairsShortcutBackInsert=''
 let g:AutoPairsOnlyWhitespace=v:true
 
-" Plug 'tmsvg/pear-tree'
+Plug 'tmsvg/pear-tree'
 let g:pear_tree_pairs = {
             \ '(': {'closer': ')'},
             \ '[': {'closer': ']'},
@@ -655,6 +658,10 @@ let g:pear_tree_pairs = {
 let g:pear_tree_smart_openers = 1
 let g:pear_tree_smart_closers = 1
 let g:pear_tree_smart_backspace = 1
+let g:pear_tree_map_special_keys = 0
+imap <BS> <Plug>(PearTreeBackspace)
+imap <C-h> <Plug>(PearTreeBackspace)
+" imap <Space> <Plug>(PearTreeSpace)
 
 " ##### Code autocompletion
 Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'make release', 'on': ['LanguageClientStart'] }
@@ -687,8 +694,6 @@ Plug 'Valloric/YouCompleteMe', { 'for': ['javascript', 'python'] }
 " let g:neocomplete#enable_at_startup = 1
 if has('nvim')
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-    Plug 'deoplete-plugins/deoplete-dictionary'
-    Plug 'zchee/deoplete-jedi', { 'for': 'python' }
 
     " Plug 'zchee/deoplete-go', { 'for': 'go' }
     Plug 'ncm2/float-preview.nvim'
@@ -710,6 +715,9 @@ else
     Plug 'roxma/nvim-yarp'
     Plug 'roxma/vim-hug-neovim-rpc'
 endif
+Plug 'deoplete-plugins/deoplete-dictionary'
+Plug 'zchee/deoplete-jedi', { 'for': 'python' }
+Plug 'Shougo/neco-vim', { 'for': 'vim' }
 
 Plug 'Shougo/echodoc.vim'
 let g:echodoc#enable_at_startup = 1
