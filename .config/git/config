@@ -7,7 +7,8 @@ email = fenuks
     excludesfile = ~/.config/git/ignore
     attributesfile = ~/.config/git/attributes
     quotePath = false
-    pager = delta --theme "ansi-dark" --plus-color="#274916" --minus-color="#5e1b1b"
+    ; pager = delta --theme "ansi-dark" --plus-color="#274916" --minus-color="#5e1b1b"
+    pager = delta --theme "OneHalfLight"
 [interactive]
     diffFilter = delta --color-only | less -R
 [cola]
@@ -15,31 +16,33 @@ email = fenuks
 [credential]
     helper = cache
 [alias]
+    au = add --update
+    br = branch
+    brd = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git branch --merged | grep -Ev \"(^\\*|master|develop)\" | xargs git branch -d; }; f"
+    cam = commit -a --amend
+    cat = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git show $(git rev-list --max-count=1 --all -- \"$@\")^:\"$@\"; }; f"
+    cd = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git checkout $(git default); }; f"
+    ci = commit
+    cm = commit -m
+    co = checkout
+    commitp = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && PKGVER=$(grep -oP 'pkgver ?= ?\\K.+' .SRCINFO)-$(grep -oP 'pkgrel ?= ?\\K.+' .SRCINFO); git commit -m \"Update to ${PKGVER}\" $@; }; f"
+    d = diff --find-copies-harder
+    default = symbolic-ref --short HEAD
+    df = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git diff --color \"$@\" | diff-so-fancy | less --tabs=8 -RFX; }; f"
+    diffs = diff --staged
+    ds = diff --find-copies-harder --staged
+    dsf = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git diff --staged --color \"$@\" | diff-so-fancy | less --tabs=8 -RFX; }; f"
+    last = log -1 HEAD
     lg = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit | less -r; }; f"
     lga = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git log --all --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit | less -r; }; f"
     ls = ls-tree --name-only --full-tree -r HEAD
-    df = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git diff --color \"$@\" | diff-so-fancy | less --tabs=8 -RFX; }; f"
-    d = diff --find-copies-harder
-    dsf = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git diff --staged --color \"$@\" | diff-so-fancy | less --tabs=8 -RFX; }; f"
-    ds = diff --find-copies-harder --staged
-    diffs = diff --staged
-    st = status -s
-    stu = !git --no-pager diff --name-only
-    sts = !git --no-pager diff --staged
-    cd = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git checkout $(git default); }; f"
-    co = checkout
-    ci = commit
-    cm = commit -m
-    br = branch
-    brd = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git branch --merged | grep -Ev \"(^\\*|master|develop)\" | xargs git branch -d; }; f"
-    default = symbolic-ref --short HEAD
-    commitp = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && PKGVER=$(grep -oP 'pkgver ?= ?\\K.+' .SRCINFO)-$(grep -oP 'pkgrel ?= ?\\K.+' .SRCINFO); git commit -m \"Update to ${PKGVER}\" $@; }; f"
-    url = remote get-url origin
-    root = rev-parse --show-toplevel
-    cat = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git show $(git rev-list --max-count=1 --all -- \"$@\")^:\"$@\"; }; f"
-    last = log -1 HEAD
-    au = add --update
+    pff = push --force
     r1 = reset --soft HEAD^
+    root = rev-parse --show-toplevel
+    st = status -s
+    sts = !git --no-pager diff --staged
+    stu = !git --no-pager diff --name-only
+    url = remote get-url origin
 [color]
     ui = auto
 [push]
@@ -66,15 +69,15 @@ email = fenuks
 [fetch]
     prune = true
 [filter "lfs"]
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
-	clean = git-lfs clean -- %f
+    smudge = git-lfs smudge -- %f
+    process = git-lfs filter-process
+    required = true
+    clean = git-lfs clean -- %f
 [diff]
-	submodule = log
-        colorMoved = default
+    submodule = log
+    colorMoved = default
 
 [url "https://invent.kde.org/"]
-	insteadOf = kde:
+    insteadOf = kde:
 [url "ssh://git@invent.kde.org/"]
-	pushInsteadOf = kde:
+    pushInsteadOf = kde:

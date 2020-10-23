@@ -171,6 +171,7 @@ function! ConfigureNvimLsp() abort
     nnoremap <silent> <buffer> gr    <cmd>lua vim.lsp.buf.references()<CR>
     nnoremap <silent> <buffer> g0    <cmd>lua vim.lsp.buf.document_symbol()<CR>
     nnoremap <silent> <buffer> gW    <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
+    nnoremap <silent> <buffer> <Leader>rn    <cmd>lua vim.lsp.buf.rename()<CR>
     " vim.lsp.util.show_line_diagnostics()
 endfunction
 
