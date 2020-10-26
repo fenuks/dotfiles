@@ -1,8 +1,11 @@
 8D
 Amarantus
+application/pdf
+application/problem+json
 backend
 Comixology
 Coursera
+CSV
 :D
 ;D
 diff
@@ -12,11 +15,13 @@ gitignore
 hahaha
 HBO
 hehe
+https
 IDK
 IMO
 Inkscape
 inter alia
 iOS
+JS
 JSON
 keepass
 krita
@@ -25,6 +30,7 @@ librivox
 LOL
 masterwork
 Moomins
+MSI
 MtG
 multibyte
 neovim
@@ -33,19 +39,27 @@ o_O
 OpenWRT
 org-mode
 ;P
+PDF
+PEM
 per se
 Quixote
+regex
 relisten
 relistened
 SDK
 Spotify
+SSO
 subreddit
 UI
 ummm
+UTC
+UUID
 vim
+vimrc
 VOD
 Warlow
 WebRTC
+whitespace
 Witcher
 XD
 YouTube

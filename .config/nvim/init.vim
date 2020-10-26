@@ -541,8 +541,8 @@ let g:airline#extensions#tabline#enabled = 1
 Plug 'easymotion/vim-easymotion'
 let g:EasyMotion_verbose = 0
 Plug 'fenuks/vim-uncommented'
-nmap ]u <Plug>(NextCommented)
-nmap [u <Plug>(PrevCommented)
+nmap ]/ <Plug>(NextCommented)
+nmap [/ <Plug>(PrevCommented)
 Plug 'andymass/vim-matchup'
 Plug 'chaoren/vim-wordmotion'
 let g:wordmotion_mappings = {
@@ -637,6 +637,7 @@ nnoremap <silent> <leader>xg :TestVisit<CR>
 " Plug 'jiangmiao/auto-pairs'
 " Plug 'cohama/lexima.vim'
 " Plug 'fenuks/auto-pairs'
+Plug '~/Projekty/vim/auto-pairs'
 let g:AutoPairs = {'(':')', '[':']', '{':'}', "'":"'", '"':'"', '`':'`',
 \                    '„':'”', '‘':'’', '“':'”'}
 let g:AutoClosePairs_add = '<> | „” ‘’'
@@ -645,22 +646,26 @@ let g:AutoPairsShortcutFastWrap=''
 let g:AutoPairsShortcutJump=''
 let g:AutoPairsShortcutBackInsert=''
 let g:AutoPairsOnlyWhitespace=v:true
+let g:AutoPairsSkipAfter='\a'
+let g:AutoPairsSkipBefore='\a'
 
-Plug 'tmsvg/pear-tree'
+" Plug 'tmsvg/pear-tree'
 let g:pear_tree_pairs = {
             \ '(': {'closer': ')'},
             \ '[': {'closer': ']'},
             \ '{': {'closer': '}'},
             \ "'": {'closer': "'"},
-            \ '"': {'closer': '"'}
+            \ '"': {'closer': '"'},
+            \ '‘': {'closer': '’'},
+            \ '„': {'closer': '”'},
             \ }
 
 let g:pear_tree_smart_openers = 1
 let g:pear_tree_smart_closers = 1
 let g:pear_tree_smart_backspace = 1
 let g:pear_tree_map_special_keys = 0
-imap <BS> <Plug>(PearTreeBackspace)
-imap <C-h> <Plug>(PearTreeBackspace)
+" imap <BS> <Plug>(PearTreeBackspace)
+" imap <C-h> <Plug>(PearTreeBackspace)
 " imap <Space> <Plug>(PearTreeSpace)
 
 " ##### Code autocompletion

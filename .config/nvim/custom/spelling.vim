@@ -1,4 +1,5 @@
 set spelllang=pl,en_gb
+set thesaurus+=/usr/share/thes/polish
 if exists('&spelloptions')
     set spelloptions=camel
 endif
