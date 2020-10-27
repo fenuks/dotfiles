@@ -24,7 +24,7 @@ function rcd {
     rm -f -- "$tempfile"
 }
 
-find-up () {
+find-up() {
   path=$(pwd)
   match="$1"
   while true; do
