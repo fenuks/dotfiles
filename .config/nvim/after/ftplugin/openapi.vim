@@ -7,3 +7,10 @@ setlocal suffixesadd=.yaml,.yml
 setlocal include='\\zs[^#]\\+\\ze#
 let &l:define='^\s*\ze\i\+:'
 nnoremap <buffer> <c-]> [<C-d>
+" nmap <Leader>gu <Leader>s*
+nmap <silent> <Leader>gu :call <SID>Usages()<CR>
+
+function! s:Usages() abort
+    let l:word = expand("<cword>")
+    execute 'Grepper -tool rg -open -switch -noprompt -query "/components/.+/(' . l:word . ")'" . '"'
+endfunction
