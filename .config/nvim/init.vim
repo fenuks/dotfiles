@@ -155,7 +155,6 @@ let maplocalleader = '\'
 
 vmap . :normal .<CR>
 cnoremap w!! %!sudo tee > /dev/null %
-nnoremap <Space>t :%s/\s\+$//<CR>
 " set very magic regex (perl compatitible)
 nnoremap / /\v
 vnoremap / /\v
@@ -170,8 +169,8 @@ cnoremap <C-A> <Home>
 cnoremap <C-E> <End>
 
 " moving lines up and down
-nnoremap <silent> <A-p> :<C-u>execute 'move -1-'. v:count1<CR>
-nnoremap <silent> <A-n> :<C-u>execute 'move +'. v:count1<CR>
+nnoremap <silent> ]l :<C-u>execute 'move -1-'. v:count1<CR>
+nnoremap <silent> [l :<C-u>execute 'move +'. v:count1<CR>
 inoremap <silent> <A-n> <Esc>:m .+1<CR>==gi
 inoremap <silent> <A-p> <Esc>:m .-2<CR>==gi
 vnoremap <silent> <A-n> :m '>+1<CR>gv=gv
@@ -179,6 +178,17 @@ vnoremap <silent> <A-p> :m '<-2<CR>gv=gv
 " insert spaces
 nnoremap <silent> [<space>  :<C-u>put! =repeat(nr2char(10), v:count1)<CR>'[
 nnoremap <silent> ]<space> :<C-u>put =repeat(nr2char(10), v:count1)<CR>
+
+" allows reusing x and X for other mappings;
+" s and <space> can be also reused since cl is fine enough
+nnoremap xp dlp
+nnoremap xP dlP
+nnoremap Xp dhP
+nnoremap XP dhP
+nnoremap <silent> xS :,$!sort<CR>
+vnoremap <silent> xs :!sort<CR>
+nnoremap <silent> xs :set opfunc=SortMotion<CR>g@
+nnoremap <silent> xt :%s/\s\+$//<CR>
 
 " edit register
 nnoremap <silent> <Leader>@ :<C-u><C-r><C-r>='let @'. v:register .' = '. string(getreg(v:register))<CR><C-F><LEFT>
@@ -739,9 +749,10 @@ Plug 'honza/vim-snippets'
 
 "#### Language specific
 Plug 'sheerun/vim-polyglot'
+let g:polyglot_disabled = ['sensible', 'autoindent']
 if has('nvim')
     Plug 'numirias/semshi', { 'do': ':UpdateRemotePlugins' }
-    let g:polyglot_disabled = ['python']
+    let g:polyglot_disabled += ['python']
 endif
 " ##### VIML
 Plug 'junegunn/vader.vim', { 'on': 'Vader', 'for': 'vader' }

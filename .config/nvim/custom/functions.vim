@@ -235,6 +235,18 @@ function NextAirlineTheme(dir)
   echo g:my_airline_themes[l:next]
 endfunction
 
+function! SortMotion(type, ...)
+    if a:0  " Invoked from Visual mode, use gv command.
+        execute "!sort"
+    elseif a:type == 'line'
+        execute "'[,']!sort"
+    else
+        echo 'unhandled type ' . a:type
+    endif
+    " let &selection = sel_save
+endfunction
+
+
 nnoremap <silent> <F8> :call NextColor(1)<CR>
 nnoremap <silent> <F20> :call NextColor(-1)<CR> " <S-F8>
 nnoremap <silent> <F9> :call NextAirlineTheme(1)<CR>
