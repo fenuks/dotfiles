@@ -9,6 +9,7 @@ email = fenuks
     quotePath = false
     ; pager = delta --theme "ansi-dark" --plus-color="#274916" --minus-color="#5e1b1b"
     pager = delta --theme "OneHalfLight"
+    ; pager = delta --theme 'Solarized (light)'
 [interactive]
     diffFilter = delta --color-only | less -R
 [cola]
@@ -19,6 +20,7 @@ email = fenuks
     au = add --update
     br = branch
     brd = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git branch --merged | grep -Ev \"(^\\*|master|develop)\" | xargs git branch -d; }; f"
+    ca = commit --amend
     cam = commit -a --amend
     cat = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git show $(git rev-list --max-count=1 --all -- \"$@\")^:\"$@\"; }; f"
     cd = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git checkout $(git default); }; f"
