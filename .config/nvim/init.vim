@@ -14,6 +14,7 @@ set smartcase " Do case sensitive if text contains upper letters
 set tagcase=match " Match case in tag search
 set incsearch " Search while typing
 " set gdefault " Automatically enable the 'g' flag for substitution
+set foldclose=all " close fold after cursor leaves it
 
 "" misc
 set modelines=0 " number of lines vim probes to find vi: commands
@@ -185,10 +186,22 @@ nnoremap xp dlp
 nnoremap xP dlP
 nnoremap Xp dhP
 nnoremap XP dhP
+nnoremap <silent> xt :%s/\s\+$//<CR>
 nnoremap <silent> xS :,$!sort<CR>
 vnoremap <silent> xs :!sort<CR>
-nnoremap <silent> xs :set opfunc=SortMotion<CR>g@
-nnoremap <silent> xt :%s/\s\+$//<CR>
+nnoremap <silent> xs :set opfunc=SortOperator<CR>g@
+nnoremap <silent> xaL :,$left<CR>
+vnoremap <silent> xal :left<CR>
+nnoremap <silent> xal :set opfunc=LeftAlignOperator<CR>g@
+nnoremap <silent> xaR :,$right<CR>
+vnoremap <silent> xar :right<CR>
+nnoremap <silent> xar :set opfunc=RightAlignOperator<CR>g@
+nnoremap <silent> xaC :,$center<CR>
+vnoremap <silent> xac :center<CR>
+nnoremap <silent> xac :set opfunc=CenterAlignOperator<CR>g@
+nnoremap <silent> xaJ :,$Justify<CR>
+vnoremap <silent> xaj :Justify<CR>
+nnoremap <silent> xaj :set opfunc=JustifyOperator<CR>g@
 
 " edit register
 nnoremap <silent> <Leader>@ :<C-u><C-r><C-r>='let @'. v:register .' = '. string(getreg(v:register))<CR><C-F><LEFT>
@@ -400,7 +413,8 @@ let g:loaded_2html_plugin = 1
 let g:loaded_skim = 1
 let g:loaded_tutor_mode_plugin = v:true
 packadd termdebug
-packadd cfilter
+" packadd cfilter
+packadd justify
 
 
 "##### TUI
@@ -646,8 +660,7 @@ nnoremap <silent> <leader>xg :TestVisit<CR>
 " Plug 'Townk/vim-autoclose'
 " Plug 'jiangmiao/auto-pairs'
 " Plug 'cohama/lexima.vim'
-" Plug 'fenuks/auto-pairs'
-Plug '~/Projekty/vim/auto-pairs'
+Plug 'fenuks/auto-pairs'
 let g:AutoPairs = {'(':')', '[':']', '{':'}', "'":"'", '"':'"', '`':'`',
 \                    '„':'”', '‘':'’', '“':'”'}
 let g:AutoClosePairs_add = '<> | „” ‘’'
@@ -657,7 +670,7 @@ let g:AutoPairsShortcutJump=''
 let g:AutoPairsShortcutBackInsert=''
 let g:AutoPairsOnlyWhitespace=v:true
 let g:AutoPairsSkipAfter='\a'
-let g:AutoPairsSkipBefore='\a'
+let g:AutoPairsSkipBefore=''
 
 " Plug 'tmsvg/pear-tree'
 let g:pear_tree_pairs = {

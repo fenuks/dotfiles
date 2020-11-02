@@ -235,15 +235,32 @@ function NextAirlineTheme(dir)
   echo g:my_airline_themes[l:next]
 endfunction
 
-function! SortMotion(type, ...)
-    if a:0  " Invoked from Visual mode, use gv command.
-        execute "!sort"
-    elseif a:type == 'line'
-        execute "'[,']!sort"
+function! SortOperator(type) abort
+    call OperatorFunc('!sort', a:type)
+endfunction
+
+function! LeftAlignOperator(type) abort
+    call OperatorFunc('left', a:type)
+endfunction
+
+function! RightAlignOperator(type) abort
+    call OperatorFunc('right', a:type)
+endfunction
+
+function! CenterAlignOperator(type) abort
+    call OperatorFunc('center', a:type)
+endfunction
+
+function! JustifyOperator(type) abort
+    call OperatorFunc('Justify', a:type)
+endfunction
+
+function! OperatorFunc(excommand, type) abort
+    if a:type == 'line'
+        execute "'[,']" . a:excommand
     else
         echo 'unhandled type ' . a:type
     endif
-    " let &selection = sel_save
 endfunction
 
 
