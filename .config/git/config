@@ -7,9 +7,7 @@ email = fenuks
     excludesfile = ~/.config/git/ignore
     attributesfile = ~/.config/git/attributes
     quotePath = false
-    ; pager = delta --theme "ansi-dark" --plus-color="#274916" --minus-color="#5e1b1b"
-    pager = delta --theme "OneHalfLight"
-    ; pager = delta --theme 'Solarized (light)'
+    pager = delta
 [interactive]
     diffFilter = delta --color-only | less -R
 [cola]

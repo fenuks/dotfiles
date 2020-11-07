@@ -41,6 +41,18 @@ find-up() {
   echo "${match}"
 }
 
+get_terminal_bg() {
+ if [ -z "${TERM_BG_BRIGHT}" ]; then
+    stty -echo 2> /dev/null
+    echo -ne '\e]11;?\a'
+    IFS=: read -rt 0.1 -d $'\a' x bg
+    stty echo 2>/dev/null
+    export TERM_BG_BRIGHT=$((((0x${bg:0:2} * 299 + 0x${bg:6:2} * 587 + 0x${bg:12:2} * 114) / 1000) > 155))
+ fi
+}
+
+get_terminal_bg
+
 function bak() {
     if [[ ! "$#" -eq 1 ]]; then
         return 1

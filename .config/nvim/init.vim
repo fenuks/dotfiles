@@ -860,9 +860,6 @@ Plug 'tpope/vim-characterize'
 " Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 let g:vim_markdown_folding_disabled = 1
 let g:vim_markdown_strikethrough = 1
-
-"##### ORG
-Plug 'jceb/vim-orgmode', { 'for': 'org' }
 Plug 'vimwiki/vimwiki'
 " let g:vimwiki_key_mappings = { 'all_maps': 0, }
 let g:vimwiki_list = [{'path': $XDG_DOCUMENTS_DIR . '/tekst',
