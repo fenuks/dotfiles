@@ -7,9 +7,9 @@ email = fenuks
     excludesfile = ~/.config/git/ignore
     attributesfile = ~/.config/git/attributes
     quotePath = false
-    pager = delta
-[interactive]
-    diffFilter = delta --color-only | less -R
+    ; pager = delta
+; [interactive]
+;     diffFilter = delta --color-only | less -R
 [cola]
     spellcheck = false
 [credential]
