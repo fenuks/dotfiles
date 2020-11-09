@@ -705,11 +705,12 @@ let g:lsc_server_commands = {
  \    'command': 'typescript-language-server --stdio',
  \    'suppress_stderr': v:true,
  \  },
+ \ 'dart': 'dart_language_server --lsp',
+ \ 'haskell': 'haskell-language-server-wrapper',
+ \ 'html': 'dart_language_server',
  \  'rust': {
  \    'command': 'rust-analyzer',
  \  },
- \ 'dart': 'dart_language_server',
- \ 'html': 'dart_language_server',
  \}
 let g:lsc_enable_autocomplete  = v:true
 let g:lsc_enable_diagnostics   = v:true
@@ -729,6 +730,8 @@ if has('nvim')
     if has('nvim-0.5')
         Plug 'neovim/nvim-lspconfig'
         Plug 'nvim-lua/completion-nvim'
+        let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy', 'all']
+        let g:completion_matching_smart_case = 1
         Plug 'tjdevries/lsp_extensions.nvim'
         Plug 'nvim-lua/diagnostic-nvim'
         Plug 'nvim-lua/lsp-status.nvim'
@@ -737,6 +740,7 @@ if has('nvim')
         let g:diagnostic_trimmed_virtual_text = '40'
         " Don't show diagnostics while in insert mode
         let g:diagnostic_insert_delay = 1
+        Plug 'nvim-treesitter/nvim-treesitter'
     endif
 else
     Plug 'Shougo/deoplete.nvim'
@@ -835,10 +839,6 @@ let g:java_highlight_functions=1
 """##### Haskell
 " Plug 'parsonsmatt/intero-neovim', { 'for': 'haskell' }
 Plug 'neovimhaskell/haskell-vim', { 'for': 'haskell' }
-augroup haskell
-    autocmd!
-    autocmd FileType haskell call ConfigureCoc()
-augroup END
 
 " Plug 'vlime/vlime' { 'for': 'lisp' }
 Plug 'kovisoft/slimv', { 'for': 'lisp' }

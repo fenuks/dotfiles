@@ -86,6 +86,11 @@ nnoremap [b :action PrevTab<CR>
 
 " IdeaVim stuff
 set surround
+set commentary
+set ReplaceWithRegister
+set exchange
+set textobj-entire
+
 nnoremap gd :action GotoTypeDeclaration<CR>
 nnoremap gD :action GotoImplementation<CR>
 nnoremap <Leader>gp :action GotoSuperMethod<CR>

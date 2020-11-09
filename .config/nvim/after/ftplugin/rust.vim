@@ -34,12 +34,10 @@ augroup rust_lsp
     autocmd!
     autocmd CursorHold <buffer> lua vim.lsp.util.show_line_diagnostics()
     autocmd CursorMoved,InsertLeave,BufEnter,BufWinEnter,TabEnter,BufWritePost <buffer>
-\ lua require'lsp_extensions'.inlay_hints{ prefix = '', highlight = "Comment" }
+\ lua require'lsp_extensions'.inlay_hints{ prefix = '', highlight = "Comment", aligned = true, only_current_line = false }
 augroup END
 
 " Goto previous/next diagnostic warning/error
-nnoremap <silent> g[ <cmd>PrevDiagnosticCycle<cr>
-nnoremap <silent> g] <cmd>NextDiagnosticCycle<cr>
 else
 call ConfigureLsc()
 endif

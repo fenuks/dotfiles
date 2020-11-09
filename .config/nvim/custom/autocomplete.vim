@@ -173,6 +173,8 @@ function! ConfigureNvimLsp() abort
     nnoremap <silent> <buffer> gW    <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
     nnoremap <silent> <buffer> <Leader>rn    <cmd>lua vim.lsp.buf.rename()<CR>
     " vim.lsp.util.show_line_diagnostics()
+    nnoremap <buffer> <silent> g[ <cmd>PrevDiagnosticCycle<cr>
+    nnoremap <buffer> <silent> g] <cmd>NextDiagnosticCycle<cr>
 endfunction
 
 function! ConfigureLsc() abort
