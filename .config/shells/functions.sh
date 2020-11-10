@@ -47,13 +47,11 @@ get_terminal_bg() {
     echo -ne '\e]11;?\a'
     IFS=: read -rt 0.1 -d $'\a' x bg
     stty echo 2>/dev/null
-    export TERM_BG_BRIGHT=$((((0x${bg:0:2} * 299 + 0x${bg:6:2} * 587 + 0x${bg:12:2} * 114) / 1000) > 155))
+    export TERM_BG_BRIGHT=$((((0x${bg:0:2} * 299 + 0x${bg:6:2} * 587 + 0x${bg:12:2} * 114) / 1000) < 156))
     if [[ "${TERM_BG_BRIGHT}" -eq 1 ]]; then
         export BAT_THEME=OneHalfLight
     else
         export BAT_THEME=ansi-dark
-        alias delta='delta --theme "ansi-dark" --plus-color="#274916" --minus-color="#5e1b1b"'
-        export GIT_PAGER='delta --theme "ansi-dark" --plus-color="#274916" --minus-color="#5e1b1b"'
     fi
  fi
 }

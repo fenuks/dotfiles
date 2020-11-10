@@ -33,9 +33,11 @@ email = fenuks
     ds = diff --find-copies-harder --staged
     dsf = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git diff --staged --color \"$@\" | diff-so-fancy | less --tabs=8 -RFX; }; f"
     last = log -1 HEAD
-    lg = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit | less -r; }; f"
+    lg = log --graph --color=auto --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
     lga = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git log --all --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit | less -r; }; f"
     ls = ls-tree --name-only --full-tree -r HEAD
+    mtk = mergetool --tool=kdiff3
+    mtv = mergetool --tool=vimdiff
     pff = push --force
     r1 = reset --soft HEAD^
     root = rev-parse --show-toplevel
