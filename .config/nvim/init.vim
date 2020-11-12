@@ -60,7 +60,7 @@ set splitright splitbelow " open splits in more natural position
 " formatting
 set backspace=indent,eol,start " more powerful backspacing"
 set formatprg=par\ w79 " gq formatting program
-set formatoptions+=j " remove leading comment on J line joining
+set formatoptions+=jnor1
 set linebreak " breaklines *nicely*, virtually
 " formatting formatprg, formatexpr, formatoptions, equalprg
 set whichwrap=h,l,[,] " specify keys that can wrap next line
@@ -72,7 +72,6 @@ set shiftround " Round indent to multiple of 'shiftwidth'.
 set expandtab " Make tabs into spaces (set by tabstop)
 set smarttab " Smarter tab levels
 " set textwidth=80 " max line width
-set commentstring=#\ %s
 
 " display
 set t_Co=256
@@ -779,8 +778,6 @@ augroup vim
     autocmd FileType muttrc nnoremap <buffer> <silent> K :call SearchMan('neomuttrc', '')<CR>
     autocmd FileType sshconfig nnoremap <buffer> <silent> K :call SearchMan('ssh_config', '')<CR>
     autocmd FileType qf,fugitive setlocal nobuflisted " exclude quickfix withow from :bnext, etc.
-    autocmd FileType text setlocal commentstring=#\ %s
-    autocmd FileType conf setlocal commentstring=#\ %s
     autocmd CursorHold * checktime " needed for autoread to be triggered
     " reopening a file, restore last cursor position
     autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | execute "normal! g'\"" | endif

@@ -5,4 +5,3 @@ let b:did_cpp_ftplugin = 1
 
 " call ConfigureCoc()
 call ConfigureLanguageClient()
-set commentstring=/*%s*/
