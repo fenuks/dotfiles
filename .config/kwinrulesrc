@@ -1,0 +1,16 @@
+[$Version]
+update_info=kwinrules.upd:replace-placement-string-to-enum
+
+[1]
+Description=Ustawienia programu dla kitty
+clientmachinematch=0
+maximizevert=true
+maximizevertrule=2
+noborder=true
+noborderrule=2
+wmclass=kitty
+wmclasscomplete=false
+wmclassmatch=1
+
+[General]
+count=1

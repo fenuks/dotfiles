@@ -8,7 +8,6 @@ GLColorCorrection=false
 GLCore=true
 GLPlatformInterface=glx
 GLPreferBufferSwap=a
-GLTextureFilter=2
 HiddenPreviews=5
 OpenGLIsUnsafe=false
 UnredirectFullscreen=false
@@ -21,12 +20,6 @@ Id_2=2cb21be3-6cc1-4390-b16f-59098eae2570
 Id_3=d4d179ff-4a39-4144-a5da-f1cc5da0c0b3
 Number=3
 Rows=1
-
-[DrmOutputs][3e74e80cda][56d7bab71b]
-Scale=1
-
-[DrmOutputs][3e74e80cda][7b98fc86db]
-Scale=1
 
 [Effect-CoverSwitch]
 TabBox=false
@@ -51,7 +44,9 @@ desktopchangeosdEnabled=false
 flipswitchEnabled=true
 highlightwindowEnabled=true
 kwin4_effect_fadedesktopEnabled=false
+retract_terminalEnabled=true
 slideEnabled=true
+synchronizeskipswitcherEnabled=false
 
 [Script-desktopchangeosd]
 PopupHideDelay=1000
@@ -91,5 +86,4 @@ ButtonsOnLeft=MS
 ButtonsOnRight=HIAX
 CloseOnDoubleClickOnMenu=false
 ShowToolTips=true
-library=org.kde.breeze
 theme=Bryza

@@ -1,0 +1,20 @@
+[Desktop Entry]
+Name=Retract terminal
+Name[pl]=Schowaj terminal
+Comment=Adds a shortcut to rectract terminal emulator window
+Comment[pl]=Dodaje skrót do zminimalizowania i przywracania okna emulatora konsoli
+Icon=preferences-system-windows-script-test
+
+Type=Service
+
+X-Plasma-API=javascript
+X-Plasma-MainScript=main.js
+X-KWin-Border-Activate=true
+X-KDE-PluginInfo-Author=fenuks
+X-KDE-PluginInfo-Email=fenuks@o2.pl
+X-KDE-PluginInfo-Name=retract_terminal
+X-KDE-PluginInfo-Version=1.0
+
+X-KDE-PluginInfo-License=GPL
+X-KDE-ServiceTypes=KWin/Script
+X-KDE-PluginKeyword=retract_terminal
