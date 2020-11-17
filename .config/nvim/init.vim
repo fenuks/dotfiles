@@ -851,6 +851,10 @@ let g:rtagsAutoLaunchRdm=1
 
 "##### Natural language
 Plug 'tpope/vim-characterize'
+" Plug 'vim-scripts/LanguageTool'
+Plug 'dpelle/vim-LanguageTool', { 'for': ['rst'] }
+Plug 'rhysd/vim-grammarous', { 'on': 'GrammarousCheck' }
+
 
 "##### Markdown
 " Plug 'suan/vim-instant-markdown', { 'for': 'markdown' }
@@ -864,14 +868,12 @@ let g:vimwiki_list = [{'path': $XDG_DOCUMENTS_DIR . '/tekst',
 let g:vimwiki_folding='expr'
 nmap sv <Plug>VimwikiIndex
 
+" Database
+let g:sql_type_default='psql'
 
 "##### TeX
 Plug 'lervag/vimtex', { 'for': 'tex' }
 " Plug 'scrooloose/vim-slumlord'
-
-" Plug 'vim-scripts/LanguageTool'
-Plug 'dpelle/vim-LanguageTool', { 'for': ['rst'] }
-Plug 'rhysd/vim-grammarous', { 'on': 'GrammarousCheck' }
 
 "##### Colorshemes
 " dark

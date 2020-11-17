@@ -5,7 +5,7 @@ export XDG_RUNTIME_DIR="/run/user/${UID}"
 
 export ATOM_HOME="$XDG_DATA_HOME"/atom
 export CALIBRE_USE_SYSTEM_THEME=1
-export CARGO_HOME="$XDG_DATA_HOME"/cargo
+export CARGO_HOME="$XDG_CONFIG_HOME"/cargo
 export CCACHE_CONFIGPATH="$XDG_CONFIG_HOME"/ccache.config
 export CCACHE_DIR="$XDG_CACHE_HOME"/ccache 
 export GTK_USE_PORTAL=1
