@@ -1,3 +1,13 @@
 [target.x86_64-unknown-linux-gnu]
 linker = "/usr/bin/clang"
 rustflags = ["-Clink-arg=-fuse-ld=lld", "-Zshare-generics=y"]
+
+# make programs faster
+# [profile.release]
+# lto = 'thin'
+# panic = 'abort'
+# codegen-units = 1
+
+# [profile.bench]
+# lto = 'thin'
+# codegen-units = 1
