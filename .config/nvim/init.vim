@@ -205,14 +205,14 @@ nnoremap <silent> xaj :set opfunc=JustifyOperator<CR>g@
 " edit register
 nnoremap <silent> <Leader>@ :<C-u><C-r><C-r>='let @'. v:register .' = '. string(getreg(v:register))<CR><C-F><LEFT>
 
+" mapping for indenting brackets
+inoremap <C-M-CR> <CR><CR><UP><TAB>
+inoremap <C-j> <END><CR>
+" mapped as <C-S-j> in custom keymap
+inoremap <C-S-CR> <Home><CR><UP>
+
 nnoremap <C-s> :w<Enter>
 inoremap <C-s> <ESC>:w<Enter>a
-inoremap <A-CR> <END><CR>
-" conflicts with builtin mapping that has duplicate in <C-m>
-inoremap <C-S-CR> <CR><CR><UP><TAB>
-inoremap <C-j> <C-o>o
-" mapped as <C-S-j> in custom keymap
-inoremap <C-M-CR> <C-o>O
 inoremap <C-l> <DEL>
 inoremap jk <ESC>
 inoremap jK <ESC>
