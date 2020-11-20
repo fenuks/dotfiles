@@ -1,12 +1,13 @@
+# aliases compatible with fish syntax
+
 alias ag='ag --smart-case'
 alias chromium-dev='chromium --disable-web-security --user-data-dir --remote-debugging-port=9222'
 alias clear="clear && printf \"\\e[3J\""
-# alias clear="printf \"\\033c\""
 alias dc='docker-compose'
-alias edit="${EDITOR}"
+alias edit="$EDITOR"
 alias firefox-debug='firefox -start-debugger-server -no-remote'
 alias g='git'
-alias gdb="gdb -nh -x \"${XDG_CONFIG_HOME}/gdb/init\""
+alias gdb="gdb -nh -x \"$XDG_CONFIG_HOME/gdb/init\""
 alias grep="grep --color=auto"
 alias irssi="irssi --config=\"$XDG_CONFIG_HOME\"/irssi/config --home=\"$XDG_DATA_HOME\"/irssi"
 alias jad-decompile="jad -o -d src-jad -r -s java **/*.class"
@@ -16,42 +17,22 @@ alias ll.='ls -l --all --human-readable'
 alias lls='ls -l --all --sort=size --human-readable'
 alias llt='ls -l --all --sort=tim --human-readablee'
 alias maven='mvn'
-alias pager="${PAGER}"
 alias py='python'
-alias ipy="ipython --ipython-dir=${XDG_CONFIG_HOME}/jupyter"
+alias ipy="ipython --ipython-dir=$XDG_CONFIG_HOME/jupyter"
 alias sm='HOME=~/.spacemacs emacs'
 alias spacemacs='HOME=~/.spacemacs emacs'
 alias steam-flatpak='flatpak run com.valvesoftware.Steam'
 alias steam-wine='wine $HOME/.wine/drive_c/Program\ Files\ \(x86\)/Steam/Steam.exe -no-cef-sandbox -opengl -fullscreenopengl'
 alias sqlite3="sqlite3 -init ~/.config/sqliterc"
-_SILENT_JAVA_OPTIONS="$_JAVA_OPTIONS"
-unset _JAVA_OPTIONS
-alias java='java "$_SILENT_JAVA_OPTIONS"'
 alias check-yapf-config="diff <(yapf --style-help | grep -oP '^[a-zA-Z_0-9]+' | sort) <(grep -oP '^[a-zA-Z_0-9]+' ~/.config/yapf/style | sort)"
 # faster edition of common files
 alias v='vim'
-alias vg='vim $(gf)'
 alias vsb='vim ~/.bashrc'
 alias vsz='vim ~/.config/zsh/.zshrc'
 alias vsf='vim ~/.config/fish/config.fish'
-alias vd='vim $(find-up docker-compose.yml)'
-alias vD='vim $(find-up Dockerfile)'
 alias vh='sudoedit /etc/hosts'
-alias vm='vim $(find-up Makefile)'
-alias vp='vim $(find-up PKGBUILD)'
 alias vR='sudoedit /etc/resolv.conf'
-alias vr='vim $(find-up requirements.txt)'
-alias vrd='vim $(find-up requirements-dev.txt)'
 alias vv='vim ~/.config/nvim/init.vim'
 alias vz='vim ~/.config/zsh/.zshrc'
 alias sb='source ~/.bashrc'
 alias sf='source ~/.config/fish/config.fish'
-
-if command -v delta > /dev/null; then
-    if [[ "${TERM_BG_BRIGHT}" -ne 1 ]]; then
-        alias delta='delta --plus-color="#274916" --minus-color="#5e1b1b"'
-        export GIT_PAGER='delta --plus-color="#274916" --minus-color="#5e1b1b"'
-    else
-        export GIT_PAGER=delta
-    fi
-fi

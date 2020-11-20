@@ -1,6 +1,7 @@
-export XDG_CONFIG_HOME="${HOME}/.config"
-export XDG_CACHE_HOME="${HOME}/.cache"
-export XDG_DATA_HOME="${HOME}/.local/share"
+# environments in format compatible with fish shell
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_CACHE_HOME="$HOME/.cache"
+export XDG_DATA_HOME="$HOME/.local/share"
 
 export BROWSER=firefox
 export DOTNET_CLI_TELEMETRY_OPTOUT=1
@@ -16,14 +17,14 @@ export HISTSIZE=100000
 # export HISTTIMEFORMAT="%d/%m/%y %T "
 export HTML_TIDY="$HOME/.config/tidy.conf"
 export LESS=-R
-export LESSHISTFILE="${XDG_CACHE_HOME}/less_history"
+export LESSHISTFILE="$XDG_CACHE_HOME/less_history"
 export MAVEN_OPTS='-Xmx2048m'
 export PATH="$HOME/.local/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 export PROMPT_COMMAND='history -a' # don't wait to append to history until session ends
 # export PROMPT_COMMAND='history -w' # only history -w removed duplicates
 export PYTHON2DOCDIR=/usr/share/doc/python2/html/
 export PYTHON3DOCDIR=/usr/share/doc/python/html/
-export PIP_DOWNLOAD_CACHE="${XDG_CACHE_HOME}/pip"
+export PIP_DOWNLOAD_CACHE="$XDG_CACHE_HOME/pip"
 export PYTHONSTARTUP="$HOME/.config/python/pythonrc"
 export RUSTFLAGS="-C target-cpu=native"
 export SHELLCHECK_OPTS="-e SC1090,SC2034,SC2164"
@@ -31,21 +32,3 @@ export SKIM_DEFAULT_COMMAND='git ls-tree -r --name-only HEAD || rg --files'
 export SSH_ASKPASS=/usr/bin/ksshaskpass
 export SSH_AUTH_SOCK=/tmp/ssh-agent.sock
 export UNCRUSTIFY_CONFIG="$HOME/.config/uncrustify.cfg"
-
-if [[ -f /usr/share/java/lombok/lombok.jar ]]; then
-    export JAVA_TOOLS_OPTIONS="-javaagent:/usr/share/java/lombok/lombok.jar -Xbootclasspath/p:/usr/share/java/lombok/lombok.jar"
-fi
-if [[ -d /usr/lib/jvm/default ]]; then
-    export JAVA_HOME=/usr/lib/jvm/default/
-fi
-if [[ -f ~/.config/user-dirs.dirs ]]; then
-    source ~/.config/user-dirs.dirs
-    export XDG_DESKTOP_DIR
-    export XDG_DOWNLOAD_DIR
-    export XDG_TEMPLATES_DIR
-    export XDG_PUBLICSHARE_DIR
-    export XDG_DOCUMENTS_DIR
-    export XDG_MUSIC_DIR
-    export XDG_PICTURES_DIR
-    export XDG_VIDEOS_DIR
-fi
