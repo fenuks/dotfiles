@@ -1,17 +1,20 @@
-if [ "${TERMINIX_ID:-}" ] || [ "${VTE_VERSION:-}" ]; then
-    source /etc/profile.d/vte.sh
-fi
-
 set -o vi
 # set -o nounset # error when unset variable is referenced
 # Prevent file overwrite on stdout redirection
 # Use `>|` to force redirection to an existing file
 set -o noclobber
+# set -e # exit on non-zero code
+# set -o nounset # error when non-set variable is accessed
+set -o pipefail # return code of failed pipeline command
+stty susp undef
 
-if [[ -x $(command -v fortune) ]]; then
-    if [[ -x $(command -v cowsay) ]]; then
-        fortune | cowsay
-    else
-        fortune
-    fi
-fi
+
+
+# it adds 60ms to startup
+# if [[ -x $(command -v fortune) ]]; then
+#     if [[ -x $(command -v cowsay) ]]; then
+#         fortune | cowsay
+#     else
+#         fortune
+#     fi
+# fi
