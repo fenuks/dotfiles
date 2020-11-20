@@ -31,5 +31,7 @@ build/
 .clangd/
 *.kdev4
 
+localrc.after.bash
+localrc.after.zsh
 
 TODO.org
