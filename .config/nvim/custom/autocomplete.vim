@@ -3,7 +3,7 @@ let g:LanguageClient_serverCommands = {
     \ 'c': ['clangd'],
     \ 'cpp': ['clangd'],
     \ 'swift': ['sourcekit-lsp'],
-    \ 'haskell': ['haskell-language-server-wrapper'],
+    \ 'haskell': ['haskell-language-server-wrapper', '--lsp'],
     \ 'java': ['jdtls', '-javaagent:/usr/share/java/lombok/lombok.jar', '-Xbootclasspath/p:/usr/share/java/lombok/lombok.jar'],
     \ 'javascript': ['javascript-typescript-stdio'],
     \ 'javascript.jsx': ['javascript-typescript-stdio'],
@@ -23,11 +23,23 @@ let g:LanguageClient_loggingLevel = 'DEBUG'
 let g:LanguageClient_loggingFile='/tmp/lc.log'
 let g:LanguageClient_serverStderr = '/tmp/ls.log'
 
-" prabirshrestha/vim-lsp
-let g:lsp_signs_enabled = 1         " enable signs
-let g:lsp_diagnostics_echo_cursor = 1 " enable echo under cursor when in normal mode
-let g:lsp_log_verbose = 1
-let g:lsp_log_file = expand('/tmp/vim-lsp.log')
+" natebosch/vim-lsc'
+let g:lsc_server_commands = {
+ \  'c': 'clangd',
+ \  'javascript': {
+ \    'command': 'typescript-language-server --stdio',
+ \    'suppress_stderr': v:true,
+ \  },
+ \ 'dart': 'dart_language_server --lsp',
+ \ 'haskell': 'haskell-language-server-wrapper --lsp',
+ \ 'html': 'dart_language_server',
+ \  'rust': {
+ \    'command': 'rust-analyzer',
+ \  },
+ \}
+let g:lsc_enable_autocomplete  = v:true
+let g:lsc_enable_diagnostics   = v:true
+let g:lsc_reference_highlights = v:true
 
 function! ConfigureYcm() abort
     nnoremap <silent> <buffer> <Leader>ck :YcmShowDetailedDiagnostic<CR>
@@ -173,8 +185,8 @@ function! ConfigureNvimLsp() abort
     nnoremap <silent> <buffer> gW    <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
     nnoremap <silent> <buffer> <Leader>rn    <cmd>lua vim.lsp.buf.rename()<CR>
     " vim.lsp.util.show_line_diagnostics()
-    nnoremap <buffer> <silent> g[ <cmd>PrevDiagnosticCycle<cr>
-    nnoremap <buffer> <silent> g] <cmd>NextDiagnosticCycle<cr>
+    nnoremap <buffer> <silent> g[ <cmd>vim.lsp.diagnostic.goto_prev()<cr>
+    nnoremap <buffer> <silent> g] <cmd>vim.lsp.diagnostic.goto_next()<cr>
 endfunction
 
 function! ConfigureLsc() abort

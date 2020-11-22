@@ -18,17 +18,16 @@ let g:haskell_enable_typeroles = 1        " to enable highlighting of type roles
 let g:haskell_enable_static_pointers = 1  " to enable highlighting of `static`
 let g:haskell_backpack = 1                " to enable highlighting of backpack keywords
 
-if has('nvim-0.5')
+if v:false && has('nvim-0.5')
 call ConfigureNvimLsp()
 
 lua << EOF
-    local nvim_lsp = require('nvim_lsp')
+    local nvim_lsp = require('lspconfig')
 
     -- function to attach completion and diagnostics
     -- when setting up lsp
     local on_attach = function(client)
         require('completion').on_attach(client)
-        require('diagnostic').on_attach(client)
     end
 
     nvim_lsp.hls.setup({ on_attach=on_attach })
@@ -40,12 +39,13 @@ setlocal updatetime=300
 
 augroup haskell_lsp
     autocmd!
-    autocmd CursorHold <buffer> lua vim.lsp.util.show_line_diagnostics()
+    autocmd CursorHold <buffer> lua vim.lsp.diagnostic.show_line_diagnostics()
     autocmd CursorMoved,InsertLeave,BufEnter,BufWinEnter,TabEnter,BufWritePost <buffer>
 \ lua require'lsp_extensions'.inlay_hints{ prefix = '', highlight = "Comment", aligned = true, only_current_line = false }
 augroup END
 
 " Goto previous/next diagnostic warning/error
 else
-call ConfigureLsc()
+" call ConfigureLanguageClient()
+call ConfigureCoc()
 endif

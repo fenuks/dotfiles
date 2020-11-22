@@ -8,7 +8,8 @@
         "stack.yaml",
         "cabal.project",
         "package.yaml",
-        "hie.yaml"
+        "hie.yaml",
+        ".git/"
       ],
       "filetypes": ["haskell", "lhaskell"]
     },
@@ -24,8 +25,5 @@
       ],
       "filetypes": ["c", "cpp", "objc", "objcpp"]
     }
-  },
-  "yaml.schemas": {
-    "openapi": "https://raw.githubusercontent.com/OAI/OpenAPI-Specification/master/schemas/v3.0/schema.yaml"
   }
 }

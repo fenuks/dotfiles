@@ -695,25 +695,7 @@ Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'make release',
 let g:LanguageClient_diagnosticsList='Location'
 Plug 'neoclide/coc.nvim', { 'branch': 'release', 'on': ['CocInstall', 'CocConfig', 'CocEnable'] }
 
-" Plug 'prabirshrestha/async.vim'
-" Plug 'prabirshrestha/vim-lsp'
 Plug 'natebosch/vim-lsc', { 'on': 'LSClientEnable' }
-let g:lsc_server_commands = {
- \  'c': 'clangd',
- \  'javascript': {
- \    'command': 'typescript-language-server --stdio',
- \    'suppress_stderr': v:true,
- \  },
- \ 'dart': 'dart_language_server --lsp',
- \ 'haskell': 'haskell-language-server-wrapper',
- \ 'html': 'dart_language_server',
- \  'rust': {
- \    'command': 'rust-analyzer',
- \  },
- \}
-let g:lsc_enable_autocomplete  = v:true
-let g:lsc_enable_diagnostics   = v:true
-let g:lsc_reference_highlights = v:true
 
 Plug 'Valloric/YouCompleteMe', { 'for': ['javascript', 'python'] }
 " Plug 'lifepillar/vim-mucomplete'
@@ -732,13 +714,7 @@ if has('nvim')
         let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy', 'all']
         let g:completion_matching_smart_case = 1
         Plug 'tjdevries/lsp_extensions.nvim'
-        Plug 'nvim-lua/diagnostic-nvim'
         Plug 'nvim-lua/lsp-status.nvim'
-        " Visualize diagnostics
-        let g:diagnostic_enable_virtual_text = 1
-        let g:diagnostic_trimmed_virtual_text = '40'
-        " Don't show diagnostics while in insert mode
-        let g:diagnostic_insert_delay = 1
         Plug 'nvim-treesitter/nvim-treesitter'
     endif
 else

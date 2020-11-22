@@ -114,7 +114,7 @@
     "sqltools.telemetry": false,
     "rest-client.enableTelemetry": false,
     "vim.highlightedyank.enable": true,
-    "editor.fontSize": 16,
+    "editor.fontSize": 20,
     "editor.parameterHints.cycle": true,
     "java.semanticHighlighting.enabled": true,
     "editor.renameOnType": true,
@@ -136,7 +136,8 @@
     "rust.racer_completion": false,
     "shellcheck.disableVersionCheck": true,
     "shellcheck.enableQuickFix": true,
-    "vim.camelCaseMotion.enable": true
+    "vim.camelCaseMotion.enable": true,
+    "workbench.colorTheme": "Solarized Light"
     // "editor.formatOnType": true,
     // "editor.formatOnPaste": true,
     // "editor.autoIndent": true
