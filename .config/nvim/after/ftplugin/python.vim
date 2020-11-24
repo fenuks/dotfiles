@@ -2,7 +2,6 @@ if exists('b:did_python_ftplugin') | finish | endif
 let b:did_python_ftplugin = 1
 " let g:python_recommended_style=0
 
-nnoremap <buffer> <silent> <Leader>U :YcmCompleter GoToReferences<CR>
 let b:neoformat_run_all_formatters = 1
 
 " davidhalter/jedi-vim
@@ -23,5 +22,5 @@ let g:ropevim_enable_shortcuts = 0
 call ConfigureNvimLsp()
 
 lua << EOF
-    require'nvim_lsp'.pyls.setup{}
+    require'lspconfig'.pyls.setup{}
 EOF

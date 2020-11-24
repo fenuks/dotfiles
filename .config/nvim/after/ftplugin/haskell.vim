@@ -6,8 +6,8 @@ setlocal makeprg=stack\ build
 setlocal suffixesadd=.hs
 setlocal path+=src
 
-nnoremap <script> <silent> ]m /^\s*\w[^:=$]*\(::\\|\n\s*::\)<CR>
-nnoremap <script> <silent> [m ?^\s*\w[^:=$]*\(::\\|\n\s*::\)<CR>
+nnoremap <unique> <script> <silent> ]m /^\s*\w[^:=$]*\(::\\|\n\s*::\)<CR>
+nnoremap <unique> <script> <silent> [m ?^\s*\w[^:=$]*\(::\\|\n\s*::\)<CR>
 
 " let g:haskell_classic_highlighting = 1
 let g:haskell_enable_quantification = 1   " to enable highlighting of `forall`

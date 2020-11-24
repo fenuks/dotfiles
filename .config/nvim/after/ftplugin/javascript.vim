@@ -3,9 +3,9 @@ if exists('b:did_javascript_ftplugin')
 endif
 let b:did_javascript_ftplugin = 1
 
-nnoremap <buffer> <silent> gd :TernDef<CR>
-nnoremap <buffer> <silent> <Leader>u :TernRefs<CR>
-nnoremap <buffer> <silent> <Leader>r :TernRename<CR>
+nnoremap <unique> <buffer> <silent> gd :TernDef<CR>
+nnoremap <unique> <buffer> <silent> <Leader>u :TernRefs<CR>
+nnoremap <unique> <buffer> <silent> <Leader>r :TernRename<CR>
 setlocal softtabstop=2 shiftwidth=2
 " setlocal path=.,src,node_modules
 setlocal suffixesadd=.js,.jsx

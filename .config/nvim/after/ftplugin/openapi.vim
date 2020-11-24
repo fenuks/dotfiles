@@ -6,9 +6,9 @@ setlocal foldlevelstart=2
 setlocal suffixesadd=.yaml,.yml
 setlocal include='\\zs[^#]\\+\\ze#
 let &l:define='^\s*\ze\i\+:'
-nnoremap <buffer> <c-]> [<C-d>
-" nmap <Leader>gu <Leader>s*
-nmap <silent> <Leader>gu :call <SID>Usages()<CR>
+nnoremap <unique> <buffer> <c-]> [<C-d>
+" nmap <unique> <Leader>gu <Leader>s*
+nmap <unique> <silent> <Leader>gu :call <SID>Usages()<CR>
 
 function! s:Usages() abort
     let l:word = expand("<cword>")

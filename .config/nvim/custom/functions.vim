@@ -264,7 +264,7 @@ function! OperatorFunc(excommand, type) abort
 endfunction
 
 
-nnoremap <silent> <F8> :call NextColor(1)<CR>
-nnoremap <silent> <F20> :call NextColor(-1)<CR> " <S-F8>
-nnoremap <silent> <F9> :call NextAirlineTheme(1)<CR>
-nnoremap <silent> <F21> :call NextAirlineTheme(-1)<CR> " <S-F9>
+nnoremap <unique> <silent> <F8> :call NextColor(1)<CR>
+nnoremap <unique> <silent> <F20> :call NextColor(-1)<CR> " <S-F8>
+nnoremap <unique> <silent> <F9> :call NextAirlineTheme(1)<CR>
+nnoremap <unique> <silent> <F21> :call NextAirlineTheme(-1)<CR> " <S-F9>
