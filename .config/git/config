@@ -27,7 +27,7 @@ email = fenuks
     co = checkout
     commitp = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && PKGVER=$(grep -oP 'pkgver ?= ?\\K.+' .SRCINFO)-$(grep -oP 'pkgrel ?= ?\\K.+' .SRCINFO); git commit -m \"Update to ${PKGVER}\" $@; }; f"
     d = diff --find-copies-harder
-    default = symbolic-ref --short HEAD
+    default = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git remote show origin | awk '/HEAD branch/ {print $NF}'; }; f"
     df = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git diff --color \"$@\" | diff-so-fancy | less --tabs=8 -RFX; }; f"
     diffs = diff --staged
     ds = diff --find-copies-harder --staged
