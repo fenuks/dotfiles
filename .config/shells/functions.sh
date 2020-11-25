@@ -5,6 +5,12 @@ function source_if_exists() {
 
 function md() { mkdir -p "$@" && cd "$1"; }
 
+function maybe_fg() {
+    if [[ $(jobs -p) ]]; then
+        fg
+    fi
+}
+
 function ssh-kde () {
     ssh-agent -a "${SSH_AUTH_SOCK}"
     ssh-add </dev/null
