@@ -700,7 +700,7 @@ Plug 'neoclide/coc.nvim', { 'branch': 'release', 'on': ['CocInstall', 'CocConfig
 
 Plug 'natebosch/vim-lsc', { 'on': 'LSClientEnable' }
 
-Plug 'Valloric/YouCompleteMe', { 'for': ['javascript', 'python'] }
+Plug 'Valloric/YouCompleteMe', { 'for': ['javascript'] }
 " Plug 'lifepillar/vim-mucomplete'
 " Plug 'maralla/completor.vim'
 " Plug 'Shougo/neocomplete.vim'
@@ -716,6 +716,7 @@ if has('nvim')
         Plug 'nvim-lua/completion-nvim'
         let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy', 'all']
         let g:completion_matching_smart_case = 1
+        let g:completion_sorting = 'none'
         Plug 'tjdevries/lsp_extensions.nvim'
         Plug 'nvim-lua/lsp-status.nvim'
         Plug 'nvim-treesitter/nvim-treesitter'
