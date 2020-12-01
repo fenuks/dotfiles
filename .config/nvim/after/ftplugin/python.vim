@@ -19,7 +19,7 @@ let g:jedi#completions_command = ''
 let g:ropevim_enable_shortcuts = 0
 
 " call ConfigureYcm()
-if has('nvim-0.5')
+if has('nvim-0.5') && executable('pyls')
 call ConfigureNvimLsp()
 lua require'lspconfig'.pyls.setup{on_attach=require'completion'.on_attach}
 endif
