@@ -7,8 +7,7 @@ setlocal suffixesadd=.yaml,.yml
 setlocal include='\\zs[^#]\\+\\ze#
 let &l:define='^\s*\ze\i\+:'
 nnoremap <unique> <buffer> <c-]> [<C-d>
-" nmap <unique> <Leader>gu <Leader>s*
-nmap <unique> <silent> <Leader>gu :call <SID>Usages()<CR>
+nmap <unique> <silent> <buffer> <Leader>gu :call <SID>Usages()<CR>
 
 function! s:Usages() abort
     let l:word = expand("<cword>")

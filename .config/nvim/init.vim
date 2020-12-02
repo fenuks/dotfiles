@@ -643,8 +643,9 @@ nnoremap <unique> <silent> <Leader>cO :lclose<CR>
 Plug 'neomake/neomake', { 'on': ['Neomake', 'NeomakeProject'] }
 let g:neomake_open_list = 2
 let g:airline#extensions#neomake#enabled = 0
-nnoremap <unique> <Leader>mb :make compile<CR>
-nnoremap <unique> <Leader>mi :make install<CR>
+nnoremap <unique> <Leader>mb :make<CR>
+" non-unique, can be redefined per filetype
+nnoremap <Leader>mi :make install<CR>
 nnoremap <unique> <Leader>mc :make clean<CR>
 
 Plug 'janko-m/vim-test', { 'on': ['TestNearest', 'TestFile', 'TestSuite', 'TestLast', 'TestVisit'] }
@@ -920,8 +921,7 @@ command! Lprevious call WrapListCommand('lprev', 'llast')
 
 function! ConfigurePkgbuild() abort
     setlocal makeprg=makepkg
-    nnoremap <unique> <buffer> <Leader>mi :make -i<CR>
-    nnoremap <unique> <buffer> <Leader>mb :make<CR>
+    nnoremap <buffer> <Leader>mi :make -i<CR>
     setlocal softtabstop=2
     setlocal shiftwidth=2
     setlocal filetype=sh
