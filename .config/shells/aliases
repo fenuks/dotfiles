@@ -17,6 +17,7 @@ alias ll.='ls -l --all --human-readable'
 alias lls='ls -l --all --sort=size --human-readable'
 alias llt='ls -l --all --sort=tim --human-readablee'
 alias maven='mvn'
+alias mksrcinfo='makepkg --printsrcinfo >| .SRCINFO'
 alias py='python'
 alias ipy="ipython --ipython-dir=$XDG_CONFIG_HOME/jupyter"
 alias sm='HOME=~/.spacemacs emacs'

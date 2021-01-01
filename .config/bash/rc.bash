@@ -40,8 +40,8 @@ if [[ -r "$HOME/.config/fzf/completions/git.sh" ]]; then
     complete -o default -o nospace -F _fzf_complete_git cgit
     complete -o default -o nospace -F _fzf_complete_git g
 else
-    complete -o default -o nospace -F _git cgit
-    complete -o default -o nospace -F _git g
+    complete -o default -o nospace -F __git_wrap__git_main cgit
+    complete -o default -o nospace -F __git_wrap__git_main g
 fi
 source_if_exists "$HOME/.config/fzf/completions/hg.sh"
 source_if_exists "$HOME/.config/fzf/completions/docker.sh"

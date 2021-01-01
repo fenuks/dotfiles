@@ -8,7 +8,9 @@ set -o noclobber
 set -o pipefail # return code of failed pipeline command
 stty susp undef
 
-
+if [ ! -d ~/.local/share/history ]; then
+    mkdir ~/.local/share/history
+fi
 
 # it adds 60ms to startup
 # if [[ -x $(command -v fortune) ]]; then

@@ -18,10 +18,10 @@ export KODI_TEMP="${XDG_RUNTIME_DIR}/kodi"
 export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME"/npm/npmrc
 export PGPASSFILE="$XDG_CONFIG_HOME/pg/pgpass"
 export PGSERVICEFILE="$XDG_CONFIG_HOME/pg/pg_service.conf"
-export PSQL_HISTORY="$XDG_CACHE_HOME/psql_history"
+export PSQL_HISTORY="$XDG_DATA_HOME/history/psql_history"
 export PSQLRC="$XDG_CONFIG_HOME/pg/psqlrc"
 export RUSTUP_HOME="$XDG_DATA_HOME"/rustup
-export SQLITE_HISTORY=$XDG_CACHE_HOME/sqlite_history
+export SQLITE_HISTORY=$XDG_DATA_HOME/history/sqlite_history
 export SSH_AUTH_SOCK=/tmp/ssh-agent.sock
 export SYSTEMD_EDITOR=nvim
 

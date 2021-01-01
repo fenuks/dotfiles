@@ -3,7 +3,7 @@
 _fzf_complete_git() {
     local selected fzf fzf_opt binary cmd_opt
     if [[ -n "${COMP_WORDS[${COMP_CWORD}]}" ]]; then
-        _git "${@}"
+        __git_wrap__git_main "${@}"
         return 0
     fi
 
@@ -55,7 +55,7 @@ _fzf_complete_git() {
             return 0
         fi
     fi
-    _git "${@}"
+    __git_wrap__git_main "${@}"
 }
 
 
