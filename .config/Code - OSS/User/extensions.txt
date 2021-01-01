@@ -1,7 +1,9 @@
-]0;firejail /usr/bin/code --list-extensions ban.spellright
+ban.spellright
 Dart-Code.dart-code
 Dart-Code.flutter
 dbaeumer.vscode-eslint
+dhall.dhall-lang
+dhall.vscode-dhall-lsp-server
 donjayamanne.githistory
 DotJoshJohnson.xml
 dragos.scala-lsp
@@ -13,6 +15,7 @@ GitLab.gitlab-workflow
 golang.go
 hackwaly.ocaml
 haskell.haskell
+hoovercj.haskell-linter
 humao.rest-client
 James-Yu.latex-workshop
 jcanero.hoogle-vscode
@@ -20,6 +23,7 @@ julialang.language-julia
 justusadam.language-haskell
 kisstkondoros.vscode-gutter-preview
 lextudio.restructuredtext
+matklad.rust-analyzer
 mrcrowl.hg
 msjsdiag.debugger-for-chrome
 msjsdiag.vscode-react-native
@@ -36,6 +40,7 @@ platformio.platformio-ide
 redhat.java
 rust-lang.rust
 SonarSource.sonarlint-vscode
+sumneko.lua
 timonwong.shellcheck
 tootone.org-mode
 vadimcn.vscode-lldb
