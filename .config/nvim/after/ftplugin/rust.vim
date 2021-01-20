@@ -13,17 +13,6 @@ nnoremap <unique> <buffer> <silent> K <Plug>(rust-doc)
 if has('nvim-0.5')
 call ConfigureNvimLsp()
 
-lua << EOF
-    local nvim_lsp = require('lspconfig')
-
-    -- function to attach completion and diagnostics
-    -- when setting up lsp
-    local on_attach = function(client)
-        require('completion').on_attach(client)
-    end
-
-    nvim_lsp.rust_analyzer.setup({ on_attach=on_attach })
-EOF
 " Set updatetime for CursorHold
 " 300ms of no cursor movement to trigger CursorHold
 setlocal updatetime=300

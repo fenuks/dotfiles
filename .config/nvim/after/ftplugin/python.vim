@@ -18,8 +18,5 @@ let g:jedi#completions_command = ''
 " python-rope/ropevim
 let g:ropevim_enable_shortcuts = 0
 
-" call ConfigureYcm()
-if has('nvim-0.5') && executable('pyls')
-call ConfigureNvimLsp()
-lua require'lspconfig'.pyls.setup{on_attach=require'completion'.on_attach}
-endif
+" fix truncated documenation in floating window problem
+call deoplete#custom#source('jedi', 'max_info_width', 0)

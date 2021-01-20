@@ -21,17 +21,6 @@ let g:haskell_backpack = 1                " to enable highlighting of backpack k
 if v:false && has('nvim-0.5')
 call ConfigureNvimLsp()
 
-lua << EOF
-    local nvim_lsp = require('lspconfig')
-
-    -- function to attach completion and diagnostics
-    -- when setting up lsp
-    local on_attach = function(client)
-        require('completion').on_attach(client)
-    end
-
-    nvim_lsp.hls.setup({ on_attach=on_attach })
-EOF
 " Set updatetime for CursorHold
 " 300ms of no cursor movement to trigger CursorHold
 setlocal updatetime=300
@@ -40,12 +29,11 @@ setlocal updatetime=300
 augroup haskell_lsp
     autocmd!
     autocmd CursorHold <buffer> lua vim.lsp.diagnostic.show_line_diagnostics()
-    autocmd CursorMoved,InsertLeave,BufEnter,BufWinEnter,TabEnter,BufWritePost <buffer>
-\ lua require'lsp_extensions'.inlay_hints{ prefix = '', highlight = "Comment", aligned = true, only_current_line = false }
 augroup END
 
 " Goto previous/next diagnostic warning/error
 else
 " call ConfigureLanguageClient()
-call ConfigureCoc()
+" call ConfigureCoc()
+call ConfigureLsc()
 endif

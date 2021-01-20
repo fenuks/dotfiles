@@ -15,6 +15,7 @@ set tagcase=match " Match case in tag search
 set incsearch " Search while typing
 " set gdefault " Automatically enable the 'g' flag for substitution
 set foldclose=all " close fold after cursor leaves it
+set foldlevelstart=99 " start with all folds opened
 
 "" misc
 set modelines=0 " number of lines vim probes to find vi: commands
@@ -23,10 +24,12 @@ set cmdwinheight=20 " set commandline window height
 set undolevels=1000
 set autoread " Automatically reload file changed outside vim if not changed in vim
 set completeopt=menuone,noselect " complete longest common text instead of first word
+set pumheight=15 " maximum autocomplete popup height
 
 " set timeoutlen=150 " Time to wait after ESC (default causes an annoying delay), it affects also leader key, unfortunately
 set scrolloff=3 " number of context lines visible near cursor
 set sidescrolloff=5 " like 'scrolloff' but for columns
+set scrollopt+=hor " scroll binded windows also horizontally
 set wildmenu " enhanced command-line mode
 set wildignore=*.swp,*.bak,*.pyc,*.class,*.git
 set hidden " allow background buffers without saving
@@ -102,7 +105,7 @@ else
 endif
 
 if has('nvim')
-    set scrollback=-1 " NeoVim terminal unlimited scrolling
+    set scrollback=-1 " nvim terminal unlimited scrolling
     let g:vim_share_dir=g:local_share_dir . '/nvim'
     set inccommand=nosplit
 else
@@ -204,6 +207,8 @@ nnoremap <unique> <silent> xac :set opfunc=CenterAlignOperator<CR>g@
 nnoremap <unique> <silent> xaJ :,$Justify<CR>
 vnoremap <unique> <silent> xaj :Justify<CR>
 nnoremap <unique> <silent> xaj :set opfunc=JustifyOperator<CR>g@
+nnoremap <unique> <silent> sj :set opfunc=JoinOperatorWithSpaces<CR>g@
+nnoremap <unique> <silent> sJ :set opfunc=JoinOperator<CR>g@
 
 " edit register
 nnoremap <unique> <silent> <Leader>@ :<C-u><C-r><C-r>='let @'. v:register .' = '. string(getreg(v:register))<CR><C-F><LEFT>
@@ -398,15 +403,6 @@ nnoremap <unique> <SPACE>K :Man<CR>
 " Reveal syntax group under cursor.
 nnoremap <unique> <F2> :echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')<CR>
 
-function! OpenMan()
-    try
-        call man#open_page(v:count, v:count1, 'tabs', 'dirent')
-    catch
-        call man#open_page(v:count, v:count1, 'tabs', 'dirent.h')
-    catch
-    endtry
-endfunction
-
 let g:loaded_python_provider = 0
 let g:loaded_ruby_provider = 0
 let g:loaded_perl_provider = 0
@@ -416,7 +412,6 @@ let g:loaded_tutor_mode_plugin = v:true
 packadd termdebug
 " packadd cfilter
 packadd justify
-
 
 "##### TUI
 Plug 'bling/vim-airline'
@@ -458,6 +453,7 @@ Plug 'vim-scripts/ReplaceWithRegister'
 nmap <unique> sp <Plug>ReplaceWithRegisterOperator
 nmap <unique> spp <Plug>ReplaceWithRegisterLine
 xmap <unique> sp <Plug>ReplaceWithRegisterVisual
+Plug 'sk1418/Join'
 
 "#### Version Control
 Plug 'sjl/gundo.vim', { 'on': 'GundoToggle' }
@@ -501,7 +497,6 @@ Plug 'rhysd/git-messenger.vim', { 'on': 'GitMessenger' }
 Plug 'will133/vim-dirdiff', { 'on': 'DirDiff' }
 nnoremap <unique> <silent> <Leader>dg :diffget<CR>
 nnoremap <unique> <silent> <Leader>dp :diffput<CR>
-
 nnoremap <unique> <silent> <Leader>df :call DiffOrig()<CR>
 
 "#### Filesystem
@@ -584,7 +579,6 @@ imap <unique> <C-q> <C-\><C-o>d_
 cmap <unique> <C-q> <C-f>d_<C-c><C-c>:<UP>
 Plug 'arthurxavierx/vim-caser'
 
-
 Plug 'lambdalisue/lista.nvim', { 'on': 'Lista' }
 
 "##### Formatting
@@ -664,7 +658,7 @@ nnoremap <unique> <silent> <leader>xg :TestVisit<CR>
 " Plug 'cohama/lexima.vim'
 Plug 'fenuks/auto-pairs'
 let g:AutoPairs = {'(':')', '[':']', '{':'}', "'":"'", '"':'"', '`':'`',
-\                    '„':'”', '‘':'’', '“':'”'}
+\                    '„':'”', '‚': '’', '‘':'’', '“':'”'}
 let g:AutoClosePairs_add = '<> | „” ‘’'
 let g:AutoPairsShortcutToggle=''
 let g:AutoPairsShortcutFastWrap=''
@@ -675,65 +669,46 @@ let g:AutoPairsSkipAfter='\a'
 let g:AutoPairsSkipBefore=''
 let g:AutoPairsMoveCharacter = ''
 
-" Plug 'tmsvg/pear-tree'
-let g:pear_tree_pairs = {
-            \ '(': {'closer': ')'},
-            \ '[': {'closer': ']'},
-            \ '{': {'closer': '}'},
-            \ "'": {'closer': "'"},
-            \ '"': {'closer': '"'},
-            \ '‘': {'closer': '’'},
-            \ '„': {'closer': '”'},
-            \ }
-
-let g:pear_tree_smart_openers = 1
-let g:pear_tree_smart_closers = 1
-let g:pear_tree_smart_backspace = 1
-let g:pear_tree_map_special_keys = 0
-" imap <unique> <BS> <Plug>(PearTreeBackspace)
-" imap <unique> <C-h> <Plug>(PearTreeBackspace)
-" imap <unique> <Space> <Plug>(PearTreeSpace)
-
 " ##### Code autocompletion
 Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'make release', 'on': ['LanguageClientStart'] }
 let g:LanguageClient_diagnosticsList='Location'
 Plug 'neoclide/coc.nvim', { 'branch': 'release', 'on': ['CocInstall', 'CocConfig', 'CocEnable'] }
-
 Plug 'natebosch/vim-lsc', { 'on': 'LSClientEnable' }
-
 Plug 'Valloric/YouCompleteMe', { 'for': ['javascript'] }
 " Plug 'lifepillar/vim-mucomplete'
 " Plug 'maralla/completor.vim'
 " Plug 'Shougo/neocomplete.vim'
 " let g:neocomplete#enable_at_startup = 1
+
+Plug 'Shougo/echodoc.vim'
+let g:echodoc#enable_at_startup = 1
 if has('nvim')
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 
-    " Plug 'zchee/deoplete-go', { 'for': 'go' }
     Plug 'ncm2/float-preview.nvim'
     let g:float_preview#docked = 0
+    let g:float_preview#max_height=100
     if has('nvim-0.5')
         Plug 'neovim/nvim-lspconfig'
         Plug 'nvim-lua/completion-nvim'
         let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy', 'all']
         let g:completion_matching_smart_case = 1
         let g:completion_sorting = 'none'
-        Plug 'tjdevries/lsp_extensions.nvim'
+        Plug 'nvim-lua/lsp_extensions.nvim'
         Plug 'nvim-lua/lsp-status.nvim'
         Plug 'nvim-treesitter/nvim-treesitter'
     endif
+    let g:echodoc#type = 'virtual'
 else
     Plug 'Shougo/deoplete.nvim'
     Plug 'roxma/nvim-yarp'
     Plug 'roxma/vim-hug-neovim-rpc'
+    let g:echodoc#type = 'floating'
 endif
 Plug 'deoplete-plugins/deoplete-dictionary'
 Plug 'zchee/deoplete-jedi', { 'for': 'python' }
 Plug 'Shougo/neco-vim', { 'for': 'vim' }
-
-Plug 'Shougo/echodoc.vim'
-let g:echodoc#enable_at_startup = 1
-let g:echodoc#type = 'floating'
+" Plug 'zchee/deoplete-go', { 'for': 'go' }
 
 execute 'source ' . g:vim_custom_scripts . 'autocomplete.vim'
 
@@ -753,25 +728,6 @@ if has('nvim')
 endif
 " ##### VIML
 Plug 'junegunn/vader.vim', { 'on': 'Vader', 'for': 'vader' }
-augroup vim
-    autocmd!
-    autocmd FileType vim nnoremap <unique> <buffer> <silent> K :help <C-r><C-w><CR>
-    autocmd FileType muttrc nnoremap <unique> <buffer> <silent> K :call SearchMan('neomuttrc', '')<CR>
-    autocmd FileType sshconfig nnoremap <unique> <buffer> <silent> K :call SearchMan('ssh_config', '')<CR>
-    autocmd FileType qf,fugitive setlocal nobuflisted " exclude quickfix withow from :bnext, etc.
-    autocmd CursorHold * checktime " needed for autoread to be triggered
-    " reopening a file, restore last cursor position
-    autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | execute "normal! g'\"" | endif
-    autocmd BufRead *.orig set readonly
-augroup END
-
-augroup filetype_detect
-    autocmd!
-    autocmd BufRead,BufNewFile *.recipe setfiletype python
-    autocmd BufRead,BufNewFile *.conf setfiletype conf
-    autocmd BufRead,BufNewFile env setfiletype sh
-    autocmd BufRead,BufNewFile PKGBUILD call ConfigurePkgbuild()
-augroup END
 
 "##### HTML5
 Plug 'mattn/emmet-vim', { 'for': ['html', 'htmldjango'] }
@@ -883,6 +839,25 @@ endif
 
 call plug#end()
 
+" if has('nvim-0.5')
+" lua << EOF
+"     local lspconfig = require('lspconfig')
+
+"     -- function to attach completion and diagnostics
+"     -- when setting up lsp
+"     local on_attach = function(client)
+"         require('completion').on_attach(client)
+"     end
+
+"     --- lspconfig.hls.setup({ on_attach=on_attach })
+"     lspconfig.sumneko_lua.setup({
+"         cmd = {'/usr/bin/lua-language-server'},
+"         on_attach=on_attach
+"     })
+"     lspconfig.rust_analyzer.setup({ on_attach=on_attach })
+" EOF
+" endif
+
 if has('gui_running')
     let g:solarized_diffmode='high'
     colorscheme gruvbox
@@ -919,6 +894,29 @@ command! Cprevious call WrapListCommand('cprev', 'clast')
 command! Lnext call WrapListCommand('lnext', 'lfirst')
 command! Lprevious call WrapListCommand('lprev', 'llast')
 
+augroup vim
+    autocmd!
+    autocmd FileType vim nnoremap <unique> <buffer> <silent> K :help <C-r><C-w><CR>
+    autocmd FileType muttrc nnoremap <unique> <buffer> <silent> K :call SearchMan('neomuttrc', '')<CR>
+    autocmd FileType sshconfig nnoremap <unique> <buffer> <silent> K :call SearchMan('ssh_config', '')<CR>
+    autocmd FileType qf,fugitive setlocal nobuflisted " exclude quickfix withow from :bnext, etc.
+    autocmd CursorHold * checktime " needed for autoread to be triggered
+    " reopening a file, restore last cursor position
+    autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | execute "normal! g'\"" | endif
+    autocmd BufRead *.orig set readonly
+    " highlight trailing spaces
+    call CustomSyntax()
+    autocmd ColorScheme * call CustomSyntax()
+augroup END
+
+augroup filetype_detect
+    autocmd!
+    autocmd BufRead,BufNewFile *.recipe setfiletype python
+    autocmd BufRead,BufNewFile *.conf setfiletype conf
+    autocmd BufRead,BufNewFile env setfiletype sh
+    autocmd BufRead,BufNewFile PKGBUILD call ConfigurePkgbuild()
+augroup END
+
 function! ConfigurePkgbuild() abort
     setlocal makeprg=makepkg
     nnoremap <buffer> <Leader>mi :make -i<CR>
@@ -932,18 +930,7 @@ execute 'source ' . g:vim_custom_scripts . 'spelling.vim'
 command! PlugInit !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
 \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
-function DiffCurrentQuickfixEntry() abort
-  cc
-  let qf = getqflist({'context': 0, 'idx': 0})
-  if get(qf, 'idx') && type(get(qf, 'context')) == type({}) && type(get(qf.context, 'items')) == type([])
-    let diff = get(qf.context.items[qf.idx - 1], 'diff', [])
-    for i in reverse(range(len(diff)))
-      exe (i ? 'rightbelow' : 'leftabove') 'vert diffsplit' fnameescape(diff[i].filename)
-      wincmd p
-    endfor
-  endif
-endfunction
-
-if has('neovim-0.5')
+if has('nvim-0.5')
     lua require 'init'
 endif
+

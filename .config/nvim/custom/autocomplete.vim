@@ -1,3 +1,6 @@
+" Shougo/deoplete
+let g:deoplete#sources#jedi#show_docstring=1
+
 " autozimu/LanguageClient-neovim
 let g:LanguageClient_serverCommands = {
     \ 'c': ['clangd'],
@@ -33,7 +36,9 @@ let g:lsc_server_commands = {
  \ 'dart': 'dart_language_server --lsp',
  \ 'haskell': 'haskell-language-server-wrapper --lsp',
  \ 'html': 'dart_language_server',
- \  'rust': {
+ \ 'lua': 'lua-language-server',
+ \ 'python': 'pyls',
+ \ 'rust': {
  \    'command': 'rust-analyzer',
  \  },
  \}
@@ -85,23 +90,7 @@ let g:ycm_language_server = []
 " let g:deoplete#sources#ternjs#types = 1
 " let g:deoplete#sources#ternjs#docs = 1
 " deoplete-jedi
-
 let g:deoplete#sources#jedi#show_docstring=1
-
-" NVIM COMPLETION MANAGER
-" Plug 'ncm2/ncm2'
-" Plug 'roxma/nvim-yarp'
-" Plug 'ncm2/ncm2-bufword'
-" Plug 'ncm2/ncm2-path'
-" Plug 'ncm2/ncm2-ultisnips'
-" Plug 'ncm2/ncm2-jedi', { 'for': 'python' }
-" Plug 'ncm2/ncm2-pyclang', { 'for': ['c', 'cpp'] }
-" Plug 'ncm2/ncm2-cssomni', { 'for': ['html', 'css', 'jsx'] }
-" Plug 'ncm2/ncm2-html-subscope', { 'for': 'html' }
-" Plug 'ncm2/ncm2-tern',  { 'do': 'npm install', 'for': 'javascript' }
-" augroup NCM
-"     autocmd BufEnter * call ncm2#enable_for_buffer()
-" augroup END
 
 function! ConfigureLanguageClient() abort
     nnoremap <silent> <buffer> K :call LanguageClient_textDocument_hover()<CR>
@@ -141,8 +130,8 @@ function! ConfigureCoc() abort
     " disable deoplete
     call deoplete#custom#buffer_option('auto_complete', v:false)
     CocEnable
-    " <Plug>(coc-diagnostic-next) 
-    " <Plug>(coc-diagnostic-prev) 
+    " <Plug>(coc-diagnostic-next)
+    " <Plug>(coc-diagnostic-prev)
     " <Plug>(coc-diagnostic-next-error)
     " <Plug>(coc-diagnostic-prev-error)
     " <Plug>(coc-codeaction)
@@ -155,7 +144,7 @@ function! ConfigureCoc() abort
     " xmap af <Plug>(coc-funcobj-a)
     " omap if <Plug>(coc-funcobj-i)
     " omap af <Plug>(coc-funcobj-a)
-    " 
+
     " " Use <TAB> for selections ranges.
     " nmap <silent> <TAB> <Plug>(coc-range-select)
     " xmap <silent> <TAB> <Plug>(coc-range-select)

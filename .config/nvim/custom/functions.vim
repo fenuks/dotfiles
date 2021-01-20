@@ -96,7 +96,7 @@ function! DiffOrig() abort
     setlocal nobuflisted
     execute 'setlocal filetype=' . l:original_filetype
     read #
-    normal 0d_
+    normal! 0d_
     diffthis
     wincmd p
     diffthis
@@ -255,14 +255,56 @@ function! JustifyOperator(type) abort
     call OperatorFunc('Justify', a:type)
 endfunction
 
+function! JoinOperatorWithSpaces(type) abort
+    call JoinWrapper(a:type, ' ')
+endfunction
+
+function! JoinOperator(type) abort
+    call JoinWrapper(a:type, '')
+endfunction
+
+function! JoinWrapper(type, wrapper) abort
+    let l:name = input('Enter separator: ')
+    call OperatorFunc('Join "' . a:wrapper . l:name . a:wrapper . '"', a:type)
+endfunction
+
 function! OperatorFunc(excommand, type) abort
-    if a:type == 'line'
+    if a:type ==# 'line'
+        execute "'<,'>" . a:excommand
+    elseif a:type ==# 'char'
         execute "'[,']" . a:excommand
     else
         echo 'unhandled type ' . a:type
     endif
 endfunction
 
+function! OpenMan()
+    try
+        call man#open_page(v:count, v:count1, 'tabs', 'dirent')
+    catch
+        call man#open_page(v:count, v:count1, 'tabs', 'dirent.h')
+    catch
+    endtry
+endfunction
+
+function DiffCurrentQuickfixEntry() abort
+  cc
+  let qf = getqflist({'context': 0, 'idx': 0})
+  if get(qf, 'idx') && type(get(qf, 'context')) == type({}) && type(get(qf.context, 'items')) == type([])
+    let diff = get(qf.context.items[qf.idx - 1], 'diff', [])
+    for i in reverse(range(len(diff)))
+      exe (i ? 'rightbelow' : 'leftabove') 'vert diffsplit' fnameescape(diff[i].filename)
+      wincmd p
+    endfor
+  endif
+endfunction
+
+
+function! CustomSyntax() abort
+    " highlight all trailing spaces
+    highlight ExtraWhitespace ctermbg=red guibg=red
+    match ExtraWhitespace /\s\+\%#\@<!$/
+endfunction
 
 nnoremap <unique> <silent> <F8> :call NextColor(1)<CR>
 nnoremap <unique> <silent> <F20> :call NextColor(-1)<CR> " <S-F8>

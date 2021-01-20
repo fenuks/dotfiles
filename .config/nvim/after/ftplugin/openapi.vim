@@ -10,6 +10,6 @@ nnoremap <unique> <buffer> <c-]> [<C-d>
 nmap <unique> <silent> <buffer> <Leader>gu :call <SID>Usages()<CR>
 
 function! s:Usages() abort
-    let l:word = expand("<cword>")
+    let l:word = expand('<cword>')
     execute 'Grepper -tool rg -open -switch -noprompt -query "/components/.+/(' . l:word . ")'" . '"'
 endfunction
