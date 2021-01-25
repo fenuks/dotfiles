@@ -17,9 +17,8 @@ setlocal foldmethod=expr
 setlocal includeexpr=substitute(v:fname,'\\.','/','g') " expression to change gf filename mapping
 setlocal colorcolumn=100
 
-" call ConfigureYcm()
+call ConfigureYcm()
 " call ConfigureLanguageClient()
-call ConfigureCoc()
 let g:ycm_semantic_triggers.java = ['.', '@', '::']
 let g:JavaComplete_EnableDefaultMappings = 0
 

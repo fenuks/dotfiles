@@ -12,5 +12,4 @@ setlocal shiftwidth=2
 setlocal textwidth=79
 setlocal formatoptions+=t
 setlocal formatoptions-=l
-" call ConfigureCoc()
 " setlocal foldmethod=indent

@@ -18,22 +18,6 @@ let g:haskell_enable_typeroles = 1        " to enable highlighting of type roles
 let g:haskell_enable_static_pointers = 1  " to enable highlighting of `static`
 let g:haskell_backpack = 1                " to enable highlighting of backpack keywords
 
-if v:false && has('nvim-0.5')
-call ConfigureNvimLsp()
-
-" Set updatetime for CursorHold
-" 300ms of no cursor movement to trigger CursorHold
-setlocal updatetime=300
-" Show diagnostic popup on cursor hold
-
-augroup haskell_lsp
-    autocmd!
-    autocmd CursorHold <buffer> lua vim.lsp.diagnostic.show_line_diagnostics()
-augroup END
-
-" Goto previous/next diagnostic warning/error
-else
-" call ConfigureLanguageClient()
-" call ConfigureCoc()
+if !has('nvim-0.5')
 call ConfigureLsc()
 endif

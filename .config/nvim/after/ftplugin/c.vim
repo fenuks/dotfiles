@@ -3,5 +3,6 @@ if exists('b:did_c_ftplugin')
 endif
 let b:did_c_ftplugin = 1
 
-" call ConfigureCoc()
+if !has('nvim-0.5')
 call ConfigureLanguageClient()
+endif

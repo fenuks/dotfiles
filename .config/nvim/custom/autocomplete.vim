@@ -70,28 +70,6 @@ let g:ycm_autoclose_preview_window_after_completion=1
 let g:ycm_semantic_triggers =  {}
 let g:ycm_language_server = []
 
-" Shougo/deoplete
-" let g:deoplete#omni#input_patterns = {} " faster, called by deoplete
-" let g:deoplete#omni#input_patterns._ = '.+'
-" let g:deoplete#omni#input_patterns.java = '[^. *\t]\.\w*'
-" let g:deoplete#omni#input_patterns.javascript = ''
-" let g:deoplete#omni#input_patterns.cpp = ['[^. *\t]\.\w*', '[^. *\t]\::\w*', '[^. *\t]\->\w*', '[<"].*/']
-" let g:deoplete#omni#input_patterns.python = '.+'
-" let g:deoplete#omni_patterns = {}  " slower, called by vim, https://github.com/Shougo/deoplete.nvim/issues/190
-" let g:deoplete#omni_patterns._ = '.+'
-" let g:deoplete#omni#functions = {}
-" let g:deoplete#omni#functions.javascript = tern#Complete
-" let g:deoplete#omni#functions.python = 'jedi#completions'
-" let g:deoplete#omni#functions.python = 'RopeCompleteFunc'
-" DEOPLETE PLUGINS
-" Plug 'tweekmonster/deoplete-clang2', { 'for': ['c', 'cpp', 'objc', 'objcpp'] }
-" Plug 'zchee/deoplete-clang', { 'for': ['c', 'cpp', 'objc', 'objcpp'] }
-" Plug 'carlitux/deoplete-ternjs', { 'for': 'javascript' }
-" let g:deoplete#sources#ternjs#types = 1
-" let g:deoplete#sources#ternjs#docs = 1
-" deoplete-jedi
-let g:deoplete#sources#jedi#show_docstring=1
-
 function! ConfigureLanguageClient() abort
     nnoremap <silent> <buffer> K :call LanguageClient_textDocument_hover()<CR>
     nnoremap <silent> <buffer> gd :call LanguageClient_textDocument_definition()<CR>
@@ -108,74 +86,6 @@ function! ConfigureLanguageClient() abort
     " setlocal formatexpr=LanguageClient_textDocument_rangeFormatting()
     " setlocal omnifunc=LanguageClient#complete
     LanguageClientStart
-endfunction
-
-
-function! ConfigureCoc() abort
-    nnoremap <buffer> <silent> K :call CocAction('doHover')<CR>
-    nmap <buffer> <silent> gd <Plug>(coc-definition)
-    nmap <buffer> <silent> gD <Plug>(coc-declaration)
-    nmap <buffer> <silent> gy <Plug>(coc-type-definition)
-    nmap <buffer> <silent> gy <Plug>(coc-implementation)
-    nmap <buffer> <silent> <Leader>gu <Plug>(coc-references)
-    vmap <buffer> <silent> gw <Plug>(coc-format-selected)
-    nmap <buffer> <silent> gw <Plug>(coc-format-selected)
-    nmap <buffer> <silent> <Leader>gw <Plug>(coc-format)
-    nmap <buffer> <silent> <Leader>rn <Plug>(coc-rename)
-    nmap <buffer> <silent> <Leader>rN <Plug>(coc-refactor)
-    nmap <buffer> <silent> <Leader>cc <Plug>(coc-fix-current)
-    " trigger autocomplete
-    inoremap <buffer> <silent> <expr> <c-space> coc#refresh()
-    " confirm completion with enter
-    " disable deoplete
-    call deoplete#custom#buffer_option('auto_complete', v:false)
-    CocEnable
-    " <Plug>(coc-diagnostic-next)
-    " <Plug>(coc-diagnostic-prev)
-    " <Plug>(coc-diagnostic-next-error)
-    " <Plug>(coc-diagnostic-prev-error)
-    " <Plug>(coc-codeaction)
-    " <Plug>(coc-codeaction-selected)
-    " <Plug>(coc-float-hide)
-    " <Plug>(coc-float-jump)
-    " <Plug>(coc-range-select)
-    " <Plug>(coc-range-select-backward)
-    " xmap if <Plug>(coc-funcobj-i)
-    " xmap af <Plug>(coc-funcobj-a)
-    " omap if <Plug>(coc-funcobj-i)
-    " omap af <Plug>(coc-funcobj-a)
-
-    " " Use <TAB> for selections ranges.
-    " nmap <silent> <TAB> <Plug>(coc-range-select)
-    " xmap <silent> <TAB> <Plug>(coc-range-select)
-
-endfunction
-
-function! CocInstallSources() abort
-    " call coc#add_extension('coc-json', 'coc-flutter')
-    CocInstall coc-flutter
-    CocInstall coc-json
-    CocInstall coc-yaml
-endfunction
-
-command! CocInstallSources call CocInstallSources()
-
-function! ConfigureNvimLsp() abort
-    call deoplete#custom#buffer_option('auto_complete', v:false)
-    setlocal omnifunc=v:lua.vim.lsp.omnifunc
-    nnoremap <silent> <buffer> gd    <cmd>lua vim.lsp.buf.declaration()<CR>
-    nnoremap <silent> <buffer> <c-]> <cmd>lua vim.lsp.buf.definition()<CR>
-    nnoremap <silent> <buffer> K     <cmd>lua vim.lsp.buf.hover()<CR>
-    nnoremap <silent> <buffer> gD    <cmd>lua vim.lsp.buf.implementation()<CR>
-    nnoremap <silent> <buffer> <c-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
-    nnoremap <silent> <buffer> 1gD   <cmd>lua vim.lsp.buf.type_definition()<CR>
-    nnoremap <silent> <buffer> gr    <cmd>lua vim.lsp.buf.references()<CR>
-    nnoremap <silent> <buffer> g0    <cmd>lua vim.lsp.buf.document_symbol()<CR>
-    nnoremap <silent> <buffer> gW    <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
-    nnoremap <silent> <buffer> <Leader>rn    <cmd>lua vim.lsp.buf.rename()<CR>
-    " vim.lsp.util.show_line_diagnostics()
-    nnoremap <buffer> <silent> g[ <cmd>vim.lsp.diagnostic.goto_prev()<cr>
-    nnoremap <buffer> <silent> g] <cmd>vim.lsp.diagnostic.goto_next()<cr>
 endfunction
 
 function! ConfigureLsc() abort

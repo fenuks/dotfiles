@@ -27,6 +27,8 @@ set completeopt=menuone,noselect " complete longest common text instead of first
 set pumheight=15 " maximum autocomplete popup height
 
 " set timeoutlen=150 " Time to wait after ESC (default causes an annoying delay), it affects also leader key, unfortunately
+
+set updatetime=300 " time, in miliseconds to trigger cursorhold (aslo to write swap file)
 set scrolloff=3 " number of context lines visible near cursor
 set sidescrolloff=5 " like 'scrolloff' but for columns
 set scrollopt+=hor " scroll binded windows also horizontally
@@ -78,6 +80,7 @@ set signcolumn=yes
 set termguicolors " use trucolor
 " set showbreak='@' " show line continuation sign
 " set selection=exclusive
+set conceallevel=1
 
 let g:vim_dir_path=fnamemodify($MYVIMRC, ':p:h')
 let g:nvim_dir_path=expand('~/.config/nvim/')
@@ -406,6 +409,7 @@ nnoremap <unique> <F2> :echo map(synstack(line('.'), col('.')), 'synIDattr(v:val
 let g:loaded_python_provider = 0
 let g:loaded_ruby_provider = 0
 let g:loaded_perl_provider = 0
+let g:loaded_node_provider = 0
 let g:loaded_2html_plugin = 1
 let g:loaded_skim = 1
 let g:loaded_tutor_mode_plugin = v:true
@@ -441,7 +445,6 @@ nnoremap <unique> <silent> <Leader>wu :ZoomWinTabToggle<CR>
 Plug 'wellle/targets.vim'
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'PeterRincker/vim-argumentative'
-" Plug 'tpope/vim-surround'
 Plug 'machakann/vim-sandwich'
 Plug 'fenuks/vim-bracket-objects'
 Plug 'mg979/vim-visual-multi'
@@ -605,7 +608,8 @@ let g:ale_linters = {
 \   'rust': ['cargo'],
 \}
 let g:ale_sign_error = '🗴'
-let g:ale_sign_warning = '>>'
+" let g:ale_sign_warning = '>>'
+let g:ale_sign_warning = '■'
 let g:ale_virtualtext_cursor = 1
 let g:ale_sign_highlight_linenrs = 1
 
@@ -651,11 +655,10 @@ nnoremap <unique> <silent> <leader>xa :TestSuite<CR>
 nnoremap <unique> <silent> <leader>xl :TestLast<CR>
 nnoremap <unique> <silent> <leader>xg :TestVisit<CR>
 
+Plug 'puremourning/vimspector'
+let g:vimspector_enable_mappings = 'HUMAN'
+
 "##### Autocomplete
-" Plug 'Raimondi/delimitMate'
-" Plug 'Townk/vim-autoclose'
-" Plug 'jiangmiao/auto-pairs'
-" Plug 'cohama/lexima.vim'
 Plug 'fenuks/auto-pairs'
 let g:AutoPairs = {'(':')', '[':']', '{':'}', "'":"'", '"':'"', '`':'`',
 \                    '„':'”', '‚': '’', '‘':'’', '“':'”'}
@@ -672,13 +675,10 @@ let g:AutoPairsMoveCharacter = ''
 " ##### Code autocompletion
 Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'make release', 'on': ['LanguageClientStart'] }
 let g:LanguageClient_diagnosticsList='Location'
-Plug 'neoclide/coc.nvim', { 'branch': 'release', 'on': ['CocInstall', 'CocConfig', 'CocEnable'] }
 Plug 'natebosch/vim-lsc', { 'on': 'LSClientEnable' }
-Plug 'Valloric/YouCompleteMe', { 'for': ['javascript'] }
-" Plug 'lifepillar/vim-mucomplete'
-" Plug 'maralla/completor.vim'
-" Plug 'Shougo/neocomplete.vim'
-" let g:neocomplete#enable_at_startup = 1
+if !has('nvim-0.5')
+    Plug 'Valloric/YouCompleteMe', { 'for': ['javascript'] }
+endif
 
 Plug 'Shougo/echodoc.vim'
 let g:echodoc#enable_at_startup = 1
@@ -691,7 +691,7 @@ if has('nvim')
     if has('nvim-0.5')
         Plug 'neovim/nvim-lspconfig'
         Plug 'nvim-lua/completion-nvim'
-        let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy', 'all']
+        let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
         let g:completion_matching_smart_case = 1
         let g:completion_sorting = 'none'
         Plug 'nvim-lua/lsp_extensions.nvim'
@@ -705,6 +705,7 @@ else
     Plug 'roxma/vim-hug-neovim-rpc'
     let g:echodoc#type = 'floating'
 endif
+
 Plug 'deoplete-plugins/deoplete-dictionary'
 Plug 'zchee/deoplete-jedi', { 'for': 'python' }
 Plug 'Shougo/neco-vim', { 'for': 'vim' }
@@ -718,10 +719,12 @@ let g:UltiSnipsJumpForwardTrigger='<Tab>'
 let g:UltiSnipsJumpBackwardTrigger='<S-Tab>'
 " let g:UltiSnipsListSnippets='<C-\>'
 Plug 'honza/vim-snippets'
+Plug 'hrsh7th/vim-vsnip'
+Plug 'hrsh7th/vim-vsnip-integ'
 
 "#### Language specific
 Plug 'sheerun/vim-polyglot'
-let g:polyglot_disabled = ['sensible', 'autoindent']
+let g:polyglot_disabled = ['sensible']
 if has('nvim')
     Plug 'numirias/semshi', { 'do': ':UpdateRemotePlugins' }
     let g:polyglot_disabled += ['python']
@@ -731,37 +734,17 @@ Plug 'junegunn/vader.vim', { 'on': 'Vader', 'for': 'vader' }
 
 "##### HTML5
 Plug 'mattn/emmet-vim', { 'for': ['html', 'htmldjango'] }
-Plug 'othree/html5.vim', { 'for': ['html', 'htmldjango'] }
 Plug 'alvan/vim-closetag', { 'for': ['html', 'xml'] }
 
 "##### CSS
 Plug 'ap/vim-css-color'
-" Plug 'lilydjwg/colorizer', {'for': ['css']}
+" Plug 'RRethy/vim-hexokinase'
 
-"##### JS
-Plug 'ternjs/tern_for_vim', { 'for': 'javascript' }
-Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
-Plug 'jelera/vim-javascript-syntax', { 'for': 'javascript' }
-Plug 'othree/javascript-libraries-syntax.vim', { 'for': 'javascript' }
-
-"##### Typescript
-" Plug 'HerringtonDarkholme/yats.vim'
-" Plug 'leafgarland/typescript-vim', { 'for': ['javascript', 'typescript'] }
-" Plug 'mhartington/nvim-typescript', { 'for': 'typescript' }
-" Plug 'Quramy/tsuquyomi', { 'for': ['javascript', 'typescript'] }
+"##### javascript
+let g:javascript_plugin_jsdoc = 1
 
 "##### Python
 Plug 'davidhalter/jedi-vim', { 'for': 'python' }
-" Plug 'python-rope/ropevim', { 'for': 'python' }
-
-" ##### Julia
-Plug 'JuliaEditorSupport/julia-vim', { 'for': 'julia' }
-
-"##### Rust
-Plug 'rust-lang/rust.vim', { 'for': 'rust' } " optionally, vim-polyglot has it as well
-
-"##### Golang
-"Plug 'fatih/vim-go'
 
 "##### JVM
 "##### Java
@@ -772,7 +755,6 @@ let g:java_highlight_functions=1
 "####### Functional
 """##### Haskell
 " Plug 'parsonsmatt/intero-neovim', { 'for': 'haskell' }
-Plug 'neovimhaskell/haskell-vim', { 'for': 'haskell' }
 
 " Plug 'vlime/vlime' { 'for': 'lisp' }
 Plug 'kovisoft/slimv', { 'for': 'lisp' }
@@ -781,10 +763,6 @@ let g:scheme_builtin_swank=1
 
 " ##### C family
 Plug 'jackguo380/vim-lsp-cxx-highlight', { 'for': ['c', 'cpp'] }
-" Plug 'lyuts/vim-rtags', { 'for': ['c', 'cpp', 'objc', 'objcpp'] }
-let g:rtagsUseDefaultMappings = 1
-let g:rtagsAutoLaunchRdm=1
-" Plug 'Rip-Rip/clang_complete', { 'for': ['c', 'cpp', 'objc', 'objcpp'] }
 
 "##### Natural language
 Plug 'tpope/vim-characterize'
@@ -839,25 +817,6 @@ endif
 
 call plug#end()
 
-" if has('nvim-0.5')
-" lua << EOF
-"     local lspconfig = require('lspconfig')
-
-"     -- function to attach completion and diagnostics
-"     -- when setting up lsp
-"     local on_attach = function(client)
-"         require('completion').on_attach(client)
-"     end
-
-"     --- lspconfig.hls.setup({ on_attach=on_attach })
-"     lspconfig.sumneko_lua.setup({
-"         cmd = {'/usr/bin/lua-language-server'},
-"         on_attach=on_attach
-"     })
-"     lspconfig.rust_analyzer.setup({ on_attach=on_attach })
-" EOF
-" endif
-
 if has('gui_running')
     let g:solarized_diffmode='high'
     colorscheme gruvbox
@@ -896,7 +855,6 @@ command! Lprevious call WrapListCommand('lprev', 'llast')
 
 augroup vim
     autocmd!
-    autocmd FileType vim nnoremap <unique> <buffer> <silent> K :help <C-r><C-w><CR>
     autocmd FileType muttrc nnoremap <unique> <buffer> <silent> K :call SearchMan('neomuttrc', '')<CR>
     autocmd FileType sshconfig nnoremap <unique> <buffer> <silent> K :call SearchMan('ssh_config', '')<CR>
     autocmd FileType qf,fugitive setlocal nobuflisted " exclude quickfix withow from :bnext, etc.
