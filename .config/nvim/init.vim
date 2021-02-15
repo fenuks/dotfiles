@@ -160,6 +160,8 @@ let mapleader = ','
 let maplocalleader = '\'
 
 vnoremap <unique> . :normal .<CR>
+" easier way to repeat last ex command
+nnoremap <unique> g. @:
 cnoremap <unique> w!! %!sudo tee > /dev/null %
 " set very magic regex (perl compatitible)
 nnoremap <unique> / /\v
@@ -776,7 +778,7 @@ Plug 'rhysd/vim-grammarous', { 'on': 'GrammarousCheck' }
 " Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 let g:vim_markdown_folding_disabled = 1
 let g:vim_markdown_strikethrough = 1
-Plug 'vimwiki/vimwiki'
+Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
 " let g:vimwiki_key_mappings = { 'all_maps': 0, }
 let g:vimwiki_list = [{'path': $XDG_DOCUMENTS_DIR . '/tekst',
                      \ 'syntax': 'markdown', 'ext': '.md' }]
@@ -857,6 +859,7 @@ augroup vim
     autocmd!
     autocmd FileType muttrc nnoremap <unique> <buffer> <silent> K :call SearchMan('neomuttrc', '')<CR>
     autocmd FileType sshconfig nnoremap <unique> <buffer> <silent> K :call SearchMan('ssh_config', '')<CR>
+    autocmd FileType cmake nnoremap <unique> <buffer> <silent> K :call SearchCmakeMan()<CR>
     autocmd FileType qf,fugitive setlocal nobuflisted " exclude quickfix withow from :bnext, etc.
     autocmd CursorHold * checktime " needed for autoread to be triggered
     " reopening a file, restore last cursor position

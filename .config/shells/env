@@ -18,6 +18,7 @@ export HISTSIZE=100000
 export HTML_TIDY="$HOME/.config/tidy.conf"
 export LESS=-R
 export LESSHISTFILE="$XDG_CACHE_HOME/less_history"
+export MAKEFLAGS="-j $(nproc)"
 export MAVEN_OPTS='-Xmx2048m'
 export PATH="$HOME/.local/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 export PROMPT_COMMAND='history -a' # don't wait to append to history until session ends

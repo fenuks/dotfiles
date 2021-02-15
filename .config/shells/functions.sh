@@ -3,6 +3,10 @@ function source_if_exists() {
     [[ -r "$1" ]] && source "$1"
 }
 
+function amdvlkrun() {
+    VK_ICD_FILENAMES=/usr/share/vulkan/icd.d/amd_icd32.json:/usr/share/vulkan/icd.d/amd_icd64.json "$@"
+}
+
 function md() { mkdir -p "$@" && cd "$1"; }
 
 function maybe_fg() {
@@ -13,7 +17,7 @@ function maybe_fg() {
 
 function ssh-kde () {
     ssh-agent -a "${SSH_AUTH_SOCK}"
-    ssh-add </dev/null
+    ssh-add ~/.ssh/id_!(*.pub) </dev/null
 }
 
 function run-ssh-agent() {

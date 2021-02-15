@@ -129,10 +129,24 @@ function! ReadSkeletonFile() abort
     endif
 endfunction
 
+function! SearchCmakeMan() abort
+    let l:cursor_word = expand('<cword>')
+    if IsUpper(l:cursor_word)
+        call SearchMan('cmake-variables', '')
+    else
+        call SearchMan('cmake-commands', '')
+    endif
+endfunction
+
+function! IsUpper(string) abort
+    echom a:string
+    return toupper(a:string) ==# a:string
+endfunction
+
 function! SearchMan(page, prefix) abort
-    let l:cursor_word = expand('<cWORD>')
+    let l:cursor_word = expand('<cword>')
     execute 'Man ' . a:page
-    call search('\C\(\s\{2,\}\)\@<=' . a:prefix . l:cursor_word)
+    call search('\C\(\s\{2,\}\)\@<=' . a:prefix . l:cursor_word . '\s*$')
 endfunction
 
 function! SearchWeb() abort
