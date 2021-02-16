@@ -55,7 +55,11 @@ local on_attach = function(client)
 end
 
 lspconfig.hls.setup({ on_attach=on_attach })
-lspconfig.ccls.setup({ on_attach=on_attach })
+if vim.fn.executable('clangd') then
+  lspconfig.clangd.setup({ on_attach=on_attach })
+elseif vim.fn.executable('ccls') then
+  lspconfig.ccls.setup({ on_attach=on_attach })
+end
 lspconfig.tsserver.setup({ on_attach=on_attach })
 lspconfig.sumneko_lua.setup({
     cmd = {'/usr/bin/lua-language-server'},
