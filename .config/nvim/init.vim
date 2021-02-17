@@ -193,8 +193,8 @@ nnoremap <unique> xp dlp
 nnoremap <unique> xP dlP
 nnoremap <unique> Xp dhP
 nnoremap <unique> XP dhP
-" trim trainling spaces
-nnoremap <unique> <silent> xt :%s/\s\+$//<CR>
+" trim trailing spaces
+nnoremap <unique> <silent> x$ :%s/\s\+$//<CR>
 " convert non-breaking spaces to normal ones
 nnoremap <unique> <silent> x<Space> :%s/\%u00a0/ /g<CR>
 nnoremap <unique> <silent> xS :,$!sort<CR>
