@@ -8,6 +8,8 @@ shopt -s histappend
 bind Space:magic-space
 # Save multi-line commands as one command
 shopt -s cmdhist
+# change directory without explicit cd
+shopt -s autocd
 # clear screen pernamently
 bind '"\C-l": " clear && printf \"\\e[3J\""'
 

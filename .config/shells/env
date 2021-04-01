@@ -10,7 +10,6 @@ export ENHANCD_COMMAND=fzf
 export FZF_DEFAULT_OPTS='--height 80% --bind=ctrl-d:preview-page-down,ctrl-u:preview-page-up'
 export GCC_COLORS=auto
 export GTK_USE_PORTAL=1
-export GPODDER_HOME="$HOME/Podcasts/"
 export HISTCONTROL=ignoreboth:erasedups
 export HISTIGNORE="&:[ ]*:exit:ls:bg:fg:history:clear"
 export HISTSIZE=100000
@@ -18,7 +17,6 @@ export HISTSIZE=100000
 export HTML_TIDY="$HOME/.config/tidy.conf"
 export LESS=-R
 export LESSHISTFILE="$XDG_CACHE_HOME/less_history"
-export MAKEFLAGS="-j $(nproc)"
 export MAVEN_OPTS='-Xmx2048m'
 export PATH="$HOME/.local/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 export PROMPT_COMMAND='history -a' # don't wait to append to history until session ends
@@ -33,3 +31,6 @@ export SKIM_DEFAULT_COMMAND='git ls-tree -r --name-only HEAD || rg --files'
 export SSH_ASKPASS=/usr/bin/ksshaskpass
 export SSH_AUTH_SOCK=/tmp/ssh-agent.sock
 export UNCRUSTIFY_CONFIG="$HOME/.config/uncrustify.cfg"
+
+export LS_COLORS='di=1;01;34'
+# use LS_COLORS="di=38;2;0;120;0" for RGB colours, where last three numbers are RGB

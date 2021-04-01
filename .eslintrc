@@ -175,7 +175,7 @@
     "one-var": 0,                   // allow just one var statement per function (off by default)
     "operator-assignment": 1,       // require assignment operator shorthand where possible or prohibit it entirely (off by default)
     "padded-blocks": 0,             // enforce padding within blocks (off by default)
-    "quote-props": 1,               // require quotes around object literal property names (off by default)
+    "quote-props": 0,               // require quotes around object literal property names (off by default)
     "quotes": 0,                    // specify whether double or single quotes should be used
     "semi": 1,                      // require or disallow use of semicolons instead of ASI
     "sort-vars": 1,                 // sort variables within the same declaration block (off by default)
@@ -213,10 +213,10 @@
     "callback-return": 1,
     "capitalized-comments": 0,  // require comments start from capital letter
     "class-methods-use-this": 1,
-    "comma-dangle": 1,
+    "comma-dangle": 0,
     "computed-property-spacing": 1,
     "constructor-super": 1,
-    "dot-location": 1,
+    "dot-location": 0,
     "for-direction": 1,
     "func-call-spacing": 1,
     "func-name-matching": 1,

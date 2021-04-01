@@ -7,7 +7,8 @@ export ATOM_HOME="$XDG_DATA_HOME"/atom
 export CALIBRE_USE_SYSTEM_THEME=1
 export CARGO_HOME="$XDG_CONFIG_HOME"/cargo
 export CCACHE_CONFIGPATH="$XDG_CONFIG_HOME"/ccache.config
-export CCACHE_DIR="$XDG_CACHE_HOME"/ccache 
+export CCACHE_DIR="$XDG_CACHE_HOME"/ccache
+export GPODDER_HOME="$HOME/Audycje/"
 export GTK_USE_PORTAL=1
 export IPYTHONDIR="$XDG_CONFIG_HOME"/jupyter
 export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel'

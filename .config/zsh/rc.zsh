@@ -7,6 +7,11 @@ setopt EXTENDED_GLOB
 
 source_if_exists /usr/share/fzf/key-bindings.zsh
 source_if_exists /usr/share/fzf/completion.zsh
+source_if_exists /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+if [[ -r /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh ]]; then
+  source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+  bindkey '^g' autosuggest-accept
+fi
 
 bindkey -v # use vim-mode
 bindkey '^k' history-beginning-search-backward
@@ -47,3 +52,7 @@ preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
 
 zle -N zle-keymap-select
 zle -N zle-line-init
+
+if command -v starship > /dev/null; then
+    eval "$(starship init zsh)"
+fi

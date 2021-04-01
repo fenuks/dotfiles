@@ -20,3 +20,5 @@ let g:ropevim_enable_shortcuts = 0
 
 " fix truncated documenation in floating window problem
 call deoplete#custom#source('jedi', 'max_info_width', 0)
+
+" pytest or pyunit compiler

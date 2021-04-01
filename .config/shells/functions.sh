@@ -7,7 +7,7 @@ function amdvlkrun() {
     VK_ICD_FILENAMES=/usr/share/vulkan/icd.d/amd_icd32.json:/usr/share/vulkan/icd.d/amd_icd64.json "$@"
 }
 
-function md() { mkdir -p "$@" && cd "$1"; }
+function take() { mkdir -p "$@" && cd "$1"; }
 
 function maybe_fg() {
     if [[ $(jobs -p) ]]; then
@@ -184,6 +184,47 @@ help_vmap() {
     rg '^\s*(v|c|n|i|o|x)?(nnore)?map' ~/.config/nvim/
 }
 
+function up() {
+    UP=$1
+
+    if [[ $UP =~ ^[\-0-9]+$ ]]; then
+        if ((UP<0)); then
+            UP=${UP#-}
+            cd $(echo "${PWD}" | cut -d/ -f1-$((UP+1)))
+        else
+            cd $(printf "%0.s../" $(seq 1 ${UP}));
+        fi
+    else
+        IFS=$'\n' dirs=($(pwd | tr '/' '\n'))
+        if [[ "${UP:0:1}" == '-' ]]; then
+            UP="${UP:1}"
+            cur='/'
+            for subdir in ${dirs[@]}; do
+                ls ${cur} | grep -P "${UP}" >| /dev/null
+                if [[ $? -eq 0 ]]; then
+                    cd "${cur}"
+                    break;
+                fi
+                cur="${cur}/${subdir}"
+            done
+        else
+            cur='.'
+            for i in $(seq ${#dirs[@]}); do
+                cur=$(realpath "${cur}/..")
+                if [[ "${cur}" =~ "${UP}" ]]; then
+                    cd "${cur}"
+                    break
+                fi
+
+                ls ${cur} | grep -P "${UP}" >| /dev/null
+                if [[ $? -eq 0 ]]; then
+                    cd "${cur}"
+                    break;
+                fi
+            done
+        fi
+    fi
+}
 
 # export functions in bash
 if [[ -v BASH_VERSION ]]; then

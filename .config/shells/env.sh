@@ -1,3 +1,5 @@
+export MAKEFLAGS="-j $(nproc)"
+
 # env compating with POSIX shell
 if [ -n "$BASH_VERSION" ]; then
     export SHELL_TYPE=bash

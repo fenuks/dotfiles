@@ -60,6 +60,7 @@ set shiftround " Round indent to multiple of 'shiftwidth'.
 set expandtab " Make tabs into spaces (set by tabstop)
 set smarttab " Smarter tab levels
 " set textwidth=80 " max line width
+set commentstring=#\ %s
 
 " display
 set t_Co=256
@@ -160,6 +161,7 @@ let mapleader = ','
 let maplocalleader = '\'
 
 vnoremap <unique> . :normal .<CR>
+vnoremap <unique> @@ :normal @@<CR>
 " easier way to repeat last ex command
 nnoremap <unique> g. @:
 cnoremap <unique> w!! %!sudo tee > /dev/null %
@@ -227,10 +229,6 @@ inoremap <unique> <C-S-CR> <Home><CR><UP>
 nnoremap <unique> <C-s> :w<Enter>
 inoremap <unique> <C-s> <ESC>:w<Enter>a
 inoremap <unique> <C-l> <DEL>
-inoremap <unique> jk <ESC>
-inoremap <unique> jK <ESC>
-inoremap <unique> Jk <ESC>
-inoremap <unique> JK <ESC>
 
 nnoremap <unique> Y y$
 vnoremap <unique> <LocalLeader>y "+y
@@ -239,6 +237,7 @@ vnoremap <unique> <LocalLeader>p "+p
 nnoremap <unique> <Leader><Space>p a <ESC>"+p
 nnoremap <unique> <Space>p a <ESC>p
 nnoremap <unique> <Space>P i <ESC>P
+vnoremap <unique> <Space>d "_d
 nnoremap <unique> yp "0p
 nnoremap <unique> yP "0P
 nnoremap <unique> <M-y> "+y
@@ -408,6 +407,10 @@ nnoremap <unique> <SPACE>K :Man<CR>
 " Reveal syntax group under cursor.
 nnoremap <unique> <F2> :echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')<CR>
 
+vnoremap <unique> <silent> gA :<C-u>call VisualAppend()<CR>
+vnoremap <unique> <silent> iu :<C-U>call URLTextObj()<CR>
+onoremap <unique> <silent> iu :<C-U>call URLTextObj()<CR>
+
 let g:loaded_python_provider = 0
 let g:loaded_ruby_provider = 0
 let g:loaded_perl_provider = 0
@@ -565,6 +568,11 @@ let g:airline#extensions#tabline#enabled = 1
 " Plug 'devjoe/vim-codequery' " rich support for searching symbols support
 Plug 'easymotion/vim-easymotion'
 let g:EasyMotion_verbose = 0
+
+Plug 'justinmk/vim-sneak'
+map <unique> sf <Plug>Sneak_s
+map <unique> sF <Plug>Sneak_S
+
 Plug 'fenuks/vim-uncommented'
 nmap <unique> ]/ <Plug>(NextCommented)
 nmap <unique> [/ <Plug>(PrevCommented)
@@ -648,7 +656,7 @@ nnoremap <unique> <Leader>mb :make<CR>
 nnoremap <Leader>mi :make install<CR>
 nnoremap <unique> <Leader>mc :make clean<CR>
 
-Plug 'janko-m/vim-test', { 'on': ['TestNearest', 'TestFile', 'TestSuite', 'TestLast', 'TestVisit'] }
+Plug 'vim-test/vim-test', { 'on': ['TestNearest', 'TestFile', 'TestSuite', 'TestLast', 'TestVisit'] }
 let g:test#strategy = 'neovim'
 let g:test#runner_commands = ['PyTest']
 nnoremap <unique> <silent> <leader>xn :TestNearest<CR>
@@ -783,14 +791,17 @@ Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
 let g:vimwiki_list = [{'path': $XDG_DOCUMENTS_DIR . '/tekst',
                      \ 'syntax': 'markdown', 'ext': '.md' }]
 let g:vimwiki_folding='expr'
+let g:vimwiki_url_maxsave=25
 nmap <unique> sv <Plug>VimwikiIndex
+nmap <unique> ]r <Plug>VimwikiNextLink
+nmap <unique> [r <Plug>VimwikiPrevLink
 
 " Database
 let g:sql_type_default='psql'
 
 "##### TeX
 Plug 'lervag/vimtex', { 'for': 'tex' }
-" Plug 'scrooloose/vim-slumlord'
+" Plug 'scrooloose/vim-slumlord' " plantuml previews
 
 "##### Colorshemes
 " dark
@@ -858,6 +869,7 @@ command! Lprevious call WrapListCommand('lprev', 'llast')
 augroup vim
     autocmd!
     autocmd FileType muttrc nnoremap <unique> <buffer> <silent> K :call SearchMan('neomuttrc', '')<CR>
+    autocmd FileType firejail nnoremap <unique> <buffer> <silent> K :call SearchMan('firejail-profile', '')<CR>
     autocmd FileType sshconfig nnoremap <unique> <buffer> <silent> K :call SearchMan('ssh_config', '')<CR>
     autocmd FileType cmake nnoremap <unique> <buffer> <silent> K :call SearchCmakeMan()<CR>
     autocmd FileType qf,fugitive setlocal nobuflisted " exclude quickfix withow from :bnext, etc.

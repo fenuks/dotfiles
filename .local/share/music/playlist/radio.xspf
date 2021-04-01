@@ -2,12 +2,33 @@
 <playlist version="1" xmlns="http://xspf.org/ns/0/">
   <trackList>
     <track>
-      <location>http://94.23.201.38:8020/</location>
-      <title>Audiophile Jazz</title>
-    </track>
-    <track>
       <location>http://94.23.201.38:8000/;</location>
       <title>Audiophile Baroque</title>
+    </track>
+    <track>
+      <title>Otto&apos;s Baroque Music</title>
+      <location>http://strm112.1.fm/baroque_mobile_mp3</location></track>
+    <track>
+      <title>Calm Radio - Baroque</title>
+      <location>http://streams.calmradio.com:3328/stream</location></track>
+    <track>
+      <title>Calm Radio - Early Baroque</title>
+      <location>http://streams.calmradio.com:14328/stream/1/</location></track>
+    <track>
+      <title>Concertzender Baroque</title>
+      <location>http://streams.greenhost.nl:8080/barok</location></track>
+    <track>
+      <title>France Musique La Baroque</title>
+      <location>http://icecast.radiofrance.fr/francemusiquebaroque-hifi.aac</location></track>
+    <track>
+      <title>Positively Baroque [Europe stream]</title>
+      <location>http://play2.organlive.com:7002/320</location></track>
+    <track>
+      <title>Radio Caprice - Classical Baroque</title>
+      <location>http://79.111.14.76:8002/baroque</location></track>
+    <track>
+      <location>http://94.23.201.38:8020/</location>
+      <title>Audiophile Jazz</title>
     </track>
     <track>
       <location>http://94.23.201.38:8010/;</location>
@@ -136,6 +157,22 @@
     <track>
       <location>http://hi.streamingsoundtracks.com/</location>
       <title>StreamingSoundtracks.com</title>
+    </track>
+    <track>
+      <location>http://195.91.237.50:8000/ices128</location>
+      <title>Старое радио - Old Radio</title>
+    </track>
+    <track>
+      <location>http://www.staroeradio.ru/detskoe128.m3u</location>
+      <title>Старое радио - Детское радио</title>
+    </track>
+    <track>
+      <location>Старое радио - Музыка</location>
+      <title>http://www.staroeradio.ru/music128.m3u</title>
+    </track>
+    <track>
+      <location>Radio Svoboda</location>
+      <title>http://n07.radiojar.com/hcrb063nn3quv?rj-ttl=5&rj-tok=AAABeAh1o74AGnPBQDLLRyMptQ</title>
     </track>
   </trackList>
 </playlist>
