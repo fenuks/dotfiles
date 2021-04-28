@@ -1,0 +1,11 @@
+[Basic Settings]
+Indexing-Enabled=false
+
+[General]
+dbVersion=2
+exclude filters=po,*.pc,__pycache__,*.gcode,moc_*.cpp,*.la,*.pyo,*.ini,*.vdi,*.qmlc,confstat,*.po,*.loT,*.aux,CMakeTmpQmake,*.sql,*.lo,*.csproj,*.db,CMakeCache.txt,*.part,*.elc,*.gmo,.obj,.npm,*.orig,.git,*.vmdk,.svn,node_modules,*.map,.yarn,CTestTestfile.cmake,CVS,config.status,*.fasta,*.init,libtool,*.jsc,*.sql.gz,CMakeTmp,vbox.log,nbproject,*~,*.class,*.tmp,*.vbox*,_darcs,.moc,litmain.sh,*.moc,.bzr,.xsession-errors*,autom4te,.histfile.*,*.fastq,*.qrc,*.nvram,Makefile.am,*.a,*.vm*,*.vhdx,conftest,*.swap,*.fq,*.o,.hg,.pch,.yarn-cache,confdefs.h,*.img,*.so,*.omf,*.gbff,.uic,ui_*.h,node_packages,qrc_*.cpp,*.gb,*.rcore,lost+found,*.faa,*.qcow2,core-dumps,lzo,*.m4,*.rej,*.pyc,*.vhd,*.fna,cmake_install.cmake,CMakeFiles,.ninja_deps,.ninja_log,build.ninja,*.swp,*.ytdl,*.opf
+exclude filters version=8
+exclude folders[$e]=$HOME/Programy/,$HOME/Projekty/,$HOME/Dokumenty/książki/
+first run=true
+folders[$e]=$HOME
+only basic indexing=true

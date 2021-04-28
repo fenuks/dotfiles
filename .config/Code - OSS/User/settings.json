@@ -145,7 +145,11 @@
     "rust.rls": {
         "useRustfmt": true
     },
-    "workbench.colorTheme": "Solarized Light"
+    "workbench.colorTheme": "Solarized Light",
+    "terminal.integrated.commandsToSkipShell": [
+        "language-julia.interrupt"
+    ],
+    "editor.minimap.enabled": false
     // "editor.formatOnType": true,
     // "editor.formatOnPaste": true,
     // "editor.autoIndent": true

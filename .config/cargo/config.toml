@@ -2,6 +2,9 @@
 linker = "/usr/bin/clang"
 rustflags = ["-Clink-arg=-fuse-ld=lld", "-Zshare-generics=y"]
 
+[profile.dev]
+split-debuginfo = "unpacked"
+
 # make programs faster
 # [profile.release]
 # lto = 'thin'

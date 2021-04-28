@@ -1,0 +1,23 @@
+bind / fillcmdline find
+bind ? fillcmdline find -?
+bind n findnext 1
+bind N findnext -1
+bind ,<Space> nohlsearch
+
+unbindurl localhost/rss n
+unbindurl localhost/rss p
+unbindurl localhost/rss o
+unbindurl localhost/rss j
+unbindurl localhost/rss k
+unbindurl localhost/rss f
+unbindurl localhost/rss i
+
+bind j scrollline 1
+bind k scrollline -1
+
+bind J tabnext
+bind K tabprev
+
+set hintchars abcdefghijklmnopqrstuvwxyz
+set followpagepatterns.next \bnext\b,^>$,^(>>|»)$,^(>|»),(>|»)$,\bmore\b,\bnastępna\b
+set followpagepatterns.prev \bprev\b|\bprevious\b,^<$,^(<<|«)$,^(<|«),(<|«)$,b\poprzednia\b

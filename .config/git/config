@@ -14,6 +14,8 @@ email = fenuks
     spellcheck = false
 [credential]
     helper = cache
+[advice]
+    detachedHead = false
 [alias]
     au = add --update
     br = branch

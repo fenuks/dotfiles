@@ -119,12 +119,16 @@
       <title>Crooner Radio - All Crooners, All the Time!</title>
     </track>
     <track>
+      <location>https://rs6-krk2-cyfronet.rmfstream.pl/rmf_classic</location>
+      <title>RMF Classic</title>
+    </track>
+    <track>
       <location>https://n11a-eu.rcs.revma.com/ypqt40u0x1zuv?rj-ttl=5&amp;rj-tok=AAABdPmStCcAJPEOpmmymkpA7w</location>
       <title>Radio Nowy Świat</title>
     </track>
     <track>
-      <location>https://rs6-krk2-cyfronet.rmfstream.pl/rmf_classic</location>
-      <title>RMF Classic</title>
+      <location>https://stream.rcs.revma.com/ye5kghkgcm0uv</location>
+      <title>Radio 357</title>
     </track>
     <track>
       <location>http://streaming.radionomy.com/JamendoLounge</location>
@@ -145,10 +149,6 @@
     <track>
       <location>http://0n-movies.radionetz.de/0n-movies.mp3</location>
       <title>Movies on Radio</title>
-    </track>
-    <track>
-      <location>https://stream.rcs.revma.com/ye5kghkgcm0uv</location>
-      <title>Radio 357</title>
     </track>
     <track>
       <location>http://stream.rpgamers.net:8000/rpgn</location>

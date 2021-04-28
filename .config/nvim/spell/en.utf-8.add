@@ -1,8 +1,11 @@
 8D
 Amarantus
+Anki
 application/pdf
 application/problem+json
 backend
+bazel
+codebase
 Comixology
 Coursera
 CSV
@@ -20,6 +23,7 @@ https
 IDK
 IMO
 Inkscape
+IntelliJ
 inter alia
 iOS
 JS
@@ -28,6 +32,7 @@ keepass
 krita
 LARP
 librivox
+linting
 LOL
 masterwork
 Moomins
@@ -43,7 +48,11 @@ org-mode
 PDF
 PEM
 per se
+Py
+PyCharm
+PyPI
 Quixote
+refactoring
 regex
 relisten
 relistened
@@ -51,6 +60,7 @@ SDK
 Spotify
 SSO
 subreddit
+transpiler
 UI
 ummm
 upvoted

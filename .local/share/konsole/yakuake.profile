@@ -1,8 +1,8 @@
 [Appearance]
 AntiAliasFonts=true
 BoldIntense=false
-ColorScheme=Breeze
-Font=Hack,11,-1,5,50,0,0,0,0,0
+ColorScheme=GruvboxLight
+Font=Fira Code,13,-1,5,50,0,0,0,0,0
 UseFontLineChararacters=true
 
 [General]
