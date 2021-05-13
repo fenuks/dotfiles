@@ -1,5 +1,5 @@
 [flake8]
-ignore = E131,E231,E501
+ignore = E131,E231,E501,W503,W504
 exclude =
     .git,
     .hg,

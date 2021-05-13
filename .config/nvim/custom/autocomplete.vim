@@ -1,31 +1,6 @@
 " Shougo/deoplete
 let g:deoplete#sources#jedi#show_docstring=1
 
-" autozimu/LanguageClient-neovim
-let g:LanguageClient_serverCommands = {
-    \ 'c': ['clangd'],
-    \ 'cpp': ['clangd'],
-    \ 'swift': ['sourcekit-lsp'],
-    \ 'haskell': ['haskell-language-server-wrapper', '--lsp'],
-    \ 'java': ['jdtls', '-javaagent:/usr/share/java/lombok/lombok.jar', '-Xbootclasspath/p:/usr/share/java/lombok/lombok.jar'],
-    \ 'javascript': ['javascript-typescript-stdio'],
-    \ 'javascript.jsx': ['javascript-typescript-stdio'],
-    \ 'python': ['pyls'],
-    \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
-    \ 'typescript': ['javascript-typescript-stdio'],
-    \ 'xml': ['lsp4xml'],
-    \ 'yaml': ['yaml-language-server', '--stdio'],
-    \ 'mvn_pom': ['lsp4xml'],
-    \ 'vue': ['vls'],
-    \ }
-    " \ 'c': ['cquery', '--log-file=/tmp/cq.log', '--init={"cacheDirectory":"/tmp/cquery/"}'],
-    " \ 'cpp': ['cquery', '--log-file=/tmp/cq.log', '--init={"cacheDirectory":"/tmp/cquery/"}'],
-
-let g:LanguageClient_autoStart = 1
-let g:LanguageClient_loggingLevel = 'DEBUG'
-let g:LanguageClient_loggingFile='/tmp/lc.log'
-let g:LanguageClient_serverStderr = '/tmp/ls.log'
-
 " natebosch/vim-lsc'
 let g:lsc_server_commands = {
  \  'c': 'clangd',
@@ -69,24 +44,6 @@ endfunction
 let g:ycm_autoclose_preview_window_after_completion=1
 let g:ycm_semantic_triggers =  {}
 let g:ycm_language_server = []
-
-function! ConfigureLanguageClient() abort
-    nnoremap <silent> <buffer> K :call LanguageClient_textDocument_hover()<CR>
-    nnoremap <silent> <buffer> gd :call LanguageClient_textDocument_definition()<CR>
-    nnoremap <silent> <buffer> gD :call LanguageClient#textDocument_typeDefinition()<CR>
-    nnoremap <silent> <buffer> <C-w>d :call LanguageClient#textDocument_definition({'gotoCmd': 'split'})<CR>
-    nnoremap <silent> <buffer> <C-w><C-d> :call LanguageClient#textDocument_definition({'gotoCmd': 'split'})<CR>
-    nnoremap <silent> <buffer> <Leader>rn :call LanguageClient_textDocument_rename()<CR>
-    nnoremap <silent> <buffer> <Leader>gt :call LanguageClient_workspace_symbol()<CR>
-    nnoremap <silent> <buffer> <Leader>gT :call LanguageClient_textDocument_documentSymbol()<CR>
-    nnoremap <silent> <buffer> <Leader>gu :call LanguageClient_textDocument_references()<CR>
-    nnoremap <silent> <buffer> <Leader>lq :call LanguageClient_textDocument_formatting()<CR>
-    nnoremap <silent> <buffer> <Leader>la :call LanguageClient#textDocument_codeAction()<CR>
-    " LanguageClient_textDocument_implementation()
-    " setlocal formatexpr=LanguageClient_textDocument_rangeFormatting()
-    " setlocal omnifunc=LanguageClient#complete
-    LanguageClientStart
-endfunction
 
 function! ConfigureLsc() abort
     call deoplete#custom#buffer_option('auto_complete', v:false)

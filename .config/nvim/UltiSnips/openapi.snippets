@@ -1,0 +1,151 @@
+snippet api_info "OpenAPI info"
+info:
+  title: $1
+  description: $2
+  contact:
+    name: $3
+    url: $4
+    email: $5
+  version: ${6:0.0.1}
+endsnippet
+
+snippet api_servers "OpenAPI servers"
+servers:
+  - url: $1
+    description: $2
+    ${3:variables: $4}
+endsnippet
+
+snippet api_server "OpenAPI server"
+- url: $1
+  description: $2
+  ${3:variables: $4}
+endsnippet
+
+snippet api_path "OpenAPI path"
+/$1:
+  ${2:summary: $3}
+  ${4:description: $5}
+  $0
+endsnippet
+
+snippet api_get "OpenAPI GET operation"
+get:
+  description: $1
+  responses: $2
+endsnippet
+
+snippet api_post "OpenAPI POST operation"
+post:
+  ${1:tags: [$2]}
+  ${3:summary: $4}
+  ${5:description: $6}
+  operationId: $7
+  ${8:api_parameters$9}
+  ${10:api_body$11}
+  responses:
+    '${12:200}':
+      api_response
+endsnippet
+
+snippet api_response "OpenAPI response"
+description: $1
+content:
+  ${2:application/json}:
+    schema: sref$0
+endsnippet
+
+snippet api_parameters "OpenAPI GET parameters"
+parameters:
+  name: $1
+  in: ${2:path}
+  description: $3
+  required: ${4:true}
+endsnippet
+
+snippet sref "OpenAPI components $ref"
+$ref: '$1#/components/schemas/$2'
+endsnippet
+
+snippet api_body "OpenAPI POST request body"
+requestBody:
+  description: $1
+  content:
+    ${2:application/json}:
+      schema:
+        $ref: '$3#/components/schemas/$4'
+endsnippet
+
+snippet api_object "OpenAPI schema"
+$1:
+  type: object
+  description: $2
+  required: [$3]
+  properties:
+    $4
+  example:
+    - $5
+endsnippet
+
+snippet api_int "OpenAPI integer"
+$1:
+  type: integer
+  ${2:format: int64}
+  description: $3
+  ${4:minimum: $5}
+  ${6:maximum: $7}
+  ${8:default: $9}
+endsnippet
+
+snippet api_float "OpenAPI integer"
+$1:
+  type: number
+  ${2:format: double}
+  description: $3
+  ${4:minimum: $5}
+  ${6:maximum: $7}
+  ${8:default: $9}
+endsnippet
+
+snippet api_str "OpenAPI string"
+$1:
+  type: string
+  description: $2
+  ${3:minLength: $4}
+  ${5:maxLength: $6}
+  ${7:default: $8}
+endsnippet
+
+snippet api_enum "OpenAPI enum"
+$1:
+  type: string
+  description: $2
+  enum:
+  - $3
+  ${4:default: $5}
+endsnippet
+
+snippet api_bool "OpenAPI bool"
+$1:
+  type: boolean
+  description: $2
+  ${4:default: ${5:false}}
+endsnippet
+
+snippet api_array "OpenAPI array"
+$1:
+  type: array
+  description: $2
+  items:
+    $ref: '$3#/components/schemas/$4'
+endsnippet
+
+snippet api_parameter "OpenAPI parameter schema"
+$1:
+  name: $2
+  in: ${3:query}
+  description: $4
+  required: ${5:true}
+  schema:
+    ${5:type: string}
+endsnippet

@@ -145,6 +145,7 @@ inoremap <unique> <expr> <C-f> pumvisible() ? "\<PageDown>" : "\<C-f>"
 " scroll autocomplete popup up with <C-b>
 inoremap <unique> <expr> <C-b> pumvisible() ? "\<PageUp>" : "\<C-b>"
 inoremap <unique> <expr> <CR> pumvisible() ? "\<C-y>" : "\<CR>"
+inoremap <unique> <expr> <C-e> col(".") == col("$") ? "<Del>" : "<C-o>dw"
 " 'n' always goes forward
 " nnoremap <unique> <expr> n  'Nn'[v:searchforward]
 " 'N' always goes back
@@ -197,6 +198,7 @@ nnoremap <unique> Xp dhP
 nnoremap <unique> XP dhP
 " trim trailing spaces
 nnoremap <unique> <silent> x$ :%s/\s\+$//<CR>
+nnoremap <unique> <silent> x<CR> :g/^\s*$/d<CR>
 " convert non-breaking spaces to normal ones
 nnoremap <unique> <silent> x<Space> :%s/\%u00a0/ /g<CR>
 nnoremap <unique> <silent> xS :,$!sort<CR>
@@ -225,6 +227,7 @@ inoremap <unique> <C-M-CR> <CR><CR><UP><TAB>
 inoremap <unique> <C-j> <END><CR>
 " mapped as <C-S-j> in custom keymap
 inoremap <unique> <C-S-CR> <Home><CR><UP>
+inoremap <unique> <C-z> <C-o>:suspend<CR>
 
 nnoremap <unique> <C-s> :w<Enter>
 inoremap <unique> <C-s> <ESC>:w<Enter>a
@@ -305,7 +308,9 @@ vnoremap <unique> <silent> gX :<C-u>call SearchWebVisual()<CR>
 
 " terminal
 tnoremap <unique> jk <C-\><C-n>
+tnoremap <unique> <C-[> <C-\><C-n>
 nnoremap <unique> <silent> <Leader>Tn :<C-u>call Execute(['new', 'only', 'terminal'])<CR>
+nnoremap <unique> <silent> <Leader>T. :terminal<CR>
 nnoremap <unique> <silent> <Leader>Ts :<C-u>call Execute(['new', 'terminal'])<CR>
 nnoremap <unique> <silent> <Leader>Tv :<C-u>call Execute(['vnew', 'terminal'])<CR>
 nnoremap <unique> <silent> <Leader>Tt :<C-u>call Execute(['tabnew', 'terminal'])<CR>
@@ -569,6 +574,12 @@ let g:airline#extensions#tabline#enabled = 1
 Plug 'easymotion/vim-easymotion'
 let g:EasyMotion_verbose = 0
 
+Plug 'rhysd/clever-f.vim'
+let g:clever_f_not_overwrites_standard_mappings=v:true
+" let g:clever_f_mark_char_color='ErrorMsg'
+map f <Plug>(clever-f-reset)<Plug>(clever-f-f)
+map ; <Plug>(clever-f-repeat-forward)
+
 Plug 'justinmk/vim-sneak'
 map <unique> sf <Plug>Sneak_s
 map <unique> sF <Plug>Sneak_S
@@ -626,6 +637,7 @@ let g:ale_sign_highlight_linenrs = 1
  " languagetool doesn't understand md syntax…
 let g:ale_linters_ignore = {
 \ 'vimwiki': ['languagetool'],
+\ 'markdown': ['languagetool'],
 \}
 " disabled languagetool for vimwiki since it doesn't understand markdown syntax,
 " and reportss plenty of errors
@@ -683,8 +695,6 @@ let g:AutoPairsSkipBefore=''
 let g:AutoPairsMoveCharacter = ''
 
 " ##### Code autocompletion
-Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'make release', 'on': ['LanguageClientStart'] }
-let g:LanguageClient_diagnosticsList='Location'
 Plug 'natebosch/vim-lsc', { 'on': 'LSClientEnable' }
 if !has('nvim-0.5')
     Plug 'Valloric/YouCompleteMe', { 'for': ['javascript'] }
@@ -786,7 +796,7 @@ Plug 'rhysd/vim-grammarous', { 'on': 'GrammarousCheck' }
 " Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 let g:vim_markdown_folding_disabled = 1
 let g:vim_markdown_strikethrough = 1
-Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
+Plug 'vimwiki/vimwiki', { 'branch': 'dev', 'for': ['markdown', 'vimwiki'] }
 " let g:vimwiki_key_mappings = { 'all_maps': 0, }
 let g:vimwiki_list = [{'path': $XDG_DOCUMENTS_DIR . '/tekst',
                      \ 'syntax': 'markdown', 'ext': '.md' }]

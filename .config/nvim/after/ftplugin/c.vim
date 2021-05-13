@@ -4,5 +4,4 @@ endif
 let b:did_c_ftplugin = 1
 
 if !has('nvim-0.5')
-call ConfigureLanguageClient()
 endif
