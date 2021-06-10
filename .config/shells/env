@@ -7,6 +7,7 @@ export BROWSER=firefox
 export DOTNET_CLI_TELEMETRY_OPTOUT=1
 export EDITOR=vim
 export ENHANCD_COMMAND=fzf
+export ESCDELAY=0
 export FZF_DEFAULT_OPTS='--height 80% --bind=ctrl-d:preview-page-down,ctrl-u:preview-page-up'
 export GCC_COLORS=auto
 export GOPATH="$XDG_DATA_HOME/go"

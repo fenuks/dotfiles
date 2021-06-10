@@ -1,8 +1,8 @@
 [Appearance]
 AntiAliasFonts=true
-BoldIntense=false
-ColorScheme=GruvboxLight
-Font=Fira Code,13,-1,5,50,0,0,0,0,0
+BoldIntense=true
+ColorScheme=edge
+Font=Monospace,14,-1,5,50,0,0,0,0,0
 UseFontLineChararacters=true
 
 [General]

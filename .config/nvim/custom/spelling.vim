@@ -10,7 +10,7 @@ set spellcapcheck=
 
 augroup natural_language
     autocmd!
-    autocmd FileType gitcommit,hgcommit,org,help,mail call ConfigureLanguage()
+    autocmd FileType hgcommit,markdown,org,help call ConfigureLanguage()
 augroup END
 
 function! ConfigureLanguage() abort

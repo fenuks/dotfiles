@@ -1,2 +1,3 @@
 noblacklist ${HOME}/.local/share/music
+noblacklist ${HOME}/Audycje
 ignore noroot

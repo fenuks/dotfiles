@@ -27,6 +27,9 @@ set completeopt=menuone,noselect " complete longest common text instead of first
 set pumheight=15 " maximum autocomplete popup height
 
 " set timeoutlen=150 " Time to wait after ESC (default causes an annoying delay), it affects also leader key, unfortunately
+set modeline
+set modelines=5
+set secure
 
 set updatetime=300 " time, in miliseconds to trigger cursorhold (aslo to write swap file)
 set scrolloff=3 " number of context lines visible near cursor
@@ -142,6 +145,10 @@ endif
 " mappings
 " scroll autocomplete popup down with <C-f>
 inoremap <unique> <expr> <C-f> pumvisible() ? "\<PageDown>" : "\<C-f>"
+inoremap <unique><silent><expr> <C-Space> compe#complete()
+inoremap <unique><silent><expr> <C-c>     pumvisible() ? compe#close() : "\<C-c>"
+inoremap <unique><silent><expr> <C-d>     pumvisible() ? compe#scroll({ 'delta': +4 }) : "\<C-d>"
+inoremap <unique><silent><expr> <C-u>     pumvisible() ? compe#scroll({ 'delta': -4 }) : "\<C-u>"
 " scroll autocomplete popup up with <C-b>
 inoremap <unique> <expr> <C-b> pumvisible() ? "\<PageUp>" : "\<C-b>"
 inoremap <unique> <expr> <CR> pumvisible() ? "\<C-y>" : "\<CR>"
@@ -216,8 +223,8 @@ nnoremap <unique> <silent> xac :set opfunc=CenterAlignOperator<CR>g@
 nnoremap <unique> <silent> xaJ :,$Justify<CR>
 vnoremap <unique> <silent> xaj :Justify<CR>
 nnoremap <unique> <silent> xaj :set opfunc=JustifyOperator<CR>g@
-nnoremap <unique> <silent> sj :set opfunc=JoinOperatorWithSpaces<CR>g@
-nnoremap <unique> <silent> sJ :set opfunc=JoinOperator<CR>g@
+nnoremap <unique> <silent> xj :set opfunc=JoinOperatorWithSpaces<CR>g@
+nnoremap <unique> <silent> xJ :set opfunc=JoinOperator<CR>g@
 
 " edit register
 nnoremap <unique> <silent> <Leader>@ :<C-u><C-r><C-r>='let @'. v:register .' = '. string(getreg(v:register))<CR><C-F><LEFT>
@@ -235,22 +242,27 @@ inoremap <unique> <C-l> <DEL>
 
 nnoremap <unique> Y y$
 vnoremap <unique> <LocalLeader>y "+y
-vnoremap <unique> <LocalLeader>d "+d
-vnoremap <unique> <LocalLeader>p "+p
-nnoremap <unique> <Leader><Space>p a <ESC>"+p
-nnoremap <unique> <Space>p a <ESC>p
-nnoremap <unique> <Space>P i <ESC>P
-vnoremap <unique> <Space>d "_d
-nnoremap <unique> yp "0p
-nnoremap <unique> yP "0P
 nnoremap <unique> <M-y> "+y
 vnoremap <unique> <M-y> "+y
 nnoremap <unique> <M-S-y> "+y$
-nnoremap <unique> <M-p> "+p
-vnoremap <unique> <M-p> "+p
-inoremap <unique> <M-p> <C-o>"+p
-nnoremap <unique> <Leader>pf :put =expand('%:p')<CR>
-nnoremap <unique> <Leader>pd :put =expand('%:r')<CR>
+
+vnoremap <unique> <LocalLeader>d "+d
+vnoremap <unique> <Space>d "_d
+
+vnoremap <unique> <silent> <LocalLeader>p "+p
+nnoremap <unique> <silent> <Leader><Space>p a <ESC>"+p
+nnoremap <unique> <silent> <Space>p a <ESC>p
+nnoremap <unique> <silent> <Space>P i <ESC>P
+nnoremap <unique> <silent> sp :call NewlinePaste('p', 'o')<CR>
+nnoremap <unique> <silent> Sp :call NewlinePaste('p', 'O')<CR>
+nnoremap <unique> <silent> SP :call NewlinePaste('p', 'O')<CR>
+nnoremap <unique> <silent> yp "0p
+nnoremap <unique> <silent> yP "0P
+nnoremap <unique> <silent> <M-p> "+p
+vnoremap <unique> <silent> <M-p> "+p
+inoremap <unique> <silent> <M-p> <C-o>"+p
+nnoremap <unique> <silent> <Leader>pf :put =expand('%:p')<CR>
+nnoremap <unique> <silent> <Leader>pd :put =expand('%:r')<CR>
 
 nnoremap <unique> <LocalLeader>y "+y
 nnoremap <unique> <LocalLeader>Y "+y$
@@ -462,10 +474,10 @@ Plug 'tpope/vim-commentary'
 noremap <unique> <silent> <c-_> :Commentary<CR>
 Plug 'tommcdo/vim-exchange'
 Plug 'kshenoy/vim-signature', {'on': 'SignatureToggleSigns'}
-Plug 'vim-scripts/ReplaceWithRegister'
-nmap <unique> sp <Plug>ReplaceWithRegisterOperator
-nmap <unique> spp <Plug>ReplaceWithRegisterLine
-xmap <unique> sp <Plug>ReplaceWithRegisterVisual
+Plug 'vim-scripts/ReplaceWithRegister', {'on': ['<Plug>ReplaceWithRegisterOperator', '<Plug>ReplaceWithRegisterLine', '<Plug>ReplaceWithRegisterVisual']}
+nmap <unique> xr <Plug>ReplaceWithRegisterOperator
+nmap <unique> xrr <Plug>ReplaceWithRegisterLine
+xmap <unique> xr <Plug>ReplaceWithRegisterVisual
 Plug 'sk1418/Join'
 
 "#### Version Control
@@ -542,17 +554,19 @@ let g:grepper.prompt_quote = 3
 let g:grepper.rg = {}
 let g:grepper.rg.grepprg = 'rg -H --no-heading --vimgrep --smart-case'
 
-nnoremap <unique> <Leader>ss :Grepper -tool rg<CR>
-nnoremap <unique> <Leader>sS :Grepper -tool rg -side<CR>
-nnoremap <unique> <leader>s* :Grepper -tool rg -open -switch -cword -noprompt<CR>
-nnoremap <unique> <Leader>s% :Grepper -open -switch -cword -noprompt -tool rg -grepprg rg -H --no-heading --vimgrep -l<CR>
-nnoremap <unique> <Leader>sf :Grepper -tool rg -grepprg rg -H --no-heading --vimgrep -l<CR>
-vmap <unique> <Leader>s <Plug>(GrepperOperator)
-nmap <unique> <Leader>so <Plug>(GrepperOperator)
-nnoremap <unique> <leader>sd :Grepper -tool rg -dir file<CR>
-nnoremap <unique> <leader>sD :Grepper -tool rg -dir file -side<CR>
-nnoremap <unique> <leader>sb :Grepper -tool rg -buffers<CR>
-nnoremap <unique> <leader>sB :Grepper -tool rg -buffers -side<CR>
+nnoremap <unique> s/ :Grepper -tool rg<CR>
+nnoremap <unique> ss :Grepper -tool rg -side<CR>
+nnoremap <unique> s* :Grepper -tool rg -open -switch -cword -noprompt<CR>
+nnoremap <unique> s% :Grepper -open -switch -cword -noprompt -tool rg -grepprg rg -H --no-heading --vimgrep -l<CR>
+nnoremap <unique> sf :Grepper -tool rg -grepprg rg -H --no-heading --vimgrep -l<CR>
+vmap <unique> s <Plug>(GrepperOperator)
+nmap <unique> so <Plug>(GrepperOperator)
+nnoremap <unique> sd :Grepper -tool rg -dir file<CR>
+nnoremap <unique> sD :Grepper -tool rg -dir file -side<CR>
+nnoremap <unique> sb :Grepper -tool rg -buffers<CR>
+nnoremap <unique> sB :Grepper -tool rg -buffers -side<CR>
+nnoremap <unique> sj <C-f>
+nnoremap <unique> sk <C-b>
 " search url ((\w+://)|/)[a-zA-Z0-9.?&/]+
 " vim regex: ( |"|\[|\=)((\w+:\/\/)|\/)[a-zA-Z0-9.?&/\-{}*]+
 
@@ -574,15 +588,15 @@ let g:airline#extensions#tabline#enabled = 1
 Plug 'easymotion/vim-easymotion'
 let g:EasyMotion_verbose = 0
 
-Plug 'rhysd/clever-f.vim'
-let g:clever_f_not_overwrites_standard_mappings=v:true
-" let g:clever_f_mark_char_color='ErrorMsg'
-map f <Plug>(clever-f-reset)<Plug>(clever-f-f)
-map ; <Plug>(clever-f-repeat-forward)
+" Plug 'rhysd/clever-f.vim'
+" let g:clever_f_not_overwrites_standard_mappings=v:true
+" " let g:clever_f_mark_char_color='ErrorMsg'
+" map f <Plug>(clever-f-reset)<Plug>(clever-f-f)
+" map ; <Plug>(clever-f-repeat-forward)
 
 Plug 'justinmk/vim-sneak'
-map <unique> sf <Plug>Sneak_s
-map <unique> sF <Plug>Sneak_S
+map <unique> s; <Plug>Sneak_s
+map <unique> s, <Plug>Sneak_S
 
 Plug 'fenuks/vim-uncommented'
 nmap <unique> ]/ <Plug>(NextCommented)
@@ -711,9 +725,9 @@ if has('nvim')
     if has('nvim-0.5')
         Plug 'neovim/nvim-lspconfig'
         Plug 'nvim-lua/completion-nvim'
-        let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
-        let g:completion_matching_smart_case = 1
-        let g:completion_sorting = 'none'
+        Plug 'hrsh7th/nvim-compe'
+        Plug 'nvim-lua/plenary.nvim'
+        Plug 'Gavinok/compe-look'
         Plug 'nvim-lua/lsp_extensions.nvim'
         Plug 'nvim-lua/lsp-status.nvim'
         Plug 'nvim-treesitter/nvim-treesitter'
@@ -861,13 +875,20 @@ endif
 
 let g:deoplete#enable_at_startup = 1
 call deoplete#custom#option({
-    \ 'smart_case': v:true,
-    \ 'ignore_case': v:false,
     \ 'ignore_sources': {'c': ['tag'], 'cpp': ['tag'], 'xml': ['tag']}
 \ })
-call deoplete#custom#source('_', 'matchers', ['matcher_full_fuzzy'])
-call deoplete#custom#source('dictionary', 'matchers', ['matcher_head'])
-call deoplete#custom#source('dictionary', 'sorters', [])
+call deoplete#custom#source('_', {
+    \ 'matchers': ['matcher_full_fuzzy'],
+\ })
+call deoplete#custom#source('_', 'smart_case', v:true)
+call deoplete#custom#source('dictionary', {
+    \ 'matchers': ['matcher_head'],
+    \ 'sorters': [],
+    \ 'converters': ['converter_case'],
+    \ 'ignore_case': v:true,
+    \ 'smart_case': v:false,
+    \ 'camel_case': v:false,
+\ })
 
 """ functions
 execute 'source ' . g:vim_custom_scripts . 'functions.vim'
@@ -878,9 +899,9 @@ command! Lprevious call WrapListCommand('lprev', 'llast')
 
 augroup vim
     autocmd!
-    autocmd FileType muttrc nnoremap <unique> <buffer> <silent> K :call SearchMan('neomuttrc', '')<CR>
-    autocmd FileType firejail nnoremap <unique> <buffer> <silent> K :call SearchMan('firejail-profile', '')<CR>
-    autocmd FileType sshconfig nnoremap <unique> <buffer> <silent> K :call SearchMan('ssh_config', '')<CR>
+    autocmd FileType muttrc nnoremap <unique> <buffer> <silent> K :call SearchMan('neomuttrc', '', '<cword>')<CR>
+    autocmd FileType firejail nnoremap <unique> <buffer> <silent> K :call SearchMan('firejail-profile', '', '<cfile>')<CR>
+    autocmd FileType sshconfig nnoremap <unique> <buffer> <silent> K :call SearchMan('ssh_config', '', '<cfile>')<CR>
     autocmd FileType cmake nnoremap <unique> <buffer> <silent> K :call SearchCmakeMan()<CR>
     autocmd FileType qf,fugitive setlocal nobuflisted " exclude quickfix withow from :bnext, etc.
     autocmd CursorHold * checktime " needed for autoread to be triggered
@@ -898,6 +919,7 @@ augroup filetype_detect
     autocmd BufRead,BufNewFile *.conf setfiletype conf
     autocmd BufRead,BufNewFile env setfiletype sh
     autocmd BufRead,BufNewFile PKGBUILD call ConfigurePkgbuild()
+    autocmd BufNewFile,BufRead neomutt-* setf mail
 augroup END
 
 function! ConfigurePkgbuild() abort

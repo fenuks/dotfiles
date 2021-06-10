@@ -1,43 +1,67 @@
 source ~/.config/mutt/muttrc.local
 
+# mail and connection settings
+set mbox_type=Maildir
+# whether or not copies of your outgoing messages will be saved for later references
 set copy=yes
-set mail_check=60
+# how often (in seconds) NeoMutt should look for new mail
+set mail_check=120
 set ssl_force_tls=yes
-set ssl_starttls
-set text_flowed
+
+# editing
 set send_charset="utf-8"
+set edit_headers=yes
+# include message in reply
+set include
+# set text_flowed
+# don't ask for recipients when replying
+set fast_reply
+set abort_key = '<Esc>'
 
-macro index,pager F "<pipe-message> urlscan<Enter>" "call urlscan to extract URLs out of a message"
+set attribution = 'W dniu %d, %n pisze:'
+set forward_attribution_intro = "----- Treść przekazanej wiadomości -----"
+set forward_attribution_trailer = "----- Koniec przekazanej wiadomości -----"
 
-macro attach,compose F "<pipe-entry> urlscan<Enter>" "call urlscan to extract URLs out of a message"
+# display
+# sort by threads
+set sort = threads
+# sort threads by last date recieved - newest first
+set sort_aux = reverse-last-date-received
+# show date in year/month/day hour:minute format
+set date_format="%y/%m/%d %I:%M%p"
+# set sidebar_visible
+set collapse_all
+set uncollapse_new
+unset collapse_unread
+set tilde
+set beep_new
+# set new_mail_command
 
-set header_cache = ~/.cache/mutt
-set message_cachedir = ~/.cache/mutt
+set sidebar_short_path
 
-# make mutt behave more like a vim
-bind index \Cu half-up
-bind pager \Cu half-up
-bind index \Cd half-down
-bind pager \Cd half-down
-bind generic,index,pager \Cf       next-page
-bind generic,index,pager \Cb       previous-page
-bind generic             gg        first-entry
-bind generic,index       G         last-entry
-bind pager               gg        top
-bind pager               G         bottom
-bind generic,pager       \Cy       previous-line
-bind generic,index,pager \Ce       next-line
-bind index \Cm list-reply
-bind generic             zt        current-top
-bind generic             zz        current-middle
-bind generic             zb        current-bottom
-bind index               za        collapse-thread
-bind index               zA        collapse-all
-bind index,pager         N         search-opposite
+# view html automatically
+# auto_view text/html
+# try html as last resort option
+alternative_order text/plain text/enriched text/html
 
 # experimental
 set query_command = "echo && notmuch address %s | fzf --height=10 --query=%s"
 
-# editing
-set edit_headers=yes
+set header_cache = ~/.cache/mutt
+set message_cachedir = ~/.cache/mutt
 
+set history_file = ~/.local/share/history/mutt
+set alias_file = ~/.config/mutt/aliases.local
+set sort_alias = alias
+set reverse_alias = yes
+source $alias_file
+set mailcap_path = ~/.config/mutt/mailcap
+# source /usr/share/doc/neomutt/colorschemes/neonwolf-256.neomuttrc
+# source /usr/share/doc/neomutt/colorschemes/solarized-dark-256.neomuttrc
+# source /usr/share/doc/neomutt/colorschemes/vombatidae.neomuttrc
+# source /usr/share/doc/neomutt/colorschemes/zenburn.neomuttrc
+# source ~/.config/mutt/colourschemes/solarized-light-16.muttrc
+# source ~/.config/mutt/colourschemes/solarized-light-256.muttrc
+
+
+source ~/.config/mutt/bindings

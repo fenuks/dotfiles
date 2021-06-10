@@ -25,7 +25,7 @@ autoload -Uz compinit
 zstyle ':completion:*' menu select
 compinit
 
-zstyle :compinstall filename ~/.config/zsh/.zshrc
+zstyle :compinstall filename ~/.config/shells/zsh/.zshrc
 
 alias -s {yml,yaml}=vim
 

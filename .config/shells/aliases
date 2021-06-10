@@ -1,11 +1,15 @@
 # aliases compatible with fish syntax
 
 alias ag='ag --smart-case'
+alias cdp="cd ${XDG_DOWNLOAD_DIR:-Downloads}"
+alias cdd="cd ${XDG_DOCUMENTS_DIR:-Documents}"
+alias cdk="cd ${HOME}/Projekty"
 alias chromium-dev='chromium --disable-web-security --user-data-dir --remote-debugging-port=9222'
 alias clear="clear && printf \"\\e[3J\""
 alias dc='docker-compose'
 alias edit="$EDITOR"
 alias fdi='fd --no-ignore'
+alias fdii='fd --no-ignore -i'
 alias firefox-debug='firefox -start-debugger-server -no-remote'
 alias g='git'
 alias gdb="gdb -nh -x \"$XDG_CONFIG_HOME/gdb/init\""
@@ -22,6 +26,8 @@ alias maven='mvn'
 alias mksrcinfo='makepkg --printsrcinfo >| .SRCINFO'
 alias py='python'
 alias ipy="ipython --ipython-dir=$XDG_CONFIG_HOME/jupyter"
+alias rgi='rg --no-ignore'
+alias rgii='rg --no-ignore -i'
 alias sm='HOME=~/.local/share/spacemacs emacs'
 alias spacemacs='HOME=~/.spacemacs emacs'
 alias steam-flatpak='flatpak run com.valvesoftware.Steam'
@@ -32,12 +38,15 @@ alias check-yapf-config="diff <(yapf --style-help | grep -oP '^[a-zA-Z_0-9]+' | 
 alias v='vim'
 alias n='nvim'
 alias vsb='vim ~/.bashrc'
-alias vsz='vim ~/.config/zsh/.zshrc'
+alias vsz='vim ~/.config/shells/zsh/.zshrc'
 alias vsf='vim ~/.config/fish/config.fish'
 alias vh='sudoedit /etc/hosts'
 alias vR='sudoedit /etc/resolv.conf'
 alias vv='vim ~/.config/nvim/init.vim'
-alias vz='vim ~/.config/zsh/.zshrc'
+alias vz='vim ~/.config/shells/zsh/.zshrc'
 alias sb='source ~/.bashrc'
 alias sf='source ~/.config/fish/config.fish'
 alias venv='python3 -m venv'
+if ! command -v mutt > /dev/null; then
+    alias mutt='neomutt'
+fi

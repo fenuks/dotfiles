@@ -3,14 +3,24 @@ update_info=powerdevil_move_shortcuts.upd:powerdevil_move_shortcuts
 
 [ActivityManager]
 _k_friendly_name=Zarządzanie aktywnościami
-switch-to-activity-a7fdd794-ad96-4958-8e34-13ca2ec00fbf=none,none,Przełącz do aktywności "Icons"
+switch-to-activity-a7fdd794-ad96-4958-8e34-13ca2ec00fbf=none,none,Przełącz do aktywności „Icons”
 switch-to-activity-ae08d1c5-f380-4c93-b2b9-ee5781397ae1=none,none,Przełącz do aktywności "Default"
-switch-to-activity-b5460424-2b99-479d-948f-d40dd8849532=none,none,Przełącz do aktywności "New Activity"
+switch-to-activity-b5460424-2b99-479d-948f-d40dd8849532=none,none,Przełącz do aktywności „New Activity”
+
+[Clementine]
+_k_friendly_name=Clementine
+next_track=,none,Następny utwór
+play_pause=,none,Odtwarzaj/wstrzymaj
+prev_track=,none,Poprzedni utwór
+stop=,none,Zatrzymaj
 
 [KDE Keyboard Layout Switcher]
 Switch keyboard layout to Polski=none,none,Przełącz układ klawiatury na Polski
+Switch keyboard layout to Polski (Dvoraka programisty)=none,none,Przełącz układ klawiatury na Polski (Dvoraka programisty)
+Switch keyboard layout to Polski (międzynarodowy, z klawiszami akcentów)=none,none,Przełącz układ klawiatury na Polski (międzynarodowy\\, z klawiszami akcentów)
+Switch keyboard layout to Rosyjski=none,none,Przełącz układ klawiatury na Rosyjski
 Switch to Next Keyboard Layout=Ctrl+Alt+K,Ctrl+Alt+K,Przełącz do następnego układu klawiatury
-_k_friendly_name=Keyboard Layout Switcher
+_k_friendly_name=Przełącznik układu klawiatury
 
 [amarok]
 _k_friendly_name=Amarok
@@ -40,6 +50,15 @@ toggleMainWindow=none,none,Toggle Main Window
 Toggle Screen Reader On and Off=Meta+Alt+S,Meta+Alt+S,Włącz/wyłącz czytnik ekranowy
 _k_friendly_name=Dostępność
 
+[kalarm]
+_k_friendly_name=KAlarm
+newAudio=none,none,Nowy alarm dźwiękowy
+newCommand=none,none,Nowy alarm w postaci polecenia
+newDisplay=none,none,Nowy alarm wizualny
+newEmail=none,none,Nowy alarm pocztowy
+spread=none,none,Rozstaw okna
+stopAudio=none,none,Zatrzymaj odtwarzanie
+
 [kcm_touchpad]
 Disable Touchpad=Touchpad Off,Touchpad Off,Wyłącz gładzik
 Enable Touchpad=Touchpad On,Touchpad On,Włącz gładzik
@@ -52,13 +71,11 @@ _k_friendly_name=KDE Daemon
 display=Display\t,Display\tMeta+P,Przełącz ekran
 
 [khotkeys]
-_k_friendly_name=KDE Daemon
+_k_friendly_name=Usługa własnych skrótów
 {0180d98b-0516-4bb9-b1c4-cd2cb3f1d417}=Meta+W,none,rofi
 {1bcdd663-a016-4ecb-9a1e-63cfb676dcea}=none,none,keepass
 {22d0cead-7fb9-4109-8e91-cf823a6e984c}=none,none,Zrzut ekranu
-{3c218e91-0379-4cd9-9cf9-d906c769bcc9}=none,none,konsole
 {d03619b6-9b3c-48cc-9d9c-a2aadb485550}=,none,Znajdź
-{e69c9a59-e4c9-4e85-80c2-e3810e4bc959}=Ctrl+Shift+D,none,Terminal
 {e8fb3d87-fd0e-4da9-8898-4e71a4bcd956}=Ctrl+Alt+T,none,Launch Konsole
 
 [klipper]
@@ -78,21 +95,16 @@ decrease_microphone_volume=Microphone Volume Down,Microphone Volume Down,Zmniejs
 decrease_volume=Volume Down\tMeta+Alt+-,Volume Down,Zmniejsz głośność
 increase_microphone_volume=Microphone Volume Up,Microphone Volume Up,Zwiększ głośność mikrofonu
 increase_volume=Volume Up\tMeta+Alt+=,Volume Up,Zwiększ głośność
-mic_mute=Microphone Mute,Microphone Mute,Wycisz mikrofon
+mic_mute=Microphone Mute,Microphone Mute\tMeta+Volume Mute,Wycisz mikrofon
 mute=Volume Mute\tMeta+Alt+M,Volume Mute,Wycisz
-
-[krunner.desktop]
-RunClipboard=Alt+Shift+F2,Alt+Shift+F2,Wykonaj polecenie na zawartości schowka
-_k_friendly_name=KRunner
-_launch=Alt+Space\tAlt+F2\tSearch,none,KRunner
 
 [ksmserver]
 Halt Without Confirmation=Ctrl+Alt+Shift+PgDown,none,Zatrzymaj bez potwierdzenia
 Lock Session=Ctrl+Alt+L\tScreensaver,Meta+L\tCtrl+Alt+L\tScreensaver,Zablokuj sesję
-Log Out=Ctrl+Alt+Del,none,Wyloguj
+Log Out=Ctrl+Alt+Del,Ctrl+Alt+Del,Wyloguj
 Log Out Without Confirmation=Ctrl+Alt+Shift+Del,none,Wyloguj bez potwierdzenia
 Reboot Without Confirmation=Ctrl+Alt+Shift+PgUp,none,Uruchom ponownie bez potwierdzenia
-_k_friendly_name=Session Management
+_k_friendly_name=Zarządzanie sesjami
 
 [kwin]
 Activate Window Demanding Attention=Ctrl+Alt+A,Ctrl+Alt+A,Uaktywnij okno żądające uwagi
@@ -100,17 +112,21 @@ Decrease Opacity=none,none,Zmniejsz nieprzezroczystość aktywnego okna o 5 %
 Expose=Ctrl+F9\tMeta+P,Ctrl+F9,Włącz/wyłącz prezentację okien (Bieżący pulpit)
 ExposeAll=Ctrl+F10\tLaunch (C),Ctrl+F10\tLaunch (C),Włącz/wyłącz prezentację okien (Wszystkie pulpity)
 ExposeClass=Ctrl+F7,Ctrl+F7,Włącz/wyłącz prezentację okien (Klasa okna)
+Fix Windows=F10,none,Bring all windows into the screen.
 FlipSwitchAll=none,none,Przełączanie przełącznika stosowego (Wszystkie pulpity)
 FlipSwitchCurrent=none,none,Przełączanie przełącznika stosowego (Bieżący pulpit)
 Increase Opacity=none,none,Zwiększ nieprzezroczystość aktywnego okna o 5 %
 Invert Screen Colors=none,none,Odwróć kolory ekranu
 Kill Window=Ctrl+Alt+Esc,Ctrl+Alt+Esc,Zniszcz okno
+Kitty rectract=none,none,Retracts kitty\\, just like yakuake.
+MinimizeAll=none,none,MinimizeAll
 MoveMouseToCenter=Meta+F6,Meta+F6,Przenieś mysz do środka
 MoveMouseToFocus=Meta+F5,Meta+F5,Przenieś mysz do uaktywnienia
 MoveZoomDown=,none,Przenieś powiększony obszar w dół
 MoveZoomLeft=,none,Przenieś powiększony obszar w lewo
 MoveZoomRight=,none,Przenieś powiększony obszar w prawo
 MoveZoomUp=,none,Przenieś powiększony obszar w górę
+Przełącz barwy nocne=none,none,Przełącz barwy nocne
 Remove Window From Group=none,none,Usuń okno z grupy
 Setup Window Shortcut=none,none,Ustawienia skrótu okna
 Show Desktop=none,Meta+D,Pokaż pulpit
@@ -156,7 +172,8 @@ Switch to Screen 4=none,none,Przełącz na ekran 4
 Switch to Screen 5=none,none,Przełącz na ekran 5
 Switch to Screen 6=none,none,Przełącz na ekran 6
 Switch to Screen 7=none,none,Przełącz na ekran 7
-Toggle Night Color=none,none,Toggle Night Color
+Terminal rectract=F11,none,Retracts terminal\\, just like yakuake.
+Toggle Night Color=none,none,Przełącz barwy nocne
 Toggle Window Raise/Lower=none,none,Przełącz przywołanie/odwołanie okna
 Walk Through Desktop List=none,none,Przełączanie pulpitów z listy
 Walk Through Desktop List (Reverse)=none,none,Przełączanie pulpitów z listy (odwrotne)
@@ -165,7 +182,7 @@ Walk Through Desktops (Reverse)=none,none,Przełączanie pulpitów (odwrotne)
 Walk Through Window Tabs=none,none,Przełącz kartę okna
 Walk Through Window Tabs (Reverse)=none,none,Przełącz kartę okna (odwrotnie)
 Walk Through Windows=Alt+Tab,Alt+Tab,Przełączanie okien
-Walk Through Windows (Reverse)=none,Alt+Shift+Backtab,Przełączanie okien (odwrotne)
+Walk Through Windows (Reverse)=Alt+Shift+Tab,Alt+Shift+Backtab,Przełączanie okien (odwrotne)
 Walk Through Windows Alternative=none,none,Alternatywne przełączanie okien
 Walk Through Windows Alternative (Reverse)=none,none,Alternatywne przełączanie okien (odwrotne)
 Walk Through Windows of Current Application=Alt+`,Alt+`,Przełączanie okien bieżącego programu
@@ -186,10 +203,10 @@ Window Minimize=Meta+Shift+M,Meta+PgDown,Minimalizuj okno
 Window Move=none,none,Przenieś okno
 Window No Border=none,none,Ukryj obramowanie okna
 Window On All Desktops=none,none,Na wszystkich pulpitach
-Window One Desktop Down=none,none,Okno na pulpit niżej
-Window One Desktop Up=none,none,Okno na pulpit wyżej
-Window One Desktop to the Left=none,none,Okno na pulpit po lewej
-Window One Desktop to the Right=none,none,Okno na pulpit po prawej
+Window One Desktop Down=none,Meta+Ctrl+Shift+Down,Okno na pulpit niżej
+Window One Desktop Up=none,Meta+Ctrl+Shift+Up,Okno na pulpit wyżej
+Window One Desktop to the Left=none,Meta+Ctrl+Shift+Left,Okno na pulpit po lewej
+Window One Desktop to the Right=none,Meta+Ctrl+Shift+Right,Okno na pulpit po prawej
 Window Operations Menu=Alt+F3,Alt+F3,Menu operacji na oknie
 Window Pack Down=none,none,Wyrównaj okno do dołu
 Window Pack Left=none,none,Wyrównaj okno do lewej
@@ -229,9 +246,9 @@ Window to Desktop 7=none,none,Okno na pulpit 7
 Window to Desktop 8=none,none,Okno na pulpit 8
 Window to Desktop 9=none,none,Okno na pulpit 9
 Window to Next Desktop=Meta+Shift+L\tMeta+Shift+H,none,Okno na następny pulpit
-Window to Next Screen=Meta+J,none,Okno na następny ekran
-Window to Previous Desktop=none,none,Przełącz na poprzedni pulpit
-Window to Previous Screen=Meta+K,none,Okno na poprzedni ekran
+Window to Next Screen=Meta+J,Meta+Shift+Right,Okno na następny ekran
+Window to Previous Desktop=none,none,Okno na poprzedni pulpit
+Window to Previous Screen=Meta+K,Meta+Shift+Left,Okno na poprzedni ekran
 Window to Screen 0=none,none,Okno na ekran 0
 Window to Screen 1=none,none,Okno na ekran 1
 Window to Screen 2=none,none,Okno na ekran 2
@@ -250,6 +267,8 @@ _k_friendly_name=Pilot multimedialny
 mediavolumedown=none,none,Zmniejsz głośność
 mediavolumeup=none,none,Zwiększ głośność
 nextmedia=Media Next\tMeta+Alt+N,Media Next,Odtwórz następny plik
+pausemedia=Media Pause,Media Pause,Wstrzymaj odtwarzanie pliku
+playmedia=none,none,Odtwórz plik
 playpausemedia=Media Play\tMeta+Alt+P,Media Play,Odtwórz/Wstrzymaj odtwarzanie
 previousmedia=Media Previous\tMeta+Alt+Shift+N,Media Previous,Odtwórz poprzedni plik
 stopmedia=Media Stop,Media Stop,Zatrzymaj odtwarzanie pliku
@@ -257,6 +276,11 @@ stopmedia=Media Stop,Media Stop,Zatrzymaj odtwarzanie pliku
 [org.kde.dolphin.desktop]
 _k_friendly_name=Dolphin
 _launch=Meta+E,Meta+E,Dolphin
+
+[org.kde.krunner.desktop]
+RunClipboard=Alt+Shift+F2,Alt+Shift+F2,Wykonaj polecenie na zawartości schowka
+_k_friendly_name=KRunner
+_launch=Alt+Space\tAlt+F2\tSearch,none,KRunner
 
 [org.kde.plasma.emojier.desktop]
 _k_friendly_name=Wybierak Emoji
@@ -276,44 +300,44 @@ Decrease Screen Brightness=Monitor Brightness Down,Monitor Brightness Down,Zmnie
 Hibernate=Hibernate,Hibernate,Hibernuj
 Increase Keyboard Brightness=Keyboard Brightness Up,Keyboard Brightness Up,Zwiększ jasność klawiatury
 Increase Screen Brightness=Monitor Brightness Up,Monitor Brightness Up,Zwiększ jasność ekranu
-PowerDown=Power Down,Power Down,Power Down
+PowerDown=Power Down,Power Down,Wyłącz
 PowerOff=Power Off,Power Off,Wyłącz
-Sleep=Sleep,Sleep,Uśpij
+Sleep=Sleep\tMeta+Backspace,Sleep,Uśpij
 Toggle Keyboard Backlight=Keyboard Light On/Off,Keyboard Light On/Off,Przełącz podświetlenie klawiatury
 Turn Off Screen=none,none,Wyłącz ekran
 _k_friendly_name=Zarządzanie energią
 
 [plasmashell]
 _k_friendly_name=Plazma
-activate task manager entry 1=Meta+1,Meta+1,Aktywuj wpis 1 na pasku zadań
-activate task manager entry 10=,Meta+0,Aktywuj wpis 10 na pasku zadań
-activate task manager entry 2=Meta+2,Meta+2,Aktywuj wpis 2 na pasku zadań
-activate task manager entry 3=Meta+3,Meta+3,Aktywuj wpis 3 na pasku zadań
-activate task manager entry 4=Meta+4,Meta+4,Aktywuj wpis 4 na pasku zadań
-activate task manager entry 5=Meta+5,Meta+5,Aktywuj wpis 5 na pasku zadań
-activate task manager entry 6=Meta+6,Meta+6,Aktywuj wpis 6 na pasku zadań
-activate task manager entry 7=Meta+7,Meta+7,Aktywuj wpis 7 na pasku zadań
-activate task manager entry 8=Meta+8,Meta+8,Aktywuj wpis 8 na pasku zadań
-activate task manager entry 9=Meta+9,Meta+9,Aktywuj wpis 9 na pasku zadań
+activate task manager entry 1=Meta+1,Meta+1,Uaktywnij wpis 1 na pasku zadań
+activate task manager entry 10=,Meta+0,Uaktywnij wpis 10 na pasku zadań
+activate task manager entry 2=Meta+2,Meta+2,Uaktywnij wpis 2 na pasku zadań
+activate task manager entry 3=Meta+3,Meta+3,Uaktywnij wpis 3 na pasku zadań
+activate task manager entry 4=Meta+4,Meta+4,Uaktywnij wpis 4 na pasku zadań
+activate task manager entry 5=Meta+5,Meta+5,Uaktywnij wpis 5 na pasku zadań
+activate task manager entry 6=Meta+6,Meta+6,Uaktywnij wpis 6 na pasku zadań
+activate task manager entry 7=Meta+7,Meta+7,Uaktywnij wpis 7 na pasku zadań
+activate task manager entry 8=Meta+8,Meta+8,Uaktywnij wpis 8 na pasku zadań
+activate task manager entry 9=Meta+9,Meta+9,Uaktywnij wpis 9 na pasku zadań
 activate widget 2=Alt+F1,none,Włącz element interfejsu: Aktywator programów
 activate widget 31=Meta+Space,none,Włącz element interfejsu: Tablica programów
 activate widget 64=,none,Włącz element interfejsu: Aktywator programów
 clear-history=none,none,Wyczyść historię schowka
 clipboard_action=Ctrl+Alt+X,Ctrl+Alt+X,Włącz działania schowka
-cycleNextAction=none,none,Następny element historii
-cyclePrevAction=none,none,Poprzedni element historii
+cycleNextAction=Meta+],none,Następny element historii
+cyclePrevAction=Meta+[,none,Poprzedni element historii
 edit_clipboard=none,none,Zmień zawartość...
-manage activities=Meta+Q,Meta+Q,Aktywności...
+manage activities=Meta+Q,Meta+Q,Pokaż przełącznik aktywności
 next activity=Meta+Tab,none,Przełączaj między aktywnościami
 previous activity=none,none,Przełączaj między aktywnościami (odwrotnie)
 repeat_action=Ctrl+Alt+R,Ctrl+Alt+R,Ręcznie wywołaj działanie na zawartości schowka
 show dashboard=Meta+F12,Ctrl+F12,Pokaż pulpit
 show-barcode=none,none,Pokaż kod kreskowy...
-show-on-mouse-pos=none,none,Otwórz Klippera pod wskaźnikiem myszy
+show-on-mouse-pos=Meta+V,Meta+V,Otwórz Klippera pod wskaźnikiem myszy
 stop current activity=Meta+S,Meta+S,Zatrzymaj bieżącą aktywność
-switch to next activity=none,none,Switch to Next Activity
-switch to previous activity=none,none,Switch to Previous Activity
-toggle do not disturb=none,none,Toggle do not disturb
+switch to next activity=none,none,Przełącz na następną aktywność
+switch to previous activity=none,none,Przełącz na poprzednią aktywność
+toggle do not disturb=none,none,Przestaw "nie przeszkadzać"
 
 [systemsettings.desktop]
 _k_friendly_name=Ustawienia systemowe
@@ -321,4 +345,4 @@ _launch=Tools,Tools,Ustawienia systemowe
 
 [yakuake]
 _k_friendly_name=Yakuake
-toggle-window-state=F12,F12,Otwórz/ukryj Yakuake
+toggle-window-state=F12\tMeta+F,F12,Otwórz/ukryj Yakuake

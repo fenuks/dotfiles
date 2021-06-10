@@ -80,9 +80,9 @@ nnoremap c_ c[b
 nnoremap gK :action ParameterInfo<CR>
 nnoremap <Leader>q :action ReformatCode<CR>
 nnoremap <Tab> :action NextTab<CR>
-nnoremap <S-Tab> :action PrevTab<CR>
+nnoremap <S-Tab> :action PreviousTab<CR>
 nnoremap ]b :action NextTab<CR>
-nnoremap [b :action PrevTab<CR>
+nnoremap [b :action PreviousTab<CR>
 
 " IdeaVim stuff
 set surround
@@ -100,6 +100,7 @@ nnoremap <Leader>gF :action ActivateProjectToolWindow<CR>
 nnoremap <Leader>gT :action FileStructurePopup<CR>
 nnoremap <Leader>gt :action GotoSymbol<CR>
 nnoremap <Leader>gc :action GotoClass<CR>
+nnoremap <C-S-o> :action GotoSymbol<CR>
 nnoremap <Leader>gu :action FindUsages<CR>
 nnoremap <Leader><Leader> :action AceAction<CR>
 nnoremap <Leader>rn :action RenameElement<CR>

@@ -132,9 +132,9 @@ endfunction
 function! SearchCmakeMan() abort
     let l:cursor_word = expand('<cword>')
     if IsUpper(l:cursor_word)
-        call SearchMan('cmake-variables', '')
+        call SearchMan('cmake-variables', '<cfile>')
     else
-        call SearchMan('cmake-commands', '')
+        call SearchMan('cmake-commands', '<cfile>')
     endif
 endfunction
 
@@ -143,8 +143,8 @@ function! IsUpper(string) abort
     return toupper(a:string) ==# a:string
 endfunction
 
-function! SearchMan(page, prefix) abort
-    let l:cursor_word = expand('<cfile>')
+function! SearchMan(page, prefix, expr) abort
+    let l:cursor_word = expand(a:expr)
     execute 'Man ' . a:page
     call search('\C\(\s\{2,\}\)\@<=' . a:prefix . l:cursor_word)
 endfunction
@@ -299,6 +299,18 @@ function! OpenMan()
         call man#open_page(v:count, v:count1, 'tabs', 'dirent.h')
     catch
     endtry
+endfunction
+
+function! NewlinePaste(p_key, newline_key) abort
+    let l:text = @
+    let l:chars = strchars(l:text)
+    let l:has_newline = strcharpart(l:text, l:chars - 1) is# "\n"
+    echo v:register
+    if l:has_newline
+        execute 'normal "' . v:register . a:p_key
+    else
+        execute 'normal ' . a:newline_key . "\<ESC>\"" . v:register . a:p_key
+    endif
 endfunction
 
 function DiffCurrentQuickfixEntry() abort

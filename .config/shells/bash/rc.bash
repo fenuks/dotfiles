@@ -37,7 +37,7 @@ bind -m vi-insert -r '\C-z'
 bind -x '"\C-z": " maybe_fg"'
 
 complete -o default -o nospace -F _docker_compose dc
-if [[ -r "$HOME/.config/fzf/completions/git.sh" ]]; then 
+if [[ -r "$HOME/.config/fzf/completions/git.sh" ]]; then
     source "$HOME/.config/fzf/completions/git.sh"
     complete -o default -o nospace -F _fzf_complete_git cgit
     complete -o default -o nospace -F _fzf_complete_git g

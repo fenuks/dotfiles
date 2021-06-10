@@ -1,3 +1,9 @@
 # in order to use GTK_USE_PORTAL
 ignore nodbus
 ignore noroot
+
+# fix keepassxc integration; it must be launched before firefox, though
+whitelist ${RUNUSER}/org.keepassxc.KeePassXC.BrowserServer
+
+whitelist ${HOME}/.config/tridactyl/
+

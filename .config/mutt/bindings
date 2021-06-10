@@ -1,0 +1,39 @@
+# vim: filetype=muttrc
+
+macro index,pager F "<pipe-message> urlscan<Enter>" "call urlscan to extract URLs out of a message"
+
+macro attach,compose F "<pipe-entry> urlscan<Enter>" "call urlscan to extract URLs out of a message"
+
+# reset keys
+bind index,pager         g         noop
+bind generic             z         noop
+bind index,pager         r         noop
+
+# make mutt behave more like a vim
+bind index,pager B sidebar-toggle-visible
+bind index \Cu half-up
+bind pager \Cu half-up
+bind index \Cd half-down
+bind pager \Cd half-down
+bind index,pager rg group-reply
+bind index,pager rs reply
+bind generic,index,pager \Cf       next-page
+bind generic,index,pager \Cb       previous-page
+bind generic,index       gg        first-entry
+bind generic,index       G         last-entry
+bind pager               gg        top
+bind pager               G         bottom
+bind generic,pager       \Cy       previous-line
+bind generic,index,pager \Ce       next-line
+bind index \Cm list-reply
+bind generic             zt        current-top
+bind generic             zz        current-middle
+bind generic             zb        current-bottom
+bind index               zc        collapse-thread
+bind index               zo        collapse-thread
+bind index               zM        collapse-all
+bind index,pager         N         search-opposite
+
+bind index ] sidebar-next
+bind index [ sidebar-prev
+bind index \Co sidebar-open
