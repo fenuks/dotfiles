@@ -2,7 +2,7 @@
 {
     "editor.fontFamily": "'Hack', 'Fira Code', 'Source Code Pro', 'Droid Sans Mono', 'Courier New', monospace, 'Droid Sans Fallback'",
     "telemetry.enableTelemetry": false,
-    "extensions.showRecommendationsOnlyOnDemand": true,
+    "extensions.ignoreRecommendations": true,
     "[cpp]": {
         "editor.quickSuggestions": true
     },
@@ -75,19 +75,11 @@
         "suppressGitVersionWarning": false,
         "suppressLineUncommittedWarning": false,
         "suppressNoRepositoryWarning": false,
-        "suppressResultsExplorerNotice": false,
-        "suppressShowKeyBindingsNotice": true,
-        "suppressUpdateNotice": false,
-        "suppressWelcomeNotice": true
     },
     "gitlens.keymap": "chorded",
     "java.jdt.ls.vmargs": "-noverify -Xmx1G -XX:+UseG1GC -XX:+UseStringDeduplication -javaagent:\"/usr/share/java/lombok/lombok.jar\" -Xbootclasspath/a:\"/usr/share/java/lombok/lombok.jar\"",
-    "gitlens.advanced.telemetry.enabled": false,
     "sonarlint.disableTelemetry": true,
-    "javascript.implicitProjectConfig.checkJs": true,
-    "python.jediEnabled": false,
     "editor.smoothScrolling": true,
-    "update.enableWindowsBackgroundUpdates": false,
     "window.restoreFullscreen": true,
     "files.trimTrailingWhitespace": true,
     "debug.inlineValues": true,
@@ -101,23 +93,15 @@
     "hg.commandMode": "server",
     "python.autoComplete.addBrackets": true,
     "latex-workshop.view.pdf.viewer": "tab",
-    "githubPullRequests.telemetry.enabled": false,
     "vim.neovimPath": "/usr/bin/nvim",
-    "atlascode.jira.workingSite": {
-        "baseUrlSuffix": "atlassian.net"
-    },
     "editor.suggestSelection": "first",
-    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
-    "languageServerHaskell.useCustomHieWrapper": true,
-    "languageServerHaskell.useCustomHieWrapperPath": "/usr/bin/hie-wrapper",
     "telemetry.enableCrashReporter": false,
-    "sqltools.telemetry": false,
     "rest-client.enableTelemetry": false,
     "vim.highlightedyank.enable": true,
     "editor.fontSize": 20,
     "editor.parameterHints.cycle": true,
     "java.semanticHighlighting.enabled": true,
-    "editor.renameOnType": true,
+    "editor.linkedEditing": true,
     "editor.renderWhitespace": "trailing",
     "editor.accessibilitySupport": "off",
     "workbench.enableExperiments": false,
@@ -126,25 +110,13 @@
     "search.smartCase": true,
     "search.useGlobalIgnoreFiles": true,
     "update.mode": "none",
-    "gitlab.enableExperimentalFeatures": true,
     "gitlab.showPipelineUpdateNotifications": true,
     "html.format.indentHandlebars": true,
     "java.codeGeneration.hashCodeEquals.useJava7Objects": true,
     "java.completion.guessMethodArguments": true,
-    "rust-client.engine": "rust-analyzer",
-    "rust.all_features": true,
-    "rust.racer_completion": false,
     "shellcheck.disableVersionCheck": true,
     "shellcheck.enableQuickFix": true,
     "vim.camelCaseMotion.enable": true,
-    "rust.rust-analyzer.releaseTag": "stable",
-    "rust.rustup": {
-        "toolchain": "stable-x86_64-unknown-linux-gnu"
-    },
-    "rust.mode": "rls",
-    "rust.rls": {
-        "useRustfmt": true
-    },
     "workbench.colorTheme": "Solarized Light",
     "terminal.integrated.commandsToSkipShell": [
         "language-julia.interrupt"
