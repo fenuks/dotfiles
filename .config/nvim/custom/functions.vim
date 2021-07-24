@@ -250,7 +250,7 @@ function NextAirlineTheme(dir)
 endfunction
 
 function! SortOperator(type) abort
-    call OperatorFunc('!sort', a:type)
+    call OperatorFunc('!sort -h', a:type)
 endfunction
 
 function! LeftAlignOperator(type) abort

@@ -1,7 +1,7 @@
 [user]
 name = fenuks
 email = fenuks
-[includeIf "gitdir:~/**/work/"]
+[includeIf "gitdir:~/Projekty/praca/"]
     path = ~/.config/git/work.config
 [core]
     excludesfile = ~/.config/git/ignore
@@ -23,7 +23,7 @@ email = fenuks
     ca = commit --amend
     cam = commit -a --amend
     cat = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git show $(git rev-list --max-count=1 --all -- \"$@\")^:\"$@\"; }; f"
-    cd = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git checkout $(git default); }; f"
+    cid = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git checkout $(git default); }; f"
     ci = commit
     cm = commit -m
     co = checkout
@@ -46,6 +46,7 @@ email = fenuks
     st = status -s
     sts = !git --no-pager diff --staged
     stu = !git --no-pager diff --name-only
+    tidy = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && find -name '*.orig' -delete; }; f"
     url = remote get-url origin
 [color]
     ui = auto
@@ -80,6 +81,16 @@ email = fenuks
 [diff]
     submodule = log
     colorMoved = default
+[diff "zip"]
+    textconv = unzip -c -a
+[diff "tgz"]
+    binary = true
+    textconv = tar -xvzO -f
+[diff "gz"]
+    binary = true
+    textconv = gunzip -c
+[diff "graphtage"]
+    cmd = graphtage -e
 
 [url "https://invent.kde.org/"]
     insteadOf = kde:

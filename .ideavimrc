@@ -27,18 +27,25 @@ inoremap <A-j> <DOWN>
 inoremap <C-l> <Delete>
 
 vnoremap \y "+y
+vnoremap <A-y> "+y
 vnoremap \d "+d
 vnoremap \p "+p
+vnoremap <A-p> "+p
 
 nnoremap \y "+y
+nnoremap <A-y> "+y
 nnoremap \Y "+y$
 nnoremap \d "+d
 nnoremap \D "+D
 nnoremap \p "+p
+nnoremap <A-p> "+p
 nnoremap \P "+P
 
 nnoremap yp "0p
 nnoremap yP "0P
+
+nnoremap <unique> <silent> <Space>p a <ESC>p
+nnoremap <unique> <silent> <Space>P i <ESC>P
 
 inoremap <silent> <A-n> :action MoveLineDown<CR>
 inoremap <silent> <A-p> :action MoveLineUp<CR>

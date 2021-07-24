@@ -1,6 +1,8 @@
+# vim:ft=sh
 # aliases compatible with fish syntax
 
 alias ag='ag --smart-case'
+alias c='__fzf_cd__'
 alias cdp="cd ${XDG_DOWNLOAD_DIR:-Downloads}"
 alias cdd="cd ${XDG_DOCUMENTS_DIR:-Documents}"
 alias cdk="cd ${HOME}/Projekty"
@@ -50,3 +52,4 @@ alias venv='python3 -m venv'
 if ! command -v mutt > /dev/null; then
     alias mutt='neomutt'
 fi
+alias zzz="systemctl suspend"

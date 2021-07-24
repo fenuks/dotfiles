@@ -5,6 +5,7 @@
 .idea/
 *.swp
 tags
+tags.lock
 *.gen
 *.db
 .cproject
@@ -37,3 +38,4 @@ localrc.after.bash
 localrc.after.zsh
 
 TODO.org
+.coverage

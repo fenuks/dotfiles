@@ -24,6 +24,10 @@ function run-ssh-agent() {
     ssh-agent -a "${SSH_AUTH_SOCK}"
 }
 
+function groot() {
+    cd "$(git root)"
+}
+
 function rcd {
     tempfile="$(mktemp -t tmp.XXXXXX)"
     ranger --choosedir="$tempfile" "${@:-$(pwd)}" --show-only-dirs
@@ -117,13 +121,13 @@ else
 fi
 
 function sv() {
-    if [[ -f .env/bin/activate ]]; then
-        source .env/bin/activate
-    elif [[ -f env/bin/activate ]]; then
-        source env/bin/activate
-    elif [[ -f venv/bin/activate ]]; then
-        source venv/bin/activate
-    fi
+    for dir in '.env' 'env' 'venv' '.venv'; do
+        match="$(find-up ${dir})"
+        if [[ -d "${match}" ]]; then
+            source "${match}/bin/activate"
+            break
+        fi
+    done
 }
 
 function svim() {

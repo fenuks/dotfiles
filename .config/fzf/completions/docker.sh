@@ -33,6 +33,8 @@ _fzf_complete_docker() {
         selected=$( "${binary}" images | sed '1d' | ${fzf} "${fzf_opt[@]}" -m | awk '{print "-it --rm "$1":"$2" bash"}' | tr '\n' ' ')
     elif [[ "${cmd_opt}" == 'rmi '* ]]; then
         selected=$( "${binary}" images | sed '1d' | ${fzf} "${fzf_opt[@]}" -m | awk '{print $3}' | tr '\n' ' ')
+    elif [[ "${cmd_opt}" == 'rm '* ]]; then
+        selected=$( "${binary}" ps -a | sed '1d' | ${fzf} "${fzf_opt[@]}" -m | awk '{print $1}' | tr '\n' ' ')
     fi
 
     if [[ -v selected ]]; then

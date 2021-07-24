@@ -208,9 +208,12 @@ nnoremap <unique> <silent> x$ :%s/\s\+$//<CR>
 nnoremap <unique> <silent> x<CR> :g/^\s*$/d<CR>
 " convert non-breaking spaces to normal ones
 nnoremap <unique> <silent> x<Space> :%s/\%u00a0/ /g<CR>
-nnoremap <unique> <silent> xS :,$!sort<CR>
-vnoremap <unique> <silent> xs :!sort<CR>
+nnoremap <unique> <silent> xS :,$!sort -h<CR>
+vnoremap <unique> <silent> xs :!sort -h<CR>
 nnoremap <unique> <silent> xs :set opfunc=SortOperator<CR>g@
+nnoremap <unique> <silent> xD :,$!sort \| uniq -d<CR>
+vnoremap <unique> <silent> xd :!sort \| uniq -d<CR>
+nnoremap <unique> <silent> xd :set opfunc=DuplicateOperator<CR>g@
 nnoremap <unique> <silent> xaL :,$left<CR>
 vnoremap <unique> <silent> xal :left<CR>
 nnoremap <unique> <silent> xal :set opfunc=LeftAlignOperator<CR>g@
@@ -256,6 +259,7 @@ nnoremap <unique> <silent> <Space>P i <ESC>P
 nnoremap <unique> <silent> sp :call NewlinePaste('p', 'o')<CR>
 nnoremap <unique> <silent> Sp :call NewlinePaste('p', 'O')<CR>
 nnoremap <unique> <silent> SP :call NewlinePaste('p', 'O')<CR>
+vnoremap <unique> <silent> sj, s/\,\s*/\r/g<CR>
 nnoremap <unique> <silent> yp "0p
 nnoremap <unique> <silent> yP "0P
 nnoremap <unique> <silent> <M-p> "+p
@@ -559,14 +563,14 @@ nnoremap <unique> ss :Grepper -tool rg -side<CR>
 nnoremap <unique> s* :Grepper -tool rg -open -switch -cword -noprompt<CR>
 nnoremap <unique> s% :Grepper -open -switch -cword -noprompt -tool rg -grepprg rg -H --no-heading --vimgrep -l<CR>
 nnoremap <unique> sf :Grepper -tool rg -grepprg rg -H --no-heading --vimgrep -l<CR>
+nnoremap <unique> sk :Grepper -tool rg -dir file<CR>
+nnoremap <unique> sK :Grepper -tool rg -dir file -side<CR>
 vmap <unique> s <Plug>(GrepperOperator)
 nmap <unique> so <Plug>(GrepperOperator)
-nnoremap <unique> sd :Grepper -tool rg -dir file<CR>
-nnoremap <unique> sD :Grepper -tool rg -dir file -side<CR>
 nnoremap <unique> sb :Grepper -tool rg -buffers<CR>
 nnoremap <unique> sB :Grepper -tool rg -buffers -side<CR>
-nnoremap <unique> sj <C-f>
-nnoremap <unique> sk <C-b>
+" nnoremap <unique> sj <C-f>
+" nnoremap <unique> sk <C-b>
 " search url ((\w+://)|/)[a-zA-Z0-9.?&/]+
 " vim regex: ( |"|\[|\=)((\w+:\/\/)|\/)[a-zA-Z0-9.?&/\-{}*]+
 
@@ -585,8 +589,6 @@ let g:gutentags_ctags_executable_haskell = 'hasktags'
 Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
 let g:airline#extensions#tabline#enabled = 1
 " Plug 'devjoe/vim-codequery' " rich support for searching symbols support
-Plug 'easymotion/vim-easymotion'
-let g:EasyMotion_verbose = 0
 
 " Plug 'rhysd/clever-f.vim'
 " let g:clever_f_not_overwrites_standard_mappings=v:true
@@ -710,9 +712,6 @@ let g:AutoPairsMoveCharacter = ''
 
 " ##### Code autocompletion
 Plug 'natebosch/vim-lsc', { 'on': 'LSClientEnable' }
-if !has('nvim-0.5')
-    Plug 'Valloric/YouCompleteMe', { 'for': ['javascript'] }
-endif
 
 Plug 'Shougo/echodoc.vim'
 let g:echodoc#enable_at_startup = 1
@@ -722,22 +721,34 @@ if has('nvim')
     Plug 'ncm2/float-preview.nvim'
     let g:float_preview#docked = 0
     let g:float_preview#max_height=100
-    if has('nvim-0.5')
-        Plug 'neovim/nvim-lspconfig'
-        Plug 'nvim-lua/completion-nvim'
-        Plug 'hrsh7th/nvim-compe'
-        Plug 'nvim-lua/plenary.nvim'
-        Plug 'Gavinok/compe-look'
-        Plug 'nvim-lua/lsp_extensions.nvim'
-        Plug 'nvim-lua/lsp-status.nvim'
-        Plug 'nvim-treesitter/nvim-treesitter'
-    endif
+    " LSP
+    Plug 'neovim/nvim-lspconfig'
+    Plug 'nvim-lua/lsp_extensions.nvim'
+    Plug 'nvim-lua/lsp-status.nvim'
+    Plug 'ray-x/lsp_signature.nvim'
+    " autocomplete
+    " Plug 'nvim-lua/completion-nvim'
+    Plug 'hrsh7th/nvim-compe'
+    " Plug 'Gavinok/compe-look'
+    " treesitter
+    Plug 'nvim-lua/plenary.nvim'
+    Plug 'nvim-treesitter/nvim-treesitter'
+    Plug 'nvim-treesitter/nvim-treesitter-refactor'
+    Plug 'romgrk/nvim-treesitter-context'
     let g:echodoc#type = 'virtual'
+
+    Plug 'phaazon/hop.nvim'
+    nnoremap <silent> <unique> <Leader><Leader>b :HopWordBC<CR>
+    nnoremap <silent> <unique> <Leader><Leader>w :HopWordAC<CR>
+    nnoremap <silent> <unique> <Leader><Leader>j :HopLineAC<CR>
+    nnoremap <silent> <unique> <Leader><Leader>k :HopLineBC<CR>
 else
     Plug 'Shougo/deoplete.nvim'
     Plug 'roxma/nvim-yarp'
     Plug 'roxma/vim-hug-neovim-rpc'
     let g:echodoc#type = 'floating'
+    Plug 'easymotion/vim-easymotion'
+    let g:EasyMotion_verbose = 0
 endif
 
 Plug 'deoplete-plugins/deoplete-dictionary'
@@ -759,10 +770,7 @@ Plug 'hrsh7th/vim-vsnip-integ'
 "#### Language specific
 Plug 'sheerun/vim-polyglot'
 let g:polyglot_disabled = ['sensible']
-if has('nvim')
-    Plug 'numirias/semshi', { 'do': ':UpdateRemotePlugins' }
-    let g:polyglot_disabled += ['python']
-endif
+
 " ##### VIML
 Plug 'junegunn/vader.vim', { 'on': 'Vader', 'for': 'vader' }
 
@@ -912,6 +920,12 @@ augroup vim
     call CustomSyntax()
     autocmd ColorScheme * call CustomSyntax()
 augroup END
+if has('nvim')
+    augroup nvim
+        autocmd!
+        autocmd TextYankPost * lua vim.highlight.on_yank {higroup="IncSearch", timeout=150, on_visual=true}
+    augroup END
+end
 
 augroup filetype_detect
     autocmd!
@@ -935,7 +949,7 @@ execute 'source ' . g:vim_custom_scripts . 'spelling.vim'
 command! PlugInit !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
 \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
-if has('nvim-0.5')
+if has('nvim')
     lua require 'init'
 endif
 

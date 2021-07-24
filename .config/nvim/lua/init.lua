@@ -9,12 +9,36 @@ require'nvim-treesitter.configs'.setup {
       init_selection = "„", -- <a-v>
       node_incremental = "„",
       node_decremental = "‘",  --- <a-s-v>
-      scope_incremental = "ss",
+      scope_incremental = "sv",
     },
   },
   indent = {
     enable = false
-  }
+  },
+  refactor = {
+    highlight_definitions = { enable = true },
+    -- highlight_current_scope = { enable = true },
+    -- smart_rename = {
+    --   enable = true,
+    --   keymaps = {
+    --     smart_rename = "grr",
+    --   },
+    -- },
+    -- navigation = {
+    --   enable = true,
+    --   keymaps = {
+    --     goto_definition = "gnd",
+    --     list_definitions = "gnD",
+    --     list_definitions_toc = "gO",
+    --     goto_next_usage = "<a-*>",
+    --     goto_previous_usage = "<a-#>",
+    --   },
+    -- },
+  },
+}
+
+require'treesitter-context.config'.setup{
+    enable = true,
 }
 
 local map = function(type, key, value)
@@ -83,10 +107,11 @@ local on_attach = function(client)
         tags = false;
         spell = false;
         dictionary = true;
-        look = true;
+        look = false;
         nvim_treesitter = false;
       };
     }, 0)
+    require "lsp_signature".on_attach()
 end
 
 lspconfig.hls.setup({ on_attach=on_attach })
@@ -123,6 +148,24 @@ lspconfig.sumneko_lua.setup({
   },
 })
 lspconfig.rust_analyzer.setup({ on_attach=on_attach })
+if vim.fn.executable('pylsp') then
+  lspconfig.pylsp.setup{
+      on_attach=on_attach,
+    root_dir = function(fname)
+          local root_files = {
+            "pyproject.toml",
+            "setup.py",
+            "setup.cfg",
+            "requirements.txt",
+            "Pipfile",
+            ".env",
+            ".git",
+          }
+          return lspconfig.util.root_pattern(unpack(root_files))(fname) or lspconfig.util.find_git_ancestor(fname) or lspconfig.util.path.dirname(fname)
+        end
+  }
+end
+
 
 -- completion-nvim settings
 vim.g.completion_matching_strategy_list = {'exact', 'substring', 'fuzzy'}
@@ -145,3 +188,4 @@ vim.g.completion_items_priority = {
     Buffers    = 0,
 }
 
+require'hop'.setup { keys = 'etovxqpdygfblzhckisuran', term_seq_bias = 0.5 }
