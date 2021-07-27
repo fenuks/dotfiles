@@ -144,34 +144,26 @@ endif
 
 " mappings
 " scroll autocomplete popup down with <C-f>
-inoremap <unique> <expr> <C-f> pumvisible() ? "\<PageDown>" : "\<C-f>"
-inoremap <unique><silent><expr> <C-Space> compe#complete()
-inoremap <unique><silent><expr> <C-c>     pumvisible() ? compe#close() : "\<C-c>"
-inoremap <unique><silent><expr> <C-d>     pumvisible() ? compe#scroll({ 'delta': +4 }) : "\<C-d>"
-inoremap <unique><silent><expr> <C-u>     pumvisible() ? compe#scroll({ 'delta': -4 }) : "\<C-u>"
+inoremap <unique><silent><expr> <C-f> pumvisible() ? "\<PageDown>" : "\<C-f>"
 " scroll autocomplete popup up with <C-b>
-inoremap <unique> <expr> <C-b> pumvisible() ? "\<PageUp>" : "\<C-b>"
-inoremap <unique> <expr> <CR> pumvisible() ? "\<C-y>" : "\<CR>"
-inoremap <unique> <expr> <C-e> col(".") == col("$") ? "<Del>" : "<C-o>dw"
-" 'n' always goes forward
-" nnoremap <unique> <expr> n  'Nn'[v:searchforward]
-" 'N' always goes back
-" nnoremap <unique> <expr> N  'nN'[v:searchforward]
+inoremap <unique><silent><expr> <C-b> pumvisible() ? "\<PageUp>" : "\<C-b>"
+inoremap <unique><silent><expr> <CR> pumvisible() ? "\<C-y>" : "\<CR>"
+inoremap <unique><silent><expr> <C-e> col(".") == col("$") ? "<Del>" : "<C-o>dw"
 " ; always goes forward
 " nnoremap <unique> <expr> ; getcharsearch().forward ? ';' : ','
 " , always goes back
 " nnoremap <unique> <expr> , getcharsearch().forward ? ',' : ';'
-" now i.e. 2dj will delete a column of 3 characters below
-onoremap <unique> J <C-v>j
-" now i.e. 2ck will change a column of 3 characters above
-onoremap <unique> K <C-v>k
+" now i.e. 2dJ will delete a column of 3 characters below
+onoremap <unique><silent> J <C-v>j
+" now i.e. 2cK will change a column of 3 characters above
+onoremap <unique><silent> K <C-v>k
 let mapleader = ','
 let maplocalleader = '\'
 
-vnoremap <unique> . :normal .<CR>
-vnoremap <unique> @@ :normal @@<CR>
+vnoremap <unique><silent> . :normal .<CR>
+vnoremap <unique><silent> @@ :normal @@<CR>
 " easier way to repeat last ex command
-nnoremap <unique> g. @:
+nnoremap <unique><silent> g. @:
 cnoremap <unique> w!! %!sudo tee > /dev/null %
 " set very magic regex (perl compatitible)
 nnoremap <unique> / /\v
@@ -179,258 +171,264 @@ vnoremap <unique> / /\v
 cnoremap <unique> g/ g/\v
 cnoremap <unique> v/ v/\v
 " stay in visual mode while changing indentation
-nnoremap <unique> gV `[v`] " select last changed text, original gV mapping is obscure
+nnoremap <unique><silent> gV `[v`] " select last changed text, original gV mapping is obscure
 " better history scrolling, with context
-cnoremap <unique> <expr> <C-j> pumvisible() ? "\<C-n>" : "\<Down>"
-cnoremap <unique> <expr> <C-k> pumvisible() ? "\<C-p>" : "\<Up>"
-cnoremap <unique> <C-a> <Home>
-cnoremap <unique> <C-e> <End>
+cnoremap <unique><silent><expr> <C-j> pumvisible() ? "\<C-n>" : "\<Down>"
+cnoremap <unique><silent><expr> <C-k> pumvisible() ? "\<C-p>" : "\<Up>"
+cnoremap <unique><silent> <C-a> <Home>
+cnoremap <unique><silent> <C-e> <End>
 
 " moving lines up and down
-nnoremap <unique> <silent> <M-]> :<C-u>execute 'move -1-'. v:count1<CR>
-nnoremap <unique> <silent> <M-[> :<C-u>execute 'move +'. v:count1<CR>
-inoremap <unique> <silent> <M-]> <Esc>:m .+1<CR>==gi
-inoremap <unique> <silent> <M-[> <Esc>:m .-2<CR>==gi
-vnoremap <unique> <silent> <M-]> :m '>+1<CR>gv=gv
-vnoremap <unique> <silent> <M-[> :m '<-2<CR>gv=gv
+nnoremap <unique><silent> <M-]> :<C-u>execute 'move -1-'. v:count1<CR>
+nnoremap <unique><silent> <M-[> :<C-u>execute 'move +'. v:count1<CR>
+inoremap <unique><silent> <M-]> <Esc>:m .+1<CR>==gi
+inoremap <unique><silent> <M-[> <Esc>:m .-2<CR>==gi
+vnoremap <unique><silent> <M-]> :m '>+1<CR>gv=gv
+vnoremap <unique><silent> <M-[> :m '<-2<CR>gv=gv
+" moving words left and right
+nnoremap <unique><silent> [w dawbPb
+nnoremap <unique><silent> [W daWBPB
+nnoremap <unique><silent> ]w dawelpb
+nnoremap <unique><silent> ]W daWElpB
+
 " insert spaces
-nnoremap <unique> <silent> [<space>  :<C-u>put! =repeat(nr2char(10), v:count1)<CR>'[
-nnoremap <unique> <silent> ]<space> :<C-u>put =repeat(nr2char(10), v:count1)<CR>
+nnoremap <unique><silent> [<space>  :<C-u>put! =repeat(nr2char(10), v:count1)<CR>'[
+nnoremap <unique><silent> ]<space> :<C-u>put =repeat(nr2char(10), v:count1)<CR>
 
 " allows reusing x and X for other mappings;
 " s and <space> can be also reused since cl is fine enough
-nnoremap <unique> xp dlp
-nnoremap <unique> xP dlP
-nnoremap <unique> Xp dhP
-nnoremap <unique> XP dhP
+nnoremap <unique><silent> xp dlp
+nnoremap <unique><silent> xP dlP
+nnoremap <unique><silent> Xp dhP
+nnoremap <unique><silent> XP dhP
 " trim trailing spaces
-nnoremap <unique> <silent> x$ :%s/\s\+$//<CR>
-nnoremap <unique> <silent> x<CR> :g/^\s*$/d<CR>
+nnoremap <unique><silent> x$ :%s/\s\+$//<CR>
+nnoremap <unique><silent> x<CR> :g/^\s*$/d<CR>
 " convert non-breaking spaces to normal ones
-nnoremap <unique> <silent> x<Space> :%s/\%u00a0/ /g<CR>
-nnoremap <unique> <silent> xS :,$!sort -h<CR>
-vnoremap <unique> <silent> xs :!sort -h<CR>
-nnoremap <unique> <silent> xs :set opfunc=SortOperator<CR>g@
-nnoremap <unique> <silent> xD :,$!sort \| uniq -d<CR>
-vnoremap <unique> <silent> xd :!sort \| uniq -d<CR>
-nnoremap <unique> <silent> xd :set opfunc=DuplicateOperator<CR>g@
-nnoremap <unique> <silent> xaL :,$left<CR>
-vnoremap <unique> <silent> xal :left<CR>
-nnoremap <unique> <silent> xal :set opfunc=LeftAlignOperator<CR>g@
-nnoremap <unique> <silent> xaR :,$right<CR>
-vnoremap <unique> <silent> xar :right<CR>
-nnoremap <unique> <silent> xar :set opfunc=RightAlignOperator<CR>g@
-nnoremap <unique> <silent> xaC :,$center<CR>
-vnoremap <unique> <silent> xac :center<CR>
-nnoremap <unique> <silent> xac :set opfunc=CenterAlignOperator<CR>g@
-nnoremap <unique> <silent> xaJ :,$Justify<CR>
-vnoremap <unique> <silent> xaj :Justify<CR>
-nnoremap <unique> <silent> xaj :set opfunc=JustifyOperator<CR>g@
-nnoremap <unique> <silent> xj :set opfunc=JoinOperatorWithSpaces<CR>g@
-nnoremap <unique> <silent> xJ :set opfunc=JoinOperator<CR>g@
+nnoremap <unique><silent> x<Space> :%s/\%u00a0/ /g<CR>
+nnoremap <unique><silent> xS :,$!sort -h<CR>
+vnoremap <unique><silent> xs :!sort -h<CR>
+nnoremap <unique><silent> xs :set opfunc=SortOperator<CR>g@
+nnoremap <unique><silent> xD :,$!sort \| uniq -d<CR>
+vnoremap <unique><silent> xd :!sort \| uniq -d<CR>
+nnoremap <unique><silent> xd :set opfunc=DuplicateOperator<CR>g@
+nnoremap <unique><silent> xaL :,$left<CR>
+vnoremap <unique><silent> xal :left<CR>
+nnoremap <unique><silent> xal :set opfunc=LeftAlignOperator<CR>g@
+nnoremap <unique><silent> xaR :,$right<CR>
+vnoremap <unique><silent> xar :right<CR>
+nnoremap <unique><silent> xar :set opfunc=RightAlignOperator<CR>g@
+nnoremap <unique><silent> xaC :,$center<CR>
+vnoremap <unique><silent> xac :center<CR>
+nnoremap <unique><silent> xac :set opfunc=CenterAlignOperator<CR>g@
+nnoremap <unique><silent> xaJ :,$Justify<CR>
+vnoremap <unique><silent> xaj :Justify<CR>
+nnoremap <unique><silent> xaj :set opfunc=JustifyOperator<CR>g@
+nnoremap <unique><silent> xj :set opfunc=JoinOperatorWithSpaces<CR>g@
+nnoremap <unique><silent> xJ :set opfunc=JoinOperator<CR>g@
 
 " edit register
-nnoremap <unique> <silent> <Leader>@ :<C-u><C-r><C-r>='let @'. v:register .' = '. string(getreg(v:register))<CR><C-F><LEFT>
+nnoremap <unique><silent> <Leader>@ :<C-u><C-r><C-r>='let @'. v:register .' = '. string(getreg(v:register))<CR><C-F><LEFT>
 
 " mapping for indenting brackets
-inoremap <unique> <C-M-CR> <CR><CR><UP><TAB>
-inoremap <unique> <C-j> <END><CR>
+inoremap <unique><silent> <C-M-CR> <CR><CR><UP><TAB>
+inoremap <unique><silent> <C-j> <END><CR>
 " mapped as <C-S-j> in custom keymap
-inoremap <unique> <C-S-CR> <Home><CR><UP>
-inoremap <unique> <C-z> <C-o>:suspend<CR>
+inoremap <unique><silent> <C-S-CR> <Home><CR><UP>
+inoremap <unique><silent> <C-z> <C-o>:suspend<CR>
 
-nnoremap <unique> <C-s> :w<Enter>
-inoremap <unique> <C-s> <ESC>:w<Enter>a
-inoremap <unique> <C-l> <DEL>
+nnoremap <unique><silent> <C-s> :w<Enter>
+inoremap <unique><silent> <C-s> <ESC>:w<Enter>a
+inoremap <unique><silent> <C-l> <DEL>
 
-nnoremap <unique> Y y$
-vnoremap <unique> <LocalLeader>y "+y
-nnoremap <unique> <M-y> "+y
-vnoremap <unique> <M-y> "+y
-nnoremap <unique> <M-S-y> "+y$
+nnoremap <unique><silent> Y y$
+vnoremap <unique><silent> <LocalLeader>y "+y
+nnoremap <unique><silent> <M-y> "+y
+vnoremap <unique><silent> <M-y> "+y
+nnoremap <unique><silent> <M-S-y> "+y$
 
-vnoremap <unique> <LocalLeader>d "+d
-vnoremap <unique> <Space>d "_d
+vnoremap <unique><silent> <LocalLeader>d "+d
+vnoremap <unique><silent> <Space>d "_d
 
-vnoremap <unique> <silent> <LocalLeader>p "+p
-nnoremap <unique> <silent> <Leader><Space>p a <ESC>"+p
-nnoremap <unique> <silent> <Space>p a <ESC>p
-nnoremap <unique> <silent> <Space>P i <ESC>P
-nnoremap <unique> <silent> sp :call NewlinePaste('p', 'o')<CR>
-nnoremap <unique> <silent> Sp :call NewlinePaste('p', 'O')<CR>
-nnoremap <unique> <silent> SP :call NewlinePaste('p', 'O')<CR>
-vnoremap <unique> <silent> sj, s/\,\s*/\r/g<CR>
-nnoremap <unique> <silent> yp "0p
-nnoremap <unique> <silent> yP "0P
-nnoremap <unique> <silent> <M-p> "+p
-vnoremap <unique> <silent> <M-p> "+p
-inoremap <unique> <silent> <M-p> <C-o>"+p
-nnoremap <unique> <silent> <Leader>pf :put =expand('%:p')<CR>
-nnoremap <unique> <silent> <Leader>pd :put =expand('%:r')<CR>
+vnoremap <unique><silent> <LocalLeader>p "+p
+nnoremap <unique><silent> <Leader><Space>p a <ESC>"+p
+nnoremap <unique><silent> <Space>p a <ESC>p
+nnoremap <unique><silent> <Space>P i <ESC>P
+nnoremap <unique><silent> sp :call NewlinePaste('p', 'o')<CR>
+nnoremap <unique><silent> Sp :call NewlinePaste('p', 'O')<CR>
+nnoremap <unique><silent> SP :call NewlinePaste('p', 'O')<CR>
+vnoremap <unique><silent> sj, s/\,\s*/\r/g<CR>
+nnoremap <unique><silent> yp "0p
+nnoremap <unique><silent> yP "0P
+nnoremap <unique><silent> <M-p> "+p
+vnoremap <unique><silent> <M-p> "+p
+inoremap <unique><silent> <M-p> <C-o>"+p
+nnoremap <unique><silent> <Leader>pf :put =expand('%:p')<CR>
+nnoremap <unique><silent> <Leader>pd :put =expand('%:r')<CR>
 
-nnoremap <unique> <LocalLeader>y "+y
-nnoremap <unique> <LocalLeader>Y "+y$
-nnoremap <unique> <LocalLeader>d "+d
-nnoremap <unique> <LocalLeader>D "+D
-nnoremap <unique> <LocalLeader>p "+p
-nnoremap <unique> <LocalLeader>P "+P
-nnoremap <unique> c* ciw
-nnoremap <unique> d* diw
+nnoremap <unique><silent> <LocalLeader>y "+y
+nnoremap <unique><silent> <LocalLeader>Y "+y$
+nnoremap <unique><silent> <LocalLeader>d "+d
+nnoremap <unique><silent> <LocalLeader>D "+D
+nnoremap <unique><silent> <LocalLeader>p "+p
+nnoremap <unique><silent> <LocalLeader>P "+P
+nnoremap <unique><silent> c* ciw
+nnoremap <unique><silent> d* diw
 
-inoremap <unique> <M-h> <LEFT>
-inoremap <unique> <M-l> <RIGHT>
-inoremap <unique> <M-k> <UP>
-inoremap <unique> <M-j> <DOWN>
-cnoremap <unique> <M-h> <LEFT>
-cnoremap <unique> <M-l> <RIGHT>
-cnoremap <unique> <M-k> <UP>
-cnoremap <unique> <M-j> <DOWN>
+inoremap <unique><silent> <M-h> <LEFT>
+inoremap <unique><silent> <M-l> <RIGHT>
+inoremap <unique><silent> <M-k> <UP>
+inoremap <unique><silent> <M-j> <DOWN>
+cnoremap <unique><silent> <M-h> <LEFT>
+cnoremap <unique><silent> <M-l> <RIGHT>
+cnoremap <unique><silent> <M-k> <UP>
+cnoremap <unique><silent> <M-j> <DOWN>
 
-vnoremap <unique> <M-j> gj
-vnoremap <unique> <M-k> gk
-nnoremap <unique> <M-j> gj
-nnoremap <unique> <M-k> gk
+vnoremap <unique><silent> <M-j> gj
+vnoremap <unique><silent> <M-k> gk
+nnoremap <unique><silent> <M-j> gj
+nnoremap <unique><silent> <M-k> gk
 " select last inserted/pasted text
-nnoremap <unique> gy `[v`]
+nnoremap <unique><silent> gy `[v`]
 
-nnoremap <unique> <silent> Ss :mksession! <C-r>=GetSessionName()<CR>
-nnoremap <unique> <silent> Sl :SLoad <C-r>=GetSessionName()<CR>
-nnoremap <unique> <silent> Sd :SDelete<CR>
-nnoremap <unique> <silent> Sc :SClose<CR>
+nnoremap <unique><silent> Ss :mksession! <C-r>=GetSessionName()<CR>
+nnoremap <unique><silent> Sl :SLoad <C-r>=GetSessionName()<CR>
+nnoremap <unique><silent> Sd :SDelete<CR>
+nnoremap <unique><silent> Sc :SClose<CR>
 
-nnoremap <unique> <silent> <Leader>ev :edit $MYVIMRC<CR>
-nnoremap <unique> <silent> <Leader>eb :edit $HOME/.bashrc<CR>
+nnoremap <unique><silent> <Leader>ev :edit $MYVIMRC<CR>
+nnoremap <unique><silent> <Leader>eb :edit $HOME/.bashrc<CR>
 
 " buffers
-nnoremap <unique> <silent> <Leader>bn :<C-u>call Execute(['enew'])<CR>
-nnoremap <unique> <silent> <Leader>bs :<C-u>call Execute(['new'])<CR>
-nnoremap <unique> <silent> <Leader>bv :<C-u>call Execute(['vnew'])<CR>
-nnoremap <unique> <silent> <Leader>bd :<C-u>call Execute(['bdelete'])<CR>
-nnoremap <unique> <silent> <Leader>bu :<C-u>call Execute(['call ChangeBuffer(1)', 'bdelete#'])<CR>
-nnoremap <unique> <silent> <Leader>bh :<C-u>call Execute(['hide'])<CR>
-nnoremap <unique> <silent> <Leader>bc :<C-u>call Execute(['close'])<CR>
-nnoremap <unique> <silent> <Leader>bo :%bdelete<CR><C-^><C-^>:bdelete<CR>
-nnoremap <unique> <silent> <Leader>bl :Buffers<CR>
-nnoremap <unique> <silent> <Leader>br call DeleteHiddenBuffers()<CR>
-nnoremap <unique> <silent> <Tab> :call ChangeBuffer(1)<CR>
-nnoremap <unique> <silent> <S-Tab> :call ChangeBuffer(0)<CR>
+nnoremap <unique><silent> <Leader>bn :<C-u>call Execute(['enew'])<CR>
+nnoremap <unique><silent> <Leader>bs :<C-u>call Execute(['new'])<CR>
+nnoremap <unique><silent> <Leader>bv :<C-u>call Execute(['vnew'])<CR>
+nnoremap <unique><silent> <Leader>bd :<C-u>call Execute(['bdelete'])<CR>
+nnoremap <unique><silent> <Leader>bu :<C-u>call Execute(['call ChangeBuffer(1)', 'bdelete#'])<CR>
+nnoremap <unique><silent> <Leader>bh :<C-u>call Execute(['hide'])<CR>
+nnoremap <unique><silent> <Leader>bc :<C-u>call Execute(['close'])<CR>
+nnoremap <unique><silent> <Leader>bo :%bdelete<CR><C-^><C-^>:bdelete<CR>
+nnoremap <unique><silent> <Leader>bl :Buffers<CR>
+nnoremap <unique><silent> <Leader>br call DeleteHiddenBuffers()<CR>
+nnoremap <unique><silent> <Tab> :call ChangeBuffer(1)<CR>
+nnoremap <unique><silent> <S-Tab> :call ChangeBuffer(0)<CR>
 
-nnoremap <unique> <silent> dJ :<C-u>call DJ())<CR>
-nnoremap <unique> <silent> dK :<C-u>call DK())<CR>
-nnoremap <unique> <silent> gx :<C-u>call OpenUrl()<CR>
-vnoremap <unique> <silent> gx :<C-u>call OpenUrlVisual()<CR>
-nnoremap <unique> <silent> gX :<C-u>call SearchWeb()<CR>
-vnoremap <unique> <silent> gX :<C-u>call SearchWebVisual()<CR>
+nnoremap <unique><silent> dJ :<C-u>call DJ())<CR>
+nnoremap <unique><silent> dK :<C-u>call DK())<CR>
+nnoremap <unique><silent> gx :<C-u>call OpenUrl()<CR>
+vnoremap <unique><silent> gx :<C-u>call OpenUrlVisual()<CR>
+nnoremap <unique><silent> gX :<C-u>call SearchWeb()<CR>
+vnoremap <unique><silent> gX :<C-u>call SearchWebVisual()<CR>
 
 " terminal
-tnoremap <unique> jk <C-\><C-n>
-tnoremap <unique> <C-[> <C-\><C-n>
-nnoremap <unique> <silent> <Leader>Tn :<C-u>call Execute(['new', 'only', 'terminal'])<CR>
-nnoremap <unique> <silent> <Leader>T. :terminal<CR>
-nnoremap <unique> <silent> <Leader>Ts :<C-u>call Execute(['new', 'terminal'])<CR>
-nnoremap <unique> <silent> <Leader>Tv :<C-u>call Execute(['vnew', 'terminal'])<CR>
-nnoremap <unique> <silent> <Leader>Tt :<C-u>call Execute(['tabnew', 'terminal'])<CR>
+tnoremap <unique><silent> jk <C-\><C-n>
+tnoremap <unique><silent> <C-[> <C-\><C-n>
+nnoremap <unique><silent> <Leader>Tn :<C-u>call Execute(['new', 'only', 'terminal'])<CR>
+nnoremap <unique><silent> <Leader>T. :terminal<CR>
+nnoremap <unique><silent> <Leader>Ts :<C-u>call Execute(['new', 'terminal'])<CR>
+nnoremap <unique><silent> <Leader>Tv :<C-u>call Execute(['vnew', 'terminal'])<CR>
+nnoremap <unique><silent> <Leader>Tt :<C-u>call Execute(['tabnew', 'terminal'])<CR>
 
 " tabs
-nnoremap <unique> <silent> <Leader>tn :<C-u>call Execute(['tabnew'])<CR>
-nnoremap <unique> <silent> <Leader>to :tabonly<CR>
-nnoremap <unique> <silent> <Leader>td :tabclose<CR>
+nnoremap <unique><silent> <Leader>tn :<C-u>call Execute(['tabnew'])<CR>
+nnoremap <unique><silent> <Leader>to :tabonly<CR>
+nnoremap <unique><silent> <Leader>td :tabclose<CR>
 
 " unimpaired mappings
-nnoremap <unique> [a :<C-U>previous<CR>
-nnoremap <unique> ]a :<C-U>next<CR>
-nnoremap <unique> [A :<C-U>first<CR>
-nnoremap <unique> ]A :<C-U>last<CR>
-nnoremap <unique> <silent> [b :<C-U>call ChangeBuffer(0)<CR>
-nnoremap <unique> <silent> ]b :<C-U>call ChangeBuffer(1)<CR>
-nnoremap <unique> [B :<C-U>bfirst<CR>
-nnoremap <unique> ]B :<C-U>blast<CR>
-nnoremap <unique> <silent> [l :<C-U>Lprevious<CR>
-nnoremap <unique> <silent> <C-k> :<C-U>Lprevious<CR>
-nnoremap <unique> <silent> ]l :C-U>Lnext<CR>
-nnoremap <unique> <silent> <C-j> :<C-U>Lnext<CR>
-nnoremap <unique> [L :<C-U>lfirst<CR>
-nnoremap <unique> ]L :<C-U>llast<CR>
-nnoremap <unique> =l :<C-U>lwindow<CR>
-nnoremap <unique> =L :<C-U>lclose<CR>
-nnoremap <unique> <silent> [q :<C-U>Cprevious<CR>
-nnoremap <unique> <silent> <C-h> :<C-U>Cprevious<CR>
-nnoremap <unique> <silent> ]q :<C-U>Cnext<CR>
-nnoremap <unique> <silent> <C-l> :<C-U>Cnext<CR>
-nnoremap <unique> [Q :<C-U>cfirst<CR>
-nnoremap <unique> ]Q :<C-U>clast<CR>
-nnoremap <unique> =q :<C-U>cwindow<CR>
-nnoremap <unique> =Q :<C-U>cclose<CR>
-nnoremap <unique> [t gT
-nnoremap <unique> ]t gt
-nnoremap <unique> [T :<C-U>tfirst<CR>
-nnoremap <unique> ]T :<C-U>tlast<CR>
+nnoremap <unique><silent> [a :<C-U>previous<CR>
+nnoremap <unique><silent> ]a :<C-U>next<CR>
+nnoremap <unique><silent> [A :<C-U>first<CR>
+nnoremap <unique><silent> ]A :<C-U>last<CR>
+nnoremap <unique><silent> [b :<C-U>call ChangeBuffer(0)<CR>
+nnoremap <unique><silent> ]b :<C-U>call ChangeBuffer(1)<CR>
+nnoremap <unique><silent> [B :<C-U>bfirst<CR>
+nnoremap <unique><silent> ]B :<C-U>blast<CR>
+nnoremap <unique><silent> [l :<C-U>Lprevious<CR>
+nnoremap <unique><silent> <C-k> :<C-U>Lprevious<CR>
+nnoremap <unique><silent> ]l :C-U>Lnext<CR>
+nnoremap <unique><silent> <C-j> :<C-U>Lnext<CR>
+nnoremap <unique><silent> [L :<C-U>lfirst<CR>
+nnoremap <unique><silent> ]L :<C-U>llast<CR>
+nnoremap <unique><silent> =l :<C-U>lwindow<CR>
+nnoremap <unique><silent> =L :<C-U>lclose<CR>
+nnoremap <unique><silent> [q :<C-U>Cprevious<CR>
+nnoremap <unique><silent> <C-h> :<C-U>Cprevious<CR>
+nnoremap <unique><silent> ]q :<C-U>Cnext<CR>
+nnoremap <unique><silent> <C-l> :<C-U>Cnext<CR>
+nnoremap <unique><silent> [Q :<C-U>cfirst<CR>
+nnoremap <unique><silent> ]Q :<C-U>clast<CR>
+nnoremap <unique><silent> =q :<C-U>cwindow<CR>
+nnoremap <unique><silent> =Q :<C-U>cclose<CR>
+nnoremap <unique><silent> [t gT
+nnoremap <unique><silent> ]t gt
+nnoremap <unique><silent> [T :<C-U>tfirst<CR>
+nnoremap <unique><silent> ]T :<C-U>tlast<CR>
 
-nnoremap <unique> <silent> ]n :call Conflict(0)<CR>
-nnoremap <unique> <silent> [n :call Conflict(1)<CR>
+nnoremap <unique><silent> ]n :call Conflict(0)<CR>
+nnoremap <unique><silent> [n :call Conflict(1)<CR>
 
-nnoremap <unique> [ob :set background=light<CR>
-nnoremap <unique> [oc :set nocursorline<CR>
-nnoremap <unique> [od :diffoff<CR>
-nnoremap <unique> [oD :windo diffoff<CR>
-nnoremap <unique> [oh :set nohlsearch<CR>
-nnoremap <unique> [oi :set noignorecase<CR>
-nnoremap <unique> [ol :set nolist<CR>
-nnoremap <unique> [on :set nonumber<CR>
-nnoremap <unique> [op :set nopaste<CR>
-nnoremap <unique> [or :set norelativenumber<CR>
-nnoremap <unique> [os :set nospell<CR>
-nnoremap <unique> [ou :set nocursorcolumn<CR>
-nnoremap <unique> [ov :set virtualedit=""<CR>
-nnoremap <unique> [ow :set nowrap<CR>
-nnoremap <unique> [ox :set nocursorline nocursorcolumn<CR>
+nnoremap <unique><silent> [ob :set background=light<CR>
+nnoremap <unique><silent> [oc :set nocursorline<CR>
+nnoremap <unique><silent> [od :diffoff<CR>
+nnoremap <unique><silent> [oD :windo diffoff<CR>
+nnoremap <unique><silent> [oh :set nohlsearch<CR>
+nnoremap <unique><silent> [oi :set noignorecase<CR>
+nnoremap <unique><silent> [ol :set nolist<CR>
+nnoremap <unique><silent> [on :set nonumber<CR>
+nnoremap <unique><silent> [op :set nopaste<CR>
+nnoremap <unique><silent> [or :set norelativenumber<CR>
+nnoremap <unique><silent> [os :set nospell<CR>
+nnoremap <unique><silent> [ou :set nocursorcolumn<CR>
+nnoremap <unique><silent> [ov :set virtualedit=""<CR>
+nnoremap <unique><silent> [ow :set nowrap<CR>
+nnoremap <unique><silent> [ox :set nocursorline nocursorcolumn<CR>
 
-nnoremap <unique> ]ob :set background=dark<CR>
-nnoremap <unique> ]oc :set cursorline<CR>
-nnoremap <unique> ]od :diffthis<CR>
-nnoremap <unique> ]oD :windo diffthis<CR>
-nnoremap <unique> ]oh :set hlsearch<CR>
-nnoremap <unique> ]oi :set ignorecase<CR>
-nnoremap <unique> ]ol :set list<CR>
-nnoremap <unique> ]on :set number<CR>
-nnoremap <unique> ]op :set nopaste<CR>
-nnoremap <unique> ]or :set relativenumber<CR>
-nnoremap <unique> ]os :set spell<CR>
-nnoremap <unique> ]ou :set cursorcolumn<CR>
-nnoremap <unique> ]ov :set virtualedit=""<CR>
-nnoremap <unique> ]ow :set wrap<CR>
-nnoremap <unique> ]ox :set cursorline cursorcolumn<CR>
+nnoremap <unique><silent> ]ob :set background=dark<CR>
+nnoremap <unique><silent> ]oc :set cursorline<CR>
+nnoremap <unique><silent> ]od :diffthis<CR>
+nnoremap <unique><silent> ]oD :windo diffthis<CR>
+nnoremap <unique><silent> ]oh :set hlsearch<CR>
+nnoremap <unique><silent> ]oi :set ignorecase<CR>
+nnoremap <unique><silent> ]ol :set list<CR>
+nnoremap <unique><silent> ]on :set number<CR>
+nnoremap <unique><silent> ]op :set nopaste<CR>
+nnoremap <unique><silent> ]or :set relativenumber<CR>
+nnoremap <unique><silent> ]os :set spell<CR>
+nnoremap <unique><silent> ]ou :set cursorcolumn<CR>
+nnoremap <unique><silent> ]ov :set virtualedit=""<CR>
+nnoremap <unique><silent> ]ow :set wrap<CR>
+nnoremap <unique><silent> ]ox :set cursorline cursorcolumn<CR>
 
-nnoremap <unique> =ob :let &background = ( &background == "dark"? "light" : "dark" )<CR>
-nnoremap <unique> =oc :set cursorline!<CR>
-nnoremap <unique> =od :set diff!<CR>
-nnoremap <unique> =oh :set hlsearch!<CR>
-nnoremap <unique> =oi :set ignorecase!<CR>
-nnoremap <unique> =ol :set list!<CR>
-nnoremap <unique> =on :set number!<CR>
-nnoremap <unique> =op :set paste!<CR>
-nnoremap <unique> =or :set relativenumber!<CR>
-nnoremap <unique> =os :set spell!<CR>
-nnoremap <unique> =ou :set cursorcolumn!<CR>
+nnoremap <unique><silent> =ob :let &background = ( &background == "dark"? "light" : "dark" )<CR>
+nnoremap <unique><silent> =oc :set cursorline!<CR>
+nnoremap <unique><silent> =od :set diff!<CR>
+nnoremap <unique><silent> =oh :set hlsearch!<CR>
+nnoremap <unique><silent> =oi :set ignorecase!<CR>
+nnoremap <unique><silent> =ol :set list!<CR>
+nnoremap <unique><silent> =on :set number!<CR>
+nnoremap <unique><silent> =op :set paste!<CR>
+nnoremap <unique><silent> =or :set relativenumber!<CR>
+nnoremap <unique><silent> =os :set spell!<CR>
+nnoremap <unique><silent> =ou :set cursorcolumn!<CR>
 " nnoremap =ov :set virtualedit=""<CR>
-nnoremap <unique> =ow :set wrap!<CR>
-nnoremap <unique> =ox :set cursorline! cursorcolumn!<CR>
-nnoremap <unique> [of zN
-nnoremap <unique> ]of zn
-nnoremap <unique> <silent> =of :call ToggleFoldmethod()<CR>
-nnoremap <unique> ]ofd :setlocal foldmethod=diff<CR>
-nnoremap <unique> ]ofi :setlocal foldmethod=indent<CR>
-nnoremap <unique> ]ofm :setlocal foldmethod=manual<CR>
-nnoremap <unique> ]ofM :setlocal foldmethod=marker<CR>
-nnoremap <unique> ]ofs :setlocal foldmethod=syntax<CR>
+nnoremap <unique><silent> =ow :set wrap!<CR>
+nnoremap <unique><silent> =ox :set cursorline! cursorcolumn!<CR>
+nnoremap <unique><silent> [of zN
+nnoremap <unique><silent> ]of zn
+nnoremap <unique><silent> =of :call ToggleFoldmethod()<CR>
+nnoremap <unique><silent> ]ofd :setlocal foldmethod=diff<CR>
+nnoremap <unique><silent> ]ofi :setlocal foldmethod=indent<CR>
+nnoremap <unique><silent> ]ofm :setlocal foldmethod=manual<CR>
+nnoremap <unique><silent> ]ofM :setlocal foldmethod=marker<CR>
+nnoremap <unique><silent> ]ofs :setlocal foldmethod=syntax<CR>
 
-nnoremap <unique> <SPACE>K :Man<CR>
+nnoremap <unique><silent> <SPACE>K :Man<CR>
 " Reveal syntax group under cursor.
-nnoremap <unique> <F2> :echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')<CR>
+nnoremap <unique><silent> <F2> :echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')<CR>
 
-vnoremap <unique> <silent> gA :<C-u>call VisualAppend()<CR>
-vnoremap <unique> <silent> iu :<C-U>call URLTextObj()<CR>
-onoremap <unique> <silent> iu :<C-U>call URLTextObj()<CR>
+vnoremap <unique><silent> gA :<C-u>call VisualAppend()<CR>
+vnoremap <unique><silent> iu :<C-U>call URLTextObj()<CR>
+onoremap <unique><silent> iu :<C-U>call URLTextObj()<CR>
 
 let g:loaded_python_provider = 0
 let g:loaded_ruby_provider = 0
@@ -453,19 +451,19 @@ Plug 'simeji/winresizer', { 'on': 'WinResizerStartResize' }
 let g:winresizer_start_key = ''
 Plug 'wellle/visual-split.vim', { 'on': ['VSResize', 'VSSplit', 'VSSplitAbove', 'VSSplitBelow', '<Plug>(Visual-Split-VSResize)', '<Plug>(Visual-Split-VSSplit)', '<Plug>(Visual-Split-VSSplitAbove)', '<Plug>(Visual-Split-VSSplitBelow)'] }
 Plug 't9md/vim-choosewin', { 'on': '<Plug>(choosewin)' }
-nnoremap <unique> <silent> <Leader>wr :WinResizerStartResize<CR>
-xmap <unique> <Leader>ws <Plug>(Visual-Split-VSSplit)
-nmap <unique> <Leader>wl <Plug>(choosewin)
-nnoremap <unique> <silent> <Leader>wz :call CloseAuxiliaryWindows()<CR>
-nnoremap <unique> <silent> <C-w>z :call CloseAuxiliaryWindows()<CR>
-nnoremap <unique> <silent> <C-w><C-z> :call CloseAuxiliaryWindows()<CR>
-nnoremap <unique> <silent> <Leader>wL :Windows<CR>
-nnoremap <unique> <silent> <Leader>wQ :quitall<CR>
+nnoremap <unique><silent> <Leader>wr :WinResizerStartResize<CR>
+xmap <unique><silent> <Leader>ws <Plug>(Visual-Split-VSSplit)
+nmap <unique><silent> <Leader>wl <Plug>(choosewin)
+nnoremap <unique><silent> <Leader>wz :call CloseAuxiliaryWindows()<CR>
+nnoremap <unique><silent> <C-w>z :call CloseAuxiliaryWindows()<CR>
+nnoremap <unique><silent> <C-w><C-z> :call CloseAuxiliaryWindows()<CR>
+nnoremap <unique><silent> <Leader>wL :Windows<CR>
+nnoremap <unique><silent> <Leader>wQ :quitall<CR>
 Plug 'troydm/zoomwintab.vim'
 let g:zoomwintab_remap=0
-nnoremap <unique> <silent> <C-w>u :ZoomWinTabToggle<CR>
-nnoremap <unique> <silent> <C-w><C-u> :ZoomWinTabToggle<CR>
-nnoremap <unique> <silent> <Leader>wu :ZoomWinTabToggle<CR>
+nnoremap <unique><silent> <C-w>u :ZoomWinTabToggle<CR>
+nnoremap <unique><silent> <C-w><C-u> :ZoomWinTabToggle<CR>
+nnoremap <unique><silent> <Leader>wu :ZoomWinTabToggle<CR>
 
 "##### Refactoring; edition
 Plug 'wellle/targets.vim'
@@ -475,58 +473,58 @@ Plug 'machakann/vim-sandwich'
 Plug 'fenuks/vim-bracket-objects'
 Plug 'mg979/vim-visual-multi'
 Plug 'tpope/vim-commentary'
-noremap <unique> <silent> <c-_> :Commentary<CR>
+noremap <unique><silent> <c-_> :Commentary<CR>
 Plug 'tommcdo/vim-exchange'
 Plug 'kshenoy/vim-signature', {'on': 'SignatureToggleSigns'}
 Plug 'vim-scripts/ReplaceWithRegister', {'on': ['<Plug>ReplaceWithRegisterOperator', '<Plug>ReplaceWithRegisterLine', '<Plug>ReplaceWithRegisterVisual']}
-nmap <unique> xr <Plug>ReplaceWithRegisterOperator
-nmap <unique> xrr <Plug>ReplaceWithRegisterLine
-xmap <unique> xr <Plug>ReplaceWithRegisterVisual
+nmap <unique><silent> xr <Plug>ReplaceWithRegisterOperator
+nmap <unique><silent> xrr <Plug>ReplaceWithRegisterLine
+xmap <unique><silent> xr <Plug>ReplaceWithRegisterVisual
 Plug 'sk1418/Join'
 
 "#### Version Control
 Plug 'sjl/gundo.vim', { 'on': 'GundoToggle' }
 Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
-nnoremap <unique> <Leader>vL :UndotreeToggle<CR>
+nnoremap <unique><silent> <Leader>vL :UndotreeToggle<CR>
 Plug 'mhinz/vim-signify', { 'on': 'SignifyToggle' } " shows which lines were added and such
 let g:signify_vcs_list=['git', 'hg']
 Plug 'airblade/vim-gitgutter'
-nmap <unique> ]c <Plug>(GitGutterNextHunk)
-nmap <unique> [c <Plug>(GitGutterPrevHunk)
+nmap <unique><silent> ]c <Plug>(GitGutterNextHunk)
+nmap <unique><silent> [c <Plug>(GitGutterPrevHunk)
 let g:gitgutter_map_keys = 0
-nnoremap <unique> <Leader>vll :GitGutterToggle<CR>
-nnoremap <unique> <Leader>vlL :SignifyToggle<CR>
-nmap <unique> <Leader>vla <Plug>(GitGutterStageHunk)
-nmap <unique> <Leader>vlu <Plug>(GitGutterUndoHunk)
-nmap <unique> <Leader>vld <Plug>(GitGutterPreviewHunk)
+nnoremap <unique><silent> <Leader>vll :GitGutterToggle<CR>
+nnoremap <unique><silent> <Leader>vlL :SignifyToggle<CR>
+nmap <unique><silent> <Leader>vla <Plug>(GitGutterStageHunk)
+nmap <unique><silent> <Leader>vlu <Plug>(GitGutterUndoHunk)
+nmap <unique><silent> <Leader>vld <Plug>(GitGutterPreviewHunk)
 "GIT
 Plug 'tpope/vim-fugitive'
-nnoremap <unique> <Leader>va :Gwrite<CR>
-nnoremap <unique> <Leader>vb :Gblame<CR>
-nnoremap <unique> <Leader>vc :Gcommit<CR>
-nnoremap <unique> <Leader>vd :Gvdiff<CR>
-nnoremap <unique> <Leader>vh :0Glog<CR>
-nnoremap <unique> <Leader>vm :Gmove<CR>
-nnoremap <unique> <Leader>U  :GundoToggle<CR>
-nnoremap <unique> <Leader>vp :Git! diff --staged<CR>
-nnoremap <unique> <Leader>vP :Git! diff<CR>
-nnoremap <unique> <Leader>vr :Gread<CR>
-nnoremap <unique> <Leader>vR :Gremove<CR>
-nnoremap <unique> <Leader>vs :Gstatus<CR>
+nnoremap <unique><silent> <Leader>va :Gwrite<CR>
+nnoremap <unique><silent> <Leader>vb :Gblame<CR>
+nnoremap <unique><silent> <Leader>vc :Gcommit<CR>
+nnoremap <unique><silent> <Leader>vd :Gvdiff<CR>
+nnoremap <unique><silent> <Leader>vh :0Glog<CR>
+nnoremap <unique><silent> <Leader>vm :Gmove<CR>
+nnoremap <unique><silent> <Leader>U  :GundoToggle<CR>
+nnoremap <unique><silent> <Leader>vp :Git! diff --staged<CR>
+nnoremap <unique><silent> <Leader>vP :Git! diff<CR>
+nnoremap <unique><silent> <Leader>vr :Gread<CR>
+nnoremap <unique><silent> <Leader>vR :Gremove<CR>
+nnoremap <unique><silent> <Leader>vs :Gstatus<CR>
 Plug 'rbong/vim-flog', {'on': 'Flog'}
-nnoremap <unique> <Leader>vg :Flog<CR>
+nnoremap <unique><silent> <Leader>vg :Flog<CR>
 Plug 'junegunn/gv.vim', {'on': 'GV'}
-nnoremap <unique> <Leader>vG :GV<CR>
+nnoremap <unique><silent> <Leader>vG :GV<CR>
 Plug 'jreybert/vimagit', { 'on': 'Magit' }
-nnoremap <unique> <Leader>vM :Magit<CR>
+nnoremap <unique><silent> <Leader>vM :Magit<CR>
 Plug 'rhysd/git-messenger.vim', { 'on': 'GitMessenger' }
 "HG
 " Plug 'ludovicchabant/vim-lawrencium' " disabled, it takes 5ms to load
 " Plug 'jlfwong/vim-mercenary'
 Plug 'will133/vim-dirdiff', { 'on': 'DirDiff' }
-nnoremap <unique> <silent> <Leader>dg :diffget<CR>
-nnoremap <unique> <silent> <Leader>dp :diffput<CR>
-nnoremap <unique> <silent> <Leader>df :call DiffOrig()<CR>
+nnoremap <unique><silent> <Leader>dg :diffget<CR>
+nnoremap <unique><silent> <Leader>dp :diffput<CR>
+nnoremap <unique><silent> <Leader>df :call DiffOrig()<CR>
 
 "#### Filesystem
 Plug 'junegunn/fzf'
@@ -536,18 +534,18 @@ command! -nargs=* Agp
   \ call fzf#vim#ag(<q-args>, '2> /dev/null',
   \                 fzf#vim#with_preview({'left':'90%'},'up:60%'))
 Plug 'wsdjeg/vim-fetch'
-nnoremap <unique> <silent> <C-p> :Files<CR>
-nnoremap <unique> <silent> <Leader>fl :Files<CR>
-nnoremap <unique> <silent> <Leader>fd :Files <C-r>=expand("%:h")<CR>/<CR>
-nnoremap <unique> <silent> <Leader>gt :Tags<CR>
-nnoremap <unique> <silent> <Leader>gh :History<CR>
-nnoremap <unique> <silent> <Leader>gT :BTags<CR>
-snoremap <unique> <silent> <C-k> <ESC>ddi
+nnoremap <unique><silent> <C-p> :Files<CR>
+nnoremap <unique><silent> <Leader>fl :Files<CR>
+nnoremap <unique><silent> <Leader>fd :Files <C-r>=expand("%:h")<CR>/<CR>
+nnoremap <unique><silent> <Leader>gt :Tags<CR>
+nnoremap <unique><silent> <Leader>gh :History<CR>
+nnoremap <unique><silent> <Leader>gT :BTags<CR>
+snoremap <unique><silent> <C-k> <ESC>ddi
 
 Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
-nnoremap <unique> <silent> <Leader>ft :NERDTreeToggle<CR>
-nnoremap <unique> <silent> <Leader>fT :NERDTreeFind<CR>
-nnoremap <unique> <silent> <Leader>fs :call ReadSkeletonFile()<CR>
+nnoremap <unique><silent> <Leader>ft :NERDTreeToggle<CR>
+nnoremap <unique><silent> <Leader>fT :NERDTreeFind<CR>
+nnoremap <unique><silent> <Leader>fs :call ReadSkeletonFile()<CR>
 let g:NERDTreeIgnore=['\.pyc$', '\~$', '__pycache__']
 let g:NERDTreeMinimalUI=1
 
@@ -558,19 +556,19 @@ let g:grepper.prompt_quote = 3
 let g:grepper.rg = {}
 let g:grepper.rg.grepprg = 'rg -H --no-heading --vimgrep --smart-case'
 
-nnoremap <unique> s/ :Grepper -tool rg<CR>
-nnoremap <unique> ss :Grepper -tool rg -side<CR>
-nnoremap <unique> s* :Grepper -tool rg -open -switch -cword -noprompt<CR>
-nnoremap <unique> s% :Grepper -open -switch -cword -noprompt -tool rg -grepprg rg -H --no-heading --vimgrep -l<CR>
-nnoremap <unique> sf :Grepper -tool rg -grepprg rg -H --no-heading --vimgrep -l<CR>
-nnoremap <unique> sk :Grepper -tool rg -dir file<CR>
-nnoremap <unique> sK :Grepper -tool rg -dir file -side<CR>
-vmap <unique> s <Plug>(GrepperOperator)
-nmap <unique> so <Plug>(GrepperOperator)
-nnoremap <unique> sb :Grepper -tool rg -buffers<CR>
-nnoremap <unique> sB :Grepper -tool rg -buffers -side<CR>
-" nnoremap <unique> sj <C-f>
-" nnoremap <unique> sk <C-b>
+nnoremap <unique><silent> s/ :Grepper -tool rg<CR>
+nnoremap <unique><silent> ss :Grepper -tool rg -side<CR>
+nnoremap <unique><silent> s* :Grepper -tool rg -open -switch -cword -noprompt<CR>
+nnoremap <unique><silent> s% :Grepper -open -switch -cword -noprompt -tool rg -grepprg rg -H --no-heading --vimgrep -l<CR>
+nnoremap <unique><silent> sf :Grepper -tool rg -grepprg rg -H --no-heading --vimgrep -l<CR>
+nnoremap <unique><silent> sk :Grepper -tool rg -dir file<CR>
+nnoremap <unique><silent> sK :Grepper -tool rg -dir file -side<CR>
+vmap <unique><silent> s <Plug>(GrepperOperator)
+nmap <unique><silent> so <Plug>(GrepperOperator)
+nnoremap <unique><silent> sb :Grepper -tool rg -buffers<CR>
+nnoremap <unique><silent> sB :Grepper -tool rg -buffers -side<CR>
+" nnoremap <unique><silent> sj <C-f>
+" nnoremap <unique><silent> sk <C-b>
 " search url ((\w+://)|/)[a-zA-Z0-9.?&/]+
 " vim regex: ( |"|\[|\=)((\w+:\/\/)|\/)[a-zA-Z0-9.?&/\-{}*]+
 
@@ -580,7 +578,7 @@ nnoremap <unique> sB :Grepper -tool rg -buffers -side<CR>
 " set cscopeprg=gtags-cscope
 " source /usr/share/vim/vimfiles/plugin/gtags.vim
 " source /usr/share/vim/vimfiles/plugin/gtags-cscope.vim
-nnoremap <unique> <silent> <Leader>ol :mode\|nohlsearch<CR>
+nnoremap <unique><silent> <Leader>ol :mode\|nohlsearch<CR>
 let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
 Plug 'nelstrom/vim-visual-star-search'
 Plug 'ludovicchabant/vim-gutentags'
@@ -597,12 +595,14 @@ let g:airline#extensions#tabline#enabled = 1
 " map ; <Plug>(clever-f-repeat-forward)
 
 Plug 'justinmk/vim-sneak'
-map <unique> s; <Plug>Sneak_s
-map <unique> s, <Plug>Sneak_S
+map <unique><silent> s; <Plug>Sneak_s
+map <unique><silent> s, <Plug>Sneak_S
 
 Plug 'fenuks/vim-uncommented'
-nmap <unique> ]/ <Plug>(NextCommented)
-nmap <unique> [/ <Plug>(PrevCommented)
+nmap <unique><silent> ]/ <Plug>(NextCommented)
+nmap <unique><silent> [/ <Plug>(PrevCommented)
+nmap <unique><silent> ]u <Plug>(NextUncommented)
+nmap <unique><silent> [u <Plug>(PrevUncommented)
 Plug 'andymass/vim-matchup'
 Plug 'chaoren/vim-wordmotion'
 let g:wordmotion_mappings = {
@@ -615,8 +615,8 @@ let g:wordmotion_mappings = {
 \ '<C-R><C-W>' : '<C-R><M-w>'
 \ }
 
-imap <unique> <C-q> <C-\><C-o>d_
-cmap <unique> <C-q> <C-f>d_<C-c><C-c>:<UP>
+imap <unique><silent> <C-q> <C-\><C-o>d_
+cmap <unique><silent> <C-q> <C-f>d_<C-c><C-c>:<UP>
 Plug 'arthurxavierx/vim-caser'
 
 Plug 'lambdalisue/lista.nvim', { 'on': 'Lista' }
@@ -627,11 +627,11 @@ let g:neoformat_enabled_python = ['black', 'isort']
 let g:neoformat_enabled_json = ['prettier', 'js-beautify', 'jq']
 let g:neoformat_enabled_yaml = ['prettier']
 let g:neoformat_enabled_haskell = ['stylish-haskell', 'floskell', 'ormolu']
-nnoremap <unique> <silent> <Leader>q :Neoformat<CR>
+nnoremap <unique><silent> <Leader>q :Neoformat<CR>
 
 Plug 'junegunn/vim-easy-align', { 'on': '<Plug>(EasyAlign)' }
-xmap <unique> <Leader>ga <Plug>(EasyAlign)
-nmap <unique> <Leader>ga <Plug>(EasyAlign)
+xmap <unique><silent> <Leader>ga <Plug>(EasyAlign)
+nmap <unique><silent> <Leader>ga <Plug>(EasyAlign)
 "Plug 'godlygeek/tabular'
 "Plug 'tommcdo/vim-lion'
 "let g:lion_squeeze_spaces = 1
@@ -668,30 +668,30 @@ let g:ale_c_parse_compile_commands=1
 let g:ale_python_mypy_options='--ignore-missing-imports'
 let g:ale_rust_cargo_use_clippy = executable('cargo-clippy')
 let g:airline#extensions#ale#enabled = 1
-nnoremap <unique> <Leader>cf :ALEFix<CR>
-nmap <unique> <silent> <Leader>cp <Plug>(ale_previous_wrap)
-nmap <unique> <silent> <Leader>cn <Plug>(ale_next_wrap)
-nnoremap <unique> <silent> <Leader>co :lwindow<CR>
-nnoremap <unique> <silent> <Leader>cO :lclose<CR>
+nnoremap <unique><silent> <Leader>cf :ALEFix<CR>
+nmap <unique><silent> <Leader>cp <Plug>(ale_previous_wrap)
+nmap <unique><silent> <Leader>cn <Plug>(ale_next_wrap)
+nnoremap <unique><silent> <Leader>co :lwindow<CR>
+nnoremap <unique><silent> <Leader>cO :lclose<CR>
 " let g:ale_open_list = 1 " conflicts with ultisnips jumping
 
 "##### Tasks
 Plug 'neomake/neomake', { 'on': ['Neomake', 'NeomakeProject'] }
 let g:neomake_open_list = 2
 let g:airline#extensions#neomake#enabled = 0
-nnoremap <unique> <Leader>mb :make<CR>
+nnoremap <unique><silent> <Leader>mb :make<CR>
 " non-unique, can be redefined per filetype
-nnoremap <Leader>mi :make install<CR>
-nnoremap <unique> <Leader>mc :make clean<CR>
+nnoremap <silent> <Leader>mi :make install<CR>
+nnoremap <silent> <Leader>mc :make clean<CR>
 
 Plug 'vim-test/vim-test', { 'on': ['TestNearest', 'TestFile', 'TestSuite', 'TestLast', 'TestVisit'] }
 let g:test#strategy = 'neovim'
 let g:test#runner_commands = ['PyTest']
-nnoremap <unique> <silent> <leader>xn :TestNearest<CR>
-nnoremap <unique> <silent> <leader>xf :TestFile<CR>
-nnoremap <unique> <silent> <leader>xa :TestSuite<CR>
-nnoremap <unique> <silent> <leader>xl :TestLast<CR>
-nnoremap <unique> <silent> <leader>xg :TestVisit<CR>
+nnoremap <unique><silent> <leader>xn :TestNearest<CR>
+nnoremap <unique><silent> <leader>xf :TestFile<CR>
+nnoremap <unique><silent> <leader>xa :TestSuite<CR>
+nnoremap <unique><silent> <leader>xl :TestLast<CR>
+nnoremap <unique><silent> <leader>xg :TestVisit<CR>
 
 Plug 'puremourning/vimspector'
 let g:vimspector_enable_mappings = 'HUMAN'
@@ -729,6 +729,10 @@ if has('nvim')
     " autocomplete
     " Plug 'nvim-lua/completion-nvim'
     Plug 'hrsh7th/nvim-compe'
+    inoremap <unique><silent><expr> <C-Space> compe#complete()
+    inoremap <unique><silent><expr> <C-c>     pumvisible() ? compe#close() : "\<C-c>"
+    inoremap <unique><silent><expr> <C-d>     pumvisible() ? compe#scroll({ 'delta': +4 }) : "\<C-d>"
+    inoremap <unique><silent><expr> <C-u>     pumvisible() ? compe#scroll({ 'delta': -4 }) : "\<C-u>"
     " Plug 'Gavinok/compe-look'
     " treesitter
     Plug 'nvim-lua/plenary.nvim'
@@ -738,10 +742,10 @@ if has('nvim')
     let g:echodoc#type = 'virtual'
 
     Plug 'phaazon/hop.nvim'
-    nnoremap <silent> <unique> <Leader><Leader>b :HopWordBC<CR>
-    nnoremap <silent> <unique> <Leader><Leader>w :HopWordAC<CR>
-    nnoremap <silent> <unique> <Leader><Leader>j :HopLineAC<CR>
-    nnoremap <silent> <unique> <Leader><Leader>k :HopLineBC<CR>
+    nnoremap <unique><silent> <Leader><Leader>b :HopWordBC<CR>
+    nnoremap <unique><silent> <Leader><Leader>w :HopWordAC<CR>
+    nnoremap <unique><silent> <Leader><Leader>j :HopLineAC<CR>
+    nnoremap <unique><silent> <Leader><Leader>k :HopLineBC<CR>
 else
     Plug 'Shougo/deoplete.nvim'
     Plug 'roxma/nvim-yarp'
@@ -818,15 +822,15 @@ Plug 'rhysd/vim-grammarous', { 'on': 'GrammarousCheck' }
 " Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 let g:vim_markdown_folding_disabled = 1
 let g:vim_markdown_strikethrough = 1
-Plug 'vimwiki/vimwiki', { 'branch': 'dev', 'for': ['markdown', 'vimwiki'] }
+Plug 'vimwiki/vimwiki', { 'branch': 'dev', 'for': ['markdown', 'vimwiki'] , 'on': '<Plug>VimwikiIndex'}
 " let g:vimwiki_key_mappings = { 'all_maps': 0, }
 let g:vimwiki_list = [{'path': $XDG_DOCUMENTS_DIR . '/tekst',
                      \ 'syntax': 'markdown', 'ext': '.md' }]
 let g:vimwiki_folding='expr'
 let g:vimwiki_url_maxsave=25
-nmap <unique> sv <Plug>VimwikiIndex
-nmap <unique> ]r <Plug>VimwikiNextLink
-nmap <unique> [r <Plug>VimwikiPrevLink
+nmap <unique><silent> sv <Plug>VimwikiIndex
+nmap <unique><silent> ]r <Plug>VimwikiNextLink
+nmap <unique><silent> [r <Plug>VimwikiPrevLink
 
 " Database
 let g:sql_type_default='psql'
@@ -907,10 +911,10 @@ command! Lprevious call WrapListCommand('lprev', 'llast')
 
 augroup vim
     autocmd!
-    autocmd FileType muttrc nnoremap <unique> <buffer> <silent> K :call SearchMan('neomuttrc', '', '<cword>')<CR>
-    autocmd FileType firejail nnoremap <unique> <buffer> <silent> K :call SearchMan('firejail-profile', '', '<cfile>')<CR>
-    autocmd FileType sshconfig nnoremap <unique> <buffer> <silent> K :call SearchMan('ssh_config', '', '<cfile>')<CR>
-    autocmd FileType cmake nnoremap <unique> <buffer> <silent> K :call SearchCmakeMan()<CR>
+    autocmd FileType muttrc nnoremap <unique><silent><buffer> K :call SearchMan('neomuttrc', '', '<cword>')<CR>
+    autocmd FileType firejail nnoremap <unique><silent><buffer> K :call SearchMan('firejail-profile', '', '<cfile>')<CR>
+    autocmd FileType sshconfig nnoremap  <unique><silent><buffer> K :call SearchMan('ssh_config', '', '<cfile>')<CR>
+    autocmd FileType cmake nnoremap <unique><silent><buffer>  K :call SearchCmakeMan()<CR>
     autocmd FileType qf,fugitive setlocal nobuflisted " exclude quickfix withow from :bnext, etc.
     autocmd CursorHold * checktime " needed for autoread to be triggered
     " reopening a file, restore last cursor position
@@ -938,7 +942,7 @@ augroup END
 
 function! ConfigurePkgbuild() abort
     setlocal makeprg=makepkg
-    nnoremap <buffer> <Leader>mi :make -i<CR>
+    nnoremap <silent><buffer> <Leader>mi :make -i<CR>
     setlocal softtabstop=2
     setlocal shiftwidth=2
     setlocal filetype=sh

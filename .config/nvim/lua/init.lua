@@ -148,6 +148,7 @@ lspconfig.sumneko_lua.setup({
   },
 })
 lspconfig.rust_analyzer.setup({ on_attach=on_attach })
+lspconfig.dhall_lsp_server.setup({ on_attach=on_attach })
 if vim.fn.executable('pylsp') then
   lspconfig.pylsp.setup{
       on_attach=on_attach,

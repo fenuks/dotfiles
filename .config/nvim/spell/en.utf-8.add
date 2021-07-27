@@ -1,4 +1,3 @@
-8D
 Amarantus
 Anki
 application/pdf
@@ -12,6 +11,7 @@ CSV
 :D
 ;D
 diff
+Dockerfile
 downvoted
 Dulcinea
 F-Droid
@@ -55,6 +55,7 @@ Py
 PyCharm
 PyPI
 Quixote
+README
 refactoring
 regex
 relisten
@@ -71,6 +72,7 @@ UTC
 UUID
 vim
 vimrc
+virtualenv
 VOD
 Warlow
 WebRTC
@@ -78,3 +80,4 @@ whitespace
 Witcher
 XD
 YouTube
+8D
