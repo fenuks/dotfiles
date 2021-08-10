@@ -173,10 +173,10 @@ cnoremap <unique> v/ v/\v
 " stay in visual mode while changing indentation
 nnoremap <unique><silent> gV `[v`] " select last changed text, original gV mapping is obscure
 " better history scrolling, with context
-cnoremap <unique><silent><expr> <C-j> pumvisible() ? "\<C-n>" : "\<Down>"
-cnoremap <unique><silent><expr> <C-k> pumvisible() ? "\<C-p>" : "\<Up>"
-cnoremap <unique><silent> <C-a> <Home>
-cnoremap <unique><silent> <C-e> <End>
+cnoremap <unique><expr> <C-j> pumvisible() ? "\<C-n>" : "\<Down>"
+cnoremap <unique><expr> <C-k> pumvisible() ? "\<C-p>" : "\<Up>"
+cnoremap <unique> <C-a> <Home>
+cnoremap <unique> <C-e> <End>
 
 " moving lines up and down
 nnoremap <unique><silent> <M-]> :<C-u>execute 'move -1-'. v:count1<CR>
@@ -202,8 +202,13 @@ nnoremap <unique><silent> xP dlP
 nnoremap <unique><silent> Xp dhP
 nnoremap <unique><silent> XP dhP
 " trim trailing spaces
+
+nnoremap <unique> x <NOP>
 nnoremap <unique><silent> x$ :%s/\s\+$//<CR>
+nnoremap <unique><silent> x^ :%s/^\s\+//<CR>
 nnoremap <unique><silent> x<CR> :g/^\s*$/d<CR>
+nnoremap <unique><silent> x, :%s/,\s*/\r/g<CR>
+vnoremap <unique><silent> x, :s/,\s*/\r<CR>
 " convert non-breaking spaces to normal ones
 nnoremap <unique><silent> x<Space> :%s/\%u00a0/ /g<CR>
 nnoremap <unique><silent> xS :,$!sort -h<CR>
@@ -279,10 +284,10 @@ inoremap <unique><silent> <M-h> <LEFT>
 inoremap <unique><silent> <M-l> <RIGHT>
 inoremap <unique><silent> <M-k> <UP>
 inoremap <unique><silent> <M-j> <DOWN>
-cnoremap <unique><silent> <M-h> <LEFT>
-cnoremap <unique><silent> <M-l> <RIGHT>
-cnoremap <unique><silent> <M-k> <UP>
-cnoremap <unique><silent> <M-j> <DOWN>
+cnoremap <unique> <M-h> <LEFT>
+cnoremap <unique> <M-l> <RIGHT>
+cnoremap <unique> <M-k> <UP>
+cnoremap <unique> <M-j> <DOWN>
 
 vnoremap <unique><silent> <M-j> gj
 vnoremap <unique><silent> <M-k> gk
@@ -601,8 +606,8 @@ map <unique><silent> s, <Plug>Sneak_S
 Plug 'fenuks/vim-uncommented'
 nmap <unique><silent> ]/ <Plug>(NextCommented)
 nmap <unique><silent> [/ <Plug>(PrevCommented)
-nmap <unique><silent> ]u <Plug>(NextUncommented)
-nmap <unique><silent> [u <Plug>(PrevUncommented)
+nmap <unique><silent> ]\ <Plug>(NextUncommented)
+nmap <unique><silent> [\ <Plug>(PrevUncommented)
 Plug 'andymass/vim-matchup'
 Plug 'chaoren/vim-wordmotion'
 let g:wordmotion_mappings = {
@@ -726,6 +731,7 @@ if has('nvim')
     Plug 'nvim-lua/lsp_extensions.nvim'
     Plug 'nvim-lua/lsp-status.nvim'
     Plug 'ray-x/lsp_signature.nvim'
+    Plug 'simrat39/rust-tools.nvim'
     " autocomplete
     " Plug 'nvim-lua/completion-nvim'
     Plug 'hrsh7th/nvim-compe'
@@ -822,15 +828,13 @@ Plug 'rhysd/vim-grammarous', { 'on': 'GrammarousCheck' }
 " Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 let g:vim_markdown_folding_disabled = 1
 let g:vim_markdown_strikethrough = 1
-Plug 'vimwiki/vimwiki', { 'branch': 'dev', 'for': ['markdown', 'vimwiki'] , 'on': '<Plug>VimwikiIndex'}
-" let g:vimwiki_key_mappings = { 'all_maps': 0, }
+Plug 'vimwiki/vimwiki', { 'branch': 'dev'}
+let g:vimwiki_key_mappings = { 'links': 0, 'table_mappings': 0}
 let g:vimwiki_list = [{'path': $XDG_DOCUMENTS_DIR . '/tekst',
                      \ 'syntax': 'markdown', 'ext': '.md' }]
 let g:vimwiki_folding='expr'
 let g:vimwiki_url_maxsave=25
 nmap <unique><silent> sv <Plug>VimwikiIndex
-nmap <unique><silent> ]r <Plug>VimwikiNextLink
-nmap <unique><silent> [r <Plug>VimwikiPrevLink
 
 " Database
 let g:sql_type_default='psql'
@@ -866,11 +870,11 @@ endif
 
 call plug#end()
 
-if has('gui_running')
+set guifont=Hack:h20
+if has('gui_running') || exists(':GuiFont')
     let g:solarized_diffmode='high'
     colorscheme gruvbox
     set lines=50 columns=140
-    set guifont=Fira\ Code
 elseif &diff
     colorscheme gruvbox
 else

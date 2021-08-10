@@ -1,9 +1,0 @@
-bower_components/
-.cache/
-env/
-node_modules/
-*.css.map
-*.min.css
-*.min.js
-tags
-build/

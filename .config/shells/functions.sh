@@ -55,6 +55,10 @@ find-up() {
   echo "${match}"
 }
 
+updmirrorlist() {
+    curl -s 'https://archlinux.org/mirrorlist/?country=PL&protocol=https&ip_version=4' | sed 's/^#Server/Server/' | sudo tee /etc/pacman.d/mirrorlist
+}
+
 get_terminal_bg() {
  if [ -z "${TERM_BG_BRIGHT}" ]; then
     stty -echo 2> /dev/null
@@ -83,6 +87,106 @@ function bak() {
         cp -i "${1::(-4)}"{.bak,}
     else
         cp -i "${1}"{,.bak}
+    fi
+}
+
+# rewrite last paths, so they use absolute paths
+rewrite_history() {
+    last="$(history 1 | cut -c 8-)"
+    arr=($last)
+    if [[ ${arr[0]} == 'vim' || ${arr[0]} == 'nvim' || ${arr[0]} == 'n'|| ${arr[0]} == 'v' ]]; then
+        newcmd="$(absolute_cmd "${last}")"
+        history -s "$newcmd" # replace command with expanded path
+    elif [[ "${last}" =~ 'cd ' ]]; then
+        newcmd="cd $(escape_path $(pwd))"
+        history -s "$newcmd" # replace command with expanded path
+    fi
+}
+
+escape_path() {
+    path="$1"
+    first_letter="${path:0:1}"
+    last_letter="${path:(-1)}"
+    if [[ ${first_letter} == "'" || ${last_letter} == '"' ]] && [[ ${first_letter} == ${last_letter} ]]; then
+        echo "${path}"
+    elif [[ "${path}" == *\'* ]]; then
+        if [[ "${path}" == *\"* ]]; then
+            printf '%q' "${path}"
+        else
+            echo "\"${path}\""
+        fi
+    elif [[ "${path}" == *\"* ]]; then
+        echo "'${path}'"
+    elif [[ "${path}" == *\ * ]]; then
+        echo "'${path}'"
+    else
+        echo "${path}"
+    fi
+
+}
+
+absolute_cmd() {
+    arr=("$1")
+    newcmd=''
+    path=""
+    for word in ${arr[@]}; do
+        first_letter="${word:0:1}"
+        last_letter="${word:(-1)}"
+        if [[ "${first_letter}" == "'" || "${first_letter}" == '"' ]]; then
+            path="${word}"
+        elif [[ "${last_letter}" == "'" || "${last_letter}" == '"' ]]; then
+            path="${path} ${word}"
+            if [[ -f "${path:1:-1}" || -d "${path:1:-1}" ]]; then
+                path="$(realpath "${path:1:-1}")"
+                path="$(escape_path "${path}")"
+            fi
+
+            newcmd="${newcmd} ${path}"
+            path=''
+        elif [[ "${last_letter}" != '''\' && "${path}" != '' ]]; then
+            path="${path} ${word}"
+            if [[ -f "${path}" || -d "${path}" ]]; then
+                path="$(realpath "${path}")"
+                path="$(escape_path "${path}")"
+            fi
+
+            newcmd="${newcmd} ${path}"
+            path=''
+        elif [[ "${last_letter}" ==  '''\' ]]; then
+            if [[ "${path}" == '' ]]; then
+                path="${word:0:-1}"
+            else
+                path="${path} ${word:0:-1}"
+            fi
+        else
+            if [[ ${word:0:1} != '.' && (-f "${word}" || -d "${word}") ]]; then
+                word="$(realpath "${word}")"
+                word="$(escape_path "${word}")"
+            fi
+
+            newcmd="${newcmd} ${word}"
+        fi
+    done
+    echo "${newcmd:1}"
+}
+
+# cd that saves absolute path to history (if not starting with space)
+acd() {
+    if (( $# == 0 )); then
+        builtin cd
+    else
+        builtin cd "$@"
+        return_code=$?
+        last="$(history 1 | cut -c 8-)"
+        echo "${last} ${return_code}"
+        if [[ "${last}" == "cd $*" ]]; then
+            if [[ $return_code -eq 0 ]]; then
+                msg="cd $(pwd)"
+                history -s "$msg" # replace command with expanded path
+            else
+                history -d -1 # remove last command that failed
+            fi
+        fi
     fi
 }
 
@@ -132,56 +236,6 @@ function sv() {
 
 function svim() {
     vim -u ~/.config/svim/vimrc "$@"
-}
-
-# function for git-fzf completions
-is_in_git_repo() {
-  git rev-parse HEAD > /dev/null 2>&1
-}
-
-fzf-down() {
-  fzf --height 50% "$@" --border
-}
-
-gf() {
-  is_in_git_repo || return
-  git -c color.status=always status --short |
-  fzf-down -m --ansi --nth 2..,.. \
-    --preview '(git diff --color=always -- {-1} | sed 1,4d; cat {-1}) | head -500' |
-  cut -c4- | sed 's/.* -> //'
-}
-
-gb() {
-  is_in_git_repo || return
-  git branch -a --color=always | grep -v '/HEAD\s' | sort |
-  fzf-down --ansi --multi --tac --preview-window right:70% \
-    --preview 'git log --oneline --graph --date=short --color=always --pretty="format:%C(auto)%cd %h%d %s" $(sed s/^..// <<< {} | cut -d" " -f1) | head -'$LINES |
-  sed 's/^..//' | cut -d' ' -f1 |
-  sed 's#^remotes/##'
-}
-
-gt() {
-  is_in_git_repo || return
-  git tag --sort -version:refname |
-  fzf-down --multi --preview-window right:70% \
-    --preview 'git show --color=always {} | head -'$LINES
-}
-
-gh() {
-  is_in_git_repo || return
-  git log --date=short --format="%C(green)%C(bold)%cd %C(auto)%h%d %s (%an)" --graph --color=always |
-  fzf-down --ansi --no-sort --reverse --multi --bind 'ctrl-s:toggle-sort' \
-    --header 'Press CTRL-S to toggle sort' \
-    --preview 'grep -o "[a-f0-9]\{7,\}" <<< {} | xargs git show --color=always | head -'$LINES |
-  grep -o "[a-f0-9]\{7,\}"
-}
-
-gr() {
-  is_in_git_repo || return
-  git remote -v | awk '{print $1 "\t" $2}' | uniq |
-  fzf-down --tac \
-    --preview 'git log --oneline --graph --date=short --pretty="format:%C(auto)%cd %h%d %s" {1} | head -200' |
-  cut -d$'\t' -f1
 }
 
 help_vmap() {
@@ -236,3 +290,65 @@ if [[ -v BASH_VERSION ]]; then
     export -f sv
     export -f svim
 fi
+
+# function for git-fzf completions
+is_in_git_repo() {
+  git rev-parse HEAD > /dev/null 2>&1
+}
+
+if [[ "${TERM_BG_BRIGHT}" -eq 1 ]]; then
+    fzf_colour=light
+else
+    fzf_colour=dark
+fi
+
+fzf-down() {
+    fzf --color=${fzf_colour} --height 50% "$@"
+}
+
+gf() {
+  is_in_git_repo || return
+  git ls-files | fzf-down --ansi -m --preview 'cat {-1} | head -500'
+}
+
+gs() {
+  is_in_git_repo || return
+  git -c color.status=always status --short |
+  fzf-down -m --ansi --nth 2..,.. \
+    --preview '(git diff --color=always -- {-1} | sed 1,4d; cat {-1}) | head -500' |
+  cut -c4- | sed 's/.* -> //'
+}
+
+gb() {
+  is_in_git_repo || return
+  git branch -a --color=always | grep -v '/HEAD\s' | sort |
+  fzf-down --ansi --multi --tac --preview-window right:70% \
+    --preview 'git log --oneline --graph --date=short --color=always --pretty="format:%C(auto)%cd %h%d %s" $(sed s/^..// <<< {} | cut -d" " -f1) | head -'$LINES |
+  sed 's/^..//' | cut -d' ' -f1 |
+  sed 's#^remotes/##'
+}
+
+gt() {
+  is_in_git_repo || return
+  git tag --sort -version:refname |
+  fzf-down --multi --preview-window right:70% \
+    --preview 'git show --color=always {} | head -'$LINES
+}
+
+gh() {
+  is_in_git_repo || return
+  git log --date=short --format="%C(green)%C(bold)%cd %C(auto)%h%d %s (%an)" --graph --color=always |
+  fzf-down --ansi --no-sort --reverse --multi --bind 'ctrl-s:toggle-sort' \
+    --header 'Press CTRL-S to toggle sort' \
+    --preview 'grep -o "[a-f0-9]\{7,\}" <<< {} | xargs git show --color=always | head -'$LINES |
+  grep -o "[a-f0-9]\{7,\}"
+}
+
+gr() {
+  is_in_git_repo || return
+  git remote -v | awk '{print $1 "\t" $2}' | uniq |
+  fzf-down --tac \
+    --preview 'git log --oneline --graph --date=short --pretty="format:%C(auto)%cd %h%d %s" {1} | head -200' |
+  cut -d$'\t' -f1
+}
+

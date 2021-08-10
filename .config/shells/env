@@ -3,6 +3,16 @@ export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_DATA_HOME="$HOME/.local/share"
 
+# XDG-ify applications
+export GOPATH="$XDG_DATA_HOME/go"
+export LESSHISTFILE="$XDG_CACHE_HOME/less_history"
+export PIP_DOWNLOAD_CACHE="$XDG_CACHE_HOME/pip"
+export DOCKER_CONFIG="$XDG_CONFIG_HOME/docker"
+export NOTMUCH_CONFIG="$XDG_CONFIG_HOME/notmuch/notmuchrc"
+export OCTAVE_HISTFILE="$XDG_DATA_HOME/history/octave-history"
+export OCTAVE_SITE_INITFILE="$XDG_CONFIG_HOME/octave/octaverc"
+export WGETRC="$XDG_CONFIG_HOME/wgetrc"
+
 export BROWSER=firefox
 export DOTNET_CLI_TELEMETRY_OPTOUT=1
 export EDITOR=vim
@@ -10,22 +20,18 @@ export ENHANCD_COMMAND=fzf
 export ESCDELAY=0
 export FZF_DEFAULT_OPTS='--height 80% --bind=ctrl-d:preview-page-down,ctrl-u:preview-page-up'
 export GCC_COLORS=auto
-export GOPATH="$XDG_DATA_HOME/go"
-export GTK_USE_PORTAL=1
 export HISTCONTROL=ignoreboth:erasedups
-export HISTIGNORE="&:[ ]*:exit:ls:bg:fg:history:clear"
+export HISTIGNORE="&:[ ]*:exit:ls:cd:bg:fg:history:clear"
 export HISTSIZE=100000
 # export HISTTIMEFORMAT="%d/%m/%y %T "
 export HTML_TIDY="$HOME/.config/tidy.conf"
 export LESS=-R
-export LESSHISTFILE="$XDG_CACHE_HOME/less_history"
 export MAVEN_OPTS='-Xmx2048m'
 export PATH="$HOME/.local/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 export PROMPT_COMMAND='history -a' # don't wait to append to history until session ends
 # export PROMPT_COMMAND='history -w' # only history -w removed duplicates
 export PYTHON2DOCDIR=/usr/share/doc/python2/html/
 export PYTHON3DOCDIR=/usr/share/doc/python/html/
-export PIP_DOWNLOAD_CACHE="$XDG_CACHE_HOME/pip"
 export PYTHONSTARTUP="$HOME/.config/python/pythonrc"
 export RUSTFLAGS="-C target-cpu=native"
 export SHELLCHECK_OPTS="-e SC1090,SC2034,SC2164"

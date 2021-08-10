@@ -28,6 +28,7 @@ alias maven='mvn'
 alias mksrcinfo='makepkg --printsrcinfo >| .SRCINFO'
 alias py='python'
 alias ipy="ipython --ipython-dir=$XDG_CONFIG_HOME/jupyter"
+alias rm='rm -i'
 alias rgi='rg --no-ignore'
 alias rgii='rg --no-ignore -i'
 alias sm='HOME=~/.local/share/spacemacs emacs'
@@ -37,7 +38,7 @@ alias steam-wine='wine $HOME/.wine/drive_c/Program\ Files\ \(x86\)/Steam/Steam.e
 alias sqlite3="sqlite3 -init ~/.config/sqliterc"
 alias check-yapf-config="diff <(yapf --style-help | grep -oP '^[a-zA-Z_0-9]+' | sort) <(grep -oP '^[a-zA-Z_0-9]+' ~/.config/yapf/style | sort)"
 # faster edition of common files
-alias v='vim'
+alias v='/usr/bin/vim'
 alias n='nvim'
 alias vsb='vim ~/.bashrc'
 alias vsz='vim ~/.config/shells/zsh/.zshrc'

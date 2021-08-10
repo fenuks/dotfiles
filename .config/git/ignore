@@ -20,11 +20,13 @@ compile_commands.json
 *.temp
 .ropeproject/
 .mypy_cache/
+.pytest_cache/
 CMakeFiles/
 target/
 *.iml
 env/
 .env/
+.venv/
 .DS_Store
 __pycache__/
 build/
@@ -39,3 +41,4 @@ localrc.after.zsh
 
 TODO.org
 .coverage
+htmlcov/

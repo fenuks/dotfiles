@@ -48,6 +48,7 @@ email = fenuks
     stu = !git --no-pager diff --name-only
     tidy = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && find -name '*.orig' -delete; }; f"
     url = remote get-url origin
+    r-upstream = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git reset --hard origin/$(git branch --show-current); }; f"
 [color]
     ui = auto
 [push]
@@ -71,6 +72,7 @@ email = fenuks
     rebase = true
     hg-git-compat = true
     track-branches = false
+    default = current
 [fetch]
     prune = true
 [filter "lfs"]
@@ -81,6 +83,7 @@ email = fenuks
 [diff]
     submodule = log
     colorMoved = default
+    mnemonicprefix = true
 [diff "zip"]
     textconv = unzip -c -a
 [diff "tgz"]
