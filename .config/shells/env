@@ -12,6 +12,8 @@ export NOTMUCH_CONFIG="$XDG_CONFIG_HOME/notmuch/notmuchrc"
 export OCTAVE_HISTFILE="$XDG_DATA_HOME/history/octave-history"
 export OCTAVE_SITE_INITFILE="$XDG_CONFIG_HOME/octave/octaverc"
 export WGETRC="$XDG_CONFIG_HOME/wgetrc"
+export PYTHONPYCACHEPREFIX="${XDG_CACHE_HOME}/python/py"
+export MYPY_CACHE_DIR="${XDG_CACHE_HOME}/python/mypy"
 
 export BROWSER=firefox
 export DOTNET_CLI_TELEMETRY_OPTOUT=1

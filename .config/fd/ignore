@@ -29,3 +29,5 @@ Magazyn/
 Muzyka/
 .tor-browser/
 .mozilla/
+.mypy_cache/
+.venv/

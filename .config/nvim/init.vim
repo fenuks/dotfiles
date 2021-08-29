@@ -208,7 +208,7 @@ nnoremap <unique><silent> x$ :%s/\s\+$//<CR>
 nnoremap <unique><silent> x^ :%s/^\s\+//<CR>
 nnoremap <unique><silent> x<CR> :g/^\s*$/d<CR>
 nnoremap <unique><silent> x, :%s/,\s*/\r/g<CR>
-vnoremap <unique><silent> x, :s/,\s*/\r<CR>
+vnoremap <unique><silent> x, :s/,\s*/\r/g<CR>
 " convert non-breaking spaces to normal ones
 nnoremap <unique><silent> x<Space> :%s/\%u00a0/ /g<CR>
 nnoremap <unique><silent> xS :,$!sort -h<CR>
