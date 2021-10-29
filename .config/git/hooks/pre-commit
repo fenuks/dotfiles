@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+set -euo pipefail
+shopt -s nullglob
+
+script_dir="$(dirname "$0")"
+for file in "${script_dir}"/pre-commit.d/*.bash; do
+    "${SHELL}" "${file}";
+done

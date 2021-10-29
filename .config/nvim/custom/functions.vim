@@ -7,16 +7,24 @@ let g:foldmethods = {
 \ 'diff': 'manual'
 \}
 
-let g:auxiliary_buffers = ['qf',  'fugitive', 'fugitiveblame', 'nerdtree']
-" buffer types to close
-let g:extra_auxiliary_buffers = ['ale-fix-suggest', 'help', 'git', 'vim-plug', '', 'man']
+let g:my_colours = []
+let g:my_colourscheme=g:colors_name
+let g:my_airline_themes = []
+let g:user_background=&background
+let g:ignored_colours = ['blue', 'darkblue', 'default', 'delek', 'desert', 'elflord', 'evening', 'industry', 'koehler', 'morning', 'murphy', 'pablo', 'peachpuff', 'ron', 'shine', 'slate', 'torte', 'zellner']
+call extend(g:ignored_colours, ['corvine', 'flattened_dark']) " ignore dark colours
 
-function! GetSessionName() abort
-    " return g:vim_sesssions_dir . '/' . fnamemodify(getcwd(), ':p:h:t') . '.vim'
+let g:auxiliary_buffers = ['qf',  'fugitive', 'fugitiveblame', 'nerdtree', 'help']
+" buffer types to close
+let g:extra_auxiliary_buffers = ['ale-fix-suggest', 'help', 'git', 'vim-plug', 'man']
+
+function GetSessionName() abort
     return fnamemodify(getcwd(), ':p:h:t') . '.vim'
 endfunction
 
-function! WrapListCommand(command, wrapping_command) abort
+" Run command until exception, then write second one
+" useful for commands linke `lnext` and `lfirst`
+function WrapListCommand(command, wrapping_command) abort
     try
         execute a:command
     catch /^Vim\%((\a\+)\)\=:E553/
@@ -26,45 +34,47 @@ function! WrapListCommand(command, wrapping_command) abort
     endtry
 endfunction
 
-function! Execute(commands) abort
-    """Executes array of commands respecting count""""
-    let l:count = v:count
-    if l:count is# 0
-        let l:count = 1
-    endif
+" Run substitude with not hlsearch, useful for for mappings
+function SubstituteNoHs(query) abort range
+    try
+        execute a:query
+    catch /E486/
+        echo 'no substitude match'
+    endtry
+endfunction
+
+" Executes array of commands respecting count
+function Execute(commands, count) abort
     let l:command = join(a:commands, '|')
-    for i in range(1, l:count)
+    for i in range(1, a:count)
         execute l:command
     endfor
 endfunction
 
-function! DK() abort
-    let l:count = v:count
-    if l:count is# 0
-        let l:count = 1
-    endif
-    execute 'normal D' . l:count . 'k' . l:count . 'ddk'
+" delete with count, but respecting cursor column at current line
+function DK() abort
+    execute 'normal D' . v:count1 . 'k' . v:count1 . 'ddk'
 endfunction
 
-function! DJ() abort
-    let l:count = v:count
-    if l:count is# 0
-        let l:count = 1
-    endif
-    execute 'normal Dj' . l:count . 'dd'
+" delete with count, but respecting cursor column at current line
+function DJ() abort
+    execute 'normal Dj' . v:count1 . 'dd'
 endfunction
 
-function! Conflict(reverse) abort
+" search for vcs conflict marker
+function Conflict(reverse) abort
   call search('^\(@@ .* @@\|[<=>|]\{7}[<=>|]\@!\)', a:reverse ? 'bW' : 'W')
 endfunction
 
-function! ToggleFoldmethod() abort
+" toggles between fold methods
+function ToggleFoldmethod() abort
     let l:next_foldmethod = g:foldmethods[&foldmethod]
     execute 'setlocal foldmethod=' . l:next_foldmethod
     setlocal foldmethod?
 endfunction
 
-function! ChangeBuffer(next) abort
+" changes buffer, but ignores special ones like help, fugitive, etc.
+function ChangeBuffer(next) abort
     if index(g:auxiliary_buffers, &filetype) !=# -1
         return
     endif
@@ -75,7 +85,24 @@ function! ChangeBuffer(next) abort
     endif
 endfunction
 
-function! CloseAuxiliaryWindows() abort
+function CommandOnBuffer(cmd) abort
+    if index(g:auxiliary_buffers, &filetype) !=# -1
+        return
+    endif
+    if index(g:extra_auxiliary_buffers, &filetype) !=# -1
+        return
+    endif
+    execute a:cmd
+endfunction
+
+function ChecktimeFileBuffer() abort
+    if &buftype !=# 'nofile'
+        checktime
+    endif
+endfunction
+
+" close special buffers
+function CloseAuxiliaryWindows() abort
     for window in getwininfo()
         let l:bufnr = l:window['bufnr']
         let l:filetype = getbufvar(l:bufnr, '&filetype')
@@ -89,7 +116,8 @@ function! CloseAuxiliaryWindows() abort
     pclose
 endfunction
 
-function! DiffOrig() abort
+" diff current buffer contents with contents on the filesystem
+function DiffOrig() abort
     let l:original_filetype=&filetype
     vert new
     setlocal buftype=nofile
@@ -101,26 +129,61 @@ function! DiffOrig() abort
     wincmd p
     diffthis
 endfunction
+command! -nargs=0 DiffOrig call DiffOrig()
 
-function! DeleteBuffers(buffers_nr) abort
+" delete all buffer by their ids
+function DeleteBuffers(buffers_nr) abort
     if !empty(a:buffers_nr)
         execute 'bdelete ' . join(a:buffers_nr)
     endif
 endfunction
 
-function! DeleteHiddenBuffers() abort
+" delete all hidden buffers
+function DeleteHiddenBuffers() abort
     let buffers=filter(getbufinfo(), 'empty(v:val.windows)')
     let buffers_nr=map(l:buffers, 'v:val.bufnr')
     call DeleteBuffers(l:buffers_nr)
 endfunction
 
-function! DeleteNamelessBuffers() abort
+" delete all buffers without name
+function DeleteNamelessBuffers() abort
     let buffers=filter(getbufinfo(), 'v:val.name is# ""')
     let buffers_nr=map(l:buffers, 'v:val.bufnr')
     call DeleteBuffers(l:buffers_nr)
 endfunction
 
-function! ReadSkeletonFile() abort
+function DeleteBufsOnLeft() abort
+    let l:cur_buf = bufnr()
+    let l:buffers = []
+    for buf in getbufinfo({'buflisted': 1})
+        let l:buf_nr = l:buf.bufnr
+        if l:buf_nr ==# l:cur_buf
+            if !empty(l:buffers)
+                execute 'bdelete ' . join(l:buffers)
+            endif
+            break
+        endif
+        call insert(l:buffers, l:buf_nr)
+    endfor
+endfunction
+
+function DeleteBufsOnRight() abort
+    let l:cur_buf = bufnr()
+    let l:buffers = []
+    for buf in reverse(getbufinfo({'buflisted': 1}))
+        let l:buf_nr = l:buf.bufnr
+        if l:buf_nr ==# l:cur_buf
+            if !empty(l:buffers)
+                execute 'bdelete ' . join(l:buffers)
+            endif
+            break
+        endif
+        call insert(l:buffers, l:buf_nr)
+    endfor
+endfunction
+
+" read skeleton file for given filetype
+function ReadSkeletonFile() abort
     let l:skeleton_file = g:nvim_dir_path . 'templates/skeleton.' . &filetype
     if filereadable(l:skeleton_file)
         execute (line('.') - 1) . 'read ' . l:skeleton_file
@@ -129,7 +192,8 @@ function! ReadSkeletonFile() abort
     endif
 endfunction
 
-function! SearchCmakeMan() abort
+" search manual for cmake filetypes
+function SearchCmakeMan() abort
     let l:cursor_word = expand('<cword>')
     if IsUpper(l:cursor_word)
         call SearchMan('cmake-variables', '<cfile>')
@@ -138,40 +202,47 @@ function! SearchCmakeMan() abort
     endif
 endfunction
 
-function! IsUpper(string) abort
+" returns true if string is in uppercase
+function IsUpper(string) abort
     echom a:string
     return toupper(a:string) ==# a:string
 endfunction
 
-function! SearchMan(page, prefix, expr) abort
+" search for word at curson in specific man page
+function SearchMan(page, prefix, expr) abort
     let l:cursor_word = expand(a:expr)
     execute 'Man ' . a:page
     call search('\C\(\s\{2,\}\)\@<=' . a:prefix . l:cursor_word)
 endfunction
 
-function! SearchWeb() abort
+" search for word under cursor in search engine
+function SearchWeb() abort
     let l:text = expand('<cWORD>')
     call jobstart(['firefox', 'https://duckduckgo.com?q=' . l:text])
 endfunction
 
-function! OpenUrl() abort
-    let l:text = expand('<cfile>')
-    call jobstart(['firefox', l:text])
-endfunction
-
-function! OpenUrlVisual() abort
-    let l:text = GetVisualSelection()
-    call jobstart(['firefox', l:text])
-endfunction
-
-function! SearchWebVisual() abort
+" search for selected text in search engine
+function SearchWebVisual() abort
     let l:text = GetVisualSelection()
     call jobstart(['firefox', 'https://duckduckgo.com?q=' . l:text])
 endfunction
 
-function! GetVisualSelection() abort
-    let [l:line_start, l:column_start] = getpos("'<")[1:2]
-    let [l:line_end, l:column_end] = getpos("'>")[1:2]
+" open URL under cursor in web browser
+function OpenUrl() abort
+    let l:text = expand('<cfile>')
+    call jobstart(['firefox', l:text])
+endfunction
+
+" open selected text as URL
+function OpenUrlVisual() abort
+    let l:text = GetVisualSelection()
+    call jobstart(['firefox', l:text])
+endfunction
+
+" gets text between two marks
+function GetSelection(left, right) abort
+    let [l:line_start, l:column_start] = getpos("'" . a:left)[1:2]
+    let [l:line_end, l:column_end] = getpos("'". a:right)[1:2]
     let l:lines = getline(line_start, line_end)
     if len(l:lines) == 0
         return ''
@@ -182,16 +253,21 @@ function! GetVisualSelection() abort
     return join(l:lines, "\n")
 endfunction
 
-let g:mycolors = []
-let g:my_colorscheme=g:colors_name
-let g:my_airline_themes = []
-let g:user_background=&background
+" gets visual selection
+function GetVisualSelection() abort
+    return GetSelection('<', '>')
+endfunction
 
-" Set list of color scheme names that we will use, except
-function! SetColors() abort
+" gets visual selection
+function GetOperatorSelection() abort
+    return GetSelection('[', ']')
+endfunction
+
+" Set list of colour scheme names that we will use, except
+function SetColours() abort
     let paths = split(globpath(&runtimepath, 'colors/*.vim'), "\n")
-    let g:mycolors = uniq(sort(map(paths, 'fnamemodify(v:val, ":t:r")')))
-    " call RemoveSublist(g:mycolors, ['blue', 'darkblue', 'delek', 'elflord', 'evening', 'industry', 'koehler', 'morning', 'murphy', 'pablo', 'peachpuff', 'ron', 'shine', 'solarized8_high', 'slate', 'torte', 'zellner'])
+    let g:my_colours = uniq(sort(map(paths, 'fnamemodify(v:val, ":t:r")')))
+    call RemoveSublist(g:my_colours, g:ignored_colours)
 endfunction
 
 function RemoveSublist(list, sublist) abort
@@ -203,30 +279,52 @@ function RemoveSublist(list, sublist) abort
     endfor
 endfunction
 
-function! NextColor(dir) abort
-  let l:colors_no = len(g:mycolors)
-  if l:colors_no == 0
-    call SetColors()
-    let l:colors_no = len(g:mycolors)
+function Rand(max) abort
+    if has('vim')
+        return rand() % a:max
+    elseif has('nvim')
+        return luaeval('math.random(0, _A.max)', {'max':a:max - 1})
+    end
+endfunction
+
+function ChangeColourscheme(name) abort
+  try
+      let &background=g:user_background
+      execute 'colorscheme ' . a:name
+      redraw
+      let g:my_colourscheme=a:name
+      echo g:colors_name
+  catch /E185:/
+      echo 'missing colourscheme ' . a:name
+  endtry
+endfunction
+
+function RandomColour() abort
+  let l:colours_no = len(g:my_colours)
+  if l:colours_no == 0
+    call SetColours()
+    let l:colours_no = len(g:my_colours)
   endif
-  let l:current = index(g:mycolors, g:my_colorscheme)
+  let l:next = Rand(l:colours_no)
+  call ChangeColourscheme(g:my_colours[l:next])
+endfunction
+
+function NextColour(dir) abort
+  let l:colours_no = len(g:my_colours)
+  if l:colours_no == 0
+    call SetColours()
+    let l:colours_no = len(g:my_colours)
+  endif
+  let l:current = index(g:my_colours, g:my_colourscheme)
   let l:next = l:current + a:dir
   if a:dir == -1
       if l:next < 0
-          let l:next = l:colors_no - 1
+          let l:next = l:colours_no - 1
       endif
-  elseif l:next >= l:colors_no
+  elseif l:next >= l:colours_no
     let l:next = 0
   endif
-  try
-      let &background=g:user_background
-      execute 'colorscheme '.g:mycolors[l:next]
-      redraw
-      let g:my_colorscheme=g:mycolors[l:next]
-      echo g:colors_name
-  catch /E185:/
-      echo 'missing colorscheme ' . g:mycolors[l:next]
-  endtry
+  call ChangeColourscheme(g:my_colours[l:next])
 endfunction
 
 function NextAirlineTheme(dir)
@@ -249,40 +347,57 @@ function NextAirlineTheme(dir)
   echo g:my_airline_themes[l:next]
 endfunction
 
-function! SortOperator(type) abort
-    call OperatorFunc('!sort -h', a:type)
+function SortOperator(type) abort
+    call ExOperatorFunc('!sort -h', a:type)
 endfunction
 
-function! LeftAlignOperator(type) abort
-    call OperatorFunc('left', a:type)
+function LeftAlignOperator(type) abort
+    call ExOperatorFunc('left', a:type)
 endfunction
 
-function! RightAlignOperator(type) abort
-    call OperatorFunc('right', a:type)
+function RightAlignOperator(type) abort
+    call ExOperatorFunc('right', a:type)
 endfunction
 
-function! CenterAlignOperator(type) abort
-    call OperatorFunc('center', a:type)
+function CenterAlignOperator(type) abort
+    call ExOperatorFunc('center', a:type)
 endfunction
 
-function! JustifyOperator(type) abort
-    call OperatorFunc('Justify', a:type)
+function JustifyOperator(type) abort
+    call ExOperatorFunc('Justify', a:type)
 endfunction
 
-function! JoinOperatorWithSpaces(type) abort
+function JoinOperatorWithSpaces(type) abort
     call JoinWrapper(a:type, ' ')
 endfunction
 
-function! JoinOperator(type) abort
+function JoinOperator(type) abort
     call JoinWrapper(a:type, '')
 endfunction
 
-function! JoinWrapper(type, wrapper) abort
+function JoinWrapper(type, wrapper) abort
     let l:name = input('Enter separator: ')
-    call OperatorFunc('Join "' . a:wrapper . l:name . a:wrapper . '"', a:type)
+    call ExOperatorFunc('Join "' . a:wrapper . l:name . a:wrapper . '"', a:type)
 endfunction
 
-function! OperatorFunc(excommand, type) abort
+function RunShellOperator(type) abort
+    let l:command = GetOperatorSelection()
+    call ExOperatorFunc('read !' . l:command, a:type)
+endfunction
+
+function FilterShellOperator(type) abort
+    let l:command = GetOperatorSelection()
+    call ExOperatorFunc('!' . l:command, a:type)
+endfunction
+
+function FunctionOperator(Fun) abort
+    let l:reg_save = @a
+    let @a = a:Fun(GetOperatorSelection())
+    execute 'normal! `[v`]"ap'
+    let @a = l:reg_save
+endfunction
+
+function ExOperatorFunc(excommand, type) abort
     if a:type ==# 'line'
         execute "'<,'>" . a:excommand
     elseif a:type ==# 'char'
@@ -292,7 +407,7 @@ function! OperatorFunc(excommand, type) abort
     endif
 endfunction
 
-function! OpenMan()
+function OpenMan()
     try
         call man#open_page(v:count, v:count1, 'tabs', 'dirent')
     catch
@@ -301,7 +416,7 @@ function! OpenMan()
     endtry
 endfunction
 
-function! NewlinePaste(p_key, newline_key) abort
+function NewlinePaste(p_key, newline_key) abort
     let l:text = @
     let l:chars = strchars(l:text)
     let l:has_newline = strcharpart(l:text, l:chars - 1) is# "\n"
@@ -326,19 +441,16 @@ function DiffCurrentQuickfixEntry() abort
 endfunction
 
 
-function! CustomSyntax() abort
+function CustomSyntax() abort
     " highlight all trailing spaces
     highlight ExtraWhitespace ctermbg=red guibg=red
     match ExtraWhitespace /\s\+\%#\@<!$/
+    " highlight VCS conflicts
+    match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 endfunction
 
-nnoremap <unique> <silent> <F8> :call NextColor(1)<CR>
-nnoremap <unique> <silent> <F20> :call NextColor(-1)<CR> " <S-F8>
-nnoremap <unique> <silent> <F9> :call NextAirlineTheme(1)<CR>
-nnoremap <unique> <silent> <F21> :call NextAirlineTheme(-1)<CR> " <S-F9>
-
 " taken from https://jdhao.github.io/2020/11/15/nvim_text_objects/
-function! URLTextObj() abort
+function URLTextObj() abort
   if match(&runtimepath, 'vim-highlighturl') != -1
     " Note that we use https://github.com/itchyny/vim-highlighturl to get the URL pattern.
     let url_pattern = highlighturl#default_pattern()
@@ -387,13 +499,178 @@ function! URLTextObj() abort
     return
   endif
 
-  " " now set the '< and '> mark
+  " now set the '< and '> mark
   call setpos("'<", [buf_num, cur_row, start_col, 0])
   call setpos("'>", [buf_num, cur_row, end_col, 0])
   normal! gv
 endfunction
 
-function! VisualAppend() abort
+function VisualBlockOperation(operation) abort
     let l:text = input('Tekst: ')
-    execute "'<'>normal A" . l:text
+    execute "'<,'>normal " . a:operation  . l:text
 endfunction
+
+function GatherSearchResults() abort
+  let l:pattern = @/
+  if !empty(l:pattern)
+    let save_cursor = getpos('.')
+    let orig_ft = &filetype
+    " append search hits to results list
+    let results = []
+    execute 'g/' . l:pattern . "/call add(results, getline('.'))"
+    call setpos('.', save_cursor)
+    if !empty(results)
+      " put list in new scratch buffer
+      new
+      setlocal buftype=nofile bufhidden=hide noswapfile
+      execute 'setlocal filetype='.orig_ft
+      call append(1, results)
+      1d  " delete initial blank line
+    endif
+  endif
+endfunction
+
+function GoToOpenFold1(direction)
+  if (a:direction ==# 1)
+    normal! zj
+    let start = line('.')
+    while foldclosed(start) != -1
+      let start = start + 1
+    endwhile
+  else
+    normal! zk
+    let start = line('.')
+    while foldclosed(start) != -1
+      let start = start - 1
+    endwhile
+  endif
+  call cursor(start, 0)
+endfunction
+
+function GoToOpenFold(direction)
+    let l:orig = getpos('.')
+    if a:direction == 1
+        normal! zj
+    else
+        normal! zk
+    endif
+    let l:line = line('.')
+    while foldclosed(l:line) != -1
+      let l:line = l:line + a:direction
+    endwhile
+
+    if l:line >= line('$')
+        call cursor(l:orig[1], l:orig[2])
+    else
+        call cursor(l:line, 0)
+    endif
+endfunction
+
+function CaptureEx(cmd) abort
+    let l:old = @a
+    redir @a
+    execute 'silent ' . a:cmd
+    redir END
+    new
+    0put a
+    $delete
+    0delete
+    let @a = l:old
+endfunction
+
+command! -nargs=1 -complete=command CaptureEx call CaptureEx(<f-args>)
+
+let s:roman_numbers = [
+            \ [1000, 'M'], [900, 'CM'], [500, 'D'], [400, 'CD'],
+            \ [100, 'C'], [90, 'XC'], [50, 'L'], [40, 'XL'],
+            \ [10, 'X'], [9, 'IX'], [5, 'V'], [4, 'IV'], [1, 'I']]
+
+function RomanNumber(number) abort
+  let l:n = a:number
+  let l:roman_number = ''
+  for [l:arabic, l:roman] in s:roman_numbers
+    while n >= l:arabic
+      let l:roman_number .= l:roman
+      let n -= l:arabic
+    endwhile
+  endfor
+  return l:roman_number
+endfunction
+
+function ToBase(number, base)
+    if a:number == 0
+        return [0]
+    endif
+    let l:n = a:number
+    let l:digits = []
+    while l:n > 0
+        let l:remainder = l:n % a:base
+        let l:digits = [l:remainder] + l:digits
+        let l:n /= a:base
+    endwhile
+    return l:digits
+endfunction
+
+function AlphaNumber(number, base, start) abort
+    let l:digits = ToBase(a:number, a:base)
+    if len(l:digits) > 1
+        let l:digits[0] = l:digits[0] - 1
+    endif
+    return join(map(l:digits, 'nr2char(v:val + a:start)'), '')
+endfunction
+
+
+function VimFootnoteType(footnumber, type)
+    if (a:type ==# 'arabic')
+        return a:footnumber
+    elseif a:type ==# 'roman'
+        return tolower(RomanNumber(a:footnumber))
+    elseif a:type ==# 'alpha'
+        return AlphaNumber(a:footnumber-1, 26, 97)
+    endif
+endfunction
+
+" add a footnote at the cursor position
+function VimFootnotes(type)
+  if exists('b:vimfootnotenumber')
+      if line('.') == line('$')
+        " jump back to where footnote was inserted
+        execute "normal! \<C-o>a"
+        return
+      endif
+    let b:vimfootnotenumber = b:vimfootnotenumber + 1
+    let b:vimfootnotemark = VimFootnoteType(b:vimfootnotenumber, a:type)
+    let l:cr = ''
+  else
+    let b:vimfootnotenumber = 1
+    let b:vimfootnotemark = VimFootnoteType(b:vimfootnotenumber, a:type)
+    let l:cr = "\<CR>"
+  endif
+  execute 'normal a['.b:vimfootnotemark."]\<Esc>"
+  normal! G
+  execute 'normal! ' . 'o' . l:cr . '[' . b:vimfootnotemark . '] '
+endfunction
+
+function GitModifiedQuickfix() abort
+    let l:out = FugitiveExecute(['diff', '--name-only', '--diff-filter=AM'])
+    if l:out['exit_status']
+        return
+    endif
+    let l:files = l:out['stdout']
+    let l:quickfix = []
+    for l:file in l:files
+        if l:file ==# ''
+            continue
+        endif
+        call insert(l:quickfix, {'filename': l:file})
+    endfor
+    if len(l:quickfix)
+        call setqflist([], ' ', {'title' : 'git status', 'items': l:quickfix})
+        copen
+    endif
+endfunction
+
+" TODO load directory contents into quickfix, diff conflicts, spell errors,
+" buffers
+" text object inner/around space
+

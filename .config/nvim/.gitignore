@@ -1,6 +1,5 @@
 autoload/
 .netrwhist
-plugged/
 spell/*.spl
 spell/*.sug
 viminfo

@@ -1,5 +1,0 @@
-#!/bin/sh
-if [[ -d .env ]]; then
-	. ~/.bashrc
-	. .env/bin/activate;
-fi

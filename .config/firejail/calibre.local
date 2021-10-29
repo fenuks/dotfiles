@@ -3,4 +3,5 @@ include browser-blacklist.local
 noblacklist ${HOME}/.cache/okular
 noblacklist ${HOME}/.config/okularpartrc
 noblacklist ${HOME}/.config/okularrc
+noblacklist ${HOME}/.config/dolphinrc
 

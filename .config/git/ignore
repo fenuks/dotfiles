@@ -30,6 +30,7 @@ env/
 .DS_Store
 __pycache__/
 build/
+build-*/
 .attach_pid*
 .clangd/
 *.kdev4
@@ -42,3 +43,4 @@ localrc.after.zsh
 TODO.org
 .coverage
 htmlcov/
+node_modules/

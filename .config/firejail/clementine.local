@@ -1,3 +1,4 @@
 noblacklist ${HOME}/.local/share/music
 noblacklist ${HOME}/Audycje
+noblacklist ${HOME}/.config/dolphinrc
 ignore noroot

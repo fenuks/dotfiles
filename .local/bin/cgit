@@ -1,2 +1,2 @@
 #!/usr/bin/env sh
-/usr/bin/git --git-dir="$HOME/.dotfiles/" --work-tree="$HOME" "$@"
+/usr/bin/git --git-dir="$XDG_DATA_HOME/dotfiles" --work-tree="$HOME" "$@"

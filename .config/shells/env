@@ -5,15 +5,29 @@ export XDG_DATA_HOME="$HOME/.local/share"
 
 # XDG-ify applications
 export GOPATH="$XDG_DATA_HOME/go"
-export LESSHISTFILE="$XDG_CACHE_HOME/less_history"
+export LESSHISTFILE="$XDG_DATA_HOME/history/less_history"
 export PIP_DOWNLOAD_CACHE="$XDG_CACHE_HOME/pip"
 export DOCKER_CONFIG="$XDG_CONFIG_HOME/docker"
 export NOTMUCH_CONFIG="$XDG_CONFIG_HOME/notmuch/notmuchrc"
-export OCTAVE_HISTFILE="$XDG_DATA_HOME/history/octave-history"
+export OCTAVE_HISTFILE="$XDG_DATA_HOME/history/octave_history"
 export OCTAVE_SITE_INITFILE="$XDG_CONFIG_HOME/octave/octaverc"
 export WGETRC="$XDG_CONFIG_HOME/wgetrc"
-export PYTHONPYCACHEPREFIX="${XDG_CACHE_HOME}/python/py"
-export MYPY_CACHE_DIR="${XDG_CACHE_HOME}/python/mypy"
+export PYTHONPYCACHEPREFIX="$XDG_CACHE_HOME/python/py"
+export MYPY_CACHE_DIR="$XDG_CACHE_HOME/python/mypy"
+export STACK_ROOT="$XDG_CACHE_HOME/stack"
+export CABAL_CONFIG="$XDG_CONFIG_HOME/cabal/config"
+export CABAL_DIR="$XDG_CACHE_HOME/cabal"
+export MAXIMA_USERDIR="$XDG_CONFIG_HOME/maxima"
+export WINEPREFIX="${XDG_DATA_HOME}/wineprefixes/default"
+alias gdb="gdb -nh -x \"$XDG_CONFIG_HOME/gdb/init\""
+alias irssi="irssi --config=\"$XDG_CONFIG_HOME\"/irssi/config --home=\"$XDG_DATA_HOME\"/irssi"
+alias ipy="ipython --ipython-dir=$XDG_CONFIG_HOME/jupyter"
+
+export GRADLE_USER_HOME="$XDG_CACHE_HOME/gradle"
+alias mvn="mvn --global-settings \"$XDG_CONFIG_HOME\"/maven/settings.xml"
+alias svn="svn --config-dir \"$XDG_CONFIG_HOME\"/subversion"
+alias yarn='yarn --use-yarnrc "$XDG_CONFIG_HOME/yarn/config"'
+alias pidgin='pidgin --config="$XDG_DATA_HOME"/purple'
 
 export BROWSER=firefox
 export DOTNET_CLI_TELEMETRY_OPTOUT=1
@@ -35,8 +49,8 @@ export PROMPT_COMMAND='history -a' # don't wait to append to history until sessi
 export PYTHON2DOCDIR=/usr/share/doc/python2/html/
 export PYTHON3DOCDIR=/usr/share/doc/python/html/
 export PYTHONSTARTUP="$HOME/.config/python/pythonrc"
-export RUSTFLAGS="-C target-cpu=native"
-export SHELLCHECK_OPTS="-e SC1090,SC2034,SC2164"
+export RUST_BACKTRACE=full
+export SHELLCHECK_OPTS="-e SC1090,SC2034,SC2139,SC2164"
 export SKIM_DEFAULT_COMMAND='git ls-tree -r --name-only HEAD || rg --files'
 export SSH_ASKPASS=/usr/bin/ksshaskpass
 export SSH_AUTH_SOCK=/tmp/ssh-agent.sock

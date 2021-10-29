@@ -1,0 +1,42 @@
+#!/usr/bin/env python
+import glob
+import sys
+from argparse import ArgumentParser
+from pathlib import Path
+
+
+def args():
+    parser = ArgumentParser()
+    parser.add_argument("-p", "--postfix", help="Assume suffix in second dir")
+    parser.add_argument("-i", "--ignore", help="Ignore file", default=".dirdiffignore")
+    parser.add_argument("src_dir")
+    return parser.parse_args()
+
+
+def main():
+    cmd = args()
+    src_files = glob.glob(cmd.src_dir + "/**", recursive=True)
+    src_files = {file.removeprefix(cmd.src_dir) for file in src_files}
+    dst_files = set(glob.glob("**", recursive=True))
+
+    ignore_file = Path(cmd.ignore)
+    if ignore_file.is_file():
+        dst_files.update(ignore_file.read_text().split("\n"))
+
+    if cmd.postfix:
+        dst_files = {file.removesuffix(cmd.postfix) for file in dst_files}
+
+    difference = src_files - dst_files
+    try:
+        difference.remove("")
+    except KeyError:
+        pass
+
+    if difference:
+        for file in difference:
+            print(file)
+        sys.exit(1)
+
+
+if __name__ == "__main__":
+    main()

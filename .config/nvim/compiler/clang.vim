@@ -8,6 +8,8 @@
 " The %D and %X patterns are not clang per se. They capture the
 " directory change messages from (GNU) 'make -w'. I needed this
 " for building a project which used recursive Makefiles.
+if exists('current_compiler') | finish | endif
+let current_compiler = 'clang'
 
 CompilerSet errorformat=
 	\%f:%l%c:{%*[^}]}{%*[^}]}:\ %trror:\ %m,

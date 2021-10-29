@@ -12,6 +12,27 @@ unbindurl localhost/rss k
 unbindurl localhost/rss f
 unbindurl localhost/rss i
 
+# miniflux
+unbindurl openwrt:8008 n
+unbindurl openwrt:8008 p
+unbindurl openwrt:8008 h
+unbindurl openwrt:8008 l
+unbindurl openwrt:8008 ?
+unbindurl openwrt:8008 o
+unbindurl openwrt:8008 v
+unbindurl openwrt:8008 i
+unbindurl openwrt:8008 m
+
+unbindurl localhost:8008 n
+unbindurl localhost:8008 p
+unbindurl localhost:8008 h
+unbindurl localhost:8008 l
+unbindurl localhost:8008 ?
+unbindurl localhost:8008 o
+unbindurl localhost:8008 v
+unbindurl localhost:8008 i
+unbindurl localhost:8008 m
+
 bind j scrollline 1
 bind k scrollline -1
 

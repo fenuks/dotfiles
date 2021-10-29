@@ -18,18 +18,18 @@ email = fenuks
     detachedHead = false
 [alias]
     au = add --update
+    aur = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && PKGVER=$(grep -oP 'pkgver ?= ?\\K.+' .SRCINFO)-$(grep -oP 'pkgrel ?= ?\\K.+' .SRCINFO); git commit -m \"Update to ${PKGVER}\" $@; }; f"
     br = branch
     brd = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git branch --merged | grep -Ev \"(^\\*|master|develop)\" | xargs git branch -d; }; f"
     ca = commit --amend
     cam = commit -a --amend
     cat = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git show $(git rev-list --max-count=1 --all -- \"$@\")^:\"$@\"; }; f"
-    cid = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git checkout $(git default); }; f"
+    cod = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git checkout $(git default); }; f"
     ci = commit
     cm = commit -m
     co = checkout
-    commitp = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && PKGVER=$(grep -oP 'pkgver ?= ?\\K.+' .SRCINFO)-$(grep -oP 'pkgrel ?= ?\\K.+' .SRCINFO); git commit -m \"Update to ${PKGVER}\" $@; }; f"
     d = diff --find-copies-harder
-    default = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git remote show origin | awk '/HEAD branch/ {print $NF}'; }; f"
+    default = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git remote show origin | awk '/HEAD/ {print $NF}'; }; f"
     df = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git diff --color \"$@\" | diff-so-fancy | less --tabs=8 -RFX; }; f"
     diffs = diff --staged
     ds = diff --find-copies-harder --staged
@@ -75,6 +75,7 @@ email = fenuks
     default = current
 [fetch]
     prune = true
+    ; pruneTags = true
 [filter "lfs"]
     smudge = git-lfs smudge -- %f
     process = git-lfs filter-process
@@ -82,8 +83,10 @@ email = fenuks
     clean = git-lfs clean -- %f
 [diff]
     submodule = log
-    colorMoved = default
+    colorMoved = true
+    colorMovedWs = allow-indentation-change
     mnemonicprefix = true
+    algorithm = histogram
 [diff "zip"]
     textconv = unzip -c -a
 [diff "tgz"]
@@ -94,7 +97,13 @@ email = fenuks
     textconv = gunzip -c
 [diff "graphtage"]
     cmd = graphtage -e
-
+[log]
+    date = local
+[tag]
+    sort = version:refname
+[versionsort]
+    suffix = "_BETA"
+    suffix = "_RC"
 [url "https://invent.kde.org/"]
     insteadOf = kde:
 [url "ssh://git@invent.kde.org/"]

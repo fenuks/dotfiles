@@ -37,27 +37,27 @@ bind -m vi-insert -r '\C-z'
 bind -x '"\C-z": " maybe_fg"'
 
 complete -o default -o nospace -F _docker_compose dc
-if [[ -r "$HOME/.config/fzf/completions/git.sh" ]]; then
-    source "$HOME/.config/fzf/completions/git.sh"
-    complete -o default -o nospace -F _fzf_complete_git cgit
-    complete -o default -o nospace -F _fzf_complete_git g
+if [[ -r "$HOME/.config/shells/bash/completions/git.bash" ]]; then
+  source "$HOME/.config/shells/bash/completions/git.bash"
+  complete -o default -o nospace -F _fzf_complete_git cgit
+  complete -o default -o nospace -F _fzf_complete_git g
 else
-    complete -o default -o nospace -F __git_wrap__git_main cgit
-    complete -o default -o nospace -F __git_wrap__git_main g
+  complete -o default -o nospace -F __git_wrap__git_main cgit
+  complete -o default -o nospace -F __git_wrap__git_main g
 fi
-source_if_exists "$HOME/.config/fzf/completions/hg.sh"
-source_if_exists "$HOME/.config/fzf/completions/docker.sh"
+source_if_exists "$HOME/.config/shells/bash/completions/hg.bash"
+source_if_exists "$HOME/.config/shells/bash/completions/docker.bash"
 
 PS0="\e[2 q" # reset cursor to normal before program runs
 
 export PROMPT_COMMAND=rewrite_history
-if command -v zoxide > /dev/null; then
-    eval "$(zoxide init bash)"
+if command -v zoxide >/dev/null; then
+  eval "$(zoxide init bash)"
 fi
 
 # starship should go last, otherwise exit status or duration modules might break
-if command -v starship > /dev/null; then
-    eval "$(starship init bash)"
+if command -v starship >/dev/null; then
+  eval "$(starship init bash)"
 fi
 
-prune-history
+prune_history

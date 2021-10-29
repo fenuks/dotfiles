@@ -31,3 +31,5 @@ Muzyka/
 .mozilla/
 .mypy_cache/
 .venv/
+node_modules/
+build/
