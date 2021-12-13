@@ -7,13 +7,43 @@ amdvlkrun() {
   VK_ICD_FILENAMES=/usr/share/vulkan/icd.d/amd_icd32.json:/usr/share/vulkan/icd.d/amd_icd64.json "$@"
 }
 
-cmake_pine() {
+cmake_pine_gcc() {
   export QEMU_LD_PREFIX=~/Projekty/wbudowane/pinephone/pinephone-rootfs
-  export CMAKE_TOOLCHAIN_FILE=~/Projekty/wbudowane/pinephone/crosstoolchain.cmake
+  export CMAKE_TOOLCHAIN_FILE=~/Projekty/wbudowane/pinephone/gcc_cross.cmake
+}
+
+cmake_pine_clang() {
+  export QEMU_LD_PREFIX=~/Projekty/wbudowane/pinephone/pinephone-rootfs
+  export CMAKE_TOOLCHAIN_FILE=~/Projekty/wbudowane/pinephone/clang_cross.cmake
+}
+
+empty_cache() {
+  rm -rf "$HOME/.cache/"*
+  for dir in "$HOME/Projekty/aur/utrzymywane/"*; do
+    if [[ -d "${dir}" ]]; then
+      (
+        cd "${dir}"
+        git clean -xdf
+      )
+    fi
+  done
+  sudo rm -rf "$HOME/.local/share/go/pkg/"*
+}
+
+rmi() {
+  IFS=$'\n'
+  files=$(ls -p | grep -v / | fzf -m --ansi --preview='bat --color=always {}')
+  if [[ $? -eq 0 ]]; then
+    rm ${files}
+  fi
 }
 
 take() { mkdir -p "$@" && cd "$1"; }
 
+w() {
+  # export WINEPREFIX="${XDG_DATA_HOME}/wineprefixes/$1"
+  WINEPREFIX="${XDG_DATA_HOME}/wineprefixes/$1" wine "$2"
+}
 wprefix() {
   export WINEPREFIX="${XDG_DATA_HOME}/wineprefixes/$1"
 }
@@ -137,8 +167,10 @@ escape_path() {
     fi
   elif [[ "${path}" == *\"* ]]; then
     echo "'${path}'"
-  elif [[ "${path}" == *\ * ]]; then
-    echo "'${path}'"
+  elif [[ "${path}" == *\* ]]; then
+    echo "${path}"
+  elif [[ "${path}" =~ ' ' ]]; then
+    echo "${path// /\\ }"
   else
     echo "${path}"
   fi
@@ -146,6 +178,10 @@ escape_path() {
 }
 
 absolute_cmd() {
+  if [[ "$*" =~ "*" ]]; then
+    echo "$*"
+    return
+  fi
   arr=("$1")
   newcmd=''
   path=""
@@ -158,6 +194,8 @@ absolute_cmd() {
         if [[ -f "${path:1:-1}" || -d "${path:1:-1}" ]]; then
           path="$(realpath "${path:1:-1}")"
           path="$(escape_path "${path}")"
+        else
+          path="$(escape_path "${path:1:-1}")"
         fi
 
         newcmd="${newcmd} ${path}"
@@ -174,16 +212,18 @@ absolute_cmd() {
 
       newcmd="${newcmd} ${path}"
       path=''
-    elif [[ "${last_letter}" != '''\' && "${path}" != '' ]]; then
+    elif [[ "${last_letter}" != '\' && "${path}" != '' ]]; then
       path="${path} ${word}"
       if [[ -f "${path}" || -d "${path}" ]]; then
         path="$(realpath "${path}")"
+        path="$(escape_path "${path}")"
+      else
         path="$(escape_path "${path}")"
       fi
 
       newcmd="${newcmd} ${path}"
       path=''
-    elif [[ "${last_letter}" == '''\' ]]; then
+    elif [[ "${last_letter}" == '\' ]]; then
       if [[ "${path}" == '' ]]; then
         path="${word:0:-1}"
       else

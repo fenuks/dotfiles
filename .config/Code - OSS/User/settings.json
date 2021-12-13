@@ -121,7 +121,8 @@
   "terminal.integrated.commandsToSkipShell": ["language-julia.interrupt"],
   "editor.minimap.enabled": false,
   "julia.symbolCacheDownload": true,
-  "julia.enableTelemetry": false
+  "julia.enableTelemetry": false,
+  "diffEditor.renderSideBySide": false
   // "editor.formatOnType": true,
   // "editor.formatOnPaste": true,
   // "editor.autoIndent": true

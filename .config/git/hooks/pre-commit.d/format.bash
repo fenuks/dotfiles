@@ -43,7 +43,7 @@ function format_clang() {
 }
 
 function format_lua() {
-  stylua ${1}
+  stylua --config-path ~/.config/stylua/stylua.toml ${1}
 }
 
 function format_prettier() {
@@ -56,6 +56,10 @@ function format_python() {
 
 function format_rust() {
   rustfmt ${1}
+}
+
+function format_zig() {
+  zig fmt ${1}
 }
 
 function format_java() {
@@ -90,3 +94,4 @@ format "${changed_files}" 'stylua' '\.lua$' 'format_lua'
 format "${changed_files}" 'prettier' '^.+\.(md|json|js|jsx|ts|css|ya?ml|html)$' 'format_prettier'
 format "${changed_files}" 'black' '\.py$' 'format_python'
 format "${changed_files}" 'rustfmt' '\.rs$' 'format_rust'
+format "${changed_files}" 'zig fmt' '\.zig$' 'format_zig'

@@ -53,4 +53,4 @@ __fzf_docker_images() {
   $1 images | sed '1d' | grep -v '<none>'
 }
 
-[ -n "$BASH" ] && complete -F _fzf_complete_docker -o default -o bashdefault -o nospace docker
+[ -n "$BASH" ] && complete -F _fzf_complete_docker -o default -o nospace docker

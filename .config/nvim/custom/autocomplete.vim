@@ -66,3 +66,10 @@ function! ConfigureLsc() abort
     setlocal keywordprg=:LSClientShowHover
     setlocal shortmess-=F
 endfunction
+
+function! ConfigureDeoplete() abort
+    if has('nvim')
+        lua require('cmp').setup.buffer { enabled = false }
+    endif
+    call deoplete#custom#buffer_option('auto_complete', v:true)
+endfunction

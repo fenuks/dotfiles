@@ -5,8 +5,10 @@ alias ag='ag --smart-case'
 alias c='__fzf_cd__'
 alias cdp="cd ${XDG_DOWNLOAD_DIR:-Downloads}"
 alias cdd="cd ${XDG_DOCUMENTS_DIR:-Documents}"
-alias cdw="cd ${XDG_VIDEOS_DIR:-Videos}"
+alias cdn="cd ${XDG_DOCUMENTS_DIR:-Documents}/notatki"
+alias cdf="cd ${XDG_VIDEOS_DIR:-Videos}"
 alias cdk="cd ${HOME}/Projekty"
+alias cdg="cd ${HOME}/Gry"
 alias chromium-dev='chromium --disable-web-security --user-data-dir --remote-debugging-port=9222'
 alias clear="clear && printf \"\\e[3J\""
 alias dc='docker-compose'
@@ -26,6 +28,13 @@ alias ll='ls -l --human-readable'
 alias ll.='ls -l --all --human-readable'
 alias lls='ls -l --all --sort=size --human-readable'
 alias llt='ls -l --all --sort=tim --human-readablee'
+if command -v exa > /dev/null; then
+    alias l='exa'
+elif command -v lsd > /dev/null; then
+    alias l='lsd'
+else
+    alias l='ls --color --classify --human-readable'
+fi
 alias maven='mvn'
 alias mksrcinfo='makepkg --printsrcinfo >| .SRCINFO'
 alias off='shutdown -h now'

@@ -9,6 +9,8 @@ nnoremap <unique> <buffer> <silent> <C-w><C-]> <Plug>(rust-def-split)
 nnoremap <unique> <buffer> <silent> <C-w>} <Plug>(rust-def-vertical)
 nnoremap <unique> <buffer> <silent> K <Plug>(rust-doc)
 
+compiler cargo
+
 if !has('nvim-0.5')
 call ConfigureLsc()
 endif

@@ -1,6 +1,7 @@
 # aliases compatible with POSIX shell syntax
 
 alias vg='vim $(gf)'
+alias vgs='vim $(gs)'
 alias vd='vim $(find_up docker-compose.yml)'
 alias vD='vim $(find_up Dockerfile)'
 alias vm='vim $(find_up Makefile)'

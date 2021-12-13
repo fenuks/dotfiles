@@ -72,4 +72,4 @@ _fzf_complete_hg() {
   _hg "$@"
 }
 
-[ -n "$BASH" ] && complete -F _fzf_complete_hg -o default -o bashdefault -o nospace hg
+[ -n "$BASH" ] && complete -F _fzf_complete_hg -o default -o nospace hg

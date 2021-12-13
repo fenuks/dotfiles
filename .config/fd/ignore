@@ -16,6 +16,8 @@ Gry/
 .android/
 Audycje/
 .cache/
+*-cache/
+zig-out/
 .config/
 .local/share/
 .vscode-oss/
@@ -31,5 +33,7 @@ Muzyka/
 .mozilla/
 .mypy_cache/
 .venv/
+.vscode/
 node_modules/
 build/
+Cargo.lock

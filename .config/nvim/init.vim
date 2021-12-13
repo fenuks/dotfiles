@@ -272,10 +272,8 @@ inoremap <unique> <silent> <C-z> <C-o>:suspend<CR>
 nnoremap <unique> <silent> <C-s> :w<Enter>
 inoremap <unique> <silent> <C-s> <ESC>:w<Enter>a
 inoremap <unique> <silent> <C-l> <DEL>
-" delete word with <C-BS>
-inoremap <unique> <silent>  <C-w>
 
-if !maparg('Y', 'n')
+if !has('nvim-0.6')
     nnoremap <unique> <silent> Y y$
 endif
 vnoremap <unique> <silent> <LocalLeader>y "+y
@@ -331,6 +329,8 @@ vnoremap <unique> <silent> <M-j> gj
 vnoremap <unique> <silent> <M-k> gk
 nnoremap <unique> <silent> <M-j> gj
 nnoremap <unique> <silent> <M-k> gk
+" open fold and descent into it
+nnoremap <unique> <silent> gj zogj
 " select last inserted/pasted text
 " nnoremap <unique> <silent> sp `[v`]
 nnoremap <unique> <silent> gl :e <cfile><CR>
@@ -490,6 +490,7 @@ inoremap <silent> <unique> <M-r> <C-O>:call VimFootnotes('roman')<CR>
 inoremap <silent> <unique> <M-a> <C-O>:call VimFootnotes('alpha')<CR>
 inoremap <silent> <unique> <M-f> <C-O>:call VimFootnotes('arabic')<CR>
 
+" make I and A work with visual and visual line modes
 vnoremap <unique> <silent> gA :<C-u>call VisualBlockOperation('A')<CR>
 vnoremap <unique> <silent> gI :<C-u>call VisualBlockOperation('I')<CR>
 vnoremap <unique> <silent> iu :<C-U>call URLTextObj()<CR>
@@ -510,15 +511,15 @@ packadd termdebug
 packadd justify
 
 "##### TUI
-Plug 'bling/vim-airline'
+Plug 'https://github.com/bling/vim-airline'
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 
 "##### Windows
-Plug 'simeji/winresizer', { 'on': 'WinResizerStartResize' }
+Plug 'https://github.com/simeji/winresizer', { 'on': 'WinResizerStartResize' }
 let g:winresizer_start_key = ''
-Plug 'wellle/visual-split.vim', { 'on': ['VSResize', 'VSSplit', 'VSSplitAbove', 'VSSplitBelow', '<Plug>(Visual-Split-VSResize)', '<Plug>(Visual-Split-VSSplit)', '<Plug>(Visual-Split-VSSplitAbove)', '<Plug>(Visual-Split-VSSplitBelow)'] }
-Plug 't9md/vim-choosewin', { 'on': '<Plug>(choosewin)' }
+Plug 'https://github.com/wellle/visual-split.vim', { 'on': ['VSResize', 'VSSplit', 'VSSplitAbove', 'VSSplitBelow', '<Plug>(Visual-Split-VSResize)', '<Plug>(Visual-Split-VSSplit)', '<Plug>(Visual-Split-VSSplitAbove)', '<Plug>(Visual-Split-VSSplitBelow)'] }
+Plug 'https://github.com/t9md/vim-choosewin', { 'on': '<Plug>(choosewin)' }
 nnoremap <unique> <silent> <Leader>wr :WinResizerStartResize<CR>
 xmap <unique> <silent> <Leader>ws <Plug>(Visual-Split-VSSplit)
 nmap <unique> <silent> <Leader>wl <Plug>(choosewin)
@@ -527,37 +528,68 @@ nnoremap <unique> <silent> <C-w>z :call CloseAuxiliaryWindows()<CR>
 nnoremap <unique> <silent> <C-w><C-z> :call CloseAuxiliaryWindows()<CR>
 nnoremap <unique> <silent> <Leader>wL :Windows<CR>
 nnoremap <unique> <silent> <Leader>wQ :quitall<CR>
-Plug 'troydm/zoomwintab.vim'
+Plug 'https://github.com/troydm/zoomwintab.vim', { 'on': 'ZoomWinTabToggle'}
 let g:zoomwintab_remap=0
 nnoremap <unique> <silent> <C-w>u :ZoomWinTabToggle<CR>
 nnoremap <unique> <silent> <C-w><C-u> :ZoomWinTabToggle<CR>
 nnoremap <unique> <silent> <Leader>wu :ZoomWinTabToggle<CR>
 
 "##### Refactoring; edition; text objects
-Plug 'wellle/targets.vim'
+Plug 'https://github.com/wellle/targets.vim'
 let g:targets_aiAI='ai  '
-Plug 'michaeljsmith/vim-indent-object'
-Plug 'machakann/vim-sandwich'
-Plug 'fenuks/vim-bracket-objects'
-Plug 'mg979/vim-visual-multi'
-" make I and A work with visual and visual line modes
-Plug 'tpope/vim-commentary'
+Plug 'https://github.com/michaeljsmith/vim-indent-object'
+Plug 'https://github.com/machakann/vim-sandwich'
+Plug 'https://github.com/fenuks/vim-bracket-objects'
+Plug 'https://github.com/mg979/vim-visual-multi'
+Plug 'https://github.com/tpope/vim-commentary', { 'on': 'Commentary'}
 noremap <unique> <silent> <c-_> :Commentary<CR>
-Plug 'tommcdo/vim-exchange'
-Plug 'kshenoy/vim-signature', {'on': 'SignatureToggleSigns'}
+Plug 'https://github.com/tommcdo/vim-exchange'
+Plug 'https://github.com/kshenoy/vim-signature', {'on': 'SignatureToggleSigns'}
 Plug 'https://github.com/inkarkat/vim-ReplaceWithRegister', {'on': ['<Plug>ReplaceWithRegisterOperator', '<Plug>ReplaceWithRegisterLine', '<Plug>ReplaceWithRegisterVisual']}
 nmap <unique> <silent> ro <Plug>ReplaceWithRegisterOperator
 nmap <unique> <silent> roo <Plug>ReplaceWithRegisterLine
 xmap <unique> <silent> ro <Plug>ReplaceWithRegisterVisual
-Plug 'sk1418/Join'
+Plug 'https://github.com/sk1418/Join'
+
+Plug 'https://github.com/fenuks/toggle-values.vim'
+" <a-t>
+nmap <unique> <silent> ß <Plug>(ToggleValueNormal)
+vmap <unique> <silent> ß <Plug>(ToggleValueVisual)
+nmap <unique> <silent> © <Plug>(ToggleValueOperator)
+imap <unique> <silent> ß <C-o><Plug>(ToggleValueNormal)<right>
+let g:toggle_values = {
+\    'filetypes': {
+\        '': 
+\            [
+\                {'ignore_case': v:true,'keep_case': v:true, 'values': ['True', 'False']},
+\            ],
+\    },
+\    'languages': {
+\        'en_gb': {
+\          'ignore_case': v:true,
+\          'keep_case': v:true,
+\          'definitions': [
+\            ['yes', 'no'],
+\            ['on', 'off'],
+\          ]
+\        },
+\        'pl': {
+\          'ignore_case': v:true,
+\          'keep_case': v:true,
+\          'definitions': [
+\            ['tak', 'nie'],
+\          ]
+\        }
+\    }
+\}
 
 "#### Version Control
-Plug 'sjl/gundo.vim', { 'on': 'GundoToggle' }
-Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
+Plug 'https://github.com/sjl/gundo.vim', { 'on': 'GundoToggle' }
+Plug 'https://github.com/mbbill/undotree', { 'on': 'UndotreeToggle' }
 nnoremap <unique> <silent> <Leader>vL :UndotreeToggle<CR>
-Plug 'mhinz/vim-signify', { 'on': 'SignifyToggle' } " shows which lines were added and such
+Plug 'https://github.com/mhinz/vim-signify', { 'on': 'SignifyToggle' } " shows which lines were added and such
 let g:signify_vcs_list=['git', 'hg']
-Plug 'airblade/vim-gitgutter'
+Plug 'https://github.com/airblade/vim-gitgutter'
 nmap <unique> <silent> ]c <Plug>(GitGutterNextHunk)
 nmap <unique> <silent> [c <Plug>(GitGutterPrevHunk)
 let g:gitgutter_map_keys = 0
@@ -567,7 +599,7 @@ nmap <unique> <silent> <Leader>vla <Plug>(GitGutterStageHunk)
 nmap <unique> <silent> <Leader>vlu <Plug>(GitGutterUndoHunk)
 nmap <unique> <silent> <Leader>vld <Plug>(GitGutterPreviewHunk)
 "GIT
-Plug 'tpope/vim-fugitive'
+Plug 'https://github.com/tpope/vim-fugitive'
 nnoremap <unique> <silent> <Leader>va :Gwrite<CR>
 nnoremap <unique> <silent> <Leader>vb :Git blame<CR>
 nnoremap <unique> <silent> <Leader>vc :Gcommit<CR>
@@ -581,42 +613,28 @@ nnoremap <unique> <silent> <Leader>vr :Gread<CR>
 nnoremap <unique> <silent> <Leader>vR :Gremove<CR>
 nnoremap <unique> <silent> <Leader>vq :Git difftool<CR>
 nnoremap <unique> <silent> <Leader>vs :Git<CR>
-Plug 'rbong/vim-flog', {'on': 'Flog'}
+Plug 'https://github.com/rbong/vim-flog', {'on': 'Flog'}
 nnoremap <unique> <silent> <Leader>vg :Flog<CR>
-Plug 'junegunn/gv.vim', {'on': 'GV'}
+Plug 'https://github.com/junegunn/gv.vim', {'on': 'GV'}
 nnoremap <unique> <silent> <Leader>vG :GV<CR>
-Plug 'jreybert/vimagit', { 'on': 'Magit' }
+Plug 'https://github.com/jreybert/vimagit', { 'on': 'Magit' }
 nnoremap <unique> <silent> <Leader>vM :Magit<CR>
-Plug 'rhysd/git-messenger.vim', { 'on': 'GitMessenger' }
+Plug 'https://github.com/rhysd/git-messenger.vim', { 'on': 'GitMessenger' }
 "HG
-" Plug 'ludovicchabant/vim-lawrencium' " disabled, it takes 5ms to load
-" Plug 'jlfwong/vim-mercenary'
-Plug 'will133/vim-dirdiff', { 'on': 'DirDiff' }
+" Plug 'https://github.com/ludovicchabant/vim-lawrencium' " disabled, it takes 5ms to load
+" Plug 'https://github.com/jlfwong/vim-mercenary'
+Plug 'https://github.com/will133/vim-dirdiff', { 'on': 'DirDiff' }
 nnoremap <unique> <silent> <Leader>dg :diffget<CR>
 nnoremap <unique> <silent> <Leader>dp :diffput<CR>
 nnoremap <unique> <silent> <Leader>df :call DiffOrig()<CR>
 nnoremap <unique> <silent> <Leader>dw :windo call CommandOnBuffer('diffthis')<CR>
 nnoremap <unique> <silent> <Leader>dW :windo call CommandOnBuffer('diffoff')<CR>
 
-"#### Filesystem
-Plug 'junegunn/fzf'
-Plug 'junegunn/fzf.vim'
-
-command! -nargs=* Agp
-  \ call fzf#vim#ag(<q-args>, '2> /dev/null',
-  \                 fzf#vim#with_preview({'left':'90%'},'up:60%'))
-Plug 'wsdjeg/vim-fetch'
-nnoremap <unique> <silent> xx :Files<CR>
-nnoremap <unique> <silent> <Leader>fl :Files<CR>
-nnoremap <unique> <silent> <Leader>fd :Files <C-r>=expand("%:h")<CR>/<CR>
-nnoremap <unique> <silent> g? :Tags<CR>
-nnoremap <unique> <silent> <Leader>gt :Tags<CR>
-nnoremap <unique> <silent> <Leader>gh :History<CR>
-nnoremap <unique> <silent> <Leader>gT :BTags<CR>
+Plug 'https://github.com/wsdjeg/vim-fetch'
 snoremap <unique> <silent> <C-k> <ESC>ddi
-inoremap <unique> <silent> <C-k> <C-o>D
+inoremap <unique> <silent> <C-S-u> <C-o>D
 
-Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
+Plug 'https://github.com/scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
 nnoremap <unique> <silent> <Leader>ft :NERDTreeToggle<CR>
 nnoremap <unique> <silent> <Leader>fT :NERDTreeFind<CR>
 nnoremap <unique> <silent> <Leader>fs :call ReadSkeletonFile()<CR>
@@ -624,7 +642,7 @@ let g:NERDTreeIgnore=['\.pyc$', '\~$', '__pycache__']
 let g:NERDTreeMinimalUI=1
 let g:NERDTreeBookmarksFile=g:vim_share_dir . '/NERDTreeBookmarks'
 
-Plug 'mhinz/vim-grepper', { 'on': ['Grepper', '<Plug>(GrepperOperator)'] }
+Plug 'https://github.com/mhinz/vim-grepper', { 'on': ['Grepper', '<Plug>(GrepperOperator)'] }
 let g:grepper = {}
 let g:grepper.highlight = 1
 let g:grepper.prompt_quote = 3
@@ -639,7 +657,7 @@ nnoremap <unique> <silent> s% :Grepper -open -switch -cword -noprompt -tool rg -
 nnoremap <unique> <silent> sf :Grepper -tool rg -grepprg rg -H --no-heading --vimgrep -l<CR>
 nnoremap <unique> <silent> sk :Grepper -tool rg -dir file<CR>
 nnoremap <unique> <silent> sK :Grepper -tool rg -dir file -side<CR>
-vmap <unique> <silent> s <Plug>(GrepperOperator)
+vmap <unique> <silent> s* <Plug>(GrepperOperator)
 nmap <unique> <silent> so <Plug>(GrepperOperator)
 nnoremap <unique> <silent> sb :Grepper -tool rg -buffers<CR>
 nnoremap <unique> <silent> sB :Grepper -tool rg -buffers -side<CR>
@@ -656,30 +674,26 @@ nnoremap <unique> <silent> sB :Grepper -tool rg -buffers -side<CR>
 " source /usr/share/vim/vimfiles/plugin/gtags-cscope.vim
 nnoremap <unique> <silent> <Leader>ol :mode\|nohlsearch<CR>
 let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
-Plug 'nelstrom/vim-visual-star-search'
-Plug 'ludovicchabant/vim-gutentags'
+Plug 'https://github.com/nelstrom/vim-visual-star-search'
+Plug 'https://github.com/ludovicchabant/vim-gutentags'
 let g:gutentags_ctags_exclude = ['.mypy_cache']
 let g:gutentags_ctags_executable_haskell = 'hasktags'
-Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
+Plug 'https://github.com/majutsushi/tagbar', { 'on': 'TagbarToggle' }
 let g:airline#extensions#tabline#enabled = 1
-" Plug 'devjoe/vim-codequery' " rich support for searching symbols support
+" Plug 'https://github.com/devjoe/vim-codequery' " rich support for searching symbols support
 
-" Plug 'rhysd/clever-f.vim'
+" Plug 'https://github.com/rhysd/clever-f.vim'
 " let g:clever_f_not_overwrites_standard_mappings=v:true
 " " let g:clever_f_mark_char_color='ErrorMsg'
 " map f <Plug>(clever-f-reset)<Plug>(clever-f-f)
 " map ; <Plug>(clever-f-repeat-forward)
 
-Plug 'justinmk/vim-sneak'
-map <unique> <silent> s; <Plug>Sneak_s
-map <unique> <silent> s, <Plug>Sneak_S
-
-Plug 'fenuks/vim-uncommented'
+Plug 'https://github.com/fenuks/vim-uncommented', { 'on': ['<Plug>(NextCommented)', '<Plug>(NextUncommented)'] }
 nmap <unique> <silent> ]/ <Plug>(NextCommented)
 nmap <unique> <silent> [/ <Plug>(PrevCommented)
 nmap <unique> <silent> ]\ <Plug>(NextUncommented)
 nmap <unique> <silent> [\ <Plug>(PrevUncommented)
-Plug 'andymass/vim-matchup'
+Plug 'https://github.com/andymass/vim-matchup'
 Plug 'https://github.com/chaoren/vim-wordmotion'
 let g:wordmotion_mappings = {
 \ 'w' : '-',
@@ -693,25 +707,29 @@ let g:wordmotion_mappings = {
 
 imap <unique> <silent> <C-q> <C-\><C-o>d_
 cmap <unique> <C-q> <C-f>d_<C-c><C-c>:<UP>
-Plug 'arthurxavierx/vim-caser'
+Plug 'https://github.com/arthurxavierx/vim-caser'
+Plug 'https://github.com/justinmk/vim-sneak', { 'on': ['<Plug>Sneak_s', '<Plug>Sneak_S'] }
+map <unique> <silent> s; <Plug>Sneak_s
+map <unique> <silent> s, <Plug>Sneak_S
+
 
 "##### Formatting
-Plug 'sbdchd/neoformat', { 'on': 'Neoformat' }
+Plug 'https://github.com/sbdchd/neoformat', { 'on': 'Neoformat' }
 let g:neoformat_enabled_python = ['black', 'isort']
 let g:neoformat_enabled_json = ['prettier', 'js-beautify', 'jq']
 let g:neoformat_enabled_yaml = ['prettier']
 let g:neoformat_enabled_haskell = ['stylish-haskell', 'floskell', 'ormolu']
 nnoremap <unique> <silent> <Leader>q :Neoformat<CR>
 
-Plug 'junegunn/vim-easy-align', { 'on': '<Plug>(EasyAlign)' }
+Plug 'https://github.com/junegunn/vim-easy-align', { 'on': '<Plug>(EasyAlign)' }
 xmap <unique> <silent> <Leader>ga <Plug>(EasyAlign)
 nmap <unique> <silent> <Leader>ga <Plug>(EasyAlign)
-"Plug 'godlygeek/tabular'
-"Plug 'tommcdo/vim-lion'
+"Plug 'https://github.com/godlygeek/tabular'
+"Plug 'https://github.com/tommcdo/vim-lion'
 "let g:lion_squeeze_spaces = 1
 
 "##### Syntax analysis
-Plug 'dense-analysis/ale'
+Plug 'https://github.com/dense-analysis/ale'
 let g:ale_linters = {
 \   'haskell': ['cabal_ghc', 'stack-build', 'stack-ghc', 'hlint'],
 \   'python': ['mypy', 'pylint', 'flake8'],
@@ -756,7 +774,7 @@ nnoremap <unique> <silent> <Leader>cO :lclose<CR>
 " let g:ale_open_list = 1 " conflicts with ultisnips jumping
 
 "##### Tasks
-Plug 'neomake/neomake', { 'on': ['Neomake', 'NeomakeProject'] }
+Plug 'https://github.com/neomake/neomake', { 'on': ['Neomake', 'NeomakeProject'] }
 let g:neomake_open_list = 2
 let g:airline#extensions#neomake#enabled = 0
 nnoremap <unique> <silent>  <Leader>mb :make \| redraw \| cwindow<CR>
@@ -768,7 +786,7 @@ if filereadable('build/Makefile')
     compiler! cmake
 endif
 
-Plug 'vim-test/vim-test', { 'on': ['TestNearest', 'TestFile', 'TestSuite', 'TestLast', 'TestVisit'] }
+Plug 'https://github.com/vim-test/vim-test', { 'on': ['TestNearest', 'TestFile', 'TestSuite', 'TestLast', 'TestVisit'] }
 let g:test#strategy = 'neovim'
 let g:test#runner_commands = ['PyTest']
 nnoremap <unique> <silent> <leader>xn :TestNearest<CR>
@@ -777,64 +795,80 @@ nnoremap <unique> <silent> <leader>xa :TestSuite<CR>
 nnoremap <unique> <silent> <leader>xl :TestLast<CR>
 nnoremap <unique> <silent> <leader>xg :TestVisit<CR>
 
-Plug 'puremourning/vimspector'
+" Plug 'https://github.com/puremourning/vimspector'
 let g:vimspector_enable_mappings = 'HUMAN'
 
 " ##### Code autocompletion
-Plug 'natebosch/vim-lsc', { 'on': 'LSClientEnable' }
+Plug 'https://github.com/natebosch/vim-lsc', { 'on': 'LSClientEnable' }
 
-Plug 'Shougo/echodoc.vim'
+Plug 'https://github.com/Shougo/echodoc.vim'
 let g:echodoc#enable_at_startup = 1
 if has('nvim')
     let g:my_use_nvim_autopairs = v:true
-    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+    Plug 'https://github.com/Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 
     let g:echodoc#type = 'virtual'
-    Plug 'ncm2/float-preview.nvim'
+    Plug 'https://github.com/ncm2/float-preview.nvim'
     let g:float_preview#docked = 0
     let g:float_preview#max_height=100
     " LSP
-    Plug 'neovim/nvim-lspconfig'
-    Plug 'ray-x/lsp_signature.nvim'
-    Plug 'simrat39/rust-tools.nvim'
-    Plug 'kosayoda/nvim-lightbulb'
+    Plug 'https://github.com/neovim/nvim-lspconfig'
+    Plug 'https://github.com/ray-x/lsp_signature.nvim'
+    Plug 'https://github.com/simrat39/rust-tools.nvim'
+    Plug 'https://github.com/kosayoda/nvim-lightbulb'
     " autocomplete
-    Plug 'hrsh7th/nvim-cmp'
-    Plug 'hrsh7th/cmp-nvim-lsp'
-    Plug 'hrsh7th/cmp-buffer'
-    Plug 'hrsh7th/cmp-path'
-    Plug 'hrsh7th/cmp-nvim-lua'
-    Plug 'f3fora/cmp-spell'
+    Plug 'https://github.com/hrsh7th/nvim-cmp'
+    Plug 'https://github.com/hrsh7th/cmp-nvim-lsp'
+    Plug 'https://github.com/hrsh7th/cmp-buffer'
+    Plug 'https://github.com/hrsh7th/cmp-path'
+    Plug 'https://github.com/hrsh7th/cmp-nvim-lua'
+    Plug 'https://github.com/f3fora/cmp-spell'
+    Plug 'https://github.com/quangnguyen30192/cmp-nvim-ultisnips'
     " treesitter
-    Plug 'nvim-lua/plenary.nvim'
-    Plug 'nvim-treesitter/nvim-treesitter'
-    Plug 'nvim-treesitter/nvim-treesitter-refactor'
-    Plug 'nvim-treesitter/nvim-treesitter-textobjects'
-    Plug 'romgrk/nvim-treesitter-context'
-    Plug 'windwp/nvim-ts-autotag'
-    Plug 'abecodes/tabout.nvim'
+    Plug 'https://github.com/nvim-lua/plenary.nvim'
+    Plug 'https://github.com/nvim-treesitter/nvim-treesitter'
+    Plug 'https://github.com/nvim-treesitter/nvim-treesitter-refactor'
+    Plug 'https://github.com/nvim-treesitter/nvim-treesitter-textobjects'
+    Plug 'https://github.com/romgrk/nvim-treesitter-context'
+    Plug 'https://github.com/windwp/nvim-ts-autotag'
+    Plug 'https://github.com/abecodes/tabout.nvim'
 
     Plug 'https://github.com/windwp/nvim-autopairs'
-    Plug 'simrat39/symbols-outline.nvim'
-    Plug 'nvim-telescope/telescope.nvim'
+    Plug 'https://github.com/simrat39/symbols-outline.nvim'
 
-    Plug 'phaazon/hop.nvim'
+    Plug 'https://github.com/nvim-telescope/telescope.nvim'
+    Plug 'https://github.com/nvim-telescope/telescope-fzy-native.nvim'
+    nnoremap <unique> <silent> z= :Telescope spell_suggest<CR>
+    nnoremap <unique> <silent> xx :Telescope find_files<CR>
+    nnoremap <unique> <silent> <Leader>fl :Telescope find_files<CR>
+    nnoremap <unique> <silent> <Leader>fd :lua require('telescope.builtin').find_files({cwd=require('telescope.utils').buffer_dir()})<CR>
+    nnoremap <unique> <silent> g? :Telescope current_buffer_tags<CR>
+    nnoremap <unique> <silent> <Leader>gt :Telescope tags<CR>
+    nnoremap <unique> <silent> <Leader>gh :Telescope oldfiles<CR>
+    Plug '~/Projekty/vim/word-toggle.nvim'
+
+    Plug 'https://github.com/phaazon/hop.nvim'
     nnoremap <unique> <silent> <Leader><Leader>b :HopWordBC<CR>
     nnoremap <unique> <silent> <Leader><Leader>w :HopWordAC<CR>
     nnoremap <unique> <silent> <Leader><Leader>j :HopLineAC<CR>
     nnoremap <unique> <silent> <Leader><Leader>k :HopLineBC<CR>
+
+    Plug 'https://github.com/kristijanhusak/orgmode.nvim'
+    " FIXME
+    Plug 'https://github.com/junegunn/fzf'
+    Plug 'https://github.com/junegunn/fzf.vim'
 else
-    Plug 'Shougo/deoplete.nvim'
-    Plug 'roxma/nvim-yarp'
-    Plug 'roxma/vim-hug-neovim-rpc'
+    Plug 'https://github.com/Shougo/deoplete.nvim'
+    Plug 'https://github.com/roxma/nvim-yarp'
+    Plug 'https://github.com/roxma/vim-hug-neovim-rpc'
     let g:echodoc#type = 'floating'
-    Plug 'easymotion/vim-easymotion'
+    Plug 'https://github.com/easymotion/vim-easymotion'
     let g:EasyMotion_verbose = 0
     runtime ftplugin/man.vim
 
     let g:my_use_nvim_autopairs = v:false
     "##### Autocomplete
-    Plug 'fenuks/auto-pairs'
+    Plug 'https://github.com/fenuks/auto-pairs'
     let g:AutoPairs = {'(':')', '[':']', '{':'}', "'":"'", '"':'"', '`':'`',
     \                    '„':'”', '‚': '’', '‘':'’', '“':'”'}
     let g:AutoClosePairs_add = '<> | „” ‘’'
@@ -846,135 +880,157 @@ else
     let g:AutoPairsSkipAfter='\a'
     let g:AutoPairsSkipBefore=''
     let g:AutoPairsMoveCharacter = ''
+    Plug 'https://github.com/junegunn/fzf'
+    Plug 'https://github.com/junegunn/fzf.vim'
+
+    command! -nargs=* Agp
+    \ call fzf#vim#ag(<q-args>, '2> /dev/null',
+    \                 fzf#vim#with_preview({'left':'90%'},'up:60%'))
+    nnoremap <unique> <silent> xx :Files<CR>
+    nnoremap <unique> <silent> <Leader>fl :Files<CR>
+    nnoremap <unique> <silent> <Leader>fd :Files <C-r>=expand("%:h")<CR>/<CR>
+    nnoremap <unique> <silent> g? :Tags<CR>
+    nnoremap <unique> <silent> <Leader>gt :Tags<CR>
+    nnoremap <unique> <silent> <Leader>gh :History<CR>
+    nnoremap <unique> <silent> <Leader>gT :BTags<CR>
 endif
 
-Plug 'deoplete-plugins/deoplete-dictionary'
-Plug 'zchee/deoplete-jedi', { 'for': 'python' }
-Plug 'Shougo/neco-vim', { 'for': 'vim' }
-" Plug 'zchee/deoplete-go', { 'for': 'go' }
+Plug 'https://github.com/deoplete-plugins/deoplete-dictionary'
+Plug 'https://github.com/zchee/deoplete-jedi', { 'for': 'python' }
+Plug 'https://github.com/Shougo/neco-vim', { 'for': 'vim' }
+" Plug 'https://github.com/zchee/deoplete-go', { 'for': 'go' }
 
 execute 'source ' . g:vim_custom_scripts . 'autocomplete.vim'
 
-Plug 'SirVer/ultisnips'
-" let g:UltiSnipsExpandTrigger='<Tab>'
-" let g:UltiSnipsJumpForwardTrigger='<Tab>'
-" let g:UltiSnipsJumpBackwardTrigger='<S-Tab>'
-let g:UltiSnipsExpandTrigger='<C-l>'
-let g:UltiSnipsJumpForwardTrigger='<C-l>'
-let g:UltiSnipsJumpBackwardTrigger='<C-L>'
+" snippets
+Plug 'https://github.com/SirVer/ultisnips'
+let g:UltiSnipsExpandTrigger='æ' " <a-f>
+let g:UltiSnipsJumpForwardTrigger='æ' " <a-f>
+let g:UltiSnipsJumpBackwardTrigger='Æ' " <a-s-f>
 " let g:UltiSnipsListSnippets='<C-\>'
-Plug 'honza/vim-snippets'
-Plug 'hrsh7th/vim-vsnip'
-Plug 'hrsh7th/vim-vsnip-integ'
-" Plug 'L3MON4D3/LuaSnip'
+Plug 'https://github.com/honza/vim-snippets'
+Plug 'https://github.com/hrsh7th/vim-vsnip'
+Plug 'https://github.com/hrsh7th/vim-vsnip-integ'
+" Plug 'https://github.com/L3MON4D3/LuaSnip'
 
 "#### Language specific
 let g:polyglot_disabled = ['sensible', 'autoindent']
-" Plug 'sheerun/vim-polyglot'
+" Plug 'https://github.com/sheerun/vim-polyglot'
 
 " ##### VIML
-Plug 'junegunn/vader.vim', { 'on': 'Vader', 'for': 'vader' }
+Plug 'https://github.com/junegunn/vader.vim', { 'on': 'Vader', 'for': 'vader' }
 
 "##### HTML5
-Plug 'mattn/emmet-vim', { 'for': ['html', 'htmldjango'] }
-Plug 'alvan/vim-closetag', { 'for': ['html', 'xml'] }
+Plug 'https://github.com/mattn/emmet-vim', { 'for': ['html', 'htmldjango'] }
+Plug 'https://github.com/alvan/vim-closetag', { 'for': ['html', 'xml'] }
 
 "##### CSS
-Plug 'ap/vim-css-color'
-" Plug 'RRethy/vim-hexokinase'
+Plug 'https://github.com/ap/vim-css-color'
+" Plug 'https://github.com/RRethy/vim-hexokinase'
 
 "##### javascript
 let g:javascript_plugin_jsdoc = 1
 
 "##### Python
-Plug 'davidhalter/jedi-vim', { 'for': 'python' }
+Plug 'https://github.com/davidhalter/jedi-vim', { 'for': 'python' }
+" Plug 'https://github.com/jupyter-vim/jupyter-vim', { 'for': 'python' }
+let g:jupyter_mapkeys = 0
+" Plug 'https://github.com/dccsillag/magma-nvim', { 'do': ':UpdateRemotePlugins' }
 
 "##### JVM
 "##### Java
-" Plug 'artur-shaik/vim-javacomplete2', { 'for': 'java' }
-Plug 'mikelue/vim-maven-plugin', { 'on': ['Mvn', 'MvnNewMainFile'] }
+" Plug 'https://github.com/artur-shaik/vim-javacomplete2', { 'for': 'java' }
+Plug 'https://github.com/mikelue/vim-maven-plugin', { 'on': ['Mvn', 'MvnNewMainFile'] }
 let g:java_highlight_functions=1
 
 "####### Functional
 """##### Haskell
-" Plug 'parsonsmatt/intero-neovim', { 'for': 'haskell' }
+" Plug 'https://github.com/parsonsmatt/intero-neovim', { 'for': 'haskell' }
 
-" Plug 'vlime/vlime' { 'for': 'lisp' }
-Plug 'kovisoft/slimv', { 'for': 'lisp' }
+" Plug 'https://github.com/vlime/vlime' { 'for': 'lisp' }
+Plug 'https://github.com/kovisoft/slimv', { 'for': 'lisp' }
 let g:lisp_rainbow=1
 let g:scheme_builtin_swank=1
 
 " ##### C family
-Plug 'jackguo380/vim-lsp-cxx-highlight', { 'for': ['c', 'cpp'] }
+Plug 'https://github.com/jackguo380/vim-lsp-cxx-highlight', { 'for': ['c', 'cpp'] }
+
+Plug 'https://github.com/ziglang/zig.vim', { 'for': ['zig'] }
+let g:zig_fmt_autosave = 0
 
 "##### Natural language
-Plug 'tpope/vim-characterize'
-" Plug 'vim-scripts/LanguageTool'
-Plug 'dpelle/vim-LanguageTool', { 'for': ['rst'] }
-Plug 'rhysd/vim-grammarous', { 'on': 'GrammarousCheck' }
+Plug 'https://github.com/tpope/vim-characterize'
+" Plug 'https://github.com/vim-scripts/LanguageTool'
+Plug 'https://github.com/dpelle/vim-LanguageTool', { 'for': ['rst'] }
+Plug 'https://github.com/rhysd/vim-grammarous', { 'on': 'GrammarousCheck' }
 
 
 "##### Markdown
-" Plug 'suan/vim-instant-markdown', { 'for': 'markdown' }
-" Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
+" Plug 'https://github.com/suan/vim-instant-markdown', { 'for': 'markdown' }
+" Plug 'https://github.com/plasticboy/vim-markdown', { 'for': 'markdown' }
 let g:vim_markdown_folding_disabled = 1
 let g:vim_markdown_strikethrough = 1
-Plug 'vimwiki/vimwiki', { 'branch': 'dev'}
+Plug 'https://github.com/vimwiki/vimwiki', { 'branch': 'dev' }
 let g:vimwiki_filetypes = ['markdown']
-let g:vimwiki_list = [{'path': $XDG_DOCUMENTS_DIR . '/tekst/',
+let g:vimwiki_list = [{'path': $XDG_DOCUMENTS_DIR . '/notatki/',
                      \  'name': 'wiki', 'auto_toc': 1,
                      \ 'syntax': 'markdown', 'ext': '.md' },
-                     \ {'path': $XDG_DOCUMENTS_DIR . '/tekst/zettel',
+                     \ {'path': $XDG_DOCUMENTS_DIR . '/notatki/zettel',
                      \ 'name': 'zettel',
                      \ 'syntax': 'markdown', 'ext': '.md' }
 \]
+let g:vimwiki_global_ext=0 " don't create temporary wikis
+let g:vimwiki_autowriteall=0
 let g:vimwiki_folding='expr'
 let g:vimwiki_url_maxsave=25
 let g:vimwiki_key_mappings = { 'links': 0, 'table_mappings': 0}
 nmap <unique> <silent> sv <Plug>VimwikiIndex
-" Plug 'https://github.com/michal-h21/vim-zettel'
+Plug 'https://github.com/fenuks/vim-zettel'
 let g:zettel_format='%title'
 let g:zettel_default_mappings = 0
-let g:zettel_fzf_command = 'rg --column --line-number --smart-case --no-heading --color=always '
-
+let g:zettel_fzf_command = 'rg --column --line-number --smart-case --no-heading --color=always'
+let g:zettel_options = [{}, {'front_matter' : [['tags', ''], ['type','note']]}]
 
 " Database
 let g:sql_type_default='psql'
 
 "##### TeX
-Plug 'lervag/vimtex', { 'for': 'tex' }
-" Plug 'scrooloose/vim-slumlord' " plantuml previews
+Plug 'https://github.com/lervag/vimtex', { 'for': 'tex' }
+" Plug 'https://github.com/scrooloose/vim-slumlord' " plantuml previews
+let g:tex_flavor='latex'
+let g:vimtex_view_method='okular'
+let g:tex_conceal='abdmg'
 
 "##### Colourshemes
 " set background=dark
-Plug 'gruvbox-community/gruvbox'
-Plug 'overcache/NeoSolarized'
-Plug 'lifepillar/vim-solarized8'
-Plug 'romainl/flattened'
-Plug 'arzg/vim-corvine'
-Plug 'lifepillar/vim-gruvbox8'
-Plug 'sainnhe/gruvbox-material'
-Plug 'kjssad/quantum.vim'
-Plug 'ayu-theme/ayu-vim'
-Plug 'sonph/onehalf'
-Plug 'nlknguyen/papercolor-theme'
-Plug 'sainnhe/edge'
+Plug 'https://github.com/gruvbox-community/gruvbox'
+Plug 'https://github.com/overcache/NeoSolarized'
+Plug 'https://github.com/lifepillar/vim-solarized8'
+Plug 'https://github.com/romainl/flattened'
+Plug 'https://github.com/arzg/vim-corvine'
+Plug 'https://github.com/lifepillar/vim-gruvbox8'
+Plug 'https://github.com/sainnhe/gruvbox-material'
+Plug 'https://github.com/kjssad/quantum.vim'
+Plug 'https://github.com/ayu-theme/ayu-vim'
+Plug 'https://github.com/sonph/onehalf'
+Plug 'https://github.com/nlknguyen/papercolor-theme'
+Plug 'https://github.com/sainnhe/edge'
 let g:edge_enable_italic = 1
-Plug 'savq/melange'
-Plug 'Shatur/neovim-ayu'
-Plug 'Pocco81/Catppuccino.nvim'
-Plug 'projekt0n/github-nvim-theme'
-Plug 'sainnhe/everforest'
-Plug 'marko-cerovac/material.nvim'
-Plug 'shaunsingh/solarized.nvim'
+Plug 'https://github.com/savq/melange'
+Plug 'https://github.com/Shatur/neovim-ayu'
+Plug 'https://github.com/Pocco81/Catppuccino.nvim'
+Plug 'https://github.com/projekt0n/github-nvim-theme'
+Plug 'https://github.com/sainnhe/everforest'
+Plug 'https://github.com/marko-cerovac/material.nvim'
+Plug 'https://github.com/shaunsingh/solarized.nvim'
 if has('nvim')
-    Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
+    Plug 'https://github.com/folke/tokyonight.nvim', { 'branch': 'main' }
 endif
 
 set background=light
 if &background ==# 'light'
     let g:ayucolor='light'
-    Plug 'vim-airline/vim-airline-themes'
+    Plug 'https://github.com/vim-airline/vim-airline-themes'
 endif
 
 call plug#end()
@@ -998,7 +1054,6 @@ endif
 " gruvbox, badwolf
 " truecolour: onedark, OceanicNext
 
-let g:deoplete#enable_at_startup = 1
 call deoplete#custom#option({
     \ 'ignore_sources': {'c': ['tag'], 'cpp': ['tag'], 'xml': ['tag']}
 \ })
@@ -1042,12 +1097,6 @@ augroup vim
     call CustomSyntax()
     autocmd ColorScheme * call CustomSyntax()
 augroup END
-if has('nvim')
-    augroup nvim
-        autocmd!
-        autocmd TextYankPost * lua vim.highlight.on_yank {higroup="IncSearch", timeout=150, on_visual=true}
-    augroup END
-end
 
 augroup filetype_detect
     autocmd!
@@ -1072,6 +1121,14 @@ command! PlugInit !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
 \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 if has('nvim')
+    augroup nvim
+        autocmd!
+        autocmd FileType TelescopePrompt lua require('cmp').setup.buffer { enabled = false }
+        autocmd TextYankPost * lua vim.highlight.on_yank {higroup="IncSearch", timeout=150, on_visual=true}
+    augroup END
+    let g:deoplete#enable_at_startup = 0
     lua require 'init'
+else
+    let g:deoplete#enable_at_startup = 1
 endif
 

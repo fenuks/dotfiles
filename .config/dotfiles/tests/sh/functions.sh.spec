@@ -45,19 +45,23 @@ Describe 'functions.sh'
     End
     It "handles multiline single qouted strings"
       When call absolute_cmd "v '../data/plik testowy'"
-      The output should eq "v '$(realpath '../data/plik testowy')'"
+      The output should eq "v ${HOME}.config/dotfiles/tests/data/plik\ testowy"
     End
     It "handles multiline double qouted strings"
       When call absolute_cmd 'v "../data/plik testowy"'
-      The output should eq "v '$(realpath '../data/plik testowy')'"
+      The output should eq "v ${HOME}.config/dotfiles/tests/data/plik\ testowy"
     End
     It "handles escaped strings"
       When call absolute_cmd 'v ../data/plik\ testowy'
-      The output should eq "v '$(realpath '../data/plik testowy')'"
+      The output should eq "v ${HOME}.config/dotfiles/tests/data/plik\ testowy"
     End
     It "ignores non-existing escaped strings"
       When call absolute_cmd 'v a\ file'
       The output should eq "v a\ file"
+    End
+    It "handles commands with star"
+      When call absolute_cmd 'v *.spec'
+      The output should eq "v *.spec"
     End
   End
 End

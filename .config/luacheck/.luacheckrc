@@ -1,2 +1,2 @@
 globals = {'vim'}
-ignore = {'212/_.*'}
+ignore = {'212/_.*', '631'}

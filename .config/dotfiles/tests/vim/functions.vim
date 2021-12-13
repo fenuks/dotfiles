@@ -8,7 +8,7 @@ profile! file ~/.config/nvim/custom/functions.vim
 source ~/.config/nvim/init.vim
 
 function! s:suite.GetSessionName()
-    call s:assert.equals('vim.vim', GetSessionName())
+    call s:assert.equals(GetSessionName(), 'vim.vim')
 endfunction
 
 function! s:suite.SubstituteNoHs()

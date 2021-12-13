@@ -1,6 +1,9 @@
 if exists('b:did_wiki_ftplugin') | finish | endif
 let b:did_wiki_ftplugin = 1
 
+setlocal foldlevel=0
+setlocal foldclose=all
+setlocal textwidth=80
 call ConfigureLanguage()
 nmap <buffer> <silent> gf <Plug>VimwikiFollowLink
 nmap <buffer> <silent> <C-w><C-f> <Plug>VimwikiVSplitLink

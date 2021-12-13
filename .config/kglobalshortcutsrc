@@ -15,6 +15,7 @@ prev_track=,none,Poprzedni utwór
 stop=,none,Zatrzymaj
 
 [KDE Keyboard Layout Switcher]
+Switch keyboard layout to Angielski (brytyjski)=none,none,Przełącz układ klawiatury na Angielski (brytyjski)
 Switch keyboard layout to Polski=none,none,Przełącz układ klawiatury na Polski
 Switch keyboard layout to Polski (Dvoraka programisty)=none,none,Przełącz układ klawiatury na Polski (Dvoraka programisty)
 Switch keyboard layout to Polski (międzynarodowy, z klawiszami akcentów)=none,none,Przełącz układ klawiatury na Polski (międzynarodowy\\, z klawiszami akcentów)
@@ -63,7 +64,7 @@ stopAudio=none,none,Zatrzymaj odtwarzanie
 Disable Touchpad=Touchpad Off,Touchpad Off,Wyłącz gładzik
 Enable Touchpad=Touchpad On,Touchpad On,Włącz gładzik
 Toggle Touchpad=Touchpad Toggle,Touchpad Toggle,Przełącz gładzik
-_k_friendly_name=KWin
+_k_friendly_name=Gładzik
 
 [kded5]
 Show System Activity=Ctrl+Esc,Ctrl+Esc,Pokaż aktywność systemu
@@ -173,7 +174,7 @@ Switch to Screen 5=none,none,Przełącz na ekran 5
 Switch to Screen 6=none,none,Przełącz na ekran 6
 Switch to Screen 7=none,none,Przełącz na ekran 7
 Terminal rectract=F11,none,Retracts terminal\\, just like yakuake.
-Toggle Night Color=none,none,Przełącz barwy nocne
+Toggle Night Color=Meta+N,none,Przełącz barwy nocne
 Toggle Window Raise/Lower=none,none,Przełącz przywołanie/odwołanie okna
 Walk Through Desktop List=none,none,Przełączanie pulpitów z listy
 Walk Through Desktop List (Reverse)=none,none,Przełączanie pulpitów z listy (odwrotne)
@@ -287,10 +288,11 @@ _k_friendly_name=Wybierak Emoji
 _launch=Meta+.,Meta+.,Wybierak Emoji
 
 [org.kde.spectacle.desktop]
-ActiveWindowScreenShot=Meta+Print,Meta+Print,Przechwyć bieżące okno
-CurrentMonitorScreenShot=,none,Przechwyć bieżący monitor
-FullScreenScreenShot=Shift+Print,Shift+Print,Przechwyć cały pulpit
-RectangularRegionScreenShot=Meta+Shift+Print,Meta+Shift+Print,Przechwyć obszar prostokątny
+ActiveWindowScreenShot=Meta+Print,Meta+Print,Zrzuć bieżące okno
+CurrentMonitorScreenShot=,none,Zrzuć bieżący monitor
+FullScreenScreenShot=Shift+Print,Shift+Print,Zrzuć cały pulpit
+RectangularRegionScreenShot=Meta+Shift+Print,Meta+Shift+Print,Zrzuć obszar prostokątny
+WindowUnderCursorScreenShot=Meta+Ctrl+Print,Meta+Ctrl+Print,Zrzuć okno pod wskaźnikiem
 _k_friendly_name=Spectacle
 _launch=Print,Print,Uruchom Spectacle
 
@@ -328,8 +330,8 @@ cycleNextAction=Meta+],none,Następny element historii
 cyclePrevAction=Meta+[,none,Poprzedni element historii
 edit_clipboard=none,none,Zmień zawartość...
 manage activities=Meta+Q,Meta+Q,Pokaż przełącznik aktywności
-next activity=Meta+Tab,none,Przełączaj między aktywnościami
-previous activity=none,none,Przełączaj między aktywnościami (odwrotnie)
+next activity=Meta+Tab,Meta+Tab,Przełączaj między aktywnościami
+previous activity=none,Meta+Shift+Tab,Przełączaj między aktywnościami (odwrotnie)
 repeat_action=Ctrl+Alt+R,Ctrl+Alt+R,Ręcznie wywołaj działanie na zawartości schowka
 show dashboard=Meta+F12,Ctrl+F12,Pokaż pulpit
 show-barcode=none,none,Pokaż kod kreskowy...

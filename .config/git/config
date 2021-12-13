@@ -49,6 +49,8 @@ email = fenuks
     tidy = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && find -name '*.orig' -delete; }; f"
     url = remote get-url origin
     r-upstream = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git reset --hard origin/$(git branch --show-current); }; f"
+    amr = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" & source ~/.config/shells/git/functions.bash && amr $@; }; f"
+    ar = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" & source ~/.config/shells/git/functions.bash && ar $@; }; f"
 [color]
     ui = auto
 [push]
