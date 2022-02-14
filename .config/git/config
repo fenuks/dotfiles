@@ -1,7 +1,7 @@
 [user]
 name = fenuks
 email = fenuks
-[includeIf "gitdir:~/Projekty/praca/"]
+[includeIf "gitdir:~/Praca/"]
     path = ~/.config/git/work.config
 [core]
     excludesfile = ~/.config/git/ignore
@@ -19,6 +19,8 @@ email = fenuks
 [alias]
     au = add --update
     aur = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && PKGVER=$(grep -oP 'pkgver ?= ?\\K.+' .SRCINFO)-$(grep -oP 'pkgrel ?= ?\\K.+' .SRCINFO); git commit -m \"Update to ${PKGVER}\" $@; }; f"
+    aursshclone = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git clone ssh://aur@aur.archlinux.org/$@; }; f"
+    aurclone = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git clone https://aur.archlinux.org/$@; }; f"
     br = branch
     brd = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git branch --merged | grep -Ev \"(^\\*|master|develop)\" | xargs git branch -d; }; f"
     ca = commit --amend
@@ -43,6 +45,7 @@ email = fenuks
     pff = push --force
     r1 = reset --soft HEAD^
     root = rev-parse --show-toplevel
+    rbd = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git rebase $(git remote show origin | awk '/HEAD/ {print $NF}'); }; f"
     st = status -s
     sts = !git --no-pager diff --staged
     stu = !git --no-pager diff --name-only
@@ -51,6 +54,10 @@ email = fenuks
     r-upstream = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git reset --hard origin/$(git branch --show-current); }; f"
     amr = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" & source ~/.config/shells/git/functions.bash && amr $@; }; f"
     ar = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" & source ~/.config/shells/git/functions.bash && ar $@; }; f"
+[blame]
+    ; ignoreRevsFile = .gitignorerevs
+    markIgnoredLines = true
+    markUnblamableLines = true
 [color]
     ui = auto
 [push]
@@ -63,6 +70,8 @@ email = fenuks
     cmd = vim -f '+next' '+execute \"DirDiff\" argv(0) argv(1)' $LOCAL $REMOTE
 [mergetool]
     trustExitCode = true
+[merge]
+    conflictStyle = zdiff3
 [rebase]
     autoStash = true
 [rerere]

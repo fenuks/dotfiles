@@ -8,6 +8,7 @@
 \set PROMPT2 ''
 \set COMP_KEYWORD_CASE upper
 \timing
+\set HISTFILE ~/.local/share/history/psql_history_ :DBNAME
 \set HISTSIZE 4000
 \set HISTCONTROL ignoredups
 \x auto

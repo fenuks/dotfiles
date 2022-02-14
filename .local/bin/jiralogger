@@ -1,0 +1,157 @@
+#!/usr/bin/env python3
+import json
+import os
+import sys
+from configparser import ConfigParser
+from dataclasses import dataclass
+from datetime import datetime
+from pathlib import Path
+from urllib.request import Request, urlopen
+
+
+@dataclass(slots=True)
+class JiraConfig:
+    name: str
+    url: str
+    token: str
+    worklog: Path
+    worklog_archive: Path
+
+
+@dataclass(slots=True)
+class WorklogEntry:
+    issue: str
+    start: datetime
+    end: datetime
+    comment: str
+
+
+def get_or_fail(parser: ConfigParser, section: str, key: str) -> str:
+    value = parser.get(section, key)
+    if value is None:
+        print(f"[{section}][{key}] is required")
+        sys.exit(2)
+    return value
+
+
+def read_config() -> list[JiraConfig]:
+    config_path = (
+        Path(os.getenv("XDG_CONFIG_HOME", "~/.config")).expanduser()
+        / "jiraworklogger"
+        / "config.ini"
+    )
+    if not config_path.is_file():
+        print(f"Expected config file at {config_path}")
+        sys.exit(1)
+
+    parser = ConfigParser()
+    parser.read(config_path)
+
+    jira_configurations = []
+    for jira_server in parser.sections():
+        url = get_or_fail(parser, jira_server, "url")
+        token = get_or_fail(parser, jira_server, "token")
+        worklog = get_or_fail(parser, jira_server, "worklog")
+        worklog_archive = get_or_fail(parser, jira_server, "worklog_archive")
+        jira_configurations.append(
+            JiraConfig(
+                jira_server,
+                url,
+                token,
+                Path(worklog).expanduser(),
+                Path(worklog_archive).expanduser(),
+            )
+        )
+    return jira_configurations
+
+
+def get_headers(token):
+    return {"Authorization": f"Bearer {token}", "Content-Type": "application/json"}
+
+
+def post_json(url, data, headers):
+    payload = bytes(json.dumps(data).encode("utf8"))
+    req = Request(url=url, data=payload, method="POST", headers=headers)
+    with urlopen(req) as resp:
+        return resp.code
+
+
+def parse_worklog_file(path: Path) -> list[WorklogEntry]:
+    if not path.exists():
+        print(f"Path {path} doesn't exist")
+        sys.exit(1)
+
+    day = None
+    issue = None
+
+    worklog = []
+
+    with path.open("r") as fp:
+        for line in fp:
+            line = line.strip()
+            if line == "":
+                continue
+            if line.startswith("*"):
+                day = datetime.strptime(line[1:].replace(" ", ""), "%Y-%m-%d")
+            elif line.startswith("#"):
+                issue = line[1:].replace(" ", "")
+            else:
+                timedesc = line.strip()
+                time, _, comment = timedesc.partition(" ")
+                assert issue is not None
+                assert day is not None
+                worklog_entry = WorklogEntry(issue, *parse_duration(day, time), comment)
+                worklog.append(worklog_entry)
+    return worklog
+
+
+def parse_duration(day: datetime, timestring: str) -> tuple[datetime, datetime]:
+    start, end = timestring.split("-")
+    start_time = datetime.strptime(start, "%H:%M").time()
+    end_time = datetime.strptime(end, "%H:%M").time()
+    start_date = datetime.combine(day, start_time)
+    end_date = datetime.combine(day, end_time)
+    return (start_date, end_date)
+
+
+def log_work(jira: JiraConfig):
+    for worklog_entry in parse_worklog_file(jira.worklog):
+        delta = worklog_entry.end - worklog_entry.start
+        started_str = worklog_entry.start.strftime("%Y-%m-%dT%H:%M:%S.000+0000%z")
+        data = {
+            "started": started_str,
+            "timeSpentSeconds": delta.seconds,
+            "comment": worklog_entry.comment,
+        }
+        headers = get_headers(jira.token)
+        code = post_json(
+            f"{jira.url}/rest/api/latest/issue/{worklog_entry.issue}/worklog",
+            data,
+            headers
+        )
+        issue_url = f"{jira.url}/browse/{worklog_entry.issue}"
+        if code == 201:
+            print(f"Logged {str(delta)} in {issue_url}")
+            print(worklog_entry.comment)
+            print()
+        else:
+            print(f"Failed to log {str(delta)} in {issue_url} with code {code}")
+
+    with (
+        Path(jira.worklog_archive).open("a", encoding="utf8") as history_file,
+        jira.worklog.open("r", encoding="utf8") as time_file,
+    ):
+        history_file.write("\n")
+        history_file.write(time_file.read())
+
+    with jira.worklog.open("a", encoding="utf8") as fp:
+        fp.truncate(0)
+
+
+def main():
+    for config in read_config():
+        log_work(config)
+
+
+if __name__ == "__main__":
+    main()

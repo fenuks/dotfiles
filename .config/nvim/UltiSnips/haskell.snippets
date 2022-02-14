@@ -1,0 +1,147 @@
+snippet lang
+{-# LANGUAGE ${0} #-}
+endsnippet
+
+snippet haddock
+{-# OPTIONS_HADDOCK ${1:hide} #-}${0}
+endsnippet
+
+snippet ghc
+{-# OPTIONS_GHC ${1} #-}${0}
+endsnippet
+
+snippet inline
+{-# INLINE ${1:name} #-}${0}
+endsnippet
+
+snippet info
+-- |
+-- Module      :  ${1:`!v substitute(substitute(expand('%:r'), '[/\\]','.','g'),'^\%(\l*\.\)\?','','')`}
+-- Copyright   :  ${2:Author} ${3:2011-2012}
+-- License     :  ${4:BSD3}
+--
+-- Maintainer  :  ${5:email@something.com}
+-- Stability   :  ${6:experimental}
+-- Portability :  ${7:unknown}
+--
+-- ${0:Description}
+--
+endsnippet
+
+snippet imp
+import ${0}
+endsnippet
+
+snippet impq
+import qualified ${1} as ${0}
+endsnippet
+
+snippet inst
+instance ${1:Monoid} ${2:Type} where
+	${0}
+endsnippet
+
+snippet type
+type ${1:Type} = ${0:Type}
+endsnippet
+
+snippet data
+data ${1:Type} = ${2:$1} ${0:Int}
+endsnippet
+
+snippet newtype
+newtype ${1:Type} = ${2:$1} ${0:Int}
+endsnippet
+
+snippet class
+class ${1:Class} a where
+	${0}
+endsnippet
+
+snippet module
+module `!v substitute(substitute(expand('%:r'), '[/\\]','.','g'),'^\%(\l*\.\)\?','','')` (
+) where
+`!v expand('%') =~ 'Main' ? "\nmain :: IO ()\nmain = undefined" : ""`
+endsnippet
+
+snippet main
+main :: IO ()
+main = ${0:undefined}
+endsnippet
+
+snippet const
+${1:name} :: ${2:a}
+$1 = ${0:undefined}
+endsnippet
+
+snippet fn
+${1:fn} :: ${2:a} -> ${3:a}
+$1 ${4} = ${0:undefined}
+endsnippet
+
+snippet fn2
+${1:fn} :: ${2:a} -> ${3:a} -> ${4:a}
+$1 ${5} = ${0:undefined}
+endsnippet
+
+snippet fn3
+${1:fn} :: ${2:a} -> ${3:a} -> ${4:a} -> ${5:a}
+$1 ${6} = ${0:undefined}
+endsnippet
+
+snippet => "Type constraint"
+(${1:Class} ${2:a}) => $2
+endsnippet
+
+snippet tup
+(${1:a}, ${0:b})
+endsnippet
+
+snippet tup3
+(${1:a}, ${2:b}, ${0:c})
+endsnippet
+
+snippet tup4
+(${1:a}, ${2:b}, ${3:c}, ${0:d})
+endsnippet
+
+snippet case
+case ${1:something} of
+	${2} -> ${0}
+endsnippet
+
+snippet spec
+module `!v substitute(substitute(expand('%:r'), '[/\\]','.','g'),'^\%(\l*\.\)\?','','')` (main, spec) where
+
+import Test.Hspec
+import Test.QuickCheck
+
+main :: IO ()
+main = hspec spec
+
+spec :: Spec
+spec =
+	describe "${1}" $ do
+		it "${2}" $
+			$0
+endsnippet
+
+snippet desc
+describe "${1}" $ do
+	$0
+endsnippet
+
+snippet it
+it "${1}" $
+	$0
+endsnippet
+
+snippet sb
+\`shouldBe\` $0
+endsnippet
+
+snippet doc
+{-| ${1}
+-}${0}
+endsnippet
+

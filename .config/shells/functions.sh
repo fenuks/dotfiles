@@ -284,7 +284,7 @@ if command -v nvim >/dev/null; then
   function vimpager() {
     nvim -R "$@"
   }
-  export MANPAGER='nvim +Man!'
+  export MANPAGER='nvim -i NONE -M -n +Man!'
   export EDITOR=nvim
   [[ -v BASH_VERSION ]] && export -f vim
 else

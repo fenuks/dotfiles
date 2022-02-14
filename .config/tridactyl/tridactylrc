@@ -11,6 +11,14 @@ unbindurl localhost/rss k
 unbindurl localhost/rss f
 unbindurl localhost/rss i
 
+unbindurl localhost/tt-rss n
+unbindurl localhost/tt-rss p
+unbindurl localhost/tt-rss o
+unbindurl localhost/tt-rss j
+unbindurl localhost/tt-rss k
+unbindurl localhost/tt-rss f
+unbindurl localhost/tt-rss i
+
 # miniflux
 unbindurl openwrt:8008 n
 unbindurl openwrt:8008 p

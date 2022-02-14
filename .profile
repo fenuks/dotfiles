@@ -9,7 +9,7 @@ export CARGO_HOME="$XDG_CONFIG_HOME"/cargo
 export CCACHE_CONFIGPATH="$XDG_CONFIG_HOME"/ccache.config
 export CCACHE_DIR="$XDG_CACHE_HOME"/ccache
 export GPODDER_HOME="$HOME/Audycje/"
-export GTK_USE_PORTAL=1
+# export GTK_USE_PORTAL=1
 export IPYTHONDIR="$XDG_CONFIG_HOME"/jupyter
 export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel'
 export JUPYTER_CONFIG_DIR="$HOME/.config/jupyter"
@@ -19,12 +19,14 @@ export KODI_TEMP="${XDG_RUNTIME_DIR}/kodi"
 export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME"/npm/npmrc
 export PGPASSFILE="$XDG_CONFIG_HOME/pg/pgpass"
 export PGSERVICEFILE="$XDG_CONFIG_HOME/pg/pg_service.conf"
-export PSQL_HISTORY="$XDG_DATA_HOME/history/psql_history"
 export PSQLRC="$XDG_CONFIG_HOME/pg/psqlrc"
 export RUSTUP_HOME="$XDG_DATA_HOME"/rustup
 export SQLITE_HISTORY=$XDG_DATA_HOME/history/sqlite_history
 export SSH_AUTH_SOCK=/tmp/ssh-agent.sock
 export SYSTEMD_EDITOR=nvim
+export XCOMPOSEFILE="$XDG_CONFIG_HOME/X11/xcompose"
+export XCOMPOSECACHE="$XDG_CACHE_HOME/X11/xcompose"
+export SSH_ASKPASS=/usr/bin/ksshaskpass
 
 alias vim=nvim
 

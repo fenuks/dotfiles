@@ -24,7 +24,9 @@ alias irssi="irssi --config=\"$XDG_CONFIG_HOME\"/irssi/config --home=\"$XDG_DATA
 alias ipy="ipython --ipython-dir=$XDG_CONFIG_HOME/jupyter"
 
 export GRADLE_USER_HOME="$XDG_CACHE_HOME/gradle"
-alias mvn="mvn --global-settings \"$XDG_CONFIG_HOME\"/maven/settings.xml"
+alias mvn="mvn --global-settings \"$XDG_CONFIG_HOME/maven/settings.xml\""
+alias mvnT="mvn -Dmaven.test.skip=true --global-settings \"$XDG_CONFIG_HOME\"/maven/settings.xml"
+alias mvnt="mvn -DskipTests --global-settings \"$XDG_CONFIG_HOME\"/maven/settings.xml"
 alias svn="svn --config-dir \"$XDG_CONFIG_HOME\"/subversion"
 alias yarn='yarn --use-yarnrc "$XDG_CONFIG_HOME/yarn/config"'
 alias pidgin='pidgin --config="$XDG_DATA_HOME"/purple'

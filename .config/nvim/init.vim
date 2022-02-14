@@ -155,7 +155,7 @@ inoremap <unique> <silent> <expr> <C-f> pumvisible() ? "\<PageDown>" : "\<C-f>"
 inoremap <unique> <silent> <expr> <C-b> pumvisible() ? "\<PageUp>" : "\<C-b>"
 " disable, doing it for compe
 " inoremap <unique> <silent> <expr> <CR> pumvisible() ? "\<C-y>" : "\<CR>"
-inoremap <unique> <silent> <expr> <C-e> col(".") == col("$") ? "<Del>" : "<C-o>dw"
+inoremap <unique> <silent> <expr> <C-e> col(".") == col("$") ? "<Del>" : "<C-o>de"
 " ; always goes forward
 " nnoremap <unique> <expr> ; getcharsearch().forward ? ';' : ','
 " , always goes back
@@ -230,20 +230,35 @@ nnoremap <unique> <silent> x^ :call SubstituteNoHs('%s/^\s\+//')<CR>
 vnoremap <unique> <silent> x^ :call SubstituteNoHs("'<,'>s/^\\s\\+//")<CR>
 " remove empty lines
 nnoremap <unique> <silent> x<CR> :call SubstituteNoHs('g/^\s\*$/d')<CR>
-nnoremap <unique> <silent> x, :call SubstituteNoHs('%s/,\s\*/\r/g')<CR>
+nnoremap <unique> <silent> x, :call SubstituteNoHs('%s/,\s*/\r/g')<CR>
 vnoremap <unique> <silent> x, :call SubstituteNoHs("'<,'>s/,\\s*/\\r/g")<CR>
 nnoremap <unique> <silent> X, :call SubstituteNoHs('1,$-1s/\n/, /')<CR>
 vnoremap <unique> <silent> X, :-1s/\n/, /<CR>
 " convert non-breaking spaces to normal ones
 nnoremap <unique> <silent> x<Space> :call SubstituteNoHs('%s/\s\+/\r/g')<CR>
 vnoremap <unique> <silent> x<Space> :call SubstituteNoHs("'<,'>s/\\s\\+/\\r/g")<CR>
-" nnoremap <unique> <silent> x<Space> :%s/\%u00a0/ /g<CR>
-nnoremap <unique> <silent> xS :,$!sort -h<CR>
-vnoremap <unique> <silent> xs :!sort -h<CR>
-nnoremap <unique> <silent> xs :set opfunc=SortOperator<CR>g@
+" remove annotation like [1]
+nnoremap <unique> <silent> xa :call SubstituteNoHs('%s/\[\d\+\]//g')<CR>
+vnoremap <unique> <silent> xa :<C-u>call SubstituteNoHs("'<,'>s/\\[\\d\\+\\]//g")<CR>
+
+nnoremap <unique> <silent> xSs :,$!sort -h<CR>
+nnoremap <unique> <silent> xSS :,$!sort -h<CR>
+vnoremap <unique> <silent> xss :!sort -h<CR>
+nnoremap <unique> <silent> xss :set opfunc=SortOperator<CR>g@
+
+nnoremap <unique> <silent> xSu :,$!sort -hu<CR>
+nnoremap <unique> <silent> xSU :,$!sort -hu<CR>
+vnoremap <unique> <silent> xsu :!sort -hu<CR>
+nnoremap <unique> <silent> xsu :set opfunc=SortOperatorUnique<CR>g@
+
+nnoremap <unique> <silent> qcj :set opfunc=PandocJiraOperator<CR>g@
+nnoremap <unique> <silent> qcc :call PandocFzf()<CR>
+" nnoremap <unique> <silent> xcc :set opfunc=PandocUniversalOperator<CR>g@
+
 nnoremap <unique> <silent> xD :,$!sort \| uniq -d<CR>
 vnoremap <unique> <silent> xd :!sort \| uniq -d<CR>
 nnoremap <unique> <silent> xd :set opfunc=DuplicateOperator<CR>g@
+
 nnoremap <unique> <silent> xaL :,$left<CR>
 vnoremap <unique> <silent> xal :left<CR>
 nnoremap <unique> <silent> xal :set opfunc=LeftAlignOperator<CR>g@
@@ -291,6 +306,8 @@ nnoremap <unique> <silent> SP :call NewlinePaste('p', 'O')<CR>
 vnoremap <unique> <silent> sj, s/\,\s*/\r/g<CR>
 nnoremap <unique> <silent> yp "0p
 nnoremap <unique> <silent> yP "0P
+nnoremap <unique> <silent> yv `<v`>y
+nnoremap <unique> <silent> ys :call CopySelection()<CR>
 nnoremap <unique> <silent> <M-p> "+p
 vnoremap <unique> <silent> <M-p> "+p
 inoremap <unique> <silent> <M-p> <C-o>"+p
@@ -315,9 +332,14 @@ cnoremap <unique> <M-h> <LEFT>
 cnoremap <unique> <M-l> <RIGHT>
 cnoremap <unique> <M-k> <UP>
 cnoremap <unique> <M-j> <DOWN>
-cnoremap <unique> w!! %!sudo tee > /dev/null %
-cnoremap <unique> g/ g/\v
-cnoremap <unique> v/ v/\v
+cnoremap <unique> %e e <C-r>=expand('%:h')<CR>/
+if has('nvim')
+cnoremap <unique> w!! w !sudo --askpass ksshaskpass tee > /dev/null %
+else
+cnoremap <unique> w!! w !sudo tee > /dev/null %
+endif
+" cnoremap <unique> g/ g/\v
+" cnoremap <unique> v/ v/\v
 " nnoremap <unique> / /\v
 " vnoremap <unique> / /\v
 cnoremap <unique> <expr> <C-j> pumvisible() ? "\<C-n>" : "\<Down>"
@@ -352,7 +374,6 @@ nnoremap <unique> <silent> <Leader>bu :<C-u>call Execute(['bdelete'], v:count1)<
 nnoremap <unique> <silent> <Leader>bh :<C-u>call Execute(['hide'], v:count1)<CR>
 nnoremap <unique> <silent> <Leader>bc :<C-u>call Execute(['close'], v:count1)<CR>
 nnoremap <unique> <silent> <Leader>bo :%bdelete<CR><C-^><C-^>:bdelete<CR>
-nnoremap <unique> <silent> <Leader>bl :Buffers<CR>
 nnoremap <unique> <silent> <Leader>b/ :call GatherSearchResults()<CR>
 nnoremap <unique> <silent> <Leader>br call DeleteHiddenBuffers()<CR>
 nnoremap <unique> <silent> <Leader>brh call DeleteBufsOnLeft()<CR>
@@ -602,17 +623,22 @@ nmap <unique> <silent> <Leader>vld <Plug>(GitGutterPreviewHunk)
 Plug 'https://github.com/tpope/vim-fugitive'
 nnoremap <unique> <silent> <Leader>va :Gwrite<CR>
 nnoremap <unique> <silent> <Leader>vb :Git blame<CR>
-nnoremap <unique> <silent> <Leader>vc :Gcommit<CR>
-nnoremap <unique> <silent> <Leader>vd :Gvdiff<CR>
+nnoremap <unique> <silent> <Leader>vc :Git commit<CR>
 nnoremap <unique> <silent> <Leader>vh :0Gclog<CR>
-nnoremap <unique> <silent> <Leader>vm :Gmove<CR>
-nnoremap <unique> <silent> <Leader>U  :GundoToggle<CR>
-nnoremap <unique> <silent> <Leader>vp :Git! diff --staged<CR>
-nnoremap <unique> <silent> <Leader>vP :Git! diff<CR>
+nnoremap <unique> <silent> <Leader>vm :GMove<CR>
+nnoremap <unique> <silent> <Leader>vds :Git! diff --staged<CR>
+nnoremap <unique> <silent> <Leader>vdd :Git! diff<CR>
+nnoremap <unique> <silent> <Leader>vdb :Gvdiffsplit<CR>
+nnoremap <unique> <silent> <Leader>vqq :Git difftool<CR>
+nnoremap <unique> <silent> <Leader>vqQ :Git difftool --name-only<CR>
+nnoremap <unique> <silent> <Leader>vqs :Git difftool --staged<CR>
+nnoremap <unique> <silent> <Leader>vqS :Git difftool --staged --name-only<CR>
 nnoremap <unique> <silent> <Leader>vr :Gread<CR>
-nnoremap <unique> <silent> <Leader>vR :Gremove<CR>
-nnoremap <unique> <silent> <Leader>vq :Git difftool<CR>
+nnoremap <unique> <silent> <Leader>vR :GRemove<CR>
 nnoremap <unique> <silent> <Leader>vs :Git<CR>
+
+nnoremap <unique> <silent> <Leader>U  :GundoToggle<CR>
+
 Plug 'https://github.com/rbong/vim-flog', {'on': 'Flog'}
 nnoremap <unique> <silent> <Leader>vg :Flog<CR>
 Plug 'https://github.com/junegunn/gv.vim', {'on': 'GV'}
@@ -638,7 +664,7 @@ Plug 'https://github.com/scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDT
 nnoremap <unique> <silent> <Leader>ft :NERDTreeToggle<CR>
 nnoremap <unique> <silent> <Leader>fT :NERDTreeFind<CR>
 nnoremap <unique> <silent> <Leader>fs :call ReadSkeletonFile()<CR>
-let g:NERDTreeIgnore=['\.pyc$', '\~$', '__pycache__']
+let g:NERDTreeIgnore=['\.pyc$', '\~$', '__pycache__', 'jdt.ls-java-project']
 let g:NERDTreeMinimalUI=1
 let g:NERDTreeBookmarksFile=g:vim_share_dir . '/NERDTreeBookmarks'
 
@@ -674,10 +700,10 @@ nnoremap <unique> <silent> sB :Grepper -tool rg -buffers -side<CR>
 " source /usr/share/vim/vimfiles/plugin/gtags-cscope.vim
 nnoremap <unique> <silent> <Leader>ol :mode\|nohlsearch<CR>
 let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
-Plug 'https://github.com/nelstrom/vim-visual-star-search'
+Plug 'https://github.com/bronson/vim-visual-star-search'
 Plug 'https://github.com/ludovicchabant/vim-gutentags'
 let g:gutentags_ctags_exclude = ['.mypy_cache']
-let g:gutentags_ctags_executable_haskell = 'hasktags'
+" let g:gutentags_ctags_executable_haskell = 'hasktags'
 Plug 'https://github.com/majutsushi/tagbar', { 'on': 'TagbarToggle' }
 let g:airline#extensions#tabline#enabled = 1
 " Plug 'https://github.com/devjoe/vim-codequery' " rich support for searching symbols support
@@ -719,6 +745,8 @@ let g:neoformat_enabled_python = ['black', 'isort']
 let g:neoformat_enabled_json = ['prettier', 'js-beautify', 'jq']
 let g:neoformat_enabled_yaml = ['prettier']
 let g:neoformat_enabled_haskell = ['stylish-haskell', 'floskell', 'ormolu']
+let g:neoformat_all_subfiletypes_formatters = 1
+
 nnoremap <unique> <silent> <Leader>q :Neoformat<CR>
 
 Plug 'https://github.com/junegunn/vim-easy-align', { 'on': '<Plug>(EasyAlign)' }
@@ -733,7 +761,7 @@ Plug 'https://github.com/dense-analysis/ale'
 let g:ale_linters = {
 \   'haskell': ['cabal_ghc', 'stack-build', 'stack-ghc', 'hlint'],
 \   'python': ['mypy', 'pylint', 'flake8'],
-\   'java': ['javalsp', 'pmd', 'eclipselsp'],
+\   'java': ['pmd'],
 \   'rust': ['cargo'],
 \}
 let g:ale_sign_error = '𐄂'
@@ -816,6 +844,7 @@ if has('nvim')
     Plug 'https://github.com/ray-x/lsp_signature.nvim'
     Plug 'https://github.com/simrat39/rust-tools.nvim'
     Plug 'https://github.com/kosayoda/nvim-lightbulb'
+    Plug 'https://github.com/mfussenegger/nvim-jdtls'
     " autocomplete
     Plug 'https://github.com/hrsh7th/nvim-cmp'
     Plug 'https://github.com/hrsh7th/cmp-nvim-lsp'
@@ -826,9 +855,10 @@ if has('nvim')
     Plug 'https://github.com/quangnguyen30192/cmp-nvim-ultisnips'
     " treesitter
     Plug 'https://github.com/nvim-lua/plenary.nvim'
-    Plug 'https://github.com/nvim-treesitter/nvim-treesitter'
+    Plug 'https://github.com/nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
     Plug 'https://github.com/nvim-treesitter/nvim-treesitter-refactor'
     Plug 'https://github.com/nvim-treesitter/nvim-treesitter-textobjects'
+    Plug 'https://github.com/nvim-treesitter/playground'
     Plug 'https://github.com/romgrk/nvim-treesitter-context'
     Plug 'https://github.com/windwp/nvim-ts-autotag'
     Plug 'https://github.com/abecodes/tabout.nvim'
@@ -845,15 +875,21 @@ if has('nvim')
     nnoremap <unique> <silent> g? :Telescope current_buffer_tags<CR>
     nnoremap <unique> <silent> <Leader>gt :Telescope tags<CR>
     nnoremap <unique> <silent> <Leader>gh :Telescope oldfiles<CR>
-    Plug '~/Projekty/vim/word-toggle.nvim'
+    nnoremap <unique> <silent> <Leader>bl :Telescope buffers<CR>
 
     Plug 'https://github.com/phaazon/hop.nvim'
     nnoremap <unique> <silent> <Leader><Leader>b :HopWordBC<CR>
     nnoremap <unique> <silent> <Leader><Leader>w :HopWordAC<CR>
     nnoremap <unique> <silent> <Leader><Leader>j :HopLineAC<CR>
     nnoremap <unique> <silent> <Leader><Leader>k :HopLineBC<CR>
+    nnoremap <unique> <silent> <Leader><Leader>f :HopChar1CurrentLineAC<CR>
+    nnoremap <unique> <silent> <Leader><Leader>F :HopChar1CurrentLineBC<CR>
+    nnoremap <unique> <silent> <Leader><Leader>/ :HopPatternAC<CR>
+    nnoremap <unique> <silent> <Leader><Leader>? :HopPatternBC<CR>
 
-    Plug 'https://github.com/kristijanhusak/orgmode.nvim'
+    Plug 'https://github.com/windwp/nvim-ts-autotag'
+
+    " Plug 'https://github.com/kristijanhusak/orgmode.nvim'
     " FIXME
     Plug 'https://github.com/junegunn/fzf'
     Plug 'https://github.com/junegunn/fzf.vim'
@@ -893,6 +929,9 @@ else
     nnoremap <unique> <silent> <Leader>gt :Tags<CR>
     nnoremap <unique> <silent> <Leader>gh :History<CR>
     nnoremap <unique> <silent> <Leader>gT :BTags<CR>
+    nnoremap <unique> <silent> <Leader>bl :Buffers<CR>
+
+    Plug 'https://github.com/alvan/vim-closetag', { 'for': ['html', 'xml'] }
 endif
 
 Plug 'https://github.com/deoplete-plugins/deoplete-dictionary'
@@ -900,18 +939,22 @@ Plug 'https://github.com/zchee/deoplete-jedi', { 'for': 'python' }
 Plug 'https://github.com/Shougo/neco-vim', { 'for': 'vim' }
 " Plug 'https://github.com/zchee/deoplete-go', { 'for': 'go' }
 
+let g:deoplete#enable_at_startup = 1
 execute 'source ' . g:vim_custom_scripts . 'autocomplete.vim'
 
 " snippets
 Plug 'https://github.com/SirVer/ultisnips'
-let g:UltiSnipsExpandTrigger='æ' " <a-f>
-let g:UltiSnipsJumpForwardTrigger='æ' " <a-f>
-let g:UltiSnipsJumpBackwardTrigger='Æ' " <a-s-f>
-" let g:UltiSnipsListSnippets='<C-\>'
-Plug 'https://github.com/honza/vim-snippets'
-Plug 'https://github.com/hrsh7th/vim-vsnip'
-Plug 'https://github.com/hrsh7th/vim-vsnip-integ'
-" Plug 'https://github.com/L3MON4D3/LuaSnip'
+
+let g:UltiSnipsExpandTrigger = '<Plug>(ultisnips_expand)'      
+let g:UltiSnipsJumpForwardTrigger = '<Plug>(ultisnips_jump_forward)'
+let g:UltiSnipsJumpBackwardTrigger = '<Plug>(ultisnips_jump_backward)'
+let g:UltiSnipsListSnippets = '<c-x><c-s>'
+let g:UltiSnipsRemoveSelectModeMappings = 0
+
+" let g:UltiSnipsJumpForwardTrigger='æ' " <a-f>
+" let g:UltiSnipsJumpBackwardTrigger='Æ' " <a-s-f>
+" <a-f>
+imap <unique> <silent> æ <Plug>(ultisnips_expand)
 
 "#### Language specific
 let g:polyglot_disabled = ['sensible', 'autoindent']
@@ -922,7 +965,6 @@ Plug 'https://github.com/junegunn/vader.vim', { 'on': 'Vader', 'for': 'vader' }
 
 "##### HTML5
 Plug 'https://github.com/mattn/emmet-vim', { 'for': ['html', 'htmldjango'] }
-Plug 'https://github.com/alvan/vim-closetag', { 'for': ['html', 'xml'] }
 
 "##### CSS
 Plug 'https://github.com/ap/vim-css-color'
@@ -979,17 +1021,18 @@ let g:vimwiki_list = [{'path': $XDG_DOCUMENTS_DIR . '/notatki/',
                      \ 'name': 'zettel',
                      \ 'syntax': 'markdown', 'ext': '.md' }
 \]
-let g:vimwiki_global_ext=0 " don't create temporary wikis
 let g:vimwiki_autowriteall=0
 let g:vimwiki_folding='expr'
 let g:vimwiki_url_maxsave=25
 let g:vimwiki_key_mappings = { 'links': 0, 'table_mappings': 0}
 nmap <unique> <silent> sv <Plug>VimwikiIndex
-Plug 'https://github.com/fenuks/vim-zettel'
+" Plug 'https://github.com/fenuks/vim-zettel'
 let g:zettel_format='%title'
 let g:zettel_default_mappings = 0
 let g:zettel_fzf_command = 'rg --column --line-number --smart-case --no-heading --color=always'
 let g:zettel_options = [{}, {'front_matter' : [['tags', ''], ['type','note']]}]
+
+Plug 'https://github.com/m-pilia/vim-mediawiki', { 'for': 'mediawiki' }
 
 " Database
 let g:sql_type_default='psql'
@@ -1055,7 +1098,8 @@ endif
 " truecolour: onedark, OceanicNext
 
 call deoplete#custom#option({
-    \ 'ignore_sources': {'c': ['tag'], 'cpp': ['tag'], 'xml': ['tag']}
+    \ 'ignore_sources': {'c': ['tag'], 'cpp': ['tag'], 'xml': ['tag']},
+    \ 'auto_complete': v:false
 \ })
 call deoplete#custom#source('_', {
     \ 'matchers': ['matcher_full_fuzzy'],
@@ -1123,12 +1167,10 @@ command! PlugInit !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
 if has('nvim')
     augroup nvim
         autocmd!
-        autocmd FileType TelescopePrompt lua require('cmp').setup.buffer { enabled = false }
         autocmd TextYankPost * lua vim.highlight.on_yank {higroup="IncSearch", timeout=150, on_visual=true}
+        autocmd DiagnosticChanged lua vim.diagnostic.setloclist()
     augroup END
-    let g:deoplete#enable_at_startup = 0
     lua require 'init'
-else
-    let g:deoplete#enable_at_startup = 1
 endif
 
+" keymap, langmap

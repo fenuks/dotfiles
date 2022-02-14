@@ -76,7 +76,12 @@ endfunction
 " changes buffer, but ignores special ones like help, fugitive, etc.
 function ChangeBuffer(next) abort
     if index(g:auxiliary_buffers, &filetype) !=# -1
-        return
+      if a:next is# 1
+        execute 'wincmd w'
+      else
+        execute 'wincmd W'
+      endif
+      return
     endif
     if a:next is# 1
         bnext
@@ -351,6 +356,37 @@ function SortOperator(type) abort
     call ExOperatorFunc('!sort -h', a:type)
 endfunction
 
+function SortOperatorUnique(type) abort
+    call ExOperatorFunc('!sort -hu', a:type)
+endfunction
+
+function PandocJiraOperator(type) abort
+  call PandocConverter(a:type, 'jira')
+endfunction
+
+function PandocCommand(to) abort
+  return '!pandoc --from ' . &filetype . ' --to ' . a:to
+endfunction
+
+function PandocFzf() abort
+  call fzf#run({'source': 'pandoc --list-output-formats', 'sink': function('PandocFzfCallback')})
+endfunction
+
+function PandocFzfCallback(format) abort
+  let l:command = PandocCommand(a:format)
+  execute ',$' . l:command
+endfunction
+
+function PandocConverter(type, to) abort
+  let l:command = PandocCommand(a:to)
+  call ExOperatorFunc(l:command, a:type)
+endfunction
+
+function PandocUniversalOperator(type) abort
+  let l:command = PandocCommand(input('Output type?: '))
+  call ExOperatorFunc(l:command, a:type)
+endfunction
+
 function LeftAlignOperator(type) abort
     call ExOperatorFunc('left', a:type)
 endfunction
@@ -397,9 +433,22 @@ function FunctionOperator(Fun) abort
     let @a = l:reg_save
 endfunction
 
+function UnescapeSelection() abort
+  let l:query = substitute(@/, '\\V', '', '')
+  let l:query = substitute(l:query, '\\<', '', '')
+  let l:query = substitute(l:query, '\\>', '', '')
+  return l:query
+endfunction
+
+function CopySelection() abort
+  let l:query = UnescapeSelection()
+  let @" = l:query
+endfunction
+
 function ExOperatorFunc(excommand, type) abort
     if a:type ==# 'line'
-        execute "'<,'>" . a:excommand
+        " execute "'<,'>" . a:excommand
+        execute "'[,']" . a:excommand
     elseif a:type ==# 'char'
         execute "'[,']" . a:excommand
     else
@@ -649,25 +698,6 @@ function VimFootnotes(type)
   execute 'normal a['.b:vimfootnotemark."]\<Esc>"
   normal! G
   execute 'normal! ' . 'o' . l:cr . '[' . b:vimfootnotemark . '] '
-endfunction
-
-function GitModifiedQuickfix() abort
-    let l:out = FugitiveExecute(['diff', '--name-only', '--diff-filter=AM'])
-    if l:out['exit_status']
-        return
-    endif
-    let l:files = l:out['stdout']
-    let l:quickfix = []
-    for l:file in l:files
-        if l:file ==# ''
-            continue
-        endif
-        call insert(l:quickfix, {'filename': l:file})
-    endfor
-    if len(l:quickfix)
-        call setqflist([], ' ', {'title' : 'git status', 'items': l:quickfix})
-        copen
-    endif
 endfunction
 
 " TODO load directory contents into quickfix, diff conflicts, spell errors,

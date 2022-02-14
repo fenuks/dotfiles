@@ -1,0 +1,32 @@
+global !p
+from pathlib import Path
+import re
+
+pattern = re.compile(r'(main|test)/(\w+)/')
+
+
+def java_names(filename):
+    print(filename)
+    full_path = str(Path(filename).absolute())
+    parts = re.split(pattern, full_path)
+    if len(parts) != 4:
+        return None
+    p = Path(parts[-1])
+    package_name = str(p.parent.with_suffix('')).replace('/', '.')
+    class_name = p.stem
+    return (package_name, class_name)
+endglobal
+
+
+snippet pa "package with class"
+package `!p
+names = java_names(path)
+if names is not None:
+    package_name, class_name = names
+    snip.rv = f"{package_name};\n\nclass {class_name} {{"
+`
+  $0
+}
+endsnippet
+
+

@@ -11,7 +11,7 @@ shopt -s cmdhist
 # change directory without explicit cd
 shopt -s autocd
 # clear screen pernamently
-bind '"\C-l": " clear && printf \"\\e[3J\""'
+bind '"\C-l": "\C-u clear && printf \"\\e[3J\""'
 
 # bind fzf git keys
 bind '"\er": redraw-current-line'

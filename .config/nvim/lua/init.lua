@@ -1,9 +1,15 @@
 require('hop').setup({ keys = 'etovxqpdygfblzhckisuran', term_seq_bias = 0.5 })
 
+require('nvim-ts-autotag').setup({
+  filetypes = { 'html', 'xml' },
+})
+
 require('nvim-treesitter.configs').setup({
   ensure_installed = 'maintained',
   highlight = {
     enable = true,
+    disable = { 'org' }, -- Remove this to use TS highlighter for some of the highlights (Experimental)
+    additional_vim_regex_highlighting = { 'org' }, -- Required since TS highlighter doesn't support all syntax features (conceal)
   },
   incremental_selection = {
     enable = true,
@@ -70,6 +76,7 @@ require('nvim-treesitter.configs').setup({
       goto_next_start = {
         [']m'] = '@function.outer',
         [']]'] = '@class.outer',
+        [']:'] = '@dict-pair',
       },
       goto_next_end = {
         [']M'] = '@function.outer',
@@ -78,11 +85,30 @@ require('nvim-treesitter.configs').setup({
       goto_previous_start = {
         ['[m'] = '@function.outer',
         ['[['] = '@class.outer',
+        ['[:'] = '@dict-pair',
       },
       goto_previous_end = {
         ['[M'] = '@function.outer',
         ['[]'] = '@class.outer',
       },
+    },
+  },
+  playground = {
+    enable = true,
+    disable = {},
+    updatetime = 25, -- Debounced time for highlighting nodes in the playground from source code
+    persist_queries = false, -- Whether the query persists across vim sessions
+    keybindings = {
+      toggle_query_editor = 'o',
+      toggle_hl_groups = 'i',
+      toggle_injected_languages = 't',
+      toggle_anonymous_nodes = 'a',
+      toggle_language_display = 'I',
+      focus_language = 'f',
+      unfocus_language = 'F',
+      update = 'R',
+      goto_node = '<cr>',
+      show_help = '?',
     },
   },
 })
@@ -110,8 +136,19 @@ local function replace_keycodes(str)
 end
 
 require('telescope').load_extension('fzy_native')
+require('telescope').setup({
+  defaults = {
+    layout_strategy = 'vertical',
+    -- layout_strategy = 'horizontal',
+    layout_config = { width = 0.9 },
+  },
+})
 
 local map = function(type, key, value)
+  vim.api.nvim_buf_set_keymap(0, type, key, value, { noremap = true, silent = true, unique = true })
+end
+
+local map_nonunique = function(type, key, value)
   vim.api.nvim_buf_set_keymap(0, type, key, value, { noremap = true, silent = true })
 end
 
@@ -132,7 +169,8 @@ vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(vim.lsp.diagn
 })
 
 local symbols = {
-  Array = '[]',
+  -- Array = '[]',
+  Array = '',
   Boolean = '⊨',
   -- Class = '𝓒'
   -- Class = '🅒',
@@ -248,6 +286,10 @@ local label_comparator = function(entry1, entry2)
   return entry1.completion_item.label < entry2.completion_item.label
 end
 
+local t = function(str)
+  return vim.api.nvim_replace_termcodes(str, true, true, true)
+end
+
 local compare = require('cmp.config.compare')
 local cmp = require('cmp')
 local mapping = {
@@ -270,20 +312,45 @@ local mapping = {
       cmp.mapping.select_next_item()(nil)
     end
   end,
-  -- ['<Tab>'] = function(fallback)
-  --   if cmp.visible() then
-  --     cmp.select_next_item()
-  --   else
-  --     fallback()
-  --   end
-  -- end,
-  -- ['<S-Tab>'] = function(fallback)
-  --   if cmp.visible() then
-  --     cmp.select_prev_item()
-  --   else
-  --     fallback()
-  --   end
-  -- end,
+  ['<Tab>'] = cmp.mapping({
+    i = function(fallback)
+      if cmp.visible() then
+        cmp.select_next_item({ behavior = cmp.SelectBehavior.Insert })
+      elseif vim.fn['UltiSnips#CanJumpForwards']() == 1 then
+        vim.api.nvim_feedkeys(t('<Plug>(ultisnips_jump_forward)'), 'm', true)
+      else
+        fallback()
+      end
+    end,
+    s = function(fallback)
+      if vim.fn['UltiSnips#CanJumpForwards']() == 1 then
+        vim.api.nvim_feedkeys(t('<Plug>(ultisnips_jump_forward)'), 'm', true)
+      else
+        fallback()
+      end
+    end,
+  }),
+  ['<S-Tab>'] = cmp.mapping({
+    i = function(fallback)
+      if cmp.visible() then
+        cmp.select_prev_item({ behavior = cmp.SelectBehavior.Insert })
+      elseif vim.fn['UltiSnips#CanJumpBackwards']() == 1 then
+        return vim.api.nvim_feedkeys(t('<Plug>(ultisnips_jump_backward)'), 'm', true)
+      else
+        fallback()
+      end
+    end,
+    s = function(fallback)
+      if vim.fn['UltiSnips#CanJumpBackwards']() == 1 then
+        return vim.api.nvim_feedkeys(t('<Plug>(ultisnips_jump_backward)'), 'm', true)
+      else
+        fallback()
+      end
+    end,
+  }),
+  ['<CR>'] = cmp.mapping({
+    i = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false }),
+  }),
 }
 
 cmp.setup({
@@ -390,32 +457,43 @@ local on_attach = function(_client, bufnr)
   -- vim.api.nvim_command([[autocmd CursorMoved <buffer> lua vim.lsp.diagnostic.show_line_diagnostics()]])
   -- vim.api.nvim_command([[autocmd CursorMoved <buffer> lua Only_normal(vim.lsp.diagnostic.show_line_diagnostics)]])
 
-  map('n', '<c-]>', '<cmd>lua vim.lsp.buf.definition()<CR>')
-  -- map('n', 'gd', '<cmd>lua vim.lsp.buf.declaration()<CR>')
+  -- symbols under cursor
+  -- jump to variable definition
+  map('n', '<c-]>', '<cmd>Telescope lsp_definitions<CR>')
   map('n', 'gd', '<cmd>Telescope lsp_definitions<CR>')
-  -- map('n', 'gD', '<cmd>lua vim.lsp.buf.type_definition()<CR>')
+  -- jump to variable type definition
   map('n', 'gD', '<cmd>Telescope lsp_type_definitions<CR>')
-  map('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>')
-  -- map('n', 'g/', '<cmd>lua vim.lsp.buf.references()<CR>')
-  map('n', 'g/', '<cmd>Telescope lsp_references<CR>')
-  map('n', '<c-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>')
-  -- map('n', 'gl', '<cmd>lua vim.lsp.buf.implementation()<CR>')
-  map('n', 'gl', '<cmd>Telescope lsp_implementation<CR>')
-  -- map('n', 'g0', '<cmd>lua vim.lsp.buf.document_symbol()<CR>')
+  map('n', ']i', '<cmd>lua vim.lsp.buf.declaration()<CR>')
+
+  -- show usages
+  map('n', 'ru', '<cmd>Telescope lsp_references<CR>')
+  -- show implementations
+  map('n', 'ri', '<cmd>Telescope lsp_implementations<CR>')
+  -- show callers
+  map('n', 'rci', '<cmd>lua vim.lsp.buf.incoming_calls()<CR>')
+  -- show callees
+  map('n', 'rco', '<cmd>lua vim.lsp.buf.outgoing_calls()<CR>')
+  -- list all references
+  map('n', 'rl', '<cmd>Telescope lsp_workspace_symbols<CR>')
+
+  -- document references
   map('n', 'g0', '<cmd>Telescope lsp_document_symbols<CR>')
   map('n', 'g\\', '<cmd>SymbolsOutline<CR>')
-  -- map('n', 'gs', '<cmd>lua vim.lsp.buf.workspace_symbol()<CR>')
-  map('n', 'gs', '<cmd>Telescope lsp_workspace_symbols<CR>')
-  map('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>')
+
+  -- signature
+  map_nonunique('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>')
+  map('n', 'gK', '<cmd>lua vim.lsp.buf.signature_help()<CR>')
+
+  -- actions
   -- map('n', 'g.', '<cmd>lua vim.lsp.buf.code_action()<CR>')
-  map('n', 'g.', '<cmd>Telescope code_actions<CR>')
-  map('v', 'g.', '<cmd>Telescope range_code_action<CR>s')
-  map('n', 'gr', '<cmd>lua vim.lsp.buf.rename()<CR>')
+  map('n', 'x.', '<cmd>Telescope lsp_code_actions<CR>')
+  map('v', 'x.', '<cmd>Telescope lsp_range_code_action<CR>s')
+  map('n', 'xr', '<cmd>lua vim.lsp.buf.rename()<CR>')
+
+  -- formatting
   map('n', 'gq', '<cmd>lua vim.lsp.buf.formatting()<CR>')
   map('n', 'gQ', '<cmd>lua vim.lsp.buf.range_formatting()<CR>')
   map('v', 'gQ', '<cmd>lua vim.lsp.buf.range_formatting()<CR>')
-  map('n', 'gy', '<cmd>lua vim.lsp.buf.incoming_calls()<CR>')
-  map('n', 'gz', '<cmd>lua vim.lsp.buf.outgoing_calls()<CR>')
 
   require('lsp_signature').on_attach({
     bind = true, -- This is mandatory, otherwise border config won't get registered.
@@ -446,36 +524,18 @@ if vim.fn.executable('clangd') then
   lspconfig.clangd.setup({
     on_attach = function(client, bufnr)
       on_attach(client, bufnr)
-      map(
-        'n',
-        '<C-w>a',
-        '<cmd>lua vim.lsp.buf_request(0, "textDocument/switchSourceHeader", {uri=vim.uri_from_bufnr(0)}, nil)<CR>'
-      )
-      map(
-        'n',
-        'gh',
-        '<cmd>lua vim.lsp.buf_request(0, "textDocument/switchSourceHeader", {uri=vim.uri_from_bufnr(0)}, nil)<CR>'
-      )
+      map('n', '<C-w>a', ':ClangdSwitchSourceHeader<CR>')
+      map('n', 'gh', ':ClangdSwitchSourceHeader<CR>')
     end,
     capabilities = capabilities,
-    handlers = {
-      ['textDocument/switchSourceHeader'] = function(err, result, _ctx, _config)
-        if result then
-          local filename = vim.uri_to_fname(result)
-          vim.api.nvim_command('edit ' .. filename)
-        elseif err then
-          print(vim.inspect(err))
-        else
-          print('No alternate file found')
-        end
-      end,
-    },
   })
 elseif vim.fn.executable('ccls') then
   lspconfig.ccls.setup({ on_attach = on_attach, capabilities = capabilities })
 end
 lspconfig.tsserver.setup({ on_attach = on_attach, capabilities = capabilities })
 lspconfig.zls.setup({ on_attach = on_attach, capabilities = capabilities })
+lspconfig.gopls.setup({})
+lspconfig.lemminx.setup({})
 lspconfig.sumneko_lua.setup({
   cmd = { '/usr/bin/lua-language-server' },
   on_attach = on_attach,
@@ -489,6 +549,7 @@ lspconfig.sumneko_lua.setup({
       },
       diagnostics = {
         globals = { 'vim' },
+        disable = { 'unused-local' },
       },
       workspace = {
         -- Make the server aware of Neovim runtime files
@@ -563,6 +624,7 @@ local rust_opts = {
   server = { on_attach = on_attach, capabilities = capabilities }, -- rust-analyer options
 }
 require('rust-tools').setup(rust_opts)
+-- require'lspconfig'.jdtls.setup({cmd = { "jdtls" }})
 
 local default_outline_symbols = require('symbols-outline.config').defaults.symbols
 local outline_symbols = {}
@@ -605,28 +667,18 @@ parser_config.org = {
   filetype = 'org',
 }
 
-require('nvim-treesitter.configs').setup({
-  -- If TS highlights are not enabled at all, or disabled via `disable` prop, highlighting will fallback to default Vim syntax highlighting
-  highlight = {
-    enable = true,
-    disable = { 'org' }, -- Remove this to use TS highlighter for some of the highlights (Experimental)
-    additional_vim_regex_highlighting = { 'org' }, -- Required since TS highlighter doesn't support all syntax features (conceal)
-  },
-  ensure_installed = { 'org' }, -- Or run :TSUpdate org
-})
-
-require('orgmode').setup({
-  org_agenda_files = { '~/Dokumenty/notatki/*' },
-  org_default_notes_file = '~/Dokumenty/notatki/zadania.org',
-  org_highlight_latex_and_related = 'entities',
-  mappings = {
-    disable_all = false,
-    global = {
-      org_agenda = '<Leader>oa',
-      org_capture = '<Leader>oc',
-    },
-  },
-})
+-- require('orgmode').setup({
+--   org_agenda_files = { '~/Dokumenty/notatki/*' },
+--   org_default_notes_file = '~/Dokumenty/notatki/zadania.org',
+--   org_highlight_latex_and_related = 'entities',
+--   mappings = {
+--     disable_all = false,
+--     global = {
+--       org_agenda = '<Leader>oa',
+--       org_capture = '<Leader>oc',
+--     },
+--   },
+-- })
 
 function _G.dump(...)
   local objects = vim.tbl_map(vim.inspect, { ... })

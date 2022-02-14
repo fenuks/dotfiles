@@ -1,0 +1,15 @@
+# allow luajit for neovim pager (blacklisted by disable-interpreters.inc)
+include allow-lua.inc
+ignore memory-deny-write-execute
+
+# Allow python for neovim python addons (blacklisted by disable-interpreters.inc)
+include allow-python3.inc
+
+whitelist /usr/share/nvim/
+
+read-only ${HOME}
+read-write ${HOME}/.local/share/nvim
+ignore read-only ${HOME}
+
+# needed for Telescope fzy extension
+ignore noexec ${HOME}
