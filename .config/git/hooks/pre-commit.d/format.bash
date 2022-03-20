@@ -58,6 +58,10 @@ function format_rust() {
   rustfmt ${1}
 }
 
+function format_xml() {
+  tidy -xml -indent -quiet -modify ${1}
+}
+
 function format_zig() {
   zig fmt ${1}
 }
@@ -73,7 +77,7 @@ function format_java() {
 
   if [[ ! -f "${FILE}" ]]; then
     if command -v wget >/dev/null; then
-      wget "${JAR_URL}" -O "${FILE}".tmp
+      /usr/bin/wget "${JAR_URL}" -O "${FILE}.tmp"
     elif command -v curl >/dev/null; then
       curl -L "${JAR_URL}" -o "${FILE}.tmp"
     else
@@ -81,7 +85,7 @@ function format_java() {
     fi
     mv "${FILE}"{.tmp,}
   fi
-  java -jar "${FILE}" --replace --set-exit-if-changed ${supported_files}
+  java -jar "${FILE}" --replace ${supported_files}
 }
 
 changed_files=$(git diff --cached --name-only --diff-filter=ACMRTUXB)
@@ -94,4 +98,5 @@ format "${changed_files}" 'stylua' '\.lua$' 'format_lua'
 format "${changed_files}" 'prettier' '^.+\.(md|json|js|jsx|ts|css|ya?ml|html)$' 'format_prettier'
 format "${changed_files}" 'black' '\.py$' 'format_python'
 format "${changed_files}" 'rustfmt' '\.rs$' 'format_rust'
+format "${changed_files}" 'tidy -xml' '\.(xml|xsd)$' 'format_xml'
 format "${changed_files}" 'zig fmt' '\.zig$' 'format_zig'

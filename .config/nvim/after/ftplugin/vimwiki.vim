@@ -13,7 +13,7 @@ nmap <buffer> <silent> <C-w>gf <Plug>VimwikiTabnewLink
 " nmap <buffer> <silent> <Plug>VimwikiRemoveHeaderLevel
 " nmap <buffer> <silent> <Plug>VimwikiGoToParentHeader
 
-" <alt+f>
-imap <buffer> <silent> æ <Plug>VimwikiTableNextCell
-" <alt+d>
-imap <buffer> <silent> ð <Plug>VimwikiTablePrevCell
+" <alt+j>
+imap <buffer> <silent> ə <Plug>VimwikiTableNextCell
+" <alt+k>
+imap <buffer> <silent> … <Plug>VimwikiTablePrevCell

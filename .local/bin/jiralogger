@@ -106,7 +106,11 @@ def parse_worklog_file(path: Path) -> list[WorklogEntry]:
 
 
 def parse_duration(day: datetime, timestring: str) -> tuple[datetime, datetime]:
-    start, end = timestring.split("-")
+    try:
+        start, end = timestring.split("-")
+    except ValueError as ex:
+        print(timestring)
+        raise ex
     start_time = datetime.strptime(start, "%H:%M").time()
     end_time = datetime.strptime(end, "%H:%M").time()
     start_date = datetime.combine(day, start_time)

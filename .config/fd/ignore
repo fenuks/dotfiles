@@ -39,3 +39,4 @@ node_modules/
 build/
 Cargo.lock
 dist-newstyle/
+vendor/

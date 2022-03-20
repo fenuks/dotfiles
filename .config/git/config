@@ -54,6 +54,7 @@ email = fenuks
     r-upstream = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git reset --hard origin/$(git branch --show-current); }; f"
     amr = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" & source ~/.config/shells/git/functions.bash && amr $@; }; f"
     ar = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" & source ~/.config/shells/git/functions.bash && ar $@; }; f"
+    setuphooks = config core.hooksPath ~/.config/git/hooks/
 [blame]
     ; ignoreRevsFile = .gitignorerevs
     markIgnoredLines = true

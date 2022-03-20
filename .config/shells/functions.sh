@@ -19,6 +19,7 @@ cmake_pine_clang() {
 
 empty_cache() {
   rm -rf "$HOME/.cache/"*
+  rm -rf ~/.gradle
   for dir in "$HOME/Projekty/aur/utrzymywane/"*; do
     if [[ -d "${dir}" ]]; then
       (
@@ -28,6 +29,9 @@ empty_cache() {
     fi
   done
   sudo rm -rf "$HOME/.local/share/go/pkg/"*
+  sudo pacman -Scc
+  sudo systemctl start docker
+  docker system prune --force
 }
 
 rmi() {

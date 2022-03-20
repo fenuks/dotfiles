@@ -15,6 +15,7 @@ set tagcase=match " Match case in tag search
 set incsearch " Search while typing
 " set gdefault " Automatically enable the 'g' flag for substitution
 " set foldclose=all " close fold after cursor leaves it
+set foldopen=block,hor,insert,jump,mark,percent,quickfix,search,tag,undo
 set foldlevelstart=99 " start with all folds opened
 
 "" misc
@@ -889,7 +890,7 @@ if has('nvim')
 
     Plug 'https://github.com/windwp/nvim-ts-autotag'
 
-    " Plug 'https://github.com/kristijanhusak/orgmode.nvim'
+    Plug 'https://github.com/kristijanhusak/orgmode.nvim'
     " FIXME
     Plug 'https://github.com/junegunn/fzf'
     Plug 'https://github.com/junegunn/fzf.vim'

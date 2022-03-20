@@ -44,6 +44,8 @@ nnoremap \P "+P
 nnoremap yp "0p
 nnoremap yP "0P
 
+nnoremap <silent> g. :action Generate<CR>
+
 nnoremap <unique> <silent> <Space>p a <ESC>p
 nnoremap <unique> <silent> <Space>P i <ESC>P
 

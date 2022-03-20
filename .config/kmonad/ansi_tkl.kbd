@@ -193,7 +193,7 @@ Quick reference: https://github.com/kmonad/kmonad/blob/master/doc/quick-referenc
 )
 
 (deflayer colemak_dh
-  esc         f1    f2    f3    f4    f5    f6    f7    f8    f9    f10   f11   f12   prnt   @l_sq pause
+  esc         f1    f2    f3    f4    f5    f6    f7    f8    f9    f10   f11   f12   prnt   @l_sd pause
   grv   1     2     3     4     5     6     7     8     9     0     -     =     bspc  @l_avc home  pgup
   tab   q     w     f     p     b     j     l     u     y     @as;  [     ]     \     del    end   pgdn
   @tlcl @hc_a @hc_r @hc_s @hc_t g     m     @hc_n @hc_e @hc_i @hc_o '     ret
@@ -229,12 +229,12 @@ Quick reference: https://github.com/kmonad/kmonad/blob/master/doc/quick-referenc
 )
 
 (deflayer dvorak
-  esc       f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12   prnt @l_sq pause
-  $    &    [    {    }    \(   =    *    \)   +    ]    !    #    bspc  ins  home  pgup
-  tab  ;    ,    .    p    y    f    g    c    r    l    /    @    \     del  end   pgdn
-  caps a    o    e    u    i    d    h    t    n    s    -    ret
-  @tsz '    q    j    k    x    b    m    w    v    z    rsft                 up       
-  lctl lmet lalt           spc            ralt rmet cmp  rctl            left down rght
+  esc        f1    f2    f3    f4    f5    f6    f7    f8    f9    f10   f11   f12   prnt @l_sq pause
+  $    &     [     {     }     \(    =     *     \)    +     ]     !     #     bspc  ins  home  pgup
+  tab  ;     ,     .     p     y     f     g     c     r     l     /     @     \     del  end   pgdn
+  caps @hd_a @hd_o @hd_e @hd_u       i     d     @hd_h @hd_t @hd_n @hd_s -     ret
+  @tsz '     q     j     k     x     b     m     w     v     z     rsft                   up       
+  lctl lmet  lalt              spc               ralt  rmet  cmp   rctl              left down rght
 )
 
 (deflayer numbers

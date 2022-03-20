@@ -534,8 +534,8 @@ elseif vim.fn.executable('ccls') then
 end
 lspconfig.tsserver.setup({ on_attach = on_attach, capabilities = capabilities })
 lspconfig.zls.setup({ on_attach = on_attach, capabilities = capabilities })
-lspconfig.gopls.setup({})
-lspconfig.lemminx.setup({})
+lspconfig.gopls.setup({ on_attach = on_attach, capabilities = capabilities })
+lspconfig.lemminx.setup({ on_attach = on_attach, capabilities = capabilities })
 lspconfig.sumneko_lua.setup({
   cmd = { '/usr/bin/lua-language-server' },
   on_attach = on_attach,

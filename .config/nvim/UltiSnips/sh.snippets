@@ -33,6 +33,10 @@ IFS=$'\n\t'
 `!p snip.rv ='\n\n' `
 endsnippet
 
+snippet redir "redirect all to /dev/null"
+> /dev/null 2>&1
+endsnippet
+
 snippet /case|sw(itch)?/ "case .. esac (case)" rb
 case ${1:word} in
 	${2:pattern} )
