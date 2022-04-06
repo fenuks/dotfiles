@@ -1,0 +1,10 @@
+noblacklist ${HOME}/.cache/maven
+noblacklist ${HOME}/.cache/JetBrains
+blacklist ${HOME}/.cache/*
+ignore private-cache
+ignore noexec /tmp
+
+# enable docker
+ignore blacklist /var/run/docker.sock
+ignore nogroups
+ignore noroot

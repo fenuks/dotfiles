@@ -60,3 +60,4 @@ export UNCRUSTIFY_CONFIG="$HOME/.config/uncrustify.cfg"
 
 export LS_COLORS='di=1;01;34'
 # use LS_COLORS="di=38;2;0;120;0" for RGB colours, where last three numbers are RGB
+export DO_NOT_TRACK=1

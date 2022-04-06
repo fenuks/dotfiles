@@ -61,6 +61,7 @@ parameters:
 	in: ${2:path}
 	description: $3
 	required: ${4:true}
+	example: $0
 endsnippet
 
 snippet sref "OpenAPI components $ref"
@@ -69,6 +70,7 @@ endsnippet
 
 snippet api_body "OpenAPI POST request body"
 requestBody:
+	required: true
 	description: $1
 	content:
 		${2:application/json}:

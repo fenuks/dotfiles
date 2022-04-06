@@ -2,6 +2,7 @@ aarch64
 Amarantus
 Amarok
 Anki
+application/json
 application/pdf
 application/problem+json
 ASM
@@ -145,6 +146,7 @@ whitespace
 Witcher
 x86
 XD
+XDG
 xml
 xoreos
 yaml

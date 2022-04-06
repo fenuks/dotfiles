@@ -31,11 +31,9 @@ email = fenuks
     cm = commit -m
     co = checkout
     d = diff --find-copies-harder
-    default = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git remote show origin | awk '/HEAD/ {print $NF}'; }; f"
-    df = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git diff --color \"$@\" | diff-so-fancy | less --tabs=8 -RFX; }; f"
-    diffs = diff --staged
     ds = diff --find-copies-harder --staged
-    dsf = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git diff --staged --color \"$@\" | diff-so-fancy | less --tabs=8 -RFX; }; f"
+    dt = difftool --tool=difftastic
+    default = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git remote show origin | awk '/HEAD/ {print $NF}'; }; f"
     last = log -1 HEAD
     lg = log --graph --color=auto --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
     lga = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git log --all --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit | less -r; }; f"
@@ -69,6 +67,8 @@ email = fenuks
     prompt = false
 [difftool "vimdir"]
     cmd = vim -f '+next' '+execute \"DirDiff\" argv(0) argv(1)' $LOCAL $REMOTE
+[difftool "difftastic"]
+    cmd = difft "$LOCAL" "$REMOTE"
 [mergetool]
     trustExitCode = true
 [merge]
@@ -111,6 +111,8 @@ email = fenuks
     cmd = graphtage -e
 [log]
     date = local
+[pager]
+    difftool = true
 [tag]
     sort = version:refname
 [versionsort]

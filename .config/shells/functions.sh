@@ -3,6 +3,12 @@ source_if_exists() {
   [[ -r "$1" ]] && source "$1"
 }
 
+pacverify() {
+  sudo paccheck --file-properties --quiet --require-mtree | grep -E -v '(modification time|symlink target|size) mismatch'
+  VISUAL='nvim -d' DIFFPROG=sudoedit pacdiff
+  sudo pacman -Rss $(pacman -Qdtq)
+}
+
 amdvlkrun() {
   VK_ICD_FILENAMES=/usr/share/vulkan/icd.d/amd_icd32.json:/usr/share/vulkan/icd.d/amd_icd64.json "$@"
 }

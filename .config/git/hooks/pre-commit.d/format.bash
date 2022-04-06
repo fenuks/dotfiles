@@ -72,20 +72,26 @@ function format_java() {
   RELEASES_URL=https://github.com/google/google-java-format/releases/download/
   JAR_URL="${RELEASES_URL}/v${RELEASE}/${JAR_NAME}"
 
-  CACHE_DIR="${XDG_CACHE_HOME:-$HOME/.cache}"
-  FILE="${CACHE_DIR}/google-java-format-${RELEASE}.jar"
+  FILE=/usr/share/java/google-java-format/google-java-format.jar
+  if [[ ! -f $FILE ]]; then
+    CACHE_DIR="${XDG_CACHE_HOME:-$HOME/.cache}"
+    FILE="${CACHE_DIR}/google-java-format-${RELEASE}.jar"
 
-  if [[ ! -f "${FILE}" ]]; then
-    if command -v wget >/dev/null; then
-      /usr/bin/wget "${JAR_URL}" -O "${FILE}.tmp"
-    elif command -v curl >/dev/null; then
-      curl -L "${JAR_URL}" -o "${FILE}.tmp"
-    else
-      exit 1
+    if [[ ! -f "${FILE}" ]]; then
+      if command -v wget >/dev/null; then
+        /usr/bin/wget "${JAR_URL}" -O "${FILE}.tmp"
+      elif command -v curl >/dev/null; then
+        curl -L "${JAR_URL}" -o "${FILE}.tmp"
+      else
+        exit 1
+      fi
+      mv "${FILE}"{.tmp,}
     fi
-    mv "${FILE}"{.tmp,}
   fi
-  java -jar "${FILE}" --replace ${supported_files}
+
+  if ! java -jar "${FILE}" --skip-reflowing-long-strings --replace --set-exit-if-changed ${supported_files}; then
+    git add ${supported_files}
+  fi
 }
 
 changed_files=$(git diff --cached --name-only --diff-filter=ACMRTUXB)

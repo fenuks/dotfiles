@@ -15,10 +15,6 @@ set undolevels=1000
 set visualbell
 
 " insert mode
-inoremap jk <ESC>
-inoremap jK <ESC>
-inoremap Jk <ESC>
-inoremap JK <ESC>
 inoremap <C-j> <ESC>:action EditorStartNewLine<CR>i
 inoremap <A-h> <LEFT>
 inoremap <A-l> <RIGHT>

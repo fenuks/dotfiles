@@ -28,7 +28,6 @@ complete -cf man
 source_if_exists /usr/share/git/completion/git-completion.bash
 source_if_exists /usr/share/bash-completion/completions/hg
 source_if_exists /usr/share/bash-completion/completions/docker
-source_if_exists /usr/share/bash-completion/completions/docker-compose
 source_if_exists /usr/share/fzf/completion.bash
 source_if_exists /usr/share/fzf/key-bindings.bash
 # unbind C-z in fzf keybindings
@@ -36,7 +35,6 @@ bind -m vi-command -r '\C-z'
 bind -m vi-insert -r '\C-z'
 bind -x '"\C-z": " maybe_fg"'
 
-complete -o default -o nospace -F _docker_compose dc
 if [[ -r "$HOME/.config/shells/bash/completions/git.bash" ]]; then
   source "$HOME/.config/shells/bash/completions/git.bash"
   complete -o default -o nospace -F _fzf_complete_git cgit

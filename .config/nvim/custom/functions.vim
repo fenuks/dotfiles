@@ -489,7 +489,6 @@ function DiffCurrentQuickfixEntry() abort
   endif
 endfunction
 
-
 function CustomSyntax() abort
     " highlight all trailing spaces
     highlight ExtraWhitespace ctermbg=red guibg=red
@@ -615,6 +614,12 @@ function GoToOpenFold(direction)
     endif
 endfunction
 
+function ConfigureDiff() abort
+    colorscheme gruvbox
+    vnoremap <unique> <silent> dg :diffget<CR>
+    vnoremap <unique> <silent> dp :diffput<CR>
+endfunction
+
 function CaptureEx(cmd) abort
     let l:old = @a
     redir @a
@@ -667,7 +672,6 @@ function AlphaNumber(number, base, start) abort
     endif
     return join(map(l:digits, 'nr2char(v:val + a:start)'), '')
 endfunction
-
 
 function VimFootnoteType(footnumber, type)
     if (a:type ==# 'arabic')

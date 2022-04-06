@@ -45,6 +45,7 @@ set diffopt+=iwhite " ignore whitespace character changes
 set diffopt+=filler,internal,algorithm:histogram,indent-heuristic " use vimproved internal patch
 set visualbell " don't beep
 set noerrorbells " don't beep
+set belloff=error,esc " disable bell for selected events
 set confirm " Ask to save instead of complaining
 set splitright splitbelow " open splits in more natural position
 " set matchpairs+=<:> " make % match between < and >
@@ -86,6 +87,7 @@ set termguicolors " use trucolor
 " set showbreak='@' " show line continuation sign
 " set selection=exclusive
 set conceallevel=1
+set spellsuggest=best,9
 
 let g:vim_dir_path=fnamemodify($MYVIMRC, ':p:h')
 let g:nvim_dir_path=expand('~/.config/nvim/')
@@ -510,7 +512,7 @@ nnoremap <unique> <silent> <F21> :call NextAirlineTheme(-1)<CR> " <S-F9>
 
 inoremap <silent> <unique> <M-r> <C-O>:call VimFootnotes('roman')<CR>
 inoremap <silent> <unique> <M-a> <C-O>:call VimFootnotes('alpha')<CR>
-inoremap <silent> <unique> <M-f> <C-O>:call VimFootnotes('arabic')<CR>
+inoremap <silent> <unique> <M-n> <C-O>:call VimFootnotes('arabic')<CR>
 
 " make I and A work with visual and visual line modes
 vnoremap <unique> <silent> gA :<C-u>call VisualBlockOperation('A')<CR>
@@ -651,8 +653,6 @@ Plug 'https://github.com/rhysd/git-messenger.vim', { 'on': 'GitMessenger' }
 " Plug 'https://github.com/ludovicchabant/vim-lawrencium' " disabled, it takes 5ms to load
 " Plug 'https://github.com/jlfwong/vim-mercenary'
 Plug 'https://github.com/will133/vim-dirdiff', { 'on': 'DirDiff' }
-nnoremap <unique> <silent> <Leader>dg :diffget<CR>
-nnoremap <unique> <silent> <Leader>dp :diffput<CR>
 nnoremap <unique> <silent> <Leader>df :call DiffOrig()<CR>
 nnoremap <unique> <silent> <Leader>dw :windo call CommandOnBuffer('diffthis')<CR>
 nnoremap <unique> <silent> <Leader>dW :windo call CommandOnBuffer('diffoff')<CR>
@@ -756,6 +756,8 @@ nmap <unique> <silent> <Leader>ga <Plug>(EasyAlign)
 "Plug 'https://github.com/godlygeek/tabular'
 "Plug 'https://github.com/tommcdo/vim-lion'
 "let g:lion_squeeze_spaces = 1
+
+Plug 'https://github.com/obreitwi/vim-sort-folds', { 'on': 'SortFolds' }
 
 "##### Syntax analysis
 Plug 'https://github.com/dense-analysis/ale'
@@ -1084,8 +1086,6 @@ if has('gui_running') || exists(':GuiFont')
     let g:solarized_diffmode='high'
     colorscheme gruvbox
     set lines=50 columns=140
-elseif &diff
-    colorscheme gruvbox
 else
     if &background ==# 'light'
         let g:airline_theme='edge'
@@ -1097,6 +1097,13 @@ endif
 " transparent: CandyPaper,
 " gruvbox, badwolf
 " truecolour: onedark, OceanicNext
+
+execute 'source ' . g:vim_custom_scripts . 'functions.vim'
+execute 'source ' . g:vim_custom_scripts . 'spelling.vim'
+
+if &diff
+    call ConfigureDiff()
+endif
 
 call deoplete#custom#option({
     \ 'ignore_sources': {'c': ['tag'], 'cpp': ['tag'], 'xml': ['tag']},
@@ -1116,7 +1123,6 @@ call deoplete#custom#source('dictionary', {
 \ })
 
 """ functions
-execute 'source ' . g:vim_custom_scripts . 'functions.vim'
 command! Cnext call WrapListCommand('cnext', 'cfirst')
 command! Cprevious call WrapListCommand('cprev', 'clast')
 command! Lnext call WrapListCommand('lnext', 'lfirst')
@@ -1141,6 +1147,7 @@ augroup vim
     " highlight trailing spaces
     call CustomSyntax()
     autocmd ColorScheme * call CustomSyntax()
+    autocmd OptionSet diff call ConfigureDiff()
 augroup END
 
 augroup filetype_detect
@@ -1159,8 +1166,6 @@ function! ConfigurePkgbuild() abort
     setlocal shiftwidth=2
     setlocal filetype=sh
 endfunction
-
-execute 'source ' . g:vim_custom_scripts . 'spelling.vim'
 
 command! PlugInit !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
 \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
