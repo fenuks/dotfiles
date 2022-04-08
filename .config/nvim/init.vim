@@ -45,7 +45,7 @@ set diffopt+=iwhite " ignore whitespace character changes
 set diffopt+=filler,internal,algorithm:histogram,indent-heuristic " use vimproved internal patch
 set visualbell " don't beep
 set noerrorbells " don't beep
-set belloff=error,esc " disable bell for selected events
+set belloff=backspace,error,esc " disable bell for selected events
 set confirm " Ask to save instead of complaining
 set splitright splitbelow " open splits in more natural position
 " set matchpairs+=<:> " make % match between < and >

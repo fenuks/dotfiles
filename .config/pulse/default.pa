@@ -1,0 +1,14 @@
+.include /etc/pulse/default.pa
+
+# add support for sinks over network
+.ifexists module-tunnel-sink.so
+load-module module-tunnel-sink server
+.endif
+
+# automatically detect sinks in local network
+# avahi daemon needs to be enabled
+# sudo systemctl enable avahi-daemon
+.ifexists module-zeroconf-discover.so
+load-module module-zeroconf-discover
+.endif
+
