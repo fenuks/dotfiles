@@ -5,7 +5,7 @@ require('nvim-ts-autotag').setup({
 })
 
 require('nvim-treesitter.configs').setup({
-  ensure_installed = 'maintained',
+  ensure_installed = 'all',
   highlight = {
     enable = true,
     disable = { 'org' }, -- Remove this to use TS highlighter for some of the highlights (Experimental)
@@ -415,7 +415,7 @@ cmp.setup({
 
   preselect = 'none',
 
-  mapping = mapping,
+  mapping = cmp.mapping.preset.insert(mapping),
 
   formatting = {
     deprecated = true,

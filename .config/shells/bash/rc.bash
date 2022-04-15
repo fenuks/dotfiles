@@ -33,7 +33,11 @@ source_if_exists /usr/share/fzf/key-bindings.bash
 # unbind C-z in fzf keybindings
 bind -m vi-command -r '\C-z'
 bind -m vi-insert -r '\C-z'
+bind -m emacs-standard -r '\C-z'
+
 bind -x '"\C-z": " maybe_fg"'
+bind -x '"\C-z": " maybe_fg"'
+bind -x '"\ec": "__fzf_cd__"'
 
 if [[ -r "$HOME/.config/shells/bash/completions/git.bash" ]]; then
   source "$HOME/.config/shells/bash/completions/git.bash"
