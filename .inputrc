@@ -22,6 +22,10 @@ set show-all-if-unmodified on
 set show-mode-in-prompt on
 # show filetype in completion
 set visible-stats on
+# If a tab-completed file is a symlink to a directory,
+# treat it like a directory not a file
+set mark-symlinked-directories on
+
 $if term=linux
     set vi-ins-mode-string \1\e[?0c\2
     set vi-cmd-mode-string \1\e[?8c\2

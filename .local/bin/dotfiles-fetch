@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+set -euo pipefail
+IFS=$'\n\t'
+
+# git-extra files
+files=(abort effort info summary)
+for file in "${files[@]}"; do
+    wget -N https://raw.githubusercontent.com/tj/git-extras/master/bin/git-${file} --directory-prefix ~/.local/bin/
+done
+chmod +x ~/.local/bin/git-*
+
+themes=(AtomOneLight Github gruvbox_light Material PencilLight Solarized_Light Tomorrow)
+for theme in "${themes[@]}"; do
+    wget -N https://raw.githubusercontent.com/dexpota/kitty-themes/master/themes/"${theme}".conf --directory-prefix ~/.config/kitty/themes/
+done

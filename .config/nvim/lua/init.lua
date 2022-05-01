@@ -6,6 +6,7 @@ require('nvim-ts-autotag').setup({
 
 require('nvim-treesitter.configs').setup({
   ensure_installed = 'all',
+  ignore_install = { 'phpdoc' },
   highlight = {
     enable = true,
     disable = { 'org' }, -- Remove this to use TS highlighter for some of the highlights (Experimental)
@@ -131,10 +132,6 @@ if vim.g.my_use_nvim_autopairs then
   npairs.add_rule(Rule('’', '’'))
 end
 
-local function replace_keycodes(str)
-  return vim.api.nvim_replace_termcodes(str, true, true, true)
-end
-
 require('telescope').load_extension('fzy_native')
 require('telescope').setup({
   defaults = {
@@ -153,14 +150,6 @@ local map_nonunique = function(type, key, value)
 end
 
 -- LSP
--- it needs to be global until there is lua API for autocommands
-function Only_normal(command)
-  if vim.api.nvim_get_mode().mode ~= 'n' then
-    return
-  end
-  command()
-end
-
 vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
   virtual_text = true,
   signs = true,
@@ -502,14 +491,6 @@ local on_attach = function(_client, bufnr)
     },
   }, bufnr)
 end
-
--- require('nvim-lightbulb').update_lightbulb({
---   sign = {
---     enabled = true,
---     -- Priority of the gutter sign
---     priority = 10,
---   },
--- })
 
 vim.fn.sign_define('LightBulbSign', { text = '᯾', texthl = '', linehl = '', numhl = '' })
 vim.cmd(

@@ -64,7 +64,7 @@ _fzf_complete_git() {
 
   if [[ "${cmd_opt}" == 'add '* ]]; then
     selected=$( (${binary} status --short | grep -vP '^(A|R|D|M) ') | ${fzf} "${fzf_opt[@]}" -m --preview-window=right,75% --preview "${add_preview}" | awk '{$1=""; print substr($0,2)}' | sed "s|^|${prefix}|" | tr '\n' ' ')
-  elif [[ "${cmd_opt}" == 'checkout '* ]]; then
+  elif [[ "${cmd_opt}" == 'checkout '* ]] || [[ "${cmd_opt}" == 'co '* ]]; then
     if [[ "${cmd_last_opt}" == "-b" ]] || [[ "${cmd_last_opt}" == "--branch" ]]; then
       selected=$(${binary} branch --remotes | sed 1d | awk '{ print $1 }' | ${fzf} "${fzf_opt[@]}" -m | tr '\n' ' ')
     else

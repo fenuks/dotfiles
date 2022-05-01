@@ -1,16 +1,30 @@
 [target.x86_64-unknown-linux-gnu]
 linker = "/usr/bin/clang"
-rustflags = ["-Clink-arg=-fuse-ld=lld", "-Zshare-generics=y"]
+rustflags = ["-Clink-arg=-fuse-ld=mold", "-Zshare-generics=y"]
+
+[target.aarch64-unknown-linux-gnu]
+linker = "/usr/bin/clang"
+rustflags = ["-Clink-arg=-fuse-ld=mold", "-Zshare-generics=y"]
+
+# make programs faster
+[profile.release]
+lto = 'thin'
+
+[profile.bench]
+codegen-units = 1
 
 [profile.dev]
 split-debuginfo = "unpacked"
+codegen-units = 256
 
-# make programs faster
-# [profile.release]
-# lto = 'thin'
-# panic = 'abort'
-# codegen-units = 1
+[build]
+rustc-wrapper = "sccache"
 
-# [profile.bench]
-# lto = 'thin'
-# codegen-units = 1
+[alias]
+b = "build"
+br = "build --release"
+c = "check"
+t = "test"
+r = "run"
+rr = "run --release"
+

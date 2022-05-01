@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+set -euo pipefail
+IFS=$'\n\t'
+
+PORT=2222
+url=$1
+url=${url/https:\/\//}
+url=${url/\//:${PORT}\/}
+url=${url%%.git}
+
+git clone "ssh://git@${url}.git"

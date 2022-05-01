@@ -10,49 +10,54 @@ email = fenuks
     ; pager = delta
 ; [interactive]
 ;     diffFilter = delta --color-only | less -R
-[cola]
-    spellcheck = false
 [credential]
     helper = cache
 [advice]
     detachedHead = false
 [alias]
+    amr = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" & source ~/.config/shells/git/functions.bash && amr $@; }; f"
+    ar = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" & source ~/.config/shells/git/functions.bash && ar $@; }; f"
     au = add --update
     aur = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && PKGVER=$(grep -oP 'pkgver ?= ?\\K.+' .SRCINFO)-$(grep -oP 'pkgrel ?= ?\\K.+' .SRCINFO); git commit -m \"Update to ${PKGVER}\" $@; }; f"
-    aursshclone = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git clone ssh://aur@aur.archlinux.org/$@; }; f"
     aurclone = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git clone https://aur.archlinux.org/$@; }; f"
+    aursshclone = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git clone ssh://aur@aur.archlinux.org/$@; }; f"
     br = branch
     brd = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git branch --merged | grep -Ev \"(^\\*|master|develop)\" | xargs git branch -d; }; f"
+    brm = branch --merged
+    brnm = branch --no-merged
     ca = commit --amend
     cam = commit -a --amend
     cat = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git show $(git rev-list --max-count=1 --all -- \"$@\")^:\"$@\"; }; f"
-    cod = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git checkout $(git default); }; f"
     ci = commit
+    clean = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && find -name '*.orig' -delete; }; f"
     cm = commit -m
     co = checkout
+    cod = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git checkout $(git default); }; f"
     d = diff --find-copies-harder
+    default = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git remote show origin | awk '/HEAD/ {print $NF}'; }; f"
     ds = diff --find-copies-harder --staged
     dt = difftool --tool=difftastic
-    default = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git remote show origin | awk '/HEAD/ {print $NF}'; }; f"
-    last = log -1 HEAD
+    first = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git lgb $(git default).. | tail -1; }; f"
+    last = lg -1 HEAD
     lg = log --graph --color=auto --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+    lgb = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git lg $(git default)..; }; f"
     lga = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git log --all --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit | less -r; }; f"
     ls = ls-tree --name-only --full-tree -r HEAD
+    # local commits
+    local = log @{upstream}..@
     mtk = mergetool --tool=kdiff3
     mtv = mergetool --tool=vimdiff
     pff = push --force
     r1 = reset --soft HEAD^
+    rbd = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git rebase $(git default); }; f"
+    rbb = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git rebase -i $(git first | awk '{print $2}')^; }; f"
+    rfiles = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git diff --name-only ${1:-$(git default)}; }; f"
     root = rev-parse --show-toplevel
-    rbd = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git rebase $(git remote show origin | awk '/HEAD/ {print $NF}'); }; f"
-    st = status -s
-    sts = !git --no-pager diff --staged
-    stu = !git --no-pager diff --name-only
-    tidy = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && find -name '*.orig' -delete; }; f"
-    url = remote get-url origin
+    rstat = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git diff --stat ${1:-$(git default)}; }; f"
     r-upstream = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git reset --hard origin/$(git branch --show-current); }; f"
-    amr = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" & source ~/.config/shells/git/functions.bash && amr $@; }; f"
-    ar = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" & source ~/.config/shells/git/functions.bash && ar $@; }; f"
     setuphooks = config core.hooksPath ~/.config/git/hooks/
+    st = status -s
+    remote-url = remote get-url origin
 [blame]
     ; ignoreRevsFile = .gitignorerevs
     markIgnoredLines = true

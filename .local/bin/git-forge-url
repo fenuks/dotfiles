@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+# based on https://github.com/tj/git-extras/blob/master/bin/git-mr
+set -euo pipefail
+IFS=$'\n\t'
+
+if [[ ${1:-} == "" ]]; then
+    branch=$(git branch --show-current)
+    remote=$(git config branch."${branch}".remote || echo "origin")
+else
+    remote=$1
+fi
+
+if [[ $remote == "" ]]; then
+    echo "Remote not found"
+    exit 1
+fi
+
+remote_url=$(git remote get-url $remote)
+
+if [[ $remote_url = *git@* ]]; then
+    url=$(echo $remote_url | sed -E -e 's/:/\//' -e 's/\.git$//' -e 's/.*@(.*)/https:\/\/\1/' -e 's/:[0-9]+//')
+elif [[ $remote_url = http* ]]; then
+    url=${remote_url%.git}
+fi
+
+echo "${url}"

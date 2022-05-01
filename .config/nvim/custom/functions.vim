@@ -234,14 +234,20 @@ endfunction
 
 " open URL under cursor in web browser
 function OpenUrl() abort
-    let l:text = expand('<cfile>')
-    call jobstart(['firefox', l:text])
+    let l:url = expand('<cfile>')
+    if l:url !~ 'https\?://'
+      let l:url = 'https://duckduckgo.com?q=' . l:url
+    endif
+    call jobstart(['firefox', l:url])
 endfunction
 
 " open selected text as URL
 function OpenUrlVisual() abort
-    let l:text = GetVisualSelection()
-    call jobstart(['firefox', l:text])
+    let l:url = GetVisualSelection()
+    if l:url !~ 'https\?://'
+      let l:url = 'https://duckduckgo.com?q=' . l:url
+    endif
+    call jobstart(['firefox', l:url])
 endfunction
 
 " gets text between two marks

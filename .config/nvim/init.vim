@@ -74,6 +74,9 @@ set listchars=tab:▸\ ,eol:¬,trail:·
 set title " update terminal title
 set ruler " show line position on bottom ruler
 set laststatus=2 " always show status line
+if has('nvim-0.7')
+    set laststatus=3
+endif
 set cursorline " highlight current line
 set colorcolumn=80 " show vertical line at column
 set showmatch  " Show matching brackets
