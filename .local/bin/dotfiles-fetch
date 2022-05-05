@@ -3,13 +3,20 @@ set -euo pipefail
 IFS=$'\n\t'
 
 # git-extra files
-files=(abort effort info summary)
+files=(abort authors changelog effort info summary)
 for file in "${files[@]}"; do
-    wget -N https://raw.githubusercontent.com/tj/git-extras/master/bin/git-${file} --directory-prefix ~/.local/bin/
+    /usr/bin/wget -N https://raw.githubusercontent.com/tj/git-extras/master/bin/git-${file} --directory-prefix ~/.local/bin/
 done
+
+# https://github.com/unixorn/git-extra-commands
+files=(attic churn)
+for file in "${files[@]}"; do
+    /usr/bin/wget -N https://raw.githubusercontent.com/unixorn/git-extra-commands/main/bin/git-${file} --directory-prefix ~/.local/bin/
+done
+
 chmod +x ~/.local/bin/git-*
 
 themes=(AtomOneLight Github gruvbox_light Material PencilLight Solarized_Light Tomorrow)
 for theme in "${themes[@]}"; do
-    wget -N https://raw.githubusercontent.com/dexpota/kitty-themes/master/themes/"${theme}".conf --directory-prefix ~/.config/kitty/themes/
+    /usr/bin/wget -N https://raw.githubusercontent.com/dexpota/kitty-themes/master/themes/"${theme}".conf --directory-prefix ~/.config/kitty/themes/
 done

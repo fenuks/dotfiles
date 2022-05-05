@@ -27,6 +27,7 @@ target/
 env/
 .env/
 .venv/
+venv/
 .DS_Store
 __pycache__/
 build/

@@ -2,7 +2,6 @@ set encoding=utf-8
 scriptencoding utf-8
 
 " behaviour
-syntax on " syntax highlight on
 filetype indent plugin on " enable filetype detection
 set synmaxcol=800 " don't highligh longer lines
 
@@ -123,6 +122,9 @@ if has('nvim')
     set inccommand=nosplit
     " set signcolumn=yes:2
 else
+    " syntax highlight on, it breaks source order on neovim 
+    " https://github.com/neovim/neovim/issues/16928
+    syntax on
     set viminfofile=$HOME/.vim/viminfo
     let g:vim_share_dir=g:local_share_dir . '/vim'
     set runtimepath+=~/.config/nvim

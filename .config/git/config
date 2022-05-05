@@ -15,6 +15,7 @@ email = fenuks
 [advice]
     detachedHead = false
 [alias]
+    ahead = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git lg --oneline origin/$(git default)..HEAD; }; f"
     amr = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" & source ~/.config/shells/git/functions.bash && amr $@; }; f"
     ar = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" & source ~/.config/shells/git/functions.bash && ar $@; }; f"
     au = add --update
@@ -32,9 +33,10 @@ email = fenuks
     clean = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && find -name '*.orig' -delete; }; f"
     cm = commit -m
     co = checkout
+    count = rev-list --count HEAD
     cod = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git checkout $(git default); }; f"
     d = diff --find-copies-harder
-    default = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git remote show origin | awk '/HEAD/ {print $NF}'; }; f"
+    default = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git symbolic-ref refs/remotes/origin/HEAD | sed 's|refs/remotes/origin/||'; }; f"
     ds = diff --find-copies-harder --staged
     dt = difftool --tool=difftastic
     first = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git lgb $(git default).. | tail -1; }; f"
@@ -58,6 +60,7 @@ email = fenuks
     setuphooks = config core.hooksPath ~/.config/git/hooks/
     st = status -s
     remote-url = remote get-url origin
+    unpushed = log @{u}..
 [blame]
     ; ignoreRevsFile = .gitignorerevs
     markIgnoredLines = true

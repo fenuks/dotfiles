@@ -14,11 +14,8 @@ behind = "😰"
 diverged = "😵"
 # untracked = "🤷"
 stashed = "📦"
-# modified = "📝"
-staged.value = "++"
-staged.enabled = true
-staged.style = "green"
-modified.enabled = true
+modified = "!"
+staged = "++"
 # renamed = "👅"
 deleted = "🗑"
 
