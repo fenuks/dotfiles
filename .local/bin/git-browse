@@ -20,7 +20,7 @@ case "$OSTYPE" in
         then
             powershell.exe -NoProfile start $url
         else
-            xdg-open $url
+            xdg-open $url 2> /dev/null
         fi
         ;;
     *)

@@ -131,22 +131,31 @@ local extendedClientCapabilities = jdtls.extendedClientCapabilities
 extendedClientCapabilities.resolveAdditionalTextEditsSupport = true
 
 local config = {
+  --- cmd = {
+  ---   "java",
+  ---   "-javaagent:/usr/share/java/lombok/lombok.jar",
+  ---   "-Xbootclasspath/a:/usr/share/java/lombok/lombok.jar",
+  ---   "-Declipse.application=org.eclipse.jdt.ls.core.id1",
+  ---   "-Dosgi.bundles.defaultStartLevel=4",
+  ---   "-Declipse.product=org.eclipse.jdt.ls.core.product",
+  ---   "-noverify",
+  ---   "-Dlog.level=ALL",
+  ---   "-Xms2g",
+  ---   "--add-modules=ALL-SYSTEM",
+  ---   "--add-opens", "java.base/java.util=ALL-UNNAMED",
+  ---   "--add-opens", "java.base/java.lang=ALL-UNNAMED",
+  ---   "-jar", vim.fn.expand("/usr/share/java/jdtls/plugins/org.eclipse.equinox.launcher_*.jar"),
+  ---   "-configuration", "/usr/share/java/jdtls/config_linux",
+  ---   "-data", "/home/fenuks/.cache/jdtls/workspaces/" .. project_name
+  --- },
   cmd = {
-    "java",
+    "jdtls",
     "-javaagent:/usr/share/java/lombok/lombok.jar",
     "-Xbootclasspath/a:/usr/share/java/lombok/lombok.jar",
-    "-Declipse.application=org.eclipse.jdt.ls.core.id1",
-    "-Dosgi.bundles.defaultStartLevel=4",
-    "-Declipse.product=org.eclipse.jdt.ls.core.product",
     "-noverify",
     "-Dlog.level=ALL",
     "-Xms2g",
-    "--add-modules=ALL-SYSTEM",
-    "--add-opens", "java.base/java.util=ALL-UNNAMED",
-    "--add-opens", "java.base/java.lang=ALL-UNNAMED",
-    "-jar", vim.fn.expand("/usr/share/java/jdtls/plugins/org.eclipse.equinox.launcher_*.jar"),
-    "-configuration", "/usr/share/java/jdtls/config_linux",
-    "-data", "/home/fenuks/.local/share/jdtls/workspaces/" .. project_name
+    "-data", "/home/fenuks/.cache/jdtls/workspaces/" .. project_name
   },
   flags = {
     allow_incremental_sync = true,

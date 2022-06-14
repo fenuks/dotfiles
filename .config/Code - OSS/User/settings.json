@@ -4,10 +4,18 @@
   "telemetry.enableTelemetry": false,
   "extensions.ignoreRecommendations": true,
   "[cpp]": {
-    "editor.quickSuggestions": true
+    "editor.quickSuggestions": {
+      "comments": "on",
+      "strings": "on",
+      "other": "on"
+    }
   },
   "[c]": {
-    "editor.quickSuggestions": true
+    "editor.quickSuggestions": {
+      "comments": "on",
+      "strings": "on",
+      "other": "on"
+    }
   },
   "vim.easymotion": true,
   "vim.hlsearch": true,

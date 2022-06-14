@@ -58,8 +58,8 @@ require('nvim-treesitter.configs').setup({
         -- You can use the capture groups defined in textobjects.scm
         ['af'] = '@function.outer',
         ['if'] = '@function.inner',
-        ['ac'] = '@class.outer',
-        ['ic'] = '@class.inner',
+        ['ad'] = '@class.outer',
+        ['id'] = '@class.inner',
       },
     },
     swap = {
@@ -114,7 +114,7 @@ require('nvim-treesitter.configs').setup({
   },
 })
 
-require('treesitter-context.config').setup({
+require('treesitter-context').setup({
   enable = true,
 })
 
@@ -132,12 +132,68 @@ if vim.g.my_use_nvim_autopairs then
   npairs.add_rule(Rule('’', '’'))
 end
 
+local actions = require('telescope.actions')
+local action_state = require('telescope.actions.state')
+
+-- Workaround for https://github.com/nvim-telescope/telescope.nvim/issues/1048
+local multiopen = function(prompt_bufnr, open_cmd)
+  local picker = action_state.get_current_picker(prompt_bufnr)
+  local num_selections = #picker:get_multi_selection()
+  if not num_selections or num_selections <= 1 then
+    actions.add_selection(prompt_bufnr)
+  end
+  actions.send_selected_to_qflist(prompt_bufnr)
+
+  local results = vim.fn.getqflist()
+
+  for _, result in ipairs(results) do
+    local current_file = vim.fn.bufname()
+    local next_file = vim.fn.bufname(result.bufnr)
+
+    if current_file == '' then
+      vim.api.nvim_command('edit' .. ' ' .. next_file)
+    else
+      vim.api.nvim_command(open_cmd .. ' ' .. next_file)
+    end
+  end
+
+  vim.api.nvim_command('cd .')
+end
+
+local function multi_selection_open_edit(prompt_bufnr)
+  multiopen(prompt_bufnr, 'edit')
+end
+
+local function multi_selection_open_vsplit(prompt_bufnr)
+  multiopen(prompt_bufnr, 'vsplit')
+end
+
+local function multi_selection_open_split(prompt_bufnr)
+  multiopen(prompt_bufnr, 'split')
+end
+
+local function multi_selection_open_tab(prompt_bufnr)
+  multiopen(prompt_bufnr, 'tabedit')
+end
+
 require('telescope').load_extension('fzy_native')
 require('telescope').setup({
   defaults = {
     layout_strategy = 'vertical',
     -- layout_strategy = 'horizontal',
     layout_config = { width = 0.9 },
+  },
+  pickers = {
+    find_files = {
+      mappings = {
+        i = {
+          ['<CR>'] = multi_selection_open_edit,
+          ['<C-v>'] = multi_selection_open_vsplit,
+          ['<C-s>'] = multi_selection_open_split,
+          ['<C-t>'] = multi_selection_open_tab,
+        },
+      },
+    },
   },
 })
 
@@ -420,7 +476,7 @@ cmp.setup({
   },
 
   -- experimental = {
-  --   ghost_text = false,
+  --   ghost_text = true,
   -- },
 
   -- sources = {{name = 'nvim_lua'}, {name = 'buffer'}},
@@ -475,8 +531,8 @@ local on_attach = function(_client, bufnr)
 
   -- actions
   -- map('n', 'g.', '<cmd>lua vim.lsp.buf.code_action()<CR>')
-  map('n', 'x.', '<cmd>Telescope lsp_code_actions<CR>')
-  map('v', 'x.', '<cmd>Telescope lsp_range_code_action<CR>s')
+  map('n', 'x.', '<cmd>lua vim.lsp.buf.code_action()<CR>')
+  map('v', 'x.', '<cmd>lua vim.lsp.buf.range_code_action()<CR>')
   map('n', 'xr', '<cmd>lua vim.lsp.buf.rename()<CR>')
 
   -- formatting
@@ -602,7 +658,82 @@ local rust_opts = {
       auto_focus = false,
     },
   },
-  server = { on_attach = on_attach, capabilities = capabilities }, -- rust-analyer options
+  server = {
+    on_attach = on_attach,
+    capabilities = capabilities,
+    settings = {
+      ['rust-analyzer'] = {
+        completion = {
+          autoself = {
+            enable = false,
+          },
+          snippets = {
+            ['Arc::new'] = {
+              postfix = 'arc',
+              body = 'Arc::new(${receiver})',
+              requires = 'std::sync::Arc',
+              description = 'Put the expression into an `Arc`',
+              scope = 'expr',
+            },
+            ['Rc::new'] = {
+              postfix = 'rc',
+              body = 'Rc::new(${receiver})',
+              requires = 'std::rc::Rc',
+              description = 'Put the expression into an `Rc`',
+              scope = 'expr',
+            },
+            ['Box::pin'] = {
+              postfix = 'pinbox',
+              body = 'Box::pin(${receiver})',
+              requires = 'std::boxed::Box',
+              description = 'Put the expression into a pinned `Box`',
+              scope = 'expr',
+            },
+            Ok = {
+              postfix = 'ok',
+              body = 'Ok(${receiver})',
+              description = 'Wrap the expression in a `Result::Ok`',
+              scope = 'expr',
+            },
+            Err = {
+              postfix = 'err',
+              body = 'Err(${receiver})',
+              description = 'Wrap the expression in a `Result::Err`',
+              scope = 'expr',
+            },
+            Some = {
+              postfix = 'some',
+              body = 'Some(${receiver})',
+              description = 'Wrap the expression in an `Option::Some`',
+              scope = 'expr',
+            },
+            Option = {
+              postfix = 'opt',
+              body = 'Option<${receiver}>',
+              description = 'Wrap the expression in an `Option<>`',
+              -- scope = 'type',
+            },
+            String = {
+              postfix = 'str',
+              body = 'String::from(${receiver})',
+              description = 'Wrap the expression in an `String::from`',
+              scope = 'expr',
+            },
+            ifsome = {
+              prefix = 'ifsome',
+              body = 'if let Some($1) = $2 {\n\t$0\n}',
+              description = 'if Some',
+            },
+            ifok = {
+              prefix = 'ifok',
+              body = 'if let Ok($1) = $2 {\n\t$0\n}',
+              description = 'if Ok',
+            },
+          },
+        },
+      },
+    },
+  }, -- rust-analyer options
 }
 require('rust-tools').setup(rust_opts)
 -- require'lspconfig'.jdtls.setup({cmd = { "jdtls" }})

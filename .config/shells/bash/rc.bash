@@ -14,12 +14,11 @@ shopt -s autocd
 bind '"\C-l": "\C-u clear && printf \"\\e[3J\""'
 
 # bind fzf git keys
-bind '"\er": redraw-current-line'
-bind '"\C-g\C-f": "$(gf)\e\C-e\er"'
-bind '"\C-g\C-b": "$(gb)\e\C-e\er"'
-bind '"\C-g\C-t": "$(gt)\e\C-e\er"'
-bind '"\C-g\C-h": "$(gh)\e\C-e\er"'
-bind '"\C-g\C-r": "$(gr)\e\C-e\er"'
+bind -x '"\C-gf": " gf_bash"'
+bind -x '"\C-gb": " gb_bash"'
+bind -x '"\C-gt": " gt_bash"'
+bind -x '"\C-gh": " gh_bash"'
+bind -x '"\C-gr": " gr_bash"'
 
 # completion
 complete -cf sudo
@@ -38,6 +37,11 @@ bind -m emacs-standard -r '\C-z'
 bind -x '"\C-z": " maybe_fg"'
 bind -x '"\C-z": " maybe_fg"'
 bind -x '"\ec": "__fzf_cd__"'
+bind -x '"\C-x": " dir_bash"'
+
+# extended keys can be bind as well
+# bind c-;
+# bind -x '"\e[59;5u": " gr_bash"'
 
 if [[ -r "$HOME/.config/shells/bash/completions/git.bash" ]]; then
   source "$HOME/.config/shells/bash/completions/git.bash"
@@ -47,8 +51,13 @@ else
   complete -o default -o nospace -F __git_wrap__git_main cgit
   complete -o default -o nospace -F __git_wrap__git_main g
 fi
+if [[ -r "/usr/share/bash-completion/completions/cargo" ]]; then
+  source /usr/share/bash-completion/completions/cargo
+  complete -F _cargo c
+fi
 source_if_exists "$HOME/.config/shells/bash/completions/hg.bash"
 source_if_exists "$HOME/.config/shells/bash/completions/docker.bash"
+source_if_exists "$HOME/.config/shells/bash/completions/fg.bash"
 
 PS0="\e[2 q" # reset cursor to normal before program runs
 

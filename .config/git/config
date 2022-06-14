@@ -16,6 +16,7 @@ email = fenuks
     detachedHead = false
 [alias]
     ahead = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git lg --oneline origin/$(git default)..HEAD; }; f"
+    authors = shortlog --summary --numbered
     amr = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" & source ~/.config/shells/git/functions.bash && amr $@; }; f"
     ar = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" & source ~/.config/shells/git/functions.bash && ar $@; }; f"
     au = add --update
@@ -41,6 +42,7 @@ email = fenuks
     dt = difftool --tool=difftastic
     first = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git lgb $(git default).. | tail -1; }; f"
     last = lg -1 HEAD
+    last-tag = describe --tags --abbrev=0
     lg = log --graph --color=auto --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
     lgb = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git lg $(git default)..; }; f"
     lga = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git log --all --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit | less -r; }; f"
@@ -51,6 +53,7 @@ email = fenuks
     mtv = mergetool --tool=vimdiff
     pff = push --force
     r1 = reset --soft HEAD^
+    rsd = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git reset --soft $(git default); }; f"
     rbd = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git rebase $(git default); }; f"
     rbb = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git rebase -i $(git first | awk '{print $2}')^; }; f"
     rfiles = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git diff --name-only ${1:-$(git default)}; }; f"

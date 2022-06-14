@@ -1,0 +1,160 @@
+#!/usr/bin/env python3
+import json
+import re
+import subprocess
+import sys
+from argparse import ArgumentParser
+from pathlib import Path
+from urllib.request import Request, urlopen
+
+BOLD = "\033[1m"
+RED = "\033[31m"
+GREEN = "\033[32m"
+RESET = "\033[0m"
+
+
+def cmd() -> ArgumentParser:
+    parser = ArgumentParser(
+        prog="git forge-stats",
+        description="Prints forge (issues, merge requests) from remote forge",
+    )
+    parser.add_argument("--remote", help="Remote to get URL from", default="origin")
+    return parser
+
+
+def main():
+    parser = cmd()
+    cli = parser.parse_args()
+    url = get_url(cli.remote)
+    github_stats(url)
+
+
+def get_url(remote: str) -> str:
+    output = subprocess.run(["git", "remote", "get-url", remote], capture_output=True)
+    if output.returncode:
+        print(output.stderr.decode("utf8"))
+        sys.exit(output.returncode)
+    return output.stdout.decode("utf8").strip()
+
+
+def github_stats(url: str):
+    match = re.search(r"^https://github.com/(\w+)/(\w+)", url)
+    if not match:
+        sys.exit(2)
+
+    token = Path("~/.config/tokens/github").expanduser().read_text("utf8").strip()
+    owner, repo = match.groups()
+    github_graphql(owner, repo, token)
+
+
+def github_graphql(owner, repo, token):
+    query = """
+{
+    repository(owner: "%s", name: "%s") {
+        openIssues: issues(states: OPEN) {
+            totalCount
+        }
+        allIssues: issues {
+            totalCount
+        }
+        openPulls: pullRequests(states: OPEN) {
+            totalCount
+        }
+        allPulls: pullRequests {
+            totalCount
+        }
+        isArchived
+        isFork
+        watchers {
+            totalCount
+        }
+        forkCount
+        stargazerCount
+        licenseInfo {
+            name
+        }
+        defaultBranchRef {
+            target {
+                ... on Commit {
+                    history(first: 1) {
+                        nodes {
+                            statusCheckRollup {
+                                state
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+""" % (
+        owner,
+        repo,
+    )
+    headers = {"Content-Type": "applicaton/json", "Authorization": f"Bearer {token}"}
+    resp = http_post("https://api.github.com/graphql", {"query": query}, headers)
+    print_github(resp)
+
+
+def print_github(resp: dict):
+    data = resp["data"]["repository"]
+    open_issues = data["openIssues"]["totalCount"]
+    all_issues = data["allIssues"]["totalCount"]
+    open_pulls = data["openPulls"]["totalCount"]
+    all_pulls = data["allPulls"]["totalCount"]
+    ci_success = data["defaultBranchRef"]["target"]["history"]["nodes"][0][
+        "statusCheckRollup"
+    ]
+    if ci_success:
+        ci_success = ci_success["state"] == "SUCCESS"
+    print(f"{BOLD}GitHub stats{RESET}")
+    print(f"{BOLD}Watchers:{RESET} {data['watchers']['totalCount']}")
+    print(f"{BOLD}Stars:{RESET}    {data['stargazerCount']}")
+    print(f"{BOLD}Forks:{RESET}    {data['forkCount']}")
+    print(f"{BOLD}Licence:{RESET}  {data['licenseInfo']['name']}")
+    print(
+        f"{BOLD}Issues:{RESET}   {open_issues}/{all_issues}", end=''
+    )
+    if open_issues > 0:
+        print(" ({open_issues/all_issues * 100:.2f}%)", end='')
+    print()
+    print(
+        f"{BOLD}Pulls:{RESET}    {open_pulls}/{all_pulls} ({open_pulls/all_pulls:.2f}%)"
+    )
+    print(f"{BOLD}Archived:{RESET} ", end="")
+    print_no_positive(data["isArchived"])
+    print(f"{BOLD}Is fork:{RESET}  ", end="")
+    print_no_positive(data["isFork"])
+    print(f"{BOLD}Builds:{RESET}   ", end="")
+    print_yes_positive(ci_success)
+
+
+def print_no_positive(value: bool):
+    if value:
+        print(f"{BOLD}{RED}yes{RESET}")
+    else:
+        print(f"{BOLD}{GREEN}no{RESET}")
+
+
+def print_yes_positive(value: bool | None):
+    if value is True:
+        print(f"{BOLD}{GREEN}yes{RESET}")
+    elif value is None:
+        print(f"{BOLD}{RED}none{RESET}")
+    else:
+        print(f"{BOLD}{RED}no{RESET}")
+
+
+def http_post(url, data, headers: dict[str, str] | None = None):
+    req = Request(url)
+    headers = headers or {}
+    for header, value in headers.items():
+        req.add_header(header, value)
+    payload = json.dumps(data).encode("utf8")
+    with urlopen(req, payload) as resp:
+        return json.load(resp)
+
+
+if __name__ == "__main__":
+    main()

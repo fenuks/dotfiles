@@ -287,20 +287,12 @@ prune_history() {
 }
 
 if command -v nvim >/dev/null; then
-  function vim() {
-    nvim "$@"
-  }
-
-  function vimpager() {
-    nvim -R "$@"
-  }
+  alias vim='nvim'
+  alias vimpager='nvim -R'
   export MANPAGER='nvim -i NONE -M -n +Man!'
   export EDITOR=nvim
-  [[ -v BASH_VERSION ]] && export -f vim
 else
-  function vimpager() {
-    vim -R "$@"
-  }
+  alias vimpager='vim -R'
   export EDITOR=vim
   export MANPAGER="env MAN_PN=1 vim -M +MANPAGER -"
 fi
@@ -367,7 +359,6 @@ up() {
 
 # export functions in bash
 if [[ -v BASH_VERSION ]]; then
-  export -f vimpager
   export -f sv
   export -f svim
 fi
@@ -385,6 +376,10 @@ fi
 
 fzf_down() {
   fzf --color=${fzf_colour} --height 50% "$@"
+}
+
+fzf_dir() {
+  eval $FZF_ALT_C_COMMAND | fzf_down --ansi --preview 'ls {} | head -500'
 }
 
 gf() {

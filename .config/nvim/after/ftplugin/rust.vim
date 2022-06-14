@@ -8,6 +8,8 @@ nnoremap <unique> <buffer> <silent> <C-w>} <Plug>(rust-def-vertical)
 
 compiler cargo
 
-if !has('nvim-0.5')
-call ConfigureLsc()
+if has('nvim')
+  vnoremap <silent> <buffer> J :RustJoinLines<CR>
+else
+  call ConfigureLsc()
 endif

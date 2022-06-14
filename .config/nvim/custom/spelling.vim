@@ -10,16 +10,18 @@ set spellcapcheck=
 
 augroup natural_language
     autocmd!
-    autocmd FileType hgcommit,markdown,org,help call ConfigureLanguage()
+    autocmd FileType hgcommit,markdown,org,help,yaml call ConfigureLanguage()
 augroup END
 
 function! ConfigureLanguage() abort
+    setlocal spelllang=pl,en_gb
+    let &spellfile=expand('~/.config/nvim/spell/filetype/' . &filetype . '.utf-8.add')
     setlocal spell dictionary+=/usr/share/dict/polish
-    call airline#extensions#whitespace#disable()
+    " call airline#extensions#whitespace#disable()
 endfunction
 
 function! Mkspell() abort
-    for spellfile in split(glob('~/.config/nvim/spell/*.add'), '\n')
+    for spellfile in split(glob('~/.config/nvim/spell/**/*.add'), '\n')
         execute 'mkspell! ' . spellfile
     endfor
 endfunction

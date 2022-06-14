@@ -16,6 +16,7 @@ alias edit="$EDITOR"
 alias fdi='fd --no-ignore'
 alias fdii='fd --no-ignore -i'
 alias firefox-debug='firefox -start-debugger-server -no-remote'
+alias c='cargo'
 alias g='git'
 alias grep="grep --color=auto"
 alias jad-decompile="jad -o -d src-jad -r -s java **/*.class"
@@ -40,6 +41,7 @@ alias mksrcinfo='makepkg --printsrcinfo >| .SRCINFO'
 alias off='shutdown -h now'
 alias py='python'
 alias rm='rm -i'
+alias rmf='rm -f'
 alias rgi='rg --no-ignore'
 alias rgii='rg --no-ignore -i'
 alias rgis='rg --no-ignore --smart-case'

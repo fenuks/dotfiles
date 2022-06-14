@@ -6,6 +6,7 @@ PORT=2222
 url=$1
 url=${url/https:\/\//}
 url=${url/\//:${PORT}\/}
+url="${url//\/-*/}"
 url=${url%%.git}
 
-git clone "ssh://git@${url}.git"
+git clone "ssh://git@${url}.git" ${@:2}

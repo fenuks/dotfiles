@@ -8,6 +8,9 @@ _fzf_complete_git() {
   fi
 
   binary="${COMP_WORDS[0]}"
+  if [[ $binary == 'g' ]]; then
+    binary='git'
+  fi
   relative_paths=$(${binary} config status.relativePaths)
   prefix=""
   if [[ ${relative_paths:-true} == false ]]; then
@@ -38,6 +41,16 @@ _fzf_complete_git() {
         ${binary} diff --color=always \"\${file}\" | head -$LINES
     fi
     echo \"\${file}\"
+    "
+
+  file_preview="
+    file={}
+    if [[ \${file:0:1} == '\"' ]]; then
+        file=\${file:1:-1}
+    fi
+    file=\"${prefix}\${file}\"
+    bat --color=always \${file} | head -$LINES
+    # echo \"\${file}\"
     "
 
   diff_preview="
@@ -76,6 +89,8 @@ _fzf_complete_git() {
     selected=$( (${binary} status --short | grep -P '^(A|R|D|M|U)') | ${fzf} "${fzf_opt[@]}" -m --preview "${staged_preview}" | awk '{$1=""; print substr($0,2)}' | sed "s|^|${prefix}|" | tr '\n' ' ')
   elif [[ "${cmd_opt}" == 'stash push '* ]]; then
     selected=$( (${binary} status --short | grep -v -P '^(A|R|D|M) ') | ${fzf} "${fzf_opt[@]}" -m --preview "${diff_preview}" | awk '{$1=""; print substr($0,2)}' | sed "s|^|${prefix}|" | tr '\n' ' ')
+  elif [[ "${cmd_opt}" == 'rm '* ]]; then
+    selected=$( (${binary} ls-files | ${fzf} "${fzf_opt[@]}" -m --preview-window=right,75% --preview "${file_preview}" | awk '{$1=""; print substr($0,2)}' | sed "s|^|${prefix}|" | tr '\n' ' '))
   fi
 
   if [[ -v selected ]]; then

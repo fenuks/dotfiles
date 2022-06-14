@@ -18,11 +18,11 @@ export STACK_ROOT="$XDG_CACHE_HOME/stack"
 export CABAL_CONFIG="$XDG_CONFIG_HOME/cabal/config"
 export CABAL_DIR="$XDG_CACHE_HOME/cabal"
 export MAXIMA_USERDIR="$XDG_CONFIG_HOME/maxima"
+export SONAR_USER_HOME="$XDG_CACHE_HOME/sonar"
 # export WINEPREFIX="${XDG_DATA_HOME}/wineprefixes/default"
 alias gdb="gdb -nh -x \"$XDG_CONFIG_HOME/gdb/init\""
 alias irssi="irssi --config=\"$XDG_CONFIG_HOME\"/irssi/config --home=\"$XDG_DATA_HOME\"/irssi"
 alias ipy="ipython --ipython-dir=$XDG_CONFIG_HOME/jupyter"
-
 export GRADLE_USER_HOME="$XDG_CACHE_HOME/gradle"
 alias mvn="mvn --global-settings \"$XDG_CONFIG_HOME/maven/settings.xml\""
 alias mvnT="mvn -Dmaven.test.skip=true --global-settings \"$XDG_CONFIG_HOME\"/maven/settings.xml"
@@ -38,8 +38,12 @@ export ENHANCD_COMMAND=fzf
 export ESCDELAY=0
 export FZF_DEFAULT_OPTS='--height 80% --bind=ctrl-d:preview-page-down,ctrl-u:preview-page-up'
 export GCC_COLORS=auto
+# A  colon-separated  list of suffixes to ignore when performing filename completion
+export FIGNORE=".o:~"
+# A  colon-separated  list of patterns defining the set of file names to be ignored by pathname expansion.
+# export GLOBIGNORE=
 export HISTCONTROL=ignoreboth:erasedups
-export HISTIGNORE="&:[ ]*:exit:ls:cd:bg:fg:history:clear:?(c)git add *"
+export HISTIGNORE="#:&:[ ]*:exit:ls:cd:bg:fg:history:clear:?(c)git add *"
 export HISTSIZE=100000
 # export HISTTIMEFORMAT="%d/%m/%y %T "
 export HTML_TIDY="$HOME/.config/tidy.conf"

@@ -26,6 +26,7 @@ export SYSTEMD_EDITOR=nvim
 export XCOMPOSEFILE="$XDG_CONFIG_HOME/X11/xcompose"
 export XCOMPOSECACHE="$XDG_CACHE_HOME/X11/xcompose"
 export SSH_ASKPASS=/usr/bin/ksshaskpass
+export GOPROXY=direct
 
 alias vim=nvim
 

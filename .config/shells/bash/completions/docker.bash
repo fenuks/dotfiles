@@ -20,7 +20,11 @@ _fzf_complete_docker() {
       selected=$(__fzf_docker_images "${binary}" | ${fzf} "${fzf_opt[@]}" -m | awk '{print $1}' | tr '\n' ' ')
     fi
   elif [[ "${cmd_opt}" == 'exec '* ]]; then
-    selected=$("${binary}" ps | sed '1d' | ${fzf} "${fzf_opt[@]}" +m | awk -F '\\s{2,}' '{ print "-it "$7" bash" }' | tr '\n' ' ')
+    selected=$("${binary}" ps | sed '1d' | ${fzf} "${fzf_opt[@]}" +m | awk -F '\\s{2,}' '{ print "-it "$1" bash" }' | tr '\n' ' ')
+  elif [[ "${cmd_opt}" == 'cp '* ]]; then
+    selected=$("${binary}" ps | sed '1d' | ${fzf} "${fzf_opt[@]}" +m | awk -F '\\s{2,}' '{ print ""$1":/" }' | tr '\n' ' ')
+  elif [[ "${cmd_opt}" == 'inspect '* ]]; then
+    selected=$("${binary}" images | sed '1d' | ${fzf} "${fzf_opt[@]}" -m | awk '{print $1":"$2}' | tr '\n' ' ')
   elif [[ "${cmd_opt}" == 'kill '* ]] || [[ "${cmd_opt}" == 'stop '* ]]; then
     selected=$("${binary}" ps | sed '1d' | ${fzf} "${fzf_opt[@]}" -m | awk -F '\\s{2,}' '{ print $7 }' | tr '\n' ' ')
   elif [[ "${cmd_opt}" == 'save '* ]]; then

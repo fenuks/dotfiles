@@ -3,6 +3,9 @@
 *.class
 .directory
 .idea/
+.flattened-pom.xml
+.classpath
+.factorypath
 *.swp
 tags
 tags.lock

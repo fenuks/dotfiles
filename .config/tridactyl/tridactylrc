@@ -40,6 +40,16 @@ unbindurl localhost:8008 v
 unbindurl localhost:8008 i
 unbindurl localhost:8008 m
 
+# yarr
+unbindurl openwrt:7070 j
+unbindurl openwrt:7070 k
+unbindurl openwrt:7070 l
+unbindurl openwrt:7070 h
+unbindurl openwrt:7070 i
+unbindurl openwrt:7070 m
+unbindurl openwrt:7070 R
+unbindurl openwrt:7070 o
+
 bind j scrollline 1
 bind k scrollline -1
 

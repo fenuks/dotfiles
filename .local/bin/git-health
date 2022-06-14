@@ -1,0 +1,84 @@
+#!/usr/bin/env bash
+set -euo pipefail
+IFS=$'\n\t'
+
+BOLD="\033[1m"
+RED="\033[31m"
+GREEN="\033[32m"
+RESET="\033[0m"
+
+TAGS="$(git tag | wc -l)"
+
+echo -e "${BOLD}Repo stats${RESET}"
+echo -e "${BOLD}Authors:${RESET}       $(git authors | wc -l)"
+echo -e "${BOLD}Commits:${RESET}       $(git count)"
+echo -e "${BOLD}First commit:${RESET}  $(git log --reverse --pretty=format:'%cr' | head -n 1)"
+echo -e "${BOLD}Last commit:${RESET}   $(git log --pretty=format:'%cr' -1)"
+echo -e "${BOLD}Branches:${RESET}      $(git branch --remotes  | wc -l)"
+echo -e "${BOLD}Tags:${RESET}          ${TAGS}"
+if [[ "${TAGS}" -gt 0 ]]; then
+    echo -e "${BOLD}Last tag:${RESET}      $(git describe --tags)";
+    echo -e "${BOLD}Last tag date:${RESET} $(git log -1 --tags --simplify-by-decoration --pretty="format:%cr")";
+fi
+
+if [[ -f pom.xml ]]; then
+    echo -e "\n${BOLD}Java (Maven)${RESET}"
+    mvn --quiet help:effective-pom -Doutput=/tmp/effective-pom.xml
+    if grep --quiet jacoco /tmp/effective-pom.xml; then
+        echo -e "${BOLD}Jacoco:           ${GREEN}yes${RESET}"
+    else
+        echo -e "${BOLD}Jacoco:           ${RED}no${RESET}"
+    fi
+    if grep --quiet maven-pmd-plugin /tmp/effective-pom.xml; then
+        echo -e "${BOLD}PMD:              ${GREEN}yes${RESET}"
+    else
+        echo -e "${BOLD}PMD:              ${RED}no${RESET}"
+    fi
+    if grep --quiet spotbugs-maven-plugin /tmp/effective-pom.xml; then
+        echo -e "${BOLD}SpotBugs:         ${GREEN}yes${RESET}"
+    else
+        echo -e "${BOLD}SpotBugs:         ${RED}no${RESET}"
+    fi
+
+    mvn --quiet versions:dependency-updates-report -DdependencyUpdatesReportFormats=xml
+    mvn --quiet versions:plugin-updates-report -DpluginUpdatesReportFormats=xml
+    python << EOF
+from xml.etree import ElementTree as ET
+
+tree = ET.parse('target/dependency-updates-report.xml')
+root = tree.getroot()
+summary = root.find('./summary')
+up_to_date = int(summary.find('./usingLastVersion').text)
+outdated = len(root.findall('.//nextVersion'))
+total = up_to_date + outdated
+print(f"${BOLD}Outdated deps:${RESET}    {outdated}/{total} ({(outdated/total)*100:.2f}%)")
+
+tree = ET.parse('target/plugin-updates-report.xml')
+root = tree.getroot()
+summary = root.find('./summary')
+up_to_date = int(summary.find('./usingLastVersion').text)
+outdated = len(root.findall('.//nextVersion'))
+total = up_to_date + outdated
+print(f"${BOLD}Outdated plugins:${RESET} {outdated}/{total} ({(outdated/total)*100:.2f}%)")
+EOF
+    echo -e "${BOLD}Test files:${RESET}       $(find . -wholename '*src/test/*.*' | wc -l)"
+    # coverage
+    # doc
+    # maven central
+fi
+
+echo
+git forge-stats
+
+echo -e "\n${BOLD}Code stats${RESET}"
+if compgen -G "README*" > /dev/null; then
+    echo -e "${BOLD}README:     ${GREEN}yes${RESET}"
+    if coverage_url=$(grep -i coverage README* | grep -Po '\(https://[^)]+\)]'); then
+        coverage=$(curl -L --silent "${coverage_url:1:-2}" | grep -Po '>\d+(\.\d+)?%<' | head -n 1)
+        echo -e "${BOLD}Coverage:${RESET}   ${coverage:1:-1}"
+    fi
+else
+    echo -e "${BOLD}README:   ${RED}no${RESET}"
+fi
+
+tokei --sort lines

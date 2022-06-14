@@ -73,3 +73,9 @@ function! ConfigureDeoplete() abort
     endif
     call deoplete#custom#buffer_option('auto_complete', v:true)
 endfunction
+
+command! -nargs=* Agp
+\ call fzf#vim#ag(<q-args>, '2> /dev/null',
+\                 fzf#vim#with_preview({'left':'90%'},'up:60%'))
+
+imap <silent> <unique> <c-x><c-f> <Plug>(fzf-complete-path)

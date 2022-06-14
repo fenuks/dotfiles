@@ -122,12 +122,12 @@ if has('nvim')
     set inccommand=nosplit
     " set signcolumn=yes:2
 else
-    " syntax highlight on, it breaks source order on neovim 
+    " syntax highlight on, it breaks source order on neovim
     " https://github.com/neovim/neovim/issues/16928
     syntax on
     set viminfofile=$HOME/.vim/viminfo
     let g:vim_share_dir=g:local_share_dir . '/vim'
-    set runtimepath+=~/.config/nvim
+    set runtimepath+=~/.config/nvim,~/.config/nvim/after
 endif
 
 " persistence
@@ -196,8 +196,8 @@ nnoremap <unique> <silent> ]W daWElpB
 nnoremap <unique> <silent> [, F,2dwbhPb
 
 " insert spaces
-nnoremap <unique> <silent> [<space>  :<C-u>put! =repeat(nr2char(10), v:count1)<CR>'[
-nnoremap <unique> <silent> ]<space> :<C-u>put =repeat(nr2char(10), v:count1)<CR>
+nnoremap <unique> <silent> <space>[ :<C-u>put! =repeat(nr2char(10), v:count1)<CR>'[
+nnoremap <unique> <silent> <space>] :<C-u>put =repeat(nr2char(10), v:count1)<CR>
 
 " allows reusing x and X for other mappings;
 " s and <space> can be also reused since cl is fine enough
@@ -567,6 +567,27 @@ nnoremap <unique> <silent> <Leader>wu :ZoomWinTabToggle<CR>
 Plug 'https://github.com/wellle/targets.vim'
 let g:targets_aiAI='ai  '
 Plug 'https://github.com/michaeljsmith/vim-indent-object'
+Plug 'https://github.com/jessekelighine/vindent.vim'
+let g:vindent_blockmotion_OO_prev = '<space>p'
+let g:vindent_blockmotion_OO_next = '<space>n'
+let g:vindent_motion_less_prev =    '[<'
+let g:vindent_motion_less_next =    ']<'
+let g:vindent_motion_more_prev =    '[>'
+let g:vindent_motion_more_next =    ']>'
+let g:vindent_motion_diff_prev =    '<space>k'
+let g:vindent_motion_diff_next =    '<space>j'
+let g:vindent_object_ii =           'ii'
+let g:vindent_object_iI =           'iI'
+let g:vindent_object_ai =           'ai'
+let g:vindent_object_aI =           'aI'
+let g:vindent_tabstop   =           &tabstop " let vindent know to treat 1 <Tab> as tabstop # of <Spaces>s.
+" text objects that require vim-textobj-user
+Plug 'https://github.com/kana/vim-textobj-user'
+" Plug 'https://github.com/thinca/vim-textobj-comment'
+" Plug 'https://github.com/glts/vim-textobj-comment' " ic
+" Plug 'https://github.com/beloglazov/vim-textobj-quotes' " iq
+Plug 'https://github.com/Julian/vim-textobj-variable-segment' " iv
+
 Plug 'https://github.com/machakann/vim-sandwich'
 Plug 'https://github.com/fenuks/vim-bracket-objects'
 Plug 'https://github.com/mg979/vim-visual-multi'
@@ -588,7 +609,7 @@ nmap <unique> <silent> © <Plug>(ToggleValueOperator)
 imap <unique> <silent> ß <C-o><Plug>(ToggleValueNormal)<right>
 let g:toggle_values = {
 \    'filetypes': {
-\        '': 
+\        '':
 \            [
 \                {'ignore_case': v:true,'keep_case': v:true, 'values': ['True', 'False']},
 \            ],
@@ -926,10 +947,6 @@ else
     let g:AutoPairsMoveCharacter = ''
     Plug 'https://github.com/junegunn/fzf'
     Plug 'https://github.com/junegunn/fzf.vim'
-
-    command! -nargs=* Agp
-    \ call fzf#vim#ag(<q-args>, '2> /dev/null',
-    \                 fzf#vim#with_preview({'left':'90%'},'up:60%'))
     nnoremap <unique> <silent> xx :Files<CR>
     nnoremap <unique> <silent> <Leader>fl :Files<CR>
     nnoremap <unique> <silent> <Leader>fd :Files <C-r>=expand("%:h")<CR>/<CR>
@@ -953,7 +970,7 @@ execute 'source ' . g:vim_custom_scripts . 'autocomplete.vim'
 " snippets
 Plug 'https://github.com/SirVer/ultisnips'
 
-let g:UltiSnipsExpandTrigger = '<Plug>(ultisnips_expand)'      
+let g:UltiSnipsExpandTrigger = 'æ'
 let g:UltiSnipsJumpForwardTrigger = '<Plug>(ultisnips_jump_forward)'
 let g:UltiSnipsJumpBackwardTrigger = '<Plug>(ultisnips_jump_backward)'
 let g:UltiSnipsListSnippets = '<c-x><c-s>'
@@ -962,7 +979,7 @@ let g:UltiSnipsRemoveSelectModeMappings = 0
 " let g:UltiSnipsJumpForwardTrigger='æ' " <a-f>
 " let g:UltiSnipsJumpBackwardTrigger='Æ' " <a-s-f>
 " <a-f>
-imap <unique> <silent> æ <Plug>(ultisnips_expand)
+" imap <unique> <silent> æ <Plug>(ultisnips_expand)
 
 "#### Language specific
 let g:polyglot_disabled = ['sensible', 'autoindent']

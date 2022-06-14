@@ -34,7 +34,7 @@ print!("$1"${2/..*/, /}$2);
 endsnippet
 
 snippet pln "println!(..)" b
-println!("$1"${2/..*/, /}$2);
+println!("{:?}", $1);$0
 endsnippet
 
 snippet fmt "format!(..)"

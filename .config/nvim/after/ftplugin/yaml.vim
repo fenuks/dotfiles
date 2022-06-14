@@ -1,6 +1,4 @@
-if exists('b:did_yaml_ftplugin')
-    finish
-endif
+if exists('b:did_yaml_ftplugin') | finish | endif
 let b:did_yaml_ftplugin = 1
 
 if search('openapi:', '', 0)
