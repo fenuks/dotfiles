@@ -65,6 +65,10 @@ nnoremap [v :action MoveElementLeft<CR>
 nnoremap ]v :action MoveElementRight<CR>
 vnoremap [v :action MoveElementLeft<CR>
 vnoremap ]v :action MoveElementRight<CR>
+nnoremap xh :action MoveElementLeft<CR>
+nnoremap xl :action MoveElementRight<CR>
+vnoremap xh :action MoveElementLeft<CR>
+vnoremap xl :action MoveElementRight<CR>
 nnoremap ]q :action NextOccurence<CR>
 nnoremap [q :action PreviousOccurence<CR>
 nnoremap <C-j> :action NextOccurence<CR>
