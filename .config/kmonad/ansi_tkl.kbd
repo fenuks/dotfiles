@@ -3,6 +3,7 @@
 #| --------------------------------------------------------------------------
 87-key keyboard without num-pad
 Quick reference: https://github.com/kmonad/kmonad/blob/master/doc/quick-reference.md
+List of keycodes: https://github.com/kmonad/kmonad/blob/master/src/KMonad/Keyboard/Keycode.hs
 -------------------------------------------------------------------------- |#
 (defcfg
   ;; For Linux
@@ -64,6 +65,7 @@ Quick reference: https://github.com/kmonad/kmonad/blob/master/doc/quick-referenc
 
   ;; dvorak layers
   l_sd (layer-switch dvorak)
+  l_dls (around shft (layer-toggle dvorak_shft))
 
   ;; number layers
   l_n  (layer-toggle numbers)
@@ -128,12 +130,11 @@ Quick reference: https://github.com/kmonad/kmonad/blob/master/doc/quick-referenc
   ;; tap-hold
   tlcl (tap-hold 200 esc lctl)
   trcl (tap-hold 200 ' rctl)
-  tls (tap-hold 200 \( lsft)
+  ;; tls (tap-hold 200 \( lsft)
+  tls (tap-hold 200 \( @l_dls)
   trs (tap-hold 200 \) rsft)
   tla (tap-hold 200 [ lalt)
   tra (tap-hold 200 ] ralt)
-
-  tsz (tap-hold 200 z lsft)
 
   ;; not used
   tlc (tap-hold 200 { lctl)
@@ -197,7 +198,7 @@ Quick reference: https://github.com/kmonad/kmonad/blob/master/doc/quick-referenc
   grv   1     2     3     4     5     6     7     8     9     0     -     =     bspc  @l_avc home  pgup
   tab   q     w     f     p     b     j     l     u     y     @as;  [     ]     \     del    end   pgdn
   @tlcl @hc_a @hc_r @hc_s @hc_t g     m     @hc_n @hc_e @hc_i @hc_o '     ret
-  @tsz  x     c     d     v     \     k     h     ,     .     /     rsft                     up       
+  @tls  x     c     d     v     \     k     h     ,     .     /     rsft                     up       
   lctl  lmet  lalt           spc            ralt rmet cmp  rctl                       left   down rght
 )
 
@@ -230,11 +231,20 @@ Quick reference: https://github.com/kmonad/kmonad/blob/master/doc/quick-referenc
 
 (deflayer dvorak
   esc        f1    f2    f3    f4    f5    f6    f7    f8    f9    f10   f11   f12   prnt @l_sq pause
-  $    &     [     {     }     \(    =     *     \)    +     ]     !     #     bspc  ins  home  pgup
-  tab  ;     ,     .     p     y     f     g     c     r     l     /     @     \     del  end   pgdn
-  caps @hd_a @hd_o @hd_e @hd_u       i     d     @hd_h @hd_t @hd_n @hd_s -     ret
-  @tsz '     q     j     k     x     b     m     w     v     z     rsft                   up       
+  grv   1     2     3     4     5     6     7     8     9     0     -     =    bspc  ins  home  pgup
+  tab  '     ,     .     p     y     f     g     c     r     l     [     ]     \     del  end   pgdn
+  caps @hd_a @hd_o @hd_e @hd_u       i     d     @hd_h @hd_t @hd_n @hd_s /     ret
+  @tls ;     q     j     k     x     b     m     w     v     z     @trs                   up       
   lctl lmet  lalt              spc               ralt  rmet  cmp   rctl              left down rght
+)
+
+(deflayer dvorak_shft
+  sleep      _     _     _    _     _    _    _     _     _     _     _     _     _    _    _
+  _     _    _     _     _    _     _    _    _     _     _     _     _     _     _    _    _   
+  _     _    _     _     _    _     _    _    _     _     _     _     _     _     _    _    _   
+  _     _    _     _     _    _     _    _    _     _     _     _     _  
+  _     _    _     _     _    _     _    _    _     _     _     _                      _        
+  _     _    _                _               _     _     _     _                 _    _    _   
 )
 
 (deflayer numbers

@@ -37,8 +37,8 @@ def get_or_fail(parser: ConfigParser, section: str, key: str) -> str:
 def read_config() -> list[JiraConfig]:
     config_path = (
         Path(os.getenv("XDG_CONFIG_HOME", "~/.config")).expanduser()
-        / "jiraworklogger"
-        / "config.ini"
+        / "tokens"
+        / "jira"
     )
     if not config_path.is_file():
         print(f"Expected config file at {config_path}")

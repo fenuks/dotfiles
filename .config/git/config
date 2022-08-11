@@ -40,6 +40,7 @@ email = fenuks
     default = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git symbolic-ref refs/remotes/origin/HEAD | sed 's|refs/remotes/origin/||'; }; f"
     ds = diff --find-copies-harder --staged
     dt = difftool --tool=difftastic
+    hgrep = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git grep -P \"$@\" $(git rev-list --all); }; f"
     first = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git lgb $(git default).. | tail -1; }; f"
     last = lg -1 HEAD
     last-tag = describe --tags --abbrev=0
@@ -54,6 +55,7 @@ email = fenuks
     pff = push --force
     r1 = reset --soft HEAD^
     rsd = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git reset --soft $(git default); }; f"
+    rbc = rebase --continue
     rbd = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git rebase $(git default); }; f"
     rbb = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git rebase -i $(git first | awk '{print $2}')^; }; f"
     rfiles = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git diff --name-only ${1:-$(git default)}; }; f"

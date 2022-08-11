@@ -491,6 +491,14 @@ def ${1:fname}(`!p snip.rv = "self, " if snip.indent else ""`$2):
 	$0
 endsnippet
 
+snippet defm "main function"
+def main():
+	$0
+
+if __name__ == '__main__':
+	main()
+endsnippet
+
 snippet def "function with docstrings" b
 def ${1:function}(`!p
 if snip.indent:

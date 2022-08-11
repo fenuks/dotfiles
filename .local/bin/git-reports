@@ -1,0 +1,154 @@
+#!/usr/bin/env python3
+import json
+import os
+import os.path
+import posixpath
+import subprocess
+import sys
+from argparse import ArgumentParser
+from configparser import ConfigParser
+from pathlib import Path
+from shutil import copyfileobj
+from urllib import parse
+from urllib.request import Request, urlopen
+
+
+def cli() -> ArgumentParser:
+    parser = ArgumentParser(description="GitLab CI integration")
+    parser.add_argument("--token", help="GitLab token")
+    parser.add_argument("--remote", default="origin", help="Remote")
+    return parser
+
+
+def get_token(domain: str) -> str:
+    xdg_config = Path(
+        os.environ.get("XDG_CONFIG_HOME", os.path.expanduser("~/.config/"))
+    )
+    cfg = xdg_config / "tokens" / "gitlab"
+
+    if not cfg.is_file():
+        config_error(cfg, domain)
+
+    parser = ConfigParser()
+    parser.read(cfg)
+    if not parser.has_section(domain):
+        config_error(cfg, domain)
+
+    section = parser[domain]
+    if "token" not in section:
+        config_error(cfg, domain)
+
+    return section["token"]
+
+
+def config_error(cfg: Path, domain: str):
+    print(f"Należy dodać do {cfg} sekcję")
+    print(f"[{domain}]")
+    print("token = <token>")
+    sys.exit(1)
+
+
+def main():
+    args = cli().parse_args()
+    host, project_path = get_project_name(args.remote)
+    branch = get_branch()
+    project_id = parse.quote(project_path, safe="")
+    base_url = "https://" + host
+    api_url = get_api_url(base_url)
+    Path("format.patch").unlink(missing_ok=True)
+    Path("qodana.sarif.json").unlink(missing_ok=True)
+    token = get_token(host)
+    headers = get_headers(token)
+    fetch_all(api_url, project_id, branch, headers)
+
+
+def get_project_name(remote: str) -> tuple[str, str]:
+    resp = subprocess.run(
+        ["git", "remote", "get-url", remote], check=True, capture_output=True
+    )
+    url = resp.stdout.decode("utf8")
+    fragments = parse.urlparse(url)
+    path = fragments.path.removeprefix("/").removesuffix(".git")
+
+    return (fragments.hostname, path)
+
+
+def get_branch() -> str:
+    resp = subprocess.run(
+        ["git", "branch", "--show-current"], check=True, capture_output=True
+    )
+    return resp.stdout.decode("utf8").strip()
+
+
+def fetch_all(base_url: str, project_id: str, branch: str, headers: dict):
+    mr = get_mr(base_url, project_id, branch, headers)
+    latest_pipeline = mr["head_pipeline"]
+    jobs = get_jobs(base_url, project_id, latest_pipeline["id"], headers)
+    fetch_patch(jobs, base_url, project_id, headers)
+    fetch_qodana(jobs, base_url, project_id, headers)
+
+
+def fetch_qodana(jobs: dict, base_url: str, project_id: str, headers: dict):
+    format_job = next(filter(lambda a: a["name"] == "lint_qodana", jobs))
+    if format_job["status"] != "failed":
+        return
+    job_id = format_job["id"]
+    url = posixpath.join(
+        base_url,
+        f"projects/{project_id}/jobs/{job_id}/artifacts/qodana/qodana.sarif.json",
+    )
+    req = Request(url, headers=headers)
+    with urlopen(req) as resp:
+        with open("qodana.sarif.json", "wb") as fp:
+            copyfileobj(resp.fp, fp)
+
+
+def fetch_patch(jobs: dict, base_url: str, project_id: str, headers: dict):
+    format_job = next(filter(lambda a: a["name"] == "style", jobs))
+    if format_job["status"] != "failed":
+        return
+    job_id = format_job["id"]
+    url = posixpath.join(
+        base_url, f"projects/{project_id}/jobs/{job_id}/artifacts/format.patch"
+    )
+    req = Request(url, headers=headers)
+    with urlopen(req) as resp:
+        with open("format.patch", "wb") as patch_fp:
+            copyfileobj(resp.fp, patch_fp)
+
+
+def get_jobs(base_url: str, project_id: str, pipeline_id: int, headers: dict):
+    url = posixpath.join(
+        base_url, f"projects/{project_id}/pipelines/{pipeline_id}/jobs"
+    )
+    req = Request(url, headers=headers)
+    with urlopen(req) as resp:
+        return json.load(resp)
+
+
+def get_mr(base_url: str, project_id: str, branch: str, headers: dict):
+    url = posixpath.join(
+        base_url, "projects/" + project_id + "/merge_requests?state=opened"
+    )
+    req = Request(url, headers=headers)
+    with urlopen(req) as resp:
+        data = json.load(resp)
+    mr_id = data[0]["iid"]
+    url = posixpath.join(
+        base_url, "projects/" + project_id + "/merge_requests/" + str(mr_id)
+    )
+    req = Request(url, headers=headers)
+    with urlopen(req) as resp:
+        return json.load(resp)
+
+
+def get_api_url(hostname: str) -> str:
+    return posixpath.join(hostname, "api/v4")
+
+
+def get_headers(token: str) -> dict:
+    return {"Private-Token": token}
+
+
+if __name__ == "__main__":
+    main()

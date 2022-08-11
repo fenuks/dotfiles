@@ -7,6 +7,7 @@ let g:foldmethods = {
 \ 'diff': 'manual'
 \}
 
+let g:search_engine = 'https://lite.qwant.com/?q='
 let g:my_colours = []
 let g:my_colourscheme=g:colors_name
 let g:my_airline_themes = []
@@ -223,20 +224,20 @@ endfunction
 " search for word under cursor in search engine
 function SearchWeb() abort
     let l:text = expand('<cWORD>')
-    call jobstart(['firefox', 'https://duckduckgo.com?q=' . l:text])
+    call jobstart(['firefox', g:search_engine . l:text])
 endfunction
 
 " search for selected text in search engine
 function SearchWebVisual() abort
     let l:text = GetVisualSelection()
-    call jobstart(['firefox', 'https://duckduckgo.com?q=' . l:text])
+    call jobstart(['firefox', g:search_engine . l:text])
 endfunction
 
 " open URL under cursor in web browser
 function OpenUrl() abort
     let l:url = expand('<cfile>')
     if l:url !~ 'https\?://'
-      let l:url = 'https://duckduckgo.com?q=' . l:url
+      let l:url = g:search_engine . l:url
     endif
     call jobstart(['firefox', l:url])
 endfunction
@@ -245,7 +246,7 @@ endfunction
 function OpenUrlVisual() abort
     let l:url = GetVisualSelection()
     if l:url !~ 'https\?://'
-      let l:url = 'https://duckduckgo.com?q=' . l:url
+      let l:url = g:search_engine . l:url
     endif
     call jobstart(['firefox', l:url])
 endfunction

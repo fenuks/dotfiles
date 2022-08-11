@@ -25,5 +25,5 @@ def set_input_mode(self, mode):
 ViState._input_mode = InputMode.INSERT
 ViState.input_mode = property(get_input_mode, set_input_mode)
 c.TerminalInteractiveShell.editing_mode = "vi"
-c.InteractiveShell.pdb = True
+# c.InteractiveShell.pdb = True
 c.ZMQTerminalInteractiveShell.include_other_output = True

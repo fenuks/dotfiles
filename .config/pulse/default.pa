@@ -1,5 +1,9 @@
 .include /etc/pulse/default.pa
 
+# .nofail
+# unload-module module-suspend-on-idle
+# .fail
+
 # add support for sinks over network
 .ifexists module-tunnel-sink.so
 load-module module-tunnel-sink server
@@ -12,3 +16,6 @@ load-module module-tunnel-sink server
 load-module module-zeroconf-discover
 .endif
 
+# if local sink gets suspended when trying to play sound, config directory
+# needs to be purged
+# https://wiki.archlinux.org/title/PulseAudio/Troubleshooting#Failed_to_create_sink_input:_sink_is_suspended

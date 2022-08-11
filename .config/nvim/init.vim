@@ -360,7 +360,7 @@ vnoremap <unique> <silent> <M-k> gk
 nnoremap <unique> <silent> <M-j> gj
 nnoremap <unique> <silent> <M-k> gk
 " open fold and descent into it
-nnoremap <unique> <silent> gj zogj
+" nnoremap <unique> <silent> gj zogj
 " select last inserted/pasted text
 " nnoremap <unique> <silent> sp `[v`]
 nnoremap <unique> <silent> gl :e <cfile><CR>
