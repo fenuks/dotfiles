@@ -1,0 +1,58 @@
+;; vim: ft=lisp
+
+#| --------------------------------------------------------------------------
+104-key full size keyboard
+Quick reference: https://github.com/jtroo/kanata/blob/main/cfg_samples/kanata.kbd
+-------------------------------------------------------------------------- |#
+(defcfg
+  linux-dev /dev/input/by-id/usb-HAILUCK_CO._LTD_USB_KEYBOARD-event-kbd
+)
+
+(defalias
+  ;; mod-tap for dvorak home rows
+  hd_a (tap-hold 200 200 a lmet)
+  hd_o (tap-hold 200 200 o lalt)
+  hd_e (tap-hold 200 200 e lsft)
+  hd_u (tap-hold 200 200 u lctl)
+
+  hd_h (tap-hold 200 200 h rctl)
+  hd_t (tap-hold 200 200 t rsft)
+  hd_n (tap-hold 200 200 n lalt)
+  hd_s (tap-hold 200 200 s rmet)
+
+  s_lb (tap-hold 200 200 S-9 lsft)
+  s_rb (tap-hold 200 200 S-0 rsft)
+
+  ;; query layers
+  l_sq  (layer-switch qwerty)
+  l_sd (layer-switch dvorak)
+  gq (tap-hold 200 200 grv @l_sd)
+  gd (tap-hold 200 200 grv @l_sq)
+)
+
+(defsrc
+  esc  f1    f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12
+  grv  1     2    3    4    5    6    7    8    9    0    -    =    bspc
+  tab  q     w    e    r    t    y    u    i    o    p    [    ]    ret
+  caps a     s    d    f    g    h    j    k    l    ;    '    \
+  lsft 102d  z    x    c    v    b    n    m    ,    .    /    rsft            up
+  lctl lmet  lalt           spc                 ralt rctl                left down rght
+)
+
+(deflayer dvorak
+  esc  f1    f2    f3    f4    f5    f6    f7    f8    f9    f10   f11   f12
+  @gd  1     2     3     4     5     6     7     8     9     0     -     =     bspc
+  tab  '     ,     .     p     y     f     g     c     r     l     [     ]     ret
+  caps @hd_a @hd_o @hd_e @hd_u i     d     @hd_h @hd_t @hd_n @hd_s /     \
+  @s_lb nubs  ;     q     j     k     x     b     m     w     v     z     @s_rb              up       
+  lctl lmet  lalt              spc               ralt  rctl              left down rght
+)
+
+(deflayer qwerty
+  esc  f1    f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12
+  @gq  1     2    3    4    5    6    7    8    9    0    -    =    bspc
+  tab  q     w    e    r    t    y    u    i    o    p    [    ]    ret
+  caps a     s    d    f    g    h    j    k    l    ;    '    \
+  lsft 102d  z    x    c    v    b    n    m    ,    .    /    rsft            up
+  lctl lmet  lalt           spc                 ralt rctl                left down rght
+)
