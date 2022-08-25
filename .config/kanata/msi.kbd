@@ -1,0 +1,59 @@
+;; vim: ft=lisp
+
+#| --------------------------------------------------------------------------
+104-key full size keyboard
+Quick reference: https://github.com/jtroo/kanata/blob/main/cfg_samples/kanata.kbd
+List of keycodes: https://github.com/kmonad/kmonad/blob/master/src/KMonad/Keyboard/Keycode.hs
+-------------------------------------------------------------------------- |#
+(defcfg
+  linux-dev /dev/input/by-path/platform-i8042-serio-0-event-kbd
+)
+
+(defalias
+  ;; mod-tap for dvorak home rows
+  hd_a (tap-hold 200 200 a lmet)
+  hd_o (tap-hold 200 200 o lalt)
+  hd_e (tap-hold 200 200 e lsft)
+  hd_u (tap-hold 200 200 u lctl)
+
+  hd_h (tap-hold 200 200 h rctl)
+  hd_t (tap-hold 200 200 t rsft)
+  hd_n (tap-hold 200 200 n lalt)
+  hd_s (tap-hold 200 200 s rmet)
+
+  s_lb (tap-hold 200 200 S-9 lsft)
+  s_rb (tap-hold 200 200 S-0 rsft)
+
+  ;; query layers
+  l_sq  (layer-switch qwerty)
+  l_sd (layer-switch dvorak)
+  gq (tap-hold 200 200 grv @l_sd)
+  gd (tap-hold 200 200 grv @l_sq)
+)
+
+(defsrc
+  esc  f1    f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12  prnt
+  grv  1     2    3    4    5    6    7    8    9    0    -    =    bspc del
+  tab  q     w    e    r    t    y    u    i    o    p    [    ]    \    ins
+  caps a     s    d    f    g    h    j    k    l    ;    '         ret  pgup
+  lsft 102d  z    x    c    v    b    n    m    ,    .    /    rsft up   pgdn
+  lctl lmet  lalt           spc                 ralt rctl      left down rght
+)
+
+(deflayer dvorak
+  esc  f1    f2    f3    f4    f5    f6    f7    f8    f9    f10   f11   f12   prnt
+  @gd  1     2     3     4     5     6     7     8     9     0     -     =     bspc del
+  tab  '     ,     .     p     y     f     g     c     r     l     [     ]     \    @l_sq
+  caps @hd_a @hd_o @hd_e @hd_u i     d     @hd_h @hd_t @hd_n @hd_s /           ret  pgup
+  @s_lb nubs  ;     q     j     k     x     b     m     w     v     z    @s_rb up   pgdn
+  lctl lmet  lalt              spc               ralt  rctl              left  down rght
+)
+
+(deflayer qwerty
+  esc  f1    f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12  prnt
+  @gq  1     2    3    4    5    6    7    8    9    0    -    =    bspc del
+  tab  q     w    e    r    t    y    u    i    o    p    [    ]    \    @l_sd
+  caps a     s    d    f    g    h    j    k    l    ;    '         ret  pgup
+  lsft 102d  z    x    c    v    b    n    m    ,    .    /    rsft up   pgdn
+  lctl lmet  lalt           spc                 ralt rctl      left down rght
+)
