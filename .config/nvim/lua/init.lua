@@ -626,7 +626,6 @@ lspconfig.pylsp.setup({
 local rust_opts = {
   tools = { -- rust-tools options
     autoSetHints = true,
-    hover_with_actions = true,
 
     runnables = {
       use_telescope = true,

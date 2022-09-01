@@ -1,7 +1,7 @@
 ;; vim: ft=lisp
 
 #| --------------------------------------------------------------------------
-87-key keyboard without num-pad
+87-key ANSI keyboard without numpad
 Quick reference: https://github.com/kmonad/kmonad/blob/master/doc/quick-reference.md
 List of keycodes: https://github.com/kmonad/kmonad/blob/master/src/KMonad/Keyboard/Keycode.hs
 -------------------------------------------------------------------------- |#
