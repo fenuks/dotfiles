@@ -216,6 +216,7 @@ nnoremap <unique> r <NOP>
 nnoremap <unique> s <NOP>
 nnoremap <unique> S <NOP>
 nnoremap <unique> x <NOP>
+vnoremap <unique> x <NOP>
 nnoremap <unique> X <NOP>
 
 nnoremap <unique> q@ q
@@ -342,9 +343,9 @@ cnoremap <unique> <M-k> <UP>
 cnoremap <unique> <M-j> <DOWN>
 cnoremap <unique> %e e <C-r>=expand('%:h')<CR>/
 if has('nvim')
-cnoremap <unique> w!! w !sudo --askpass ksshaskpass tee > /dev/null %
+  cnoremap <unique> w!! w !sudo --askpass ksshaskpass tee > /dev/null %
 else
-cnoremap <unique> w!! w !sudo tee > /dev/null %
+  cnoremap <unique> w!! w !sudo tee > /dev/null %
 endif
 " cnoremap <unique> g/ g/\v
 " cnoremap <unique> v/ v/\v
@@ -732,7 +733,6 @@ Plug 'https://github.com/ludovicchabant/vim-gutentags'
 let g:gutentags_ctags_exclude = ['.mypy_cache']
 " let g:gutentags_ctags_executable_haskell = 'hasktags'
 Plug 'https://github.com/majutsushi/tagbar', { 'on': 'TagbarToggle' }
-let g:airline#extensions#tabline#enabled = 1
 " Plug 'https://github.com/devjoe/vim-codequery' " rich support for searching symbols support
 
 " Plug 'https://github.com/rhysd/clever-f.vim'
@@ -1068,6 +1068,33 @@ Plug 'https://github.com/lervag/vimtex', { 'for': 'tex' }
 let g:tex_flavor='latex'
 let g:vimtex_view_method='okular'
 let g:tex_conceal='abdmg'
+
+Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
+if exists('g:started_by_firenvim')
+  let g:loaded_airline = 1
+  set laststatus=0
+  let g:firenvim_config = { 
+      \ 'globalSettings': {
+          \ 'alt': 'all',
+      \  },
+      \ 'localSettings': {
+          \ '.*': {
+              \ 'cmdline': 'neovim',
+              \ 'content': 'text',
+              \ 'priority': 0,
+              \ 'selector': 'textarea',
+              \ 'takeover': 'always',
+          \ },
+      \ }
+  \ }
+  let fc = g:firenvim_config['localSettings']
+  let fc['https?://mattermost'] = { 'takeover': 'never', 'priority': 1 }
+  let fc['https?://jira'] = { 'takeover': 'never', 'priority': 1 }
+  augroup firenvim
+    autocmd!
+    autocmd BufEnter *gitlab*.txt set filetype=markdown
+  augroup END
+end
 
 "##### Colourshemes
 " set background=dark

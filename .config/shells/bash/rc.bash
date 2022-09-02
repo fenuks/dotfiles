@@ -10,6 +10,10 @@ bind Space:magic-space
 shopt -s cmdhist
 # change directory without explicit cd
 shopt -s autocd
+# allow to verify ! substitution
+shopt -s histverify
+# correct mispelled dir in autocomplete
+shopt -s dirspell
 # clear screen pernamently
 bind '"\C-l": "\C-u clear && printf \"\\e[3J\""'
 
