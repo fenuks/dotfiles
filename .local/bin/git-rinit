@@ -1,0 +1,16 @@
+#!/usr/bin/env python3
+from pathlib import Path
+import subprocess
+
+cwd = Path.cwd()
+base = Path.home() / 'Kod'
+relative = cwd.relative_to(base)
+
+subprocess.run(['ssh', 'kod', f'git init --bare {relative}'], check=True)
+
+if not Path('.git').exists():
+    subprocess.run(['git', 'init'], check=True)
+
+resp = subprocess.run(['git', 'remote', 'get-url', 'origin'], check=False, capture_output=True)
+if resp.returncode == 2:
+    subprocess.run(['git', 'remote', 'add', 'origin', f'kod:{relative}'], check=True)
