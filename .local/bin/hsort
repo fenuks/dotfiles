@@ -1,0 +1,150 @@
+#!/usr/bin/env python3
+import os
+import sys
+from argparse import ArgumentParser, FileType
+
+
+def cli() -> ArgumentParser:
+    parser = ArgumentParser(prog="hsort", description="Hierarchy/indent aware sort")
+    parser.add_argument(
+        "-m",
+        "--max-depth",
+        type=int,
+        default=0,
+        help="How many levels of hierarchy should be sorted. 0 means all",
+    )
+    parser.add_argument(
+        "-s",
+        "--space-aware",
+        type=bool,
+        default=True,
+        help="Should sorting preserve space order",
+    )
+    parser.add_argument(
+        "-t", "--filetype", type=str, default="", help="Filetype to sort to make"
+    )
+    if not os.isatty(sys.stdin.fileno()):
+        parser.add_argument("file", default=sys.stdin, nargs="?", type=FileType("r"))
+    else:
+        parser.add_argument(
+            "file",
+            type=FileType("r"),
+            help="Input file. Stdin is readed if data is piped",
+        )
+    return parser
+
+
+replacements = {
+    "": None,
+    "yml": (":\n", "\n"),
+}
+replacements["yaml"] = replacements["yml"]
+
+
+def main():
+    args = cli().parse_args()
+
+    out = process(
+        args.file, None, [""], 0, args.max_depth, args.space_aware, args.filetype
+    )[0]
+    print(join_sorted(out, space_aware=args.space_aware, filetype=args.filetype))
+
+
+def leading_whitespace(text) -> str:
+    i = 0
+    for i, c in enumerate(text):
+        if not c.isspace():
+            break
+
+    return text[:i]
+
+
+def join_sorted(lines: list[str], space_aware, filetype: str) -> str:
+    replacement = replacements.get(filetype)
+    if space_aware:
+        if replacement:
+            ordered = sorted(
+                filter(lambda s: not s.isspace(), lines),
+                key=lambda v: v.replace(replacement[0], replacement[1]),
+            )
+        else:
+            ordered = sorted(filter(lambda s: not s.isspace(), lines))
+        prev = ""
+        for i, line in enumerate(reversed(lines)):
+            if line.isspace():
+                spaces = leading_whitespace(prev)
+                if spaces == "":
+                    ordered.insert(-i, line)
+                else:
+                    # when indent decreses with a newline, prepend newline to that item
+                    j = ordered.index(prev)
+                    ordered[j] = line + ordered[j]
+            prev = line
+
+        return "".join(ordered)
+    if replacement:
+        return "".join(
+            sorted(lines, key=lambda v: v.replace(replacement[0], replacement[1]))
+        )
+    return "".join(sorted(lines))
+
+
+def process(
+    fp: FileType("r"),
+    ident: str | None,
+    lines: list,
+    depth: int,
+    max_depth: int,
+    space_aware: bool,
+    filetype: str,
+) -> tuple[list, tuple[str, list[str]] | None]:
+    """
+    The algorithm is ugly, hacky and very inefficient, surely could be written much better, but it seems to work,
+    and at least it can mainian space order, which is a must in such kind of sort.
+    """
+
+    while line := fp.readline():
+        if line.isspace():
+            if lines[-1].isspace():
+                lines[-1] = lines[-1] + line
+            else:
+                lines.append(line)
+            continue
+
+        cur_ident = leading_whitespace(line)
+        if (
+            ident is None
+        ):  # initial ident is unknown becase first line might be already indented
+            ident = cur_ident
+
+        if cur_ident == ident:
+            lines.append(line)
+        elif cur_ident > ident:
+            depth = depth + 1
+            if lines[-1].isspace():
+                spaces = lines.pop()
+                lines[-1] = lines[-1] + spaces
+            line_continuation, context = process(
+                fp, cur_ident, [line], depth, max_depth, space_aware, filetype
+            )
+            spaces = ""
+            if line_continuation[-1].isspace() and context:
+                spaces = line_continuation.pop()
+            if max_depth == 0 or depth < max_depth:
+                lines[-1] = lines[-1] + join_sorted(
+                    line_continuation, space_aware, filetype
+                )
+            else:
+                lines[-1] = lines[-1] + "".join(line_continuation)
+            if context:
+                new_ident, new_lines = context
+                if new_ident < ident:
+                    return (lines, (new_ident, [spaces, *new_lines]))
+                else:
+                    lines.extend(new_lines)
+        else:  # ident is lesser
+            return lines, (cur_ident, [line])
+    return lines, None
+
+if __name__ == "__main__":
+    main()

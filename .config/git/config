@@ -51,7 +51,7 @@ email = fenuks
     # local commits
     local = log @{upstream}..@
     mtk = mergetool --tool=kdiff3
-    mtv = mergetool --tool=vimdiff
+    mtv = mergetool --tool=nvimdiff
     pff = push --force
     r1 = reset --soft HEAD^
     rsd = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git reset --soft $(git default); }; f"
@@ -135,3 +135,5 @@ email = fenuks
     insteadOf = kde:
 [url "ssh://git@invent.kde.org/"]
     pushInsteadOf = kde:
+[submodule]
+	recurse = true

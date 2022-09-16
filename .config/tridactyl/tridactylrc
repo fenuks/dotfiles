@@ -59,3 +59,6 @@ bind K tabprev
 set hintchars abcdefghijklmnopqrstuvwxyz
 set followpagepatterns.next \bnext\b,^>$,^(>>|»)$,^(>|»),(>|»)$,\bmore\b,\bnastępna\b
 set followpagepatterns.prev \bprev\b|\bprevious\b,^<$,^(<<|«)$,^(<|«),(<|«)$,b\poprzednia\b
+
+alias tabsort jsb browser.tabs.query({}).then(tabs => tabs.sort((t1, t2) => t1.url.localeCompare(t2.url)).forEach((tab, index) => browser.tabs.move(tab.id, {index})))
+alias tabuniq jsb browser.tabs.query({}).then(tabs => browser.tabs.remove(tabs.filter((tab, index) => tabs.slice(index + 1).find(t => t.url == tab.url)).map(tab => tab.id)))
