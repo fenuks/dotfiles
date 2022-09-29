@@ -28,3 +28,5 @@
 *.sql.gz diff=gz
 *.json   diff=graphtage
 *.png    diff=exif
+*.openapi.yml  diff=openapi
+*.openapi.yaml diff=openapi

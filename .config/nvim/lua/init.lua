@@ -4,12 +4,13 @@ require('nvim-ts-autotag').setup({
   filetypes = { 'html', 'xml' },
 })
 
+require('orgmode').setup_ts_grammar()
 require('nvim-treesitter.configs').setup({
   ensure_installed = 'all',
   ignore_install = { 'phpdoc' },
   highlight = {
     enable = true,
-    disable = { 'org' }, -- Remove this to use TS highlighter for some of the highlights (Experimental)
+    -- disable = { 'org' }, -- Remove this to use TS highlighter for some of the highlights (Experimental)
     additional_vim_regex_highlighting = { 'org' }, -- Required since TS highlighter doesn't support all syntax features (conceal)
   },
   incremental_selection = {
@@ -780,18 +781,21 @@ parser_config.org = {
   filetype = 'org',
 }
 
--- require('orgmode').setup({
---   org_agenda_files = { '~/Dokumenty/notatki/*' },
---   org_default_notes_file = '~/Dokumenty/notatki/zadania.org',
---   org_highlight_latex_and_related = 'entities',
---   mappings = {
---     disable_all = false,
---     global = {
---       org_agenda = '<Leader>oa',
---       org_capture = '<Leader>oc',
---     },
---   },
--- })
+require('orgmode').setup({
+  org_agenda_files = { '~/Dokumenty/notatki/*' },
+  org_default_notes_file = '~/Dokumenty/notatki/zadania.org',
+  -- org_highlight_latex_and_related = 'entities',
+  -- mappings = {
+  --   disable_all = false,
+  --   global = {
+  --     org_agenda = '<Leader>oa',
+  --     org_capture = '<Leader>oc',
+  --   },
+  --   org = {
+  --     org_return = '',
+  --   },
+  -- },
+})
 
 function _G.dump(...)
   local objects = vim.tbl_map(vim.inspect, { ... })

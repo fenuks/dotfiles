@@ -57,6 +57,7 @@ email = fenuks
     rsd = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git reset --soft $(git default); }; f"
     rbc = rebase --continue
     rbd = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git rebase $(git default); }; f"
+    rbdi = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git rebase --interactive $(git default); }; f"
     rbb = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git rebase -i $(git first | awk '{print $2}')^; }; f"
     rfiles = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git diff --name-only ${1:-$(git default)}; }; f"
     root = rev-parse --show-toplevel
@@ -66,6 +67,7 @@ email = fenuks
     st = status -s
     remote-url = remote get-url origin
     unpushed = log @{u}..
+    track = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git branch --set-upstream-to=origin/$(git branch --show-current); }; f"
 [blame]
     ; ignoreRevsFile = .gitignorerevs
     markIgnoredLines = true
@@ -122,6 +124,8 @@ email = fenuks
     textconv = gunzip -c
 [diff "graphtage"]
     cmd = graphtage -e
+[diff "openapi"]
+    xfuncname = "^\\s*([A-Z].*:)$"
 [log]
     date = local
 [pager]

@@ -89,7 +89,10 @@ def fetch_all(base_url: str, project_id: str, branch: str, headers: dict):
 
 
 def fetch_qodana(jobs: dict, base_url: str, project_id: str, headers: dict):
-    format_job = next(filter(lambda a: a["name"] == "lint_qodana", jobs))
+    qodana = [job for job in jobs if job['name'] == 'lint_qodana']
+    if not qodana:
+        return
+    format_job = qodana[0]
     if format_job["status"] != "failed":
         return
     job_id = format_job["id"]
@@ -101,12 +104,14 @@ def fetch_qodana(jobs: dict, base_url: str, project_id: str, headers: dict):
     with urlopen(req) as resp:
         with open("qodana.sarif.json", "wb") as fp:
             copyfileobj(resp.fp, fp)
+            print('Downloaded', fp.name)
 
 
 def fetch_patch(jobs: dict, base_url: str, project_id: str, headers: dict):
-    format_job = next(filter(lambda a: a["name"] == "style", jobs))
-    if format_job["status"] != "failed":
+    format_jobs = [job for job in jobs if job['name'].startswith('style') and job['status'] == 'failed']
+    if not format_jobs:
         return
+    format_job = format_jobs[0]
     job_id = format_job["id"]
     url = posixpath.join(
         base_url, f"projects/{project_id}/jobs/{job_id}/artifacts/format.patch"
@@ -115,6 +120,7 @@ def fetch_patch(jobs: dict, base_url: str, project_id: str, headers: dict):
     with urlopen(req) as resp:
         with open("format.patch", "wb") as patch_fp:
             copyfileobj(resp.fp, patch_fp)
+            print('Downloaded', patch_fp.name)
 
 
 def get_jobs(base_url: str, project_id: str, pipeline_id: int, headers: dict):

@@ -18,7 +18,7 @@ List of keycodes: https://github.com/kmonad/kmonad/blob/master/src/KMonad/Keyboa
 
   hd_h (tap-hold 200 200 h rctl)
   hd_t (tap-hold 200 200 t rsft)
-  hd_n (tap-hold 200 200 n lalt)
+  hd_n (tap-hold 200 200 n ralt)
   hd_s (tap-hold 200 200 s rmet)
 
   s_lb (tap-hold 200 200 S-9 lsft)
