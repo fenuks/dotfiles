@@ -31,8 +31,14 @@ endsnippet
 
 snippet api_get "OpenAPI GET operation"
 get:
-	description: $1
-	responses: $2
+	${1:tags: [$2]}
+	${3:summary: $4}
+	${5:description: $6}
+	operationId: $7
+	${8:api_parameters$9}
+	responses:
+		'${10:200}':
+			api_response
 endsnippet
 
 snippet api_post "OpenAPI POST operation"

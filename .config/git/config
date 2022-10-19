@@ -37,6 +37,7 @@ email = fenuks
     count = rev-list --count HEAD
     cod = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git checkout $(git default); }; f"
     d = diff --find-copies-harder
+    dd = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git diff $(git default).. $@; }; f"
     default = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git symbolic-ref refs/remotes/origin/HEAD | sed 's|refs/remotes/origin/||'; }; f"
     ds = diff --find-copies-harder --staged
     dt = difftool --tool=difftastic

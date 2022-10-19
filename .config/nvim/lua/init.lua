@@ -558,7 +558,7 @@ vim.cmd(
 
 local lspconfig = require('lspconfig')
 local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
+local capabilities = require("cmp_nvim_lsp").default_capabilities()
 lspconfig.hls.setup({ on_attach = on_attach, capabilities = capabilities })
 if vim.fn.executable('clangd') then
   lspconfig.clangd.setup({
