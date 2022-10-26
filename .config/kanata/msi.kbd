@@ -42,9 +42,9 @@ List of keycodes: https://github.com/kmonad/kmonad/blob/master/src/KMonad/Keyboa
 
 (deflayer dvorak
   esc  f1    f2    f3    f4    f5    f6    f7    f8    f9    f10   f11   f12   prnt
-  @gd  1     2     3     4     5     6     7     8     9     0     -     =     bspc del
-  tab  '     ,     .     p     y     f     g     c     r     l     [     ]     \    @l_sq
-  caps @hd_a @hd_o @hd_e @hd_u i     d     @hd_h @hd_t @hd_n @hd_s /           ret  pgup
+  @gd  1     2     3     4     5     6     7     8     9     0     [     ]     bspc del
+  tab  '     ,     .     p     y     f     g     c     r     l     /     =     \    @l_sq
+  caps @hd_a @hd_o @hd_e @hd_u i     d     @hd_h @hd_t @hd_n @hd_s -           ret  pgup
   @s_lb nubs  ;     q     j     k     x     b     m     w     v     z    @s_rb up   pgdn
   lctl lmet  lalt              spc               ralt  rctl              left  down rght
 )

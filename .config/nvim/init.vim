@@ -44,7 +44,7 @@ set diffopt+=iwhite " ignore whitespace character changes
 set diffopt+=filler,internal,algorithm:histogram,indent-heuristic " use vimproved internal patch
 set visualbell " don't beep
 set noerrorbells " don't beep
-set belloff=backspace,error,esc " disable bell for selected events
+set belloff=backspace,error,esc,operator " disable bell for selected events
 set confirm " Ask to save instead of complaining
 set splitright splitbelow " open splits in more natural position
 " set matchpairs+=<:> " make % match between < and >
@@ -733,6 +733,7 @@ Plug 'https://github.com/ludovicchabant/vim-gutentags'
 let g:gutentags_ctags_exclude = ['.mypy_cache']
 " let g:gutentags_ctags_executable_haskell = 'hasktags'
 Plug 'https://github.com/majutsushi/tagbar', { 'on': 'TagbarToggle' }
+nnoremap <unique> <silent> <F8> :TagbarToggle<CR>
 " Plug 'https://github.com/devjoe/vim-codequery' " rich support for searching symbols support
 
 " Plug 'https://github.com/rhysd/clever-f.vim'
