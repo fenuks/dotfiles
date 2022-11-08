@@ -127,6 +127,8 @@ email = fenuks
     cmd = graphtage -e
 [diff "openapi"]
     xfuncname = "^\\s*([A-Z].*:)$"
+[diff "swift"]
+    xfuncname = ^[ \t]*((struct|class|actor|func|extension)[ \t].*)$
 [log]
     date = local
 [pager]

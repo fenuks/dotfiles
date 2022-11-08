@@ -30,3 +30,4 @@
 *.png    diff=exif
 *.openapi.yml  diff=openapi
 *.openapi.yaml diff=openapi
+*.swift  diff=swift

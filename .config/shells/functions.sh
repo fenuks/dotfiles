@@ -49,20 +49,20 @@ rmi() {
 }
 
 rmbak() {
-    shopt -s nullglob
-    files=(*.bak)
-    if [[ "${#files[@]}" -eq 0 ]]; then
-        return 0
-    fi
-    read -n 1 -p "Remove ${files[@]}? [Y/n] " resp
-    if [[ "$resp" == $'\n' ]]; then
-        rm -f *.bak
-    elif [[ "$resp" == "y" || "$resp" == "Y" || "$resp" == "t" || "$resp" == "T" ]]; then
-        echo
-        rm -f *.bak
-    else
-        echo
-    fi
+  shopt -s nullglob
+  files=(*.bak)
+  if [[ "${#files[@]}" -eq 0 ]]; then
+    return 0
+  fi
+  read -n 1 -p "Remove ${files[@]}? [Y/n] " resp
+  if [[ "$resp" == $'\n' ]]; then
+    rm -f *.bak
+  elif [[ "$resp" == "y" || "$resp" == "Y" || "$resp" == "t" || "$resp" == "T" ]]; then
+    echo
+    rm -f *.bak
+  else
+    echo
+  fi
 }
 
 take() { mkdir -p "$@" && cd "$1"; }
@@ -443,4 +443,8 @@ gr() {
     fzf_down --tac \
       --preview 'git log --oneline --graph --date=short --pretty="format:%C(auto)%cd %h%d %s" {1} | head -200' |
     cut -d$'\t' -f1
+}
+
+cdi() {
+  cd "$(fzf_dir)"
 }
