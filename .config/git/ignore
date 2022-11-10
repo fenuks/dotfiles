@@ -51,3 +51,4 @@ htmlcov/
 node_modules/
 format.patch
 qodana.sarif.json
+*.pkg.tar.zst

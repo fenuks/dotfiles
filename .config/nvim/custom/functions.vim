@@ -251,6 +251,24 @@ function OpenUrlVisual() abort
     call jobstart(['firefox', l:url])
 endfunction
 
+" open selected text as URLs, one per line
+function OpenUrlsVisual(...) abort
+    let l:text = GetVisualSelection()
+    let l:urls = split(l:text, '\n')
+    for l:url in l:urls
+      let l:url = trim(l:url)
+      let l:url = trim(substitute(l:url, '^-', '', 'g'))
+      if l:url !~ 'https\?://'
+        let l:url = g:search_engine . l:url
+        let l:postfix = get(a:, 1, '')
+        if l:postfix !=# ''
+          let l:url = l:url . ' ' . l:postfix
+        endif
+      endif
+      call jobstart(['/usr/bin/firefox', l:url])
+    endfor
+endfunction
+
 " gets text between two marks
 function GetSelection(left, right) abort
     let [l:line_start, l:column_start] = getpos("'" . a:left)[1:2]
