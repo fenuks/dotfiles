@@ -543,12 +543,13 @@ local on_attach = function(_client, bufnr)
   map('n', 'gQ', '<cmd>lua vim.lsp.buf.range_formatting()<CR>')
   map('v', 'gQ', '<cmd>lua vim.lsp.buf.range_formatting()<CR>')
 
-  require('lsp_signature').on_attach({
-    bind = true, -- This is mandatory, otherwise border config won't get registered.
-    handler_opts = {
-      border = 'single',
-    },
-  }, bufnr)
+  -- conflicts with doc box in autocomplete
+  -- require('lsp_signature').on_attach({
+  --   bind = true, -- This is mandatory, otherwise border config won't get registered.
+  --   handler_opts = {
+  --     border = 'single',
+  --   },
+  -- }, bufnr)
 end
 
 vim.fn.sign_define('LightBulbSign', { text = '᯾', texthl = '', linehl = '', numhl = '' })
