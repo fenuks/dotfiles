@@ -31,14 +31,14 @@ _fzf_complete_git() {
     file=\"${prefix}\${file}\"
     if [[ \${git_prefix} == \"??\" ]]; then
         if [[ -f \${file} ]]; then
-            cat \${file} | head -$LINES
+            cat \${file}
         else
-            ls \${file} --color=always | head -$LINES
+            ls \${file} --color=always
         fi
     elif [[ \${git_prefix} == ' D' ]]; then
-        ${binary} show \"HEAD^:\${file}\" | head -$LINES
+        ${binary} show \"HEAD^:\${file}\"
     else
-        ${binary} diff --color=always \"\${file}\" | head -$LINES
+        ${binary} diff --color=always \"\${file}\"
     fi
     echo \"\${file}\"
     "

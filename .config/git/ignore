@@ -34,6 +34,7 @@ venv/
 .DS_Store
 __pycache__/
 build/
+.gradle/
 build-*/
 .attach_pid*
 .clangd/

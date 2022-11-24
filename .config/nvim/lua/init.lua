@@ -561,7 +561,7 @@ local lspconfig = require('lspconfig')
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 lspconfig.hls.setup({ on_attach = on_attach, capabilities = capabilities })
-if vim.fn.executable('clangd') then
+if vim.fn.executable('clangd') == 1 then
   lspconfig.clangd.setup({
     on_attach = function(client, bufnr)
       on_attach(client, bufnr)
@@ -576,7 +576,9 @@ end
 lspconfig.tsserver.setup({ on_attach = on_attach, capabilities = capabilities })
 lspconfig.zls.setup({ on_attach = on_attach, capabilities = capabilities })
 lspconfig.gopls.setup({ on_attach = on_attach, capabilities = capabilities })
-lspconfig.lemminx.setup({ on_attach = on_attach, capabilities = capabilities })
+if vim.fn.executable('lemminx') == 1 then
+  lspconfig.lemminx.setup({ on_attach = on_attach, capabilities = capabilities })
+end
 lspconfig.sumneko_lua.setup({
   cmd = { '/usr/bin/lua-language-server' },
   on_attach = on_attach,

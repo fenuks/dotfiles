@@ -56,6 +56,7 @@ email = fenuks
     pff = push --force
     r1 = reset --soft HEAD^
     rsd = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git reset --soft $(git default); }; f"
+    rba = rebase --abort
     rbc = rebase --continue
     rbd = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git rebase $(git default); }; f"
     rbdi = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git rebase --interactive $(git default); }; f"
@@ -144,3 +145,5 @@ email = fenuks
     pushInsteadOf = kde:
 [submodule]
 	recurse = true
+[init]
+	defaultBranch = main

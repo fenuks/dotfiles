@@ -2,5 +2,5 @@
 set -euo pipefail
 IFS=$'\n\t'
 
-files=$(git status -s | grep '^??' | cut -f2 -d' ' | fzf -m --preview="bat --plain --color=always {1}")
+files=$(git status -s | grep '^??' | cut -f2 -d' ' | fzf -m --reverse --preview="bat --plain --color=always {1}")
 rm -f ${files}
