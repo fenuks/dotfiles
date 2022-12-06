@@ -579,53 +579,58 @@ lspconfig.gopls.setup({ on_attach = on_attach, capabilities = capabilities })
 if vim.fn.executable('lemminx') == 1 then
   lspconfig.lemminx.setup({ on_attach = on_attach, capabilities = capabilities })
 end
-lspconfig.sumneko_lua.setup({
-  cmd = { '/usr/bin/lua-language-server' },
-  on_attach = on_attach,
-  capabilities = capabilities,
-  settings = {
-    Lua = {
-      runtime = {
-        version = 'LuaJIT',
-        -- Setup your lua path
-        path = vim.split(package.path, ';'),
-      },
-      diagnostics = {
-        globals = { 'vim' },
-        disable = { 'unused-local' },
-      },
-      workspace = {
-        -- Make the server aware of Neovim runtime files
-        library = {
-          [vim.fn.expand('$VIMRUNTIME/lua')] = true,
-          [vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true,
+if vim.fn.executable('/usr/bin/lua-language-server') == 1 then
+  lspconfig.sumneko_lua.setup({
+    cmd = { '/usr/bin/lua-language-server' },
+    on_attach = on_attach,
+    capabilities = capabilities,
+    settings = {
+      Lua = {
+        runtime = {
+          version = 'LuaJIT',
+          -- Setup your lua path
+          path = vim.split(package.path, ';'),
+        },
+        diagnostics = {
+          globals = { 'vim' },
+          disable = { 'unused-local' },
+        },
+        workspace = {
+          -- Make the server aware of Neovim runtime files
+          library = {
+            [vim.fn.expand('$VIMRUNTIME/lua')] = true,
+            [vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true,
+          },
+        },
+        telemetry = {
+          enable = false,
         },
       },
-      telemetry = {
-        enable = false,
-      },
     },
-  },
-})
+  })
+end
 lspconfig.dhall_lsp_server.setup({ on_attach = on_attach, capabilities = capabilities })
-lspconfig.pylsp.setup({
-  on_attach = on_attach,
-  capabilities = capabilities,
-  root_dir = function(fname)
-    local root_files = {
-      'pyproject.toml',
-      'setup.py',
-      'setup.cfg',
-      'requirements.txt',
-      'Pipfile',
-      '.env',
-      '.git',
-    }
-    return lspconfig.util.root_pattern(unpack(root_files))(fname)
-      or lspconfig.util.find_git_ancestor(fname)
-      or lspconfig.util.path.dirname(fname)
-  end,
-})
+
+if vim.fn.executable('pylsp') == 1 then
+  lspconfig.pylsp.setup({
+    on_attach = on_attach,
+    capabilities = capabilities,
+    root_dir = function(fname)
+      local root_files = {
+        'pyproject.toml',
+        'setup.py',
+        'setup.cfg',
+        'requirements.txt',
+        'Pipfile',
+        '.env',
+        '.git',
+      }
+      return lspconfig.util.root_pattern(unpack(root_files))(fname)
+        or lspconfig.util.find_git_ancestor(fname)
+        or lspconfig.util.path.dirname(fname)
+    end,
+  })
+end
 
 local rust_opts = {
   tools = { -- rust-tools options

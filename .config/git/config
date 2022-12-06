@@ -54,6 +54,7 @@ email = fenuks
     mtk = mergetool --tool=kdiff3
     mtv = mergetool --tool=nvimdiff
     pff = push --force
+    pullf = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git fetch --all && git reset --hard \"origin/$(git branch --show-current)\"; }; f"
     r1 = reset --soft HEAD^
     rsd = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git reset --soft $(git default); }; f"
     rba = rebase --abort
