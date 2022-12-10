@@ -236,7 +236,16 @@ endfunction
 " open URL under cursor in web browser
 function OpenUrl() abort
     let l:url = expand('<cfile>')
-    if l:url !~ 'https\?://'
+    if l:url !~? 'https\?://'
+      let l:url = g:search_engine . l:url
+    endif
+    call jobstart(['firefox', l:url])
+endfunction
+
+" open URL from cursor, to end of line
+function OpenUrlToLineEnd() abort
+    let l:url = GetToLineEnd()
+    if l:url !~? 'https\?://'
       let l:url = g:search_engine . l:url
     endif
     call jobstart(['firefox', l:url])
@@ -288,7 +297,13 @@ function GetVisualSelection() abort
     return GetSelection('<', '>')
 endfunction
 
-" gets visual selection
+function GetToLineEnd() abort
+  let l:line = getline('.')
+  let l:cursor_column = getpos('.')[2]
+  return l:line[l:cursor_column-1 :]
+endfunction
+
+" gets operator selection
 function GetOperatorSelection() abort
     return GetSelection('[', ']')
 endfunction

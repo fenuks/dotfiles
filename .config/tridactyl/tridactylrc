@@ -10,6 +10,7 @@ unbindurl localhost/rss j
 unbindurl localhost/rss k
 unbindurl localhost/rss f
 unbindurl localhost/rss i
+unbindurl localhost/rss m
 
 unbindurl localhost/tt-rss n
 unbindurl localhost/tt-rss p

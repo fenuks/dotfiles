@@ -397,7 +397,7 @@ nnoremap <unique> <silent> dJ :<C-u>call DJ())<CR>
 nnoremap <unique> <silent> dK :<C-u>call DK())<CR>
 nnoremap <unique> <silent> gx :<C-u>call OpenUrl()<CR>
 vnoremap <unique> <silent> gx :<C-u>call OpenUrlVisual()<CR>
-nnoremap <unique> <silent> gX :<C-u>call SearchWeb()<CR>
+nnoremap <unique> <silent> gX :<C-u>call OpenUrlToLineEnd()<CR>
 vnoremap <unique> <silent> gX :<C-u>call SearchWebVisual()<CR>
 
 " terminal
