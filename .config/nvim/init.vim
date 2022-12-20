@@ -44,7 +44,7 @@ set diffopt+=iwhite " ignore whitespace character changes
 set diffopt+=filler,internal,algorithm:histogram,indent-heuristic " use vimproved internal patch
 set visualbell " don't beep
 set noerrorbells " don't beep
-set belloff=backspace,error,esc,operator " disable bell for selected events
+set belloff=backspace,cursor,error,esc,operator " disable bell for selected events
 set confirm " Ask to save instead of complaining
 set splitright splitbelow " open splits in more natural position
 " set matchpairs+=<:> " make % match between < and >
@@ -69,7 +69,7 @@ set commentstring=#\ %s
 " display
 set t_Co=256
 set lazyredraw " redraw only at the end of the macro
-set listchars=tab:▸\ ,eol:¬,trail:·
+set listchars=tab:▸\ ,eol:¬,trail:·,nbsp:␣
 set title " update terminal title
 set ruler " show line position on bottom ruler
 set laststatus=2 " always show status line

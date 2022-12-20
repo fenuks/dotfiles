@@ -1,6 +1,6 @@
 bind / fillcmdline find
 bind n findnext 1
-bind N findnext -1
+bind N findnext --reverse
 bind ,<Space> nohlsearch
 
 unbindurl localhost/rss n

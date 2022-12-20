@@ -85,9 +85,27 @@ runsshagent() {
   ssh-agent -a "${SSH_AUTH_SOCK}"
 }
 
-groot() {
-  cd "$(git root)"
+cg() {
+  local git_root="$(git rev-parse --show-toplevel)"
+  cd "${git_root}/$1"
 }
+
+_cg_complete() {
+    local git_root="$(git rev-parse --show-toplevel  2> /dev/null)"
+    if [[ "${git_root}" == "" ]]; then
+        return
+    fi
+
+    local file
+    for file in "${git_root}/$2"*; do
+        [[ -d $file ]] || continue
+
+        local relative="${file#$git_root/}/"
+        COMPREPLY+=( "${relative}" )
+    done
+}
+
+complete -o nospace -F _cg_complete cg
 
 rcd() {
   tempfile="$(mktemp -t tmp.XXXXXX)"

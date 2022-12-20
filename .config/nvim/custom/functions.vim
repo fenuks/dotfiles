@@ -532,7 +532,10 @@ endfunction
 function CustomSyntax() abort
     " highlight all trailing spaces
     highlight ExtraWhitespace ctermbg=red guibg=red
-    match ExtraWhitespace /\s\+\%#\@<!$/
+    highlight NonBreakingSpace ctermbg=red guibg=red
+    syntax match ExtraWhitespace /\s\+\%#\@<!$/
+    syntax match NonBreakingSpace / /
+
     " highlight VCS conflicts
     match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 endfunction

@@ -7,7 +7,7 @@ require('nvim-ts-autotag').setup({
 require('orgmode').setup_ts_grammar()
 require('nvim-treesitter.configs').setup({
   ensure_installed = 'all',
-  ignore_install = { 'phpdoc' },
+  ignore_install = { 'phpdoc', 'erlang' },
   highlight = {
     enable = true,
     -- disable = { 'org' }, -- Remove this to use TS highlighter for some of the highlights (Experimental)

@@ -41,7 +41,7 @@ email = fenuks
     default = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git symbolic-ref refs/remotes/origin/HEAD | sed 's|refs/remotes/origin/||'; }; f"
     ds = diff --find-copies-harder --staged
     dt = difftool --tool=difftastic
-    hgrep = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git grep -P \"$@\" $(git rev-list --all); }; f"
+    grepall = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git grep -P \"$@\" $(git rev-list --all); }; f"
     first = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git lgb $(git default).. | tail -1; }; f"
     last = lg -1 HEAD
     last-tag = describe --tags --abbrev=0
