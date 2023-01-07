@@ -9,10 +9,13 @@ let g:foldmethods = {
 
 let g:search_engine = 'https://lite.qwant.com/?q='
 let g:my_colours = []
+if !exists('g:colors_name')
+  let g:colors_name = 'default'
+end
 let g:my_colourscheme=g:colors_name
 let g:my_airline_themes = []
 let g:user_background=&background
-let g:ignored_colours = ['blue', 'darkblue', 'default', 'delek', 'desert', 'elflord', 'evening', 'industry', 'koehler', 'morning', 'murphy', 'pablo', 'peachpuff', 'ron', 'shine', 'slate', 'torte', 'zellner']
+let g:ignored_colours = ['blue', 'darkblue', 'default', 'desert', 'elflord', 'evening', 'industry', 'koehler', 'morning', 'murphy', 'pablo', 'peachpuff', 'ron', 'slate', 'torte']
 call extend(g:ignored_colours, ['corvine', 'flattened_dark']) " ignore dark colours
 
 let g:auxiliary_buffers = ['qf',  'fugitive', 'fugitiveblame', 'nerdtree', 'help']
