@@ -252,9 +252,9 @@ nnoremap <unique> <silent> xSS :,$!sort -h<CR>
 vnoremap <unique> <silent> xss :!sort -h<CR>
 nnoremap <unique> <silent> xss :set opfunc=SortOperator<CR>g@
 
-nnoremap <unique> <silent> xSu :,$!sort -hu<CR>
-nnoremap <unique> <silent> xSU :,$!sort -hu<CR>
-vnoremap <unique> <silent> xsu :!sort -hu<CR>
+nnoremap <unique> <silent> xSu :,$!sort -u<CR>
+nnoremap <unique> <silent> xSU :,$!sort -u<CR>
+vnoremap <unique> <silent> xsu :!sort -u<CR>
 nnoremap <unique> <silent> xsu :set opfunc=SortOperatorUnique<CR>g@
 
 nnoremap <unique> <silent> qcj :set opfunc=PandocJiraOperator<CR>g@

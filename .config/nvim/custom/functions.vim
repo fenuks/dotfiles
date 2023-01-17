@@ -9,10 +9,7 @@ let g:foldmethods = {
 
 let g:search_engine = 'https://lite.qwant.com/?q='
 let g:my_colours = []
-if !exists('g:colors_name')
-  let g:colors_name = 'default'
-end
-let g:my_colourscheme=g:colors_name
+let g:my_colourscheme=get(g:, 'colors_name', 'default')
 let g:my_airline_themes = []
 let g:user_background=&background
 let g:ignored_colours = ['blue', 'darkblue', 'default', 'desert', 'elflord', 'evening', 'industry', 'koehler', 'morning', 'murphy', 'pablo', 'peachpuff', 'ron', 'slate', 'torte']
@@ -256,11 +253,20 @@ endfunction
 
 " open selected text as URL
 function OpenUrlVisual() abort
-    let l:url = GetVisualSelection()
-    if l:url !~ 'https\?://'
-      let l:url = g:search_engine . l:url
+    let l:text = GetVisualSelection()
+    if visualmode() ==# 'V'
+      let l:urls = split(l:text, '\n')
+    else
+      let l:urls = [l:text]
     endif
-    call jobstart(['firefox', l:url])
+    let l:urls = map(l:urls, {key, str -> trim(str, '- ', 1)})
+
+    for l:url in l:urls
+      if l:url !~? 'https\?://'
+        let l:url = g:search_engine . l:url
+      endif
+      call jobstart(['/usr/bin/firefox', l:url])
+    endfor
 endfunction
 
 " open selected text as URLs, one per line
@@ -270,7 +276,7 @@ function OpenUrlsVisual(...) abort
     for l:url in l:urls
       let l:url = trim(l:url)
       let l:url = trim(substitute(l:url, '^-', '', 'g'))
-      if l:url !~ 'https\?://'
+      if l:url !~? 'https\?://'
         let l:url = g:search_engine . l:url
         let l:postfix = get(a:, 1, '')
         if l:postfix !=# ''
