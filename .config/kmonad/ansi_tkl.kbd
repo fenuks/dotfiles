@@ -145,6 +145,24 @@ List of keycodes: https://github.com/kmonad/kmonad/blob/master/src/KMonad/Keyboa
   src (sticky-key 500 rctl)
 )
 
+(deflayer dvorak
+  esc        f1    f2    f3    f4    f5    f6    f7    f8    f9    f10   f11   f12   prnt @l_sq pause
+  grv   1     2     3     4     5     6     7     8     9     0     [     ]    bspc  ins  home  pgup
+  tab  '     ,     .     p     y     f     g     c     r     l     /     =     \     del  end   pgdn
+  caps @hd_a @hd_o @hd_e @hd_u       i     d     @hd_h @hd_t @hd_n @hd_s -     ret
+  @tls ;     q     j     k     x     b     m     w     v     z     @trs                   up       
+  lctl lmet  lalt              spc               ralt  rmet  cmp   rctl              left down rght
+)
+
+(deflayer dvorak_shft
+  sleep      _     _     _    _     _    _    _     _     _     _     _     _     _    _    _
+  _     _    _     _     _    _     _    _    _     _     _     _     _     _     _    _    _   
+  _     _    _     _     _    _     _    _    _     _     _     _     _     _     _    _    _   
+  _     _    _     _     _    _     _    _    _     _     _     _     _  
+  _     _    _     _     _    _     _    _    _     _     _     _                      _        
+  _     _    _                _               _     _     _     _                 _    _    _   
+)
+
 (deflayer qwerty
   esc   f1    f2    f3    f4    f5    f6    f7    f8    f9    f10    f11    f12         prnt   @l_sc pause
   grv   1     2     3     4     5     6     7     8     9     0      -      =     bspc  @l_avq home  pgup
@@ -223,24 +241,6 @@ List of keycodes: https://github.com/kmonad/kmonad/blob/master/src/KMonad/Keyboa
 (deflayer vim_colemak_dh_shft
   _          _     _     _    _     _    _    _     _     _     _     _     _     _    _    _
   _     _    _     _     end  _     home _    _     _     _     _     _     _     _    _    _   
-  _     _    _     _     _    _     _    _    _     _     _     _     _     _     _    _    _   
-  _     _    _     _     _    _     _    _    _     _     _     _     _  
-  _     _    _     _     _    _     _    _    _     _     _     _                      _        
-  _     _    _                _               _     _     _     _                 _    _    _   
-)
-
-(deflayer dvorak
-  esc        f1    f2    f3    f4    f5    f6    f7    f8    f9    f10   f11   f12   prnt @l_sq pause
-  grv   1     2     3     4     5     6     7     8     9     0     -     =    bspc  ins  home  pgup
-  tab  '     ,     .     p     y     f     g     c     r     l     [     ]     \     del  end   pgdn
-  caps @hd_a @hd_o @hd_e @hd_u       i     d     @hd_h @hd_t @hd_n @hd_s /     ret
-  @tls ;     q     j     k     x     b     m     w     v     z     @trs                   up       
-  lctl lmet  lalt              spc               ralt  rmet  cmp   rctl              left down rght
-)
-
-(deflayer dvorak_shft
-  sleep      _     _     _    _     _    _    _     _     _     _     _     _     _    _    _
-  _     _    _     _     _    _     _    _    _     _     _     _     _     _     _    _    _   
   _     _    _     _     _    _     _    _    _     _     _     _     _     _     _    _    _   
   _     _    _     _     _    _     _    _    _     _     _     _     _  
   _     _    _     _     _    _     _    _    _     _     _     _                      _        

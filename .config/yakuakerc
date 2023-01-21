@@ -29,13 +29,14 @@ help_whats_this=none
 keep-open=Shift+F1
 move-session-left=Ctrl+Shift+Left;\s
 next-session=Ctrl+Shift+L
-next-terminal=Ctrl+Tab
 options_configure=none
 previous-session=Ctrl+Shift+H
-previous-terminal=Ctrl+Shift+Tab
+rename-session=Meta+F2
 split-left-right=Ctrl+Shift+I
 split-top-bottom=Ctrl+Shift+O
+toggle-session-monitor-activity=none
 toggle-session-monitor-silence=none
+toggle-titlebar=none
 
 [Window]
 DynamicTabTitles=true
