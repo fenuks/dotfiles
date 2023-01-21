@@ -125,6 +125,9 @@ else
     set viminfofile=$HOME/.vim/viminfo
     let g:vim_share_dir=g:local_share_dir . '/vim'
     set runtimepath+=~/.config/nvim,~/.config/nvim/after
+    " set cursor shapes like in nvim
+    let &t_SI = "\e[5 q"
+    let &t_EI = "\e[2 q"
 endif
 
 " persistence
@@ -543,7 +546,7 @@ let g:my_plugins_loaded = !filereadable('/etc/openwrt_release')
 if g:my_plugins_loaded
   packadd termdebug
   " packadd cfilter
-  packadd justify
+  " packadd justify " adds unwanted _j mappings
   execute 'source ' . g:vim_custom_scripts . 'plugins.vim'
 end
 

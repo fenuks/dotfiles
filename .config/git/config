@@ -37,8 +37,9 @@ email = fenuks
     count = rev-list --count HEAD
     cod = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git checkout $(git default); }; f"
     d = diff --find-copies-harder
-    dd = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git diff $(git default).. $@; }; f"
+    dd = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git diff $(git merge-base $(git default) HEAD) $@; }; f"
     default = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git symbolic-ref refs/remotes/origin/HEAD | sed 's|refs/remotes/origin/||'; }; f"
+    default-remote = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && LANG=en git remote show origin | grep 'HEAD branch' | sed 's/.*: //'; }; f"
     ds = diff --find-copies-harder --staged
     dt = difftool --tool=difftastic
     grepall = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git grep -P \"$@\" $(git rev-list --all); }; f"

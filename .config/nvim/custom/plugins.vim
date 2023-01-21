@@ -159,6 +159,7 @@ nnoremap <unique> <silent> <Leader>fs :call ReadSkeletonFile()<CR>
 let g:NERDTreeIgnore=['\.pyc$', '\~$', '__pycache__', 'jdt.ls-java-project']
 let g:NERDTreeMinimalUI=1
 let g:NERDTreeBookmarksFile=g:vim_share_dir . '/NERDTreeBookmarks'
+let g:NERDTreeNaturalSort=1
 
 Plug 'https://github.com/mhinz/vim-grepper', { 'on': ['Grepper', '<Plug>(GrepperOperator)'] }
 let g:grepper = {}
@@ -379,10 +380,38 @@ if has('nvim')
 
     Plug 'https://github.com/windwp/nvim-ts-autotag'
 
+    Plug 'https://github.com/hkupty/iron.nvim'
     Plug 'https://github.com/kristijanhusak/orgmode.nvim'
     " FIXME
     Plug 'https://github.com/junegunn/fzf'
     Plug 'https://github.com/junegunn/fzf.vim'
+
+    Plug 'https://github.com/glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
+    if exists('g:started_by_firenvim')
+      let g:loaded_airline = 1
+      set laststatus=0
+      let g:firenvim_config = { 
+          \ 'globalSettings': {
+              \ 'alt': 'all',
+          \  },
+          \ 'localSettings': {
+              \ '.*': {
+                  \ 'cmdline': 'neovim',
+                  \ 'content': 'text',
+                  \ 'priority': 0,
+                  \ 'selector': 'textarea',
+                  \ 'takeover': 'always',
+              \ },
+          \ }
+      \ }
+      let fc = g:firenvim_config['localSettings']
+      let fc['https?://mattermost'] = { 'takeover': 'never', 'priority': 1 }
+      let fc['https?://jira'] = { 'takeover': 'never', 'priority': 1 }
+      augroup firenvim
+        autocmd!
+        autocmd BufEnter *gitlab*.txt set filetype=markdown
+      augroup END
+    end
 else
     Plug 'https://github.com/Shougo/deoplete.nvim'
     Plug 'https://github.com/roxma/nvim-yarp'
@@ -489,7 +518,6 @@ let g:zig_fmt_autosave = 0
 "##### Natural language
 Plug 'https://github.com/tpope/vim-characterize'
 " Plug 'https://github.com/vim-scripts/LanguageTool'
-Plug 'https://github.com/dpelle/vim-LanguageTool', { 'for': ['rst'] }
 Plug 'https://github.com/rhysd/vim-grammarous', { 'on': 'GrammarousCheck' }
 
 
@@ -529,33 +557,6 @@ Plug 'https://github.com/lervag/vimtex', { 'for': 'tex' }
 let g:tex_flavor='latex'
 let g:vimtex_view_method='okular'
 let g:tex_conceal='abdmg'
-
-Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
-if exists('g:started_by_firenvim')
-  let g:loaded_airline = 1
-  set laststatus=0
-  let g:firenvim_config = { 
-      \ 'globalSettings': {
-          \ 'alt': 'all',
-      \  },
-      \ 'localSettings': {
-          \ '.*': {
-              \ 'cmdline': 'neovim',
-              \ 'content': 'text',
-              \ 'priority': 0,
-              \ 'selector': 'textarea',
-              \ 'takeover': 'always',
-          \ },
-      \ }
-  \ }
-  let fc = g:firenvim_config['localSettings']
-  let fc['https?://mattermost'] = { 'takeover': 'never', 'priority': 1 }
-  let fc['https?://jira'] = { 'takeover': 'never', 'priority': 1 }
-  augroup firenvim
-    autocmd!
-    autocmd BufEnter *gitlab*.txt set filetype=markdown
-  augroup END
-end
 
 "##### Colourshemes
 " set background=dark

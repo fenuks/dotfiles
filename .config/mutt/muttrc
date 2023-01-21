@@ -18,7 +18,7 @@ set include
 set fast_reply
 set abort_key = '<Esc>'
 
-set attribution = 'W dniu %d, %n pisze:'
+set attribution = 'W dniu %d, %n napinał(a):'
 set forward_attribution_intro = "----- Treść przekazanej wiadomości -----"
 set forward_attribution_trailer = "----- Koniec przekazanej wiadomości -----"
 

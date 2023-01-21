@@ -1,0 +1,5 @@
+---
+ignored:
+  - DL3008 # pin versions in apt-get install
+  - DL3016 # pin versions in npm install
+  - DL3018 # pin versions in apk add.

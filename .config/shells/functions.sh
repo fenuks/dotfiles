@@ -85,6 +85,15 @@ runsshagent() {
   ssh-agent -a "${SSH_AUTH_SOCK}"
 }
 
+rmf() {
+    echo -e "Usunąć? [YT/n]:\n$@"
+    read -n 1
+    echo
+    if [[ $REPLY =~ ^[YyTt]$ ]]; then
+        rm -f $@
+    fi
+}
+
 cg() {
   local git_root="$(git rev-parse --show-toplevel)"
   cd "${git_root}/$1"
