@@ -130,7 +130,9 @@
   "editor.minimap.enabled": false,
   "julia.symbolCacheDownload": true,
   "julia.enableTelemetry": false,
-  "diffEditor.renderSideBySide": false
+  "diffEditor.renderSideBySide": false,
+  "boot-java.rewrite.reconcile": true,
+  "telemetry.telemetryLevel": "off"
   // "editor.formatOnType": true,
   // "editor.formatOnPaste": true,
   // "editor.autoIndent": true

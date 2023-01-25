@@ -118,6 +118,7 @@ if has('nvim')
     let g:vim_share_dir=g:local_share_dir . '/nvim'
     set inccommand=nosplit
     " set signcolumn=yes:2
+    set guicursor=i-ci:ver30-iCursor-blinkwait300-blinkon500-blinkoff150
 else
     " syntax highlight on, it breaks source order on neovim
     " https://github.com/neovim/neovim/issues/16928

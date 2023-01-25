@@ -407,6 +407,8 @@ if has('nvim')
       let fc = g:firenvim_config['localSettings']
       let fc['https?://mattermost'] = { 'takeover': 'never', 'priority': 1 }
       let fc['https?://jira'] = { 'takeover': 'never', 'priority': 1 }
+      imap <C-S-v> <C-R>+
+      cmap <C-S-v> <C-R>+
       augroup firenvim
         autocmd!
         autocmd BufEnter *gitlab*.txt set filetype=markdown
