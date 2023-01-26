@@ -390,6 +390,8 @@ if has('nvim')
     if exists('g:started_by_firenvim')
       let g:loaded_airline = 1
       set laststatus=0
+      " firenvim doesn't support | blinking cursor (it stays invisible)
+      set guicursor=n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20
       let g:firenvim_config = { 
           \ 'globalSettings': {
               \ 'alt': 'all',
