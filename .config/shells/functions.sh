@@ -386,7 +386,7 @@ up() {
       cur='.'
       for i in $(seq ${#dirs[@]}); do
         cur=$(realpath "${cur}/..")
-        if [[ "${cur}" =~ "${UP}" ]]; then
+        if [[ "$(basename ${cur})" =~ "${UP}" ]]; then
           cd "${cur}"
           break
         fi
