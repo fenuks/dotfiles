@@ -20,8 +20,10 @@ let g:jedi#completions_command = ''
 " python-rope/ropevim
 let g:ropevim_enable_shortcuts = 0
 
-" fix truncated documenation in floating window problem
-call deoplete#custom#source('jedi', 'max_info_width', 0)
-call ConfigureDeoplete()
+if g:my_plugins_loaded
+  " fix truncated documenation in floating window problem
+  call deoplete#custom#source('jedi', 'max_info_width', 0)
+  call ConfigureDeoplete()
+endif
 
 " pytest or pyunit compiler

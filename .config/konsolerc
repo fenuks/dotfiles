@@ -1,2 +1,73 @@
+[$Version]
+update_info=konsole.upd:2.9.0-global-options
+
+[Colors]
+CurrentPalette=Forty Colors
+
 [Desktop Entry]
 DefaultProfile=yakuake.profile
+
+[Favorite Profiles]
+Favorites=
+
+[General]
+CommandBarLastUsedActions=
+ConfigVersion=1
+
+[KFileDialog Settings]
+Height 1080=523
+Recent Files[$e]=00290.jpg,$HOME/Pictures/wallpapers/różne/00374.jpg,$HOME/Pictures/wallpapers/różne/00290.jpg
+Recent URLs[$e]=$HOME/Documents/Books/mitologie/summeryjska/,$HOME/Documents/Books/mitologie/nordycka/do poprawki/,$HOME/Documents/Books/mitologie/nordycka/do poprawki/formating/,$HOME/Programs/projects/eclipse/garfield/,$HOME/Pictures/wallpapers/różne/,$HOME/Pictures/wallpapers/różne/
+Width 1920=960
+
+[MainWindow]
+DP-2 HDMI-A-1 Height 1920x1080=1051
+DP-2 HDMI-A-1 Width 1920x1080=1920
+DP-2 Height 1920x1080=1051
+DP-2 Width 1920x1080=1920
+DP-2 Window-Maximized 1920x1080=true
+DisplayPort-1 HDMI-A-0=DisplayPort-1
+DisplayPort-1 HDMI-A-0 Height 1920x1080=1007
+DisplayPort-1 HDMI-A-0 Height 1920x1080 DisplayPort-1=452
+DisplayPort-1 HDMI-A-0 Width 1920x1080=1920
+DisplayPort-1 HDMI-A-0 Width 1920x1080 DisplayPort-1=800
+DisplayPort-1 HDMI-A-0 Window-Maximized 1080x1920=true
+DisplayPort-1 HDMI-A-0 Window-Maximized 1920x1080=true
+DisplayPort-1 HDMI-A-0 Window-Maximized 1920x1080 DisplayPort-1=true
+DisplayPort-1 HDMI-A-0 XPosition=0
+DisplayPort-1 HDMI-A-0 XPosition 1920x1080=0
+DisplayPort-1 HDMI-A-0 XPosition 1920x1080 DisplayPort-1=560
+DisplayPort-1 HDMI-A-0 YPosition=29
+DisplayPort-1 HDMI-A-0 YPosition 1920x1080=29
+DisplayPort-1 HDMI-A-0 YPosition 1920x1080 DisplayPort-1=304
+DisplayPort-1 Window-Maximized 1920x1080=true
+Height 1080=1051
+Height 1920=592
+Height 480=421
+Height 600=567
+Height 720=721
+Height 768=567
+Height 800=656
+Height 900=596
+State=AAAA/wAAAAD9AAAAAQAAAAAAAAAAAAAAAPwCAAAAAvsAAAAcAFMAUwBIAE0AYQBuAGEAZwBlAHIARABvAGMAawAAAAAA/////wAAARUBAAAD+wAAACIAUQB1AGkAYwBrAEMAbwBtAG0AYQBuAGQAcwBEAG8AYwBrAAAAAAD/////AAABfAEAAAMAAAeAAAAD0QAAAAQAAAAEAAAACAAAAAj8AAAAAQAAAAIAAAACAAAAFgBtAGEAaQBuAFQAbwBvAGwAQgBhAHIAAAAAAP////8AAAAAAAAAAAAAABwAcwBlAHMAcwBpAG8AbgBUAG8AbwBsAGIAYQByAAAAAAD/////AAAAAAAAAAA=
+StatusBar=Disabled
+ToolBarsMovable=Disabled
+Width 1024=1016
+Width 1080=1080
+Width 1280=1276
+Width 1440=579
+Width 1920=1920
+Width 640=1272
+Width 800=792
+Window-Maximized 1050x1680=true
+Window-Maximized 1080x1920=true
+Window-Maximized 480x640=true
+Window-Maximized 720x1280=true
+Window-Maximized 768x1024=true
+Window-Maximized 800x1280=true
+
+[Notification Messages]
+CloseAllEmptyTabs=true
+
+[UiSettings]
+ColorScheme=
