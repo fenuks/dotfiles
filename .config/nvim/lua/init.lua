@@ -559,7 +559,7 @@ vim.cmd(
 
 local lspconfig = require('lspconfig')
 local capabilities = vim.lsp.protocol.make_client_capabilities()
-local capabilities = require("cmp_nvim_lsp").default_capabilities()
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
 lspconfig.hls.setup({ on_attach = on_attach, capabilities = capabilities })
 if vim.fn.executable('clangd') == 1 then
   lspconfig.clangd.setup({
@@ -580,7 +580,7 @@ if vim.fn.executable('lemminx') == 1 then
   lspconfig.lemminx.setup({ on_attach = on_attach, capabilities = capabilities })
 end
 if vim.fn.executable('/usr/bin/lua-language-server') == 1 then
-  lspconfig.sumneko_lua.setup({
+  lspconfig.lua_ls.setup({
     cmd = { '/usr/bin/lua-language-server' },
     on_attach = on_attach,
     capabilities = capabilities,
@@ -805,9 +805,9 @@ require('orgmode').setup({
   -- },
 })
 
-local iron = require("iron.core")
+local iron = require('iron.core')
 
-iron.setup {
+iron.setup({
   config = {
     -- Whether a repl should be discarded or not
     scratch_repl = true,
@@ -816,7 +816,7 @@ iron.setup {
       sh = {
         -- Can be a table or a function that
         -- returns a table (see below)
-        command = {"zsh"}
+        command = { 'zsh' },
       },
       -- python = {
       --   command = {"ipython"}
@@ -830,26 +830,26 @@ iron.setup {
   -- Iron doesn't set keymaps by default anymore.
   -- You can set them here or manually add keymaps to the functions in iron.core
   keymaps = {
-    send_motion = "<space>sc",
-    visual_send = "<space>sc",
-    send_file = "<space>sf",
-    send_line = "<space>sl",
-    send_mark = "<space>sm",
-    mark_motion = "<space>mc",
-    mark_visual = "<space>mc",
-    remove_mark = "<space>md",
-    cr = "<space>s<cr>",
-    interrupt = "<space>s<space>",
-    exit = "<space>sq",
-    clear = "<space>cl",
+    send_motion = '<space>sc',
+    visual_send = '<space>sc',
+    send_file = '<space>sf',
+    send_line = '<space>sl',
+    send_mark = '<space>sm',
+    mark_motion = '<space>mc',
+    mark_visual = '<space>mc',
+    remove_mark = '<space>md',
+    cr = '<space>s<cr>',
+    interrupt = '<space>s<space>',
+    exit = '<space>sq',
+    clear = '<space>cl',
   },
   -- If the highlight is on, you can change how it looks
   -- For the available options, check nvim_set_hl
   highlight = {
-    italic = true
+    italic = true,
   },
   ignore_blank_lines = true, -- ignore blank lines when sending visual select lines
-}
+})
 
 -- iron also has a list of commands, see :h iron-commands for all available commands
 vim.keymap.set('n', '<space>rs', '<cmd>IronRepl<cr>')
