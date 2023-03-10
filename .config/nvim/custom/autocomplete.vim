@@ -79,3 +79,4 @@ command! -nargs=* Agp
 \                 fzf#vim#with_preview({'left':'90%'},'up:60%'))
 
 imap <silent> <unique> <c-x><c-f> <Plug>(fzf-complete-path)
+imap <silent> <unique> <c-x>f <Plug>(fzf-complete-path)

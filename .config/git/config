@@ -23,6 +23,7 @@ email = fenuks
     aur = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && PKGVER=$(grep -oP 'pkgver ?= ?\\K.+' .SRCINFO)-$(grep -oP 'pkgrel ?= ?\\K.+' .SRCINFO); git commit -m \"Update to ${PKGVER}\" $@; }; f"
     aurclone = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git clone https://aur.archlinux.org/$@; }; f"
     aursshclone = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git clone ssh://aur@aur.archlinux.org/$@; }; f"
+    base-rev = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git merge-base $(git default) HEAD; }; f"
     br = branch
     brd = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git branch --merged | grep -Ev \"(^\\*|master|develop)\" | xargs git branch -d; }; f"
     brm = branch --merged
@@ -37,6 +38,7 @@ email = fenuks
     count = rev-list --count HEAD
     cod = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git checkout $(git default); }; f"
     d = diff --find-copies-harder
+    vd = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git diff --find-copies-harder | vim -; }; f"
     dd = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git diff $(git merge-base $(git default) HEAD) $@; }; f"
     default = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git symbolic-ref refs/remotes/origin/HEAD | sed 's|refs/remotes/origin/||'; }; f"
     default-remote = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && LANG=en git remote show origin | grep 'HEAD branch' | sed 's/.*: //'; }; f"

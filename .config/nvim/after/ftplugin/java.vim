@@ -124,8 +124,7 @@ end
 local project_dir = jdtls_setup.find_root({'.git', 'mvnw', 'gradlew'}) or vim.fn.getcwd()
 local project_name = vim.fn.fnamemodify(project_dir, ':p:h:t')
 
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 local extendedClientCapabilities = jdtls.extendedClientCapabilities
 extendedClientCapabilities.resolveAdditionalTextEditsSupport = true

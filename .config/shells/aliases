@@ -10,6 +10,7 @@ alias cdf="cd ${XDG_VIDEOS_DIR:-Videos}"
 alias cdm="cd ${XDG_MUSIC_DIR:-Music}"
 alias cdk="cd ${HOME}/Kod"
 alias cdg="cd ${HOME}/Gry"
+alias cdt="cd /tmp"
 alias chromium-dev='chromium --disable-web-security --user-data-dir --remote-debugging-port=9222'
 alias clear="clear && printf \"\\e[3J\""
 alias dc='docker-compose'

@@ -88,7 +88,9 @@ _fzf_complete_git() {
   elif [[ "${cmd_opt}" == 'reset '* ]]; then
     selected=$( (${binary} status --short | grep -P '^(A|R|D|M|U)') | ${fzf} "${fzf_opt[@]}" -m --preview "${staged_preview}" | awk '{$1=""; print substr($0,2)}' | sed "s|^|${prefix}|" | tr '\n' ' ')
   elif [[ "${cmd_opt}" == 'stash push '* ]]; then
-    selected=$( (${binary} status --short | grep -v -P '^(A|R|D|M) ') | ${fzf} "${fzf_opt[@]}" -m --preview "${diff_preview}" | awk '{$1=""; print substr($0,2)}' | sed "s|^|${prefix}|" | tr '\n' ' ')
+    selected=$( (${binary} status --short | grep -v -P '^\?') | ${fzf} "${fzf_opt[@]}" -m --preview "${diff_preview}" | awk '{$1=""; print substr($0,2)}' | sed "s|^|${prefix}|" | tr '\n' ' ')
+  elif [[ "${cmd_opt}" == 'mr '* ]]; then
+    selected=$( (ls $(${binary} root)/.git/refs/remotes/origin/merge-requests/ | ${fzf} "${fzf_opt[@]}" -m --preview "${binary} show --color=always --shortstat origin/merge-requests/{}head" |  tr '\n' ' '))
   elif [[ "${cmd_opt}" == 'rm '* ]]; then
     selected=$( (${binary} ls-files | ${fzf} "${fzf_opt[@]}" -m --preview-window=right,75% --preview "${file_preview}" | awk '{$1=""; print substr($0,2)}' | sed "s|^|${prefix}|" | tr '\n' ' '))
   fi

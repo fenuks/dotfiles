@@ -87,7 +87,7 @@ def parse_worklog_file(path: Path) -> list[WorklogEntry]:
     worklog = []
 
     with path.open("r") as fp:
-        for line in fp:
+        for nr, line in enumerate(fp):
             line = line.strip()
             if line == "":
                 continue
@@ -100,16 +100,16 @@ def parse_worklog_file(path: Path) -> list[WorklogEntry]:
                 time, _, comment = timedesc.partition(" ")
                 assert issue is not None
                 assert day is not None
-                worklog_entry = WorklogEntry(issue, *parse_duration(day, time), comment)
+                worklog_entry = WorklogEntry(issue, *parse_duration(day, time, nr), comment)
                 worklog.append(worklog_entry)
     return worklog
 
 
-def parse_duration(day: datetime, timestring: str) -> tuple[datetime, datetime]:
+def parse_duration(day: datetime, timestring: str, line_no: int) -> tuple[datetime, datetime]:
     try:
         start, end = timestring.split("-")
     except ValueError as ex:
-        print(timestring)
+        print(line_no, timestring)
         raise ex
     start_time = datetime.strptime(start, "%H:%M").time()
     end_time = datetime.strptime(end, "%H:%M").time()
