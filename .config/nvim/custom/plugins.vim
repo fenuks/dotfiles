@@ -469,6 +469,7 @@ let g:UltiSnipsJumpForwardTrigger = '<Plug>(ultisnips_jump_forward)'
 let g:UltiSnipsJumpBackwardTrigger = '<Plug>(ultisnips_jump_backward)'
 let g:UltiSnipsListSnippets = '<c-x><c-s>'
 let g:UltiSnipsRemoveSelectModeMappings = 0
+let g:UltiSnipsSnippetDirectories=[$HOME.'/.config/nvim/UltiSnips']
 
 " let g:UltiSnipsJumpForwardTrigger='æ' " <a-f>
 " let g:UltiSnipsJumpBackwardTrigger='Æ' " <a-s-f>
@@ -521,8 +522,8 @@ let g:zig_fmt_autosave = 0
 
 "##### Natural language
 Plug 'https://github.com/tpope/vim-characterize'
-" Plug 'https://github.com/vim-scripts/LanguageTool'
 Plug 'https://github.com/rhysd/vim-grammarous', { 'on': 'GrammarousCheck' }
+let g:grammarous#languagetool_cmd = 'languagetool'
 
 
 "##### Markdown
@@ -582,7 +583,6 @@ Plug 'https://github.com/Shatur/neovim-ayu'
 Plug 'https://github.com/Pocco81/Catppuccino.nvim'
 Plug 'https://github.com/projekt0n/github-nvim-theme'
 Plug 'https://github.com/sainnhe/everforest'
-Plug 'https://github.com/marko-cerovac/material.nvim'
 Plug 'https://github.com/shaunsingh/solarized.nvim'
 if has('nvim')
     Plug 'https://github.com/folke/tokyonight.nvim', { 'branch': 'main' }

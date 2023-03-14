@@ -8,6 +8,7 @@ let g:foldmethods = {
 \}
 
 let g:search_engine = 'https://lite.qwant.com/?q='
+let g:search_engine_postfix = '&p=1'
 let g:my_colours = []
 let g:my_colourscheme=get(g:, 'colors_name', 'default')
 let g:my_airline_themes = []
@@ -221,23 +222,87 @@ function SearchMan(page, prefix, expr) abort
     call search('\C\(\s\{2,\}\)\@<=' . a:prefix . l:cursor_word)
 endfunction
 
+function VJumpToWithOffset(pattern, flags, offset) abort
+  let l:position = search(a:pattern, a:flags)
+  if l:position != 0
+    call cursor(l:position + a:offset, 1)
+  endif
+  call setpos("'>", getpos('.'))
+  return l:position
+endfunction
+
+function MyHWinResize(difference, enlarge) abort
+  if IsWindowBottomSide()
+    if a:enlarge
+      call execute('resize +' . a:difference)
+    else
+      call execute('resize -' . a:difference)
+    end
+  else
+    if a:enlarge
+      call execute('resize -' . a:difference)
+    else
+      call execute('resize +' . a:difference)
+    endif
+  endif
+endfunction
+
+function MyVWinResize(difference, enlarge) abort
+  if IsWindowRightSide()
+    if a:enlarge
+      call execute('vertical resize -' . a:difference)
+    else
+      call execute('vertical resize +' . a:difference)
+    end
+  else
+    if a:enlarge
+      call execute('vertical resize +' . a:difference)
+    else
+      call execute('vertical resize -' . a:difference)
+    endif
+  endif
+endfunction
+
+function IsWindowRightSide() abort
+  let l:win_id = win_getid()
+  let l:layout = winlayout()
+  let l:mode = l:layout[0]
+  return HasWindowOnRight(l:layout, l:win_id, 'row')
+endfunction
+
+function IsWindowBottomSide() abort
+  let l:win_id = win_getid()
+  let l:layout = winlayout()
+  let l:mode = l:layout[0]
+  return HasWindowOnRight(l:layout, l:win_id, 'col')
+endfunction
+
+function HasWindowOnRight(layout, win_id, mode) abort
+  let l:mode = a:layout[0]
+  if l:mode ==# 'leaf'
+    return a:layout[1] == a:win_id
+  elseif l:mode ==# a:mode
+    return HasWindowOnRight(a:layout[1][-1], a:win_id, a:mode)
+  else
+    for l:sublayout in a:layout[1]
+      if HasWindowOnRight(l:sublayout, a:win_id, a:mode) == 1
+        return 1
+      endif
+    endfor
+  endif
+endfunction
+
 " search for word under cursor in search engine
 function SearchWeb() abort
     let l:text = expand('<cWORD>')
-    call jobstart(['firefox', g:search_engine . l:text])
-endfunction
-
-" search for selected text in search engine
-function SearchWebVisual() abort
-    let l:text = GetVisualSelection()
-    call jobstart(['firefox', g:search_engine . l:text])
+    call jobstart(['firefox', g:search_engine . l:text . g:search_engine_postfix])
 endfunction
 
 " open URL under cursor in web browser
 function OpenUrl() abort
     let l:url = expand('<cfile>')
     if l:url !~? 'https\?://'
-      let l:url = g:search_engine . l:url
+      let l:url = g:search_engine . l:url . g:search_engine_postfix
     endif
     call jobstart(['firefox', l:url])
 endfunction
@@ -246,24 +311,24 @@ endfunction
 function OpenUrlToLineEnd() abort
     let l:url = GetToLineEnd()
     if l:url !~? 'https\?://'
-      let l:url = g:search_engine . l:url
+      let l:url = g:search_engine . l:url . g:search_engine_postfix
     endif
     call jobstart(['firefox', l:url])
 endfunction
 
 " open selected text as URL
-function OpenUrlVisual() abort
+function OpenUrlVisual(postfix) abort
     let l:text = GetVisualSelection()
     if visualmode() ==# 'V'
       let l:urls = split(l:text, '\n')
     else
       let l:urls = [l:text]
     endif
-    let l:urls = map(l:urls, {key, str -> trim(str, '- ', 1)})
+    let l:urls = map(l:urls, {key, str -> trim(trim(str . ' ' . a:postfix, '-', 1))})
 
     for l:url in l:urls
       if l:url !~? 'https\?://'
-        let l:url = g:search_engine . l:url
+        let l:url = g:search_engine . l:url . g:search_engine_postfix
       endif
       call jobstart(['/usr/bin/firefox', l:url])
     endfor
@@ -277,7 +342,7 @@ function OpenUrlsVisual(...) abort
       let l:url = trim(l:url)
       let l:url = trim(substitute(l:url, '^-', '', 'g'))
       if l:url !~? 'https\?://'
-        let l:url = g:search_engine . l:url
+        let l:url = g:search_engine . l:url . g:search_engine_postfix
         let l:postfix = get(a:, 1, '')
         if l:postfix !=# ''
           let l:url = l:url . ' ' . l:postfix

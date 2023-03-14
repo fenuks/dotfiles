@@ -250,6 +250,8 @@ vnoremap <unique> <silent> x<Space> :call SubstituteNoHs("'<,'>s/\\s\\+/\\r/g")<
 " remove annotation like [1]
 nnoremap <unique> <silent> xa :call SubstituteNoHs('%s/\[\d\+\]//g')<CR>
 vnoremap <unique> <silent> xa :<C-u>call SubstituteNoHs("'<,'>s/\\[\\d\\+\\]//g")<CR>
+" replace selection
+xnoremap <unique> xv :<C-u>%s/<C-R>=GetVisualSelection()<CR>/
 
 nnoremap <unique> <silent> xSs :,$!sort -h<CR>
 nnoremap <unique> <silent> xSS :,$!sort -h<CR>
@@ -393,13 +395,23 @@ nnoremap <unique> <silent> <S-Tab> :call ChangeBuffer(0)<CR>
 " TAB == CTRL-I, therfore mapping <Tab> breaks going to new pos in jump list
 nnoremap <unique> <silent> <C-p> <C-i>
 
+" windows TODO check if window has neighbour on the right/bottom
+nnoremap <unique> <silent> <expr> <C-S-Up> MyHWinResize(2, 1)
+nnoremap <unique> <silent> <expr> <C-S-Down> MyHWinResize(2, 0)
+nnoremap <unique> <silent> <expr> <C-S-Right> MyVWinResize(2, 1)
+nnoremap <unique> <silent> <expr> <C-S-Left> MyVWinResize(2, 0)
+
+vnoremap <unique> <silent> <CR> :<C-u>call VJumpToWithOffset('^\s*$', 'Wz', -1)<CR>gv
+vnoremap <unique> <silent> <S-CR> :<C-u>call VJumpToWithOffset('^\s*$', 'bWz', 1)<CR>gv
+" nnoremap <unique> <silent> <CR> }
+" nnoremap <unique> <silent> <S-CR> {
 
 nnoremap <unique> <silent> dJ :<C-u>call DJ())<CR>
 nnoremap <unique> <silent> dK :<C-u>call DK())<CR>
 nnoremap <unique> <silent> gx :<C-u>call OpenUrl()<CR>
-vnoremap <unique> <silent> gx :<C-u>call OpenUrlVisual()<CR>
+vnoremap <unique> <silent> gx :<C-u>call OpenUrlVisual('')<CR>
 nnoremap <unique> <silent> gX :<C-u>call OpenUrlToLineEnd()<CR>
-vnoremap <unique> <silent> gX :<C-u>call SearchWebVisual()<CR>
+vnoremap <unique> gX :<C-u>call OpenUrlVisual('')<Left><Left>
 
 " terminal
 tnoremap <unique> <silent> jk <C-\><C-n>
@@ -550,6 +562,13 @@ if g:my_plugins_loaded
   " packadd justify " adds unwanted _j mappings
   execute 'source ' . g:vim_custom_scripts . 'plugins.vim'
 end
+
+let g:sandwich#recipes = deepcopy(g:sandwich#default_recipes)
+let g:sandwich#recipes += [
+      \   {
+      \     'buns'    : ['‘', '’'],
+      \   },
+      \ ]
 
 set guifont=Hack:h20
 if has('gui_running') || exists(':GuiFont')
