@@ -1,7 +1,6 @@
 ;; vim: ft=lisp
 
 #| --------------------------------------------------------------------------
-104-key full size keyboard
 Quick reference: https://github.com/jtroo/kanata/blob/main/cfg_samples/kanata.kbd
 List of keycodes: https://github.com/kmonad/kmonad/blob/master/src/KMonad/Keyboard/Keycode.hs
 -------------------------------------------------------------------------- |#

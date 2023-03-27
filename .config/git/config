@@ -23,6 +23,7 @@ email = fenuks
     aur = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && PKGVER=$(grep -oP 'pkgver ?= ?\\K.+' .SRCINFO)-$(grep -oP 'pkgrel ?= ?\\K.+' .SRCINFO); git commit -m \"Update to ${PKGVER}\" $@; }; f"
     aurclone = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git clone https://aur.archlinux.org/$@; }; f"
     aursshclone = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git clone ssh://aur@aur.archlinux.org/$@; }; f"
+    mvn = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && VERSION=$(mvn --quiet help:evaluate -Dexpression=project.version -DforceStdout); git commit -m \"Aktualizacja wersji do ${VERSION}\" $@; }; f"
     base-rev = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git merge-base $(git default) HEAD; }; f"
     br = branch
     brd = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git branch --merged | grep -Ev \"(^\\*|master|develop)\" | xargs git branch -d; }; f"

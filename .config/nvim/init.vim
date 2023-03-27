@@ -251,7 +251,7 @@ vnoremap <unique> <silent> x<Space> :call SubstituteNoHs("'<,'>s/\\s\\+/\\r/g")<
 nnoremap <unique> <silent> xa :call SubstituteNoHs('%s/\[\d\+\]//g')<CR>
 vnoremap <unique> <silent> xa :<C-u>call SubstituteNoHs("'<,'>s/\\[\\d\\+\\]//g")<CR>
 " replace selection
-xnoremap <unique> xv :<C-u>%s/<C-R>=GetVisualSelection()<CR>/
+xnoremap <unique> sv :<C-u>%s/<C-R>=GetVisualSelection()<CR>/
 
 nnoremap <unique> <silent> xSs :,$!sort -h<CR>
 nnoremap <unique> <silent> xSS :,$!sort -h<CR>
