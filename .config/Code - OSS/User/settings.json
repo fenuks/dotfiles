@@ -1,7 +1,6 @@
 // Place your settings in this file to overwrite the default settings
 {
   "editor.fontFamily": "'Hack', 'Fira Code', 'Source Code Pro', 'Droid Sans Mono', 'Courier New', monospace, 'Droid Sans Fallback'",
-  "telemetry.enableTelemetry": false,
   "extensions.ignoreRecommendations": true,
   "[cpp]": {
     "editor.quickSuggestions": {
@@ -90,7 +89,7 @@
   "editor.smoothScrolling": true,
   "window.restoreFullscreen": true,
   "files.trimTrailingWhitespace": true,
-  "debug.inlineValues": true,
+  "debug.inlineValues": "auto",
   "css.lint.compatibleVendorPrefixes": "warning",
   "css.lint.duplicateProperties": "warning",
   "css.lint.ieHack": "warning",
@@ -103,7 +102,6 @@
   "latex-workshop.view.pdf.viewer": "tab",
   "vim.neovimPath": "/usr/bin/nvim",
   "editor.suggestSelection": "first",
-  "telemetry.enableCrashReporter": false,
   "rest-client.enableTelemetry": false,
   "vim.highlightedyank.enable": true,
   "editor.fontSize": 20,
@@ -118,6 +116,8 @@
   "search.smartCase": true,
   "search.useGlobalIgnoreFiles": true,
   "update.mode": "none",
+  "keyboard.dispatch": "keyCode",
+  "json.schemaDownload.enable": true,
   "gitlab.showPipelineUpdateNotifications": true,
   "html.format.indentHandlebars": true,
   "java.codeGeneration.hashCodeEquals.useJava7Objects": true,
