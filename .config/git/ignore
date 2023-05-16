@@ -27,7 +27,6 @@ compile_commands.json
 CMakeFiles/
 target/
 *.iml
-env/
 .env/
 .venv/
 venv/

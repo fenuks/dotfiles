@@ -570,7 +570,7 @@ function ExOperatorFunc(excommand, type) abort
     endif
 endfunction
 
-function OpenMan()
+function OpenMan() abort
     try
         call man#open_page(v:count, v:count1, 'tabs', 'dirent')
     catch
@@ -695,7 +695,11 @@ function GatherSearchResults() abort
   endif
 endfunction
 
-function GoToOpenFold1(direction)
+function CopyFilename() abort
+  execute 'let @' . v:register . '=expand("%")'
+endfunction
+
+function GoToOpenFold1(direction) abort
   if (a:direction ==# 1)
     normal! zj
     let start = line('.')
@@ -712,7 +716,7 @@ function GoToOpenFold1(direction)
   call cursor(start, 0)
 endfunction
 
-function GoToOpenFold(direction)
+function GoToOpenFold(direction) abort
     let l:orig = getpos('.')
     if a:direction == 1
         normal! zj
@@ -768,7 +772,7 @@ function RomanNumber(number) abort
   return l:roman_number
 endfunction
 
-function ToBase(number, base)
+function ToBase(number, base) abort
     if a:number == 0
         return [0]
     endif
@@ -790,7 +794,7 @@ function AlphaNumber(number, base, start) abort
     return join(map(l:digits, 'nr2char(v:val + a:start)'), '')
 endfunction
 
-function VimFootnoteType(footnumber, type)
+function VimFootnoteType(footnumber, type) abort
     if (a:type ==# 'arabic')
         return a:footnumber
     elseif a:type ==# 'roman'
@@ -801,7 +805,7 @@ function VimFootnoteType(footnumber, type)
 endfunction
 
 " add a footnote at the cursor position
-function VimFootnotes(type)
+function VimFootnotes(type) abort
   if exists('b:vimfootnotenumber')
       if line('.') == line('$')
         " jump back to where footnote was inserted

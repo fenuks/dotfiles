@@ -5,4 +5,4 @@ noblacklist ${HOME}/.config/dolphinrc
 noblacklist ${HOME}/Magazyn
 whitelist ${HOME}/.config/dolphinrc
 whitelist ${HOME}/Magazyn
-whitelist ${HOME}/Gry/Heroes
+whitelist ${HOME}/Gry/

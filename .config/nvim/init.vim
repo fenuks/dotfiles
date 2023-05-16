@@ -320,6 +320,7 @@ nnoremap <unique> <silent> yp "0p
 nnoremap <unique> <silent> yP "0P
 nnoremap <unique> <silent> yv `<v`>y
 nnoremap <unique> <silent> ys :call CopySelection()<CR>
+nnoremap <unique> <silent> y% :call CopyFilename()<CR>
 nnoremap <unique> <silent> <M-p> "+p
 vnoremap <unique> <silent> <M-p> "+p
 inoremap <unique> <silent> <M-p> <C-o>"+p
