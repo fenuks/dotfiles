@@ -54,6 +54,10 @@ snippet uuid "Random UUID" w
 `!p if not snip.c: import uuid; snip.rv = str(uuid.uuid4())`
 endsnippet
 
+snippet uuid0 "UUID with zeros" w
+00000000-0000-0000-0000-000000000000
+endsnippet
+
 snippet box "Box"
 `!p snip.rv = '┌' + '─' * (len(t[1]) + 2) + '┐'`
 │ $1 │

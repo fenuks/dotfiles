@@ -114,9 +114,11 @@ require('nvim-treesitter.configs').setup({
     },
   },
 })
+vim.o.foldexpr='nvim_treesitter#foldexpr()'
 
 require('treesitter-context').setup({
   enable = true,
+  max_lines = 10,
 })
 
 require('tabout').setup({

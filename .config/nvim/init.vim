@@ -305,6 +305,8 @@ if !has('nvim-0.6')
 endif
 vnoremap <unique> <silent> <LocalLeader>y "+y
 nnoremap <unique> <silent> <M-y> "+y
+" for vim
+nnoremap <unique> <silent> y "+y
 vnoremap <unique> <silent> <M-y> "+y
 nnoremap <unique> <silent> <M-S-y> "+y$
 

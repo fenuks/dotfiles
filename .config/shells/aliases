@@ -25,6 +25,7 @@ alias jad-decompile="jad -o -d src-jad -r -s java **/*.class"
 if command -v /usr/lib/jvm/default/bin/jshell > /dev/null; then
     alias jshell="/usr/lib/jvm/default/bin/jshell"
 fi
+alias repo-append='repo-add --sign --remove --prevent-downgrade ~/OpenWRT/www/repozytoria/pacman/openwrt.db.tar.gz $(makepkg --packagelist) && gpg --detach-sign $(makepkg --packagelist) && cp $(makepkg --packagelist)* ~/OpenWRT/www/repozytoria/pacman/'
 alias kitty-themes="cd $HOME/.config/kitty/themes/ && ls *.conf | fzf --preview 'head -n 40 {} && kitty @ set-colors -a -c {}'; cd -"
 alias ls='ls --color --classify --human-readable'
 alias ll='ls -l --human-readable'

@@ -195,7 +195,7 @@ nnoremap <unique> <silent> <Leader>ol :mode\|nohlsearch<CR>
 let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
 Plug 'https://github.com/bronson/vim-visual-star-search'
 Plug 'https://github.com/ludovicchabant/vim-gutentags'
-let g:gutentags_ctags_exclude = ['.mypy_cache', 'node_modules']
+let g:gutentags_ctags_exclude = ['.mypy_cache', 'node_modules', 'target', '*.json']
 " let g:gutentags_ctags_executable_haskell = 'hasktags'
 Plug 'https://github.com/majutsushi/tagbar', { 'on': 'TagbarToggle' }
 nnoremap <unique> <silent> <F8> :TagbarToggle<CR>
