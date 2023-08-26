@@ -2,6 +2,8 @@
 priority -50
 
 global !p
+def math():
+  return vim.eval('vimtex#syntax#in_mathzone()') == '1'
 
 def create_table(snip):
 	rows = snip.buffer[snip.line].split('x')[0]
@@ -42,6 +44,11 @@ def add_row(snip):
 	snip.expand_anon(final_str)
 
 endglobal
+
+context "math()"
+snippet ff "This \frac{}{} snippet expands only a LaTeX math context" A
+\frac{$1}{$2}$0
+endsnippet
 
 snippet "\\?b(egin)?" "begin{} / end{}" br
 \begin{${1:something}}

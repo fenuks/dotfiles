@@ -15,6 +15,9 @@ linker = "arm-linux-musleabihf-gcc"
 [profile.release]
 lto = 'thin'
 
+[registries.crates-io]
+protocol = "sparse"
+
 [profile.bench]
 codegen-units = 1
 

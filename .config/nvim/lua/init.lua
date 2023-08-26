@@ -1,4 +1,12 @@
 require('hop').setup({ keys = 'etovxqpdygfblzhckisuran', term_seq_bias = 0.5 })
+vim.keymap.set('n', '<Leader><Leader>b', vim.cmd.HopWordBC, { unique = true, silent = true })
+vim.keymap.set('n', '<Leader><Leader>w', vim.cmd.HopWordAC, { unique = true, silent = true })
+vim.keymap.set('n', '<Leader><Leader>j', vim.cmd.HopLineAC, { unique = true, silent = true })
+vim.keymap.set('n', '<Leader><Leader>k', vim.cmd.HopLineBC, { unique = true, silent = true })
+vim.keymap.set('n', '<Leader><Leader>f', vim.cmd.HopChar1CurrentLineAC, { unique = true, silent = true })
+vim.keymap.set('n', '<Leader><Leader>F', vim.cmd.HopChar1CurrentLineBC, { unique = true, silent = true })
+vim.keymap.set('n', '<Leader><Leader>/', vim.cmd.HopPatternAC, { unique = true, silent = true })
+vim.keymap.set('n', '<Leader><Leader>?', vim.cmd.HopPatternBC, { unique = true, silent = true })
 
 require('nvim-ts-autotag').setup({
   filetypes = { 'html', 'xml' },
@@ -8,10 +16,12 @@ require('orgmode').setup_ts_grammar()
 require('nvim-treesitter.configs').setup({
   ensure_installed = 'all',
   ignore_install = { 'phpdoc', 'erlang' },
+  -- Install parsers synchronously (only applied to `ensure_installed`)
+  sync_install = false,
+  auto_install = true,
   highlight = {
     enable = true,
-    -- disable = { 'org' }, -- Remove this to use TS highlighter for some of the highlights (Experimental)
-    additional_vim_regex_highlighting = { 'org' }, -- Required since TS highlighter doesn't support all syntax features (conceal)
+    additional_vim_regex_highlighting = false, -- Required since TS highlighter doesn't support all syntax features (conceal)
   },
   incremental_selection = {
     enable = true,
@@ -114,7 +124,7 @@ require('nvim-treesitter.configs').setup({
     },
   },
 })
-vim.o.foldexpr='nvim_treesitter#foldexpr()'
+vim.o.foldexpr = 'nvim_treesitter#foldexpr()'
 
 require('treesitter-context').setup({
   enable = true,
@@ -182,9 +192,17 @@ end
 require('telescope').load_extension('fzy_native')
 require('telescope').setup({
   defaults = {
-    layout_strategy = 'vertical',
-    -- layout_strategy = 'horizontal',
-    layout_config = { width = 0.9 },
+    -- layout_strategy = 'vertical',
+    layout_strategy = 'horizontal',
+    layout_config = {
+      width = 0.99,
+      vertical = {
+        preview_cutoff = 0,
+      },
+      horizontal = {
+        preview_cutoff = 0,
+      },
+    },
   },
   pickers = {
     find_files = {
@@ -199,6 +217,22 @@ require('telescope').setup({
     },
   },
 })
+
+local telescope_builtin = require('telescope.builtin')
+vim.keymap.set('n', 'z=', telescope_builtin.spell_suggest, { unique = true, silent = true })
+vim.keymap.set('n', 'xx', telescope_builtin.find_files, { unique = true, silent = true })
+vim.keymap.set('n', '<Leader>fl', telescope_builtin.find_files, { unique = true, silent = true })
+vim.keymap.set('n', '<Leader>fv', telescope_builtin.git_files, { unique = true, silent = true })
+vim.keymap.set('n', '<Leader>fd', function()
+  telescope_builtin.find_files({ cwd = require('telescope.utils').buffer_dir() })
+end, { unique = true, silent = true })
+vim.keymap.set('n', '<leader>fs', function()
+  telescope_builtin.grep_string({ search = vim.fn.input('Grep > ') })
+end, { unique = true, silent = true })
+vim.keymap.set('n', 'g?', telescope_builtin.current_buffer_tags, { unique = true, silent = true })
+vim.keymap.set('n', '<Leader>gt', telescope_builtin.tags, { unique = true, silent = true })
+vim.keymap.set('n', '<Leader>gh', telescope_builtin.oldfiles, { unique = true, silent = true })
+vim.keymap.set('n', '<Leader>bl', telescope_builtin.buffers, { unique = true, silent = true })
 
 local map = function(type, key, value)
   vim.api.nvim_buf_set_keymap(0, type, key, value, { noremap = true, silent = true, unique = true })
@@ -498,7 +532,7 @@ cmp.setup({
   },
 })
 -- function to attach completion and diagnostics when setting up lsp
-local on_attach = function(_client, bufnr)
+local on_attach = function(_client, _bufnr)
   vim.call('deoplete#custom#buffer_option', 'auto_complete', false)
 
   vim.api.nvim_command([[autocmd CursorHold  <buffer> lua vim.lsp.buf.document_highlight()]])
@@ -794,16 +828,13 @@ require('orgmode').setup({
   org_agenda_files = { '~/Dokumenty/notatki/*' },
   org_default_notes_file = '~/Dokumenty/notatki/zadania.org',
   -- org_highlight_latex_and_related = 'entities',
-  -- mappings = {
-  --   disable_all = false,
-  --   global = {
-  --     org_agenda = '<Leader>oa',
-  --     org_capture = '<Leader>oc',
-  --   },
-  --   org = {
-  --     org_return = '',
-  --   },
-  -- },
+  mappings = {
+    disable_all = false,
+    org = {
+      org_cycle = ',<TAB>',
+      org_global_cycle = ',<S-TAB>',
+    },
+  },
 })
 
 local iron = require('iron.core')

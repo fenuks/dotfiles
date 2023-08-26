@@ -22,7 +22,7 @@ def getShell():
 	return "sh"
 endglobal
 
-snippet #! "#!/usr/bin/env (!env)" b
+snippet env "#!/usr/bin/env (!env)" b
 `!p snip.rv = '#!/usr/bin/env ' + getShell() + "\n" `
 endsnippet
 

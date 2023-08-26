@@ -86,12 +86,12 @@ runsshagent() {
 }
 
 rmf() {
-    echo -e "Usunąć? [YT/n]:\n$@"
-    read -n 1
-    echo
-    if [[ $REPLY =~ ^[YyTt]$ ]]; then
-        rm -f $@
-    fi
+  echo -e "Usunąć? [YT/n]:\n$@"
+  read -n 1
+  echo
+  if [[ $REPLY =~ ^[YyTt]$ ]]; then
+    rm -f $@
+  fi
 }
 
 cg() {
@@ -100,18 +100,18 @@ cg() {
 }
 
 _cg_complete() {
-    local git_root="$(git rev-parse --show-toplevel  2> /dev/null)"
-    if [[ "${git_root}" == "" ]]; then
-        return
-    fi
+  local git_root="$(git rev-parse --show-toplevel 2>/dev/null)"
+  if [[ "${git_root}" == "" ]]; then
+    return
+  fi
 
-    local file
-    for file in "${git_root}/$2"*; do
-        [[ -d $file ]] || continue
+  local file
+  for file in "${git_root}/$2"*; do
+    [[ -d $file ]] || continue
 
-        local relative="${file#$git_root/}/"
-        COMPREPLY+=( "${relative}" )
-    done
+    local relative="${file#$git_root/}/"
+    COMPREPLY+=("${relative}")
+  done
 }
 
 complete -o nospace -F _cg_complete cg
@@ -383,16 +383,13 @@ up() {
         cur="${cur}/${subdir}"
       done
     else
+      UP="${UP,,}"
       cur='.'
       for i in $(seq ${#dirs[@]}); do
         cur=$(realpath "${cur}/..")
-        if [[ "$(basename ${cur})" =~ "${UP}" ]]; then
-          cd "${cur}"
-          break
-        fi
-
-        ls ${cur} | grep -P "${UP}" >|/dev/null
-        if [[ $? -eq 0 ]]; then
+        dirname="$(basename ${cur})"
+        dirname="${dirname,,}"
+        if [[ "${dirname}" =~ "${UP}" ]]; then
           cd "${cur}"
           break
         fi
@@ -474,4 +471,11 @@ gr() {
 
 cdi() {
   cd "$(fzf_dir)"
+}
+
+vn() {
+  (
+    cd "${XDG_DOCUMENTS_DIR}/notatki"
+    vim
+  )
 }

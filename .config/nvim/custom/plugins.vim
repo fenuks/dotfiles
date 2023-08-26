@@ -155,7 +155,7 @@ inoremap <unique> <silent> <C-S-u> <C-o>D
 Plug 'https://github.com/scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
 nnoremap <unique> <silent> <Leader>ft :NERDTreeToggle<CR>
 nnoremap <unique> <silent> <Leader>fT :NERDTreeFind<CR>
-nnoremap <unique> <silent> <Leader>fs :call ReadSkeletonFile()<CR>
+nnoremap <unique> <silent> <Leader>fr :call ReadSkeletonFile()<CR>
 let g:NERDTreeIgnore=['\.pyc$', '\~$', '__pycache__', 'jdt.ls-java-project']
 let g:NERDTreeMinimalUI=1
 let g:NERDTreeBookmarksFile=g:vim_share_dir . '/NERDTreeBookmarks'
@@ -359,30 +359,13 @@ if has('nvim')
 
     Plug 'https://github.com/nvim-telescope/telescope.nvim'
     Plug 'https://github.com/nvim-telescope/telescope-fzy-native.nvim'
-    nnoremap <unique> <silent> z= :Telescope spell_suggest<CR>
-    nnoremap <unique> <silent> xx :Telescope find_files<CR>
-    nnoremap <unique> <silent> <Leader>fl :Telescope find_files<CR>
-    nnoremap <unique> <silent> <Leader>fd :lua require('telescope.builtin').find_files({cwd=require('telescope.utils').buffer_dir()})<CR>
-    nnoremap <unique> <silent> g? :Telescope current_buffer_tags<CR>
-    nnoremap <unique> <silent> <Leader>gt :Telescope tags<CR>
-    nnoremap <unique> <silent> <Leader>gh :Telescope oldfiles<CR>
-    nnoremap <unique> <silent> <Leader>bl :Telescope buffers<CR>
-
     Plug 'https://github.com/phaazon/hop.nvim'
-    nnoremap <unique> <silent> <Leader><Leader>b :HopWordBC<CR>
-    nnoremap <unique> <silent> <Leader><Leader>w :HopWordAC<CR>
-    nnoremap <unique> <silent> <Leader><Leader>j :HopLineAC<CR>
-    nnoremap <unique> <silent> <Leader><Leader>k :HopLineBC<CR>
-    nnoremap <unique> <silent> <Leader><Leader>f :HopChar1CurrentLineAC<CR>
-    nnoremap <unique> <silent> <Leader><Leader>F :HopChar1CurrentLineBC<CR>
-    nnoremap <unique> <silent> <Leader><Leader>/ :HopPatternAC<CR>
-    nnoremap <unique> <silent> <Leader><Leader>? :HopPatternBC<CR>
 
     Plug 'https://github.com/windwp/nvim-ts-autotag'
 
     Plug 'https://github.com/hkupty/iron.nvim'
     Plug 'https://github.com/kristijanhusak/orgmode.nvim'
-    " FIXME
+    " FIXME use only telescope for nvim
     Plug 'https://github.com/junegunn/fzf'
     Plug 'https://github.com/junegunn/fzf.vim'
 
@@ -464,9 +447,10 @@ execute 'source ' . g:vim_custom_scripts . 'autocomplete.vim'
 " snippets
 Plug 'https://github.com/SirVer/ultisnips'
 
-let g:UltiSnipsExpandTrigger = 'æ'
-let g:UltiSnipsJumpForwardTrigger = '<Plug>(ultisnips_jump_forward)'
-let g:UltiSnipsJumpBackwardTrigger = '<Plug>(ultisnips_jump_backward)'
+let g:UltiSnipsExpandTrigger       = '<Tab>'
+let g:UltiSnipsJumpForwardTrigger  = '<Tab>'
+let g:UltiSnipsJumpBackwardTrigger = '<S-Tab>'
+nnoremap <silent> <unique> <Leader>ru <Cmd>call UltiSnips#RefreshSnippets()<CR>
 let g:UltiSnipsListSnippets = '<c-x><c-s>'
 let g:UltiSnipsRemoveSelectModeMappings = 0
 let g:UltiSnipsSnippetDirectories=[$HOME.'/.config/nvim/UltiSnips']
@@ -560,8 +544,10 @@ let g:sql_type_default='psql'
 Plug 'https://github.com/lervag/vimtex', { 'for': 'tex' }
 " Plug 'https://github.com/scrooloose/vim-slumlord' " plantuml previews
 let g:tex_flavor='latex'
-let g:vimtex_view_method='okular'
+" let g:vimtex_view_method='okular'
+let g:vimtex_view_method = 'zathura'
 let g:tex_conceal='abdmg'
+let g:vimtex_imaps_enabled = 0
 
 "##### Colourshemes
 " set background=dark
@@ -584,9 +570,6 @@ Plug 'https://github.com/Pocco81/Catppuccino.nvim'
 Plug 'https://github.com/projekt0n/github-nvim-theme'
 Plug 'https://github.com/sainnhe/everforest'
 Plug 'https://github.com/shaunsingh/solarized.nvim'
-if has('nvim')
-    Plug 'https://github.com/folke/tokyonight.nvim', { 'branch': 'main' }
-endif
 
 set background=light
 if &background ==# 'light'

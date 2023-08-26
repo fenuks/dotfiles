@@ -1,2 +1,3 @@
 noblacklist ${HOME}/.config/kioslaverc
 noblacklist ${HOME}/.config/gwenviewrc
+ignore no3d
