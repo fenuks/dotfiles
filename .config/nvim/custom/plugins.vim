@@ -285,7 +285,7 @@ let g:ale_fixers = {
 \}
 let g:ale_c_parse_makefile=0
 let g:ale_c_parse_compile_commands=1
-let g:ale_python_mypy_options='--ignore-missing-imports'
+let g:ale_python_mypy_options='--ignore-missing-imports --check-untyped-defs'
 let g:ale_python_flake8_options='--append-config ' . $HOME . '.config/flake8'
 let g:ale_rust_cargo_use_clippy = executable('cargo-clippy')
 let g:airline#extensions#ale#enabled = 1
@@ -359,7 +359,7 @@ if has('nvim')
 
     Plug 'https://github.com/nvim-telescope/telescope.nvim'
     Plug 'https://github.com/nvim-telescope/telescope-fzy-native.nvim'
-    Plug 'https://github.com/phaazon/hop.nvim'
+    Plug 'https://github.com/smoka7/hop.nvim'
 
     Plug 'https://github.com/windwp/nvim-ts-autotag'
 

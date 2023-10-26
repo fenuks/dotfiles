@@ -1,8 +1,6 @@
 [user]
 name = fenuks
 email = fenuks
-[includeIf "gitdir:~/Praca/"]
-    path = ~/.config/git/work.config
 [core]
     excludesfile = ~/.config/git/ignore
     attributesfile = ~/.config/git/attributes
@@ -36,6 +34,7 @@ email = fenuks
     clean = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && find -name '*.orig' -delete; }; f"
     cm = commit -m
     co = checkout
+    coum = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git reset $@; git checkout $@; }; f"
     count = rev-list --count HEAD
     cod = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git checkout $(git default); }; f"
     d = diff --find-copies-harder
@@ -50,7 +49,7 @@ email = fenuks
     last = lg -1 HEAD
     last-tag = describe --tags --abbrev=0
     lg = log --graph --color=auto --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
-    lgb = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git lg $(git default)..; }; f"
+    lgd = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git lg $(git default)..; }; f"
     lga = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git log --all --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit | less -r; }; f"
     ls = ls-tree --name-only --full-tree -r HEAD
     # local commits
@@ -152,3 +151,5 @@ email = fenuks
 	recurse = true
 [init]
 	defaultBranch = main
+[includeIf "gitdir:~/Praca/"]
+    path = ~/.config/git/work.config

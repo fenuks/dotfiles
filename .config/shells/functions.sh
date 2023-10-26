@@ -333,7 +333,7 @@ prune_history() {
 if command -v nvim >/dev/null; then
   alias vim='nvim'
   alias vimpager='nvim -R'
-  export MANPAGER='nvim -i NONE -M -n +Man!'
+  export MANPAGER='nvim +Man!'
   export EDITOR=nvim
 else
   alias vimpager='vim -R'

@@ -80,3 +80,6 @@ command! -nargs=* Agp
 
 imap <silent> <unique> <c-x><c-f> <Plug>(fzf-complete-path)
 imap <silent> <unique> <c-x>f <Plug>(fzf-complete-path)
+
+imap <silent> <unique> <c-x><c-l> <Plug>(fzf-complete-buffer-line)
+imap <silent> <unique> <c-x>l <Plug>(fzf-complete-buffer-line)

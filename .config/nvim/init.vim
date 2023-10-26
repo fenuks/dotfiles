@@ -222,6 +222,7 @@ nnoremap <unique> X <NOP>
 
 nnoremap <unique> q@ q
 nnoremap <unique> <silent> qq :qall<CR>
+nnoremap <unique> <silent> <Leader>zz :wall\|qall<CR>
 
 " it's wasteful to sacrifice r just for char replace…
 nnoremap <unique> rr r
@@ -552,6 +553,7 @@ let g:loaded_node_provider = 0
 let g:loaded_2html_plugin = 1
 let g:loaded_skim = 1
 let g:loaded_tutor_mode_plugin = v:true
+let g:editorconfig = v:false
 
 if filereadable('build/Makefile')
     compiler! cmake
