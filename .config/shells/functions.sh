@@ -361,14 +361,24 @@ help_vmap() {
 
 up() {
   UP=$1
+  new_dir="$(up_path "$1")"
+  if [[ -n "${new_dir}" ]]; then
+      cd "${new_dir}/${2}"
+  fi
+}
 
+up_path() {
+  UP=$1
+
+  # if provided positive or neganive number
   if [[ $UP =~ ^[\-0-9]+$ ]]; then
     if ((UP < 0)); then
       UP=${UP#-}
-      cd $(echo "${PWD}" | cut -d/ -f1-$((UP + 1)))
+      echo "${PWD}" | cut -d/ -f1-$((UP + 1))
     else
-      cd $(printf "%0.s../" $(seq 1 ${UP}))
+      printf "%0.s../" $(seq 1 ${UP})
     fi
+  # if provided word that can be negative
   else
     IFS=$'\n' dirs=($(pwd | tr '/' '\n'))
     if [[ "${UP:0:1}" == '-' ]]; then
@@ -377,10 +387,10 @@ up() {
       for subdir in ${dirs[@]}; do
         ls ${cur} | grep -P "${UP}" >|/dev/null
         if [[ $? -eq 0 ]]; then
-          cd "${cur}"
+          echo "${cur}/"
           break
         fi
-        cur="${cur}/${subdir}"
+        cur="${cur}/${subdir}/"
       done
     else
       UP="${UP,,}"
@@ -390,13 +400,29 @@ up() {
         dirname="$(basename ${cur})"
         dirname="${dirname,,}"
         if [[ "${dirname}" =~ "${UP}" ]]; then
-          cd "${cur}"
+          echo "${cur}/"
           break
         fi
       done
     fi
   fi
 }
+
+_up_complete() {
+  if [[ "${COMP_CWORD}" -ne 2 ]]; then
+      return
+  fi
+  path="$(up_path "${COMP_WORDS[1]}")"
+  if [[ -z "${path}" ]]; then
+      return
+  fi
+  IFS=$'\n'
+  for candidate in $(compgen -d "${path}${COMP_WORDS[2]}"); do
+      COMPREPLY+=("$(escape_path "$(realpath --relative-to="${path}" "${candidate}")")")
+  done
+}
+
+complete -o nospace -F _up_complete up
 
 # export functions in bash
 if [[ -v BASH_VERSION ]]; then
