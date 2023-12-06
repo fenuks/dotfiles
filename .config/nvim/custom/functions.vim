@@ -605,6 +605,10 @@ endfunction
 
 function CustomSyntax() abort
     " highlight all trailing spaces
+
+    if &readonly || &buflisted == 0
+      return
+    endif
     highlight ExtraWhitespace ctermbg=red guibg=red
     highlight NonBreakingSpace ctermbg=red guibg=red
     syntax match ExtraWhitespace /\s\+\%#\@<!$/

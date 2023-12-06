@@ -626,8 +626,8 @@ augroup vim
     " equalize splits on resize event
     autocmd VimResized * wincmd =
     " highlight trailing spaces
-    call CustomSyntax()
-    autocmd ColorScheme * call CustomSyntax()
+    autocmd BufWinEnter,BufNewFile,BufReadPost * call CustomSyntax()
+    autocmd Syntax * call CustomSyntax()
     autocmd OptionSet diff call ConfigureDiff()
 augroup END
 
