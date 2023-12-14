@@ -13,3 +13,7 @@ source "$HOME/.config/shells/$SHELL_TYPE/rc.$SHELL_TYPE"
 
 source_if_exists "$HOME/.config/shells/localrc.after.sh"
 source_if_exists "$HOME/.config/shells/$SHELL_TYPE/localrc.after.$SHELL_TYPE"
+
+if [[ -f /usr/lib/libstderred.so ]]; then
+    export LD_PRELOAD="/usr/lib/libstderred.so${LD_PRELOAD:+:${LD_PRELOAD}}"
+fi
