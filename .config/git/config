@@ -46,6 +46,7 @@ email = fenuks
     dt = difftool --tool=difftastic
     grepall = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git grep -P \"$@\" $(git rev-list --all); }; f"
     first = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git lgb $(git default).. | tail -1; }; f"
+    fixup = "!git log $(git default).. --pretty=format:'%h %s' --no-merges | fzf | cut -c -7 | xargs -o git commit --fixup"
     last = lg -1 HEAD
     last-tag = describe --tags --abbrev=0
     lg = log --graph --color=auto --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
@@ -95,7 +96,7 @@ email = fenuks
 [merge]
     conflictStyle = zdiff3
 [rebase]
-    autoStash = true
+    autosquash = true
 [rerere]
     enabled = true
 [remote-hg]

@@ -3,7 +3,7 @@
 _fzf_complete_docker() {
   local selected fzf fzf_opt binary cmd_opt
   if [[ -n "${COMP_WORDS[${COMP_CWORD}]}" ]]; then
-    _docker "${@}"
+    __start_docker "${@}"
     return 0
   fi
 
@@ -52,7 +52,7 @@ _fzf_complete_docker() {
       return 0
     fi
   fi
-  _docker "${@}"
+  __start_docker "${@}"
 }
 
 __fzf_docker_images() {

@@ -1,3 +1,4 @@
+8D
 aarch64
 Amarantus
 Amarok
@@ -5,6 +6,7 @@ Anki
 application/json
 application/pdf
 application/problem+json
+artifactory
 ASM
 backend
 bashrc
@@ -29,6 +31,7 @@ Dulcinea
 EPUB
 Evernote
 F-Droid
+FIXME
 Gentoo
 Geolocation
 gitignore
@@ -54,8 +57,8 @@ JIRA
 JIT
 JS
 JSON
+JWT
 KDEConnect
-keepass
 keepass
 krita
 LARP
@@ -84,12 +87,10 @@ ODPS
 ODT
 o_O
 OpenWRT
-OpenWRT
 ORG
 org-mode
 OTA
 ;P
-PDF
 PDF
 PEM
 per se
@@ -106,14 +107,12 @@ README
 reddit
 refactoring
 regex
-regex
 relisten
 relistened
 RSS
 RST
 RTS
 ScummVM
-SDK
 SDK
 SPOJ
 Spotify
@@ -128,6 +127,7 @@ TODO
 transpiler
 UI
 ummm
+unprocessable
 upvoted
 UTC
 UUID
@@ -153,4 +153,3 @@ yaml
 YouTube
 Zig
 Zippo
-8D

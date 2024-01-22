@@ -67,10 +67,38 @@ rmbak() {
 
 take() { mkdir -p "$@" && cd "$1"; }
 
+repeat() {
+  runs=0
+  max_runs=10
+  declare -a durations=()
+  while true; do
+    runs=$((runs + 1))
+    SECONDS=0
+    "$@"
+    exit_code="$?"
+    if [[ "${exit_code}" -ne 0 ]]; then
+      sorted_durations=($(printf '%s\n' "${durations[@]}" | sort))
+      printf 'Błąd nastąpił w wywołaniu nr %s po %s z kodem %s\n' "${runs}" "$(date -u -d @${SECONDS} +'%T')" "${exit_code}"
+      printf 'Czasy wykonania w sekundach: '
+      printf '%s\n' "${sorted_durations[@]}" | xargs -I# date -u -d @# +%T
+      break
+    fi
+    durations+=("${SECONDS}")
+    if [[ "${runs}" -ge "${max_runs}" ]]; then
+      sorted_durations=($(printf '%s\n' "${durations[@]}" | sort -n))
+      printf 'Komenda nie zwróciła błędu po %s wykonaniach.\n' "${runs}"
+      printf 'Czasy wykonania w sekundach: '
+      printf '%s\n' "${sorted_durations[@]}" | xargs -I# date -u -d @# +%T
+      break
+    fi
+  done
+}
+
 w() {
   # export WINEPREFIX="${XDG_DATA_HOME}/wineprefixes/$1"
   WINEPREFIX="${XDG_DATA_HOME}/wineprefixes/$1" wine "$2"
 }
+
 wprefix() {
   export WINEPREFIX="${XDG_DATA_HOME}/wineprefixes/$1"
 }

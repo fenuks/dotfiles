@@ -286,6 +286,9 @@ vnoremap <unique> <silent> xaj :Justify<CR>
 nnoremap <unique> <silent> xaj :set opfunc=JustifyOperator<CR>g@
 nnoremap <unique> <silent> xj :set opfunc=JoinOperatorWithSpaces<CR>g@
 nnoremap <unique> <silent> xJ :set opfunc=JoinOperator<CR>g@
+" join without spaces
+nnoremap <unique> <silent> <space>J gJi <ESC>diW
+vnoremap <unique> <silent> <space>J :<C-u>keeppatterns '<,'>s/$\n\s*//g<CR>
 
 " edit register
 nnoremap <unique> <silent> x@ :<C-u><C-r><C-r>='let @'. v:register .' = '. string(getreg(v:register))<CR><C-F><LEFT>

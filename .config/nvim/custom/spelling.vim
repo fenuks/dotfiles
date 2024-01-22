@@ -14,11 +14,14 @@ augroup natural_language
 augroup END
 
 function! ConfigureLanguage() abort
-    setlocal spelllang=pl,en_gb
-    let l:spellfiles = map(split(&spelllang, ','), '$HOME .. "/.config/nvim/spell/" .. v:val .. ".utf-8.add"')
-    call add(l:spellfiles, expand('~/.config/nvim/spell/filetype/' . &filetype . '.utf-8.add'))
+    setlocal spelllang=pl,en
+    let l:spellfiles = map(split(&spelllang, ','), 'g:nvim_dir_path .. "/spell/" .. v:val .. ".utf-8.add"')
+    let l:filetype_spellfiles = map(split(&filetype, '\.'), 'g:nvim_dir_path .. "/spell/filetype/" .. v:val .. ".utf-8.add"')
+    call extend(l:spellfiles, l:filetype_spellfiles)
+    " call add(l:spellfiles, g:nvim_dir_path .. '/spell/filetype/' . &filetype . '.utf-8.add'))
     let &spellfile=join(l:spellfiles, ',')
     setlocal spell dictionary+=/usr/share/dict/polish
+    setlocal spelllang=pl,en_gb
     " call airline#extensions#whitespace#disable()
 endfunction
 
