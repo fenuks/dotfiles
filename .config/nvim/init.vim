@@ -245,7 +245,6 @@ nnoremap <unique> <silent> x, :call SubstituteNoHs('%s/,\s*/\r/g')<CR>
 vnoremap <unique> <silent> x, :call SubstituteNoHs("'<,'>s/,\\s*/\\r/g")<CR>
 nnoremap <unique> <silent> X, :call SubstituteNoHs('1,$-1s/\n/, /')<CR>
 vnoremap <unique> <silent> X, :-1s/\n/, /<CR>
-" convert non-breaking spaces to normal ones
 nnoremap <unique> <silent> x<Space> :call SubstituteNoHs('%s/\s\+/\r/g')<CR>
 vnoremap <unique> <silent> x<Space> :call SubstituteNoHs("'<,'>s/\\s\\+/\\r/g")<CR>
 " remove annotation like [1]

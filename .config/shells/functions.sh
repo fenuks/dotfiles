@@ -533,3 +533,11 @@ vn() {
     vim
   )
 }
+
+cpr() {
+  rsync --archive --human-readable --partial --info=stats3,progress2 "$@"
+}
+
+mvr() {
+  rsync --archive --human-readable --partial --info=stats3,progress2 --remove-source-files "$@"
+}
