@@ -391,7 +391,7 @@ up() {
   UP=$1
   new_dir="$(up_path "$1")"
   if [[ -n "${new_dir}" ]]; then
-      cd "${new_dir}/${2}"
+    cd "${new_dir}/${2}"
   fi
 }
 
@@ -438,15 +438,15 @@ up_path() {
 
 _up_complete() {
   if [[ "${COMP_CWORD}" -ne 2 ]]; then
-      return
+    return
   fi
   path="$(up_path "${COMP_WORDS[1]}")"
   if [[ -z "${path}" ]]; then
-      return
+    return
   fi
   IFS=$'\n'
   for candidate in $(compgen -d "${path}${COMP_WORDS[2]}"); do
-      COMPREPLY+=("$(escape_path "$(realpath --relative-to="${path}" "${candidate}")")")
+    COMPREPLY+=("$(escape_path "$(realpath --relative-to="${path}" "${candidate}")")")
   done
 }
 
@@ -540,4 +540,8 @@ cpr() {
 
 mvr() {
   rsync --archive --human-readable --partial --info=stats3,progress2 --remove-source-files "$@"
+}
+
+vk() {
+  vim "${XDG_DOCUMENTS_DIR}/notatki/kalendarz/roczne/$(date +%Y).rem"
 }

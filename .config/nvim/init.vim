@@ -262,6 +262,8 @@ nnoremap <unique> <silent> xSu :,$!sort -u<CR>
 nnoremap <unique> <silent> xSU :,$!sort -u<CR>
 vnoremap <unique> <silent> xsu :!sort -u<CR>
 nnoremap <unique> <silent> xsu :set opfunc=SortOperatorUnique<CR>g@
+nnoremap <unique> <silent> xu :!awk '\!seen[$0]++'<CR>
+vnoremap <unique> <silent> xu :!awk '\!seen[$0]++'<CR>
 
 nnoremap <unique> <silent> qcj :set opfunc=PandocJiraOperator<CR>g@
 nnoremap <unique> <silent> qcc :call PandocFzf()<CR>
@@ -415,7 +417,7 @@ vnoremap <unique> <silent> <S-CR> :<C-u>call VJumpToWithOffset('^\s*$', 'bWz', 1
 nnoremap <unique> <silent> dJ :<C-u>call DJ())<CR>
 nnoremap <unique> <silent> dK :<C-u>call DK())<CR>
 nnoremap <unique> <silent> gx :<C-u>call OpenUrl()<CR>
-vnoremap <unique> <silent> gx :<C-u>call OpenUrlVisual('')<CR>
+vnoremap <unique> <silent> gx :<C-u>call OpenUrlsVisual('')<CR>
 nnoremap <unique> <silent> gX :<C-u>call OpenUrlToLineEnd()<CR>
 vnoremap <unique> gX :<C-u>call OpenUrlVisual('')<Left><Left>
 

@@ -7,8 +7,10 @@ let g:foldmethods = {
 \ 'diff': 'manual'
 \}
 
-let g:search_engine = 'https://lite.qwant.com/?q='
-let g:search_engine_postfix = '&p=1'
+let g:default_search_engines = ['https://lite.qwant.com/?q=<query>&p=1']
+let g:shopping_search_engines = ['https://allegro.pl/listing?string=<query>&p=1']
+let g:plant_search_engines = ['https://lite.qwant.com/?q=<query>&p=1', 'https://allegro.pl/listing?string=<query>&order=p&p=1', 'https://www.drzewa.com.pl/catalogsearch/result/index/?q=<query>&p=1', 'https://www.sadowniczy.pl/search.php?text=<query>&counter=0', 'https://drzewka-faworytka.pl/pl/searchquery/<query>/1', 'https://szkolkawrzos.pl/szukaj?controller=search&s=<query>&page=1']
+let g:search_engines = g:default_search_engines
 let g:my_colours = []
 let g:my_colourscheme=get(g:, 'colors_name', 'default')
 let g:my_airline_themes = []
@@ -211,7 +213,6 @@ endfunction
 
 " returns true if string is in uppercase
 function IsUpper(string) abort
-    echom a:string
     return toupper(a:string) ==# a:string
 endfunction
 
@@ -295,25 +296,27 @@ endfunction
 " search for word under cursor in search engine
 function SearchWeb() abort
     let l:text = expand('<cWORD>')
-    call jobstart(['firefox', g:search_engine . l:text . g:search_engine_postfix])
+    call OpenSearchPage(l:text)
 endfunction
 
 " open URL under cursor in web browser
 function OpenUrl() abort
     let l:url = expand('<cfile>')
     if l:url !~? 'https\?://'
-      let l:url = g:search_engine . l:url . g:search_engine_postfix
+      call OpenSearchPage(l:url)
+    else
+      call jobstart(['firefox', l:url])
     endif
-    call jobstart(['firefox', l:url])
 endfunction
 
 " open URL from cursor, to end of line
 function OpenUrlToLineEnd() abort
     let l:url = GetToLineEnd()
     if l:url !~? 'https\?://'
-      let l:url = g:search_engine . l:url . g:search_engine_postfix
+      call OpenSearchPage(l:url)
+    else
+      call jobstart(['firefox', l:url])
     endif
-    call jobstart(['firefox', l:url])
 endfunction
 
 " open selected text as URL
@@ -325,12 +328,23 @@ function OpenUrlVisual(postfix) abort
       let l:urls = [l:text]
     endif
     let l:urls = map(l:urls, {key, str -> trim(trim(str . ' ' . a:postfix, '-', 1))})
+    call OpenOrSearchMany(l:urls)
+endfunction
 
-    for l:url in l:urls
+function OpenSearchPage(query) abort
+    for l:search_engine in g:search_engines
+      let l:jobid = jobstart(['firefox', substitute(l:search_engine, '<query>', a:query, '')])
+      call jobwait([l:jobid])
+    endfor
+endfunction
+
+function OpenOrSearchMany(urls) abort
+    for l:url in a:urls
       if l:url !~? 'https\?://'
-        let l:url = g:search_engine . l:url . g:search_engine_postfix
+        call OpenSearchPage(l:url)
+      else
+        call jobstart(['/usr/bin/firefox', l:url])
       endif
-      call jobstart(['/usr/bin/firefox', l:url])
     endfor
 endfunction
 
@@ -340,15 +354,16 @@ function OpenUrlsVisual(...) abort
     let l:urls = split(l:text, '\n')
     for l:url in l:urls
       let l:url = trim(l:url)
-      let l:url = trim(substitute(l:url, '^-', '', 'g'))
+      let l:url = trim(substitute(l:url, '^-\( \[[ Xx]\]\)\?', '', 'g'))
       if l:url !~? 'https\?://'
-        let l:url = g:search_engine . l:url . g:search_engine_postfix
         let l:postfix = get(a:, 1, '')
         if l:postfix !=# ''
           let l:url = l:url . ' ' . l:postfix
         endif
+        call OpenSearchPage(l:url)
+      else
+        call jobstart(['/usr/bin/firefox', l:url])
       endif
-      call jobstart(['/usr/bin/firefox', l:url])
     endfor
 endfunction
 
