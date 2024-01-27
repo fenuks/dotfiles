@@ -46,6 +46,10 @@ function format_lua() {
   stylua --config-path ~/.config/stylua/stylua.toml ${1}
 }
 
+function format_deno() {
+  deno fmt ${1}
+}
+
 function format_prettier() {
   prettier -w ${1}
 }
@@ -101,7 +105,8 @@ format "${changed_files}" 'shfmt (bash)' '\.bash$' 'format_bash'
 format "${changed_files}" 'clang-format' '\.(c|h|cpp|cc|hpp)$' 'format_clang'
 format "${changed_files}" 'google-java-format' '\.java$' 'format_java'
 format "${changed_files}" 'stylua' '\.lua$' 'format_lua'
-format "${changed_files}" 'prettier' '^.+\.(md|json|js|jsx|ts|css|ya?ml|html)$' 'format_prettier'
+format "${changed_files}" 'prettier' '^.+\.(json|js|jsx|ts|css|ya?ml|html)$' 'format_prettier'
+format "${changed_files}" 'deno' '^.+\.(md)$' 'format_deno'
 format "${changed_files}" 'black' '\.py$' 'format_python'
 format "${changed_files}" 'rustfmt' '\.rs$' 'format_rust'
 format "${changed_files}" 'tidy -xml' '\.(xml|xsd)$' 'format_xml'
