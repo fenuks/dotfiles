@@ -461,7 +461,7 @@ let g:UltiSnipsSnippetDirectories=[$HOME.'/.config/nvim/UltiSnips']
 " imap <unique> <silent> æ <Plug>(ultisnips_expand)
 
 "#### Language specific
-let g:polyglot_disabled = ['sensible', 'autoindent']
+let g:polyglot_disabled = ['sensible', 'autoindent', 'markdown']
 " Plug 'https://github.com/sheerun/vim-polyglot'
 
 " ##### VIML
@@ -512,10 +512,12 @@ let g:grammarous#languagetool_cmd = 'languagetool'
 
 "##### Markdown
 " Plug 'https://github.com/suan/vim-instant-markdown', { 'for': 'markdown' }
-" Plug 'https://github.com/plasticboy/vim-markdown', { 'for': 'markdown' }
+" Plug 'https://github.com/preservim/vim-markdown', { 'for': 'markdown' }
 let g:vim_markdown_folding_disabled = 1
 let g:vim_markdown_strikethrough = 1
-Plug 'https://github.com/vimwiki/vimwiki', { 'branch': 'dev' }
+Plug 'https://github.com/vim-pandoc/vim-pandoc-syntax', { 'for': 'markdown' }
+" Plug 'https://github.com/vimwiki/vimwiki', { 'branch': 'dev' }
+let g:pandoc#syntax#conceal#urls = 1
 let g:vimwiki_filetypes = ['markdown']
 let g:vimwiki_list = [{'path': $XDG_DOCUMENTS_DIR . '/notatki/',
                      \  'name': 'wiki', 'auto_toc': 1,
@@ -541,7 +543,7 @@ Plug 'https://github.com/m-pilia/vim-mediawiki', { 'for': 'mediawiki' }
 let g:sql_type_default='psql'
 
 "##### TeX
-Plug 'https://github.com/lervag/vimtex', { 'for': 'tex' }
+Plug 'https://github.com/lervag/vimtex'
 " Plug 'https://github.com/scrooloose/vim-slumlord' " plantuml previews
 let g:tex_flavor='latex'
 " let g:vimtex_view_method='okular'

@@ -21,6 +21,7 @@ require('nvim-treesitter.configs').setup({
   auto_install = true,
   highlight = {
     enable = true,
+    disable = { 'markdown' },
     additional_vim_regex_highlighting = false, -- Required since TS highlighter doesn't support all syntax features (conceal)
   },
   incremental_selection = {
