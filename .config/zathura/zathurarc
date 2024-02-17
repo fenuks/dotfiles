@@ -1,0 +1,23 @@
+# skróty klawiszowe a la vim
+set statusbar-h-padding 0
+set statusbar-v-padding 0
+map u scroll half-up
+map [fullscreen] u scroll half-up
+map d scroll half-down
+map [fullscreen] d scroll half-down
+map D toggle_page_mode
+map [fullscreen] D toggle_page_mode
+map r reload
+map [fullscreen] r reload
+map R rotate
+map [fullscreen] R rotate
+map K zoom in
+map [fullscreen] K zoom in
+map J zoom out
+map [fullscreen] J zoom out
+map i recolor
+map [fullscreen] i recolor
+map f toggle_fullscreen
+map [fullscreen] f toggle_fullscreen
+map F follow link
+map [fullscreen] F follow link
