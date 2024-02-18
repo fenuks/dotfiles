@@ -1,37 +1,36 @@
 # environments in format compatible with fish shell
-export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_CACHE_HOME="$HOME/.cache"
+export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
 
 # XDG-ify applications
-export GOPATH="$XDG_DATA_HOME/go"
-export LESSHISTFILE="$XDG_DATA_HOME/history/less_history"
-export PIP_DOWNLOAD_CACHE="$XDG_CACHE_HOME/pip"
-export DOCKER_CONFIG="$XDG_CONFIG_HOME/docker"
-export NOTMUCH_CONFIG="$XDG_CONFIG_HOME/notmuch/notmuchrc"
-export OCTAVE_HISTFILE="$XDG_DATA_HOME/history/octave_history"
-export OCTAVE_SITE_INITFILE="$XDG_CONFIG_HOME/octave/octaverc"
-export WGETRC="$XDG_CONFIG_HOME/wgetrc"
-export PYTHONPYCACHEPREFIX="$XDG_CACHE_HOME/python/py"
-export MYPY_CACHE_DIR="$XDG_CACHE_HOME/python/mypy"
-export STACK_ROOT="$XDG_CACHE_HOME/stack"
-export CABAL_CONFIG="$XDG_CONFIG_HOME/cabal/config"
-export CABAL_DIR="$XDG_CACHE_HOME/cabal"
-export MAXIMA_USERDIR="$XDG_CONFIG_HOME/maxima"
-export SONAR_USER_HOME="$XDG_CACHE_HOME/sonar"
-export JUPYTER_PLATFORM_DIRS="$XDG_CONFIG_HOME/jupyter"
-export PSQLRC="$XDG_CONFIG_HOME/pg/psqlrc"
-# export WINEPREFIX="${XDG_DATA_HOME}/wineprefixes/default"
 alias gdb="gdb -nh -x \"$XDG_CONFIG_HOME/gdb/init\""
-alias irssi="irssi --config=\"$XDG_CONFIG_HOME\"/irssi/config --home=\"$XDG_DATA_HOME\"/irssi"
 alias ipy="ipython --ipython-dir=$XDG_CONFIG_HOME/jupyter"
-export GRADLE_USER_HOME="$XDG_CACHE_HOME/gradle"
+alias irssi="irssi --config=\"$XDG_CONFIG_HOME\"/irssi/config --home=\"$XDG_DATA_HOME\"/irssi"
 alias mvn="mvn --global-settings \"$XDG_CONFIG_HOME/maven/settings.xml\""
 alias mvnT="mvn -Dmaven.test.skip=true --global-settings \"$XDG_CONFIG_HOME\"/maven/settings.xml"
 alias mvnt="mvn -DskipTests --global-settings \"$XDG_CONFIG_HOME\"/maven/settings.xml"
+alias pidgin='pidgin --config="$XDG_DATA_HOME"/purple'
 alias svn="svn --config-dir \"$XDG_CONFIG_HOME\"/subversion"
 alias yarn='yarn --use-yarnrc "$XDG_CONFIG_HOME/yarn/config"'
-alias pidgin='pidgin --config="$XDG_DATA_HOME"/purple'
+export CABAL_CONFIG="$XDG_CONFIG_HOME/cabal/config"
+export CABAL_DIR="$XDG_CACHE_HOME/cabal"
+export DOCKER_CONFIG="$XDG_CONFIG_HOME/docker"
+export GOPATH="$XDG_DATA_HOME/go"
+export GRADLE_USER_HOME="$XDG_CACHE_HOME/gradle"
+export JUPYTER_PLATFORM_DIRS="$XDG_CONFIG_HOME/jupyter"
+export LESSHISTFILE="$XDG_DATA_HOME/history/less_history"
+export MAXIMA_USERDIR="$XDG_CONFIG_HOME/maxima"
+export MYPY_CACHE_DIR="$XDG_CACHE_HOME/python/mypy"
+export NOTMUCH_CONFIG="$XDG_CONFIG_HOME/notmuch/notmuchrc"
+export OCTAVE_HISTFILE="$XDG_DATA_HOME/history/octave_history"
+export OCTAVE_SITE_INITFILE="$XDG_CONFIG_HOME/octave/octaverc"
+export PIP_DOWNLOAD_CACHE="$XDG_CACHE_HOME/pip"
+export PSQLRC="$XDG_CONFIG_HOME/pg/psqlrc"
+export PYTHONPYCACHEPREFIX="$XDG_CACHE_HOME/python/py"
+export SONAR_USER_HOME="$XDG_CACHE_HOME/sonar"
+export STACK_ROOT="$XDG_CACHE_HOME/stack"
+export WGETRC="$XDG_CONFIG_HOME/wgetrc"
 
 export BROWSER=firefox
 export DOTNET_CLI_TELEMETRY_OPTOUT=1
@@ -40,20 +39,16 @@ export ENHANCD_COMMAND=fzf
 export ESCDELAY=0
 export FZF_DEFAULT_OPTS='--height 80% --bind=ctrl-d:preview-page-down,ctrl-u:preview-page-up'
 export GCC_COLORS=auto
-# A  colon-separated  list of suffixes to ignore when performing filename completion
-export FIGNORE=".o:~"
-# A  colon-separated  list of patterns defining the set of file names to be ignored by pathname expansion.
-# export GLOBIGNORE=
+export DO_NOT_TRACK=1
 export HISTCONTROL=ignoreboth:erasedups
 export HISTIGNORE="#:&:[ ]*:exit:ls:cd:bg:fg:history:clear:?(c)git add *"
 export HISTSIZE=100000
-# export HISTTIMEFORMAT="%d/%m/%y %T "
 export HTML_TIDY="$HOME/.config/tidy.conf"
 export LESS=-R
+export LS_COLORS='di=1;01;34'
 export MAVEN_OPTS='-Xmx2048m'
 export PATH="$HOME/.local/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 export PROMPT_COMMAND='history -a' # don't wait to append to history until session ends
-# export PROMPT_COMMAND='history -w' # only history -w removed duplicates
 export PYTHON2DOCDIR=/usr/share/doc/python2/html/
 export PYTHON3DOCDIR=/usr/share/doc/python/html/
 export PYTHONSTARTUP="$HOME/.config/python/pythonrc"
@@ -64,6 +59,7 @@ export SSH_ASKPASS=/usr/bin/ksshaskpass
 export SSH_AUTH_SOCK=/tmp/ssh-agent.sock
 export UNCRUSTIFY_CONFIG="$HOME/.config/uncrustify.cfg"
 
-export LS_COLORS='di=1;01;34'
-# use LS_COLORS="di=38;2;0;120;0" for RGB colours, where last three numbers are RGB
-export DO_NOT_TRACK=1
+# A  colon-separated  list of suffixes to ignore when performing filename completion
+export FIGNORE=".o:~"
+# A  colon-separated  list of patterns defining the set of file names to be ignored by pathname expansion.
+# export GLOBIGNORE=

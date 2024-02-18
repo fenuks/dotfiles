@@ -3,35 +3,66 @@
 
 alias ag='ag --smart-case'
 alias c='__fzf_cd__'
-alias cdp="cd ${XDG_DOWNLOAD_DIR:-Downloads}"
 alias cdd="cd ${XDG_DOCUMENTS_DIR:-Documents}"
-alias cdn="cd ${XDG_DOCUMENTS_DIR:-Documents}/notatki"
 alias cdf="cd ${XDG_VIDEOS_DIR:-Videos}"
-alias cdm="cd ${XDG_MUSIC_DIR:-Music}"
-alias cdk="cd ${HOME}/Kod"
 alias cdg="cd ${HOME}/Gry"
+alias cdk="cd ${HOME}/Kod"
+alias cdm="cd ${XDG_MUSIC_DIR:-Music}"
+alias cdn="cd ${XDG_DOCUMENTS_DIR:-Documents}/notatki"
+alias cdp="cd ${XDG_DOWNLOAD_DIR:-Downloads}"
 alias cdt="cd /tmp"
+alias check-yapf-config="diff <(yapf --style-help | grep -oP '^[a-zA-Z_0-9]+' | sort) <(grep -oP '^[a-zA-Z_0-9]+' ~/.config/yapf/style | sort)"
 alias chromium-dev='chromium --disable-web-security --user-data-dir --remote-debugging-port=9222'
 alias clear="clear && printf \"\\e[3J\""
 alias dc='docker-compose'
-alias edit="$EDITOR"
+alias edit="${EDITOR}"
+alias e='nvim'
 alias fdi='fd --no-ignore'
 alias fdii='fd --no-ignore -i'
 alias firefox-debug='firefox -start-debugger-server -no-remote'
-alias c='cargo'
 alias g='git'
 alias grep="grep --color=auto"
 alias jad-decompile="jad -o -d src-jad -r -s java **/*.class"
+alias kitty-themes="cd ${HOME}/.config/kitty/themes/ && ls *.conf | fzf --preview 'head -n 40 {} && kitty @ set-colors -a -c {}'; cd -"
+alias ll.='ls -l --all --human-readable'
+alias ll='ls -l --human-readable'
+alias lls='ls -l --all --sort=size --human-readable'
+alias llt='ls -l --all --sort=tim --human-readablee'
+alias ls='ls --color --classify --human-readable'
+alias maven='mvn'
+alias mksrcinfo='makepkg --printsrcinfo >| .SRCINFO'
+alias n='nvim'
+alias off='shutdown -h now'
+alias pkg-size='expac -H M "%011m\t%-20n\t%10d" $(comm -23 <(pacman -Qq | sort) <({ pacman -Qqg xorg; expac -l "\n" "%E" base; } | sort -u)) | sort -n'
+alias py='python'
+alias repo-append='repo-add --sign --remove --prevent-downgrade ~/OpenWRT/www/repozytoria/pacman/openwrt.db.tar.gz $(makepkg --packagelist) && gpg --detach-sign $(makepkg --packagelist) && cp $(makepkg --packagelist)* ~/OpenWRT/www/repozytoria/pacman/'
+alias rgii='rg --no-ignore -i'
+alias rgi='rg --no-ignore'
+alias rgis='rg --no-ignore --smart-case'
+alias rgs='rg --smart-case'
+alias rm='rm -i'
+alias sb='source ~/.bashrc'
+alias se='sudoedit'
+alias sf='source ~/.config/fish/config.fish'
+alias sm='HOME=~/.local/share/spacemacs emacs'
+alias spacemacs='HOME=~/.spacemacs emacs'
+alias sqlite3="sqlite3 -init ~/.config/sqliterc"
+alias steam-flatpak='flatpak run com.valvesoftware.Steam'
+alias venv='python3 -m venv'
+alias vh='sudoedit /etc/hosts'
+alias vR='sudoedit /etc/resolv.conf'
+alias vsb='vim ~/.bashrc'
+alias vsf='vim ~/.config/fish/config.fish'
+alias vsz='vim ~/.config/shells/zsh/.zshrc'
+alias v='/usr/bin/vim'
+alias vv='vim ~/.config/nvim/init.vim'
+alias vz='vim ~/.config/shells/zsh/.zshrc'
+alias zzz="systemctl suspend"
+
 if command -v /usr/lib/jvm/default/bin/jshell > /dev/null; then
     alias jshell="/usr/lib/jvm/default/bin/jshell"
 fi
-alias repo-append='repo-add --sign --remove --prevent-downgrade ~/OpenWRT/www/repozytoria/pacman/openwrt.db.tar.gz $(makepkg --packagelist) && gpg --detach-sign $(makepkg --packagelist) && cp $(makepkg --packagelist)* ~/OpenWRT/www/repozytoria/pacman/'
-alias kitty-themes="cd $HOME/.config/kitty/themes/ && ls *.conf | fzf --preview 'head -n 40 {} && kitty @ set-colors -a -c {}'; cd -"
-alias ls='ls --color --classify --human-readable'
-alias ll='ls -l --human-readable'
-alias ll.='ls -l --all --human-readable'
-alias lls='ls -l --all --sort=size --human-readable'
-alias llt='ls -l --all --sort=tim --human-readablee'
+
 if command -v exa > /dev/null; then
     alias l='exa'
 elif command -v lsd > /dev/null; then
@@ -39,38 +70,7 @@ elif command -v lsd > /dev/null; then
 else
     alias l='ls --color --classify --human-readable'
 fi
-alias maven='mvn'
-alias mksrcinfo='makepkg --printsrcinfo >| .SRCINFO'
-alias off='shutdown -h now'
-alias py='python'
-alias pkg-size='expac -H M "%011m\t%-20n\t%10d" $(comm -23 <(pacman -Qq | sort) <({ pacman -Qqg xorg; expac -l "\n" "%E" base; } | sort -u)) | sort -n'
-alias rm='rm -i'
-alias rgi='rg --no-ignore'
-alias rgii='rg --no-ignore -i'
-alias rgis='rg --no-ignore --smart-case'
-alias rgs='rg --smart-case'
-alias se='sudoedit'
-alias sm='HOME=~/.local/share/spacemacs emacs'
-alias spacemacs='HOME=~/.spacemacs emacs'
-alias steam-flatpak='flatpak run com.valvesoftware.Steam'
-alias steam-wine='wine $HOME/.wine/drive_c/Program\ Files\ \(x86\)/Steam/Steam.exe -no-cef-sandbox -opengl -fullscreenopengl'
-alias sqlite3="sqlite3 -init ~/.config/sqliterc"
-alias check-yapf-config="diff <(yapf --style-help | grep -oP '^[a-zA-Z_0-9]+' | sort) <(grep -oP '^[a-zA-Z_0-9]+' ~/.config/yapf/style | sort)"
-# faster edition of common files
-alias v='/usr/bin/vim'
-alias n='nvim'
-alias e='nvim'
-alias vsb='vim ~/.bashrc'
-alias vsz='vim ~/.config/shells/zsh/.zshrc'
-alias vsf='vim ~/.config/fish/config.fish'
-alias vh='sudoedit /etc/hosts'
-alias vR='sudoedit /etc/resolv.conf'
-alias vv='vim ~/.config/nvim/init.vim'
-alias vz='vim ~/.config/shells/zsh/.zshrc'
-alias sb='source ~/.bashrc'
-alias sf='source ~/.config/fish/config.fish'
-alias venv='python3 -m venv'
+
 if ! command -v mutt > /dev/null; then
     alias mutt='neomutt'
 fi
-alias zzz="systemctl suspend"
