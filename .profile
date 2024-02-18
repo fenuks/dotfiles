@@ -33,3 +33,7 @@ alias vim=nvim
 if [[ -f ~/.config/user-dirs.dirs ]]; then
     source ~/.config/user-dirs.dirs
 fi
+
+if [[ -f ~/.config/shells/profile.after.local.sh ]]; then
+    source ~/.config/shells/profile.after.local.sh
+fi
