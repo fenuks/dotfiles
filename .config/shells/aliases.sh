@@ -10,10 +10,5 @@ alias vrd='vim $(find_up requirements-dev.txt)'
 alias vr='vim $(find_up requirements.txt)'
 
 if command -v delta >/dev/null; then
-  if [[ "${TERM_BG_BRIGHT}" -ne 1 ]]; then
-    alias delta='delta --plus-color="#274916" --minus-color="#5e1b1b"'
-    export GIT_PAGER='delta --plus-color="#274916" --minus-color="#5e1b1b"'
-  else
-    export GIT_PAGER=delta
-  fi
+  export GIT_PAGER=delta
 fi
