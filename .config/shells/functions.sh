@@ -530,7 +530,7 @@ cdi() {
 vn() {
   (
     cd "${XDG_DOCUMENTS_DIR}/notatki"
-    vim
+    vim aktualne.md
   )
 }
 
@@ -540,6 +540,10 @@ cpr() {
 
 mvr() {
   rsync --archive --human-readable --partial --info=stats3,progress2 --remove-source-files "$@"
+}
+
+aglob() {
+  printf "%s\n" ${2:-*} | sed -n "/$1/,\$p"
 }
 
 vk() {
