@@ -829,7 +829,7 @@ parser_config.org = {
 
 require('orgmode').setup({
   org_agenda_files = { '~/Dokumenty/notatki/*' },
-  org_default_notes_file = '~/Dokumenty/notatki/zadania.org',
+  -- org_default_notes_file = '~/Dokumenty/notatki/zadania.org',
   -- org_highlight_latex_and_related = 'entities',
   mappings = {
     disable_all = false,

@@ -94,8 +94,6 @@ email = fenuks
     trustExitCode = true
 [merge]
     conflictStyle = zdiff3
-[rebase]
-    autosquash = true
 [rerere]
     enabled = true
 [remote-hg]

@@ -31,7 +31,7 @@ function lint() {
 }
 
 function lint_md() {
-  lychee --offline ${1}
+  lychee --offline --include-fragments ${1}
 }
 
 

@@ -258,8 +258,8 @@ nnoremap <unique> <silent> xSS :,$!sort -h<CR>
 vnoremap <unique> <silent> xss :!sort -h<CR>
 nnoremap <unique> <silent> xss :set opfunc=SortOperator<CR>g@
 
-nnoremap <unique> <silent> xSu :,$!sort -u<CR>
-nnoremap <unique> <silent> xSU :,$!sort -u<CR>
+nnoremap <unique> <silent> xSu :,$!sort -uh<CR>
+nnoremap <unique> <silent> xSU :,$!sort -uh<CR>
 vnoremap <unique> <silent> xsu :!sort -u<CR>
 nnoremap <unique> <silent> xsu :set opfunc=SortOperatorUnique<CR>g@
 nnoremap <unique> <silent> xu :!awk '\!seen[$0]++'<CR>
