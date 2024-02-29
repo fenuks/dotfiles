@@ -2,6 +2,8 @@
 ignore nodbus
 ignore noroot
 
+whitelist ${VIDEOS}
+
 # fix keepassxc integration; it must be launched before firefox, though
 noblacklist ${RUNUSER}/app
 mkdir ${RUNUSER}/app/org.keepassxc.KeePassXC
