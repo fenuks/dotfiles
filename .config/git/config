@@ -13,7 +13,7 @@ email = fenuks
 [advice]
     detachedHead = false
 [alias]
-    ahead = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git lg --oneline origin/$(git default)..HEAD; }; f"
+    ahead = !git lg --oneline "origin/$(git default)..HEAD"
     authors = shortlog --summary --numbered
     amr = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" & source ~/.config/shells/git/functions.bash && amr $@; }; f"
     ar = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" & source ~/.config/shells/git/functions.bash && ar $@; }; f"
@@ -21,60 +21,59 @@ email = fenuks
     aur = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && PKGVER=$(grep -oP 'pkgver ?= ?\\K.+' .SRCINFO)-$(grep -oP 'pkgrel ?= ?\\K.+' .SRCINFO); git commit -m \"Update to ${PKGVER}\" $@; }; f"
     aurclone = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git clone https://aur.archlinux.org/$@; }; f"
     aursshclone = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git clone ssh://aur@aur.archlinux.org/$@; }; f"
-    mvn = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && VERSION=$(mvn --quiet help:evaluate -Dexpression=project.version -DforceStdout); git commit -m \"Aktualizacja wersji do ${VERSION}\" $@; }; f"
-    base-rev = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git merge-base $(git default) HEAD; }; f"
+    base-rev = !git merge-base "$(git default)" HEAD
     br = branch
-    brd = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git branch --merged | grep -Ev \"(^\\*|master|develop)\" | xargs git branch -d; }; f"
+    brd = !git branch --merged | grep -Ev "(^\\*|master|develop)" | xargs git branch -d
     brm = branch --merged
     brnm = branch --no-merged
     ca = commit --amend
     cam = commit -a --amend
     cat = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git show $(git rev-list --max-count=1 --all -- \"$@\")^:\"$@\"; }; f"
     ci = commit
-    clean = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && find -name '*.orig' -delete; }; f"
+    cleanse = !find -name '*.orig' -delete
     cm = commit -m
     co = checkout
-    coum = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git reset $@; git checkout $@; }; f"
+    coum = !f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git reset $@; git checkout $@; }; f"
     count = rev-list --count HEAD
-    cod = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git checkout $(git default); }; f"
+    cod = !git checkout "$(git default)"
     d = diff --find-copies-harder
-    vd = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git diff --find-copies-harder | vim -; }; f"
-    dd = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git diff $(git merge-base $(git default) HEAD) $@; }; f"
-    default = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git symbolic-ref refs/remotes/origin/HEAD | sed 's|refs/remotes/origin/||'; }; f"
-    default-remote = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && LANG=en git remote show origin | grep 'HEAD branch' | sed 's/.*: //'; }; f"
+    vd = !git diff --find-copies-harder | vim -
+    dd = !git diff "$(git merge-base $(git default) HEAD) $@"
+    default = !git symbolic-ref refs/remotes/origin/HEAD | sed 's|refs/remotes/origin/||'
+    default-remote = !LANG=en git remote show origin | grep 'HEAD branch' | sed 's/.*: //'
     ds = diff --find-copies-harder --staged
     dt = difftool --tool=difftastic
     grepall = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git grep -P \"$@\" $(git rev-list --all); }; f"
-    first = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git lgb $(git default).. | tail -1; }; f"
+    first = !git lg $(git default).. | tail -1
     fixup = "!git log $(git default).. --pretty=format:'%h %s' --no-merges | fzf | cut -c -7 | xargs -o git commit --fixup"
     last = lg -1 HEAD
     last-tag = describe --tags --abbrev=0
     lg = log --graph --color=auto --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
-    lgd = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git lg $(git default)..; }; f"
-    lga = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git log --all --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit | less -r; }; f"
+    lgd = !git lg $(git default)..
+    lga = !git log --all --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit | less -r
     ls = ls-tree --name-only --full-tree -r HEAD
-    # local commits
     local = log @{upstream}..@
     mtk = mergetool --tool=kdiff3
     mtv = mergetool --tool=nvimdiff
     pff = push --force
-    pullf = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git fetch --all && git reset --hard \"origin/$(git branch --show-current)\"; }; f"
+    pullf = !git fetch --all && git reset --hard "origin/$(git branch --show-current)"
+    recent = !git branch --sort=-committerdate --format='%(committerdate:relative)%09%(refname:short)' | head -10
     r1 = reset --soft HEAD^
-    rsd = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git reset --soft $(git default); }; f"
+    rsd = !git reset --soft "$(git default)"
     rba = rebase --abort
     rbc = rebase --continue
-    rbd = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git rebase $(git default); }; f"
-    rbdi = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git rebase --interactive $(git default); }; f"
-    rbb = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git rebase -i $(git first | awk '{print $2}')^; }; f"
-    rfiles = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git diff --name-only ${1:-$(git default)}; }; f"
+    rbd = !git rebase "$(git default)"
+    rbdi = !git rebase --interactive "$(git default)"
+    rbb = !git rebase -i "$(git first | awk '{print $2}')^"
+    rfiles = !git diff --name-only "${1:-$(git default)}"
     root = rev-parse --show-toplevel
-    rstat = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git diff --stat ${1:-$(git default)}; }; f"
-    r-upstream = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git reset --hard origin/$(git branch --show-current); }; f"
+    rstat = !git diff --stat "${1:-$(git default)}"
+    r-upstream = !git reset --hard "origin/$(git branch --show-current)"
     setuphooks = config core.hooksPath ~/.config/git/hooks/
     st = status -s
     remote-url = remote get-url origin
     unpushed = log @{u}..
-    track = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git branch --set-upstream-to=origin/$(git branch --show-current); }; f"
+    track = !git branch --set-upstream-to="origin/$(git branch --show-current)"
 [blame]
     ; ignoreRevsFile = .gitignorerevs
     markIgnoredLines = true

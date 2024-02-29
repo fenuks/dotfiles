@@ -47,6 +47,7 @@ function format_lua() {
 }
 
 function format_deno() {
+  mkdir -p ~/.cache/deno
   deno fmt ${1}
 }
 

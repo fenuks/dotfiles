@@ -501,10 +501,6 @@ vn() {
   )
 }
 
-w() {
-  WINEPREFIX="${XDG_DATA_HOME}/wineprefixes/$1" wine "$2"
-}
-
 without() {
   file="$1"
   IFS=$'\n'
