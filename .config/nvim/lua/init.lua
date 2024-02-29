@@ -34,7 +34,7 @@ require('nvim-treesitter.configs').setup({
     },
   },
   indent = {
-    enable = false,
+    enable = true,
   },
   refactor = {
     highlight_definitions = { enable = true },
@@ -127,10 +127,12 @@ require('nvim-treesitter.configs').setup({
 })
 vim.o.foldexpr = 'nvim_treesitter#foldexpr()'
 
-require('treesitter-context').setup({
-  enable = true,
-  max_lines = 10,
-})
+-- disabled due to severe performance regression
+-- https://github.com/nvim-treesitter/nvim-treesitter-context/issues/410
+-- require('treesitter-context').setup({
+--   enable = true,
+--   max_lines = 10,
+-- })
 
 require('tabout').setup({
   tabkey = '',

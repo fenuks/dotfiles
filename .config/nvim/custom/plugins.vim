@@ -350,7 +350,7 @@ if has('nvim')
     Plug 'https://github.com/nvim-treesitter/nvim-treesitter-refactor'
     Plug 'https://github.com/nvim-treesitter/nvim-treesitter-textobjects'
     Plug 'https://github.com/nvim-treesitter/playground'
-    Plug 'https://github.com/romgrk/nvim-treesitter-context'
+    " Plug 'https://github.com/nvim-treesitter/nvim-treesitter-context'
     Plug 'https://github.com/windwp/nvim-ts-autotag'
     Plug 'https://github.com/abecodes/tabout.nvim'
 

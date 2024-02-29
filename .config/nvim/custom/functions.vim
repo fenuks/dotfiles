@@ -844,6 +844,12 @@ function VimFootnotes(type) abort
   execute 'normal! ' . 'o' . l:cr . '[' . b:vimfootnotemark . '] '
 endfunction
 
+function Profile() abort
+  profile start profile.log
+  profile func *
+  profile file *
+endfunction
+
 " TODO load directory contents into quickfix, diff conflicts, spell errors,
 " buffers
 " text object inner/around space
