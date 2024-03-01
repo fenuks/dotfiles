@@ -49,6 +49,8 @@ function format_lua() {
 function format_deno() {
   mkdir -p ~/.cache/deno
   deno fmt ${1}
+  # remove useless empty lines after header
+  sed -i '/^#/{n;/^$/d;}' ${1}
 }
 
 function format_prettier() {
