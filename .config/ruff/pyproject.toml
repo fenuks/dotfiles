@@ -48,20 +48,25 @@ select = [
   "TRY",
   "UP",
   "YTT",
+
+  # pydocstyle
+  "D101", # undocumented-public-class",
+  "D103", # "undocumented-public-function",
+  "D102", # "undocumented-public-method",
+
 ]
 
 ignore = [
-    "COM812",
-    "E501",
-    "INP001",
-    "PLR2004",
-    "PTH122",
-    "PTH123",
-    "S101",
-    "S310",
-    "S314",
-    "S603",
-    "S607",
+    "E501",    # "line-too-long",
+    "INP001",  # "implicit-namespace-package",
+    "PLR2004", # "magic-value-comparison",
+    "PTH122",  # "os-path-splitext",
+    "PTH123",  # "builtin-open",
+    "S101",    # "assert",
+    "S310",    # "suspicious-url-open-usage",
+    "S314",    # "suspicious-xml-element-tree-usage",
+    "S603",    # "subprocess-without-shell-equals-true",
+    "S607",    # "start-process-with-partial-path",
 ]
 
 [tool.ruff.format]
