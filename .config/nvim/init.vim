@@ -25,6 +25,7 @@ set undolevels=1000
 set autoread " Automatically reload file changed outside vim if not changed in vim
 set completeopt=menuone,noselect " complete longest common text instead of first word
 set pumheight=15 " maximum autocomplete popup height
+set jumpoptions=stack
 
 " set timeoutlen=150 " Time to wait after ESC (default causes an annoying delay), it affects also leader key, unfortunately
 set modeline
@@ -195,6 +196,10 @@ nnoremap <unique> <silent> [W daWBPB
 nnoremap <unique> <silent> ]w dawelpb
 nnoremap <unique> <silent> ]W daWElpB
 nnoremap <unique> <silent> [, F,2dwbhPb
+
+" add numbered j/k to jumplist
+nnoremap <expr> k (v:count > 1 ? "m'" . v:count : '') . 'k'
+nnoremap <expr> j (v:count > 1 ? "m'" . v:count : '') . 'j'
 
 " insert spaces
 nnoremap <unique> <silent> <space>[ :<C-u>put! =repeat(nr2char(10), v:count1)<CR>'[
@@ -398,8 +403,8 @@ nnoremap <unique> <silent> <Leader>b/ :call GatherSearchResults()<CR>
 nnoremap <unique> <silent> <Leader>br call DeleteHiddenBuffers()<CR>
 nnoremap <unique> <silent> <Leader>brh call DeleteBufsOnLeft()<CR>
 nnoremap <unique> <silent> <Leader>brl call DeleteBufsOnRight()<CR>
-nnoremap <unique> <silent> <Tab> :call ChangeBuffer(1)<CR>
-nnoremap <unique> <silent> <S-Tab> :call ChangeBuffer(0)<CR>
+nnoremap <unique> <silent> gb :call ChangeBuffer(1)<CR>
+nnoremap <unique> <silent> gB :call ChangeBuffer(0)<CR>
 " TAB == CTRL-I, therfore mapping <Tab> breaks going to new pos in jump list
 nnoremap <unique> <silent> <C-p> <C-i>
 
