@@ -34,7 +34,7 @@ _fzf_complete_docker() {
   elif [[ "${cmd_opt}" == 'push '* ]]; then
     selected=$("${binary}" images | sed '1d' | ${fzf} "${fzf_opt[@]}" -m | awk '{print $1":"$2}' | tr '\n' ' ')
   elif [[ "${cmd_opt}" == 'run '* ]]; then
-    selected=$("${binary}" images | sed '1d' | ${fzf} "${fzf_opt[@]}" -m | awk '{print "-it --rm -v/var/run/docker.sock:/var/run/docker.sock -v$PWD:/src "$1":"$2" bash"}' | tr '\n' ' ')
+    selected=$("${binary}" images | sed '1d' | ${fzf} "${fzf_opt[@]}" -m | awk '{print "-it --rm -v/var/run/docker.sock:/var/run/docker.sock -v$PWD:/src --workdir /src "$1":"$2" bash"}' | tr '\n' ' ')
   elif [[ "${cmd_opt}" == 'start '* ]]; then
     selected=$("${binary}" images | sed '1d' | ${fzf} "${fzf_opt[@]}" -m | awk '{print ""$1":"$2""}' | tr '\n' ' ')
   elif [[ "${cmd_opt}" == 'rmi '* ]]; then
