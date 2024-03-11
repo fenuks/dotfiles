@@ -48,7 +48,7 @@ function format_lua() {
 
 function format_deno() {
   mkdir -p ~/.cache/deno
-  deno fmt ${1}
+  deno fmt --config ~/.config/deno/deno.jsonc ${1}
   # remove useless empty lines after header
   sed -i '/^#/{n;/^$/d;}' ${1}
 }

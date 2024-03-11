@@ -13,6 +13,13 @@ _cg_complete() {
   done
 }
 
+mdfmt() {
+  mkdir -p ~/.cache/deno
+  deno fmt --config ~/.config/deno/deno.jsonc ${@}
+  # remove useless empty lines after header
+  sed -i '/^#/{n;/^$/d;}' ${@}
+}
+
 _up_complete() {
   if [[ "${COMP_CWORD}" -ne 2 ]]; then
     return
@@ -497,7 +504,7 @@ vk() {
 vn() {
   (
     cd "${XDG_DOCUMENTS_DIR}/notatki"
-    vim aktualne.md
+    nvim brudnopis/aktualne.md
   )
 }
 
