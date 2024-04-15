@@ -12,7 +12,6 @@ require('nvim-ts-autotag').setup({
   filetypes = { 'html', 'xml' },
 })
 
-require('orgmode').setup_ts_grammar()
 require('nvim-treesitter.configs').setup({
   ensure_installed = 'all',
   ignore_install = { 'phpdoc', 'erlang' },

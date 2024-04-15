@@ -350,6 +350,7 @@ repeat() {
   declare -a durations=()
   while true; do
     runs=$((runs + 1))
+    echo "Rozpoczęcie wykonania nr ${runs}"
     SECONDS=0
     "$@"
     exit_code="$?"

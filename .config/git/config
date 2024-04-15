@@ -23,7 +23,7 @@ email = fenuks
     aursshclone = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git clone ssh://aur@aur.archlinux.org/$@; }; f"
     base-rev = !git merge-base "$(git default)" HEAD
     br = branch
-    brd = !git branch --merged | grep -Ev "(^\\*|master|develop)" | xargs git branch -d
+    brd = !git branch --merged | grep -Ev '(^\\*|master|develop|main)' | xargs git branch -d
     brm = branch --merged
     brnm = branch --no-merged
     ca = commit --amend
@@ -55,7 +55,7 @@ email = fenuks
     local = log @{upstream}..@
     mtk = mergetool --tool=kdiff3
     mtv = mergetool --tool=nvimdiff
-    pff = push --force
+    pff = push --force-with-lease
     pullf = !git fetch --all && git reset --hard "origin/$(git branch --show-current)"
     recent = !git branch --sort=-committerdate --format='%(committerdate:relative)%09%(refname:short)' | head -10
     r1 = reset --soft HEAD^
