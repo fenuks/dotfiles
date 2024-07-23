@@ -57,8 +57,10 @@ select = [
 ]
 
 ignore = [
+    "COM812",  # "missing-trailing-comma",
     "E501",    # "line-too-long",
     "INP001",  # "implicit-namespace-package",
+    "ISC001",  # "single-line-implicit-string-concatenation",
     "PLR2004", # "magic-value-comparison",
     "PTH122",  # "os-path-splitext",
     "PTH123",  # "builtin-open",
