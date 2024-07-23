@@ -7,6 +7,7 @@ from dataclasses import dataclass
 from datetime import datetime
 from pathlib import Path
 from urllib.request import Request, urlopen
+from urllib.error import HTTPError
 
 
 @dataclass(slots=True)
@@ -128,11 +129,15 @@ def log_work(jira: JiraConfig):
             "comment": worklog_entry.comment,
         }
         headers = get_headers(jira.token)
-        code = post_json(
-            f"{jira.url}/rest/api/latest/issue/{worklog_entry.issue}/worklog",
-            data,
-            headers
-        )
+        try:
+            code = post_json(
+                f"{jira.url}/rest/api/latest/issue/{worklog_entry.issue}/worklog",
+                data,
+                headers
+            )
+        except HTTPError as ex:
+            print(ex.read())
+            raise ex
         issue_url = f"{jira.url}/browse/{worklog_entry.issue}"
         if code == 201:
             print(f"Logged {str(delta)} in {issue_url}")
