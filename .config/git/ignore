@@ -1,3 +1,9 @@
+# IDE
+## Intellij
+indexing-diagnostic/
+open-telemetry-metrics-plotter.html
+open-telemetry-metrics.*.csv
+
 *~
 *.bak
 *.class

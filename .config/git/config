@@ -38,7 +38,8 @@ email = fenuks
     cod = !git checkout "$(git default)"
     d = diff --find-copies-harder
     vd = !git diff --find-copies-harder | vim -
-    dd = !git diff "$(git merge-base $(git default) HEAD) $@"
+    dd = !git diff --find-copies-harder "$(git merge-base $(git default) HEAD) $@"
+    dds = !git diff --find-copies-harder --stat "$(git merge-base $(git default) HEAD) $@"
     default = !git symbolic-ref refs/remotes/origin/HEAD | sed 's|refs/remotes/origin/||'
     default-remote = !LANG=en git remote show origin | grep 'HEAD branch' | sed 's/.*: //'
     ds = diff --find-copies-harder --staged
@@ -46,7 +47,7 @@ email = fenuks
     grepall = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git grep -P \"$@\" $(git rev-list --all); }; f"
     first = !git lg $(git default).. | tail -1
     fixup = "!git log $(git default).. --pretty=format:'%h %s' --no-merges | fzf | cut -c -7 | xargs -o git commit --fixup"
-    last = lg -1 HEAD
+    last = log -1 HEAD
     last-tag = describe --tags --abbrev=0
     lg = log --graph --color=auto --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
     lgd = !git lg $(git default)..
@@ -69,10 +70,12 @@ email = fenuks
     root = rev-parse --show-toplevel
     rstat = !git diff --stat "${1:-$(git default)}"
     r-upstream = !git reset --hard "origin/$(git branch --show-current)"
+    retrack = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git reset \"$@\" >/dev/null && git checkout \"$@\"; }; f"
     setuphooks = config core.hooksPath ~/.config/git/hooks/
     st = status -s
     remote-url = remote get-url origin
     unpushed = log @{u}..
+    upd-default = remote set-head origin -a
     track = !git branch --set-upstream-to="origin/$(git branch --show-current)"
 [blame]
     ; ignoreRevsFile = .gitignorerevs
@@ -92,6 +95,10 @@ email = fenuks
     cmd = difft "$LOCAL" "$REMOTE"
 [mergetool]
     trustExitCode = true
+[mergetool "theirs"]
+    cmd = "sed -i -e '/^<<<<<<</,/^=======/d' -e '/^>>>>>>>/d' -- $MERGED"
+[mergetool "ours"]
+    cmd = "sed -i -e '/^<<<<<<</d' -e '/^=======/,/^>>>>>>>/d' -- $MERGED"
 [merge]
     conflictStyle = zdiff3
 [rerere]
@@ -136,6 +143,8 @@ email = fenuks
     date = local
 [pager]
     difftool = true
+[rebase]
+    updateRefs = true
 [tag]
     sort = version:refname
 [versionsort]
