@@ -238,6 +238,7 @@ let g:neoformat_enabled_python = ['black', 'isort']
 let g:neoformat_enabled_json = ['prettier', 'js-beautify', 'jq']
 let g:neoformat_enabled_yaml = ['prettier']
 let g:neoformat_enabled_haskell = ['stylish-haskell', 'floskell', 'ormolu']
+let g:neoformat_enabled_xml = ['xmllint']
 let g:neoformat_all_subfiletypes_formatters = 1
 
 nnoremap <unique> <silent> <Leader>q :Neoformat<CR>
@@ -274,6 +275,7 @@ let g:ale_sign_highlight_linenrs = 1
 let g:ale_linters_ignore = {
 \ 'vimwiki': ['languagetool'],
 \ 'markdown': ['languagetool'],
+\ 'openapi': ['ibm_validator'],
 \}
 " disabled languagetool for vimwiki since it doesn't understand markdown syntax,
 " and reportss plenty of errors
@@ -360,8 +362,6 @@ if has('nvim')
     Plug 'https://github.com/nvim-telescope/telescope.nvim'
     Plug 'https://github.com/nvim-telescope/telescope-fzy-native.nvim'
     Plug 'https://github.com/smoka7/hop.nvim'
-
-    Plug 'https://github.com/windwp/nvim-ts-autotag'
 
     Plug 'https://github.com/hkupty/iron.nvim'
     Plug 'https://github.com/kristijanhusak/orgmode.nvim'

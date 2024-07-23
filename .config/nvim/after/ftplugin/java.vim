@@ -94,7 +94,6 @@ local on_attach = function(_client, _bufnr)
   map('n', 'g\\', '<cmd>SymbolsOutline<CR>')
 
   -- signature
-  map('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>')
   map('n', 'gK', '<cmd>lua vim.lsp.buf.signature_help()<CR>')
 
   -- actions
@@ -118,7 +117,6 @@ local on_attach = function(_client, _bufnr)
 
   jdtls_setup.add_commands()
   -- jdtls.setup_dap()
-  require'lsp-status'.register_progress()
 end
 
 local project_dir = jdtls_setup.find_root({'.git', 'mvnw', 'gradlew'}) or vim.fn.getcwd()

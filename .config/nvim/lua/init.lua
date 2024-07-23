@@ -55,9 +55,6 @@ require('nvim-treesitter.configs').setup({
       },
     },
   },
-  autotag = {
-    enable = true,
-  },
   textobjects = {
     select = {
       enable = true,
@@ -567,7 +564,6 @@ local on_attach = function(_client, _bufnr)
   map('n', 'g\\', '<cmd>SymbolsOutline<CR>')
 
   -- signature
-  map_nonunique('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>')
   map('n', 'gK', '<cmd>lua vim.lsp.buf.signature_help()<CR>')
 
   -- actions

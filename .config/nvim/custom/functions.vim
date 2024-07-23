@@ -7,7 +7,8 @@ let g:foldmethods = {
 \ 'diff': 'manual'
 \}
 
-let g:default_search_engines = ['https://lite.qwant.com/?q=<query>&p=1']
+" let g:default_search_engines = ['https://lite.qwant.com/?q=<query>&p=1']
+let g:default_search_engines = ['https://duckduckgo.com/?q=<query>']
 let g:shopping_search_engines = ['https://allegro.pl/listing?string=<query>&p=1']
 let g:plant_search_engines = ['https://lite.qwant.com/?q=<query>&p=1', 'https://allegro.pl/listing?string=<query>&order=p&p=1', 'https://www.drzewa.com.pl/catalogsearch/result/index/?q=<query>&p=1', 'https://www.sadowniczy.pl/search.php?text=<query>&counter=0', 'https://drzewka-faworytka.pl/pl/searchquery/<query>/1', 'https://szkolkawrzos.pl/szukaj?controller=search&s=<query>&page=1']
 let g:search_engines = g:default_search_engines

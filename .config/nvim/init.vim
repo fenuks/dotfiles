@@ -24,6 +24,9 @@ set cmdwinheight=20 " set commandline window height
 set undolevels=1000
 set autoread " Automatically reload file changed outside vim if not changed in vim
 set completeopt=menuone,noselect " complete longest common text instead of first word
+if has('patch-9.1.0463')
+  set completeopt+=fuzzy
+endif
 set pumheight=15 " maximum autocomplete popup height
 set jumpoptions=stack
 
@@ -117,7 +120,7 @@ endif
 if has('nvim')
     set scrollback=-1 " nvim terminal unlimited scrolling
     let g:vim_share_dir=g:local_share_dir . '/nvim'
-    set inccommand=nosplit
+    set inccommand=split
     " set signcolumn=yes:2
     set guicursor=i-ci:ver30-iCursor-blinkwait300-blinkon500-blinkoff150
 else
@@ -262,6 +265,11 @@ nnoremap <unique> <silent> xSs :,$!sort -h<CR>
 nnoremap <unique> <silent> xSS :,$!sort -h<CR>
 vnoremap <unique> <silent> xss :!sort -h<CR>
 nnoremap <unique> <silent> xss :set opfunc=SortOperator<CR>g@
+
+nnoremap <unique> <silent> xSn :,$!sort -n<CR>
+nnoremap <unique> <silent> xSN :,$!sort -n<CR>
+vnoremap <unique> <silent> xsn :!sort -n<CR>
+nnoremap <unique> <silent> xsn :set opfunc=SortOperator<CR>g@
 
 nnoremap <unique> <silent> xSu :,$!sort -uh<CR>
 nnoremap <unique> <silent> xSU :,$!sort -uh<CR>
@@ -421,8 +429,8 @@ vnoremap <unique> <silent> <S-CR> :<C-u>call VJumpToWithOffset('^\s*$', 'bWz', 1
 
 nnoremap <unique> <silent> dJ :<C-u>call DJ())<CR>
 nnoremap <unique> <silent> dK :<C-u>call DK())<CR>
-nnoremap <unique> <silent> gx :<C-u>call OpenUrl()<CR>
-vnoremap <unique> <silent> gx :<C-u>call OpenUrlsVisual('')<CR>
+nnoremap <silent> gx :<C-u>call OpenUrl()<CR>
+vnoremap <silent> gx :<C-u>call OpenUrlsVisual('')<CR>
 nnoremap <unique> <silent> gX :<C-u>call OpenUrlToLineEnd()<CR>
 vnoremap <unique> gX :<C-u>call OpenUrlVisual('')<Left><Left>
 
@@ -571,7 +579,9 @@ endif
 let g:my_plugins_loaded = !filereadable('/etc/openwrt_release')
 
 if g:my_plugins_loaded
-  packadd termdebug
+  if has('nvim')
+    packadd termdebug
+  endif
   " packadd cfilter
   " packadd justify " adds unwanted _j mappings
   execute 'source ' . g:vim_custom_scripts . 'plugins.vim'
