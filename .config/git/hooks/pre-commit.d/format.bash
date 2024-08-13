@@ -53,6 +53,10 @@ function format_deno() {
   sed -i '/^#/{n;/^$/d;}' ${1}
 }
 
+function format_whitespace() {
+  sed -i -e 's/ \+$//' -e 's/\xc2\xa0/ /g' ${1}
+}
+
 function format_prettier() {
   prettier -w ${1}
 }
@@ -110,6 +114,7 @@ format "${changed_files}" 'google-java-format' '\.java$' 'format_java'
 format "${changed_files}" 'stylua' '\.lua$' 'format_lua'
 format "${changed_files}" 'prettier' '^.+\.(json|js|jsx|ts|css|ya?ml|html)$' 'format_prettier'
 format "${changed_files}" 'deno' '^.+\.(md)$' 'format_deno'
+format "${changed_files}" 'białe znaki' '^.+\.(md|txt)$' 'format_whitespace'
 format "${changed_files}" 'black' '\.py$' 'format_python'
 format "${changed_files}" 'rustfmt' '\.rs$' 'format_rust'
 format "${changed_files}" 'tidy -xml' '\.(xml|xsd)$' 'format_xml'
