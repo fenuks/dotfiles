@@ -10,7 +10,7 @@ let g:foldmethods = {
 " let g:default_search_engines = ['https://lite.qwant.com/?q=<query>&p=1']
 let g:default_search_engines = ['https://duckduckgo.com/?q=<query>']
 let g:shopping_search_engines = ['https://allegro.pl/listing?string=<query>&p=1']
-let g:plant_search_engines = ['https://lite.qwant.com/?q=<query>&p=1', 'https://allegro.pl/listing?string=<query>&order=p&p=1', 'https://www.drzewa.com.pl/catalogsearch/result/index/?q=<query>&p=1', 'https://www.sadowniczy.pl/search.php?text=<query>&counter=0', 'https://drzewka-faworytka.pl/pl/searchquery/<query>/1', 'https://szkolkawrzos.pl/szukaj?controller=search&s=<query>&page=1']
+let g:plant_search_engines = ['https://qwant.com/?q=<query> sadzonka&p=1', 'https://allegro.pl/kategoria/ogrod-rosliny-776?string=<query>&order=p&p=1', 'https://www.drzewa.com.pl/catalogsearch/result/index/?q=<query>&p=1', 'https://www.sadowniczy.pl/search.php?text=<query>&counter=0', 'https://drzewka-faworytka.pl/pl/searchquery/<query>/1', 'https://szkolkawrzos.pl/szukaj?controller=search&s=<query>&page=1']
 let g:search_engines = g:default_search_engines
 let g:my_colours = []
 let g:my_colourscheme=get(g:, 'colors_name', 'default')
@@ -306,7 +306,7 @@ function OpenUrl() abort
     if l:url !~? 'https\?://'
       call OpenSearchPage(l:url)
     else
-      call jobstart(['firefox', l:url])
+      call jobstart([$BROWSER, l:url])
     endif
 endfunction
 
@@ -316,7 +316,7 @@ function OpenUrlToLineEnd() abort
     if l:url !~? 'https\?://'
       call OpenSearchPage(l:url)
     else
-      call jobstart(['firefox', l:url])
+      call jobstart([$BROWSER, l:url])
     endif
 endfunction
 
@@ -334,7 +334,7 @@ endfunction
 
 function OpenSearchPage(query) abort
     for l:search_engine in g:search_engines
-      let l:jobid = jobstart(['firefox', substitute(l:search_engine, '<query>', a:query, '')])
+      let l:jobid = jobstart([$BROWSER, substitute(l:search_engine, '<query>', a:query, '')])
       call jobwait([l:jobid])
     endfor
 endfunction
@@ -344,7 +344,7 @@ function OpenOrSearchMany(urls) abort
       if l:url !~? 'https\?://'
         call OpenSearchPage(l:url)
       else
-        call jobstart(['/usr/bin/firefox', l:url])
+        call jobstart([$BROWSER, l:url])
       endif
     endfor
 endfunction
@@ -363,7 +363,7 @@ function OpenUrlsVisual(...) abort
         endif
         call OpenSearchPage(l:url)
       else
-        call jobstart(['/usr/bin/firefox', l:url])
+        call jobstart([$BROWSER, l:url])
       endif
     endfor
 endfunction
