@@ -523,6 +523,30 @@ wprefix() {
   export WINEPREFIX="${XDG_DATA_HOME}/wineprefixes/$1"
 }
 
+pac-installed() {
+  pacman -Qq | fzf --preview 'pacman -Qil {}'
+  --layout=reverse --bind 'enter:execute(pacman -Qil {} | less)'
+}
+
+rfv() (
+  # https://junegunn.github.io/fzf/tips/ripgrep-integration/
+  RELOAD='reload:rg --column --color=always --smart-case {q} || :'
+  OPENER='if [[ $FZF_SELECT_COUNT -eq 0 ]]; then
+            vim {1} +{2}
+          else
+            vim +cw -q {+f}
+          fi'
+  fzf --disabled --ansi --multi \
+    --bind "start:$RELOAD" --bind "change:$RELOAD" \
+    --bind "enter:become:$OPENER" \
+    --bind "ctrl-o:execute:$OPENER" \
+    --bind 'alt-a:select-all,alt-d:deselect-all,ctrl-/:toggle-preview' \
+    --delimiter : \
+    --preview 'bat --style=full --color=always --highlight-line {2} {1}' \
+    --preview-window '~4,+{2}+4/3,<80(up)' \
+    --query "$*"
+)
+
 get_terminal_bg
 
 if [[ "${TERM_BG_BRIGHT}" -eq 1 ]]; then
