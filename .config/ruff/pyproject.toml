@@ -4,6 +4,7 @@ select = [
   "ANN",
   "ARG",
   "ASYNC",
+  "ASYNC1",
   "B",
   "BLE",
   "C4",
@@ -44,31 +45,36 @@ select = [
   "TCH",
   "TD",
   "TID",
-  "TRIO",
   "TRY",
   "UP",
   "YTT",
 
   # pydocstyle
-  "D101", # undocumented-public-class",
-  "D103", # "undocumented-public-function",
-  "D102", # "undocumented-public-method",
+  "D101", # undocumented-public-class
+  "D103", # undocumented-public-function
+  "D102", # undocumented-public-method
 
 ]
 
 ignore = [
-    "COM812",  # "missing-trailing-comma",
-    "E501",    # "line-too-long",
-    "INP001",  # "implicit-namespace-package",
-    "ISC001",  # "single-line-implicit-string-concatenation",
-    "PLR2004", # "magic-value-comparison",
-    "PTH122",  # "os-path-splitext",
-    "PTH123",  # "builtin-open",
-    "S101",    # "assert",
-    "S310",    # "suspicious-url-open-usage",
-    "S314",    # "suspicious-xml-element-tree-usage",
-    "S603",    # "subprocess-without-shell-equals-true",
-    "S607",    # "start-process-with-partial-path",
+    "COM812",  # missing-trailing-comma
+    "E501",    # line-too-long
+    "EM102",   # f-string-in-exception
+    "INP001",  # implicit-namespace-package
+    "ISC001",  # single-line-implicit-string-concatenation
+    "PLR2004", # magic-value-comparison
+    "PTH118",  # os-path-join (Path ma inną semantykę, np. usuwa ./ z nazwy pliku)
+    "PTH120",  # os-path-dirname (Path ma inną semantykę, np. usuwa ./ z nazwy pliku)
+    "PTH122",  # os-path-splitext
+    "PTH123",  # builtin-open
+    "RUF001",  # ambiguous-unicode-character-string
+    "RUF003",  # ambiguous-unicode-character-comment
+    "S101",    # assert
+    "S310",    # suspicious-url-open-usage
+    "S314",    # suspicious-xml-element-tree-usage
+    "S603",    # subprocess-without-shell-equals-true
+    "S607",    # start-process-with-partial-path
+    "TRY003",  # raise-vanilla-args
 ]
 
 [tool.ruff.format]
