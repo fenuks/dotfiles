@@ -140,8 +140,13 @@ bak() {
   fi
 }
 
-cdi() {
-  cd "$(fzf_dir)"
+c() {
+  local dir
+  dir=$(
+    FZF_DEFAULT_COMMAND=${FZF_ALT_C_COMMAND:-} \
+    FZF_DEFAULT_OPTS=$(__fzf_defaults "--reverse --walker=dir,follow,hidden --scheme=path" "${FZF_ALT_C_OPTS-} +m") \
+    FZF_DEFAULT_OPTS_FILE='' $(__fzfcmd)
+  ) && builtin cd -- "$(builtin unset CDPATH && builtin cd -- "$dir" && builtin pwd)"
 }
 
 cg() {
@@ -344,7 +349,7 @@ rcd() {
   rm -f -- "$tempfile"
 }
 
-repeat() {
+try() {
   runs=0
   max_runs=10
   declare -a durations=()
@@ -559,6 +564,8 @@ fi
 if [[ -v BASH_VERSION ]]; then
   export -f sv
   export -f svim
+  complete -o nospace -F _cg_complete cg
+  complete -o nospace -F _up_complete up
 fi
 
 if command -v nvim >/dev/null; then
@@ -571,6 +578,3 @@ else
   export EDITOR=vim
   export MANPAGER="env MAN_PN=1 vim -M +MANPAGER -"
 fi
-
-complete -o nospace -F _cg_complete cg
-complete -o nospace -F _up_complete up

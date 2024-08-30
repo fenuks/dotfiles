@@ -51,6 +51,7 @@ export PATH="$HOME/.local/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 export PROMPT_COMMAND='history -a' # don't wait to append to history until session ends
 export PYTHON2DOCDIR=/usr/share/doc/python2/html/
 export PYTHON3DOCDIR=/usr/share/doc/python/html/
+export PYTHONPYCACHEPREFIX=/tmp
 export PYTHONSTARTUP="$HOME/.config/python/pythonrc"
 export SHELLCHECK_OPTS="-e SC1090,SC2034,SC2139,SC2164"
 export SKIM_DEFAULT_COMMAND='git ls-tree -r --name-only HEAD || rg --files'

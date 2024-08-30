@@ -2,7 +2,6 @@
 # aliases compatible with fish syntax
 
 alias ag='ag --smart-case'
-alias c='__fzf_cd__'
 alias cdc="cd ${XDG_CACHE_DIR:-.cache}"
 alias cdd="cd ${XDG_DOCUMENTS_DIR:-Documents}"
 alias cdf="cd ${XDG_VIDEOS_DIR:-Videos}"
