@@ -1,80 +1,101 @@
 [tool.ruff.lint]
 select = [
-  "A",
-  "ANN",
-  "ARG",
-  "ASYNC",
-  "ASYNC1",
-  "B",
-  "BLE",
-  "C4",
-  "COM",
-  "CPY",
-  "DTZ",
-  "E",
-  "EM",
-  "ERA",
-  "EXE",
-  "F",
-  "FA",
-  "FBT",
-  "FIX",
-  "FLY",
-  "FURB",
-  "G",
-  "ICN",
-  "INP",
-  "INT",
-  "ISC",
-  "LOG",
-  "PERF",
-  "PGH",
-  "PIE",
-  "PL",
-  "PT",
-  "PTH",
-  "PYI",
-  "RET",
-  "RSE",
-  "RUF",
-  "S",
-  "SIM",
-  "SLF",
-  "SLOT",
-  "T10",
-  "TCH",
-  "TD",
-  "TID",
-  "TRY",
-  "UP",
-  "YTT",
-
-  # pydocstyle
-  "D101", # undocumented-public-class
-  "D103", # undocumented-public-function
-  "D102", # undocumented-public-method
-
+  "A",     # flake8-builtins
+  "AIR",   # Airflow
+  "ANN",   # flake8-annotations
+  "ARG",   # flake8-unused-arguments
+  "ASYNC", # flake8-async
+  "B",     # flake8-bugbear
+  "BLE",   # flake8-blind-except
+  "C4",    # flake8-comprehensions
+  "COM",   # flake8-commas
+  "D",     # pydocstyle
+  "DJ",    # flake8-django
+  "DOC",   # pydoclint
+  "DTZ",   # flake8-datetimez
+  "E",     # pycodestyle
+  "EM",    # flake8-errmsg
+  "ERA",   # eradicate
+  "EXE",   # flake8-executable
+  "F",     # Pyflakes
+  "FA",    # flake8-future-annotations
+  "FAST",  # FastAPI
+  "FBT",   # flake8-boolean-trap
+  "FIX",   # flake8-fixme
+  "FLY",   # flynt
+  "FURB",  # refurb
+  "G",     # flake8-logging-format
+  "I",     # isort
+  "ICN",   # flake8-import-conventions
+  "INP",   # flake8-no-pep420
+  "INT",   # flake8-gettext
+  "ISC",   # flake8-implicit-str-concat
+  "LOG",   # flake8-logging
+  "N",     # pep8-naming
+  "NPY",   # NumPy-specific rules
+  "PD",    # pandas-vet
+  "PERF",  # Perflint
+  "PGH",   # pygrep-hooks
+  "PIE",   # flake8-pie
+  "PL",    # Pylint
+  "PT",    # flake8-pytest-style
+  "PTH",   # flake8-use-pathlib
+  "PYI",   # flake8-pyi
+  "Q",     # flake8-quotes
+  "RET",   # flake8-return
+  "RSE",   # flake8-raise
+  "RUF",   # Ruff-specific rules
+  "S",     # flake8-bandit
+  "SIM",   # flake8-simplify
+  "SLF",   # flake8-self
+  "SLOT",  # flake8-slots
+  "T10",   # flake8-debugger
+  "T20",   # flake8-print
+  "TCH",   # flake8-type-checking
+  "TD",    # flake8-todos
+  "TID",   # flake8-tidy-imports
+  "TRY",   # tryceratops
+  "UP",    # pyupgrade
+  "W",     # pycodestyle
+  "YTT",   # flake8-2020
 ]
 
 ignore = [
-    "COM812",  # missing-trailing-comma
-    "E501",    # line-too-long
-    "EM102",   # f-string-in-exception
-    "INP001",  # implicit-namespace-package
-    "ISC001",  # single-line-implicit-string-concatenation
-    "PLR2004", # magic-value-comparison
-    "PTH118",  # os-path-join (Path ma inną semantykę, np. usuwa ./ z nazwy pliku)
-    "PTH120",  # os-path-dirname (Path ma inną semantykę, np. usuwa ./ z nazwy pliku)
-    "PTH122",  # os-path-splitext
-    "PTH123",  # builtin-open
-    "RUF001",  # ambiguous-unicode-character-string
-    "RUF003",  # ambiguous-unicode-character-comment
-    "S101",    # assert
-    "S310",    # suspicious-url-open-usage
-    "S314",    # suspicious-xml-element-tree-usage
-    "S603",    # subprocess-without-shell-equals-true
-    "S607",    # start-process-with-partial-path
-    "TRY003",  # raise-vanilla-args
+  "ANN101",  # missing-type-self
+  "ANN102",  # missing-type-cls (deprecated)
+  "C90",     # mccabe
+  "COM812",  # missing-trailing-comma
+  "CPY",     # flake8-copyright
+  "D100",    # undocumented-public-module
+  "D104",    # undocumented-public-package
+  "D203",    # blank-line-before-class
+  "D204",    # one-blank-line-after-class
+  "D212",    # multi-line-summary-first-line
+  "D406",    # new-line-after-section-name (numpy style)
+  "D407",    # dashed-underline-after-section (numpy style)
+  "D413",    # blank-line-after-last-section
+  "E501",    # line-too-long
+  "EM102",   # f-string-in-exception
+  "INP001",  # implicit-namespace-package
+  "ISC001",  # single-line-implicit-string-concatenation
+  "PLR2004", # magic-value-comparison
+  "PTH118",  # os-path-join (Path ma inną semantykę, np. usuwa ./ z nazwy pliku)
+  "PTH120",  # os-path-dirname (Path ma inną semantykę, np. usuwa ./ z nazwy pliku)
+  "PTH122",  # os-path-splitext
+  "PTH123",  # builtin-open
+  "Q000",    # bad-quotes-inline-string
+  "Q000",    # bad-quotes-inline-string (enforces double quotes)
+  "Q003",    # avoidable-escaped-quote (formatter takes care of that)
+  "RUF001",  # ambiguous-unicode-character-string
+  "RUF003",  # ambiguous-unicode-character-comment
+  "S101",    # assert
+  "S310",    # suspicious-url-open-usage
+  "S314",    # suspicious-xml-element-tree-usage
+  "S603",    # subprocess-without-shell-equals-true
+  "S607",    # start-process-with-partial-path
+  "TD002",   # missing-todo-author
+  "TD003",   # missing-todo-link
+  "TRY003",  # raise-vanilla-args
 ]
 
 [tool.ruff.format]
