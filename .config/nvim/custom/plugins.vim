@@ -459,6 +459,9 @@ let g:UltiSnipsSnippetDirectories=[$HOME.'/.config/nvim/UltiSnips']
 " let g:UltiSnipsJumpBackwardTrigger='Æ' " <a-s-f>
 " <a-f>
 " imap <unique> <silent> æ <Plug>(ultisnips_expand)
+Plug 'https://github.com/kkoomen/vim-doge', { 'do': { -> doge#install() } }
+let g:doge_mapping='<Leader>dg'
+
 
 "#### Language specific
 let g:polyglot_disabled = ['sensible', 'autoindent', 'markdown']
