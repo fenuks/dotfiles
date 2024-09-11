@@ -7,6 +7,7 @@ let g:foldmethods = {
 \ 'diff': 'manual'
 \}
 
+let g:my_web_browser = $BROWSER ?? 'librewolf'
 " let g:default_search_engines = ['https://lite.qwant.com/?q=<query>&p=1']
 let g:default_search_engines = ['https://duckduckgo.com/?q=<query>']
 let g:shopping_search_engines = ['https://allegro.pl/listing?string=<query>&p=1']
@@ -306,7 +307,7 @@ function OpenUrl() abort
     if l:url !~? 'https\?://'
       call OpenSearchPage(l:url)
     else
-      call jobstart([$BROWSER, l:url])
+      call jobstart([g:my_web_browser, l:url])
     endif
 endfunction
 
@@ -316,7 +317,7 @@ function OpenUrlToLineEnd() abort
     if l:url !~? 'https\?://'
       call OpenSearchPage(l:url)
     else
-      call jobstart([$BROWSER, l:url])
+      call jobstart([g:my_web_browser, l:url])
     endif
 endfunction
 
@@ -334,7 +335,7 @@ endfunction
 
 function OpenSearchPage(query) abort
     for l:search_engine in g:search_engines
-      let l:jobid = jobstart([$BROWSER, substitute(l:search_engine, '<query>', a:query, '')])
+      let l:jobid = jobstart([g:my_web_browser, substitute(l:search_engine, '<query>', a:query, '')])
       call jobwait([l:jobid])
     endfor
 endfunction
@@ -344,7 +345,7 @@ function OpenOrSearchMany(urls) abort
       if l:url !~? 'https\?://'
         call OpenSearchPage(l:url)
       else
-        call jobstart([$BROWSER, l:url])
+        call jobstart([g:my_web_browser, l:url])
       endif
     endfor
 endfunction
@@ -356,6 +357,9 @@ function OpenUrlsVisual(...) abort
     for l:url in l:urls
       let l:url = trim(l:url)
       let l:url = trim(substitute(l:url, '^-\( \[[ Xx]\]\)\?', '', 'g'))
+      if l:url[0] == '['
+        let l:url=trim(substitute(l:url, '^\[[^]]\+\]\+(\([^)]\+\))', '\1', 'g'))
+      endif
       if l:url !~? 'https\?://'
         let l:postfix = get(a:, 1, '')
         if l:postfix !=# ''
@@ -363,7 +367,7 @@ function OpenUrlsVisual(...) abort
         endif
         call OpenSearchPage(l:url)
       else
-        call jobstart([$BROWSER, l:url])
+        call jobstart([g:my_web_browser, l:url])
       endif
     endfor
 endfunction
