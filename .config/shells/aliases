@@ -2,14 +2,14 @@
 # aliases compatible with fish syntax
 
 alias ag='ag --smart-case'
-alias cdc="cd ${XDG_CACHE_DIR:-.cache}"
-alias cdd="cd ${XDG_DOCUMENTS_DIR:-Documents}"
-alias cdf="cd ${XDG_VIDEOS_DIR:-Videos}"
+alias cdc="cd ${XDG_CACHE_DIR:-${HOME}/.cache}"
+alias cdd="cd ${XDG_DOCUMENTS_DIR:-${HOME}/Documents}"
+alias cdf="cd ${XDG_VIDEOS_DIR:-${HOME}/Videos}"
 alias cdg="cd ${HOME}/Gry"
 alias cdk="cd ${HOME}/Kod"
-alias cdm="cd ${XDG_MUSIC_DIR:-Music}"
-alias cdn="cd ${XDG_DOCUMENTS_DIR:-Documents}/notatki"
-alias cdp="cd ${XDG_DOWNLOAD_DIR:-Downloads}"
+alias cdm="cd ${XDG_MUSIC_DIR:-${HOME}/Music}"
+alias cdn="cd ${XDG_DOCUMENTS_DIR:-${HOME}/Documents}/notatki"
+alias cdp="cd ${XDG_DOWNLOAD_DIR:-${HOME}/Downloads}"
 alias cdt="cd /tmp"
 alias check-yapf-config="diff <(yapf --style-help | grep -oP '^[a-zA-Z_0-9]+' | sort) <(grep -oP '^[a-zA-Z_0-9]+' ~/.config/yapf/style | sort)"
 alias chromium-dev='chromium --disable-web-security --user-data-dir --remote-debugging-port=9222'
