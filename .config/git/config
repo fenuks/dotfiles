@@ -49,6 +49,7 @@ email = fenuks
     fixup = "!git log $(git default).. --pretty=format:'%h %s' --no-merges | fzf | cut -c -7 | xargs -o git commit --fixup"
     last = log -1 HEAD
     last-tag = describe --tags --abbrev=0
+    last-modified = log -1 --date=format:'%c' --format='%cd (%cr)'
     lg = log --graph --color=auto --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
     lgd = !git lg $(git default)..
     lga = !git log --all --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit | less -r
