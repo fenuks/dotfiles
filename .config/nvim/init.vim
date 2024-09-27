@@ -266,6 +266,12 @@ nnoremap <unique> <silent> xSS :,$!sort -h<CR>
 vnoremap <unique> <silent> xss :!sort -h<CR>
 nnoremap <unique> <silent> xss :set opfunc=SortOperator<CR>g@
 
+" sort md - [x] list ignoring checkbox
+nnoremap <unique> <silent> xSl :,$sort i /[ x]]/<CR>
+nnoremap <unique> <silent> xSL :,$sort i /[ x]]/<CR>
+vnoremap <unique> <silent> xsl :sort i /[ x]]/<CR>
+nnoremap <unique> <silent> xsl :set opfunc=SortOperator<CR>g@
+
 nnoremap <unique> <silent> xSn :,$!sort -n<CR>
 nnoremap <unique> <silent> xSN :,$!sort -n<CR>
 vnoremap <unique> <silent> xsn :!sort -n<CR>
