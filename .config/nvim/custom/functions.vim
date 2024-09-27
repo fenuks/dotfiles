@@ -11,7 +11,7 @@ let g:my_web_browser = $BROWSER ?? 'librewolf'
 " let g:default_search_engines = ['https://lite.qwant.com/?q=<query>&p=1']
 let g:default_search_engines = ['https://duckduckgo.com/?q=<query>']
 let g:shopping_search_engines = ['https://allegro.pl/listing?string=<query>&p=1']
-let g:plant_search_engines = ['https://qwant.com/?q=<query> sadzonka&p=1', 'https://allegro.pl/kategoria/ogrod-rosliny-776?string=<query>&order=p&p=1', 'https://www.drzewa.com.pl/catalogsearch/result/index/?q=<query>&p=1', 'https://www.sadowniczy.pl/search.php?text=<query>&counter=0', 'https://drzewka-faworytka.pl/pl/searchquery/<query>/1', 'https://szkolkawrzos.pl/szukaj?controller=search&s=<query>&page=1']
+let g:plant_search_engines = ['https://duckduckgo.com/?q="<query>" sadzonka', 'https://allegro.pl/kategoria/ogrod-rosliny-776?string=<query>&order=p&p=1', 'https://www.drzewa.com.pl/catalogsearch/result/index/?q=<query>&p=1', 'https://www.sadowniczy.pl/search.php?text=<query>&counter=0', 'https://szkolkawrzos.pl/szukaj?controller=search&s=<query>&page=1']
 let g:search_engines = g:default_search_engines
 let g:my_colours = []
 let g:my_colourscheme=get(g:, 'colors_name', 'default')
