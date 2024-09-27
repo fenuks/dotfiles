@@ -606,7 +606,7 @@ if vim.fn.executable('clangd') == 1 then
 elseif vim.fn.executable('ccls') then
   lspconfig.ccls.setup({ on_attach = on_attach, capabilities = capabilities })
 end
-lspconfig.tsserver.setup({ on_attach = on_attach, capabilities = capabilities })
+lspconfig.ts_ls.setup({ on_attach = on_attach, capabilities = capabilities })
 lspconfig.zls.setup({ on_attach = on_attach, capabilities = capabilities })
 lspconfig.gopls.setup({ on_attach = on_attach, capabilities = capabilities })
 if vim.fn.executable('lemminx') == 1 then
