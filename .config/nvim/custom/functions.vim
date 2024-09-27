@@ -760,9 +760,11 @@ function GoToOpenFold(direction) abort
 endfunction
 
 function ConfigureDiff() abort
-    colorscheme gruvbox
-    vnoremap <unique> <silent> dg :diffget<CR>
-    vnoremap <unique> <silent> dp :diffput<CR>
+    if &diff
+      colorscheme gruvbox
+      vnoremap <unique> <silent> <buffer> dg :diffget<CR>
+      vnoremap <unique> <silent> <buffer> dp :diffput<CR>
+    endif
 endfunction
 
 function CaptureEx(cmd) abort
