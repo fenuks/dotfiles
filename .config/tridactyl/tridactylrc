@@ -48,8 +48,11 @@ unbindurl openwrt:7070 l
 unbindurl openwrt:7070 h
 unbindurl openwrt:7070 i
 unbindurl openwrt:7070 m
+unbindurl openwrt:7070 n
+unbindurl openwrt:7070 p
 unbindurl openwrt:7070 R
 unbindurl openwrt:7070 o
+unbindurl openwrt:7070 <c-u>
 
 bind j scrollline 1
 bind k scrollline -1
