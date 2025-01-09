@@ -36,6 +36,7 @@ email = fenuks
     coum = !f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git reset $@; git checkout $@; }; f"
     count = rev-list --count HEAD
     cod = !git checkout "$(git default)"
+    codp = !git cod && git pull
     d = diff --find-copies-harder
     vd = !git diff --find-copies-harder | vim -
     dd = !git diff --find-copies-harder "$(git merge-base $(git default) HEAD) $@"
@@ -54,6 +55,7 @@ email = fenuks
     lgd = !git lg $(git default)..
     lga = !git log --all --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit | less -r
     ls = ls-tree --name-only --full-tree -r HEAD
+    logd = !git log $(git default)..
     local = log @{upstream}..@
     mtk = mergetool --tool=kdiff3
     mtv = mergetool --tool=nvimdiff
@@ -75,6 +77,7 @@ email = fenuks
     setuphooks = config core.hooksPath ~/.config/git/hooks/
     st = status -s
     remote-url = remote get-url origin
+    unchange = !git checkout "$(git base-rev)" -- $(git diff --name-only "$(git base-rev)" | fzf --multi) && git reset
     unpushed = log @{u}..
     upd-default = remote set-head origin -a
     track = !git branch --set-upstream-to="origin/$(git branch --show-current)"

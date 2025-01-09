@@ -4,6 +4,10 @@ indexing-diagnostic/
 open-telemetry-metrics-plotter.html
 open-telemetry-metrics.*.csv
 
+# python
+*.egg-info/
+dist/
+
 *~
 *.bak
 *.class
@@ -58,3 +62,4 @@ node_modules/
 format.patch
 qodana.sarif.json
 *.pkg.tar.zst
+out/
