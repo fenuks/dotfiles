@@ -3,6 +3,8 @@ bind n findnext 1
 bind N findnext --reverse
 bind ,<Space> nohlsearch
 
+bind yT composite js `[${document.title}](${document.URL})` | yank | fillcmdline_tmp 3000 '# Skopiowano adres z tytułem.'
+
 unbindurl localhost/rss n
 unbindurl localhost/rss p
 unbindurl localhost/rss o
@@ -53,6 +55,18 @@ unbindurl openwrt:7070 p
 unbindurl openwrt:7070 R
 unbindurl openwrt:7070 o
 unbindurl openwrt:7070 <c-u>
+
+unbindurl 127.0.0.1:7070 j
+unbindurl 127.0.0.1:7070 k
+unbindurl 127.0.0.1:7070 l
+unbindurl 127.0.0.1:7070 h
+unbindurl 127.0.0.1:7070 i
+unbindurl 127.0.0.1:7070 m
+unbindurl 127.0.0.1:7070 n
+unbindurl 127.0.0.1:7070 p
+unbindurl 127.0.0.1:7070 R
+unbindurl 127.0.0.1:7070 o
+unbindurl 127.0.0.1:7070 <c-u>
 
 bind j scrollline 1
 bind k scrollline -1
