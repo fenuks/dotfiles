@@ -62,8 +62,8 @@ set linebreak " breaklines *nicely*, virtually
 set whichwrap=h,l,[,] " specify keys that can wrap next line
 set autoindent " align the new line indent with the previous one
 " set tabstop=4 " Set the default tabstop
-set softtabstop=8 " Insert/delete 8 spaces when hitting TAB/Backspace
-set shiftwidth=4 " Set the default shift width for indents
+set softtabstop=4 " Insert/delete 8 spaces when hitting TAB/Backspace
+set shiftwidth=2 " Set the default shift width for indents
 set shiftround " Round indent to multiple of 'shiftwidth'.
 set expandtab " Make tabs into spaces (set by tabstop)
 set smarttab " Smarter tab levels
@@ -438,7 +438,7 @@ nnoremap <unique> <silent> dK :<C-u>call DK())<CR>
 nnoremap <silent> gx :<C-u>call OpenUrl()<CR>
 vnoremap <silent> gx :<C-u>call OpenUrlsVisual('')<CR>
 nnoremap <unique> <silent> gX :<C-u>call OpenUrlToLineEnd()<CR>
-vnoremap <unique> gX :<C-u>call OpenUrlVisual('')<Left><Left>
+vnoremap <unique> gX :<C-u>call OpenUrlsVisual('')<Left><Left>
 
 " terminal
 tnoremap <unique> <silent> jk <C-\><C-n>

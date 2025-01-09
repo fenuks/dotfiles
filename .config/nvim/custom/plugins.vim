@@ -213,6 +213,7 @@ nmap <unique> <silent> [/ <Plug>(PrevCommented)
 nmap <unique> <silent> ]\ <Plug>(NextUncommented)
 nmap <unique> <silent> [\ <Plug>(PrevUncommented)
 Plug 'https://github.com/andymass/vim-matchup'
+let g:matchup_delim_stopline = 100000
 Plug 'https://github.com/chaoren/vim-wordmotion'
 let g:wordmotion_mappings = {
 \ 'w' : '-',
@@ -352,7 +353,7 @@ if has('nvim')
     Plug 'https://github.com/nvim-treesitter/nvim-treesitter-refactor'
     Plug 'https://github.com/nvim-treesitter/nvim-treesitter-textobjects'
     Plug 'https://github.com/nvim-treesitter/playground'
-    " Plug 'https://github.com/nvim-treesitter/nvim-treesitter-context'
+    Plug 'https://github.com/nvim-treesitter/nvim-treesitter-context'
     Plug 'https://github.com/windwp/nvim-ts-autotag'
     Plug 'https://github.com/abecodes/tabout.nvim'
 

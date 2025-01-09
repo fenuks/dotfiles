@@ -492,7 +492,8 @@ def ${1:fname}(`!p snip.rv = "self, " if snip.indent else ""`$2):
 endsnippet
 
 snippet defm "main function"
-def main():
+def main() -> None:
+	"""Metoda wejściowa skryptu"""
 	${0:pass}
 
 if __name__ == '__main__':

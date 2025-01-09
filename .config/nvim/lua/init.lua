@@ -18,6 +18,9 @@ require('nvim-treesitter.configs').setup({
   -- Install parsers synchronously (only applied to `ensure_installed`)
   sync_install = false,
   auto_install = true,
+  matchup = {
+    enable = true,
+  },
   highlight = {
     enable = true,
     disable = { 'markdown' },
@@ -125,10 +128,10 @@ vim.o.foldexpr = 'nvim_treesitter#foldexpr()'
 
 -- disabled due to severe performance regression
 -- https://github.com/nvim-treesitter/nvim-treesitter-context/issues/410
--- require('treesitter-context').setup({
---   enable = true,
---   max_lines = 10,
--- })
+require('treesitter-context').setup({
+  enable = true,
+  max_lines = 5,
+})
 
 require('tabout').setup({
   tabkey = '',
@@ -606,6 +609,7 @@ if vim.fn.executable('clangd') == 1 then
 elseif vim.fn.executable('ccls') then
   lspconfig.ccls.setup({ on_attach = on_attach, capabilities = capabilities })
 end
+lspconfig.nil_ls.setup({ on_attach = on_attach, capabilities = capabilities })
 lspconfig.ts_ls.setup({ on_attach = on_attach, capabilities = capabilities })
 lspconfig.zls.setup({ on_attach = on_attach, capabilities = capabilities })
 lspconfig.gopls.setup({ on_attach = on_attach, capabilities = capabilities })
