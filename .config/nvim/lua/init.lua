@@ -139,12 +139,11 @@ require('tabout').setup({
 })
 
 if vim.g.my_use_nvim_autopairs then
-  require('nvim-autopairs').setup()
-
   local Rule = require('nvim-autopairs.rule')
   local npairs = require('nvim-autopairs')
+  npairs.setup()
   npairs.add_rule(Rule('„', '”'))
-  npairs.add_rule(Rule('’', '’'))
+  npairs.add_rule(Rule('‘', '’'))
 end
 
 local actions = require('telescope.actions')
