@@ -253,7 +253,7 @@ get_terminal_bg() {
     if [[ "${TERM_BG_BRIGHT}" -eq 1 ]]; then
       export BAT_THEME=OneHalfLight
     else
-      export BAT_THEME=ansi-dark
+      export BAT_THEME=ansi
     fi
   fi
 }
