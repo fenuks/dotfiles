@@ -144,8 +144,8 @@ c() {
   local dir
   dir=$(
     FZF_DEFAULT_COMMAND=${FZF_ALT_C_COMMAND:-} \
-    FZF_DEFAULT_OPTS=$(__fzf_defaults "--reverse --walker=dir,follow,hidden --scheme=path" "${FZF_ALT_C_OPTS-} +m") \
-    FZF_DEFAULT_OPTS_FILE='' $(__fzfcmd)
+      FZF_DEFAULT_OPTS=$(__fzf_defaults "--reverse --walker=dir,follow,hidden --scheme=path" "${FZF_ALT_C_OPTS-} +m") \
+      FZF_DEFAULT_OPTS_FILE='' $(__fzfcmd)
   ) && builtin cd -- "$(builtin unset CDPATH && builtin cd -- "$dir" && builtin pwd)"
 }
 
@@ -171,7 +171,7 @@ cpr() {
 empty_cache() {
   rm -rf "$HOME/.cache/"*
   rm -rf ~/.gradle
-  for dir in "$HOME/Projekty/aur/utrzymywane/"*; do
+  for dir in "$HOME/Kod/otwarty/system/arch/aur/budowane/"*; do
     if [[ -d "${dir}" ]]; then
       (
         cd "${dir}"
