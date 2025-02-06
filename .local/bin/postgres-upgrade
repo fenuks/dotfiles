@@ -5,19 +5,18 @@ IFS=$'\n\t'
 sudo systemctl stop postgresql
 OLD_VERSION=$(sudo cat /var/lib/postgres/data/PG_VERSION)
 
+sudo bash -c 'if [[ -d /var/lib/postgres/olddata ]]; then echo "/var/lib/postgres/olddata istnieje"; exit 1; fi'
 sudo mv /var/lib/postgres/data /var/lib/postgres/olddata
-sudo mkdir /var/lib/postgres/data /var/lib/postgres/tmp
-sudo chown postgres:postgres /var/lib/postgres/data /var/lib/postgres/tmp
-cd /var/lib/postgres/tmp
+sudo mkdir -p /var/lib/postgres/data
+sudo chown postgres:postgres /var/lib/postgres/data
 
-# sudo -u postgres initdb -D /var/lib/postgres/data --locale=pl_PL.UTF-8 --encoding=UTF8 --data-checksums
 sudo -u postgres initdb -D /var/lib/postgres/data --locale=pl_PL.UTF-8 --encoding=UTF8
 
 cd /tmp
-sudo -u postgres pg_upgrade -b /opt/pgsql-${OLD_VERSION}/bin -B /usr/bin -d /var/lib/postgres/olddata -D /var/lib/postgres/data
+sudo -u postgres pg_upgrade -b "/opt/pgsql-${OLD_VERSION}/bin" -B /usr/bin -d /var/lib/postgres/olddata -D /var/lib/postgres/data
 
 sudo systemctl start postgresql
 
 sudo -u postgres /usr/bin/vacuumdb --all --analyze-in-stages
 
-# sudo rm -rf /var/lib/postgres/{olddata,tmp}
+# sudo rm -rf /var/lib/postgres/olddata
