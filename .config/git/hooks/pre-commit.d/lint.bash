@@ -31,9 +31,8 @@ function lint() {
 }
 
 function lint_md() {
-  lychee --offline --include-fragments ${1}
+  lychee --offline --include-fragments --root-dir / ${1}
 }
-
 
 changed_files=$(git diff --cached --name-only --diff-filter=ACMRTUXB)
 lint "${changed_files}" 'lychee (md)' '\.md$' 'lint_md'
