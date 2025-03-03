@@ -66,13 +66,13 @@ source_if_exists "$HOME/.config/shells/bash/completions/fg.bash"
 PS0="\e[2 q" # reset cursor to normal before program runs
 
 export PROMPT_COMMAND=rewrite_history
-if command -v zoxide >/dev/null; then
-  eval "$(zoxide init bash)"
-fi
-
 # starship should go last, otherwise exit status or duration modules might break
 if command -v starship >/dev/null; then
   eval "$(starship init bash)"
+fi
+
+if command -v zoxide >/dev/null; then
+  eval "$(zoxide init bash)"
 fi
 
 prune_history
