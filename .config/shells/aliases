@@ -14,7 +14,7 @@ alias cdt="cd /tmp"
 alias check-yapf-config="diff <(yapf --style-help | grep -oP '^[a-zA-Z_0-9]+' | sort) <(grep -oP '^[a-zA-Z_0-9]+' ~/.config/yapf/style | sort)"
 alias chromium-dev='chromium --disable-web-security --user-data-dir --remote-debugging-port=9222'
 alias clear="clear && printf \"\\e[3J\""
-alias dc='docker-compose'
+alias dc='docker compose'
 alias edit="${EDITOR}"
 alias e='nvim'
 alias fdi='fd --no-ignore'

@@ -1,0 +1,4 @@
+--type-add
+web:*.{html,css,js}*
+--type-add
+rtf:*.rtf
