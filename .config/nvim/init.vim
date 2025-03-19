@@ -402,7 +402,7 @@ nnoremap <unique> Sd :echo delete('<C-r>=GetSessionName()<CR>')
 nnoremap <unique> Sc :SClose<CR>
 
 nnoremap <unique> <silent> <Leader>ev :edit $MYVIMRC<CR>
-nnoremap <unique> <silent> <Leader>eb :edit $HOME/.bashrc<CR>
+nnoremap <unique> <silent> <Leader>eb :edit $HOME/.config/shells/rc.sh<CR>
 
 " buffers
 nnoremap <unique> <silent> <Leader>bn :<C-u>call Execute(['enew'], v:count1)<CR>
