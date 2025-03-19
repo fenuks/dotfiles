@@ -151,7 +151,9 @@ c() {
 
 cg() {
   local git_root="$(git rev-parse --show-toplevel)"
-  cd "${git_root}/$1"
+  if [[ -n "${git_root}" ]]; then
+    cd "${git_root}/$1"
+  fi
 }
 
 cmake_pine_clang() {
