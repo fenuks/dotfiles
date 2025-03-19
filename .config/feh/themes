@@ -1,0 +1,1 @@
+katalog --scale-down --auto-zoom --action9 "kioclient move %F trash:/"
