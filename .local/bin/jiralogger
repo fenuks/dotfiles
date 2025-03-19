@@ -109,13 +109,13 @@ def parse_worklog_file(path: Path) -> list[WorklogEntry]:
 def parse_duration(day: datetime, timestring: str, line_no: int) -> tuple[datetime, datetime]:
     try:
         start, end = timestring.split("-")
+        start_time = datetime.strptime(start, "%H:%M").time()
+        end_time = datetime.strptime(end, "%H:%M").time()
+        start_date = datetime.combine(day, start_time)
+        end_date = datetime.combine(day, end_time)
     except ValueError as ex:
         print(line_no, timestring)
         raise ex
-    start_time = datetime.strptime(start, "%H:%M").time()
-    end_time = datetime.strptime(end, "%H:%M").time()
-    start_date = datetime.combine(day, start_time)
-    end_date = datetime.combine(day, end_time)
     if start_date >= end_date:
         raise ValueError(f'{line_no}: Data początkowa {start_date} >= {end_date}')
     return (start_date, end_date)
