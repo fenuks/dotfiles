@@ -1,5 +1,7 @@
 include browser-blacklist.local
 whitelist ${HOME}/.cache/mozilla
 whitelist ${HOME}/.mozilla
+whitelist ${HOME}/.cache/librewolf
+whitelist ${HOME}/.librewolf
 whitelist ${HOME}/.pki
 whitelist ${HOME}/.local/share/pki

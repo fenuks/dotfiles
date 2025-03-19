@@ -1,4 +1,6 @@
 noblacklist ${HOME}/.cache/mozilla
 noblacklist ${HOME}/.mozilla
+noblacklist ${HOME}/.cache/librewolf
+noblacklist ${HOME}/.librewolf
 noblacklist ${HOME}/.pki
 noblacklist ${HOME}/.local/share/pki
