@@ -61,8 +61,6 @@ select = [
 ]
 
 ignore = [
-  "ANN101",  # missing-type-self
-  "ANN102",  # missing-type-cls (deprecated)
   "C90",     # mccabe
   "COM812",  # missing-trailing-comma
   "CPY",     # flake8-copyright
