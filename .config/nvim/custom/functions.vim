@@ -638,6 +638,11 @@ function CustomSyntax() abort
     match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 endfunction
 
+function! SynGroup() abort
+    let l:s = synID(line('.'), col('.'), 1)
+    echo synIDattr(l:s, 'name') . ' -> ' . synIDattr(synIDtrans(l:s), 'name')
+endfun
+
 function! MyQuickFixTextFunc(info) abort
   if a:info.quickfix
       let qfl = getqflist(#{id: a:info.id, items: 0}).items
