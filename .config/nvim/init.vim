@@ -323,7 +323,6 @@ inoremap <unique> <silent> <C-S-CR> <Home><CR><UP>
 inoremap <unique> <silent> <C-z> <C-o>:suspend<CR>
 
 nnoremap <unique> <silent> <C-s> :w<Enter>
-inoremap <unique> <silent> <C-s> <ESC>:w<Enter>a
 inoremap <unique> <silent> <C-l> <DEL>
 
 if !has('nvim-0.6')
@@ -457,35 +456,37 @@ nnoremap <unique> <silent> <Leader>to :tabonly<CR>
 nnoremap <unique> <silent> <Leader>td :tabclose<CR>
 
 " unimpaired mappings
-nnoremap <unique> <silent> [a :<C-U>previous<CR>
-nnoremap <unique> <silent> ]a :<C-U>next<CR>
-nnoremap <unique> <silent> [A :<C-U>first<CR>
-nnoremap <unique> <silent> ]A :<C-U>last<CR>
-nnoremap <unique> <silent> [b :<C-U>call ChangeBuffer(0)<CR>
-nnoremap <unique> <silent> ]b :<C-U>call ChangeBuffer(1)<CR>
-nnoremap <unique> <silent> [B :<C-U>bfirst<CR>
-nnoremap <unique> <silent> ]B :<C-U>blast<CR>
-nnoremap <unique> <silent> [l :<C-U>Lprevious<CR>
+if !has('nvim-0.11.0')
+  nnoremap <unique> <silent> [a :<C-U>previous<CR>
+  nnoremap <unique> <silent> ]a :<C-U>next<CR>
+  nnoremap <unique> <silent> [A :<C-U>first<CR>
+  nnoremap <unique> <silent> ]A :<C-U>last<CR>
+  nnoremap <unique> <silent> [b :<C-U>call ChangeBuffer(0)<CR>
+  nnoremap <unique> <silent> ]b :<C-U>call ChangeBuffer(1)<CR>
+  nnoremap <unique> <silent> [B :<C-U>bfirst<CR>
+  nnoremap <unique> <silent> ]B :<C-U>blast<CR>
+  nnoremap <unique> <silent> [l :<C-U>Lprevious<CR>
+  nnoremap <unique> <silent> ]l :C-U>Lnext<CR>
+  nnoremap <unique> <silent> [L :<C-U>lfirst<CR>
+  nnoremap <unique> <silent> ]L :<C-U>llast<CR>
+  nnoremap <unique> <silent> [q :<C-U>Cprevious<CR>
+  nnoremap <unique> <silent> ]q :<C-U>Cnext<CR>
+  nnoremap <unique> <silent> [Q :<C-U>cfirst<CR>
+  nnoremap <unique> <silent> ]Q :<C-U>clast<CR>
+  nnoremap <unique> <silent> [t gT
+  nnoremap <unique> <silent> ]t gt
+  nnoremap <unique> <silent> [T :<C-U>tfirst<CR>
+  nnoremap <unique> <silent> ]T :<C-U>tlast<CR>
+endif
 nnoremap <unique> <silent> <C-k> :<C-U>Lprevious<CR>
-nnoremap <unique> <silent> ]l :C-U>Lnext<CR>
 nnoremap <unique> <silent> <C-j> :<C-U>Lnext<CR>
-nnoremap <unique> <silent> [L :<C-U>lfirst<CR>
-nnoremap <unique> <silent> ]L :<C-U>llast<CR>
 nnoremap <unique> <silent> =l :<C-U>lwindow<CR>
 nnoremap <unique> <silent> =L :<C-U>lclose<CR>
-nnoremap <unique> <silent> [q :<C-U>Cprevious<CR>
 nnoremap <unique> <silent> <C-h> :<C-U>Cprevious<CR>
-nnoremap <unique> <silent> ]q :<C-U>Cnext<CR>
 " ignore default nvim mapping
 nnoremap <silent> <C-l> :<C-U>Cnext<CR>
-nnoremap <unique> <silent> [Q :<C-U>cfirst<CR>
-nnoremap <unique> <silent> ]Q :<C-U>clast<CR>
 nnoremap <unique> <silent> =q :<C-U>cwindow<CR>
 nnoremap <unique> <silent> =Q :<C-U>cclose<CR>
-nnoremap <unique> <silent> [t gT
-nnoremap <unique> <silent> ]t gt
-nnoremap <unique> <silent> [T :<C-U>tfirst<CR>
-nnoremap <unique> <silent> ]T :<C-U>tlast<CR>
 
 nnoremap <unique> <silent> ]n :call Conflict(0)<CR>
 nnoremap <unique> <silent> [n :call Conflict(1)<CR>
@@ -587,9 +588,6 @@ endif
 let g:my_plugins_loaded = !filereadable('/etc/openwrt_release')
 
 if g:my_plugins_loaded
-  if has('nvim')
-    packadd termdebug
-  endif
   " packadd cfilter
   " packadd justify " adds unwanted _j mappings
   execute 'source ' . g:vim_custom_scripts . 'plugins.vim'

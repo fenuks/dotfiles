@@ -70,14 +70,6 @@ local on_attach = function(_client, _bufnr)
   -- vim.api.nvim_command([[autocmd CursorMoved <buffer> lua vim.lsp.diagnostic.show_line_diagnostics()]])
   -- vim.api.nvim_command([[autocmd CursorMoved <buffer> lua Only_normal(vim.lsp.diagnostic.show_line_diagnostics)]])
 
-  -- symbols under cursor
-  -- jump to variable definition
-  map('n', '<c-]>', '<cmd>Telescope lsp_definitions<CR>')
-  map('n', 'gd', '<cmd>Telescope lsp_definitions<CR>')
-  -- jump to variable type definition
-  map('n', 'gD', '<cmd>Telescope lsp_type_definitions<CR>')
-  map('n', ']i', '<cmd>lua vim.lsp.buf.declaration()<CR>')
-
   -- show usages
   map('n', 'ru', '<cmd>Telescope lsp_references<CR>')
   -- show implementations
