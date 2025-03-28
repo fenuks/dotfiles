@@ -638,6 +638,21 @@ function CustomSyntax() abort
     match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 endfunction
 
+function! MyQuickFixTextFunc(info) abort
+  if a:info.quickfix
+      let qfl = getqflist(#{id: a:info.id, items: 0}).items
+  else
+      let qfl = getloclist(a:info.winid, #{id: a:info.id, items: 0}).items
+  endif
+  let l = []
+  for idx in range(a:info.start_idx - 1, a:info.end_idx - 1)
+      let l:entry = qfl[idx]
+      let l:fname = bufname(l:entry.bufnr)
+      call add(l, printf("%s:%d:%d|%s", l:fname, l:entry.lnum, l:entry.col, l:entry.text))
+  endfor
+  return l
+endfunction
+
 " taken from https://jdhao.github.io/2020/11/15/nvim_text_objects/
 function URLTextObj() abort
   if match(&runtimepath, 'vim-highlighturl') != -1

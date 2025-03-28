@@ -95,6 +95,8 @@ set termguicolors " use trucolor
 set conceallevel=1
 set spellsuggest=best,9
 
+set quickfixtextfunc=MyQuickFixTextFunc
+
 let g:vim_dir_path=fnamemodify($MYVIMRC, ':p:h')
 let g:nvim_dir_path=expand('~/.config/nvim/')
 let g:vim_custom_scripts=g:nvim_dir_path . 'custom/'
