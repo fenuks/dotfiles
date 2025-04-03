@@ -439,7 +439,7 @@ source_if_exists() {
 }
 
 sv() {
-  for dir in '.env' 'env' 'venv' '.venv'; do
+  for dir in '.venv-dev' '.venv' '.env' 'env' 'venv'; do
     match="$(find_up ${dir})"
     if [[ -d "${match}" ]]; then
       source "${match}/bin/activate"
