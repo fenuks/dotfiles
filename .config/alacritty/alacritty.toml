@@ -1,4 +1,37 @@
+[general]
 live_config_reload = true
+import = [
+    # git clone https://github.com/alacritty/alacritty-theme ~/.config/alacritty/themes
+    # pastel background
+    # "~/.config/alacritty/themes/themes/acme.toml",
+    # "~/.config/alacritty/themes/themes/dawnfox.toml",
+    # "~/.config/alacritty/themes/themes/dayfox.toml",
+    # "~/.config/alacritty/themes/themes/everforest_light.toml",
+    # "~/.config/alacritty/themes/themes/gruvbox_light.toml",
+    # "~/.config/alacritty/themes/themes/gruvbox_material_hard_light.toml",
+    # "~/.config/alacritty/themes/themes/gruvbox_material_medium_light.toml",
+    # "~/.config/alacritty/themes/themes/kimbie_light.toml",
+    # "~/.config/alacritty/themes/themes/noctis_lux.toml",
+    # "~/.config/alacritty/themes/themes/papertheme.toml",
+    # "~/.config/alacritty/themes/themes/rose_pine_dawn.toml",
+    # "~/.config/alacritty/themes/themes/selenized_light.toml",
+    # "~/.config/alacritty/themes/themes/solarized_light.toml",
+
+    # grey backgrounds
+    # "~/.config/alacritty/themes/themes/alabaster.toml",
+    # "~/.config/alacritty/themes/themes/ashes_light.toml",
+    # "~/.config/alacritty/themes/themes/ayu_light.toml",
+    # "~/.config/alacritty/themes/themes/catppuccin_latte.toml",
+    # "~/.config/alacritty/themes/themes/enfocado_light.toml",
+    "~/.config/alacritty/themes/themes/github_light_high_contrast.toml",
+    # "~/.config/alacritty/themes/themes/github_light.toml",
+    # "~/.config/alacritty/themes/themes/github_light_tritanopia.toml",
+    # "~/.config/alacritty/themes/themes/night_owlish_light.toml",
+    # "~/.config/alacritty/themes/themes/nord_light.toml",
+    # "~/.config/alacritty/themes/themes/one_light.toml",
+    # "~/.config/alacritty/themes/themes/papercolor_light.toml",
+    # "~/.config/alacritty/themes/themes/pencil_light.toml",
+]
 
 [bell]
 animation = "EaseOutExpo"
@@ -7,31 +40,6 @@ duration = 0
 
 [colors]
 draw_bold_text_with_bright_colors = true
-indexed_colors = []
-
-[colors.bright]
-black = "0x666666"
-blue = "0x7aa6da"
-cyan = "0x54ced6"
-green = "0x9ec400"
-magenta = "0xb77ee0"
-red = "0xff3334"
-white = "0xffffff"
-yellow = "0xe7c547"
-
-[colors.normal]
-black = "0x000000"
-blue = "0x7aa6da"
-cyan = "0x70c0ba"
-green = "0xb9ca4a"
-magenta = "0xc397d8"
-red = "0xd54e53"
-white = "0xeaeaea"
-yellow = "0xe6c547"
-
-[colors.primary]
-background = "0x000000"
-foreground = "0xeaeaea"
 
 [cursor]
 style = "Block"
@@ -608,7 +616,7 @@ multiplier = 3
 save_to_clipboard = false
 semantic_escape_chars = ",│`|:\"' ()[]{}<>"
 
-[shell]
+[terminal.shell]
 program = "bash"
 
 [window]
@@ -625,3 +633,5 @@ lines = 0
 [window.padding]
 x = 2
 y = 2
+
+[terminal]
