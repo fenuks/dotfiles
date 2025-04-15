@@ -235,7 +235,7 @@ map <unique> <silent> s, <Plug>Sneak_S
 
 "##### Formatting
 Plug 'https://github.com/sbdchd/neoformat', { 'on': 'Neoformat' }
-let g:neoformat_enabled_python = ['black', 'isort']
+let g:neoformat_enabled_python = ['ruff', 'isort']
 let g:neoformat_enabled_json = ['prettier', 'js-beautify', 'jq']
 let g:neoformat_enabled_yaml = ['prettier']
 let g:neoformat_enabled_haskell = ['stylish-haskell', 'floskell', 'ormolu']
