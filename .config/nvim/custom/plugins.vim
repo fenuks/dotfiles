@@ -557,25 +557,16 @@ let g:vimtex_imaps_enabled = 0
 
 "##### Colourshemes
 " set background=dark
-Plug 'https://github.com/gruvbox-community/gruvbox'
-Plug 'https://github.com/overcache/NeoSolarized'
-Plug 'https://github.com/lifepillar/vim-solarized8'
-Plug 'https://github.com/romainl/flattened'
-Plug 'https://github.com/arzg/vim-corvine'
-Plug 'https://github.com/lifepillar/vim-gruvbox8'
 Plug 'https://github.com/sainnhe/gruvbox-material'
 Plug 'https://github.com/kjssad/quantum.vim'
-Plug 'https://github.com/ayu-theme/ayu-vim'
 Plug 'https://github.com/sonph/onehalf'
 Plug 'https://github.com/nlknguyen/papercolor-theme'
-Plug 'https://github.com/sainnhe/edge'
 let g:edge_enable_italic = 1
+Plug 'https://github.com/sainnhe/edge'
 Plug 'https://github.com/savq/melange'
 Plug 'https://github.com/Shatur/neovim-ayu'
-Plug 'https://github.com/Pocco81/Catppuccino.nvim'
 Plug 'https://github.com/projekt0n/github-nvim-theme'
 Plug 'https://github.com/sainnhe/everforest'
-Plug 'https://github.com/shaunsingh/solarized.nvim'
 
 set background=light
 if &background ==# 'light'
