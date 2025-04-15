@@ -13,8 +13,10 @@ email = fenuks
 [advice]
     detachedHead = false
 [alias]
+    added = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git show ${*%${!#}} $(git log --diff-filter=A --format=%H -- ${@:$#}); }; f"
     ahead = !git lg --oneline "origin/$(git default)..HEAD"
-    authors = shortlog --summary --numbered
+    # print number of commits by authors
+    authors-stats = shortlog --summary --numbered
     amr = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" & source ~/.config/shells/git/functions.bash && amr $@; }; f"
     ar = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" & source ~/.config/shells/git/functions.bash && ar $@; }; f"
     au = add --update
@@ -26,10 +28,10 @@ email = fenuks
     brd = !git branch --merged | grep -Ev '(^\\*|master|develop|main)' | xargs git branch -d
     brm = branch --merged
     brnm = branch --no-merged
-    ca = commit --amend
+    ca = ci --amend
     cam = commit -a --amend
     cat = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git show $(git rev-list --max-count=1 --all -- \"$@\")^:\"$@\"; }; f"
-    ci = commit
+    ci = commit --verbose
     cleanse = !find -name '*.orig' -delete
     cm = commit -m
     co = checkout
@@ -48,10 +50,13 @@ email = fenuks
     grepall = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git grep -P \"$@\" $(git rev-list --all); }; f"
     first = !git lg $(git default).. | tail -1
     fixup = "!git log $(git default).. --pretty=format:'%h %s' --no-merges | fzf | cut -c -7 | xargs -o git commit --fixup"
-    last = log -1 HEAD
+    last = l -1 HEAD
     last-tag = describe --tags --abbrev=0
     last-modified = log -1 --date=format:'%c' --format='%cd (%cr)'
+    # print log in default format, but without indenting
+    l = log --date=format:%c --pretty=format:'%C(yellow)rev %H%Creset%nAutor: %an <%ae>%nData:  %cd (%cr)%n%n%s%n%n%b'
     lg = log --graph --color=auto --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+    lg0 = log --graph --color=auto --pretty=format:'%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
     lgd = !git lg $(git default)..
     lga = !git log --all --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit | less -r
     ls = ls-tree --name-only --full-tree -r HEAD
@@ -78,7 +83,7 @@ email = fenuks
     st = status -s
     remote-url = remote get-url origin
     unchange = !git checkout "$(git base-rev)" -- $(git diff --name-only "$(git base-rev)" | fzf --multi) && git reset
-    unpushed = log @{u}..
+    unpushed = l @{u}..
     upd-default = remote set-head origin -a
     track = !git branch --set-upstream-to="origin/$(git branch --show-current)"
 [blame]
@@ -94,7 +99,7 @@ email = fenuks
     trustExitCode = true
     prompt = false
 [difftool "vimdir"]
-    cmd = vim -f '+next' '+execute \"DirDiff\" argv(0) argv(1)' $LOCAL $REMOTE
+    cmd = vim -f '+next' '+execute "DirDiff" argv(0) argv(1)' $LOCAL $REMOTE
 [difftool "difftastic"]
     cmd = difft "$LOCAL" "$REMOTE"
 [mergetool]
