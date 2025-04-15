@@ -739,10 +739,6 @@ function GatherSearchResults() abort
   endif
 endfunction
 
-function CopyFilename() abort
-  execute 'let @' . v:register . '=expand("%")'
-endfunction
-
 function GoToOpenFold1(direction) abort
   if (a:direction ==# 1)
     normal! zj

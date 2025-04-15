@@ -334,6 +334,12 @@ nnoremap <unique> <silent> <M-y> "+y
 nnoremap <unique> <silent> y "+y
 vnoremap <unique> <silent> <M-y> "+y
 nnoremap <unique> <silent> <M-S-y> "+y$
+" copy filename
+nnoremap <unique> <silent> y%. :let @+=expand("%:t")<CR>:echo 'Skopiowano nazwę pliku'<CR>
+" copy absolute path
+nnoremap <unique> <silent> y%/ :let @+=expand("%:p")<CR>:echo 'Skopiowano absolutną ścieżkę do pliku'<CR>
+" copy path as it is known to vim
+nnoremap <unique> <silent> y%% :let @+=expand("%")<CR>:echo 'Skopiowano ścieżkę do pliku'<CR>
 
 vnoremap <unique> <silent> <LocalLeader>p "+p
 nnoremap <unique> <silent> <Leader><Space>p a <ESC>"+p
@@ -347,7 +353,6 @@ nnoremap <unique> <silent> yp "0p
 nnoremap <unique> <silent> yP "0P
 nnoremap <unique> <silent> yv `<v`>y
 nnoremap <unique> <silent> ys :call CopySelection()<CR>
-nnoremap <unique> <silent> y% :call CopyFilename()<CR>
 nnoremap <unique> <silent> <M-p> "+p
 vnoremap <unique> <silent> <M-p> "+p
 inoremap <unique> <silent> <M-p> <C-o>"+p
