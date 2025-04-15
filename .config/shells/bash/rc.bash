@@ -70,6 +70,9 @@ export PROMPT_COMMAND=rewrite_history
 if command -v starship >/dev/null; then
   eval "$(starship init bash)"
 fi
+# add support for OSC 133, ~/.config/starship.toml overrides PS1 and PS2, https://invent.kde.org/utilities/konsole/-/merge_requests/691
+# 133;C means end of command
+PS0="${PS0}\[\e]133;C\a\]"
 
 if command -v zoxide >/dev/null; then
   eval "$(zoxide init bash)"

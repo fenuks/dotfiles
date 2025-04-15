@@ -1,4 +1,11 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
 add_newline = false
+
+# support for OSC 7 https://github.com/starship/starship/issues/3096
+#             OSC 133 https://invent.kde.org/utilities/konsole/-/merge_requests/691
+format = "\u001B\\]133;L\u0007\u001B\\]133;A\u0007\u001B\\]7;file://%hostname%%pwd%\u0007$all\u001B\\]133;B\u0007"
+continuation_prompt = "\u001B\\]133;A\u0007> \u001B\\]133;B\u0007"
 
 [character]
 success_symbol = "[\\$](bold green)"
@@ -18,4 +25,3 @@ modified = "!"
 staged = "++"
 # renamed = "👅"
 deleted = "🗑"
-
