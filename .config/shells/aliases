@@ -2,20 +2,11 @@
 # aliases compatible with fish syntax
 
 alias ag='ag --smart-case'
-alias cdc="cd ${XDG_CACHE_DIR:-${HOME}/.cache}"
-alias cdd="cd ${XDG_DOCUMENTS_DIR:-${HOME}/Documents}"
-alias cdf="cd ${XDG_VIDEOS_DIR:-${HOME}/Videos}"
-alias cdg="cd ${HOME}/Gry"
-alias cdk="cd ${HOME}/Kod"
-alias cdm="cd ${XDG_MUSIC_DIR:-${HOME}/Music}"
-alias cdn="cd ${XDG_DOCUMENTS_DIR:-${HOME}/Documents}/notatki"
-alias cdp="cd ${XDG_DOWNLOAD_DIR:-${HOME}/Downloads}"
 alias cdt="cd /tmp"
 alias check-yapf-config="diff <(yapf --style-help | grep -oP '^[a-zA-Z_0-9]+' | sort) <(grep -oP '^[a-zA-Z_0-9]+' ~/.config/yapf/style | sort)"
 alias chromium-dev='chromium --disable-web-security --user-data-dir --remote-debugging-port=9222'
 alias clear="clear && printf \"\\e[3J\""
 alias dc='docker compose'
-alias edit="${EDITOR}"
 alias e='nvim'
 alias fdi='fd --no-ignore'
 alias fdii='fd --no-ignore -i'
@@ -23,7 +14,6 @@ alias firefox-debug='firefox -start-debugger-server -no-remote'
 alias g='git'
 alias grep="grep --color=auto"
 alias jad-decompile="jad -o -d src-jad -r -s java **/*.class"
-alias kitty-themes="cd ${HOME}/.config/kitty/themes/ && ls *.conf | fzf --preview 'head -n 40 {} && kitty @ set-colors -a -c {}'; cd -"
 alias ll.='ls -l --all --human-readable'
 alias ll='ls -l --human-readable'
 alias lls='ls -l --all --sort=size --human-readable'
@@ -58,19 +48,3 @@ alias v='/usr/bin/vim'
 alias vv='vim ~/.config/nvim/init.vim'
 alias vz='vim ~/.config/shells/zsh/.zshrc'
 alias zzz="systemctl suspend"
-
-if command -v /usr/lib/jvm/default/bin/jshell > /dev/null; then
-    alias jshell="/usr/lib/jvm/default/bin/jshell"
-fi
-
-if command -v exa > /dev/null; then
-    alias l='exa'
-elif command -v lsd > /dev/null; then
-    alias l='lsd'
-else
-    alias l='ls --color --classify --human-readable'
-fi
-
-if ! command -v mutt > /dev/null; then
-    alias mutt='neomutt'
-fi
