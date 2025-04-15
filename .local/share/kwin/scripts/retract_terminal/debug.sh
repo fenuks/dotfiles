@@ -1,5 +1,2 @@
-# plasmapkg2 -t kwinscript -i .
-# plasmapkg2 -t kwinscript -r retractkitty
-plasmapkg2 -l
-plasmapkg2 -s retractkitty
-ll ~/.local/share/kservices5/
+plasma-interactiveconsole --kwin
+journalctl -f QT_CATEGORY=js QT_CATEGORY=kwin_scripting

@@ -1,0 +1,13 @@
+{
+    "KPlugin": {
+        "Name": "Przełączaj terminal",
+        "Description": "Przełącza widoczność okna terminalu, jak yakuake.",
+        "Icon": "preferences-system-windows",
+        "Id": "retract_terminal",
+        "Version": "1.0",
+        "License": "GPLv3"
+    },
+    "X-Plasma-API": "javascript",
+    "X-Plasma-MainScript": "code/main.js",
+    "KPackageStructure": "KWin/Script"
+}
