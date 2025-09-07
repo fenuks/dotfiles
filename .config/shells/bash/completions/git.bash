@@ -18,7 +18,7 @@ _fzf_complete_git() {
   fi
   cmd_opt="${COMP_WORDS[*]:1}"
   cmd_last_opt="${COMP_WORDS[${COMP_CWORD} - 1]}"
-  fzf="fzf-tmux"
+  fzf="fzf"
   fzf_opt=(--ansi --height "${FZF_TMUX_HEIGHT:-50%}" --min-height 15 --reverse ${FZF_COMPLETION_OPTS} ${FZF_DEFAULT_OPTS})
 
   add_preview="
@@ -39,9 +39,8 @@ _fzf_complete_git() {
     elif [[ \${git_prefix} == ' D' ]]; then
         ${binary} show \"HEAD^:\${file}\"
     else
-        ${binary} diff --color=always \"\${file}\"
+        ${binary} diff --color=always \"\${file}\" | ${GIT_PAGER:-less}
     fi
-    echo \"\${file}\"
     "
 
   file_preview="
@@ -97,6 +96,8 @@ _fzf_complete_git() {
   fi
 
   if [[ -v selected ]]; then
+    # To redraw line after fzf closes (printf '\e[5n')
+    bind '"\e[0n": redraw-current-line'
     printf '\e[5n'
     if [ -n "${selected}" ]; then
       COMPREPLY=("$selected")
