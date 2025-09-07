@@ -93,6 +93,7 @@ email = fenuks
 [color]
     ui = auto
 [push]
+    autoSetupRemote = true
     default = current
     followTags = true
 [difftool]
