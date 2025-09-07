@@ -54,7 +54,7 @@ function format_deno() {
 }
 
 function format_whitespace() {
-  sed -i -e 's/ \+$//' -e 's/\xc2\xa0/ /g' ${1}
+  sed --regexp-extended --in-place -e 's/(\w) $/\1/' -e 's/\xc2\xa0/ /g' ${1}
 }
 
 function format_prettier() {
