@@ -57,6 +57,7 @@ Plug 'https://github.com/machakann/vim-sandwich'
 Plug 'https://github.com/fenuks/vim-bracket-objects'
 Plug 'https://github.com/mg979/vim-visual-multi'
 Plug 'https://github.com/tpope/vim-commentary', { 'on': 'Commentary'}
+noremap <unique> <silent> <c-/> :Commentary<CR>
 noremap <unique> <silent> <c-_> :Commentary<CR>
 Plug 'https://github.com/tommcdo/vim-exchange'
 Plug 'https://github.com/kshenoy/vim-signature', {'on': 'SignatureToggleSigns'}
@@ -376,7 +377,7 @@ if has('nvim')
       set laststatus=0
       " firenvim doesn't support | blinking cursor (it stays invisible)
       set guicursor=n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20
-      let g:firenvim_config = { 
+      let g:firenvim_config = {
           \ 'globalSettings': {
               \ 'alt': 'all',
           \  },
