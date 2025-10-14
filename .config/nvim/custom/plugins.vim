@@ -173,6 +173,8 @@ nnoremap <unique> <silent> s/ :Grepper -tool rg<CR>
 nnoremap <unique> <silent> si/ :Grepper -tool rg -grepprg rg --no-heading --vimgrep --ignore-case<CR>
 nnoremap <unique> <silent> ss :Grepper -tool rg -side<CR>
 nnoremap <unique> <silent> s* :Grepper -tool rg -open -switch -cword -noprompt<CR>
+nnoremap <unique> <silent> s# :Grepper -tool rg -open -switch -noprompt -query <C-r>=expand('<cword>')<CR><CR>
+nnoremap <unique> <silent> s: :Grepper -tool rg -open -switch -query <C-r>=expand('<cword>')<CR><CR>
 nnoremap <unique> <silent> s% :Grepper -open -switch -cword -noprompt -tool rg -grepprg rg -H --no-heading --vimgrep -l<CR>
 nnoremap <unique> <silent> sf :Grepper -tool rg -grepprg rg -H --no-heading --vimgrep -l<CR>
 nnoremap <unique> <silent> sk :Grepper -tool rg -dir file<CR>
