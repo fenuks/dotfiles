@@ -333,9 +333,8 @@ prune_history() {
     return
   fi
 
-  # tac "${HISTFILE}" | awk '!x[$0]++' | grep -P '^([^ \\]+(?<!\\) +){2,}.+$' --color=none >| /tmp/history-pruned
-  tac "${HISTFILE}" | awk '!x[$0]++' >|/tmp/history-pruned
-  tac /tmp/history-pruned >|"${HISTFILE}"
+  tac "${HISTFILE}" | awk '!x[$0]++' | tac >|"${HISTFILE}.bak"
+  cp "${HISTFILE}.bak" "${HISTFILE}"
   history -c
   history -r
 
