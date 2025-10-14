@@ -13,6 +13,7 @@ alias fdii='fd --no-ignore -i'
 alias firefox-debug='firefox -start-debugger-server -no-remote'
 alias g='git'
 alias grep="grep --color=auto"
+alias hx='helix'
 alias jad-decompile="jad -o -d src-jad -r -s java **/*.class"
 alias ll.='ls -l --all --human-readable'
 alias ll='ls -l --human-readable'
