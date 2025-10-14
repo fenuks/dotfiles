@@ -127,6 +127,7 @@ nnoremap <C-w>] <C-w>v<C-]>
 nnoremap <C-w><C-]> <C-w>v<C-]>
 nnoremap <Leader>bo :action CloseAllEditorsButActive<CR>
 nnoremap <Leader>vlu :action Vcs.RollbackChangedLines<CR>
+nnoremap % :action EditorMatchBrace<CR>
 
 nnoremap <C-w>n :action NewElement<CR>
 nnoremap <C-w><C-n> :action NewElement<CR>
