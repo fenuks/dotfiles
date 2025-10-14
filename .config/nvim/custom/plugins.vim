@@ -339,7 +339,7 @@ if has('nvim')
     " LSP
     Plug 'https://github.com/neovim/nvim-lspconfig'
     Plug 'https://github.com/ray-x/lsp_signature.nvim'
-    Plug 'https://github.com/simrat39/rust-tools.nvim'
+    Plug 'https://github.com/mrcjkb/rustaceanvim'
     Plug 'https://github.com/kosayoda/nvim-lightbulb'
     Plug 'https://github.com/mfussenegger/nvim-jdtls'
     " autocomplete
