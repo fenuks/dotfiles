@@ -593,33 +593,20 @@ vim.cmd(
   [[autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb({ sign = { enabled = true, priority = 50, }, virtual_text = { enabled = true, text = "⟡" }})]]
 )
 
-local lspconfig = require('lspconfig')
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
-lspconfig.hls.setup({ on_attach = on_attach, capabilities = capabilities })
+vim.lsp.config('*', { on_attach = on_attach, capabilities = capabilities })
 if vim.fn.executable('clangd') == 1 then
-  lspconfig.clangd.setup({
+  vim.lsp.config('clangd', {
     on_attach = function(client, bufnr)
       on_attach(client, bufnr)
       map('n', '<C-w>a', ':ClangdSwitchSourceHeader<CR>')
       map('n', 'gh', ':ClangdSwitchSourceHeader<CR>')
     end,
-    capabilities = capabilities,
   })
-elseif vim.fn.executable('ccls') then
-  lspconfig.ccls.setup({ on_attach = on_attach, capabilities = capabilities })
-end
-lspconfig.nil_ls.setup({ on_attach = on_attach, capabilities = capabilities })
-lspconfig.ts_ls.setup({ on_attach = on_attach, capabilities = capabilities })
-lspconfig.zls.setup({ on_attach = on_attach, capabilities = capabilities })
-lspconfig.gopls.setup({ on_attach = on_attach, capabilities = capabilities })
-if vim.fn.executable('lemminx') == 1 then
-  lspconfig.lemminx.setup({ on_attach = on_attach, capabilities = capabilities })
 end
 if vim.fn.executable('/usr/bin/lua-language-server') == 1 then
-  lspconfig.lua_ls.setup({
+  vim.lsp.config('lua_ls', {
     cmd = { '/usr/bin/lua-language-server' },
-    on_attach = on_attach,
-    capabilities = capabilities,
     settings = {
       Lua = {
         runtime = {
@@ -645,12 +632,8 @@ if vim.fn.executable('/usr/bin/lua-language-server') == 1 then
     },
   })
 end
-lspconfig.dhall_lsp_server.setup({ on_attach = on_attach, capabilities = capabilities })
-
 if vim.fn.executable('pylsp') == 1 then
-  lspconfig.pylsp.setup({
-    on_attach = on_attach,
-    capabilities = capabilities,
+  vim.lsp.config('pylsp', {
     root_dir = function(fname)
       local root_files = {
         'pyproject.toml',
@@ -697,16 +680,6 @@ vim.g.symbols_outline = {
   lsp_blacklist = {},
   symbol_blacklist = {},
   symbols = outline_symbols,
-}
-
-local parser_config = require('nvim-treesitter.parsers').get_parser_configs()
-parser_config.org = {
-  install_info = {
-    url = 'https://github.com/milisims/tree-sitter-org',
-    revision = 'main',
-    files = { 'src/parser.c', 'src/scanner.cc' },
-  },
-  filetype = 'org',
 }
 
 require('orgmode').setup({
