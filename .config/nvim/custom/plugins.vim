@@ -365,6 +365,8 @@ if has('nvim')
 
     Plug 'https://github.com/nvim-telescope/telescope.nvim'
     Plug 'https://github.com/nvim-telescope/telescope-fzy-native.nvim'
+    nnoremap <unique> <silent> <Leader>fg :Telescope git_status<CR>
+
     Plug 'https://github.com/smoka7/hop.nvim'
 
     Plug 'https://github.com/hkupty/iron.nvim'
