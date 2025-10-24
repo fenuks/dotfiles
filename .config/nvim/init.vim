@@ -328,12 +328,6 @@ inoremap <unique> <silent> <C-l> <DEL>
 if !has('nvim-0.6')
     nnoremap <unique> <silent> Y y$
 endif
-vnoremap <unique> <silent> <LocalLeader>y "+y
-nnoremap <unique> <silent> <M-y> "+y
-" for vim
-nnoremap <unique> <silent> y "+y
-vnoremap <unique> <silent> <M-y> "+y
-nnoremap <unique> <silent> <M-S-y> "+y$
 " copy filename
 nnoremap <unique> <silent> y%. :let @+=expand("%:t")<CR>:echo 'Skopiowano nazwę pliku'<CR>
 " copy absolute path
@@ -341,10 +335,6 @@ nnoremap <unique> <silent> y%/ :let @+=expand("%:p")<CR>:echo 'Skopiowano absolu
 " copy path as it is known to vim
 nnoremap <unique> <silent> y%% :let @+=expand("%")<CR>:echo 'Skopiowano ścieżkę do pliku'<CR>
 
-vnoremap <unique> <silent> <LocalLeader>p "+p
-nnoremap <unique> <silent> <Leader><Space>p a <ESC>"+p
-nnoremap <unique> <silent> <Space>p a <ESC>p
-nnoremap <unique> <silent> <Space>P i <ESC>P
 nnoremap <unique> <silent> sp :call NewlinePaste('p', 'o')<CR>
 nnoremap <unique> <silent> Sp :call NewlinePaste('p', 'O')<CR>
 nnoremap <unique> <silent> SP :call NewlinePaste('p', 'O')<CR>
@@ -359,12 +349,17 @@ inoremap <unique> <silent> <M-p> <C-o>"+p
 nnoremap <unique> <silent> <Leader>pf :put =expand('%:p')<CR>
 nnoremap <unique> <silent> <Leader>pd :put =expand('%:r')<CR>
 
-nnoremap <unique> <silent> <LocalLeader>y "+y
-nnoremap <unique> <silent> <LocalLeader>Y "+y$
-nnoremap <unique> <silent> <LocalLeader>d "+d
-nnoremap <unique> <silent> <LocalLeader>D "+D
-nnoremap <unique> <silent> <LocalLeader>p "+p
-nnoremap <unique> <silent> <LocalLeader>P "+P
+nnoremap <unique> <silent> <Leader>y "+y
+vnoremap <unique> <silent> <Leader>y "+y
+nnoremap <unique> <silent> <Leader>Y "+y$
+nnoremap <unique> <silent> <Leader>d "+d
+nnoremap <unique> <silent> <Leader>D "+D
+nnoremap <unique> <silent> <Leader>p "+p
+nnoremap <unique> <silent> <Leader>P "+P
+vnoremap <unique> <silent> <Leader>pp "+p
+nnoremap <unique> <silent> <Leader><Space>p a <ESC>"+p
+nnoremap <unique> <silent> <Space>p a <ESC>p
+nnoremap <unique> <silent> <Space>P i <ESC>P
 nnoremap <unique> <silent> c* ciw
 nnoremap <unique> <silent> d* diw
 
@@ -493,8 +488,8 @@ nnoremap <silent> <C-l> :<C-U>Cnext<CR>
 nnoremap <unique> <silent> =q :<C-U>cwindow<CR>
 nnoremap <unique> <silent> =Q :<C-U>cclose<CR>
 
-nnoremap <unique> <silent> ]n :call Conflict(0)<CR>
-nnoremap <unique> <silent> [n :call Conflict(1)<CR>
+noremap <unique> <silent> ]n :call Conflict(0)<CR>
+noremap <unique> <silent> [n :call Conflict(1)<CR>
 
 nnoremap <unique> <silent> [ob :set background=light<CR>
 nnoremap <unique> <silent> [oc :set nocursorline<CR>
