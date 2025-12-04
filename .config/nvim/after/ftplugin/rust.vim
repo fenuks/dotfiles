@@ -10,6 +10,4 @@ compiler cargo
 
 if has('nvim')
   vnoremap <silent> <buffer> J :RustJoinLines<CR>
-else
-  call ConfigureLsc()
 endif

@@ -18,8 +18,4 @@ let g:haskell_enable_typeroles = 1        " to enable highlighting of type roles
 let g:haskell_enable_static_pointers = 1  " to enable highlighting of `static`
 let g:haskell_backpack = 1                " to enable highlighting of backpack keywords
 
-if !has('nvim-0.5')
-call ConfigureLsc()
-endif
-
 nnoremap <buffer> <silent> K :!hoogle -i <C-r><C-w><CR>

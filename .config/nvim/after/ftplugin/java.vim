@@ -17,12 +17,6 @@ setlocal foldmethod=expr
 setlocal includeexpr=substitute(v:fname,'\\.','/','g') " expression to change gf filename mapping
 setlocal colorcolumn=100
 
-if exists(':YcmCompleter')
-call ConfigureYcm()
-let g:ycm_semantic_triggers.java = ['.', '@', '::']
-let g:JavaComplete_EnableDefaultMappings = 0
-endif
-
 " autocmd FileType java setlocal makeprg=mvn errorformat='[%tRROR]\ %f:[%l]\ %m,%-G%.%#'
 nnoremap <unique> <buffer> <silent> <Leader>ii <Plug>(JavaComplete-Imports-AddSmart)
 nnoremap <unique> <buffer> <silent> <Leader>iI <Plug>(JavaComplete-Imports-Add)

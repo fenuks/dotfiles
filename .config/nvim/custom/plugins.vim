@@ -280,6 +280,7 @@ let g:ale_linters_ignore = {
 \ 'vimwiki': ['languagetool'],
 \ 'markdown': ['languagetool'],
 \ 'openapi': ['ibm_validator'],
+\ 'lua': ['lua-language-server'],
 \}
 " disabled languagetool for vimwiki since it doesn't understand markdown syntax,
 " and reportss plenty of errors
@@ -324,14 +325,10 @@ nnoremap <unique> <silent> <leader>xg :TestVisit<CR>
 let g:vimspector_enable_mappings = 'HUMAN'
 
 " ##### Code autocompletion
-Plug 'https://github.com/natebosch/vim-lsc', { 'on': 'LSClientEnable' }
-
 Plug 'https://github.com/Shougo/echodoc.vim'
 let g:echodoc#enable_at_startup = 1
 if has('nvim')
     let g:my_use_nvim_autopairs = v:true
-    Plug 'https://github.com/Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-
     let g:echodoc#type = 'virtual'
     Plug 'https://github.com/ncm2/float-preview.nvim'
     let g:float_preview#docked = 0
@@ -406,7 +403,6 @@ if has('nvim')
       augroup END
     end
 else
-    Plug 'https://github.com/Shougo/deoplete.nvim'
     Plug 'https://github.com/roxma/nvim-yarp'
     Plug 'https://github.com/roxma/vim-hug-neovim-rpc'
     let g:echodoc#type = 'floating'
@@ -442,12 +438,8 @@ else
     Plug 'https://github.com/alvan/vim-closetag', { 'for': ['html', 'xml'] }
 endif
 
-Plug 'https://github.com/deoplete-plugins/deoplete-dictionary'
-Plug 'https://github.com/zchee/deoplete-jedi', { 'for': 'python' }
 Plug 'https://github.com/Shougo/neco-vim', { 'for': 'vim' }
-" Plug 'https://github.com/zchee/deoplete-go', { 'for': 'go' }
 
-let g:deoplete#enable_at_startup = 1
 execute 'source ' . g:vim_custom_scripts . 'autocomplete.vim'
 
 " snippets
@@ -487,7 +479,6 @@ Plug 'https://github.com/ap/vim-css-color'
 let g:javascript_plugin_jsdoc = 1
 
 "##### Python
-Plug 'https://github.com/davidhalter/jedi-vim', { 'for': 'python' }
 " Plug 'https://github.com/jupyter-vim/jupyter-vim', { 'for': 'python' }
 let g:jupyter_mapkeys = 0
 " Plug 'https://github.com/dccsillag/magma-nvim', { 'do': ':UpdateRemotePlugins' }
@@ -580,20 +571,3 @@ if &background ==# 'light'
 endif
 
 call plug#end()
-
-call deoplete#custom#option({
-    \ 'ignore_sources': {'c': ['tag'], 'cpp': ['tag'], 'xml': ['tag']},
-    \ 'auto_complete': v:false
-\ })
-call deoplete#custom#source('_', {
-    \ 'matchers': ['matcher_full_fuzzy'],
-\ })
-call deoplete#custom#source('_', 'smart_case', v:true)
-call deoplete#custom#source('dictionary', {
-    \ 'matchers': ['matcher_head'],
-    \ 'sorters': [],
-    \ 'converters': ['converter_case'],
-    \ 'ignore_case': v:true,
-    \ 'smart_case': v:false,
-    \ 'camel_case': v:false,
-\ })

@@ -534,8 +534,6 @@ cmp.setup({
 })
 -- function to attach completion and diagnostics when setting up lsp
 local on_attach = function(_client, _bufnr)
-  vim.call('deoplete#custom#buffer_option', 'auto_complete', false)
-
   vim.api.nvim_command([[autocmd CursorHold  <buffer> lua vim.lsp.buf.document_highlight()]])
   vim.api.nvim_command([[autocmd CursorHoldI <buffer> lua vim.lsp.buf.document_highlight()]])
   vim.api.nvim_command([[autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()]])
@@ -632,23 +630,22 @@ if vim.fn.executable('/usr/bin/lua-language-server') == 1 then
     },
   })
 end
-if vim.fn.executable('pylsp') == 1 then
+if vim.fn.executable('pyrefly') == 1 then
+  vim.lsp.enable('pyrefly')
+elseif vim.fn.executable('pylsp') == 1 then
   vim.lsp.config('pylsp', {
-    root_dir = function(fname)
-      local root_files = {
-        'pyproject.toml',
-        'setup.py',
-        'setup.cfg',
-        'requirements.txt',
-        'Pipfile',
-        '.env',
-        '.git',
-      }
-      return vim.lsp.util.root_pattern(unpack(root_files))(fname)
-        or vim.lsp.util.find_git_ancestor(fname)
-        or vim.lsp.util.path.dirname(fname)
-    end,
+    root_markers = {
+      'pyproject.toml',
+      'setup.py',
+      'setup.cfg',
+      'requirements.txt',
+      '.venv',
+      '.git',
+    },
   })
+  vim.lsp.enable('pylsp')
+elseif vim.fn.executable('ty') == 1 then
+  vim.lsp.enable('ty')
 end
 
 local default_outline_symbols = require('symbols-outline.config').defaults.symbols
@@ -753,20 +750,20 @@ function _G.dump(...)
 end
 
 function ansi_colorize()
-  vim.opt.listchars = { space = " " }
+  vim.opt.listchars = { space = ' ' }
 
   local buf = vim.api.nvim_get_current_buf()
 
   local lines = vim.api.nvim_buf_get_lines(buf, 0, -1, false)
-  while #lines > 0 and vim.trim(lines[#lines]) == "" do
+  while #lines > 0 and vim.trim(lines[#lines]) == '' do
     lines[#lines] = nil
   end
   vim.api.nvim_buf_set_lines(buf, 0, -1, false, {})
 
-  vim.api.nvim_chan_send(vim.api.nvim_open_term(buf, {}), table.concat(lines, "\r\n"))
-  vim.keymap.set("n", "q", "<cmd>qa!<cr>", { silent = true, buffer = buf })
-  vim.api.nvim_create_autocmd("TextChanged", { buffer = buf, command = "normal! G$" })
-  vim.api.nvim_create_autocmd("TermEnter", { buffer = buf, command = "stopinsert" })
+  vim.api.nvim_chan_send(vim.api.nvim_open_term(buf, {}), table.concat(lines, '\r\n'))
+  vim.keymap.set('n', 'q', '<cmd>qa!<cr>', { silent = true, buffer = buf })
+  vim.api.nvim_create_autocmd('TextChanged', { buffer = buf, command = 'normal! G$' })
+  vim.api.nvim_create_autocmd('TermEnter', { buffer = buf, command = 'stopinsert' })
   vim.opt.modifiable = true
   vim.opt.undolevels = 1000
 end
