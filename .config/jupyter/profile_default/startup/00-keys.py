@@ -33,12 +33,11 @@ def suggestion_available() -> bool:
 
 
 # <a-f>
-@handle("æ", filter=suggestion_available)
+@handle(Keys.ControlY, filter=suggestion_available)
 def accept_suggestion(event: KeyPressEvent) -> None:
     buf = event.current_buffer
-    suggestion = buf.suggestion
 
-    if suggestion:
+    if suggestion := buf.suggestion:
         buf.insert_text(suggestion.text)
 
 
