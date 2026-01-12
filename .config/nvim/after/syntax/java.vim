@@ -1,6 +1,4 @@
-if exists('b:did_java_syntax')
-    finish
-endif
+if exists('b:did_java_syntax') | finish | endif
 let b:did_java_syntax = 1
 
 syn keyword javaExternal native package
