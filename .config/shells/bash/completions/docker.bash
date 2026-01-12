@@ -10,7 +10,7 @@ _fzf_complete_docker() {
   binary="${COMP_WORDS[0]}"
   cmd_opt="${COMP_WORDS[*]:1}"
   cmd_last_opt="${COMP_WORDS[${COMP_CWORD} - 1]}"
-  fzf="fzf-tmux"
+  fzf="fzf"
   fzf_opt=(--height "${FZF_TMUX_HEIGHT:-50%}" --min-height 15 --reverse --preview 'echo {}' --preview-window down:3:wrap ${FZF_COMPLETION_OPTS} ${FZF_DEFAULT_OPTS})
 
   if [[ "${cmd_opt}" == 'attach '* ]]; then
@@ -24,7 +24,7 @@ _fzf_complete_docker() {
   elif [[ "${cmd_opt}" == 'cp '* ]]; then
     selected=$("${binary}" ps | sed '1d' | ${fzf} "${fzf_opt[@]}" +m | awk -F '\\s{2,}' '{ print ""$1":/" }' | tr '\n' ' ')
   elif [[ "${cmd_opt}" == 'inspect '* ]]; then
-    selected=$("${binary}" images | sed '1d' | ${fzf} "${fzf_opt[@]}" -m | awk '{print $1":"$2}' | tr '\n' ' ')
+    selected=$("${binary}" images --format table | sed '1d' | ${fzf} "${fzf_opt[@]}" -m | awk '{print $1":"$2}' | tr '\n' ' ')
   elif [[ "${cmd_opt}" == 'kill '* ]] || [[ "${cmd_opt}" == 'stop '* ]]; then
     selected=$("${binary}" ps | sed '1d' | ${fzf} "${fzf_opt[@]}" -m | awk -F '\\s{2,}' '{ print $7 }' | tr '\n' ' ')
   elif [[ "${cmd_opt}" == 'save '* ]]; then
@@ -32,20 +32,22 @@ _fzf_complete_docker() {
   elif [[ "${cmd_opt}" == 'pull '* ]]; then
     selected=$(__fzf_docker_images "${binary}" | awk '{print $1}' | sort | uniq | ${fzf} "${fzf_opt[@]}" -m | tr '\n' ' ')
   elif [[ "${cmd_opt}" == 'push '* ]]; then
-    selected=$("${binary}" images | sed '1d' | ${fzf} "${fzf_opt[@]}" -m | awk '{print $1":"$2}' | tr '\n' ' ')
+    selected=$("${binary}" images --format table | sed '1d' | ${fzf} "${fzf_opt[@]}" -m | awk '{print $1":"$2}' | tr '\n' ' ')
   elif [[ "${cmd_opt}" == 'run '* ]]; then
-    selected=$("${binary}" images | sed '1d' | ${fzf} "${fzf_opt[@]}" -m | awk '{print "-it --rm -v/var/run/docker.sock:/var/run/docker.sock -v$PWD:/src --workdir /src "$1":"$2" bash"}' | tr '\n' ' ')
+    selected=$("${binary}" images --format table | sed '1d' | ${fzf} "${fzf_opt[@]}" -m | awk '{print "-it --rm -v/var/run/docker.sock:/var/run/docker.sock -v$PWD:/src --workdir /src "$1":"$2" bash"}' | tr '\n' ' ')
   elif [[ "${cmd_opt}" == 'start '* ]]; then
-    selected=$("${binary}" images | sed '1d' | ${fzf} "${fzf_opt[@]}" -m | awk '{print ""$1":"$2""}' | tr '\n' ' ')
+    selected=$("${binary}" images --format table | sed '1d' | ${fzf} "${fzf_opt[@]}" -m | awk '{print ""$1":"$2""}' | tr '\n' ' ')
   elif [[ "${cmd_opt}" == 'rmi '* ]]; then
-    selected=$("${binary}" images | sed '1d' | ${fzf} "${fzf_opt[@]}" -m | awk '{print $3}' | tr '\n' ' ')
+    selected=$("${binary}" images --format table | sed '1d' | ${fzf} "${fzf_opt[@]}" -m | awk '{print $3}' | tr '\n' ' ')
   elif [[ "${cmd_opt}" == 'rm '* ]]; then
     selected=$("${binary}" ps -a | sed '1d' | ${fzf} "${fzf_opt[@]}" -m | awk '{print $1}' | tr '\n' ' ')
   elif [[ "${cmd_opt}" == 'tag '* ]]; then
-    selected=$("${binary}" images | sed '1d' | ${fzf} "${fzf_opt[@]}" -m | awk '{print $1":"$2}' | tr '\n' ' ')
+    selected=$("${binary}" images --format table | sed '1d' | ${fzf} "${fzf_opt[@]}" -m | awk '{print $1":"$2}' | tr '\n' ' ')
   fi
 
   if [[ -v selected ]]; then
+    # To redraw line after fzf closes (printf '\e[5n')
+    bind '"\e[0n": redraw-current-line'
     printf '\e[5n'
     if [ -n "${selected}" ]; then
       COMPREPLY=("$selected")
@@ -56,7 +58,7 @@ _fzf_complete_docker() {
 }
 
 __fzf_docker_images() {
-  $1 images | sed '1d' | grep -v '<none>'
+  $1 images --format table | sed '1d' | grep -v '<none>'
 }
 
 [ -n "$BASH" ] && complete -F _fzf_complete_docker -o default -o nospace docker
