@@ -22,20 +22,17 @@ inoremap <A-k> <UP>
 inoremap <A-j> <DOWN>
 inoremap <C-l> <Delete>
 
-vnoremap \y "+y
-vnoremap <A-y> "+y
-vnoremap \d "+d
-vnoremap \p "+p
-vnoremap <A-p> "+p
+vnoremap <Leader>y "+y
+vnoremap <Leader>d "+d
+vnoremap <Leader>d "+d
+vnoremap <Leader>p "+p
 
-nnoremap \y "+y
-nnoremap <A-y> "+y
-nnoremap \Y "+y$
-nnoremap \d "+d
-nnoremap \D "+D
-nnoremap \p "+p
-nnoremap <A-p> "+p
-nnoremap \P "+P
+nnoremap <Leader>y "+y
+nnoremap <Leader>Y "+y$
+nnoremap <Leader>d "+d
+nnoremap <Leader>D "+D
+nnoremap <Leader>p "+p
+nnoremap <Leader>P "+P
 
 nnoremap yp "0p
 nnoremap yP "0P
