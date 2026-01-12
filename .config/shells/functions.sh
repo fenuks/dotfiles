@@ -334,10 +334,13 @@ prune_history() {
   fi
 
   tac "${HISTFILE}" | awk '!x[$0]++' | tac >|"${HISTFILE}.bak"
+  if [[ $? -ne 0 ]]; then
+    echo "ERROR: Failed to prune ${HISTFILE}."
+    return
+  fi
   cp "${HISTFILE}.bak" "${HISTFILE}"
   history -c
   history -r
-
 }
 
 rcd() {
